@@ -1,0 +1,224 @@
+{
+  "id": "endosymbiosis_v1",
+  "scope": "Reductive genome evolution under obligate endosymbiosis: which genes an endosymbiont or organelle genome keeps versus loses/transfers. Not valid for free-living organisms, and it cannot describe gene gain.",
+  "model": "Retention hazard: P(gene still encoded) = exp(-exp(a_lineage + x @ w)). Positive weight = leaves the organelle/symbiont genome faster.",
+  "feature_names": [
+    "hydrophobicity_gravy",
+    "tm_helices",
+    "protein_length",
+    "redox_core",
+    "atp_synthase",
+    "translation",
+    "transcription",
+    "protein_targeting"
+  ],
+  "feature_definitions": {
+    "hydrophobicity_gravy": "Kyte-Doolittle GRAVY of the protein, z-scored within system",
+    "tm_helices": "log(1 + predicted TM helices), z-scored within system",
+    "protein_length": "log protein length, z-scored within system",
+    "redox_core": "respiratory/photosynthetic electron-transport subunit (0/1)",
+    "atp_synthase": "ATP synthase subunit (0/1)",
+    "translation": "ribosomal protein, translation factor or aa-tRNA synthetase (0/1)",
+    "transcription": "RNA polymerase subunit or sigma factor (0/1)",
+    "protein_targeting": "Sec/Tat/SRP translocation or cytochrome c maturation (0/1)"
+  },
+  "data": {
+    "mitochondrion": {
+      "n_genomes": 30,
+      "n_genes": 71,
+      "heldout_auroc_features_only": 0.852
+    },
+    "plastid": {
+      "n_genomes": 21,
+      "n_genes": 252,
+      "heldout_auroc_features_only": 0.736
+    },
+    "insect_endosymbiont": {
+      "n_genomes": 13,
+      "n_genes": 4277,
+      "heldout_auroc_features_only": 0.645
+    }
+  },
+  "universality_delta_aic": 786.6,
+  "caveats": [
+    "Lineages are treated as independent; phylogenetic non-independence makes the confidence intervals too narrow.",
+    "Gene matching: annotation names plus reciprocal-best-hit homology; fast-evolving genes can still be missed, inflating loss.",
+    "Associations, not demonstrated causes."
+  ],
+  "contexts": {
+    "mitochondrion": {
+      "hydrophobicity_gravy": {
+        "weight": -0.3241,
+        "ci95": [
+          -0.4773,
+          -0.171
+        ]
+      },
+      "tm_helices": {
+        "weight": -0.3672,
+        "ci95": [
+          -0.6005,
+          -0.1338
+        ]
+      },
+      "protein_length": {
+        "weight": -0.1877,
+        "ci95": [
+          -0.2769,
+          -0.0986
+        ]
+      },
+      "redox_core": {
+        "weight": -1.5404,
+        "ci95": [
+          -2.0497,
+          -1.0311
+        ]
+      },
+      "atp_synthase": {
+        "weight": -1.2993,
+        "ci95": [
+          -1.7659,
+          -0.8327
+        ]
+      },
+      "translation": {
+        "weight": -1.1229,
+        "ci95": [
+          -1.656,
+          -0.5898
+        ]
+      },
+      "transcription": {
+        "weight": 1.0169,
+        "ci95": [
+          0.4912,
+          1.5425
+        ]
+      },
+      "protein_targeting": {
+        "weight": 0.9043,
+        "ci95": [
+          0.2319,
+          1.5768
+        ]
+      }
+    },
+    "plastid": {
+      "hydrophobicity_gravy": {
+        "weight": 0.0134,
+        "ci95": [
+          -0.0779,
+          0.1047
+        ]
+      },
+      "tm_helices": {
+        "weight": -0.0466,
+        "ci95": [
+          -0.1629,
+          0.0696
+        ]
+      },
+      "protein_length": {
+        "weight": -0.0401,
+        "ci95": [
+          -0.1134,
+          0.0332
+        ]
+      },
+      "redox_core": {
+        "weight": -1.3648,
+        "ci95": [
+          -1.6763,
+          -1.0533
+        ]
+      },
+      "atp_synthase": {
+        "weight": -1.8488,
+        "ci95": [
+          -2.2789,
+          -1.4188
+        ]
+      },
+      "translation": {
+        "weight": -1.3034,
+        "ci95": [
+          -1.4815,
+          -1.1253
+        ]
+      },
+      "transcription": {
+        "weight": -2.5516,
+        "ci95": [
+          -3.2499,
+          -1.8534
+        ]
+      },
+      "protein_targeting": {
+        "weight": -0.668,
+        "ci95": [
+          -1.1121,
+          -0.2239
+        ]
+      }
+    },
+    "insect_endosymbiont": {
+      "hydrophobicity_gravy": {
+        "weight": -0.0127,
+        "ci95": [
+          -0.0306,
+          0.0052
+        ]
+      },
+      "tm_helices": {
+        "weight": 0.1623,
+        "ci95": [
+          0.1423,
+          0.1822
+        ]
+      },
+      "protein_length": {
+        "weight": -0.1346,
+        "ci95": [
+          -0.1497,
+          -0.1195
+        ]
+      },
+      "redox_core": {
+        "weight": -2.0487,
+        "ci95": [
+          -2.5256,
+          -1.5718
+        ]
+      },
+      "atp_synthase": {
+        "weight": -1.7473,
+        "ci95": [
+          -2.4898,
+          -1.0049
+        ]
+      },
+      "translation": {
+        "weight": -3.0736,
+        "ci95": [
+          -3.2896,
+          -2.8575
+        ]
+      },
+      "transcription": {
+        "weight": -1.3994,
+        "ci95": [
+          -1.5843,
+          -1.2146
+        ]
+      },
+      "protein_targeting": {
+        "weight": -0.7963,
+        "ci95": [
+          -0.86,
+          -0.7327
+        ]
+      }
+    }
+  }
+}
