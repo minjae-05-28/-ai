@@ -204,3 +204,16 @@ def test_additive_design_recovers_axis_effects():
     law = fit_bd(x, pairs, ("base", "parasite", "reduced"), epochs=300)
     np.testing.assert_allclose(law.w_mu, W_mu, atol=0.4)
     np.testing.assert_allclose(law.weights((1, 1, 1))[1], W_mu.sum(0), atol=0.4)
+
+
+def test_keyword_classes_avoid_substring_false_hits():
+    import re
+
+    from organelle_evo.eukaryotes.features import KEYWORD_CLASSES
+
+    kw = dict(KEYWORD_CLASSES)
+    assert re.search(kw["gtpase_signalling"], "Ras family")
+    assert not re.search(kw["gtpase_signalling"], "Glycosyl transferase family 2")
+    assert re.search(kw["uncharacterised"], "DUF1234 Domain of unknown function")
+    assert re.search(kw["cilium_flagellum"], "Intraflagellar transport protein")
+    assert not re.search(kw["cilium_flagellum"], "facilitated transport")
