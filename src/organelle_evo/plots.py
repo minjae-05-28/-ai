@@ -98,3 +98,76 @@ def plot_forecast(past_counts, forecast, true_future, snapshot_frac, aurocs, pat
     fig.tight_layout()
     fig.savefig(path, dpi=130)
     plt.close(fig)
+
+
+SYSTEM_COLORS = {"mitochondrion": "#e76f51", "plastid": "#2a9d8f", "insect_endosymbiont": "#6d597a"}
+
+
+def plot_systems(results, path):
+    """True vs learned laws for each simulated endosymbiotic system."""
+    fig, axes = plt.subplots(2, len(results), figsize=(4.3 * len(results), 6.5), sharey="row")
+    x = np.arange(len(FEATURES))
+    for col, (name, (spec, fitted)) in enumerate(results.items()):
+        for row, (kind, true_w, est, se) in enumerate([
+            ("transfer", spec.true_rules.transfer_weights, fitted.transfer_weights, fitted.transfer_se),
+            ("loss", spec.true_rules.loss_weights, fitted.loss_weights, fitted.loss_se),
+        ]):
+            ax = axes[row, col]
+            ax.axhline(0, color="k", lw=0.6)
+            ax.set_xticks(x, [f.split("_")[0][:7] for f in FEATURES], fontsize=8)
+            ax.set_title(f"{name}: {kind}", fontsize=10)
+            if spec.true_rules.transfer_bias < -8 and kind == "transfer":
+                ax.text(0.5, 0.5, "no transfer to a nucleus\n(nothing to learn)",
+                        transform=ax.transAxes, ha="center", va="center", fontsize=9,
+                        bbox=dict(fc="white", ec="gray"))
+                continue
+            ax.bar(x - 0.18, true_w, 0.36, color="#264653", label="true law")
+            ax.bar(x + 0.18, est, 0.36, yerr=1.96 * se, capsize=2,
+                   color=SYSTEM_COLORS.get(name, "#e76f51"), label="learned")
+    axes[0, 0].legend(fontsize=8)
+    fig.tight_layout()
+    fig.savefig(path, dpi=130)
+    plt.close(fig)
+
+
+def plot_real_laws(laws: dict, feature_names, path):
+    """Learned retention laws per real system (positive = leaves the organelle faster)."""
+    fig, ax = plt.subplots(figsize=(11, 4.5))
+    n = len(laws)
+    width = 0.8 / max(n, 1)
+    x = np.arange(len(feature_names))
+    for i, (name, law) in enumerate(laws.items()):
+        se = law.weights_se[0] if law.weights_se is not None else None
+        ax.bar(x + (i - (n - 1) / 2) * width, law.weights[0], width,
+               yerr=None if se is None else 1.96 * se, capsize=2,
+               color=SYSTEM_COLORS.get(name, None), label=name)
+    ax.axhline(0, color="k", lw=0.6)
+    ax.set_xticks(x, [f.replace("_", "\n") for f in feature_names], fontsize=8)
+    ax.set_ylabel("effect on log hazard of leaving\n(+ = lost/transferred faster)")
+    ax.set_title("Laws learned from real genomes (95% CI)")
+    ax.legend()
+    fig.tight_layout()
+    fig.savefig(path, dpi=130)
+    plt.close(fig)
+
+
+def plot_lolo(lolo: dict, path):
+    fig, ax = plt.subplots(figsize=(8, 4))
+    names = list(lolo)
+    x = np.arange(len(names))
+    for j, (label, attr, color) in enumerate([
+        ("gene prevalence (memorisation)", "auroc_prevalence", "#b0b0b0"),
+        ("learned law (features only)", "auroc_law", "#e76f51"),
+        ("law + prevalence", "auroc_combined", "#264653"),
+    ]):
+        vals = [np.nanmean(getattr(lolo[n], attr)) for n in names]
+        ax.bar(x + (j - 1) * 0.27, vals, 0.27, label=label, color=color)
+        for xi, v in zip(x, vals):
+            ax.text(xi + (j - 1) * 0.27, v + 0.01, f"{v:.2f}", ha="center", fontsize=7)
+    ax.set_xticks(x, names)
+    ax.set(ylim=(0.5, 1.02), ylabel="AUROC (held-out lineage)",
+           title="Which genes does an unseen species keep?")
+    ax.legend(fontsize=8, loc="lower right")
+    fig.tight_layout()
+    fig.savefig(path, dpi=130)
+    plt.close(fig)

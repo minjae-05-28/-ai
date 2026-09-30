@@ -1,0 +1,68 @@
+{
+  "mitochondrion": {
+    "ancestor_genes": 575,
+    "genes_kept_range": [
+      23,
+      206
+    ],
+    "fraction_transferred": 0.30926086956521737,
+    "loss_law_max_abs_error": 0.23982854860137826,
+    "transfer_law_max_abs_error": 0.08839327291288468,
+    "learned_loss": {
+      "hydrophobicity": 0.15916399763866032,
+      "redox_coupling": -0.7002311224384916,
+      "host_redundancy": 3.0908282405155645,
+      "symbiont_essentiality": -3.2398285486013783
+    },
+    "learned_transfer": {
+      "hydrophobicity": -2.9116067270871153,
+      "redox_coupling": -1.9933638159699139,
+      "host_redundancy": 0.5706606335827996,
+      "symbiont_essentiality": 1.5349010515317358
+    }
+  },
+  "plastid": {
+    "ancestor_genes": 423,
+    "genes_kept_range": [
+      40,
+      300
+    ],
+    "fraction_transferred": 0.3046099290780142,
+    "loss_law_max_abs_error": 0.6193287607440614,
+    "transfer_law_max_abs_error": 0.15410094380273454,
+    "learned_loss": {
+      "hydrophobicity": 0.15827937956951,
+      "redox_coupling": -0.8471015575263448,
+      "host_redundancy": 2.927264763062573,
+      "symbiont_essentiality": -3.6193287607440614
+    },
+    "learned_transfer": {
+      "hydrophobicity": -2.596045203545597,
+      "redox_coupling": -2.946321203546569,
+      "host_redundancy": 0.4795230079965081,
+      "symbiont_essentiality": 1.3458990561972655
+    }
+  },
+  "insect_endosymbiont": {
+    "ancestor_genes": 636,
+    "genes_kept_range": [
+      75,
+      380
+    ],
+    "fraction_transferred": 0.0,
+    "loss_law_max_abs_error": 0.5016857991915522,
+    "transfer_law_max_abs_error": null,
+    "learned_loss": {
+      "hydrophobicity": 0.3221684331804484,
+      "redox_coupling": -0.4097286092286288,
+      "host_redundancy": 3.242970395142775,
+      "symbiont_essentiality": -4.001685799191552
+    },
+    "learned_transfer": {
+      "hydrophobicity": -1.1210075878972166,
+      "redox_coupling": -0.5088593671699908,
+      "host_redundancy": -1.6364923074965938,
+      "symbiont_essentiality": -2.4673490528023256
+    }
+  }
+}

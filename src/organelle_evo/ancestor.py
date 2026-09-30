@@ -64,12 +64,15 @@ class AncestorGenome:
         return names
 
 
-def make_ancestor(seed: int = 0, concentration: float = 12.0) -> AncestorGenome:
+def make_ancestor(
+    seed: int = 0, concentration: float = 12.0, specs: dict | None = None
+) -> AncestorGenome:
     """Sample gene features around each category's means from Beta distributions."""
+    specs = CATEGORY_SPECS if specs is None else specs
     rng = np.random.default_rng(seed)
     features, category, pathway = [], [], []
     next_pathway = 0
-    for ci, (n, per_pathway, means) in enumerate(CATEGORY_SPECS.values()):
+    for ci, (n, per_pathway, means) in enumerate(specs.values()):
         m = np.clip(np.asarray(means), 0.02, 0.98)
         features.append(rng.beta(m * concentration, (1 - m) * concentration, size=(n, len(FEATURES))))
         category.append(np.full(n, ci))
@@ -79,5 +82,5 @@ def make_ancestor(seed: int = 0, concentration: float = 12.0) -> AncestorGenome:
         features=np.concatenate(features),
         category=np.concatenate(category),
         pathway=np.concatenate(pathway),
-        categories=tuple(CATEGORY_SPECS),
+        categories=tuple(specs),
     )
