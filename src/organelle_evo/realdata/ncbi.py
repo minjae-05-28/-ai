@@ -62,6 +62,9 @@ def fetch_species(org: str, query: str, cache_dir: Path) -> Path | None:
     path = cache_dir / (re.sub(r"[^A-Za-z0-9]+", "_", org).strip("_") + ".gb")
     if path.exists() and path.stat().st_size > 0:
         return path
+    if query.startswith("accession:"):
+        path.write_text(fetch_genbank(query.removeprefix("accession:")))
+        return path
     query = query.format(org=org)
     hit = find_accession(query, org)
     if hit is None and "refseq[filter]" in query:

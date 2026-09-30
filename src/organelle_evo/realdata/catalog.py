@@ -36,10 +36,9 @@ CATALOG = {
             "Drosophila melanogaster", "Caenorhabditis elegans", "Danio rerio",
             "Gallus gallus", "Mus musculus", "Homo sapiens",
         ],  # fmt: skip
-        # Its ~6 kb genome (3 proteins) is not titled "complete genome".
-        "extra_queries": {
-            "Plasmodium falciparum": '"Plasmodium falciparum 3D7"[Organism] AND mitochondrion[filter] AND refseq[filter]',
-        },
+        # Search hits for its ~6 kb genome (3 proteins) are unannotated; use the RefSeq record.
+        # "accession:" entries are fetched directly.
+        "extra_queries": {"Plasmodium falciparum": "accession:NC_037526.1"},
     },
     "plastid": {
         "query": PLASTID_QUERY,
@@ -58,7 +57,7 @@ CATALOG = {
         ],  # fmt: skip
         # A second, independent primary endosymbiosis (~100 Myr old).
         "extra_queries": {
-            "Plasmodium falciparum": '"Plasmodium falciparum 3D7"[Organism] AND plastid[filter] AND refseq[filter]',
+            "Plasmodium falciparum": "accession:NC_036769.1",  # apicoplast
             "Paulinella chromatophora": '"Paulinella chromatophora"[Organism] AND chromatophore[Title] AND complete[Title]',
         },
     },
@@ -67,7 +66,8 @@ CATALOG = {
         # Free-living relative used as the proxy ancestor / gene universe.
         "ancestor": "Escherichia coli str. K-12 substr. MG1655",
         "species": [
-            "Sodalis glossinidius",  # recent, still gene-rich
+            # Sodalis glossinidius (a recent symbiont) would fit here, but its only complete
+            # record names ~7% of genes, which would read as massive false gene loss.
             "Hamiltonella defensa",
             "Serratia symbiotica",
             "Wigglesworthia glossinidia",
@@ -84,7 +84,7 @@ CATALOG = {
                 ("Blochmannia floridanus", "Blochmannia", "floridanus"),
                 ("Buchnera aphidicola Sg (Schizaphis graminum)", "Buchnera aphidicola", "Schizaphis"),
                 ("Buchnera aphidicola Bp (Baizongia pistaciae)", "Buchnera aphidicola", "Baizongia"),
-                ("Buchnera aphidicola BCc (Cinara cedri)", "Buchnera aphidicola", "Cinara"),
+                ("Buchnera aphidicola (Cinara)", "Buchnera aphidicola", "Cinara"),
                 ("Moranella endobia", "Moranella", "endobia"),
             ]
         },

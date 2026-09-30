@@ -59,6 +59,11 @@ def symbol_from_product(product: str, organelle: str = "") -> str | None:
         return f"rp{m[1]}{m[2]}"
     if m := re.fullmatch(r"(?:ycf|hypothetical chloroplast rf)(\d+)", p):
         return f"ycf{m[1]}"
+    if not organelle:
+        # Older bacterial annotations end the product with the symbol: "... protein DnaA".
+        if m := re.search(r"\b([A-Z]?[a-z]{2,3}[A-Z]\d?)$", product.strip()):
+            return normalize_gene_name(m[1])
+        return None
     if organelle.startswith("mitochondri"):
         if m := re.fullmatch(r"nadh dehydrogenase subunit (\d+l?)", p):
             return f"nad{m[1]}"
