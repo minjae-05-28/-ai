@@ -104,3 +104,64 @@ def test_slug(name):
     from organelle_evo.eukaryotes.catalog import slug
 
     assert slug(name) == "Dictyostelium_discoideum"
+
+
+def test_birth_death_matches_simulation():
+    import numpy as np
+    import torch
+
+    from organelle_evo.eukaryotes.birthdeath import simulate, transition_log_prob
+
+    for n, log_lam, log_mu in [(1, -0.5, 0.2), (3, 0.3, -0.2), (2, 0.0, 0.0)]:
+        m = torch.arange(0, 31)
+        p = transition_log_prob(torch.tensor(n), m, torch.tensor(float(log_lam), dtype=torch.float64),
+                                torch.tensor(float(log_mu), dtype=torch.float64)).exp().numpy()
+        sim = simulate(np.full(50000, n), log_lam, log_mu, -50.0, n_steps=500, rng=np.random.default_rng(0))
+        emp = np.bincount(np.minimum(sim, 30), minlength=31) / len(sim)
+        assert abs(p.sum() - 1) < 1e-3
+        assert np.abs(emp[:10] - p[:10]).max() < 0.01
+
+
+def test_single_copy_no_birth_reduces_to_retention_model():
+    import torch
+
+    from organelle_evo.eukaryotes.birthdeath import transition_log_prob
+
+    log_mu = torch.tensor(0.3, dtype=torch.float64)
+    p0 = transition_log_prob(torch.tensor(1), torch.tensor(0), torch.tensor(-30.0, dtype=torch.float64), log_mu)
+    assert abs(float(p0.exp()) - float(-torch.expm1(-log_mu.exp()))) < 1e-6
+
+
+def test_fit_bd_recovers_lifestyle_specific_laws():
+    import numpy as np
+    import torch
+
+    from organelle_evo.eukaryotes.birthdeath import simulate
+    from organelle_evo.eukaryotes.model import fit_bd
+
+    torch.set_num_threads(1)
+    rng = np.random.default_rng(0)
+    F = 800
+    x = np.stack([rng.normal(size=F), (rng.random(F) < 0.15).astype(float)], 1)
+    w_mu = np.array([[0.0, -1.0], [0.8, -1.5]])  # parasites lose feature-0 families faster
+    pairs = []
+    for p in range(6):
+        s = p % 2
+        n0 = rng.geometric(0.4, size=F) * (rng.random(F) < 0.8)
+        m = simulate(n0, -1.2 + np.zeros(F), -1.0 + x @ w_mu[s], -3 + np.zeros(F), n_steps=200, rng=rng)
+        pairs.append((n0, m, s))
+    law = fit_bd(x, pairs, ("free", "parasite"), epochs=300)
+    np.testing.assert_allclose(law.w_mu, w_mu, atol=0.35)
+
+
+def test_pfam_class():
+    from organelle_evo.eukaryotes.model import pfam_class
+
+    assert pfam_class("Ribosomal_L2") == "translation"
+    assert pfam_class("tRNA-synt_1") == "translation"
+    assert pfam_class("ATP-synt_ab") == "atp_synthase"
+    assert pfam_class("Oxidored_q1") == "redox_core"
+    assert pfam_class("COX1") == "redox_core"
+    assert pfam_class("RNA_pol_Rpb1_1") == "transcription"
+    assert pfam_class("SecY") == "protein_targeting"
+    assert pfam_class("Pkinase", "Protein kinase domain") == "other"
