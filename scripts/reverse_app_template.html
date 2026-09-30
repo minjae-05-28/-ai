@@ -1,0 +1,280 @@
+<title>원형 역추적기</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: tool page — controls column + results column on desktop, stacked on phones */
+:root {
+  --bg: #f5f6f2; --panel: #ffffff; --fg: #1d2420; --muted: #5e6a63; --line: #d9ddd5;
+  --keep: #1f6f78; --lose: #c2551e; --ref: #7a8a3a; --soft: #eef1ea;
+  --sans: "IBM Plex Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", system-ui, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #121614; --panel: #1a201d; --fg: #e3e8e4; --muted: #9aa69f; --line: #2c3530;
+  --keep: #5fb8c1; --lose: #e98a55; --ref: #b3c46a; --soft: #202824; color-scheme: dark } }
+:root[data-theme="dark"] {
+  --bg: #121614; --panel: #1a201d; --fg: #e3e8e4; --muted: #9aa69f; --line: #2c3530;
+  --keep: #5fb8c1; --lose: #e98a55; --ref: #b3c46a; --soft: #202824; color-scheme: dark }
+body { background: var(--bg); color: var(--fg); font-family: var(--sans); font-size: 15px; line-height: 1.6; }
+.wrap { max-width: 1100px; margin: 0 auto; padding-inline: 16px; padding-block: 24px 56px; display: grid; gap: 28px; }
+h1 { font-size: clamp(26px, 5vw, 34px); margin: 0; line-height: 1.2; letter-spacing: -0.01em; }
+h2 { font-size: 17px; margin: 0; }
+p { margin: 0; max-width: 68ch; }
+.muted { color: var(--muted); }
+.eyebrow { font-family: var(--mono); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--keep); }
+.steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; padding: 0; margin: 0; list-style: none; }
+.steps li { display: grid; grid-template-columns: 26px 1fr; gap: 8px; font-size: 14px; }
+.steps .n { font-family: var(--mono); color: var(--keep); }
+.app { display: grid; grid-template-columns: minmax(0, 340px) minmax(0, 1fr); gap: 20px; align-items: start; }
+@media (max-width: 820px) { .app { grid-template-columns: minmax(0, 1fr); } }
+.panel { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 16px; display: grid; gap: 16px; min-width: 0; }
+.field { display: grid; gap: 6px; }
+.field > label, .legend-label { font-size: 13px; font-weight: 500; }
+select, input[type=range] { width: 100%; }
+select { font: inherit; padding: 8px 10px; border: 1px solid var(--line); border-radius: 8px; background: var(--panel); color: var(--fg); }
+.switches { display: grid; gap: 6px; }
+.switch { display: flex; align-items: center; gap: 8px; font-size: 14px; }
+.switch input { width: 18px; height: 18px; accent-color: var(--keep); }
+.hint { font-size: 12px; color: var(--muted); }
+.row { display: flex; justify-content: space-between; gap: 8px; font-size: 13px; }
+.row b { font-family: var(--mono); font-weight: 500; }
+button.run { font: inherit; font-weight: 700; padding: 11px 14px; border-radius: 9px; border: 0; background: var(--keep); color: var(--panel); cursor: pointer; }
+button.run:disabled { opacity: 0.55; cursor: progress; }
+.progress { height: 4px; background: var(--soft); border-radius: 99px; overflow: hidden; }
+.progress > div { height: 100%; width: 0; background: var(--keep); transition: width 0.2s; }
+.numbers { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+.num { display: grid; gap: 2px; padding: 10px 12px; border-radius: 10px; background: var(--soft); }
+.num .v { font-family: var(--mono); font-size: clamp(20px, 4vw, 28px); font-variant-numeric: tabular-nums; }
+.num .k { font-size: 12px; color: var(--muted); }
+.num.anc .v { color: var(--lose); }
+.score { display: grid; gap: 4px; padding: 12px 14px; border: 1px solid var(--line); border-radius: 10px; }
+.score .big { font-family: var(--mono); font-size: 22px; }
+.frame { overflow-x: auto; }
+table { border-collapse: collapse; width: 100%; font-size: 13px; }
+th, td { padding: 6px 8px; text-align: left; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { font-weight: 500; color: var(--muted); font-size: 12px; }
+td.num-c { font-family: var(--mono); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.pbar { display: inline-block; height: 8px; border-radius: 99px; background: var(--lose); vertical-align: middle; margin-right: 6px; }
+.chk { color: var(--keep); font-weight: 700; }
+.legend { display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: 12px; color: var(--muted); }
+.sw { display: inline-block; width: 12px; height: 12px; border-radius: 3px; vertical-align: -1px; margin-right: 5px; }
+svg text { fill: var(--fg); font-family: var(--sans); }
+details { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 12px 16px; }
+details summary { cursor: pointer; font-weight: 500; }
+details p { margin-top: 8px; font-size: 14px; }
+.empty { color: var(--muted); font-size: 14px; }
+:focus-visible { outline: 2px solid var(--keep); outline-offset: 2px; }
+</style>
+
+<div class="wrap">
+  <header style="display:grid;gap:10px">
+    <div class="eyebrow">organelle-evo · 체험</div>
+    <h1>원형 역추적기</h1>
+    <p class="muted">현대 기생생물의 유전체 하나만 보고, 자유생활하던 조상이 가졌던 유전자군을 추정합니다. 실제 유전체 데이터에서 학습한 진화 법칙을 거꾸로 적용합니다.</p>
+    <ol class="steps">
+      <li><span class="n">1</span><span>생물을 고르고, 어떤 생활 방식으로 진화했다고 가정할지 정합니다.</span></li>
+      <li><span class="n">2</span><span>"자유생활 생물이 보통 가진 유전자"와 "이 법칙에서 잘 사라지는 유전자"를 곱해 원형을 추정합니다.</span></li>
+      <li><span class="n">3</span><span>실제 자유생활 친척과 비교해 복원이 얼마나 맞았는지 채점합니다.</span></li>
+    </ol>
+  </header>
+
+  <div class="app">
+    <form class="panel" id="controls">
+      <div class="field">
+        <label for="species">현대 생물</label>
+        <select id="species"></select>
+        <div class="hint" id="speciesInfo"></div>
+      </div>
+      <div class="field">
+        <span class="legend-label">가정할 생활 방식</span>
+        <div class="switches">
+          <label class="switch"><input type="checkbox" id="axParasite">기생</label>
+          <label class="switch"><input type="checkbox" id="axIntra">숙주 세포 안에서 삶</label>
+          <label class="switch"><input type="checkbox" id="axReduced">미토콘드리아가 퇴화함</label>
+        </div>
+        <div class="hint" id="truthInfo"></div>
+      </div>
+      <div class="field">
+        <label for="wAxis">진핵생물 축별 법칙의 비중</label>
+        <input type="range" id="wAxis" min="0" max="1" step="0.1" value="1">
+        <div class="row"><span class="hint">0이면 법칙 없이 사전 지식만</span><b id="wAxisV">1.0</b></div>
+      </div>
+      <div class="field">
+        <label for="endoCtx">섞을 공생 법칙</label>
+        <select id="endoCtx">
+          <option value="">섞지 않음</option>
+          <option value="mitochondrion">미토콘드리아 공생 법칙</option>
+          <option value="plastid">엽록체 공생 법칙</option>
+          <option value="insect_endosymbiont">곤충 공생세균 법칙</option>
+        </select>
+        <input type="range" id="wEndo" min="0" max="1" step="0.1" value="0.5" aria-label="공생 법칙 비중">
+        <div class="row"><span class="hint">공생 법칙 비중</span><b id="wEndoV">0.5</b></div>
+      </div>
+      <button class="run" id="run" type="submit">역추적하기</button>
+      <div class="progress" aria-hidden="true"><div id="prog"></div></div>
+    </form>
+
+    <section class="panel" id="results" aria-live="polite">
+      <p class="empty" id="emptyMsg">생물을 고르고 <b>역추적하기</b>를 누르면 결과가 여기 나타납니다. 계산은 이 페이지 안에서 몇 초 걸립니다.</p>
+    </section>
+  </div>
+
+  <details>
+    <summary>어떻게 계산하나요?</summary>
+    <p>유전자군은 Pfam 단백질 도메인 계열 단위입니다. 각 계열마다 두 가지를 곱합니다(베이즈 추론). 하나는 <b>사전 지식</b>으로, 고른 생물과 다른 무리에 속한 자유생활 진핵생물들이 그 계열을 얼마나 흔하게, 몇 개씩 갖는지입니다. 다른 하나는 <b>법칙</b>으로, 조상이 그 계열을 n개 가졌을 때 선택한 생활 방식의 진화를 거쳐 지금처럼 m개가 될 확률입니다(복제·소실 birth-death 모델).</p>
+    <p>얼마나 오래, 얼마나 강하게 진화했는지는 입력하지 않고, 고른 유전체 자체에 가장 잘 맞도록 추정합니다. 결과의 "복원 정확도"는 지금은 없는 계열 중에서 자유생활 친척이 실제로 가진 계열을 얼마나 잘 골라냈는지(AUROC, 0.5 = 무작위, 1 = 완벽)입니다.</p>
+    <p><b>한계:</b> 자유생활 친척은 진짜 조상이 아니라 조상을 대신하는 현생 종입니다. 법칙이 복원에 더하는 효과는 작고(평균 +0.002), 대부분의 정확도는 사전 지식에서 옵니다. 미토콘드리아 공생 법칙을 섞으면 정확도가 떨어지는데, 소기관용 법칙이 핵 유전체에 맞지 않기 때문입니다.</p>
+  </details>
+  <p class="muted" style="font-size:13px">데이터: NCBI 진핵생물 유전체, Pfam 도메인 계열. 코드와 법칙: organelle-evo 저장소의 <span style="font-family:var(--mono)">laws/</span>.</p>
+</div>
+
+<script>
+/*__CORE__*/
+const D = __DATA__;
+const $ = (id) => document.getElementById(id);
+const F = D.fam.length, P = D.features.length, K = D.K;
+const X = Float64Array.from(D.x);
+const byName = Object.fromEntries(D.species.map((s) => [s.name, s]));
+const dense = (s) => { const a = new Int32Array(F); s.idx.forEach((i, k) => { a[i] = s.n[k]; }); return a; };
+const GROUP_KO = {amoebozoa: "아메바", alveolata: "알베올라타", discoba: "편모충류(Discoba)", fungi: "균류", fungi_tapho: "균류(분열효모 계통)",
+  fungi_basidio: "균류(담자균)", metamonada: "메타모나드", stramenopiles: "부등편모조류", rhizaria: "리자리아", cnidaria: "자포동물",
+  nematoda: "선충·편형동물", holozoa: "동물·깃편모충", chlorophyta: "녹조류", rhodophyta: "홍조류"};
+const CLASS_KO = {redox_core: "전자전달 핵심", atp_synthase: "ATP 합성효소", translation: "번역 장치", transcription: "전사", protein_targeting: "단백질 수송"};
+
+// species selector: parasites with a free-living relative first
+(function fill() {
+  const sel = $("species");
+  const withProxy = D.species.filter((s) => D.pairs[s.name] && s.lifestyle === "parasite");
+  const groups = {};
+  for (const s of withProxy) (groups[s.group] = groups[s.group] || []).push(s);
+  for (const [g, list] of Object.entries(groups)) {
+    const og = document.createElement("optgroup"); og.label = GROUP_KO[g] || g;
+    for (const s of list.sort((a, b) => a.name.localeCompare(b.name))) {
+      const o = document.createElement("option"); o.value = s.name; o.textContent = s.name; og.appendChild(o);
+    }
+    sel.appendChild(og);
+  }
+  sel.value = byName["Plasmodium falciparum"] ? "Plasmodium falciparum" : withProxy[0].name;
+})();
+
+function syncSpecies() {
+  const s = byName[$("species").value];
+  $("axParasite").checked = s.lifestyle === "parasite";
+  $("axIntra").checked = s.location === "intracellular";
+  $("axReduced").checked = s.energy === "reduced";
+  const proxy = D.pairs[s.name];
+  $("speciesInfo").innerHTML = `현재 유전자군 <b>${s.families.toLocaleString()}</b>개 · 비교할 자유생활 친척: <i>${proxy}</i>`;
+  $("truthInfo").textContent = `실제: ${s.lifestyle === "parasite" ? "기생" : "자유생활"}, ${s.location === "intracellular" ? "세포 안" : "세포 밖"}, 미토콘드리아 ${s.energy === "reduced" ? "퇴화" : "정상"}`;
+}
+$("species").addEventListener("change", syncSpecies);
+$("wAxis").addEventListener("input", () => { $("wAxisV").textContent = (+$("wAxis").value).toFixed(1); });
+$("wEndo").addEventListener("input", () => { $("wEndoV").textContent = (+$("wEndo").value).toFixed(1); });
+syncSpecies();
+
+function weights(design, wAxis, ctx, wEndo) {
+  const eff = (W) => D.features.map((_, p) => design.reduce((acc, z, r) => acc + z * W[r][p], 0));
+  const wl = eff(D.law.w_lam).map((v) => v * wAxis), wn = eff(D.law.w_nu).map((v) => v * wAxis);
+  const wm = eff(D.law.w_mu).map((v, p) => v * wAxis + (ctx ? wEndo * D.endo[ctx][p] : 0));
+  return [wl, wm, wn];
+}
+
+const cache = {};
+async function reconstruct(s, design, wAxis, ctx, wEndo, onProgress) {
+  const key = [s.name, design, wAxis, ctx, wEndo].join("|");
+  if (cache[key]) return cache[key];
+  const refs = D.species.filter((r) => r.lifestyle === "free_living" && r.group !== s.group).map(dense);
+  const logPrior = makePrior(refs, F, K);
+  const m = dense(s);
+  const [wl, wm, wn] = weights(design, wAxis, ctx, wEndo);
+  const L = [linear(X, F, P, wl), linear(X, F, P, wm), linear(X, F, P, wn)];
+  const nll = (o) => -evaluate(m, L[0], L[1], L[2], logPrior, F, K, o, false).logMarginal;
+  const off = await fitOffsets(nll, [-1, -1, -3], onProgress);
+  const res = evaluate(m, L[0], L[1], L[2], logPrior, F, K, off, true);
+  return (cache[key] = { pPresent: res.pPresent, m, off });
+}
+
+$("controls").addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const btn = $("run"); btn.disabled = true; btn.textContent = "계산 중…";
+  const s = byName[$("species").value];
+  const design = [1, +$("axParasite").checked, +$("axIntra").checked, +$("axReduced").checked];
+  const wAxis = +$("wAxis").value, ctx = $("endoCtx").value, wEndo = +$("wEndo").value;
+  const prog = (p) => { $("prog").style.width = `${Math.round(p * 100)}%`; };
+  try {
+    const main = await reconstruct(s, design, wAxis, ctx, wEndo, (p) => prog(p * 0.6));
+    const base = await reconstruct(s, design, 0, "", 0, (p) => prog(0.6 + p * 0.4));
+    prog(1);
+    render(s, main, base, {design, wAxis, ctx, wEndo});
+  } finally {
+    btn.disabled = false; btn.textContent = "역추적하기";
+    setTimeout(() => prog(0), 600);
+  }
+});
+
+function render(s, r, base, cfg) {
+  const proxyName = D.pairs[s.name], proxy = dense(byName[proxyName]);
+  const absent = [], labels = [], scores = [], baseScores = [];
+  let ancSum = 0;
+  for (let f = 0; f < F; f++) {
+    ancSum += r.pPresent[f];
+    if (r.m[f] === 0) { absent.push(f); labels.push(proxy[f] > 0); scores.push(r.pPresent[f]); baseScores.push(base.pPresent[f]); }
+  }
+  const acc = auroc(scores, labels), accBase = auroc(baseScores, labels);
+  const proxyFam = proxy.reduce((a, v) => a + (v > 0), 0);
+  const top = absent.slice().sort((a, b) => r.pPresent[b] - r.pPresent[a]).slice(0, 15);
+  // by class
+  const cls = D.classes.map((c, ci) => {
+    let today = 0, anc = 0, rel = 0;
+    for (let f = 0; f < F; f++) if (D.cls[f] === ci) { today += r.m[f] > 0; anc += r.pPresent[f]; rel += proxy[f] > 0; }
+    return {c, today, anc, rel};
+  });
+  const delta = acc - accBase;
+  const lawDesc = cfg.wAxis === 0 && !cfg.ctx ? "법칙 없음(사전 지식만)" :
+    `축별 법칙 ×${cfg.wAxis.toFixed(1)}${cfg.ctx ? ` + ${({mitochondrion: "미토콘드리아", plastid: "엽록체", insect_endosymbiont: "곤충 공생세균"})[cfg.ctx]} 법칙 ×${cfg.wEndo.toFixed(1)}` : ""}`;
+  $("results").innerHTML = `
+    <div style="display:grid;gap:4px"><h2><i>${s.name}</i>의 원형</h2><span class="hint">${lawDesc}</span></div>
+    <div class="numbers">
+      <div class="num"><span class="v">${s.families.toLocaleString()}</span><span class="k">지금 가진 유전자군</span></div>
+      <div class="num anc"><span class="v">${Math.round(ancSum).toLocaleString()}</span><span class="k">추정한 원형</span></div>
+      <div class="num"><span class="v">${proxyFam.toLocaleString()}</span><span class="k">자유생활 친척(<i>${proxyName}</i>)</span></div>
+    </div>
+    <div class="score">
+      <span class="hint">사라진 유전자군 복원 정확도 (AUROC)</span>
+      <span class="big">${acc.toFixed(3)}</span>
+      <span class="hint">법칙 없이 사전 지식만 쓰면 ${accBase.toFixed(3)} · 법칙이 더한 효과 <b style="color:${delta >= 0 ? "var(--keep)" : "var(--lose)"}">${delta >= 0 ? "+" : "−"}${Math.abs(delta).toFixed(3)}</b></span>
+    </div>
+    <div style="display:grid;gap:8px">
+      <h2>기능별로 보면</h2>
+      <div class="frame"><svg id="clsChart"></svg></div>
+      <div class="legend"><span><span class="sw" style="background:var(--muted)"></span>지금</span><span><span class="sw" style="background:var(--lose)"></span>추정한 원형</span><span><span class="sw" style="background:var(--ref)"></span>자유생활 친척</span></div>
+    </div>
+    <div style="display:grid;gap:8px">
+      <h2>원형에 있었을 가능성이 높은, 지금은 사라진 유전자군</h2>
+      <div class="frame"><table>
+        <tr><th>유전자군</th><th>원형에 있었을 확률</th><th>친척에</th></tr>
+        ${top.map((f) => `<tr><td><span style="font-family:var(--mono)">${D.fam[f]}</span><br><span class="hint">${D.desc[f] || ""}</span></td>
+          <td class="num-c"><span class="pbar" style="width:${Math.round(r.pPresent[f] * 60)}px"></span>${(r.pPresent[f] * 100).toFixed(0)}%</td>
+          <td>${proxy[f] > 0 ? '<span class="chk">있음</span>' : '<span class="hint">없음</span>'}</td></tr>`).join("")}
+      </table></div>
+    </div>`;
+  drawClasses(cls);
+}
+
+function drawClasses(cls) {
+  const css = (v) => getComputedStyle(document.documentElement).getPropertyValue(v).trim();
+  const W = 560, rowH = 44, left = 110, H = cls.length * rowH + 10;
+  const mx = Math.max(...cls.flatMap((c) => [c.today, c.anc, c.rel]), 1);
+  const x = (v) => (v / mx) * (W - left - 50);
+  let s = `<svg viewBox="0 0 ${W} ${H}" width="100%" style="min-width:420px">`;
+  cls.forEach((c, i) => {
+    const y = 6 + i * rowH;
+    s += `<text x="${left - 10}" y="${y + 24}" text-anchor="end" font-size="12">${CLASS_KO[c.c] || c.c}</text>`;
+    [["today", css("--muted")], ["anc", css("--lose")], ["rel", css("--ref")]].forEach(([k, col], j) => {
+      const v = c[k];
+      s += `<rect x="${left}" y="${y + j * 12 + 4}" width="${Math.max(x(v), 1)}" height="10" rx="2" fill="${col}"/>`;
+      s += `<text x="${left + x(v) + 5}" y="${y + j * 12 + 13}" font-size="10" font-family="var(--mono)">${Math.round(v)}</text>`;
+    });
+  });
+  $("clsChart").outerHTML = s + "</svg>";
+}
+</script>

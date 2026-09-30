@@ -1,0 +1,1621 @@
+{
+  "mixes": [
+    "prior only (no law)",
+    "axis law",
+    "axis + mitochondrion law",
+    "axis + plastid law",
+    "axis + insect-endosymbiont law",
+    "plastid law only",
+    "axis law, wrong lifestyle (free-living)"
+  ],
+  "mean_auroc_recover_lost": {
+    "prior only (no law)": 0.7739546991419038,
+    "axis law": 0.776225239283262,
+    "axis + mitochondrion law": 0.7628692597773826,
+    "axis + plastid law": 0.7753902446765196,
+    "axis + insect-endosymbiont law": 0.7737329154326886,
+    "plastid law only": 0.7725787170512277,
+    "axis law, wrong lifestyle (free-living)": 0.773170953858617
+  },
+  "best_mix": "axis law",
+  "per_pair": [
+    {
+      "pair": "Dictyostelium discoideum -> Entamoeba histolytica",
+      "proxy_families": 4504,
+      "descendant_families": 2124,
+      "mixes": {
+        "prior only (no law)": {
+          "auroc_recover_lost": 0.8271177377218726,
+          "estimated_families": 4111.700114900543
+        },
+        "axis law": {
+          "auroc_recover_lost": 0.8260383557464543,
+          "estimated_families": 4074.8380973452277
+        },
+        "axis + mitochondrion law": {
+          "auroc_recover_lost": 0.8163000529587334,
+          "estimated_families": 4037.591719779583
+        },
+        "axis + plastid law": {
+          "auroc_recover_lost": 0.8252052990393555,
+          "estimated_families": 4132.511477469981
+        },
+        "axis + insect-endosymbiont law": {
+          "auroc_recover_lost": 0.8236338061883047,
+          "estimated_families": 4104.016483654026
+        },
+        "plastid law only": {
+          "auroc_recover_lost": 0.8204853039514698,
+          "estimated_families": 4076.550414471629
+        },
+        "axis law, wrong lifestyle (free-living)": {
+          "auroc_recover_lost": 0.8265582891450907,
+          "estimated_families": 4135.296953336081
+        }
+      }
+    },
+    {
+      "pair": "Tetrahymena thermophila -> Ichthyophthirius multifiliis",
+      "proxy_families": 3427,
+      "descendant_families": 2406,
+      "mixes": {
+        "prior only (no law)": {
+          "auroc_recover_lost": 0.8307346343821277,
+          "estimated_families": 4129.976502092314
+        },
+        "axis law": {
+          "auroc_recover_lost": 0.8273552322024682,
+          "estimated_families": 4109.6306676199965
+        },
+        "axis + mitochondrion law": {
+          "auroc_recover_lost": 0.8257859585290697,
+          "estimated_families": 4064.950564030154
+        },
+        "axis + plastid law": {
+          "auroc_recover_lost": 0.8279792598145099,
+          "estimated_families": 4114.597635774201
+        },
+        "axis + insect-endosymbiont law": {
+          "auroc_recover_lost": 0.8258998364877724,
+          "estimated_families": 4099.4967510855295
+        },
+        "plastid law only": {
+          "auroc_recover_lost": 0.8274345337446943,
+          "estimated_families": 4107.330609529014
+        },
+        "axis law, wrong lifestyle (free-living)": {
+          "auroc_recover_lost": 0.829108952766491,
+          "estimated_families": 4154.355358617861
+        }
+      }
+    },
+    {
+      "pair": "Tetrahymena thermophila -> Perkinsus marinus",
+      "proxy_families": 3427,
+      "descendant_families": 3123,
+      "mixes": {
+        "prior only (no law)": {
+          "auroc_recover_lost": 0.8137951381485162,
+          "estimated_families": 4180.210745440713
+        },
+        "axis law": {
+          "auroc_recover_lost": 0.8132803081202066,
+          "estimated_families": 4220.9244160205335
+        },
+        "axis + mitochondrion law": {
+          "auroc_recover_lost": 0.8081207429966889,
+          "estimated_families": 4175.909967798944
+        },
+        "axis + plastid law": {
+          "auroc_recover_lost": 0.8127783521952358,
+          "estimated_families": 4218.146755523894
+        },
+        "axis + insect-endosymbiont law": {
+          "auroc_recover_lost": 0.8111151789701522,
+          "estimated_families": 4191.693086874402
+        },
+        "plastid law only": {
+          "auroc_recover_lost": 0.8114177203986144,
+          "estimated_families": 4187.577006860491
+        },
+        "axis law, wrong lifestyle (free-living)": {
+          "auroc_recover_lost": 0.8122250339621528,
+          "estimated_families": 4207.355141084134
+        }
+      }
+    },
+    {
+      "pair": "Chromera velia -> Plasmodium falciparum",
+      "proxy_families": 4095,
+      "descendant_families": 2383,
+      "mixes": {
+        "prior only (no law)": {
+          "auroc_recover_lost": 0.7466850757009498,
+          "estimated_families": 4161.8773727562875
+        },
+        "axis law": {
+          "auroc_recover_lost": 0.7522140256071187,
+          "estimated_families": 4190.253531350563
+        },
+        "axis + mitochondrion law": {
+          "auroc_recover_lost": 0.7359177844553678,
+          "estimated_families": 4118.908061096561
+        },
+        "axis + plastid law": {
+          "auroc_recover_lost": 0.7507401123160513,
+          "estimated_families": 4186.520722041376
+        },
+        "axis + insect-endosymbiont law": {
+          "auroc_recover_lost": 0.7490250053897418,
+          "estimated_families": 4173.917707609457
+        },
+        "plastid law only": {
+          "auroc_recover_lost": 0.7471414286896637,
+          "estimated_families": 4170.4615598103355
+        },
+        "axis law, wrong lifestyle (free-living)": {
+          "auroc_recover_lost": 0.747308392347958,
+          "estimated_families": 4184.1448799081345
+        }
+      }
+    },
+    {
+      "pair": "Chromera velia -> Babesia bovis",
+      "proxy_families": 4095,
+      "descendant_families": 1999,
+      "mixes": {
+        "prior only (no law)": {
+          "auroc_recover_lost": 0.7649259490280563,
+          "estimated_families": 4185.546324912662
+        },
+        "axis law": {
+          "auroc_recover_lost": 0.7703078496201052,
+          "estimated_families": 4220.558809936287
+        },
+        "axis + mitochondrion law": {
+          "auroc_recover_lost": 0.754707637660499,
+          "estimated_families": 4133.206238206275
+        },
+        "axis + plastid law": {
+          "auroc_recover_lost": 0.769041198989691,
+          "estimated_families": 4218.510341502535
+        },
+        "axis + insect-endosymbiont law": {
+          "auroc_recover_lost": 0.76789620052493,
+          "estimated_families": 4210.061182664975
+        },
+        "plastid law only": {
+          "auroc_recover_lost": 0.7652076186503874,
+          "estimated_families": 4201.933606471124
+        },
+        "axis law, wrong lifestyle (free-living)": {
+          "auroc_recover_lost": 0.7658613029793927,
+          "estimated_families": 4212.240376379988
+        }
+      }
+    },
+    {
+      "pair": "Chromera velia -> Toxoplasma gondii",
+      "proxy_families": 4095,
+      "descendant_families": 2912,
+      "mixes": {
+        "prior only (no law)": {
+          "auroc_recover_lost": 0.6928289841116996,
+          "estimated_families": 4015.602428992677
+        },
+        "axis law": {
+          "auroc_recover_lost": 0.7011922965816081,
+          "estimated_families": 4040.072768665863
+        },
+        "axis + mitochondrion law": {
+          "auroc_recover_lost": 0.6780927298988927,
+          "estimated_families": 3990.76127987491
+        },
+        "axis + plastid law": {
+          "auroc_recover_lost": 0.6987510832932113,
+          "estimated_families": 4034.614525851802
+        },
+        "axis + insect-endosymbiont law": {
+          "auroc_recover_lost": 0.6970297544535388,
+          "estimated_families": 4022.7761533818884
+        },
+        "plastid law only": {
+          "auroc_recover_lost": 0.6927212325469427,
+          "estimated_families": 4019.3674012910606
+        },
+        "axis law, wrong lifestyle (free-living)": {
+          "auroc_recover_lost": 0.6945432835820895,
+          "estimated_families": 4042.485526187886
+        }
+      }
+    },
+    {
+      "pair": "Chromera velia -> Eimeria tenella",
+      "proxy_families": 4095,
+      "descendant_families": 2272,
+      "mixes": {
+        "prior only (no law)": {
+          "auroc_recover_lost": 0.7469908089980326,
+          "estimated_families": 4171.431148124867
+        },
+        "axis law": {
+          "auroc_recover_lost": 0.751710954075095,
+          "estimated_families": 4190.826183797679
+        },
+        "axis + mitochondrion law": {
+          "auroc_recover_lost": 0.735381832322844,
+          "estimated_families": 4119.627197807
+        },
+        "axis + plastid law": {
+          "auroc_recover_lost": 0.7502843099463714,
+          "estimated_families": 4182.241421041502
+        },
+        "axis + insect-endosymbiont law": {
+          "auroc_recover_lost": 0.7478796836233992,
+          "estimated_families": 4165.272571982698
+        },
+        "plastid law only": {
+          "auroc_recover_lost": 0.7466368637941463,
+          "estimated_families": 4161.61859092261
+        },
+        "axis law, wrong lifestyle (free-living)": {
+          "auroc_recover_lost": 0.747465883693961,
+          "estimated_families": 4197.388263564062
+        }
+      }
+    },
+    {
+      "pair": "Chromera velia -> Cryptosporidium parvum",
+      "proxy_families": 4095,
+      "descendant_families": 1965,
+      "mixes": {
+        "prior only (no law)": {
+          "auroc_recover_lost": 0.7615057741416758,
+          "estimated_families": 4166.273558872656
+        },
+        "axis law": {
+          "auroc_recover_lost": 0.7625223461840265,
+          "estimated_families": 4198.864183104784
+        },
+        "axis + mitochondrion law": {
+          "auroc_recover_lost": 0.7483222117014787,
+          "estimated_families": 4109.959898922487
+        },
+        "axis + plastid law": {
+          "auroc_recover_lost": 0.7615553318338155,
+          "estimated_families": 4189.699107296136
+        },
+        "axis + insect-endosymbiont law": {
+          "auroc_recover_lost": 0.7598739257302041,
+          "estimated_families": 4172.989895690526
+        },
+        "plastid law only": {
+          "auroc_recover_lost": 0.7603102454992633,
+          "estimated_families": 4153.073088723515
+        },
+        "axis law, wrong lifestyle (free-living)": {
+          "auroc_recover_lost": 0.7620625106818814,
+          "estimated_families": 4189.45039160413
+        }
+      }
+    },
+    {
+      "pair": "Bodo saltans -> Leishmania major",
+      "proxy_families": 3202,
+      "descendant_families": 2788,
+      "mixes": {
+        "prior only (no law)": {
+          "auroc_recover_lost": 0.7355297012945895,
+          "estimated_families": 4030.0121294869095
+        },
+        "axis law": {
+          "auroc_recover_lost": 0.74221995182312,
+          "estimated_families": 4037.263725583828
+        },
+        "axis + mitochondrion law": {
+          "auroc_recover_lost": 0.7207500900945591,
+          "estimated_families": 4015.0994637554027
+        },
+        "axis + plastid law": {
+          "auroc_recover_lost": 0.7418659568042183,
+          "estimated_families": 4037.188957296897
+        },
+        "axis + insect-endosymbiont law": {
+          "auroc_recover_lost": 0.7410842861957627,
+          "estimated_families": 4026.4095649557066
+        },
+        "plastid law only": {
+          "auroc_recover_lost": 0.7389502853115959,
+          "estimated_families": 4025.308833642095
+        },
+        "axis law, wrong lifestyle (free-living)": {
+          "auroc_recover_lost": 0.7345644675812785,
+          "estimated_families": 4047.347215017846
+        }
+      }
+    },
+    {
+      "pair": "Bodo saltans -> Trypanosoma cruzi",
+      "proxy_families": 3202,
+      "descendant_families": 2941,
+      "mixes": {
+        "prior only (no law)": {
+          "auroc_recover_lost": 0.736606186094423,
+          "estimated_families": 4192.782450604432
+        },
+        "axis law": {
+          "auroc_recover_lost": 0.7438241892330985,
+          "estimated_families": 4210.548768392234
+        },
+        "axis + mitochondrion law": {
+          "auroc_recover_lost": 0.7196342647963663,
+          "estimated_families": 4155.0822399959725
+        },
+        "axis + plastid law": {
+          "auroc_recover_lost": 0.7429513747260572,
+          "estimated_families": 4207.32315006675
+        },
+        "axis + insect-endosymbiont law": {
+          "auroc_recover_lost": 0.7423151275173353,
+          "estimated_families": 4192.418922002372
+        },
+        "plastid law only": {
+          "auroc_recover_lost": 0.7403776521462595,
+          "estimated_families": 4175.446578106643
+        },
+        "axis law, wrong lifestyle (free-living)": {
+          "auroc_recover_lost": 0.7372852098557177,
+          "estimated_families": 4217.685507820699
+        }
+      }
+    },
+    {
+      "pair": "Bodo saltans -> Trypanosoma brucei",
+      "proxy_families": 3202,
+      "descendant_families": 2765,
+      "mixes": {
+        "prior only (no law)": {
+          "auroc_recover_lost": 0.7466530971706205,
+          "estimated_families": 4057.263244408845
+        },
+        "axis law": {
+          "auroc_recover_lost": 0.7506710238896874,
+          "estimated_families": 4072.6091583247767
+        },
+        "axis + mitochondrion law": {
+          "auroc_recover_lost": 0.7276219054710668,
+          "estimated_families": 4021.713931169097
+        },
+        "axis + plastid law": {
+          "auroc_recover_lost": 0.7511201990648251,
+          "estimated_families": 4067.4390153942095
+        },
+        "axis + insect-endosymbiont law": {
+          "auroc_recover_lost": 0.7505524571931818,
+          "estimated_families": 4057.4701840031144
+        },
+        "plastid law only": {
+          "auroc_recover_lost": 0.749631665754298,
+          "estimated_families": 4054.3234574356065
+        },
+        "axis law, wrong lifestyle (free-living)": {
+          "auroc_recover_lost": 0.746121137349711,
+          "estimated_families": 4080.7703638027515
+        }
+      }
+    },
+    {
+      "pair": "Spizellomyces punctatus -> Rozella allomycis",
+      "proxy_families": 5022,
+      "descendant_families": 3370,
+      "mixes": {
+        "prior only (no law)": {
+          "auroc_recover_lost": 0.7560239592833794,
+          "estimated_families": 3998.2687999091513
+        },
+        "axis law": {
+          "auroc_recover_lost": 0.7525796814224873,
+          "estimated_families": 4030.2017198294593
+        },
+        "axis + mitochondrion law": {
+          "auroc_recover_lost": 0.7449330261066112,
+          "estimated_families": 3957.4558800290406
+        },
+        "axis + plastid law": {
+          "auroc_recover_lost": 0.7518997519761476,
+          "estimated_families": 4013.633629712647
+        },
+        "axis + insect-endosymbiont law": {
+          "auroc_recover_lost": 0.7479534460834937,
+          "estimated_families": 4012.353585700993
+        },
+        "plastid law only": {
+          "auroc_recover_lost": 0.7481508678527885,
+          "estimated_families": 3991.288382127743
+        },
+        "axis law, wrong lifestyle (free-living)": {
+          "auroc_recover_lost": 0.7503384785143449,
+          "estimated_families": 4026.8407401736777
+        }
+      }
+    },
+    {
+      "pair": "Spizellomyces punctatus -> Encephalitozoon cuniculi",
+      "proxy_families": 5022,
+      "descendant_families": 1309,
+      "mixes": {
+        "prior only (no law)": {
+          "auroc_recover_lost": 0.8372566498494322,
+          "estimated_families": 4321.746771038064
+        },
+        "axis law": {
+          "auroc_recover_lost": 0.8357872527871314,
+          "estimated_families": 4345.705293770818
+        },
+        "axis + mitochondrion law": {
+          "auroc_recover_lost": 0.8314570980637659,
+          "estimated_families": 4264.532735201491
+        },
+        "axis + plastid law": {
+          "auroc_recover_lost": 0.8347819467421124,
+          "estimated_families": 4340.249700705699
+        },
+        "axis + insect-endosymbiont law": {
+          "auroc_recover_lost": 0.8331899768158707,
+          "estimated_families": 4324.098765170169
+        },
+        "plastid law only": {
+          "auroc_recover_lost": 0.8330180445852383,
+          "estimated_families": 4311.020883855597
+        },
+        "axis law, wrong lifestyle (free-living)": {
+          "auroc_recover_lost": 0.8346774056890668,
+          "estimated_families": 4339.314414729399
+        }
+      }
+    },
+    {
+      "pair": "Spizellomyces punctatus -> Nosema ceranae",
+      "proxy_families": 5022,
+      "descendant_families": 1274,
+      "mixes": {
+        "prior only (no law)": {
+          "auroc_recover_lost": 0.838712092061278,
+          "estimated_families": 4342.146520026449
+        },
+        "axis law": {
+          "auroc_recover_lost": 0.8374498826730615,
+          "estimated_families": 4364.663945318891
+        },
+        "axis + mitochondrion law": {
+          "auroc_recover_lost": 0.8331443018274143,
+          "estimated_families": 4284.188056528306
+        },
+        "axis + plastid law": {
+          "auroc_recover_lost": 0.8365092487296739,
+          "estimated_families": 4359.075508123193
+        },
+        "axis + insect-endosymbiont law": {
+          "auroc_recover_lost": 0.8348121308839546,
+          "estimated_families": 4342.762837706997
+        },
+        "plastid law only": {
+          "auroc_recover_lost": 0.834618575791828,
+          "estimated_families": 4328.432965162
+        },
+        "axis law, wrong lifestyle (free-living)": {
+          "auroc_recover_lost": 0.8362730058715003,
+          "estimated_families": 4359.915539075644
+        }
+      }
+    }
+  ],
+  "reconstructions": {
+    "Entamoeba histolytica": {
+      "proxy": "Dictyostelium discoideum",
+      "families_today": 2124,
+      "estimated_ancestor_families": 4144.684947949594,
+      "proxy_families": 4504,
+      "estimated_lost": 2028.0340922630705,
+      "top_recovered": [
+        {
+          "family": "COX15-CtaA",
+          "description": "Cytochrome oxidase assembly protein",
+          "class": "redox_core",
+          "p_ancestral": 0.9671041807630966
+        },
+        {
+          "family": "Cmc1",
+          "description": "Cytochrome c oxidase biogenesis protein Cmc1 like",
+          "class": "redox_core",
+          "p_ancestral": 0.9649646464517977
+        },
+        {
+          "family": "Rieske",
+          "description": "Rieske [2Fe-2S] domain",
+          "class": "redox_core",
+          "p_ancestral": 0.9599849177440175
+        },
+        {
+          "family": "RPN7_PSMD6_C",
+          "description": "26S proteasome regulatory subunit RPN7/PSMD6 C-terminal helix",
+          "class": "other",
+          "p_ancestral": 0.953061826679111
+        },
+        {
+          "family": "HEAT_PBS",
+          "description": "PBS lyase HEAT-like repeat",
+          "class": "other",
+          "p_ancestral": 0.9516996451950113
+        },
+        {
+          "family": "CRM1_repeat_3",
+          "description": "CRM1 / Exportin repeat 3",
+          "class": "other",
+          "p_ancestral": 0.9513755616130708
+        },
+        {
+          "family": "zf-DPOE",
+          "description": "Zinc finger domain of DNA polymerase-epsilon",
+          "class": "other",
+          "p_ancestral": 0.95086295020508
+        },
+        {
+          "family": "TPR_SYVN1_N",
+          "description": "E3 ubiquitin-protein ligase synoviolin-like, TPR repeats",
+          "class": "other",
+          "p_ancestral": 0.9507017072750894
+        }
+      ],
+      "by_class": {
+        "redox_core": {
+          "ancestor": 32.72822010438208,
+          "today": 0
+        },
+        "atp_synthase": {
+          "ancestor": 15.867432702676437,
+          "today": 9
+        },
+        "translation": {
+          "ancestor": 162.02113727040134,
+          "today": 133
+        },
+        "transcription": {
+          "ancestor": 36.91068610823244,
+          "today": 32
+        },
+        "protein_targeting": {
+          "ancestor": 19.594898800164724,
+          "today": 11
+        }
+      }
+    },
+    "Ichthyophthirius multifiliis": {
+      "proxy": "Tetrahymena thermophila",
+      "families_today": 2406,
+      "estimated_ancestor_families": 4139.341214808561,
+      "proxy_families": 3427,
+      "estimated_lost": 1740.0186280482499,
+      "top_recovered": [
+        {
+          "family": "UPF0220",
+          "description": "Uncharacterised protein family (UPF0220)",
+          "class": "other",
+          "p_ancestral": 0.9504068845087832
+        },
+        {
+          "family": "ORMDL",
+          "description": "ORMDL family",
+          "class": "other",
+          "p_ancestral": 0.9490141492969583
+        },
+        {
+          "family": "SYS1",
+          "description": "Integral membrane protein S linking to the trans Golgi network",
+          "class": "other",
+          "p_ancestral": 0.948994545456277
+        },
+        {
+          "family": "ATG9",
+          "description": "Autophagy protein ATG9",
+          "class": "other",
+          "p_ancestral": 0.9479572784169013
+        },
+        {
+          "family": "Clp1",
+          "description": "Pre-mRNA cleavage complex II protein Clp1",
+          "class": "other",
+          "p_ancestral": 0.9451347123706548
+        },
+        {
+          "family": "Vac14_Fig4_bd",
+          "description": "Vacuolar protein 14 C-terminal Fig4p binding",
+          "class": "other",
+          "p_ancestral": 0.9442229974072609
+        },
+        {
+          "family": "ARM_TBCD",
+          "description": "Tubulin-specific chaperone D-like, ARM repeat",
+          "class": "other",
+          "p_ancestral": 0.9439676820250927
+        },
+        {
+          "family": "RRP40_S1",
+          "description": "Exosome complex component RRP40, S1 domain",
+          "class": "other",
+          "p_ancestral": 0.9438808291750459
+        }
+      ],
+      "by_class": {
+        "redox_core": {
+          "ancestor": 27.250288662642937,
+          "today": 13
+        },
+        "atp_synthase": {
+          "ancestor": 15.477232554062285,
+          "today": 13
+        },
+        "translation": {
+          "ancestor": 162.5222904923966,
+          "today": 143
+        },
+        "transcription": {
+          "ancestor": 35.94015888374123,
+          "today": 27
+        },
+        "protein_targeting": {
+          "ancestor": 19.353094924258244,
+          "today": 13
+        }
+      }
+    },
+    "Perkinsus marinus": {
+      "proxy": "Tetrahymena thermophila",
+      "families_today": 3123,
+      "estimated_ancestor_families": 4223.467451518414,
+      "proxy_families": 3427,
+      "estimated_lost": 1109.6677068199215,
+      "top_recovered": [
+        {
+          "family": "Rft-1",
+          "description": "Rft protein",
+          "class": "other",
+          "p_ancestral": 0.929554957054332
+        },
+        {
+          "family": "UPF0220",
+          "description": "Uncharacterised protein family (UPF0220)",
+          "class": "other",
+          "p_ancestral": 0.9276666791999387
+        },
+        {
+          "family": "ORMDL",
+          "description": "ORMDL family",
+          "class": "other",
+          "p_ancestral": 0.9269653039611347
+        },
+        {
+          "family": "Clp1",
+          "description": "Pre-mRNA cleavage complex II protein Clp1",
+          "class": "other",
+          "p_ancestral": 0.9238633872455739
+        },
+        {
+          "family": "TPR_ANAPC2",
+          "description": "ANAPC2-like, TPR repeats",
+          "class": "other",
+          "p_ancestral": 0.9231598421821109
+        },
+        {
+          "family": "zf-DPOE",
+          "description": "Zinc finger domain of DNA polymerase-epsilon",
+          "class": "other",
+          "p_ancestral": 0.9209187868389337
+        },
+        {
+          "family": "VPS11_N",
+          "description": "VPS11-like, N-terminal beta-propeller",
+          "class": "other",
+          "p_ancestral": 0.9208656056453518
+        },
+        {
+          "family": "Thioredoxin_13",
+          "description": "Thioredoxin-like domain",
+          "class": "other",
+          "p_ancestral": 0.9205145822857006
+        }
+      ],
+      "by_class": {
+        "redox_core": {
+          "ancestor": 29.703224397894715,
+          "today": 17
+        },
+        "atp_synthase": {
+          "ancestor": 16.191112341816478,
+          "today": 15
+        },
+        "translation": {
+          "ancestor": 169.08197002810988,
+          "today": 158
+        },
+        "transcription": {
+          "ancestor": 37.665341779619425,
+          "today": 35
+        },
+        "protein_targeting": {
+          "ancestor": 19.79029406266334,
+          "today": 16
+        }
+      }
+    },
+    "Plasmodium falciparum": {
+      "proxy": "Chromera velia",
+      "families_today": 2383,
+      "estimated_ancestor_families": 4190.355849042582,
+      "proxy_families": 4095,
+      "estimated_lost": 1913.7959151776022,
+      "top_recovered": [
+        {
+          "family": "UPF0220",
+          "description": "Uncharacterised protein family (UPF0220)",
+          "class": "other",
+          "p_ancestral": 0.9537768941023463
+        },
+        {
+          "family": "Rft-1",
+          "description": "Rft protein",
+          "class": "other",
+          "p_ancestral": 0.952716630126739
+        },
+        {
+          "family": "ORMDL",
+          "description": "ORMDL family",
+          "class": "other",
+          "p_ancestral": 0.9520678542809183
+        },
+        {
+          "family": "ETF_alpha",
+          "description": "Electron transfer flavoprotein FAD-binding domain",
+          "class": "other",
+          "p_ancestral": 0.951138934724944
+        },
+        {
+          "family": "ATG9",
+          "description": "Autophagy protein ATG9",
+          "class": "other",
+          "p_ancestral": 0.9507517827215594
+        },
+        {
+          "family": "Clp1",
+          "description": "Pre-mRNA cleavage complex II protein Clp1",
+          "class": "other",
+          "p_ancestral": 0.9505638317263307
+        },
+        {
+          "family": "TPR_ANAPC2",
+          "description": "ANAPC2-like, TPR repeats",
+          "class": "other",
+          "p_ancestral": 0.9492501505588152
+        },
+        {
+          "family": "NMD_SH3",
+          "description": "NMD3 SH3 domain",
+          "class": "other",
+          "p_ancestral": 0.948738556365365
+        }
+      ],
+      "by_class": {
+        "redox_core": {
+          "ancestor": 32.72524184248922,
+          "today": 15
+        },
+        "atp_synthase": {
+          "ancestor": 17.557596522106905,
+          "today": 16
+        },
+        "translation": {
+          "ancestor": 174.55268400313741,
+          "today": 162
+        },
+        "transcription": {
+          "ancestor": 38.20709864390163,
+          "today": 34
+        },
+        "protein_targeting": {
+          "ancestor": 21.437597574071166,
+          "today": 16
+        }
+      }
+    },
+    "Babesia bovis": {
+      "proxy": "Chromera velia",
+      "families_today": 1999,
+      "estimated_ancestor_families": 4221.260004008242,
+      "proxy_families": 4095,
+      "estimated_lost": 2257.6230805638424,
+      "top_recovered": [
+        {
+          "family": "UPF0220",
+          "description": "Uncharacterised protein family (UPF0220)",
+          "class": "other",
+          "p_ancestral": 0.9586178279575719
+        },
+        {
+          "family": "SYS1",
+          "description": "Integral membrane protein S linking to the trans Golgi network",
+          "class": "other",
+          "p_ancestral": 0.9581306959853539
+        },
+        {
+          "family": "EMC4",
+          "description": "ER membrane protein complex subunit 4",
+          "class": "other",
+          "p_ancestral": 0.9579539210403747
+        },
+        {
+          "family": "Rft-1",
+          "description": "Rft protein",
+          "class": "other",
+          "p_ancestral": 0.9577634370102497
+        },
+        {
+          "family": "YIF1",
+          "description": "YIF1",
+          "class": "other",
+          "p_ancestral": 0.9573258782059427
+        },
+        {
+          "family": "ORMDL",
+          "description": "ORMDL family",
+          "class": "other",
+          "p_ancestral": 0.9572767998855105
+        },
+        {
+          "family": "ETF_alpha",
+          "description": "Electron transfer flavoprotein FAD-binding domain",
+          "class": "other",
+          "p_ancestral": 0.9564727509642625
+        },
+        {
+          "family": "ATG9",
+          "description": "Autophagy protein ATG9",
+          "class": "other",
+          "p_ancestral": 0.9562152998662139
+        }
+      ],
+      "by_class": {
+        "redox_core": {
+          "ancestor": 34.547162525064394,
+          "today": 16
+        },
+        "atp_synthase": {
+          "ancestor": 17.07873916293348,
+          "today": 15
+        },
+        "translation": {
+          "ancestor": 176.0204458366395,
+          "today": 161
+        },
+        "transcription": {
+          "ancestor": 39.02585122703171,
+          "today": 35
+        },
+        "protein_targeting": {
+          "ancestor": 22.0408297869208,
+          "today": 17
+        }
+      }
+    },
+    "Toxoplasma gondii": {
+      "proxy": "Chromera velia",
+      "families_today": 2912,
+      "estimated_ancestor_families": 4039.7734196949104,
+      "proxy_families": 4095,
+      "estimated_lost": 1160.1738705732569,
+      "top_recovered": [
+        {
+          "family": "UPF0220",
+          "description": "Uncharacterised protein family (UPF0220)",
+          "class": "other",
+          "p_ancestral": 0.9314139802290686
+        },
+        {
+          "family": "ORMDL",
+          "description": "ORMDL family",
+          "class": "other",
+          "p_ancestral": 0.9286915441420187
+        },
+        {
+          "family": "Clp1",
+          "description": "Pre-mRNA cleavage complex II protein Clp1",
+          "class": "other",
+          "p_ancestral": 0.9265730218002666
+        },
+        {
+          "family": "TPR_ANAPC2",
+          "description": "ANAPC2-like, TPR repeats",
+          "class": "other",
+          "p_ancestral": 0.9241305542646521
+        },
+        {
+          "family": "Atx10homo_assoc",
+          "description": "Spinocerebellar ataxia type 10 protein domain",
+          "class": "other",
+          "p_ancestral": 0.9208770684967668
+        },
+        {
+          "family": "zf-DPOE",
+          "description": "Zinc finger domain of DNA polymerase-epsilon",
+          "class": "other",
+          "p_ancestral": 0.9194969499121385
+        },
+        {
+          "family": "Thioredoxin_13",
+          "description": "Thioredoxin-like domain",
+          "class": "other",
+          "p_ancestral": 0.919482194561339
+        },
+        {
+          "family": "Serinc",
+          "description": "Serine incorporator (Serinc)",
+          "class": "other",
+          "p_ancestral": 0.9190385307381167
+        }
+      ],
+      "by_class": {
+        "redox_core": {
+          "ancestor": 30.11006616985469,
+          "today": 18
+        },
+        "atp_synthase": {
+          "ancestor": 15.17148255376993,
+          "today": 14
+        },
+        "translation": {
+          "ancestor": 172.35692653484034,
+          "today": 162
+        },
+        "transcription": {
+          "ancestor": 38.802702680675694,
+          "today": 36
+        },
+        "protein_targeting": {
+          "ancestor": 20.951378028607326,
+          "today": 18
+        }
+      }
+    },
+    "Eimeria tenella": {
+      "proxy": "Chromera velia",
+      "families_today": 2272,
+      "estimated_ancestor_families": 4190.934234073312,
+      "proxy_families": 4095,
+      "estimated_lost": 1939.0473868450736,
+      "top_recovered": [
+        {
+          "family": "UPF0220",
+          "description": "Uncharacterised protein family (UPF0220)",
+          "class": "other",
+          "p_ancestral": 0.9535997792793143
+        },
+        {
+          "family": "SYS1",
+          "description": "Integral membrane protein S linking to the trans Golgi network",
+          "class": "other",
+          "p_ancestral": 0.9527270740405781
+        },
+        {
+          "family": "ORMDL",
+          "description": "ORMDL family",
+          "class": "other",
+          "p_ancestral": 0.9520249075645824
+        },
+        {
+          "family": "ETF_alpha",
+          "description": "Electron transfer flavoprotein FAD-binding domain",
+          "class": "other",
+          "p_ancestral": 0.951071323115618
+        },
+        {
+          "family": "ATG9",
+          "description": "Autophagy protein ATG9",
+          "class": "other",
+          "p_ancestral": 0.9508581067505143
+        },
+        {
+          "family": "Clp1",
+          "description": "Pre-mRNA cleavage complex II protein Clp1",
+          "class": "other",
+          "p_ancestral": 0.9505385483719605
+        },
+        {
+          "family": "TPR_ANAPC2",
+          "description": "ANAPC2-like, TPR repeats",
+          "class": "other",
+          "p_ancestral": 0.9493328112712152
+        },
+        {
+          "family": "DUF3819",
+          "description": "CCR4-Not complex, Not1 subunit, domain of unknown function DUF3819",
+          "class": "other",
+          "p_ancestral": 0.9488060607301159
+        }
+      ],
+      "by_class": {
+        "redox_core": {
+          "ancestor": 29.703530082816364,
+          "today": 7
+        },
+        "atp_synthase": {
+          "ancestor": 16.187915836294106,
+          "today": 13
+        },
+        "translation": {
+          "ancestor": 165.99005249754669,
+          "today": 144
+        },
+        "transcription": {
+          "ancestor": 38.23737770173633,
+          "today": 33
+        },
+        "protein_targeting": {
+          "ancestor": 20.99519174776757,
+          "today": 15
+        }
+      }
+    },
+    "Cryptosporidium parvum": {
+      "proxy": "Chromera velia",
+      "families_today": 1965,
+      "estimated_ancestor_families": 4199.1061999555295,
+      "proxy_families": 4095,
+      "estimated_lost": 2237.678914329184,
+      "top_recovered": [
+        {
+          "family": "COX15-CtaA",
+          "description": "Cytochrome oxidase assembly protein",
+          "class": "redox_core",
+          "p_ancestral": 0.9685046436030466
+        },
+        {
+          "family": "Cmc1",
+          "description": "Cytochrome c oxidase biogenesis protein Cmc1 like",
+          "class": "redox_core",
+          "p_ancestral": 0.968254031295063
+        },
+        {
+          "family": "Rieske",
+          "description": "Rieske [2Fe-2S] domain",
+          "class": "redox_core",
+          "p_ancestral": 0.9680604253889147
+        },
+        {
+          "family": "ETF_alpha",
+          "description": "Electron transfer flavoprotein FAD-binding domain",
+          "class": "other",
+          "p_ancestral": 0.9544933073450912
+        },
+        {
+          "family": "Clp1",
+          "description": "Pre-mRNA cleavage complex II protein Clp1",
+          "class": "other",
+          "p_ancestral": 0.9540473359940861
+        },
+        {
+          "family": "Vac14_Fig4_bd",
+          "description": "Vacuolar protein 14 C-terminal Fig4p binding",
+          "class": "other",
+          "p_ancestral": 0.9537138302566857
+        },
+        {
+          "family": "TPR_ANAPC2",
+          "description": "ANAPC2-like, TPR repeats",
+          "class": "other",
+          "p_ancestral": 0.9534393721891543
+        },
+        {
+          "family": "Atx10homo_assoc",
+          "description": "Spinocerebellar ataxia type 10 protein domain",
+          "class": "other",
+          "p_ancestral": 0.9530156773380757
+        }
+      ],
+      "by_class": {
+        "redox_core": {
+          "ancestor": 35.33971505028558,
+          "today": 0
+        },
+        "atp_synthase": {
+          "ancestor": 16.2271960148802,
+          "today": 10
+        },
+        "translation": {
+          "ancestor": 165.55712455732382,
+          "today": 139
+        },
+        "transcription": {
+          "ancestor": 37.79541966941108,
+          "today": 33
+        },
+        "protein_targeting": {
+          "ancestor": 21.783949823842647,
+          "today": 17
+        }
+      }
+    },
+    "Leishmania major": {
+      "proxy": "Bodo saltans",
+      "families_today": 2788,
+      "estimated_ancestor_families": 4037.4269355216666,
+      "proxy_families": 3202,
+      "estimated_lost": 1303.0037334870626,
+      "top_recovered": [
+        {
+          "family": "TMEM33_Pom33",
+          "description": "Transmembrane protein 33/Nucleoporin POM33",
+          "class": "other",
+          "p_ancestral": 0.9358560898704311
+        },
+        {
+          "family": "RPN5_C",
+          "description": "26S proteasome regulatory subunit RPN5 C-terminal domain",
+          "class": "other",
+          "p_ancestral": 0.9298556275465326
+        },
+        {
+          "family": "Rad10",
+          "description": "Binding domain of DNA repair protein Ercc1 (rad10/Swi10)",
+          "class": "other",
+          "p_ancestral": 0.9294309194405822
+        },
+        {
+          "family": "zf_DPOE_2",
+          "description": "Zinc finger domain of DNA polymerase-epsilon",
+          "class": "other",
+          "p_ancestral": 0.9276507047693779
+        },
+        {
+          "family": "RNase_P_p30",
+          "description": "RNase P subunit p30",
+          "class": "other",
+          "p_ancestral": 0.9273438219182266
+        },
+        {
+          "family": "DUF1751",
+          "description": "Eukaryotic integral membrane protein (DUF1751)",
+          "class": "other",
+          "p_ancestral": 0.9273048941052071
+        },
+        {
+          "family": "zf-DPOE",
+          "description": "Zinc finger domain of DNA polymerase-epsilon",
+          "class": "other",
+          "p_ancestral": 0.9272866529419957
+        },
+        {
+          "family": "BRR2_plug",
+          "description": "Pre-mRNA-splicing helicase BRR2 plug domain",
+          "class": "other",
+          "p_ancestral": 0.926733866212003
+        }
+      ],
+      "by_class": {
+        "redox_core": {
+          "ancestor": 29.893821526916916,
+          "today": 16
+        },
+        "atp_synthase": {
+          "ancestor": 17.13522435520093,
+          "today": 16
+        },
+        "translation": {
+          "ancestor": 161.34291172175608,
+          "today": 148
+        },
+        "transcription": {
+          "ancestor": 34.465559603362145,
+          "today": 29
+        },
+        "protein_targeting": {
+          "ancestor": 19.384162958581854,
+          "today": 15
+        }
+      }
+    },
+    "Trypanosoma cruzi": {
+      "proxy": "Bodo saltans",
+      "families_today": 2941,
+      "estimated_ancestor_families": 4211.890419384123,
+      "proxy_families": 3202,
+      "estimated_lost": 1357.1185053481795,
+      "top_recovered": [
+        {
+          "family": "RPN5_C",
+          "description": "26S proteasome regulatory subunit RPN5 C-terminal domain",
+          "class": "other",
+          "p_ancestral": 0.9349169274510375
+        },
+        {
+          "family": "zf_DPOE_2",
+          "description": "Zinc finger domain of DNA polymerase-epsilon",
+          "class": "other",
+          "p_ancestral": 0.9334181306158268
+        },
+        {
+          "family": "PMI_typeI_hel",
+          "description": "Phosphomannose isomerase type I, helical insertion domain",
+          "class": "other",
+          "p_ancestral": 0.9333633494016905
+        },
+        {
+          "family": "zf-DPOE",
+          "description": "Zinc finger domain of DNA polymerase-epsilon",
+          "class": "other",
+          "p_ancestral": 0.9333437762348535
+        },
+        {
+          "family": "RNase_P_p30",
+          "description": "RNase P subunit p30",
+          "class": "other",
+          "p_ancestral": 0.932995001939583
+        },
+        {
+          "family": "BRR2_plug",
+          "description": "Pre-mRNA-splicing helicase BRR2 plug domain",
+          "class": "other",
+          "p_ancestral": 0.9329760724530848
+        },
+        {
+          "family": "Mak10",
+          "description": "Mak10 subunit, NatC N(alpha)-terminal acetyltransferase",
+          "class": "other",
+          "p_ancestral": 0.9326800957615577
+        },
+        {
+          "family": "AAA_lid_7",
+          "description": "Midasin AAA lid domain",
+          "class": "other",
+          "p_ancestral": 0.9326773250886597
+        }
+      ],
+      "by_class": {
+        "redox_core": {
+          "ancestor": 32.212239323660214,
+          "today": 18
+        },
+        "atp_synthase": {
+          "ancestor": 17.900282678488672,
+          "today": 17
+        },
+        "translation": {
+          "ancestor": 161.76321181362562,
+          "today": 146
+        },
+        "transcription": {
+          "ancestor": 36.48330026888748,
+          "today": 32
+        },
+        "protein_targeting": {
+          "ancestor": 20.621199852231136,
+          "today": 16
+        }
+      }
+    },
+    "Trypanosoma brucei": {
+      "proxy": "Bodo saltans",
+      "families_today": 2765,
+      "estimated_ancestor_families": 4068.84973879859,
+      "proxy_families": 3202,
+      "estimated_lost": 1392.1056971144824,
+      "top_recovered": [
+        {
+          "family": "RPN5_C",
+          "description": "26S proteasome regulatory subunit RPN5 C-terminal domain",
+          "class": "other",
+          "p_ancestral": 0.9380292499175853
+        },
+        {
+          "family": "Acatn",
+          "description": "Acetyl-coenzyme A transporter 1",
+          "class": "other",
+          "p_ancestral": 0.935864171407685
+        },
+        {
+          "family": "Rad10",
+          "description": "Binding domain of DNA repair protein Ercc1 (rad10/Swi10)",
+          "class": "other",
+          "p_ancestral": 0.9341861175226113
+        },
+        {
+          "family": "zf-DPOE",
+          "description": "Zinc finger domain of DNA polymerase-epsilon",
+          "class": "other",
+          "p_ancestral": 0.9339662569213384
+        },
+        {
+          "family": "zf_DPOE_2",
+          "description": "Zinc finger domain of DNA polymerase-epsilon",
+          "class": "other",
+          "p_ancestral": 0.9331942041325971
+        },
+        {
+          "family": "BRR2_plug",
+          "description": "Pre-mRNA-splicing helicase BRR2 plug domain",
+          "class": "other",
+          "p_ancestral": 0.9328175535776375
+        },
+        {
+          "family": "PMI_typeI_hel",
+          "description": "Phosphomannose isomerase type I, helical insertion domain",
+          "class": "other",
+          "p_ancestral": 0.932407153364399
+        },
+        {
+          "family": "PheRS_DBD3",
+          "description": "PheRS DNA binding domain 3",
+          "class": "other",
+          "p_ancestral": 0.9300010792949308
+        }
+      ],
+      "by_class": {
+        "redox_core": {
+          "ancestor": 28.148676388429777,
+          "today": 18
+        },
+        "atp_synthase": {
+          "ancestor": 17.773973795664176,
+          "today": 17
+        },
+        "translation": {
+          "ancestor": 159.51936453260362,
+          "today": 143
+        },
+        "transcription": {
+          "ancestor": 35.969038099678755,
+          "today": 32
+        },
+        "protein_targeting": {
+          "ancestor": 21.190449479788477,
+          "today": 17
+        }
+      }
+    },
+    "Rozella allomycis": {
+      "proxy": "Spizellomyces punctatus",
+      "families_today": 3370,
+      "estimated_ancestor_families": 4032.1129961532006,
+      "proxy_families": 5022,
+      "estimated_lost": 679.8805223419631,
+      "top_recovered": [
+        {
+          "family": "SYS1",
+          "description": "Integral membrane protein S linking to the trans Golgi network",
+          "class": "other",
+          "p_ancestral": 0.8940640367342576
+        },
+        {
+          "family": "Rft-1",
+          "description": "Rft protein",
+          "class": "other",
+          "p_ancestral": 0.8910121479206418
+        },
+        {
+          "family": "ARM_TBCD",
+          "description": "Tubulin-specific chaperone D-like, ARM repeat",
+          "class": "other",
+          "p_ancestral": 0.8831080997188103
+        },
+        {
+          "family": "Vps54",
+          "description": "Vps54-like protein",
+          "class": "other",
+          "p_ancestral": 0.8793504327473585
+        },
+        {
+          "family": "TPR_SYVN1_N",
+          "description": "E3 ubiquitin-protein ligase synoviolin-like, TPR repeats",
+          "class": "other",
+          "p_ancestral": 0.8767791981602393
+        },
+        {
+          "family": "COG3_C",
+          "description": "Conserved oligomeric Golgi complex subunit 3, C-terminal",
+          "class": "other",
+          "p_ancestral": 0.8762297989532164
+        },
+        {
+          "family": "Importin_rep_4",
+          "description": "Importin repeat",
+          "class": "other",
+          "p_ancestral": 0.8755828192443541
+        },
+        {
+          "family": "DUF1751",
+          "description": "Eukaryotic integral membrane protein (DUF1751)",
+          "class": "other",
+          "p_ancestral": 0.8738716288954443
+        }
+      ],
+      "by_class": {
+        "redox_core": {
+          "ancestor": 23.02288448482182,
+          "today": 13
+        },
+        "atp_synthase": {
+          "ancestor": 15.436806364174123,
+          "today": 15
+        },
+        "translation": {
+          "ancestor": 164.16643261562683,
+          "today": 157
+        },
+        "transcription": {
+          "ancestor": 35.842323899550166,
+          "today": 34
+        },
+        "protein_targeting": {
+          "ancestor": 20.54051490268659,
+          "today": 18
+        }
+      }
+    },
+    "Encephalitozoon cuniculi": {
+      "proxy": "Spizellomyces punctatus",
+      "families_today": 1309,
+      "estimated_ancestor_families": 4348.2659958489185,
+      "proxy_families": 5022,
+      "estimated_lost": 3061.3719095795996,
+      "top_recovered": [
+        {
+          "family": "Cytochrom_B561",
+          "description": "Eukaryotic cytochrome b561",
+          "class": "redox_core",
+          "p_ancestral": 0.9687583494017944
+        },
+        {
+          "family": "COX15-CtaA",
+          "description": "Cytochrome oxidase assembly protein",
+          "class": "redox_core",
+          "p_ancestral": 0.9687571212198928
+        },
+        {
+          "family": "Cmc1",
+          "description": "Cytochrome c oxidase biogenesis protein Cmc1 like",
+          "class": "redox_core",
+          "p_ancestral": 0.9687501502066104
+        },
+        {
+          "family": "Rieske",
+          "description": "Rieske [2Fe-2S] domain",
+          "class": "redox_core",
+          "p_ancestral": 0.9687484142449565
+        },
+        {
+          "family": "ETF_alpha",
+          "description": "Electron transfer flavoprotein FAD-binding domain",
+          "class": "other",
+          "p_ancestral": 0.9633221068982287
+        },
+        {
+          "family": "RPN7_PSMD6_C",
+          "description": "26S proteasome regulatory subunit RPN7/PSMD6 C-terminal helix",
+          "class": "other",
+          "p_ancestral": 0.9632291970860776
+        },
+        {
+          "family": "EMC4",
+          "description": "ER membrane protein complex subunit 4",
+          "class": "other",
+          "p_ancestral": 0.9630274462147559
+        },
+        {
+          "family": "NOL10_2nd",
+          "description": "Nucleolar protein 10-like, second domain",
+          "class": "other",
+          "p_ancestral": 0.9630049192546719
+        }
+      ],
+      "by_class": {
+        "redox_core": {
+          "ancestor": 33.44268018054408,
+          "today": 0
+        },
+        "atp_synthase": {
+          "ancestor": 16.413660189701034,
+          "today": 9
+        },
+        "translation": {
+          "ancestor": 164.49495394156668,
+          "today": 118
+        },
+        "transcription": {
+          "ancestor": 37.70990876885455,
+          "today": 32
+        },
+        "protein_targeting": {
+          "ancestor": 20.65731368471978,
+          "today": 12
+        }
+      }
+    },
+    "Nosema ceranae": {
+      "proxy": "Spizellomyces punctatus",
+      "families_today": 1274,
+      "estimated_ancestor_families": 4367.935118251522,
+      "proxy_families": 5022,
+      "estimated_lost": 3117.527876390084,
+      "top_recovered": [
+        {
+          "family": "Cytochrom_B561",
+          "description": "Eukaryotic cytochrome b561",
+          "class": "redox_core",
+          "p_ancestral": 0.9687624093567779
+        },
+        {
+          "family": "COX15-CtaA",
+          "description": "Cytochrome oxidase assembly protein",
+          "class": "redox_core",
+          "p_ancestral": 0.968760410586339
+        },
+        {
+          "family": "Cmc1",
+          "description": "Cytochrome c oxidase biogenesis protein Cmc1 like",
+          "class": "redox_core",
+          "p_ancestral": 0.9687552206185801
+        },
+        {
+          "family": "Rieske",
+          "description": "Rieske [2Fe-2S] domain",
+          "class": "redox_core",
+          "p_ancestral": 0.9687547471405588
+        },
+        {
+          "family": "ETF_alpha",
+          "description": "Electron transfer flavoprotein FAD-binding domain",
+          "class": "other",
+          "p_ancestral": 0.9635289696897059
+        },
+        {
+          "family": "RPN7_PSMD6_C",
+          "description": "26S proteasome regulatory subunit RPN7/PSMD6 C-terminal helix",
+          "class": "other",
+          "p_ancestral": 0.9635077811166368
+        },
+        {
+          "family": "EMC4",
+          "description": "ER membrane protein complex subunit 4",
+          "class": "other",
+          "p_ancestral": 0.963353577199212
+        },
+        {
+          "family": "NOL10_2nd",
+          "description": "Nucleolar protein 10-like, second domain",
+          "class": "other",
+          "p_ancestral": 0.9632775789675825
+        }
+      ],
+      "by_class": {
+        "redox_core": {
+          "ancestor": 33.44405403962298,
+          "today": 0
+        },
+        "atp_synthase": {
+          "ancestor": 16.56019214007236,
+          "today": 10
+        },
+        "translation": {
+          "ancestor": 163.84074555368142,
+          "today": 115
+        },
+        "transcription": {
+          "ancestor": 38.766995249936244,
+          "today": 33
+        },
+        "protein_targeting": {
+          "ancestor": 19.852134896383124,
+          "today": 11
+        }
+      }
+    }
+  }
+}

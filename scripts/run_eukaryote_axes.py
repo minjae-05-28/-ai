@@ -62,6 +62,16 @@ def predict_losses(law, train, z, n, x, n_lost):
     return loss_probability(n, x, wl, wm, a_lam, a_mu)
 
 
+def _score_heldout(a, d, n, m, z, had, lost, f_axes, f_lump, train, x):
+    return {
+        "pair": f"{a} -> {d}",
+        "design": dict(zip(AXES, map(int, z[1:]))),
+        "copies_only": auroc(-n[had].astype(float), lost),
+        "lumped_parasite_law": auroc(predict_losses(f_lump, train, lumped(z), n[had], x[had], lost.sum()), lost),
+        "split_law": auroc(predict_losses(f_axes, train, z, n[had], x[had], lost.sum()), lost),
+    }
+
+
 def class_fraction(p, x):
     return {c: float(p[x[:, i] == 1].mean()) if (x[:, i] == 1).any() else float("nan")
             for i, c in enumerate(FAMILY_FEATURES) if i >= 3}
@@ -72,6 +82,9 @@ def main():
     ap.add_argument("--n-boot", type=int, default=10)
     ap.add_argument("--epochs", type=int, default=400)
     ap.add_argument("--out", default="results/eukaryote_axes")
+    ap.add_argument("--law-id", default="eukaryote_axes_v1")
+    ap.add_argument("--folds", type=int, default=0,
+                    help="hold out parasites K folds at a time instead of one by one (0 = leave-one-out)")
     args = ap.parse_args()
     torch.set_num_threads(4)
     out = Path(args.out)
@@ -104,24 +117,24 @@ def main():
 
     # 2. Held-out parasites: split vs lumped law
     heldout = []
-    for i, ((a, d), (n, m, z)) in enumerate(zip(pairs, data)):
-        if not z[1]:
-            continue
-        train = data[:i] + data[i + 1:]
-        had = n > 0
-        lost = (m == 0)[had]
+    parasites = [i for i, (_, _, z) in enumerate(data) if z[1]]
+    if args.folds:
+        order = np.random.default_rng(0).permutation(parasites)
+        folds = [sorted(order[k::args.folds].tolist()) for k in range(args.folds)]
+    else:
+        folds = [[i] for i in parasites]
+    for fold in folds:
+        train = [d_ for j, d_ in enumerate(data) if j not in fold]
         f_axes = fit_bd(x, train, LABELS, epochs=args.epochs)
         f_lump = fit_bd(x, [(tn, tm, lumped(tz)) for tn, tm, tz in train], LABELS, epochs=args.epochs)
-        row = {
-            "pair": f"{a} -> {d}",
-            "design": dict(zip(AXES, map(int, z[1:]))),
-            "copies_only": auroc(-n[had].astype(float), lost),
-            "lumped_parasite_law": auroc(predict_losses(f_lump, train, lumped(z), n[had], x[had], lost.sum()), lost),
-            "split_law": auroc(predict_losses(f_axes, train, z, n[had], x[had], lost.sum()), lost),
-        }
-        heldout.append(row)
-        print(f"  held-out {d:30s} copies {row['copies_only']:.3f}  lumped {row['lumped_parasite_law']:.3f}  "
-              f"split {row['split_law']:.3f}")
+        for i in fold:
+            (a, d), (n, m, z) = pairs[i], data[i]
+            had = n > 0
+            lost = (m == 0)[had]
+            heldout.append(_score_heldout(a, d, n, m, z, had, lost, f_axes, f_lump, train, x))
+            r = heldout[-1]
+            print(f"  held-out {d:30s} copies {r['copies_only']:.3f}  lumped {r['lumped_parasite_law']:.3f}  "
+                  f"split {r['split_law']:.3f}")
 
     # 3. Plasmodium ancestor under every axis combination
     tree = prune(ALVEOLATE_TREE_AT_ANCESTOR, {PLASMO} | (set(SPECIES) - set(profiles)))
@@ -186,8 +199,8 @@ def main():
     }
     (out / "metrics.json").write_text(json.dumps(metrics, indent=2))
     save_law(
-        LAWS_DIR / "eukaryote_axes_v1.json",
-        id="eukaryote_axes_v1",
+        LAWS_DIR / f"{args.law_id}.json",
+        id=args.law_id,
         scope=("Gene-family (Pfam) loss and duplication in eukaryotes, split into a base law plus "
                "the additive effects of parasitism, intracellular life and reduced mitochondria."),
         model=("Linear birth-death per family with origination; log rate = a_pair + x @ (design @ W), "
@@ -236,7 +249,7 @@ def main():
     ax.tick_params(axis="y", labelsize=7)
     fig.tight_layout()
     fig.savefig(out / "fig_eukaryote_axes.png", dpi=130)
-    print(f"Done -> {out}/ and laws/eukaryote_axes_v1.json")
+    print(f"Done -> {out}/ and laws/{args.law_id}.json")
 
 
 if __name__ == "__main__":

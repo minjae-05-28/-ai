@@ -1,0 +1,328 @@
+{
+  "id": "composite_v1",
+  "scope": "Composite loss law for reconstructing ancestors of eukaryotic parasites from their genomes (reverse inference). Chosen by leave-one-out validation among law mixes.",
+  "model": "loss weights = 1.0 x eukaryote_axes law(design); used inside a Bayesian reverse birth-death reconstruction.",
+  "feature_names": [
+    "hydrophobicity_gravy",
+    "tm_helices",
+    "protein_length",
+    "redox_core",
+    "atp_synthase",
+    "translation",
+    "transcription",
+    "protein_targeting"
+  ],
+  "components": {
+    "eukaryote_axes": 1.0,
+    "endosymbiosis_context": null,
+    "endosymbiosis_weight": 0.0
+  },
+  "validation": {
+    "mean_auroc_recover_lost": {
+      "prior only (no law)": 0.7739546991419038,
+      "axis law": 0.776225239283262,
+      "axis + mitochondrion law": 0.7628692597773826,
+      "axis + plastid law": 0.7753902446765196,
+      "axis + insect-endosymbiont law": 0.7737329154326886,
+      "plastid law only": 0.7725787170512277,
+      "axis law, wrong lifestyle (free-living)": 0.773170953858617
+    },
+    "best": "axis law"
+  },
+  "caveats": [
+    "Point weights only (no intervals): a mix of separately fitted laws.",
+    "Validated against extant free-living relatives, not true ancestors."
+  ],
+  "contexts": {
+    "loss_parasite_extracellular_aerobic": {
+      "hydrophobicity_gravy": {
+        "weight": 0.1133,
+        "ci95": [
+          0.1133,
+          0.1133
+        ]
+      },
+      "tm_helices": {
+        "weight": 0.0909,
+        "ci95": [
+          0.0909,
+          0.0909
+        ]
+      },
+      "protein_length": {
+        "weight": -0.1063,
+        "ci95": [
+          -0.1063,
+          -0.1063
+        ]
+      },
+      "redox_core": {
+        "weight": -0.7102,
+        "ci95": [
+          -0.7102,
+          -0.7102
+        ]
+      },
+      "atp_synthase": {
+        "weight": -1.7188,
+        "ci95": [
+          -1.7188,
+          -1.7188
+        ]
+      },
+      "translation": {
+        "weight": -1.1107,
+        "ci95": [
+          -1.1107,
+          -1.1107
+        ]
+      },
+      "transcription": {
+        "weight": -1.2858,
+        "ci95": [
+          -1.2858,
+          -1.2858
+        ]
+      },
+      "protein_targeting": {
+        "weight": -0.5229,
+        "ci95": [
+          -0.5229,
+          -0.5229
+        ]
+      }
+    },
+    "loss_parasite_extracellular_reduced": {
+      "hydrophobicity_gravy": {
+        "weight": 0.0534,
+        "ci95": [
+          0.0534,
+          0.0534
+        ]
+      },
+      "tm_helices": {
+        "weight": 0.0381,
+        "ci95": [
+          0.0381,
+          0.0381
+        ]
+      },
+      "protein_length": {
+        "weight": -0.0904,
+        "ci95": [
+          -0.0904,
+          -0.0904
+        ]
+      },
+      "redox_core": {
+        "weight": 0.8322,
+        "ci95": [
+          0.8322,
+          0.8322
+        ]
+      },
+      "atp_synthase": {
+        "weight": -0.991,
+        "ci95": [
+          -0.991,
+          -0.991
+        ]
+      },
+      "translation": {
+        "weight": -0.9315,
+        "ci95": [
+          -0.9315,
+          -0.9315
+        ]
+      },
+      "transcription": {
+        "weight": -1.7636,
+        "ci95": [
+          -1.7636,
+          -1.7636
+        ]
+      },
+      "protein_targeting": {
+        "weight": -0.7074,
+        "ci95": [
+          -0.7074,
+          -0.7074
+        ]
+      }
+    },
+    "loss_parasite_intracellular_aerobic": {
+      "hydrophobicity_gravy": {
+        "weight": 0.1519,
+        "ci95": [
+          0.1519,
+          0.1519
+        ]
+      },
+      "tm_helices": {
+        "weight": 0.0078,
+        "ci95": [
+          0.0078,
+          0.0078
+        ]
+      },
+      "protein_length": {
+        "weight": -0.0408,
+        "ci95": [
+          -0.0408,
+          -0.0408
+        ]
+      },
+      "redox_core": {
+        "weight": -0.003,
+        "ci95": [
+          -0.003,
+          -0.003
+        ]
+      },
+      "atp_synthase": {
+        "weight": -1.6377,
+        "ci95": [
+          -1.6377,
+          -1.6377
+        ]
+      },
+      "translation": {
+        "weight": -1.1116,
+        "ci95": [
+          -1.1116,
+          -1.1116
+        ]
+      },
+      "transcription": {
+        "weight": -1.32,
+        "ci95": [
+          -1.32,
+          -1.32
+        ]
+      },
+      "protein_targeting": {
+        "weight": -0.7824,
+        "ci95": [
+          -0.7824,
+          -0.7824
+        ]
+      }
+    },
+    "loss_parasite_intracellular_reduced": {
+      "hydrophobicity_gravy": {
+        "weight": 0.092,
+        "ci95": [
+          0.092,
+          0.092
+        ]
+      },
+      "tm_helices": {
+        "weight": -0.045,
+        "ci95": [
+          -0.045,
+          -0.045
+        ]
+      },
+      "protein_length": {
+        "weight": -0.0249,
+        "ci95": [
+          -0.0249,
+          -0.0249
+        ]
+      },
+      "redox_core": {
+        "weight": 1.5394,
+        "ci95": [
+          1.5394,
+          1.5394
+        ]
+      },
+      "atp_synthase": {
+        "weight": -0.91,
+        "ci95": [
+          -0.91,
+          -0.91
+        ]
+      },
+      "translation": {
+        "weight": -0.9324,
+        "ci95": [
+          -0.9324,
+          -0.9324
+        ]
+      },
+      "transcription": {
+        "weight": -1.7978,
+        "ci95": [
+          -1.7978,
+          -1.7978
+        ]
+      },
+      "protein_targeting": {
+        "weight": -0.967,
+        "ci95": [
+          -0.967,
+          -0.967
+        ]
+      }
+    },
+    "loss_free_living": {
+      "hydrophobicity_gravy": {
+        "weight": 0.074,
+        "ci95": [
+          0.074,
+          0.074
+        ]
+      },
+      "tm_helices": {
+        "weight": -0.0072,
+        "ci95": [
+          -0.0072,
+          -0.0072
+        ]
+      },
+      "protein_length": {
+        "weight": -0.1498,
+        "ci95": [
+          -0.1498,
+          -0.1498
+        ]
+      },
+      "redox_core": {
+        "weight": -0.0062,
+        "ci95": [
+          -0.0062,
+          -0.0062
+        ]
+      },
+      "atp_synthase": {
+        "weight": -0.3865,
+        "ci95": [
+          -0.3865,
+          -0.3865
+        ]
+      },
+      "translation": {
+        "weight": -0.7528,
+        "ci95": [
+          -0.7528,
+          -0.7528
+        ]
+      },
+      "transcription": {
+        "weight": -1.2514,
+        "ci95": [
+          -1.2514,
+          -1.2514
+        ]
+      },
+      "protein_targeting": {
+        "weight": -0.3061,
+        "ci95": [
+          -0.3061,
+          -0.3061
+        ]
+      }
+    }
+  }
+}

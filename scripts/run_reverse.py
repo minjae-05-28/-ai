@@ -61,6 +61,8 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--epochs", type=int, default=300)
     ap.add_argument("--out", default="results/reverse")
+    ap.add_argument("--law-id", default="composite_v1")
+    ap.add_argument("--folds", type=int, default=0, help="K-fold over parasites (0 = leave-one-out)")
     args = ap.parse_args()
     torch.set_num_threads(4)
     out = Path(args.out)
@@ -83,10 +85,18 @@ def main():
     # 1-2. Leave-one-out validation of the mixes
     scores = {name: [] for name in MIXES}
     per_pair = []
-    for i in parasite_idx:
+    if args.folds:
+        order = np.random.default_rng(0).permutation(parasite_idx)
+        folds = [sorted(order[k::args.folds].tolist()) for k in range(args.folds)]
+    else:
+        folds = [[i] for i in parasite_idx]
+    held = []
+    for fold in folds:
+        fit = fit_bd(x, [d_ for j, d_ in enumerate(data) if j not in fold], LABELS, epochs=args.epochs)
+        held += [(i, fit) for i in fold]
+    for i, fit in held:
         anc, desc = pairs[i]
         _, m, z = data[i]
-        fit = fit_bd(x, data[:i] + data[i + 1:], LABELS, epochs=args.epochs)
         prior = count_prior(references(profiles, c, SPECIES[desc].group))
         truth = c[anc] > 0
         absent = m == 0
@@ -149,8 +159,8 @@ def main():
         contexts[f"loss_{label}"] = {f: {"weight": round(float(w), 4), "ci95": [round(float(w), 4)] * 2}
                                      for f, w in zip(FAMILY_FEATURES, wm)}
     save_law(
-        LAWS_DIR / "composite_v1.json",
-        id="composite_v1",
+        LAWS_DIR / f"{args.law_id}.json",
+        id=args.law_id,
         scope=("Composite loss law for reconstructing ancestors of eukaryotic parasites from their "
                "genomes (reverse inference). Chosen by leave-one-out validation among law mixes."),
         model=(f"loss weights = {a} x eukaryote_axes law(design)"
@@ -187,7 +197,7 @@ def main():
     ax2.legend(fontsize=8)
     fig.tight_layout()
     fig.savefig(out / "fig_reverse.png", dpi=130)
-    print(f"Done -> {out}/ and laws/composite_v1.json")
+    print(f"Done -> {out}/ and laws/{args.law_id}.json")
 
 
 if __name__ == "__main__":
