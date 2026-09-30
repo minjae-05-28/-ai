@@ -24,6 +24,7 @@ import numpy as np
 import torch
 
 from organelle_evo.eukaryotes.catalog import AXES, FREE, SPECIES, design, resolve_pairs
+from organelle_evo.eukaryotes.features import enriched_features
 from organelle_evo.eukaryotes.model import FAMILY_FEATURES, counts, family_features, fit_bd, pfam_class
 from organelle_evo.eukaryotes.reverse import count_prior, reconstruct
 from organelle_evo.laws import LAWS_DIR, load_law, save_law
@@ -48,7 +49,7 @@ MIXES = {
 def mixed_weights(fit, z, mix, endo):
     a, ctx, e, override = mix
     wl, wm, wn = fit.weights(override or z)
-    wm = a * wm + (e * endo.weights[ctx] if ctx else 0.0)
+    wm = a * wm + (e * endo[ctx] if ctx else 0.0)
     return a * wl, wm, a * wn
 
 
@@ -63,22 +64,30 @@ def main():
     ap.add_argument("--out", default="results/reverse")
     ap.add_argument("--law-id", default="composite_v1")
     ap.add_argument("--folds", type=int, default=0, help="K-fold over parasites (0 = leave-one-out)")
+    ap.add_argument("--enriched", action="store_true", help="56 enriched family features instead of 8")
+    ap.add_argument("--threads", type=int, default=4)
     args = ap.parse_args()
-    torch.set_num_threads(4)
+    torch.set_num_threads(args.threads)
     out = Path(args.out)
     out.mkdir(parents=True, exist_ok=True)
 
     meta = json.loads((DATA / "pfam_meta.json").read_text())
     profiles = {}
     for f in DATA.glob("*.json"):
-        if f.name != "pfam_meta.json":
+        if f.name not in ("pfam_meta.json", "family_annotations.json"):
             d = json.loads(f.read_text())
             profiles[d["species"]] = d
     fams, x = family_features([profiles[s] for s in profiles], meta)
     c = {s: counts(p, fams) for s, p in profiles.items()}
+    feature_names = list(FAMILY_FEATURES)
+    if args.enriched:
+        ann = json.loads((DATA / "family_annotations.json").read_text())
+        fams, feature_names, x = enriched_features(profiles, meta, ann, c)
+    # Endosymbiosis laws speak only to the 8 base features (the first 8 columns).
+    endo_law = load_law("endosymbiosis_v1")
+    endo = {ctx: np.concatenate([w, np.zeros(x.shape[1] - len(w))]) for ctx, w in endo_law.weights.items()}
     pairs = resolve_pairs(profiles)
     data = [(c[a], c[d], design(d)) for a, d in pairs]
-    endo = load_law("endosymbiosis_v1")
     parasite_idx = [i for i, (_, _, z) in enumerate(data) if z[1]]
     print(f"{len(fams)} families, {len(parasite_idx)} parasite pairs")
 
@@ -157,7 +166,7 @@ def main():
                      ("free_living", FREE_DESIGN)]:
         _, wm, _ = mixed_weights(fit, z, mix, endo)
         contexts[f"loss_{label}"] = {f: {"weight": round(float(w), 4), "ci95": [round(float(w), 4)] * 2}
-                                     for f, w in zip(FAMILY_FEATURES, wm)}
+                                     for f, w in zip(feature_names, wm)}
     save_law(
         LAWS_DIR / f"{args.law_id}.json",
         id=args.law_id,
@@ -166,7 +175,7 @@ def main():
         model=(f"loss weights = {a} x eukaryote_axes law(design)"
                + (f" + {e} x endosymbiosis_v1[{ctx}]" if ctx else "")
                + "; used inside a Bayesian reverse birth-death reconstruction."),
-        feature_names=list(FAMILY_FEATURES),
+        feature_names=feature_names,
         components={"eukaryote_axes": a, "endosymbiosis_context": ctx, "endosymbiosis_weight": e},
         validation={"mean_auroc_recover_lost": mean, "best": best},
         caveats=["Point weights only (no intervals): a mix of separately fitted laws.",
