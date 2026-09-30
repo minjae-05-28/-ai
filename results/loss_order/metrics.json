@@ -1,0 +1,6298 @@
+{
+  "n_cross_clade_comparisons": 1034,
+  "containment_over_random": {
+    "median": 1.5759832108780771,
+    "q25": 1.367925224421533,
+    "q75": 1.901017684833218,
+    "share_above_1": 1.0
+  },
+  "mild_vs_harsh_spearman": 0.6949537899371488,
+  "n_families": 5511,
+  "severity": {
+    "Brugia malayi": 0.0919773095623987,
+    "Ustilago maydis": 0.11530299457675076,
+    "Saprolegnia parasitica": 0.16666666666666666,
+    "Phytophthora infestans": 0.18753478018920422,
+    "Trypanosoma cruzi": 0.18988132417239226,
+    "Leptomonas pyrrhocoris": 0.2061211742660837,
+    "Leishmania major": 0.22361024359775142,
+    "Leishmania infantum": 0.22517176764522173,
+    "Batrachochytrium dendrobatidis": 0.22520908004778972,
+    "Pneumocystis jirovecii": 0.22531969309462915,
+    "Trichinella spiralis": 0.22710696920583467,
+    "Schistosoma mansoni": 0.22771474878444084,
+    "Trypanosoma brucei": 0.23079325421611493,
+    "Leishmania donovani": 0.23329169269206745,
+    "Trypanosoma vivax": 0.24734540911930045,
+    "Taphrina deformans": 0.24782608695652175,
+    "Malassezia globosa": 0.2758783305824098,
+    "Helicosporidium sp. ATCC 50920": 0.300350498786735,
+    "Perkinsus marinus": 0.312226437117012,
+    "Ichthyophthirius multifiliis": 0.3233148526407937,
+    "Hammondia hammondi": 0.3750915750915751,
+    "Toxoplasma gondii": 0.3785103785103785,
+    "Rozella allomycis": 0.38211867781760256,
+    "Neospora caninum": 0.39902319902319905,
+    "Blastocystis hominis": 0.4666110183639399,
+    "Cyclospora cayetanensis": 0.47545787545787543,
+    "Plasmodium knowlesi": 0.49621489621489623,
+    "Eimeria tenella": 0.5037851037851038,
+    "Plasmodium vivax": 0.5057387057387057,
+    "Plasmodium berghei": 0.5081807081807082,
+    "Plasmodium falciparum": 0.5084249084249084,
+    "Babesia bovis": 0.5699633699633699,
+    "Cryptosporidium parvum": 0.5706959706959707,
+    "Babesia microti": 0.5728937728937729,
+    "Entamoeba histolytica": 0.5737122557726465,
+    "Theileria parva": 0.5775335775335775,
+    "Entamoeba dispar": 0.5783747779751333,
+    "Entamoeba invadens": 0.5801509769094139,
+    "Theileria annulata": 0.5885225885225885,
+    "Henneguya salminicola": 0.6120176910172335,
+    "Cryptosporidium hominis": 0.6192918192918193,
+    "Thelohanellus kitauei": 0.6641756901021809,
+    "Giardia intestinalis": 0.672041677003225,
+    "Spironucleus salmonicida": 0.6985859588191515,
+    "Trypanosoma congolense": 0.7117426608369769,
+    "Encephalitozoon intestinalis": 0.7566706491437675,
+    "Encephalitozoon cuniculi": 0.7578653922739944,
+    "Nosema ceranae": 0.7702110712863401,
+    "Vavraia culicis": 0.7737953006770211,
+    "Nematocida parisii": 0.7757865392273995,
+    "Enterocytozoon bieneusi": 0.8245718837116687
+  },
+  "lost_first": [
+    "NAGPA: Phosphodiester glycosidase",
+    "DUF4291: Domain of unknown function (DUF4291)",
+    "Piwi_N: Piwi, N-terminal domain",
+    "Stealth_CR1: Stealth protein CR1, conserved region 1",
+    "CHASE: CHASE domain",
+    "CFAP141: Cilia- and flagella-associated protein 141",
+    "DUF4517: Domain of unknown function (DUF4517)",
+    "DUF4505: Domain of unknown function (DUF4505)",
+    "GKRP_SIS_N: Glucokinase regulatory protein N-terminal SIS domain",
+    "DUF4326: Domain of unknown function (DUF4326)",
+    "NAGLU_N: Alpha-N-acetylglucosaminidase (NAGLU) N-terminal domain",
+    "PFL-like: Pyruvate formate lyase-like"
+  ],
+  "lost_only_by_harshest": [
+    "DEPDC5_CTD: DEPDC5 protein C-terminal region",
+    "Foie-gras_1: Foie gras liver health family 1",
+    "FolB: Dihydroneopterin aldolase",
+    "NEDD4_Bsd2: NEDD4/Bsd2",
+    "Ig_CFAP65_4th: CFAP65, fourth Ig-like domain",
+    "BAR_4: BAR-like domain",
+    "Chalcone_2: Chalcone isomerase like",
+    "Ig_TRAPPC9-Trs120_2nd: Trs120/TRAPPC9, second Ig-like domain",
+    "IATP: Mitochondrial ATPase inhibitor, IATP",
+    "BBS2_Mid: Ciliary BBSome complex subunit 2, middle region",
+    "PI31_Prot_C: PI31 proteasome regulator",
+    "LARP1_HEAT: LARP1 HEAT repeat region"
+  ],
+  "comparisons": [
+    {
+      "milder": "Entamoeba histolytica",
+      "harsher": "Encephalitozoon cuniculi",
+      "containment": 0.8837075417386299,
+      "null": 0.6756369882622387
+    },
+    {
+      "milder": "Entamoeba histolytica",
+      "harsher": "Nosema ceranae",
+      "containment": 0.895797351755901,
+      "null": 0.6908101918121958
+    },
+    {
+      "milder": "Entamoeba histolytica",
+      "harsher": "Enterocytozoon bieneusi",
+      "containment": 0.9314910765687968,
+      "null": 0.7646722015459491
+    },
+    {
+      "milder": "Entamoeba histolytica",
+      "harsher": "Nematocida parisii",
+      "containment": 0.8877374784110535,
+      "null": 0.6988262238763241
+    },
+    {
+      "milder": "Entamoeba histolytica",
+      "harsher": "Vavraia culicis",
+      "containment": 0.8963730569948186,
+      "null": 0.6979673632980247
+    },
+    {
+      "milder": "Entamoeba histolytica",
+      "harsher": "Encephalitozoon intestinalis",
+      "containment": 0.8837075417386299,
+      "null": 0.6722015459490409
+    },
+    {
+      "milder": "Entamoeba histolytica",
+      "harsher": "Theileria annulata",
+      "containment": 0.6567524115755627,
+      "null": 0.4573342736248237
+    },
+    {
+      "milder": "Entamoeba histolytica",
+      "harsher": "Theileria parva",
+      "containment": 0.6430868167202572,
+      "null": 0.4432299012693935
+    },
+    {
+      "milder": "Entamoeba histolytica",
+      "harsher": "Cryptosporidium hominis",
+      "containment": 0.7411575562700965,
+      "null": 0.4975317348377997
+    },
+    {
+      "milder": "Entamoeba histolytica",
+      "harsher": "Trypanosoma congolense",
+      "containment": 0.7543859649122807,
+      "null": 0.686536901865369
+    },
+    {
+      "milder": "Entamoeba histolytica",
+      "harsher": "Giardia intestinalis",
+      "containment": 0.8819492107069321,
+      "null": 0.6281486146095718
+    },
+    {
+      "milder": "Entamoeba histolytica",
+      "harsher": "Spironucleus salmonicida",
+      "containment": 0.8991077556623198,
+      "null": 0.6580604534005038
+    },
+    {
+      "milder": "Entamoeba histolytica",
+      "harsher": "Thelohanellus kitauei",
+      "containment": 0.6908284023668639,
+      "null": 0.5187483837600206
+    },
+    {
+      "milder": "Entamoeba histolytica",
+      "harsher": "Henneguya salminicola",
+      "containment": 0.6301775147928994,
+      "null": 0.44065166795965865
+    },
+    {
+      "milder": "Ichthyophthirius multifiliis",
+      "harsher": "Entamoeba histolytica",
+      "containment": 0.5753246753246753,
+      "null": 0.4033798677443057
+    },
+    {
+      "milder": "Ichthyophthirius multifiliis",
+      "harsher": "Rozella allomycis",
+      "containment": 0.359375,
+      "null": 0.20254506892895016
+    },
+    {
+      "milder": "Ichthyophthirius multifiliis",
+      "harsher": "Encephalitozoon cuniculi",
+      "containment": 0.7955729166666666,
+      "null": 0.632378932484977
+    },
+    {
+      "milder": "Ichthyophthirius multifiliis",
+      "harsher": "Nosema ceranae",
+      "containment": 0.80859375,
+      "null": 0.6447507953340403
+    },
+    {
+      "milder": "Ichthyophthirius multifiliis",
+      "harsher": "Enterocytozoon bieneusi",
+      "containment": 0.8854166666666666,
+      "null": 0.7299399080947331
+    },
+    {
+      "milder": "Ichthyophthirius multifiliis",
+      "harsher": "Nematocida parisii",
+      "containment": 0.8033854166666666,
+      "null": 0.6557087310003534
+    },
+    {
+      "milder": "Ichthyophthirius multifiliis",
+      "harsher": "Vavraia culicis",
+      "containment": 0.8125,
+      "null": 0.6528808766348533
+    },
+    {
+      "milder": "Ichthyophthirius multifiliis",
+      "harsher": "Encephalitozoon intestinalis",
+      "containment": 0.7994791666666666,
+      "null": 0.6288441145281018
+    },
+    {
+      "milder": "Ichthyophthirius multifiliis",
+      "harsher": "Trypanosoma congolense",
+      "containment": 0.7934990439770554,
+      "null": 0.6675246675246675
+    },
+    {
+      "milder": "Ichthyophthirius multifiliis",
+      "harsher": "Entamoeba dispar",
+      "containment": 0.5935064935064935,
+      "null": 0.4118295371050698
+    },
+    {
+      "milder": "Ichthyophthirius multifiliis",
+      "harsher": "Entamoeba invadens",
+      "containment": 0.5974025974025974,
+      "null": 0.4136664217487142
+    },
+    {
+      "milder": "Ichthyophthirius multifiliis",
+      "harsher": "Giardia intestinalis",
+      "containment": 0.7933042212518195,
+      "null": 0.5475299401197605
+    },
+    {
+      "milder": "Ichthyophthirius multifiliis",
+      "harsher": "Spironucleus salmonicida",
+      "containment": 0.8311499272197962,
+      "null": 0.5812125748502994
+    },
+    {
+      "milder": "Ichthyophthirius multifiliis",
+      "harsher": "Blastocystis hominis",
+      "containment": 0.5332167832167832,
+      "null": 0.31395842172252864
+    },
+    {
+      "milder": "Ichthyophthirius multifiliis",
+      "harsher": "Thelohanellus kitauei",
+      "containment": 0.6472491909385113,
+      "null": 0.4764971023824855
+    },
+    {
+      "milder": "Ichthyophthirius multifiliis",
+      "harsher": "Henneguya salminicola",
+      "containment": 0.5685005393743258,
+      "null": 0.4040566645202833
+    },
+    {
+      "milder": "Perkinsus marinus",
+      "harsher": "Entamoeba histolytica",
+      "containment": 0.6320474777448071,
+      "null": 0.4033798677443057
+    },
+    {
+      "milder": "Perkinsus marinus",
+      "harsher": "Rozella allomycis",
+      "containment": 0.4302848575712144,
+      "null": 0.20254506892895016
+    },
+    {
+      "milder": "Perkinsus marinus",
+      "harsher": "Encephalitozoon cuniculi",
+      "containment": 0.881559220389805,
+      "null": 0.632378932484977
+    },
+    {
+      "milder": "Perkinsus marinus",
+      "harsher": "Nosema ceranae",
+      "containment": 0.8770614692653673,
+      "null": 0.6447507953340403
+    },
+    {
+      "milder": "Perkinsus marinus",
+      "harsher": "Enterocytozoon bieneusi",
+      "containment": 0.9250374812593704,
+      "null": 0.7299399080947331
+    },
+    {
+      "milder": "Perkinsus marinus",
+      "harsher": "Nematocida parisii",
+      "containment": 0.8875562218890555,
+      "null": 0.6557087310003534
+    },
+    {
+      "milder": "Perkinsus marinus",
+      "harsher": "Vavraia culicis",
+      "containment": 0.8860569715142429,
+      "null": 0.6528808766348533
+    },
+    {
+      "milder": "Perkinsus marinus",
+      "harsher": "Encephalitozoon intestinalis",
+      "containment": 0.8785607196401799,
+      "null": 0.6288441145281018
+    },
+    {
+      "milder": "Perkinsus marinus",
+      "harsher": "Trypanosoma congolense",
+      "containment": 0.8318181818181818,
+      "null": 0.6675246675246675
+    },
+    {
+      "milder": "Perkinsus marinus",
+      "harsher": "Entamoeba dispar",
+      "containment": 0.6379821958456974,
+      "null": 0.4118295371050698
+    },
+    {
+      "milder": "Perkinsus marinus",
+      "harsher": "Entamoeba invadens",
+      "containment": 0.6617210682492581,
+      "null": 0.4136664217487142
+    },
+    {
+      "milder": "Perkinsus marinus",
+      "harsher": "Giardia intestinalis",
+      "containment": 0.8505392912172574,
+      "null": 0.5475299401197605
+    },
+    {
+      "milder": "Perkinsus marinus",
+      "harsher": "Spironucleus salmonicida",
+      "containment": 0.8859784283513097,
+      "null": 0.5812125748502994
+    },
+    {
+      "milder": "Perkinsus marinus",
+      "harsher": "Blastocystis hominis",
+      "containment": 0.6246913580246913,
+      "null": 0.31395842172252864
+    },
+    {
+      "milder": "Perkinsus marinus",
+      "harsher": "Thelohanellus kitauei",
+      "containment": 0.6935866983372921,
+      "null": 0.4764971023824855
+    },
+    {
+      "milder": "Perkinsus marinus",
+      "harsher": "Henneguya salminicola",
+      "containment": 0.6425178147268409,
+      "null": 0.4040566645202833
+    },
+    {
+      "milder": "Plasmodium falciparum",
+      "harsher": "Entamoeba histolytica",
+      "containment": 0.6567441860465116,
+      "null": 0.4386459802538787
+    },
+    {
+      "milder": "Plasmodium falciparum",
+      "harsher": "Encephalitozoon cuniculi",
+      "containment": 0.911925175370226,
+      "null": 0.6679611650485436
+    },
+    {
+      "milder": "Plasmodium falciparum",
+      "harsher": "Nosema ceranae",
+      "containment": 0.9142634450506625,
+      "null": 0.6799352750809061
+    },
+    {
+      "milder": "Plasmodium falciparum",
+      "harsher": "Enterocytozoon bieneusi",
+      "containment": 0.9337490257209665,
+      "null": 0.7498381877022654
+    },
+    {
+      "milder": "Plasmodium falciparum",
+      "harsher": "Nematocida parisii",
+      "containment": 0.9127045985970382,
+      "null": 0.6857605177993528
+    },
+    {
+      "milder": "Plasmodium falciparum",
+      "harsher": "Vavraia culicis",
+      "containment": 0.9220576773187841,
+      "null": 0.6809061488673139
+    },
+    {
+      "milder": "Plasmodium falciparum",
+      "harsher": "Encephalitozoon intestinalis",
+      "containment": 0.9056897895557288,
+      "null": 0.6634304207119741
+    },
+    {
+      "milder": "Plasmodium falciparum",
+      "harsher": "Trypanosoma congolense",
+      "containment": 0.7876106194690266,
+      "null": 0.6743996743996744
+    },
+    {
+      "milder": "Plasmodium falciparum",
+      "harsher": "Entamoeba dispar",
+      "containment": 0.6632558139534884,
+      "null": 0.44499294781382226
+    },
+    {
+      "milder": "Plasmodium falciparum",
+      "harsher": "Entamoeba invadens",
+      "containment": 0.6558139534883721,
+      "null": 0.4386459802538787
+    },
+    {
+      "milder": "Plasmodium falciparum",
+      "harsher": "Giardia intestinalis",
+      "containment": 0.797585886722377,
+      "null": 0.5664970930232558
+    },
+    {
+      "milder": "Plasmodium falciparum",
+      "harsher": "Spironucleus salmonicida",
+      "containment": 0.8226555246053854,
+      "null": 0.5962936046511628
+    },
+    {
+      "milder": "Plasmodium falciparum",
+      "harsher": "Thelohanellus kitauei",
+      "containment": 0.7150837988826816,
+      "null": 0.4960438222763238
+    },
+    {
+      "milder": "Plasmodium falciparum",
+      "harsher": "Henneguya salminicola",
+      "containment": 0.6808659217877095,
+      "null": 0.4336579427875837
+    },
+    {
+      "milder": "Babesia bovis",
+      "harsher": "Entamoeba histolytica",
+      "containment": 0.644191714053615,
+      "null": 0.4386459802538787
+    },
+    {
+      "milder": "Babesia bovis",
+      "harsher": "Encephalitozoon cuniculi",
+      "containment": 0.9121851599727706,
+      "null": 0.6679611650485436
+    },
+    {
+      "milder": "Babesia bovis",
+      "harsher": "Nosema ceranae",
+      "containment": 0.911504424778761,
+      "null": 0.6799352750809061
+    },
+    {
+      "milder": "Babesia bovis",
+      "harsher": "Enterocytozoon bieneusi",
+      "containment": 0.9332879509870661,
+      "null": 0.7498381877022654
+    },
+    {
+      "milder": "Babesia bovis",
+      "harsher": "Nematocida parisii",
+      "containment": 0.9189925119128659,
+      "null": 0.6857605177993528
+    },
+    {
+      "milder": "Babesia bovis",
+      "harsher": "Vavraia culicis",
+      "containment": 0.9121851599727706,
+      "null": 0.6809061488673139
+    },
+    {
+      "milder": "Babesia bovis",
+      "harsher": "Encephalitozoon intestinalis",
+      "containment": 0.908781484002723,
+      "null": 0.6634304207119741
+    },
+    {
+      "milder": "Babesia bovis",
+      "harsher": "Trypanosoma congolense",
+      "containment": 0.7623947614593077,
+      "null": 0.6743996743996744
+    },
+    {
+      "milder": "Babesia bovis",
+      "harsher": "Entamoeba dispar",
+      "containment": 0.6474411047928513,
+      "null": 0.44499294781382226
+    },
+    {
+      "milder": "Babesia bovis",
+      "harsher": "Entamoeba invadens",
+      "containment": 0.6433793663688059,
+      "null": 0.4386459802538787
+    },
+    {
+      "milder": "Babesia bovis",
+      "harsher": "Giardia intestinalis",
+      "containment": 0.7665867306155076,
+      "null": 0.5664970930232558
+    },
+    {
+      "milder": "Babesia bovis",
+      "harsher": "Spironucleus salmonicida",
+      "containment": 0.7809752198241406,
+      "null": 0.5962936046511628
+    },
+    {
+      "milder": "Babesia bovis",
+      "harsher": "Thelohanellus kitauei",
+      "containment": 0.7021276595744681,
+      "null": 0.4960438222763238
+    },
+    {
+      "milder": "Babesia bovis",
+      "harsher": "Henneguya salminicola",
+      "containment": 0.6650455927051672,
+      "null": 0.4336579427875837
+    },
+    {
+      "milder": "Toxoplasma gondii",
+      "harsher": "Entamoeba histolytica",
+      "containment": 0.7062146892655368,
+      "null": 0.4386459802538787
+    },
+    {
+      "milder": "Toxoplasma gondii",
+      "harsher": "Rozella allomycis",
+      "containment": 0.537621359223301,
+      "null": 0.258252427184466
+    },
+    {
+      "milder": "Toxoplasma gondii",
+      "harsher": "Encephalitozoon cuniculi",
+      "containment": 0.9235436893203883,
+      "null": 0.6679611650485436
+    },
+    {
+      "milder": "Toxoplasma gondii",
+      "harsher": "Nosema ceranae",
+      "containment": 0.9162621359223301,
+      "null": 0.6799352750809061
+    },
+    {
+      "milder": "Toxoplasma gondii",
+      "harsher": "Enterocytozoon bieneusi",
+      "containment": 0.9356796116504854,
+      "null": 0.7498381877022654
+    },
+    {
+      "milder": "Toxoplasma gondii",
+      "harsher": "Nematocida parisii",
+      "containment": 0.9247572815533981,
+      "null": 0.6857605177993528
+    },
+    {
+      "milder": "Toxoplasma gondii",
+      "harsher": "Vavraia culicis",
+      "containment": 0.9211165048543689,
+      "null": 0.6809061488673139
+    },
+    {
+      "milder": "Toxoplasma gondii",
+      "harsher": "Encephalitozoon intestinalis",
+      "containment": 0.9162621359223301,
+      "null": 0.6634304207119741
+    },
+    {
+      "milder": "Toxoplasma gondii",
+      "harsher": "Trypanosoma congolense",
+      "containment": 0.8225806451612904,
+      "null": 0.6743996743996744
+    },
+    {
+      "milder": "Toxoplasma gondii",
+      "harsher": "Entamoeba dispar",
+      "containment": 0.7062146892655368,
+      "null": 0.44499294781382226
+    },
+    {
+      "milder": "Toxoplasma gondii",
+      "harsher": "Entamoeba invadens",
+      "containment": 0.6864406779661016,
+      "null": 0.4386459802538787
+    },
+    {
+      "milder": "Toxoplasma gondii",
+      "harsher": "Giardia intestinalis",
+      "containment": 0.8383404864091559,
+      "null": 0.5664970930232558
+    },
+    {
+      "milder": "Toxoplasma gondii",
+      "harsher": "Spironucleus salmonicida",
+      "containment": 0.8583690987124464,
+      "null": 0.5962936046511628
+    },
+    {
+      "milder": "Toxoplasma gondii",
+      "harsher": "Blastocystis hominis",
+      "containment": 0.7373211963589077,
+      "null": 0.4005661712668082
+    },
+    {
+      "milder": "Toxoplasma gondii",
+      "harsher": "Thelohanellus kitauei",
+      "containment": 0.7573529411764706,
+      "null": 0.4960438222763238
+    },
+    {
+      "milder": "Toxoplasma gondii",
+      "harsher": "Henneguya salminicola",
+      "containment": 0.7205882352941176,
+      "null": 0.4336579427875837
+    },
+    {
+      "milder": "Eimeria tenella",
+      "harsher": "Entamoeba histolytica",
+      "containment": 0.6485473289597001,
+      "null": 0.4386459802538787
+    },
+    {
+      "milder": "Eimeria tenella",
+      "harsher": "Encephalitozoon cuniculi",
+      "containment": 0.8709935897435898,
+      "null": 0.6679611650485436
+    },
+    {
+      "milder": "Eimeria tenella",
+      "harsher": "Nosema ceranae",
+      "containment": 0.8790064102564102,
+      "null": 0.6799352750809061
+    },
+    {
+      "milder": "Eimeria tenella",
+      "harsher": "Enterocytozoon bieneusi",
+      "containment": 0.9014423076923077,
+      "null": 0.7498381877022654
+    },
+    {
+      "milder": "Eimeria tenella",
+      "harsher": "Nematocida parisii",
+      "containment": 0.8886217948717948,
+      "null": 0.6857605177993528
+    },
+    {
+      "milder": "Eimeria tenella",
+      "harsher": "Vavraia culicis",
+      "containment": 0.8838141025641025,
+      "null": 0.6809061488673139
+    },
+    {
+      "milder": "Eimeria tenella",
+      "harsher": "Encephalitozoon intestinalis",
+      "containment": 0.8685897435897436,
+      "null": 0.6634304207119741
+    },
+    {
+      "milder": "Eimeria tenella",
+      "harsher": "Trypanosoma congolense",
+      "containment": 0.7945205479452054,
+      "null": 0.6743996743996744
+    },
+    {
+      "milder": "Eimeria tenella",
+      "harsher": "Entamoeba dispar",
+      "containment": 0.6513589503280225,
+      "null": 0.44499294781382226
+    },
+    {
+      "milder": "Eimeria tenella",
+      "harsher": "Entamoeba invadens",
+      "containment": 0.6485473289597001,
+      "null": 0.4386459802538787
+    },
+    {
+      "milder": "Eimeria tenella",
+      "harsher": "Giardia intestinalis",
+      "containment": 0.780578898225957,
+      "null": 0.5664970930232558
+    },
+    {
+      "milder": "Eimeria tenella",
+      "harsher": "Spironucleus salmonicida",
+      "containment": 0.8011204481792717,
+      "null": 0.5962936046511628
+    },
+    {
+      "milder": "Eimeria tenella",
+      "harsher": "Thelohanellus kitauei",
+      "containment": 0.7186609686609686,
+      "null": 0.4960438222763238
+    },
+    {
+      "milder": "Eimeria tenella",
+      "harsher": "Henneguya salminicola",
+      "containment": 0.6780626780626781,
+      "null": 0.4336579427875837
+    },
+    {
+      "milder": "Cryptosporidium parvum",
+      "harsher": "Entamoeba histolytica",
+      "containment": 0.7016260162601626,
+      "null": 0.4386459802538787
+    },
+    {
+      "milder": "Cryptosporidium parvum",
+      "harsher": "Encephalitozoon cuniculi",
+      "containment": 0.9261559696342305,
+      "null": 0.6679611650485436
+    },
+    {
+      "milder": "Cryptosporidium parvum",
+      "harsher": "Nosema ceranae",
+      "containment": 0.9158040027605245,
+      "null": 0.6799352750809061
+    },
+    {
+      "milder": "Cryptosporidium parvum",
+      "harsher": "Enterocytozoon bieneusi",
+      "containment": 0.9468599033816425,
+      "null": 0.7498381877022654
+    },
+    {
+      "milder": "Cryptosporidium parvum",
+      "harsher": "Nematocida parisii",
+      "containment": 0.9282263630089717,
+      "null": 0.6857605177993528
+    },
+    {
+      "milder": "Cryptosporidium parvum",
+      "harsher": "Vavraia culicis",
+      "containment": 0.9233954451345756,
+      "null": 0.6809061488673139
+    },
+    {
+      "milder": "Cryptosporidium parvum",
+      "harsher": "Encephalitozoon intestinalis",
+      "containment": 0.9199447895100069,
+      "null": 0.6634304207119741
+    },
+    {
+      "milder": "Cryptosporidium parvum",
+      "harsher": "Trypanosoma congolense",
+      "containment": 0.7718446601941747,
+      "null": 0.6743996743996744
+    },
+    {
+      "milder": "Cryptosporidium parvum",
+      "harsher": "Entamoeba dispar",
+      "containment": 0.7032520325203252,
+      "null": 0.44499294781382226
+    },
+    {
+      "milder": "Cryptosporidium parvum",
+      "harsher": "Entamoeba invadens",
+      "containment": 0.6926829268292682,
+      "null": 0.4386459802538787
+    },
+    {
+      "milder": "Cryptosporidium parvum",
+      "harsher": "Giardia intestinalis",
+      "containment": 0.7908496732026143,
+      "null": 0.5664970930232558
+    },
+    {
+      "milder": "Cryptosporidium parvum",
+      "harsher": "Spironucleus salmonicida",
+      "containment": 0.8014705882352942,
+      "null": 0.5962936046511628
+    },
+    {
+      "milder": "Cryptosporidium parvum",
+      "harsher": "Thelohanellus kitauei",
+      "containment": 0.7083333333333334,
+      "null": 0.4960438222763238
+    },
+    {
+      "milder": "Cryptosporidium parvum",
+      "harsher": "Henneguya salminicola",
+      "containment": 0.6809701492537313,
+      "null": 0.4336579427875837
+    },
+    {
+      "milder": "Leishmania major",
+      "harsher": "Entamoeba histolytica",
+      "containment": 0.6550925925925926,
+      "null": 0.3929440389294404
+    },
+    {
+      "milder": "Leishmania major",
+      "harsher": "Ichthyophthirius multifiliis",
+      "containment": 0.44410876132930516,
+      "null": 0.22436722436722437
+    },
+    {
+      "milder": "Leishmania major",
+      "harsher": "Perkinsus marinus",
+      "containment": 0.5045317220543807,
+      "null": 0.18876018876018877
+    },
+    {
+      "milder": "Leishmania major",
+      "harsher": "Plasmodium falciparum",
+      "containment": 0.7301980198019802,
+      "null": 0.3679283679283679
+    },
+    {
+      "milder": "Leishmania major",
+      "harsher": "Babesia bovis",
+      "containment": 0.7846534653465347,
+      "null": 0.4350834350834351
+    },
+    {
+      "milder": "Leishmania major",
+      "harsher": "Toxoplasma gondii",
+      "containment": 0.5668316831683168,
+      "null": 0.2271062271062271
+    },
+    {
+      "milder": "Leishmania major",
+      "harsher": "Eimeria tenella",
+      "containment": 0.6782178217821783,
+      "null": 0.35653235653235654
+    },
+    {
+      "milder": "Leishmania major",
+      "harsher": "Cryptosporidium parvum",
+      "containment": 0.7475247524752475,
+      "null": 0.4192104192104192
+    },
+    {
+      "milder": "Leishmania major",
+      "harsher": "Rozella allomycis",
+      "containment": 0.40487804878048783,
+      "null": 0.20644159875824603
+    },
+    {
+      "milder": "Leishmania major",
+      "harsher": "Encephalitozoon cuniculi",
+      "containment": 0.8682926829268293,
+      "null": 0.6146682188591386
+    },
+    {
+      "milder": "Leishmania major",
+      "harsher": "Nosema ceranae",
+      "containment": 0.8682926829268293,
+      "null": 0.6317423360496701
+    },
+    {
+      "milder": "Leishmania major",
+      "harsher": "Pneumocystis jirovecii",
+      "containment": 0.3172690763052209,
+      "null": 0.15137180700094607
+    },
+    {
+      "milder": "Leishmania major",
+      "harsher": "Taphrina deformans",
+      "containment": 0.26506024096385544,
+      "null": 0.15373699148533584
+    },
+    {
+      "milder": "Leishmania major",
+      "harsher": "Malassezia globosa",
+      "containment": 0.43636363636363634,
+      "null": 0.16417910447761194
+    },
+    {
+      "milder": "Leishmania major",
+      "harsher": "Batrachochytrium dendrobatidis",
+      "containment": 0.26097560975609757,
+      "null": 0.10516103996895615
+    },
+    {
+      "milder": "Leishmania major",
+      "harsher": "Enterocytozoon bieneusi",
+      "containment": 0.9170731707317074,
+      "null": 0.7151726814124951
+    },
+    {
+      "milder": "Leishmania major",
+      "harsher": "Nematocida parisii",
+      "containment": 0.9,
+      "null": 0.6406674427629026
+    },
+    {
+      "milder": "Leishmania major",
+      "harsher": "Vavraia culicis",
+      "containment": 0.8951219512195122,
+      "null": 0.637175009701203
+    },
+    {
+      "milder": "Leishmania major",
+      "harsher": "Encephalitozoon intestinalis",
+      "containment": 0.8609756097560975,
+      "null": 0.6103996895615056
+    },
+    {
+      "milder": "Leishmania major",
+      "harsher": "Plasmodium vivax",
+      "containment": 0.7103960396039604,
+      "null": 0.3663003663003663
+    },
+    {
+      "milder": "Leishmania major",
+      "harsher": "Plasmodium berghei",
+      "containment": 0.7326732673267327,
+      "null": 0.36874236874236876
+    },
+    {
+      "milder": "Leishmania major",
+      "harsher": "Plasmodium knowlesi",
+      "containment": 0.7103960396039604,
+      "null": 0.3557183557183557
+    },
+    {
+      "milder": "Leishmania major",
+      "harsher": "Theileria annulata",
+      "containment": 0.7970297029702971,
+      "null": 0.452991452991453
+    },
+    {
+      "milder": "Leishmania major",
+      "harsher": "Theileria parva",
+      "containment": 0.7846534653465347,
+      "null": 0.44078144078144077
+    },
+    {
+      "milder": "Leishmania major",
+      "harsher": "Babesia microti",
+      "containment": 0.7920792079207921,
+      "null": 0.4415954415954416
+    },
+    {
+      "milder": "Leishmania major",
+      "harsher": "Neospora caninum",
+      "containment": 0.5767326732673267,
+      "null": 0.24786324786324787
+    },
+    {
+      "milder": "Leishmania major",
+      "harsher": "Hammondia hammondi",
+      "containment": 0.5618811881188119,
+      "null": 0.22385022385022385
+    },
+    {
+      "milder": "Leishmania major",
+      "harsher": "Cyclospora cayetanensis",
+      "containment": 0.655940594059406,
+      "null": 0.3207163207163207
+    },
+    {
+      "milder": "Leishmania major",
+      "harsher": "Cryptosporidium hominis",
+      "containment": 0.7846534653465347,
+      "null": 0.4757834757834758
+    },
+    {
+      "milder": "Leishmania major",
+      "harsher": "Entamoeba dispar",
+      "containment": 0.6365740740740741,
+      "null": 0.3986212489862125
+    },
+    {
+      "milder": "Leishmania major",
+      "harsher": "Entamoeba invadens",
+      "containment": 0.6342592592592593,
+      "null": 0.3937550689375507
+    },
+    {
+      "milder": "Leishmania major",
+      "harsher": "Giardia intestinalis",
+      "containment": 0.8498845265588915,
+      "null": 0.5329648637978681
+    },
+    {
+      "milder": "Leishmania major",
+      "harsher": "Spironucleus salmonicida",
+      "containment": 0.8683602771362586,
+      "null": 0.5712593762337149
+    },
+    {
+      "milder": "Leishmania major",
+      "harsher": "Blastocystis hominis",
+      "containment": 0.6468646864686468,
+      "null": 0.313540260908682
+    },
+    {
+      "milder": "Leishmania major",
+      "harsher": "Thelohanellus kitauei",
+      "containment": 0.711645101663586,
+      "null": 0.4635547576301616
+    },
+    {
+      "milder": "Leishmania major",
+      "harsher": "Henneguya salminicola",
+      "containment": 0.6765249537892791,
+      "null": 0.40287253141831236
+    },
+    {
+      "milder": "Leishmania major",
+      "harsher": "Trichinella spiralis",
+      "containment": 0.3284313725490196,
+      "null": 0.150489396411093
+    },
+    {
+      "milder": "Leishmania major",
+      "harsher": "Schistosoma mansoni",
+      "containment": 0.3088235294117647,
+      "null": 0.132952691680261
+    },
+    {
+      "milder": "Leishmania major",
+      "harsher": "Helicosporidium sp. ATCC 50920",
+      "containment": 0.3265993265993266,
+      "null": 0.1855530474040632
+    },
+    {
+      "milder": "Trypanosoma cruzi",
+      "harsher": "Entamoeba histolytica",
+      "containment": 0.6965699208443272,
+      "null": 0.3929440389294404
+    },
+    {
+      "milder": "Trypanosoma cruzi",
+      "harsher": "Ichthyophthirius multifiliis",
+      "containment": 0.484375,
+      "null": 0.22436722436722437
+    },
+    {
+      "milder": "Trypanosoma cruzi",
+      "harsher": "Perkinsus marinus",
+      "containment": 0.46875,
+      "null": 0.18876018876018877
+    },
+    {
+      "milder": "Trypanosoma cruzi",
+      "harsher": "Plasmodium falciparum",
+      "containment": 0.7337110481586402,
+      "null": 0.3679283679283679
+    },
+    {
+      "milder": "Trypanosoma cruzi",
+      "harsher": "Babesia bovis",
+      "containment": 0.8045325779036827,
+      "null": 0.4350834350834351
+    },
+    {
+      "milder": "Trypanosoma cruzi",
+      "harsher": "Toxoplasma gondii",
+      "containment": 0.5920679886685553,
+      "null": 0.2271062271062271
+    },
+    {
+      "milder": "Trypanosoma cruzi",
+      "harsher": "Eimeria tenella",
+      "containment": 0.6968838526912181,
+      "null": 0.35653235653235654
+    },
+    {
+      "milder": "Trypanosoma cruzi",
+      "harsher": "Cryptosporidium parvum",
+      "containment": 0.7422096317280453,
+      "null": 0.4192104192104192
+    },
+    {
+      "milder": "Trypanosoma cruzi",
+      "harsher": "Rozella allomycis",
+      "containment": 0.41954022988505746,
+      "null": 0.20644159875824603
+    },
+    {
+      "milder": "Trypanosoma cruzi",
+      "harsher": "Encephalitozoon cuniculi",
+      "containment": 0.8764367816091954,
+      "null": 0.6146682188591386
+    },
+    {
+      "milder": "Trypanosoma cruzi",
+      "harsher": "Nosema ceranae",
+      "containment": 0.8649425287356322,
+      "null": 0.6317423360496701
+    },
+    {
+      "milder": "Trypanosoma cruzi",
+      "harsher": "Pneumocystis jirovecii",
+      "containment": 0.3574660633484163,
+      "null": 0.15137180700094607
+    },
+    {
+      "milder": "Trypanosoma cruzi",
+      "harsher": "Taphrina deformans",
+      "containment": 0.27149321266968324,
+      "null": 0.15373699148533584
+    },
+    {
+      "milder": "Trypanosoma cruzi",
+      "harsher": "Malassezia globosa",
+      "containment": 0.43205574912891986,
+      "null": 0.16417910447761194
+    },
+    {
+      "milder": "Trypanosoma cruzi",
+      "harsher": "Batrachochytrium dendrobatidis",
+      "containment": 0.27586206896551724,
+      "null": 0.10516103996895615
+    },
+    {
+      "milder": "Trypanosoma cruzi",
+      "harsher": "Enterocytozoon bieneusi",
+      "containment": 0.8936781609195402,
+      "null": 0.7151726814124951
+    },
+    {
+      "milder": "Trypanosoma cruzi",
+      "harsher": "Nematocida parisii",
+      "containment": 0.882183908045977,
+      "null": 0.6406674427629026
+    },
+    {
+      "milder": "Trypanosoma cruzi",
+      "harsher": "Vavraia culicis",
+      "containment": 0.9022988505747126,
+      "null": 0.637175009701203
+    },
+    {
+      "milder": "Trypanosoma cruzi",
+      "harsher": "Encephalitozoon intestinalis",
+      "containment": 0.8706896551724138,
+      "null": 0.6103996895615056
+    },
+    {
+      "milder": "Trypanosoma cruzi",
+      "harsher": "Plasmodium vivax",
+      "containment": 0.7110481586402266,
+      "null": 0.3663003663003663
+    },
+    {
+      "milder": "Trypanosoma cruzi",
+      "harsher": "Plasmodium berghei",
+      "containment": 0.7393767705382436,
+      "null": 0.36874236874236876
+    },
+    {
+      "milder": "Trypanosoma cruzi",
+      "harsher": "Plasmodium knowlesi",
+      "containment": 0.7138810198300283,
+      "null": 0.3557183557183557
+    },
+    {
+      "milder": "Trypanosoma cruzi",
+      "harsher": "Theileria annulata",
+      "containment": 0.8045325779036827,
+      "null": 0.452991452991453
+    },
+    {
+      "milder": "Trypanosoma cruzi",
+      "harsher": "Theileria parva",
+      "containment": 0.8016997167138811,
+      "null": 0.44078144078144077
+    },
+    {
+      "milder": "Trypanosoma cruzi",
+      "harsher": "Babesia microti",
+      "containment": 0.7988668555240793,
+      "null": 0.4415954415954416
+    },
+    {
+      "milder": "Trypanosoma cruzi",
+      "harsher": "Neospora caninum",
+      "containment": 0.603399433427762,
+      "null": 0.24786324786324787
+    },
+    {
+      "milder": "Trypanosoma cruzi",
+      "harsher": "Hammondia hammondi",
+      "containment": 0.5835694050991501,
+      "null": 0.22385022385022385
+    },
+    {
+      "milder": "Trypanosoma cruzi",
+      "harsher": "Cyclospora cayetanensis",
+      "containment": 0.6912181303116147,
+      "null": 0.3207163207163207
+    },
+    {
+      "milder": "Trypanosoma cruzi",
+      "harsher": "Cryptosporidium hominis",
+      "containment": 0.7903682719546742,
+      "null": 0.4757834757834758
+    },
+    {
+      "milder": "Trypanosoma cruzi",
+      "harsher": "Entamoeba dispar",
+      "containment": 0.6807387862796834,
+      "null": 0.3986212489862125
+    },
+    {
+      "milder": "Trypanosoma cruzi",
+      "harsher": "Entamoeba invadens",
+      "containment": 0.6781002638522428,
+      "null": 0.3937550689375507
+    },
+    {
+      "milder": "Trypanosoma cruzi",
+      "harsher": "Giardia intestinalis",
+      "containment": 0.8551532033426184,
+      "null": 0.5329648637978681
+    },
+    {
+      "milder": "Trypanosoma cruzi",
+      "harsher": "Spironucleus salmonicida",
+      "containment": 0.8635097493036211,
+      "null": 0.5712593762337149
+    },
+    {
+      "milder": "Trypanosoma cruzi",
+      "harsher": "Blastocystis hominis",
+      "containment": 0.6405693950177936,
+      "null": 0.313540260908682
+    },
+    {
+      "milder": "Trypanosoma cruzi",
+      "harsher": "Thelohanellus kitauei",
+      "containment": 0.6975169300225733,
+      "null": 0.4635547576301616
+    },
+    {
+      "milder": "Trypanosoma cruzi",
+      "harsher": "Henneguya salminicola",
+      "containment": 0.7020316027088036,
+      "null": 0.40287253141831236
+    },
+    {
+      "milder": "Trypanosoma cruzi",
+      "harsher": "Trichinella spiralis",
+      "containment": 0.3253731343283582,
+      "null": 0.150489396411093
+    },
+    {
+      "milder": "Trypanosoma cruzi",
+      "harsher": "Schistosoma mansoni",
+      "containment": 0.33432835820895523,
+      "null": 0.132952691680261
+    },
+    {
+      "milder": "Trypanosoma cruzi",
+      "harsher": "Helicosporidium sp. ATCC 50920",
+      "containment": 0.2696629213483146,
+      "null": 0.1855530474040632
+    },
+    {
+      "milder": "Trypanosoma brucei",
+      "harsher": "Entamoeba histolytica",
+      "containment": 0.6695278969957081,
+      "null": 0.3929440389294404
+    },
+    {
+      "milder": "Trypanosoma brucei",
+      "harsher": "Ichthyophthirius multifiliis",
+      "containment": 0.41228070175438597,
+      "null": 0.22436722436722437
+    },
+    {
+      "milder": "Trypanosoma brucei",
+      "harsher": "Perkinsus marinus",
+      "containment": 0.4619883040935672,
+      "null": 0.18876018876018877
+    },
+    {
+      "milder": "Trypanosoma brucei",
+      "harsher": "Plasmodium falciparum",
+      "containment": 0.7383177570093458,
+      "null": 0.3679283679283679
+    },
+    {
+      "milder": "Trypanosoma brucei",
+      "harsher": "Babesia bovis",
+      "containment": 0.8130841121495327,
+      "null": 0.4350834350834351
+    },
+    {
+      "milder": "Trypanosoma brucei",
+      "harsher": "Toxoplasma gondii",
+      "containment": 0.572429906542056,
+      "null": 0.2271062271062271
+    },
+    {
+      "milder": "Trypanosoma brucei",
+      "harsher": "Eimeria tenella",
+      "containment": 0.677570093457944,
+      "null": 0.35653235653235654
+    },
+    {
+      "milder": "Trypanosoma brucei",
+      "harsher": "Cryptosporidium parvum",
+      "containment": 0.735981308411215,
+      "null": 0.4192104192104192
+    },
+    {
+      "milder": "Trypanosoma brucei",
+      "harsher": "Rozella allomycis",
+      "containment": 0.4166666666666667,
+      "null": 0.20644159875824603
+    },
+    {
+      "milder": "Trypanosoma brucei",
+      "harsher": "Encephalitozoon cuniculi",
+      "containment": 0.8819444444444444,
+      "null": 0.6146682188591386
+    },
+    {
+      "milder": "Trypanosoma brucei",
+      "harsher": "Nosema ceranae",
+      "containment": 0.8819444444444444,
+      "null": 0.6317423360496701
+    },
+    {
+      "milder": "Trypanosoma brucei",
+      "harsher": "Taphrina deformans",
+      "containment": 0.2600732600732601,
+      "null": 0.15373699148533584
+    },
+    {
+      "milder": "Trypanosoma brucei",
+      "harsher": "Malassezia globosa",
+      "containment": 0.41292134831460675,
+      "null": 0.16417910447761194
+    },
+    {
+      "milder": "Trypanosoma brucei",
+      "harsher": "Enterocytozoon bieneusi",
+      "containment": 0.9259259259259259,
+      "null": 0.7151726814124951
+    },
+    {
+      "milder": "Trypanosoma brucei",
+      "harsher": "Nematocida parisii",
+      "containment": 0.8935185185185185,
+      "null": 0.6406674427629026
+    },
+    {
+      "milder": "Trypanosoma brucei",
+      "harsher": "Vavraia culicis",
+      "containment": 0.8958333333333334,
+      "null": 0.637175009701203
+    },
+    {
+      "milder": "Trypanosoma brucei",
+      "harsher": "Encephalitozoon intestinalis",
+      "containment": 0.8703703703703703,
+      "null": 0.6103996895615056
+    },
+    {
+      "milder": "Trypanosoma brucei",
+      "harsher": "Plasmodium vivax",
+      "containment": 0.7149532710280374,
+      "null": 0.3663003663003663
+    },
+    {
+      "milder": "Trypanosoma brucei",
+      "harsher": "Plasmodium berghei",
+      "containment": 0.7453271028037384,
+      "null": 0.36874236874236876
+    },
+    {
+      "milder": "Trypanosoma brucei",
+      "harsher": "Plasmodium knowlesi",
+      "containment": 0.719626168224299,
+      "null": 0.3557183557183557
+    },
+    {
+      "milder": "Trypanosoma brucei",
+      "harsher": "Theileria annulata",
+      "containment": 0.7990654205607477,
+      "null": 0.452991452991453
+    },
+    {
+      "milder": "Trypanosoma brucei",
+      "harsher": "Theileria parva",
+      "containment": 0.7990654205607477,
+      "null": 0.44078144078144077
+    },
+    {
+      "milder": "Trypanosoma brucei",
+      "harsher": "Babesia microti",
+      "containment": 0.8060747663551402,
+      "null": 0.4415954415954416
+    },
+    {
+      "milder": "Trypanosoma brucei",
+      "harsher": "Neospora caninum",
+      "containment": 0.5864485981308412,
+      "null": 0.24786324786324787
+    },
+    {
+      "milder": "Trypanosoma brucei",
+      "harsher": "Hammondia hammondi",
+      "containment": 0.5677570093457944,
+      "null": 0.22385022385022385
+    },
+    {
+      "milder": "Trypanosoma brucei",
+      "harsher": "Cyclospora cayetanensis",
+      "containment": 0.6635514018691588,
+      "null": 0.3207163207163207
+    },
+    {
+      "milder": "Trypanosoma brucei",
+      "harsher": "Cryptosporidium hominis",
+      "containment": 0.7757009345794392,
+      "null": 0.4757834757834758
+    },
+    {
+      "milder": "Trypanosoma brucei",
+      "harsher": "Entamoeba dispar",
+      "containment": 0.6652360515021459,
+      "null": 0.3986212489862125
+    },
+    {
+      "milder": "Trypanosoma brucei",
+      "harsher": "Entamoeba invadens",
+      "containment": 0.6545064377682404,
+      "null": 0.3937550689375507
+    },
+    {
+      "milder": "Trypanosoma brucei",
+      "harsher": "Giardia intestinalis",
+      "containment": 0.8669527896995708,
+      "null": 0.5329648637978681
+    },
+    {
+      "milder": "Trypanosoma brucei",
+      "harsher": "Spironucleus salmonicida",
+      "containment": 0.869098712446352,
+      "null": 0.5712593762337149
+    },
+    {
+      "milder": "Trypanosoma brucei",
+      "harsher": "Blastocystis hominis",
+      "containment": 0.6289855072463768,
+      "null": 0.313540260908682
+    },
+    {
+      "milder": "Trypanosoma brucei",
+      "harsher": "Thelohanellus kitauei",
+      "containment": 0.6903460837887068,
+      "null": 0.4635547576301616
+    },
+    {
+      "milder": "Trypanosoma brucei",
+      "harsher": "Henneguya salminicola",
+      "containment": 0.6848816029143898,
+      "null": 0.40287253141831236
+    },
+    {
+      "milder": "Trypanosoma brucei",
+      "harsher": "Helicosporidium sp. ATCC 50920",
+      "containment": 0.27439024390243905,
+      "null": 0.1855530474040632
+    },
+    {
+      "milder": "Rozella allomycis",
+      "harsher": "Entamoeba histolytica",
+      "containment": 0.7725752508361204,
+      "null": 0.49728027483538506
+    },
+    {
+      "milder": "Rozella allomycis",
+      "harsher": "Plasmodium falciparum",
+      "containment": 0.7393483709273183,
+      "null": 0.415210355987055
+    },
+    {
+      "milder": "Rozella allomycis",
+      "harsher": "Babesia bovis",
+      "containment": 0.7857142857142857,
+      "null": 0.4754045307443366
+    },
+    {
+      "milder": "Rozella allomycis",
+      "harsher": "Eimeria tenella",
+      "containment": 0.7243107769423559,
+      "null": 0.40388349514563104
+    },
+    {
+      "milder": "Rozella allomycis",
+      "harsher": "Cryptosporidium parvum",
+      "containment": 0.7756892230576441,
+      "null": 0.46893203883495144
+    },
+    {
+      "milder": "Rozella allomycis",
+      "harsher": "Plasmodium vivax",
+      "containment": 0.7431077694235589,
+      "null": 0.41197411003236245
+    },
+    {
+      "milder": "Rozella allomycis",
+      "harsher": "Plasmodium berghei",
+      "containment": 0.7380952380952381,
+      "null": 0.41326860841423946
+    },
+    {
+      "milder": "Rozella allomycis",
+      "harsher": "Plasmodium knowlesi",
+      "containment": 0.731829573934837,
+      "null": 0.4009708737864078
+    },
+    {
+      "milder": "Rozella allomycis",
+      "harsher": "Theileria annulata",
+      "containment": 0.8132832080200502,
+      "null": 0.4970873786407767
+    },
+    {
+      "milder": "Rozella allomycis",
+      "harsher": "Theileria parva",
+      "containment": 0.8007518796992481,
+      "null": 0.4841423948220065
+    },
+    {
+      "milder": "Rozella allomycis",
+      "harsher": "Babesia microti",
+      "containment": 0.7794486215538847,
+      "null": 0.4802588996763754
+    },
+    {
+      "milder": "Rozella allomycis",
+      "harsher": "Neospora caninum",
+      "containment": 0.5827067669172933,
+      "null": 0.2889967637540453
+    },
+    {
+      "milder": "Rozella allomycis",
+      "harsher": "Cyclospora cayetanensis",
+      "containment": 0.6842105263157895,
+      "null": 0.3711974110032362
+    },
+    {
+      "milder": "Rozella allomycis",
+      "harsher": "Cryptosporidium hominis",
+      "containment": 0.8057644110275689,
+      "null": 0.5284789644012945
+    },
+    {
+      "milder": "Rozella allomycis",
+      "harsher": "Trypanosoma congolense",
+      "containment": 0.8421052631578947,
+      "null": 0.6837407838571983
+    },
+    {
+      "milder": "Rozella allomycis",
+      "harsher": "Entamoeba dispar",
+      "containment": 0.7670011148272018,
+      "null": 0.5021471514457486
+    },
+    {
+      "milder": "Rozella allomycis",
+      "harsher": "Entamoeba invadens",
+      "containment": 0.7859531772575251,
+      "null": 0.5041511594617807
+    },
+    {
+      "milder": "Rozella allomycis",
+      "harsher": "Giardia intestinalis",
+      "containment": 0.8581081081081081,
+      "null": 0.6104468219005664
+    },
+    {
+      "milder": "Rozella allomycis",
+      "harsher": "Spironucleus salmonicida",
+      "containment": 0.8716216216216216,
+      "null": 0.6431718061674009
+    },
+    {
+      "milder": "Rozella allomycis",
+      "harsher": "Blastocystis hominis",
+      "containment": 0.665648854961832,
+      "null": 0.37347294938917974
+    },
+    {
+      "milder": "Rozella allomycis",
+      "harsher": "Thelohanellus kitauei",
+      "containment": 0.7947732513451191,
+      "null": 0.544047619047619
+    },
+    {
+      "milder": "Rozella allomycis",
+      "harsher": "Henneguya salminicola",
+      "containment": 0.7786318216756342,
+      "null": 0.4826190476190476
+    },
+    {
+      "milder": "Pneumocystis jirovecii",
+      "harsher": "Entamoeba histolytica",
+      "containment": 0.6610878661087866,
+      "null": 0.4447811447811448
+    },
+    {
+      "milder": "Pneumocystis jirovecii",
+      "harsher": "Ichthyophthirius multifiliis",
+      "containment": 0.375,
+      "null": 0.25818800510421097
+    },
+    {
+      "milder": "Pneumocystis jirovecii",
+      "harsher": "Perkinsus marinus",
+      "containment": 0.29878048780487804,
+      "null": 0.1875797532964696
+    },
+    {
+      "milder": "Pneumocystis jirovecii",
+      "harsher": "Plasmodium falciparum",
+      "containment": 0.7047817047817048,
+      "null": 0.32777115613825986
+    },
+    {
+      "milder": "Pneumocystis jirovecii",
+      "harsher": "Babesia bovis",
+      "containment": 0.8232848232848233,
+      "null": 0.3829956297179182
+    },
+    {
+      "milder": "Pneumocystis jirovecii",
+      "harsher": "Toxoplasma gondii",
+      "containment": 0.5571725571725572,
+      "null": 0.21176003178386968
+    },
+    {
+      "milder": "Pneumocystis jirovecii",
+      "harsher": "Eimeria tenella",
+      "containment": 0.6507276507276507,
+      "null": 0.3285657528804132
+    },
+    {
+      "milder": "Pneumocystis jirovecii",
+      "harsher": "Cryptosporidium parvum",
+      "containment": 0.7588357588357588,
+      "null": 0.3857767183154549
+    },
+    {
+      "milder": "Pneumocystis jirovecii",
+      "harsher": "Trypanosoma brucei",
+      "containment": 0.321875,
+      "null": 0.1291390728476821
+    },
+    {
+      "milder": "Pneumocystis jirovecii",
+      "harsher": "Plasmodium vivax",
+      "containment": 0.7130977130977131,
+      "null": 0.32578466428287645
+    },
+    {
+      "milder": "Pneumocystis jirovecii",
+      "harsher": "Plasmodium berghei",
+      "containment": 0.7172557172557172,
+      "null": 0.32499006754072307
+    },
+    {
+      "milder": "Pneumocystis jirovecii",
+      "harsher": "Plasmodium knowlesi",
+      "containment": 0.7027027027027027,
+      "null": 0.3138657131505761
+    },
+    {
+      "milder": "Pneumocystis jirovecii",
+      "harsher": "Theileria annulata",
+      "containment": 0.8357588357588358,
+      "null": 0.4100119189511323
+    },
+    {
+      "milder": "Pneumocystis jirovecii",
+      "harsher": "Theileria parva",
+      "containment": 0.8440748440748441,
+      "null": 0.39213349225268174
+    },
+    {
+      "milder": "Pneumocystis jirovecii",
+      "harsher": "Babesia microti",
+      "containment": 0.8378378378378378,
+      "null": 0.38895510528406835
+    },
+    {
+      "milder": "Pneumocystis jirovecii",
+      "harsher": "Neospora caninum",
+      "containment": 0.5925155925155925,
+      "null": 0.22963845848232023
+    },
+    {
+      "milder": "Pneumocystis jirovecii",
+      "harsher": "Hammondia hammondi",
+      "containment": 0.5550935550935551,
+      "null": 0.2097735399284863
+    },
+    {
+      "milder": "Pneumocystis jirovecii",
+      "harsher": "Cyclospora cayetanensis",
+      "containment": 0.6361746361746362,
+      "null": 0.3067143424711959
+    },
+    {
+      "milder": "Pneumocystis jirovecii",
+      "harsher": "Cryptosporidium hominis",
+      "containment": 0.7754677754677755,
+      "null": 0.4513309495431069
+    },
+    {
+      "milder": "Pneumocystis jirovecii",
+      "harsher": "Leishmania donovani",
+      "containment": 0.2625,
+      "null": 0.12771996215704826
+    },
+    {
+      "milder": "Pneumocystis jirovecii",
+      "harsher": "Trypanosoma vivax",
+      "containment": 0.334375,
+      "null": 0.14333017975402082
+    },
+    {
+      "milder": "Pneumocystis jirovecii",
+      "harsher": "Trypanosoma congolense",
+      "containment": 0.73125,
+      "null": 0.6466414380321666
+    },
+    {
+      "milder": "Pneumocystis jirovecii",
+      "harsher": "Entamoeba dispar",
+      "containment": 0.6694560669456067,
+      "null": 0.4521885521885522
+    },
+    {
+      "milder": "Pneumocystis jirovecii",
+      "harsher": "Entamoeba invadens",
+      "containment": 0.6548117154811716,
+      "null": 0.4511784511784512
+    },
+    {
+      "milder": "Pneumocystis jirovecii",
+      "harsher": "Giardia intestinalis",
+      "containment": 0.7866004962779156,
+      "null": 0.565284178187404
+    },
+    {
+      "milder": "Pneumocystis jirovecii",
+      "harsher": "Spironucleus salmonicida",
+      "containment": 0.7990074441687345,
+      "null": 0.6056067588325653
+    },
+    {
+      "milder": "Pneumocystis jirovecii",
+      "harsher": "Blastocystis hominis",
+      "containment": 0.6126126126126126,
+      "null": 0.3152129817444219
+    },
+    {
+      "milder": "Pneumocystis jirovecii",
+      "harsher": "Thelohanellus kitauei",
+      "containment": 0.6905187835420393,
+      "null": 0.4615625
+    },
+    {
+      "milder": "Pneumocystis jirovecii",
+      "harsher": "Henneguya salminicola",
+      "containment": 0.7119856887298748,
+      "null": 0.3846875
+    },
+    {
+      "milder": "Pneumocystis jirovecii",
+      "harsher": "Trichinella spiralis",
+      "containment": 0.34022988505747126,
+      "null": 0.1589707437433909
+    },
+    {
+      "milder": "Pneumocystis jirovecii",
+      "harsher": "Schistosoma mansoni",
+      "containment": 0.31264367816091954,
+      "null": 0.13077194219245683
+    },
+    {
+      "milder": "Pneumocystis jirovecii",
+      "harsher": "Helicosporidium sp. ATCC 50920",
+      "containment": 0.2694063926940639,
+      "null": 0.22166921898928024
+    },
+    {
+      "milder": "Taphrina deformans",
+      "harsher": "Entamoeba histolytica",
+      "containment": 0.5909878682842288,
+      "null": 0.4447811447811448
+    },
+    {
+      "milder": "Taphrina deformans",
+      "harsher": "Ichthyophthirius multifiliis",
+      "containment": 0.4107142857142857,
+      "null": 0.25818800510421097
+    },
+    {
+      "milder": "Taphrina deformans",
+      "harsher": "Perkinsus marinus",
+      "containment": 0.28316326530612246,
+      "null": 0.1875797532964696
+    },
+    {
+      "milder": "Taphrina deformans",
+      "harsher": "Plasmodium falciparum",
+      "containment": 0.4433497536945813,
+      "null": 0.32777115613825986
+    },
+    {
+      "milder": "Taphrina deformans",
+      "harsher": "Babesia bovis",
+      "containment": 0.4827586206896552,
+      "null": 0.3829956297179182
+    },
+    {
+      "milder": "Taphrina deformans",
+      "harsher": "Toxoplasma gondii",
+      "containment": 0.2955665024630542,
+      "null": 0.21176003178386968
+    },
+    {
+      "milder": "Taphrina deformans",
+      "harsher": "Eimeria tenella",
+      "containment": 0.45320197044334976,
+      "null": 0.3285657528804132
+    },
+    {
+      "milder": "Taphrina deformans",
+      "harsher": "Cryptosporidium parvum",
+      "containment": 0.5073891625615764,
+      "null": 0.3857767183154549
+    },
+    {
+      "milder": "Taphrina deformans",
+      "harsher": "Plasmodium vivax",
+      "containment": 0.45073891625615764,
+      "null": 0.32578466428287645
+    },
+    {
+      "milder": "Taphrina deformans",
+      "harsher": "Plasmodium berghei",
+      "containment": 0.45073891625615764,
+      "null": 0.32499006754072307
+    },
+    {
+      "milder": "Taphrina deformans",
+      "harsher": "Plasmodium knowlesi",
+      "containment": 0.43103448275862066,
+      "null": 0.3138657131505761
+    },
+    {
+      "milder": "Taphrina deformans",
+      "harsher": "Theileria annulata",
+      "containment": 0.5295566502463054,
+      "null": 0.4100119189511323
+    },
+    {
+      "milder": "Taphrina deformans",
+      "harsher": "Theileria parva",
+      "containment": 0.5049261083743842,
+      "null": 0.39213349225268174
+    },
+    {
+      "milder": "Taphrina deformans",
+      "harsher": "Babesia microti",
+      "containment": 0.4802955665024631,
+      "null": 0.38895510528406835
+    },
+    {
+      "milder": "Taphrina deformans",
+      "harsher": "Neospora caninum",
+      "containment": 0.3103448275862069,
+      "null": 0.22963845848232023
+    },
+    {
+      "milder": "Taphrina deformans",
+      "harsher": "Hammondia hammondi",
+      "containment": 0.2832512315270936,
+      "null": 0.2097735399284863
+    },
+    {
+      "milder": "Taphrina deformans",
+      "harsher": "Cyclospora cayetanensis",
+      "containment": 0.4408866995073892,
+      "null": 0.3067143424711959
+    },
+    {
+      "milder": "Taphrina deformans",
+      "harsher": "Cryptosporidium hominis",
+      "containment": 0.5763546798029556,
+      "null": 0.4513309495431069
+    },
+    {
+      "milder": "Taphrina deformans",
+      "harsher": "Trypanosoma congolense",
+      "containment": 0.7815384615384615,
+      "null": 0.6466414380321666
+    },
+    {
+      "milder": "Taphrina deformans",
+      "harsher": "Entamoeba dispar",
+      "containment": 0.5892547660311959,
+      "null": 0.4521885521885522
+    },
+    {
+      "milder": "Taphrina deformans",
+      "harsher": "Entamoeba invadens",
+      "containment": 0.5961871750433275,
+      "null": 0.4511784511784512
+    },
+    {
+      "milder": "Taphrina deformans",
+      "harsher": "Giardia intestinalis",
+      "containment": 0.7296137339055794,
+      "null": 0.565284178187404
+    },
+    {
+      "milder": "Taphrina deformans",
+      "harsher": "Spironucleus salmonicida",
+      "containment": 0.7618025751072961,
+      "null": 0.6056067588325653
+    },
+    {
+      "milder": "Taphrina deformans",
+      "harsher": "Blastocystis hominis",
+      "containment": 0.44768856447688565,
+      "null": 0.3152129817444219
+    },
+    {
+      "milder": "Taphrina deformans",
+      "harsher": "Thelohanellus kitauei",
+      "containment": 0.6201780415430267,
+      "null": 0.4615625
+    },
+    {
+      "milder": "Taphrina deformans",
+      "harsher": "Henneguya salminicola",
+      "containment": 0.5326409495548962,
+      "null": 0.3846875
+    },
+    {
+      "milder": "Taphrina deformans",
+      "harsher": "Helicosporidium sp. ATCC 50920",
+      "containment": 0.3225806451612903,
+      "null": 0.22166921898928024
+    },
+    {
+      "milder": "Ustilago maydis",
+      "harsher": "Entamoeba histolytica",
+      "containment": 0.6285714285714286,
+      "null": 0.4664366373902133
+    },
+    {
+      "milder": "Ustilago maydis",
+      "harsher": "Ichthyophthirius multifiliis",
+      "containment": 0.4578313253012048,
+      "null": 0.2574612017508953
+    },
+    {
+      "milder": "Ustilago maydis",
+      "harsher": "Perkinsus marinus",
+      "containment": 0.4879518072289157,
+      "null": 0.21050537206526065
+    },
+    {
+      "milder": "Ustilago maydis",
+      "harsher": "Plasmodium falciparum",
+      "containment": 0.6421052631578947,
+      "null": 0.37454677302393036
+    },
+    {
+      "milder": "Ustilago maydis",
+      "harsher": "Babesia bovis",
+      "containment": 0.7368421052631579,
+      "null": 0.4318346627991298
+    },
+    {
+      "milder": "Ustilago maydis",
+      "harsher": "Toxoplasma gondii",
+      "containment": 0.5368421052631579,
+      "null": 0.24873096446700507
+    },
+    {
+      "milder": "Ustilago maydis",
+      "harsher": "Eimeria tenella",
+      "containment": 0.631578947368421,
+      "null": 0.37128353879622916
+    },
+    {
+      "milder": "Ustilago maydis",
+      "harsher": "Cryptosporidium parvum",
+      "containment": 0.7052631578947368,
+      "null": 0.42458303118201596
+    },
+    {
+      "milder": "Ustilago maydis",
+      "harsher": "Leishmania major",
+      "containment": 0.3412698412698413,
+      "null": 0.14486391571553994
+    },
+    {
+      "milder": "Ustilago maydis",
+      "harsher": "Trypanosoma cruzi",
+      "containment": 0.30158730158730157,
+      "null": 0.12598770851624233
+    },
+    {
+      "milder": "Ustilago maydis",
+      "harsher": "Trypanosoma brucei",
+      "containment": 0.373015873015873,
+      "null": 0.1562774363476734
+    },
+    {
+      "milder": "Ustilago maydis",
+      "harsher": "Plasmodium vivax",
+      "containment": 0.6526315789473685,
+      "null": 0.373821609862219
+    },
+    {
+      "milder": "Ustilago maydis",
+      "harsher": "Plasmodium berghei",
+      "containment": 0.6789473684210526,
+      "null": 0.37599709934735315
+    },
+    {
+      "milder": "Ustilago maydis",
+      "harsher": "Plasmodium knowlesi",
+      "containment": 0.631578947368421,
+      "null": 0.36149383611312547
+    },
+    {
+      "milder": "Ustilago maydis",
+      "harsher": "Theileria annulata",
+      "containment": 0.7157894736842105,
+      "null": 0.45540246555474984
+    },
+    {
+      "milder": "Ustilago maydis",
+      "harsher": "Theileria parva",
+      "containment": 0.7263157894736842,
+      "null": 0.44017403915881076
+    },
+    {
+      "milder": "Ustilago maydis",
+      "harsher": "Babesia microti",
+      "containment": 0.7157894736842105,
+      "null": 0.4369108049311095
+    },
+    {
+      "milder": "Ustilago maydis",
+      "harsher": "Neospora caninum",
+      "containment": 0.531578947368421,
+      "null": 0.26468455402465557
+    },
+    {
+      "milder": "Ustilago maydis",
+      "harsher": "Hammondia hammondi",
+      "containment": 0.5210526315789473,
+      "null": 0.24546773023930385
+    },
+    {
+      "milder": "Ustilago maydis",
+      "harsher": "Cyclospora cayetanensis",
+      "containment": 0.6157894736842106,
+      "null": 0.3426395939086294
+    },
+    {
+      "milder": "Ustilago maydis",
+      "harsher": "Cryptosporidium hominis",
+      "containment": 0.7263157894736842,
+      "null": 0.4865844815083394
+    },
+    {
+      "milder": "Ustilago maydis",
+      "harsher": "Leishmania infantum",
+      "containment": 0.3492063492063492,
+      "null": 0.14837576821773485
+    },
+    {
+      "milder": "Ustilago maydis",
+      "harsher": "Leishmania donovani",
+      "containment": 0.3412698412698413,
+      "null": 0.1575943810359965
+    },
+    {
+      "milder": "Ustilago maydis",
+      "harsher": "Trypanosoma vivax",
+      "containment": 0.35714285714285715,
+      "null": 0.17032484635645304
+    },
+    {
+      "milder": "Ustilago maydis",
+      "harsher": "Trypanosoma congolense",
+      "containment": 0.8095238095238095,
+      "null": 0.6654960491659351
+    },
+    {
+      "milder": "Ustilago maydis",
+      "harsher": "Leptomonas pyrrhocoris",
+      "containment": 0.2777777777777778,
+      "null": 0.1321334503950834
+    },
+    {
+      "milder": "Ustilago maydis",
+      "harsher": "Entamoeba dispar",
+      "containment": 0.6285714285714286,
+      "null": 0.472396486825596
+    },
+    {
+      "milder": "Ustilago maydis",
+      "harsher": "Entamoeba invadens",
+      "containment": 0.6612244897959184,
+      "null": 0.4767879548306148
+    },
+    {
+      "milder": "Ustilago maydis",
+      "harsher": "Giardia intestinalis",
+      "containment": 0.821256038647343,
+      "null": 0.5918149466192171
+    },
+    {
+      "milder": "Ustilago maydis",
+      "harsher": "Spironucleus salmonicida",
+      "containment": 0.8357487922705314,
+      "null": 0.6274021352313167
+    },
+    {
+      "milder": "Ustilago maydis",
+      "harsher": "Phytophthora infestans",
+      "containment": 0.2937062937062937,
+      "null": 0.07820173781639592
+    },
+    {
+      "milder": "Ustilago maydis",
+      "harsher": "Saprolegnia parasitica",
+      "containment": 0.23076923076923078,
+      "null": 0.057045712126936154
+    },
+    {
+      "milder": "Ustilago maydis",
+      "harsher": "Blastocystis hominis",
+      "containment": 0.6503496503496503,
+      "null": 0.3471854930109558
+    },
+    {
+      "milder": "Ustilago maydis",
+      "harsher": "Thelohanellus kitauei",
+      "containment": 0.7169811320754716,
+      "null": 0.47902298850574715
+    },
+    {
+      "milder": "Ustilago maydis",
+      "harsher": "Henneguya salminicola",
+      "containment": 0.6981132075471698,
+      "null": 0.4158045977011494
+    },
+    {
+      "milder": "Ustilago maydis",
+      "harsher": "Trichinella spiralis",
+      "containment": 0.2972972972972973,
+      "null": 0.16285153695225638
+    },
+    {
+      "milder": "Ustilago maydis",
+      "harsher": "Schistosoma mansoni",
+      "containment": 0.26126126126126126,
+      "null": 0.14159581425768475
+    },
+    {
+      "milder": "Ustilago maydis",
+      "harsher": "Helicosporidium sp. ATCC 50920",
+      "containment": 0.43373493975903615,
+      "null": 0.22530641672674837
+    },
+    {
+      "milder": "Malassezia globosa",
+      "harsher": "Entamoeba histolytica",
+      "containment": 0.6748091603053435,
+      "null": 0.4664366373902133
+    },
+    {
+      "milder": "Malassezia globosa",
+      "harsher": "Ichthyophthirius multifiliis",
+      "containment": 0.44660194174757284,
+      "null": 0.2574612017508953
+    },
+    {
+      "milder": "Malassezia globosa",
+      "harsher": "Perkinsus marinus",
+      "containment": 0.42961165048543687,
+      "null": 0.21050537206526065
+    },
+    {
+      "milder": "Malassezia globosa",
+      "harsher": "Plasmodium falciparum",
+      "containment": 0.6666666666666666,
+      "null": 0.37454677302393036
+    },
+    {
+      "milder": "Malassezia globosa",
+      "harsher": "Babesia bovis",
+      "containment": 0.7388888888888889,
+      "null": 0.4318346627991298
+    },
+    {
+      "milder": "Malassezia globosa",
+      "harsher": "Toxoplasma gondii",
+      "containment": 0.5166666666666667,
+      "null": 0.24873096446700507
+    },
+    {
+      "milder": "Malassezia globosa",
+      "harsher": "Eimeria tenella",
+      "containment": 0.6481481481481481,
+      "null": 0.37128353879622916
+    },
+    {
+      "milder": "Malassezia globosa",
+      "harsher": "Cryptosporidium parvum",
+      "containment": 0.7203703703703703,
+      "null": 0.42458303118201596
+    },
+    {
+      "milder": "Malassezia globosa",
+      "harsher": "Plasmodium vivax",
+      "containment": 0.6648148148148149,
+      "null": 0.373821609862219
+    },
+    {
+      "milder": "Malassezia globosa",
+      "harsher": "Plasmodium berghei",
+      "containment": 0.6777777777777778,
+      "null": 0.37599709934735315
+    },
+    {
+      "milder": "Malassezia globosa",
+      "harsher": "Plasmodium knowlesi",
+      "containment": 0.6481481481481481,
+      "null": 0.36149383611312547
+    },
+    {
+      "milder": "Malassezia globosa",
+      "harsher": "Theileria annulata",
+      "containment": 0.7611111111111111,
+      "null": 0.45540246555474984
+    },
+    {
+      "milder": "Malassezia globosa",
+      "harsher": "Theileria parva",
+      "containment": 0.7296296296296296,
+      "null": 0.44017403915881076
+    },
+    {
+      "milder": "Malassezia globosa",
+      "harsher": "Babesia microti",
+      "containment": 0.7481481481481481,
+      "null": 0.4369108049311095
+    },
+    {
+      "milder": "Malassezia globosa",
+      "harsher": "Neospora caninum",
+      "containment": 0.5277777777777778,
+      "null": 0.26468455402465557
+    },
+    {
+      "milder": "Malassezia globosa",
+      "harsher": "Hammondia hammondi",
+      "containment": 0.5055555555555555,
+      "null": 0.24546773023930385
+    },
+    {
+      "milder": "Malassezia globosa",
+      "harsher": "Cyclospora cayetanensis",
+      "containment": 0.6240740740740741,
+      "null": 0.3426395939086294
+    },
+    {
+      "milder": "Malassezia globosa",
+      "harsher": "Cryptosporidium hominis",
+      "containment": 0.7611111111111111,
+      "null": 0.4865844815083394
+    },
+    {
+      "milder": "Malassezia globosa",
+      "harsher": "Trypanosoma congolense",
+      "containment": 0.8021390374331551,
+      "null": 0.6654960491659351
+    },
+    {
+      "milder": "Malassezia globosa",
+      "harsher": "Entamoeba dispar",
+      "containment": 0.6778625954198473,
+      "null": 0.472396486825596
+    },
+    {
+      "milder": "Malassezia globosa",
+      "harsher": "Entamoeba invadens",
+      "containment": 0.6931297709923664,
+      "null": 0.4767879548306148
+    },
+    {
+      "milder": "Malassezia globosa",
+      "harsher": "Giardia intestinalis",
+      "containment": 0.8555555555555555,
+      "null": 0.5918149466192171
+    },
+    {
+      "milder": "Malassezia globosa",
+      "harsher": "Spironucleus salmonicida",
+      "containment": 0.8518518518518519,
+      "null": 0.6274021352313167
+    },
+    {
+      "milder": "Malassezia globosa",
+      "harsher": "Blastocystis hominis",
+      "containment": 0.6502347417840375,
+      "null": 0.3471854930109558
+    },
+    {
+      "milder": "Malassezia globosa",
+      "harsher": "Thelohanellus kitauei",
+      "containment": 0.6897856242118537,
+      "null": 0.47902298850574715
+    },
+    {
+      "milder": "Malassezia globosa",
+      "harsher": "Henneguya salminicola",
+      "containment": 0.682219419924338,
+      "null": 0.4158045977011494
+    },
+    {
+      "milder": "Malassezia globosa",
+      "harsher": "Helicosporidium sp. ATCC 50920",
+      "containment": 0.4004237288135593,
+      "null": 0.22530641672674837
+    },
+    {
+      "milder": "Batrachochytrium dendrobatidis",
+      "harsher": "Entamoeba histolytica",
+      "containment": 0.7569892473118279,
+      "null": 0.49728027483538506
+    },
+    {
+      "milder": "Batrachochytrium dendrobatidis",
+      "harsher": "Ichthyophthirius multifiliis",
+      "containment": 0.47750865051903113,
+      "null": 0.271474019088017
+    },
+    {
+      "milder": "Batrachochytrium dendrobatidis",
+      "harsher": "Perkinsus marinus",
+      "containment": 0.5086505190311419,
+      "null": 0.23577235772357724
+    },
+    {
+      "milder": "Batrachochytrium dendrobatidis",
+      "harsher": "Plasmodium falciparum",
+      "containment": 0.7722095671981777,
+      "null": 0.415210355987055
+    },
+    {
+      "milder": "Batrachochytrium dendrobatidis",
+      "harsher": "Babesia bovis",
+      "containment": 0.8223234624145785,
+      "null": 0.4754045307443366
+    },
+    {
+      "milder": "Batrachochytrium dendrobatidis",
+      "harsher": "Toxoplasma gondii",
+      "containment": 0.6332574031890661,
+      "null": 0.26666666666666666
+    },
+    {
+      "milder": "Batrachochytrium dendrobatidis",
+      "harsher": "Eimeria tenella",
+      "containment": 0.744874715261959,
+      "null": 0.40388349514563104
+    },
+    {
+      "milder": "Batrachochytrium dendrobatidis",
+      "harsher": "Cryptosporidium parvum",
+      "containment": 0.7949886104783599,
+      "null": 0.46893203883495144
+    },
+    {
+      "milder": "Batrachochytrium dendrobatidis",
+      "harsher": "Trypanosoma brucei",
+      "containment": 0.4354243542435424,
+      "null": 0.16763678696158324
+    },
+    {
+      "milder": "Batrachochytrium dendrobatidis",
+      "harsher": "Plasmodium vivax",
+      "containment": 0.7767653758542141,
+      "null": 0.41197411003236245
+    },
+    {
+      "milder": "Batrachochytrium dendrobatidis",
+      "harsher": "Plasmodium berghei",
+      "containment": 0.785876993166287,
+      "null": 0.41326860841423946
+    },
+    {
+      "milder": "Batrachochytrium dendrobatidis",
+      "harsher": "Plasmodium knowlesi",
+      "containment": 0.7722095671981777,
+      "null": 0.4009708737864078
+    },
+    {
+      "milder": "Batrachochytrium dendrobatidis",
+      "harsher": "Theileria annulata",
+      "containment": 0.826879271070615,
+      "null": 0.4970873786407767
+    },
+    {
+      "milder": "Batrachochytrium dendrobatidis",
+      "harsher": "Theileria parva",
+      "containment": 0.8223234624145785,
+      "null": 0.4841423948220065
+    },
+    {
+      "milder": "Batrachochytrium dendrobatidis",
+      "harsher": "Babesia microti",
+      "containment": 0.8132118451025057,
+      "null": 0.4802588996763754
+    },
+    {
+      "milder": "Batrachochytrium dendrobatidis",
+      "harsher": "Neospora caninum",
+      "containment": 0.6469248291571754,
+      "null": 0.2889967637540453
+    },
+    {
+      "milder": "Batrachochytrium dendrobatidis",
+      "harsher": "Hammondia hammondi",
+      "containment": 0.6241457858769932,
+      "null": 0.26310679611650484
+    },
+    {
+      "milder": "Batrachochytrium dendrobatidis",
+      "harsher": "Cyclospora cayetanensis",
+      "containment": 0.7175398633257403,
+      "null": 0.3711974110032362
+    },
+    {
+      "milder": "Batrachochytrium dendrobatidis",
+      "harsher": "Cryptosporidium hominis",
+      "containment": 0.8154897494305239,
+      "null": 0.5284789644012945
+    },
+    {
+      "milder": "Batrachochytrium dendrobatidis",
+      "harsher": "Leishmania donovani",
+      "containment": 0.4095940959409594,
+      "null": 0.17035312378734963
+    },
+    {
+      "milder": "Batrachochytrium dendrobatidis",
+      "harsher": "Trypanosoma vivax",
+      "containment": 0.46863468634686345,
+      "null": 0.18432285603414825
+    },
+    {
+      "milder": "Batrachochytrium dendrobatidis",
+      "harsher": "Trypanosoma congolense",
+      "containment": 0.8487084870848709,
+      "null": 0.6837407838571983
+    },
+    {
+      "milder": "Batrachochytrium dendrobatidis",
+      "harsher": "Entamoeba dispar",
+      "containment": 0.7677419354838709,
+      "null": 0.5021471514457486
+    },
+    {
+      "milder": "Batrachochytrium dendrobatidis",
+      "harsher": "Entamoeba invadens",
+      "containment": 0.7720430107526882,
+      "null": 0.5041511594617807
+    },
+    {
+      "milder": "Batrachochytrium dendrobatidis",
+      "harsher": "Giardia intestinalis",
+      "containment": 0.8793969849246231,
+      "null": 0.6104468219005664
+    },
+    {
+      "milder": "Batrachochytrium dendrobatidis",
+      "harsher": "Spironucleus salmonicida",
+      "containment": 0.8793969849246231,
+      "null": 0.6431718061674009
+    },
+    {
+      "milder": "Batrachochytrium dendrobatidis",
+      "harsher": "Blastocystis hominis",
+      "containment": 0.6964856230031949,
+      "null": 0.37347294938917974
+    },
+    {
+      "milder": "Batrachochytrium dendrobatidis",
+      "harsher": "Thelohanellus kitauei",
+      "containment": 0.8005698005698005,
+      "null": 0.544047619047619
+    },
+    {
+      "milder": "Batrachochytrium dendrobatidis",
+      "harsher": "Henneguya salminicola",
+      "containment": 0.8105413105413105,
+      "null": 0.4826190476190476
+    },
+    {
+      "milder": "Batrachochytrium dendrobatidis",
+      "harsher": "Trichinella spiralis",
+      "containment": 0.3237410071942446,
+      "null": 0.17714118678748902
+    },
+    {
+      "milder": "Batrachochytrium dendrobatidis",
+      "harsher": "Schistosoma mansoni",
+      "containment": 0.3333333333333333,
+      "null": 0.15434083601286175
+    },
+    {
+      "milder": "Batrachochytrium dendrobatidis",
+      "harsher": "Helicosporidium sp. ATCC 50920",
+      "containment": 0.43558282208588955,
+      "null": 0.2422214787554366
+    },
+    {
+      "milder": "Plasmodium vivax",
+      "harsher": "Entamoeba histolytica",
+      "containment": 0.6456173421300659,
+      "null": 0.4386459802538787
+    },
+    {
+      "milder": "Plasmodium vivax",
+      "harsher": "Encephalitozoon cuniculi",
+      "containment": 0.9096622152395916,
+      "null": 0.6679611650485436
+    },
+    {
+      "milder": "Plasmodium vivax",
+      "harsher": "Nosema ceranae",
+      "containment": 0.9112333071484682,
+      "null": 0.6799352750809061
+    },
+    {
+      "milder": "Plasmodium vivax",
+      "harsher": "Enterocytozoon bieneusi",
+      "containment": 0.9300864100549883,
+      "null": 0.7498381877022654
+    },
+    {
+      "milder": "Plasmodium vivax",
+      "harsher": "Nematocida parisii",
+      "containment": 0.9135899450117831,
+      "null": 0.6857605177993528
+    },
+    {
+      "milder": "Plasmodium vivax",
+      "harsher": "Vavraia culicis",
+      "containment": 0.9151610369206599,
+      "null": 0.6809061488673139
+    },
+    {
+      "milder": "Plasmodium vivax",
+      "harsher": "Encephalitozoon intestinalis",
+      "containment": 0.9065200314218381,
+      "null": 0.6634304207119741
+    },
+    {
+      "milder": "Plasmodium vivax",
+      "harsher": "Trypanosoma congolense",
+      "containment": 0.7855555555555556,
+      "null": 0.6743996743996744
+    },
+    {
+      "milder": "Plasmodium vivax",
+      "harsher": "Entamoeba dispar",
+      "containment": 0.651272384542884,
+      "null": 0.44499294781382226
+    },
+    {
+      "milder": "Plasmodium vivax",
+      "harsher": "Entamoeba invadens",
+      "containment": 0.6456173421300659,
+      "null": 0.4386459802538787
+    },
+    {
+      "milder": "Plasmodium vivax",
+      "harsher": "Giardia intestinalis",
+      "containment": 0.7975517890772128,
+      "null": 0.5664970930232558
+    },
+    {
+      "milder": "Plasmodium vivax",
+      "harsher": "Spironucleus salmonicida",
+      "containment": 0.8182674199623352,
+      "null": 0.5962936046511628
+    },
+    {
+      "milder": "Plasmodium vivax",
+      "harsher": "Thelohanellus kitauei",
+      "containment": 0.7155898876404494,
+      "null": 0.4960438222763238
+    },
+    {
+      "milder": "Plasmodium vivax",
+      "harsher": "Henneguya salminicola",
+      "containment": 0.6818820224719101,
+      "null": 0.4336579427875837
+    },
+    {
+      "milder": "Plasmodium berghei",
+      "harsher": "Entamoeba histolytica",
+      "containment": 0.6657329598506069,
+      "null": 0.4386459802538787
+    },
+    {
+      "milder": "Plasmodium berghei",
+      "harsher": "Encephalitozoon cuniculi",
+      "containment": 0.9130775254502741,
+      "null": 0.6679611650485436
+    },
+    {
+      "milder": "Plasmodium berghei",
+      "harsher": "Nosema ceranae",
+      "containment": 0.9138606108065779,
+      "null": 0.6799352750809061
+    },
+    {
+      "milder": "Plasmodium berghei",
+      "harsher": "Enterocytozoon bieneusi",
+      "containment": 0.9334377447141738,
+      "null": 0.7498381877022654
+    },
+    {
+      "milder": "Plasmodium berghei",
+      "harsher": "Nematocida parisii",
+      "containment": 0.9130775254502741,
+      "null": 0.6857605177993528
+    },
+    {
+      "milder": "Plasmodium berghei",
+      "harsher": "Vavraia culicis",
+      "containment": 0.9193422083007048,
+      "null": 0.6809061488673139
+    },
+    {
+      "milder": "Plasmodium berghei",
+      "harsher": "Encephalitozoon intestinalis",
+      "containment": 0.9068128425998434,
+      "null": 0.6634304207119741
+    },
+    {
+      "milder": "Plasmodium berghei",
+      "harsher": "Trypanosoma congolense",
+      "containment": 0.7902869757174393,
+      "null": 0.6743996743996744
+    },
+    {
+      "milder": "Plasmodium berghei",
+      "harsher": "Entamoeba dispar",
+      "containment": 0.6694677871148459,
+      "null": 0.44499294781382226
+    },
+    {
+      "milder": "Plasmodium berghei",
+      "harsher": "Entamoeba invadens",
+      "containment": 0.6554621848739496,
+      "null": 0.4386459802538787
+    },
+    {
+      "milder": "Plasmodium berghei",
+      "harsher": "Giardia intestinalis",
+      "containment": 0.7957089552238806,
+      "null": 0.5664970930232558
+    },
+    {
+      "milder": "Plasmodium berghei",
+      "harsher": "Spironucleus salmonicida",
+      "containment": 0.8180970149253731,
+      "null": 0.5962936046511628
+    },
+    {
+      "milder": "Plasmodium berghei",
+      "harsher": "Thelohanellus kitauei",
+      "containment": 0.7166900420757363,
+      "null": 0.4960438222763238
+    },
+    {
+      "milder": "Plasmodium berghei",
+      "harsher": "Henneguya salminicola",
+      "containment": 0.6837307152875175,
+      "null": 0.4336579427875837
+    },
+    {
+      "milder": "Plasmodium knowlesi",
+      "harsher": "Entamoeba histolytica",
+      "containment": 0.6608357628765792,
+      "null": 0.4386459802538787
+    },
+    {
+      "milder": "Plasmodium knowlesi",
+      "harsher": "Encephalitozoon cuniculi",
+      "containment": 0.9192897497982244,
+      "null": 0.6679611650485436
+    },
+    {
+      "milder": "Plasmodium knowlesi",
+      "harsher": "Nosema ceranae",
+      "containment": 0.9192897497982244,
+      "null": 0.6799352750809061
+    },
+    {
+      "milder": "Plasmodium knowlesi",
+      "harsher": "Enterocytozoon bieneusi",
+      "containment": 0.9378531073446328,
+      "null": 0.7498381877022654
+    },
+    {
+      "milder": "Plasmodium knowlesi",
+      "harsher": "Nematocida parisii",
+      "containment": 0.9192897497982244,
+      "null": 0.6857605177993528
+    },
+    {
+      "milder": "Plasmodium knowlesi",
+      "harsher": "Vavraia culicis",
+      "containment": 0.9225181598062954,
+      "null": 0.6809061488673139
+    },
+    {
+      "milder": "Plasmodium knowlesi",
+      "harsher": "Encephalitozoon intestinalis",
+      "containment": 0.9144471347861178,
+      "null": 0.6634304207119741
+    },
+    {
+      "milder": "Plasmodium knowlesi",
+      "harsher": "Trypanosoma congolense",
+      "containment": 0.7883295194508009,
+      "null": 0.6743996743996744
+    },
+    {
+      "milder": "Plasmodium knowlesi",
+      "harsher": "Entamoeba dispar",
+      "containment": 0.6656948493683188,
+      "null": 0.44499294781382226
+    },
+    {
+      "milder": "Plasmodium knowlesi",
+      "harsher": "Entamoeba invadens",
+      "containment": 0.6588921282798834,
+      "null": 0.4386459802538787
+    },
+    {
+      "milder": "Plasmodium knowlesi",
+      "harsher": "Giardia intestinalis",
+      "containment": 0.7996127783155856,
+      "null": 0.5664970930232558
+    },
+    {
+      "milder": "Plasmodium knowlesi",
+      "harsher": "Spironucleus salmonicida",
+      "containment": 0.8199419167473379,
+      "null": 0.5962936046511628
+    },
+    {
+      "milder": "Plasmodium knowlesi",
+      "harsher": "Thelohanellus kitauei",
+      "containment": 0.7195385724585436,
+      "null": 0.4960438222763238
+    },
+    {
+      "milder": "Plasmodium knowlesi",
+      "harsher": "Henneguya salminicola",
+      "containment": 0.6870944484498919,
+      "null": 0.4336579427875837
+    },
+    {
+      "milder": "Theileria annulata",
+      "harsher": "Encephalitozoon cuniculi",
+      "containment": 0.9016927083333334,
+      "null": 0.6679611650485436
+    },
+    {
+      "milder": "Theileria annulata",
+      "harsher": "Nosema ceranae",
+      "containment": 0.9075520833333334,
+      "null": 0.6799352750809061
+    },
+    {
+      "milder": "Theileria annulata",
+      "harsher": "Enterocytozoon bieneusi",
+      "containment": 0.9322916666666666,
+      "null": 0.7498381877022654
+    },
+    {
+      "milder": "Theileria annulata",
+      "harsher": "Nematocida parisii",
+      "containment": 0.9069010416666666,
+      "null": 0.6857605177993528
+    },
+    {
+      "milder": "Theileria annulata",
+      "harsher": "Vavraia culicis",
+      "containment": 0.9036458333333334,
+      "null": 0.6809061488673139
+    },
+    {
+      "milder": "Theileria annulata",
+      "harsher": "Encephalitozoon intestinalis",
+      "containment": 0.8990885416666666,
+      "null": 0.6634304207119741
+    },
+    {
+      "milder": "Theileria annulata",
+      "harsher": "Trypanosoma congolense",
+      "containment": 0.7619047619047619,
+      "null": 0.6743996743996744
+    },
+    {
+      "milder": "Theileria annulata",
+      "harsher": "Giardia intestinalis",
+      "containment": 0.7501921598770177,
+      "null": 0.5664970930232558
+    },
+    {
+      "milder": "Theileria annulata",
+      "harsher": "Spironucleus salmonicida",
+      "containment": 0.7709454265949269,
+      "null": 0.5962936046511628
+    },
+    {
+      "milder": "Theileria annulata",
+      "harsher": "Thelohanellus kitauei",
+      "containment": 0.7002915451895044,
+      "null": 0.4960438222763238
+    },
+    {
+      "milder": "Theileria annulata",
+      "harsher": "Henneguya salminicola",
+      "containment": 0.6583090379008746,
+      "null": 0.4336579427875837
+    },
+    {
+      "milder": "Theileria parva",
+      "harsher": "Encephalitozoon cuniculi",
+      "containment": 0.9144385026737968,
+      "null": 0.6679611650485436
+    },
+    {
+      "milder": "Theileria parva",
+      "harsher": "Nosema ceranae",
+      "containment": 0.9171122994652406,
+      "null": 0.6799352750809061
+    },
+    {
+      "milder": "Theileria parva",
+      "harsher": "Enterocytozoon bieneusi",
+      "containment": 0.9364973262032086,
+      "null": 0.7498381877022654
+    },
+    {
+      "milder": "Theileria parva",
+      "harsher": "Nematocida parisii",
+      "containment": 0.9157754010695187,
+      "null": 0.6857605177993528
+    },
+    {
+      "milder": "Theileria parva",
+      "harsher": "Vavraia culicis",
+      "containment": 0.9097593582887701,
+      "null": 0.6809061488673139
+    },
+    {
+      "milder": "Theileria parva",
+      "harsher": "Encephalitozoon intestinalis",
+      "containment": 0.9117647058823529,
+      "null": 0.6634304207119741
+    },
+    {
+      "milder": "Theileria parva",
+      "harsher": "Trypanosoma congolense",
+      "containment": 0.7645429362880887,
+      "null": 0.6743996743996744
+    },
+    {
+      "milder": "Theileria parva",
+      "harsher": "Entamoeba dispar",
+      "containment": 0.6412092283214001,
+      "null": 0.44499294781382226
+    },
+    {
+      "milder": "Theileria parva",
+      "harsher": "Entamoeba invadens",
+      "containment": 0.6316626889419252,
+      "null": 0.4386459802538787
+    },
+    {
+      "milder": "Theileria parva",
+      "harsher": "Giardia intestinalis",
+      "containment": 0.7576953433307024,
+      "null": 0.5664970930232558
+    },
+    {
+      "milder": "Theileria parva",
+      "harsher": "Spironucleus salmonicida",
+      "containment": 0.7774269928966061,
+      "null": 0.5962936046511628
+    },
+    {
+      "milder": "Theileria parva",
+      "harsher": "Thelohanellus kitauei",
+      "containment": 0.7025089605734767,
+      "null": 0.4960438222763238
+    },
+    {
+      "milder": "Theileria parva",
+      "harsher": "Henneguya salminicola",
+      "containment": 0.6642771804062126,
+      "null": 0.4336579427875837
+    },
+    {
+      "milder": "Babesia microti",
+      "harsher": "Entamoeba histolytica",
+      "containment": 0.6509207365892714,
+      "null": 0.4386459802538787
+    },
+    {
+      "milder": "Babesia microti",
+      "harsher": "Encephalitozoon cuniculi",
+      "containment": 0.9144204851752021,
+      "null": 0.6679611650485436
+    },
+    {
+      "milder": "Babesia microti",
+      "harsher": "Nosema ceranae",
+      "containment": 0.9130727762803235,
+      "null": 0.6799352750809061
+    },
+    {
+      "milder": "Babesia microti",
+      "harsher": "Enterocytozoon bieneusi",
+      "containment": 0.9339622641509434,
+      "null": 0.7498381877022654
+    },
+    {
+      "milder": "Babesia microti",
+      "harsher": "Nematocida parisii",
+      "containment": 0.9198113207547169,
+      "null": 0.6857605177993528
+    },
+    {
+      "milder": "Babesia microti",
+      "harsher": "Vavraia culicis",
+      "containment": 0.9137466307277629,
+      "null": 0.6809061488673139
+    },
+    {
+      "milder": "Babesia microti",
+      "harsher": "Encephalitozoon intestinalis",
+      "containment": 0.910377358490566,
+      "null": 0.6634304207119741
+    },
+    {
+      "milder": "Babesia microti",
+      "harsher": "Trypanosoma congolense",
+      "containment": 0.7474654377880184,
+      "null": 0.6743996743996744
+    },
+    {
+      "milder": "Babesia microti",
+      "harsher": "Entamoeba dispar",
+      "containment": 0.655724579663731,
+      "null": 0.44499294781382226
+    },
+    {
+      "milder": "Babesia microti",
+      "harsher": "Entamoeba invadens",
+      "containment": 0.6469175340272217,
+      "null": 0.4386459802538787
+    },
+    {
+      "milder": "Babesia microti",
+      "harsher": "Giardia intestinalis",
+      "containment": 0.7569721115537849,
+      "null": 0.5664970930232558
+    },
+    {
+      "milder": "Babesia microti",
+      "harsher": "Spironucleus salmonicida",
+      "containment": 0.7737051792828685,
+      "null": 0.5962936046511628
+    },
+    {
+      "milder": "Babesia microti",
+      "harsher": "Thelohanellus kitauei",
+      "containment": 0.6961492178098676,
+      "null": 0.4960438222763238
+    },
+    {
+      "milder": "Babesia microti",
+      "harsher": "Henneguya salminicola",
+      "containment": 0.6570397111913358,
+      "null": 0.4336579427875837
+    },
+    {
+      "milder": "Neospora caninum",
+      "harsher": "Entamoeba histolytica",
+      "containment": 0.6886543535620053,
+      "null": 0.4386459802538787
+    },
+    {
+      "milder": "Neospora caninum",
+      "harsher": "Encephalitozoon cuniculi",
+      "containment": 0.916013437849944,
+      "null": 0.6679611650485436
+    },
+    {
+      "milder": "Neospora caninum",
+      "harsher": "Nosema ceranae",
+      "containment": 0.9148936170212766,
+      "null": 0.6799352750809061
+    },
+    {
+      "milder": "Neospora caninum",
+      "harsher": "Enterocytozoon bieneusi",
+      "containment": 0.9339305711086227,
+      "null": 0.7498381877022654
+    },
+    {
+      "milder": "Neospora caninum",
+      "harsher": "Nematocida parisii",
+      "containment": 0.9182530795072789,
+      "null": 0.6857605177993528
+    },
+    {
+      "milder": "Neospora caninum",
+      "harsher": "Vavraia culicis",
+      "containment": 0.9148936170212766,
+      "null": 0.6809061488673139
+    },
+    {
+      "milder": "Neospora caninum",
+      "harsher": "Encephalitozoon intestinalis",
+      "containment": 0.9092945128779395,
+      "null": 0.6634304207119741
+    },
+    {
+      "milder": "Neospora caninum",
+      "harsher": "Trypanosoma congolense",
+      "containment": 0.812807881773399,
+      "null": 0.6743996743996744
+    },
+    {
+      "milder": "Neospora caninum",
+      "harsher": "Entamoeba dispar",
+      "containment": 0.6952506596306068,
+      "null": 0.44499294781382226
+    },
+    {
+      "milder": "Neospora caninum",
+      "harsher": "Entamoeba invadens",
+      "containment": 0.6741424802110818,
+      "null": 0.4386459802538787
+    },
+    {
+      "milder": "Neospora caninum",
+      "harsher": "Giardia intestinalis",
+      "containment": 0.8231382978723404,
+      "null": 0.5664970930232558
+    },
+    {
+      "milder": "Neospora caninum",
+      "harsher": "Spironucleus salmonicida",
+      "containment": 0.8444148936170213,
+      "null": 0.5962936046511628
+    },
+    {
+      "milder": "Neospora caninum",
+      "harsher": "Blastocystis hominis",
+      "containment": 0.7218137254901961,
+      "null": 0.4005661712668082
+    },
+    {
+      "milder": "Neospora caninum",
+      "harsher": "Thelohanellus kitauei",
+      "containment": 0.7439143135345667,
+      "null": 0.4960438222763238
+    },
+    {
+      "milder": "Neospora caninum",
+      "harsher": "Henneguya salminicola",
+      "containment": 0.7069133398247323,
+      "null": 0.4336579427875837
+    },
+    {
+      "milder": "Hammondia hammondi",
+      "harsher": "Entamoeba histolytica",
+      "containment": 0.71,
+      "null": 0.4386459802538787
+    },
+    {
+      "milder": "Hammondia hammondi",
+      "harsher": "Rozella allomycis",
+      "containment": 0.5412054120541205,
+      "null": 0.258252427184466
+    },
+    {
+      "milder": "Hammondia hammondi",
+      "harsher": "Encephalitozoon cuniculi",
+      "containment": 0.923739237392374,
+      "null": 0.6679611650485436
+    },
+    {
+      "milder": "Hammondia hammondi",
+      "harsher": "Nosema ceranae",
+      "containment": 0.922509225092251,
+      "null": 0.6799352750809061
+    },
+    {
+      "milder": "Hammondia hammondi",
+      "harsher": "Enterocytozoon bieneusi",
+      "containment": 0.9384993849938499,
+      "null": 0.7498381877022654
+    },
+    {
+      "milder": "Hammondia hammondi",
+      "harsher": "Nematocida parisii",
+      "containment": 0.9274292742927429,
+      "null": 0.6857605177993528
+    },
+    {
+      "milder": "Hammondia hammondi",
+      "harsher": "Vavraia culicis",
+      "containment": 0.9274292742927429,
+      "null": 0.6809061488673139
+    },
+    {
+      "milder": "Hammondia hammondi",
+      "harsher": "Encephalitozoon intestinalis",
+      "containment": 0.9163591635916359,
+      "null": 0.6634304207119741
+    },
+    {
+      "milder": "Hammondia hammondi",
+      "harsher": "Trypanosoma congolense",
+      "containment": 0.8218181818181818,
+      "null": 0.6743996743996744
+    },
+    {
+      "milder": "Hammondia hammondi",
+      "harsher": "Entamoeba dispar",
+      "containment": 0.7114285714285714,
+      "null": 0.44499294781382226
+    },
+    {
+      "milder": "Hammondia hammondi",
+      "harsher": "Entamoeba invadens",
+      "containment": 0.6871428571428572,
+      "null": 0.4386459802538787
+    },
+    {
+      "milder": "Hammondia hammondi",
+      "harsher": "Giardia intestinalis",
+      "containment": 0.8465991316931982,
+      "null": 0.5664970930232558
+    },
+    {
+      "milder": "Hammondia hammondi",
+      "harsher": "Spironucleus salmonicida",
+      "containment": 0.8668596237337193,
+      "null": 0.5962936046511628
+    },
+    {
+      "milder": "Hammondia hammondi",
+      "harsher": "Blastocystis hominis",
+      "containment": 0.7456953642384105,
+      "null": 0.4005661712668082
+    },
+    {
+      "milder": "Hammondia hammondi",
+      "harsher": "Thelohanellus kitauei",
+      "containment": 0.7518557794273595,
+      "null": 0.4960438222763238
+    },
+    {
+      "milder": "Hammondia hammondi",
+      "harsher": "Henneguya salminicola",
+      "containment": 0.7168610816542949,
+      "null": 0.4336579427875837
+    },
+    {
+      "milder": "Cyclospora cayetanensis",
+      "harsher": "Entamoeba histolytica",
+      "containment": 0.6582150101419878,
+      "null": 0.4386459802538787
+    },
+    {
+      "milder": "Cyclospora cayetanensis",
+      "harsher": "Encephalitozoon cuniculi",
+      "containment": 0.8884045335658239,
+      "null": 0.6679611650485436
+    },
+    {
+      "milder": "Cyclospora cayetanensis",
+      "harsher": "Nosema ceranae",
+      "containment": 0.8892763731473409,
+      "null": 0.6799352750809061
+    },
+    {
+      "milder": "Cyclospora cayetanensis",
+      "harsher": "Enterocytozoon bieneusi",
+      "containment": 0.9197907585004359,
+      "null": 0.7498381877022654
+    },
+    {
+      "milder": "Cyclospora cayetanensis",
+      "harsher": "Nematocida parisii",
+      "containment": 0.8953792502179599,
+      "null": 0.6857605177993528
+    },
+    {
+      "milder": "Cyclospora cayetanensis",
+      "harsher": "Vavraia culicis",
+      "containment": 0.8997384481255449,
+      "null": 0.6809061488673139
+    },
+    {
+      "milder": "Cyclospora cayetanensis",
+      "harsher": "Encephalitozoon intestinalis",
+      "containment": 0.8831734960767219,
+      "null": 0.6634304207119741
+    },
+    {
+      "milder": "Cyclospora cayetanensis",
+      "harsher": "Trypanosoma congolense",
+      "containment": 0.8032994923857868,
+      "null": 0.6743996743996744
+    },
+    {
+      "milder": "Cyclospora cayetanensis",
+      "harsher": "Entamoeba dispar",
+      "containment": 0.6673427991886409,
+      "null": 0.44499294781382226
+    },
+    {
+      "milder": "Cyclospora cayetanensis",
+      "harsher": "Entamoeba invadens",
+      "containment": 0.6551724137931034,
+      "null": 0.4386459802538787
+    },
+    {
+      "milder": "Cyclospora cayetanensis",
+      "harsher": "Giardia intestinalis",
+      "containment": 0.8046795523906409,
+      "null": 0.5664970930232558
+    },
+    {
+      "milder": "Cyclospora cayetanensis",
+      "harsher": "Spironucleus salmonicida",
+      "containment": 0.8240081383519837,
+      "null": 0.5962936046511628
+    },
+    {
+      "milder": "Cyclospora cayetanensis",
+      "harsher": "Thelohanellus kitauei",
+      "containment": 0.7311248073959938,
+      "null": 0.4960438222763238
+    },
+    {
+      "milder": "Cyclospora cayetanensis",
+      "harsher": "Henneguya salminicola",
+      "containment": 0.6795069337442219,
+      "null": 0.4336579427875837
+    },
+    {
+      "milder": "Cryptosporidium hominis",
+      "harsher": "Encephalitozoon cuniculi",
+      "containment": 0.8842620943049602,
+      "null": 0.6679611650485436
+    },
+    {
+      "milder": "Cryptosporidium hominis",
+      "harsher": "Nosema ceranae",
+      "containment": 0.8830373545621556,
+      "null": 0.6799352750809061
+    },
+    {
+      "milder": "Cryptosporidium hominis",
+      "harsher": "Enterocytozoon bieneusi",
+      "containment": 0.9179424372320881,
+      "null": 0.7498381877022654
+    },
+    {
+      "milder": "Cryptosporidium hominis",
+      "harsher": "Nematocida parisii",
+      "containment": 0.8928352725045928,
+      "null": 0.6857605177993528
+    },
+    {
+      "milder": "Cryptosporidium hominis",
+      "harsher": "Vavraia culicis",
+      "containment": 0.8854868340477648,
+      "null": 0.6809061488673139
+    },
+    {
+      "milder": "Cryptosporidium hominis",
+      "harsher": "Encephalitozoon intestinalis",
+      "containment": 0.8799755052051439,
+      "null": 0.6634304207119741
+    },
+    {
+      "milder": "Cryptosporidium hominis",
+      "harsher": "Trypanosoma congolense",
+      "containment": 0.7647562018819504,
+      "null": 0.6743996743996744
+    },
+    {
+      "milder": "Cryptosporidium hominis",
+      "harsher": "Giardia intestinalis",
+      "containment": 0.755939524838013,
+      "null": 0.5664970930232558
+    },
+    {
+      "milder": "Cryptosporidium hominis",
+      "harsher": "Spironucleus salmonicida",
+      "containment": 0.7724982001439885,
+      "null": 0.5962936046511628
+    },
+    {
+      "milder": "Cryptosporidium hominis",
+      "harsher": "Thelohanellus kitauei",
+      "containment": 0.6759465478841871,
+      "null": 0.4960438222763238
+    },
+    {
+      "milder": "Leishmania infantum",
+      "harsher": "Entamoeba histolytica",
+      "containment": 0.6477272727272727,
+      "null": 0.3929440389294404
+    },
+    {
+      "milder": "Leishmania infantum",
+      "harsher": "Ichthyophthirius multifiliis",
+      "containment": 0.44542772861356933,
+      "null": 0.22436722436722437
+    },
+    {
+      "milder": "Leishmania infantum",
+      "harsher": "Perkinsus marinus",
+      "containment": 0.5014749262536873,
+      "null": 0.18876018876018877
+    },
+    {
+      "milder": "Leishmania infantum",
+      "harsher": "Plasmodium falciparum",
+      "containment": 0.7328431372549019,
+      "null": 0.3679283679283679
+    },
+    {
+      "milder": "Leishmania infantum",
+      "harsher": "Babesia bovis",
+      "containment": 0.7720588235294118,
+      "null": 0.4350834350834351
+    },
+    {
+      "milder": "Leishmania infantum",
+      "harsher": "Toxoplasma gondii",
+      "containment": 0.5612745098039216,
+      "null": 0.2271062271062271
+    },
+    {
+      "milder": "Leishmania infantum",
+      "harsher": "Eimeria tenella",
+      "containment": 0.6691176470588235,
+      "null": 0.35653235653235654
+    },
+    {
+      "milder": "Leishmania infantum",
+      "harsher": "Cryptosporidium parvum",
+      "containment": 0.7426470588235294,
+      "null": 0.4192104192104192
+    },
+    {
+      "milder": "Leishmania infantum",
+      "harsher": "Rozella allomycis",
+      "containment": 0.38995215311004783,
+      "null": 0.20644159875824603
+    },
+    {
+      "milder": "Leishmania infantum",
+      "harsher": "Encephalitozoon cuniculi",
+      "containment": 0.8588516746411483,
+      "null": 0.6146682188591386
+    },
+    {
+      "milder": "Leishmania infantum",
+      "harsher": "Nosema ceranae",
+      "containment": 0.8516746411483254,
+      "null": 0.6317423360496701
+    },
+    {
+      "milder": "Leishmania infantum",
+      "harsher": "Pneumocystis jirovecii",
+      "containment": 0.3229571984435798,
+      "null": 0.15137180700094607
+    },
+    {
+      "milder": "Leishmania infantum",
+      "harsher": "Taphrina deformans",
+      "containment": 0.2840466926070039,
+      "null": 0.15373699148533584
+    },
+    {
+      "milder": "Leishmania infantum",
+      "harsher": "Malassezia globosa",
+      "containment": 0.4378698224852071,
+      "null": 0.16417910447761194
+    },
+    {
+      "milder": "Leishmania infantum",
+      "harsher": "Batrachochytrium dendrobatidis",
+      "containment": 0.25598086124401914,
+      "null": 0.10516103996895615
+    },
+    {
+      "milder": "Leishmania infantum",
+      "harsher": "Enterocytozoon bieneusi",
+      "containment": 0.9138755980861244,
+      "null": 0.7151726814124951
+    },
+    {
+      "milder": "Leishmania infantum",
+      "harsher": "Nematocida parisii",
+      "containment": 0.8923444976076556,
+      "null": 0.6406674427629026
+    },
+    {
+      "milder": "Leishmania infantum",
+      "harsher": "Vavraia culicis",
+      "containment": 0.8803827751196173,
+      "null": 0.637175009701203
+    },
+    {
+      "milder": "Leishmania infantum",
+      "harsher": "Encephalitozoon intestinalis",
+      "containment": 0.8492822966507177,
+      "null": 0.6103996895615056
+    },
+    {
+      "milder": "Leishmania infantum",
+      "harsher": "Plasmodium vivax",
+      "containment": 0.7132352941176471,
+      "null": 0.3663003663003663
+    },
+    {
+      "milder": "Leishmania infantum",
+      "harsher": "Plasmodium berghei",
+      "containment": 0.7328431372549019,
+      "null": 0.36874236874236876
+    },
+    {
+      "milder": "Leishmania infantum",
+      "harsher": "Plasmodium knowlesi",
+      "containment": 0.7107843137254902,
+      "null": 0.3557183557183557
+    },
+    {
+      "milder": "Leishmania infantum",
+      "harsher": "Theileria annulata",
+      "containment": 0.7941176470588235,
+      "null": 0.452991452991453
+    },
+    {
+      "milder": "Leishmania infantum",
+      "harsher": "Theileria parva",
+      "containment": 0.7794117647058824,
+      "null": 0.44078144078144077
+    },
+    {
+      "milder": "Leishmania infantum",
+      "harsher": "Babesia microti",
+      "containment": 0.7916666666666666,
+      "null": 0.4415954415954416
+    },
+    {
+      "milder": "Leishmania infantum",
+      "harsher": "Neospora caninum",
+      "containment": 0.5759803921568627,
+      "null": 0.24786324786324787
+    },
+    {
+      "milder": "Leishmania infantum",
+      "harsher": "Hammondia hammondi",
+      "containment": 0.553921568627451,
+      "null": 0.22385022385022385
+    },
+    {
+      "milder": "Leishmania infantum",
+      "harsher": "Cyclospora cayetanensis",
+      "containment": 0.6568627450980392,
+      "null": 0.3207163207163207
+    },
+    {
+      "milder": "Leishmania infantum",
+      "harsher": "Cryptosporidium hominis",
+      "containment": 0.7843137254901961,
+      "null": 0.4757834757834758
+    },
+    {
+      "milder": "Leishmania infantum",
+      "harsher": "Entamoeba dispar",
+      "containment": 0.6318181818181818,
+      "null": 0.3986212489862125
+    },
+    {
+      "milder": "Leishmania infantum",
+      "harsher": "Entamoeba invadens",
+      "containment": 0.6295454545454545,
+      "null": 0.3937550689375507
+    },
+    {
+      "milder": "Leishmania infantum",
+      "harsher": "Giardia intestinalis",
+      "containment": 0.8451025056947609,
+      "null": 0.5329648637978681
+    },
+    {
+      "milder": "Leishmania infantum",
+      "harsher": "Spironucleus salmonicida",
+      "containment": 0.8633257403189066,
+      "null": 0.5712593762337149
+    },
+    {
+      "milder": "Leishmania infantum",
+      "harsher": "Blastocystis hominis",
+      "containment": 0.6357827476038339,
+      "null": 0.313540260908682
+    },
+    {
+      "milder": "Leishmania infantum",
+      "harsher": "Thelohanellus kitauei",
+      "containment": 0.7027522935779816,
+      "null": 0.4635547576301616
+    },
+    {
+      "milder": "Leishmania infantum",
+      "harsher": "Henneguya salminicola",
+      "containment": 0.6660550458715596,
+      "null": 0.40287253141831236
+    },
+    {
+      "milder": "Leishmania infantum",
+      "harsher": "Trichinella spiralis",
+      "containment": 0.3236009732360097,
+      "null": 0.150489396411093
+    },
+    {
+      "milder": "Leishmania infantum",
+      "harsher": "Schistosoma mansoni",
+      "containment": 0.29927007299270075,
+      "null": 0.132952691680261
+    },
+    {
+      "milder": "Leishmania infantum",
+      "harsher": "Helicosporidium sp. ATCC 50920",
+      "containment": 0.31561461794019935,
+      "null": 0.1855530474040632
+    },
+    {
+      "milder": "Leishmania donovani",
+      "harsher": "Entamoeba histolytica",
+      "containment": 0.6339869281045751,
+      "null": 0.3929440389294404
+    },
+    {
+      "milder": "Leishmania donovani",
+      "harsher": "Ichthyophthirius multifiliis",
+      "containment": 0.4309859154929577,
+      "null": 0.22436722436722437
+    },
+    {
+      "milder": "Leishmania donovani",
+      "harsher": "Perkinsus marinus",
+      "containment": 0.48450704225352115,
+      "null": 0.18876018876018877
+    },
+    {
+      "milder": "Leishmania donovani",
+      "harsher": "Plasmodium falciparum",
+      "containment": 0.7139479905437353,
+      "null": 0.3679283679283679
+    },
+    {
+      "milder": "Leishmania donovani",
+      "harsher": "Babesia bovis",
+      "containment": 0.7588652482269503,
+      "null": 0.4350834350834351
+    },
+    {
+      "milder": "Leishmania donovani",
+      "harsher": "Toxoplasma gondii",
+      "containment": 0.5555555555555556,
+      "null": 0.2271062271062271
+    },
+    {
+      "milder": "Leishmania donovani",
+      "harsher": "Eimeria tenella",
+      "containment": 0.6619385342789598,
+      "null": 0.35653235653235654
+    },
+    {
+      "milder": "Leishmania donovani",
+      "harsher": "Cryptosporidium parvum",
+      "containment": 0.7304964539007093,
+      "null": 0.4192104192104192
+    },
+    {
+      "milder": "Leishmania donovani",
+      "harsher": "Rozella allomycis",
+      "containment": 0.3826879271070615,
+      "null": 0.20644159875824603
+    },
+    {
+      "milder": "Leishmania donovani",
+      "harsher": "Encephalitozoon cuniculi",
+      "containment": 0.8496583143507973,
+      "null": 0.6146682188591386
+    },
+    {
+      "milder": "Leishmania donovani",
+      "harsher": "Nosema ceranae",
+      "containment": 0.8473804100227791,
+      "null": 0.6317423360496701
+    },
+    {
+      "milder": "Leishmania donovani",
+      "harsher": "Taphrina deformans",
+      "containment": 0.2814814814814815,
+      "null": 0.15373699148533584
+    },
+    {
+      "milder": "Leishmania donovani",
+      "harsher": "Malassezia globosa",
+      "containment": 0.42618384401114207,
+      "null": 0.16417910447761194
+    },
+    {
+      "milder": "Leishmania donovani",
+      "harsher": "Enterocytozoon bieneusi",
+      "containment": 0.9066059225512528,
+      "null": 0.7151726814124951
+    },
+    {
+      "milder": "Leishmania donovani",
+      "harsher": "Nematocida parisii",
+      "containment": 0.8883826879271071,
+      "null": 0.6406674427629026
+    },
+    {
+      "milder": "Leishmania donovani",
+      "harsher": "Vavraia culicis",
+      "containment": 0.8724373576309795,
+      "null": 0.637175009701203
+    },
+    {
+      "milder": "Leishmania donovani",
+      "harsher": "Encephalitozoon intestinalis",
+      "containment": 0.8382687927107062,
+      "null": 0.6103996895615056
+    },
+    {
+      "milder": "Leishmania donovani",
+      "harsher": "Plasmodium vivax",
+      "containment": 0.6973995271867612,
+      "null": 0.3663003663003663
+    },
+    {
+      "milder": "Leishmania donovani",
+      "harsher": "Plasmodium berghei",
+      "containment": 0.7139479905437353,
+      "null": 0.36874236874236876
+    },
+    {
+      "milder": "Leishmania donovani",
+      "harsher": "Plasmodium knowlesi",
+      "containment": 0.6950354609929078,
+      "null": 0.3557183557183557
+    },
+    {
+      "milder": "Leishmania donovani",
+      "harsher": "Theileria annulata",
+      "containment": 0.7825059101654847,
+      "null": 0.452991452991453
+    },
+    {
+      "milder": "Leishmania donovani",
+      "harsher": "Theileria parva",
+      "containment": 0.7659574468085106,
+      "null": 0.44078144078144077
+    },
+    {
+      "milder": "Leishmania donovani",
+      "harsher": "Babesia microti",
+      "containment": 0.7730496453900709,
+      "null": 0.4415954415954416
+    },
+    {
+      "milder": "Leishmania donovani",
+      "harsher": "Neospora caninum",
+      "containment": 0.557919621749409,
+      "null": 0.24786324786324787
+    },
+    {
+      "milder": "Leishmania donovani",
+      "harsher": "Hammondia hammondi",
+      "containment": 0.541371158392435,
+      "null": 0.22385022385022385
+    },
+    {
+      "milder": "Leishmania donovani",
+      "harsher": "Cyclospora cayetanensis",
+      "containment": 0.6430260047281324,
+      "null": 0.3207163207163207
+    },
+    {
+      "milder": "Leishmania donovani",
+      "harsher": "Cryptosporidium hominis",
+      "containment": 0.7730496453900709,
+      "null": 0.4757834757834758
+    },
+    {
+      "milder": "Leishmania donovani",
+      "harsher": "Entamoeba dispar",
+      "containment": 0.6187363834422658,
+      "null": 0.3986212489862125
+    },
+    {
+      "milder": "Leishmania donovani",
+      "harsher": "Entamoeba invadens",
+      "containment": 0.6209150326797386,
+      "null": 0.3937550689375507
+    },
+    {
+      "milder": "Leishmania donovani",
+      "harsher": "Giardia intestinalis",
+      "containment": 0.8362445414847162,
+      "null": 0.5329648637978681
+    },
+    {
+      "milder": "Leishmania donovani",
+      "harsher": "Spironucleus salmonicida",
+      "containment": 0.8602620087336245,
+      "null": 0.5712593762337149
+    },
+    {
+      "milder": "Leishmania donovani",
+      "harsher": "Blastocystis hominis",
+      "containment": 0.625,
+      "null": 0.313540260908682
+    },
+    {
+      "milder": "Leishmania donovani",
+      "harsher": "Thelohanellus kitauei",
+      "containment": 0.6984126984126984,
+      "null": 0.4635547576301616
+    },
+    {
+      "milder": "Leishmania donovani",
+      "harsher": "Henneguya salminicola",
+      "containment": 0.6613756613756614,
+      "null": 0.40287253141831236
+    },
+    {
+      "milder": "Leishmania donovani",
+      "harsher": "Helicosporidium sp. ATCC 50920",
+      "containment": 0.315625,
+      "null": 0.1855530474040632
+    },
+    {
+      "milder": "Trypanosoma vivax",
+      "harsher": "Entamoeba histolytica",
+      "containment": 0.6586345381526104,
+      "null": 0.3929440389294404
+    },
+    {
+      "milder": "Trypanosoma vivax",
+      "harsher": "Ichthyophthirius multifiliis",
+      "containment": 0.40425531914893614,
+      "null": 0.22436722436722437
+    },
+    {
+      "milder": "Trypanosoma vivax",
+      "harsher": "Perkinsus marinus",
+      "containment": 0.4521276595744681,
+      "null": 0.18876018876018877
+    },
+    {
+      "milder": "Trypanosoma vivax",
+      "harsher": "Plasmodium falciparum",
+      "containment": 0.7336244541484717,
+      "null": 0.3679283679283679
+    },
+    {
+      "milder": "Trypanosoma vivax",
+      "harsher": "Babesia bovis",
+      "containment": 0.7991266375545851,
+      "null": 0.4350834350834351
+    },
+    {
+      "milder": "Trypanosoma vivax",
+      "harsher": "Toxoplasma gondii",
+      "containment": 0.5589519650655022,
+      "null": 0.2271062271062271
+    },
+    {
+      "milder": "Trypanosoma vivax",
+      "harsher": "Eimeria tenella",
+      "containment": 0.6768558951965066,
+      "null": 0.35653235653235654
+    },
+    {
+      "milder": "Trypanosoma vivax",
+      "harsher": "Cryptosporidium parvum",
+      "containment": 0.7445414847161572,
+      "null": 0.4192104192104192
+    },
+    {
+      "milder": "Trypanosoma vivax",
+      "harsher": "Rozella allomycis",
+      "containment": 0.42736842105263156,
+      "null": 0.20644159875824603
+    },
+    {
+      "milder": "Trypanosoma vivax",
+      "harsher": "Encephalitozoon cuniculi",
+      "containment": 0.8778947368421053,
+      "null": 0.6146682188591386
+    },
+    {
+      "milder": "Trypanosoma vivax",
+      "harsher": "Nosema ceranae",
+      "containment": 0.8842105263157894,
+      "null": 0.6317423360496701
+    },
+    {
+      "milder": "Trypanosoma vivax",
+      "harsher": "Taphrina deformans",
+      "containment": 0.25412541254125415,
+      "null": 0.15373699148533584
+    },
+    {
+      "milder": "Trypanosoma vivax",
+      "harsher": "Malassezia globosa",
+      "containment": 0.38144329896907214,
+      "null": 0.16417910447761194
+    },
+    {
+      "milder": "Trypanosoma vivax",
+      "harsher": "Enterocytozoon bieneusi",
+      "containment": 0.9284210526315789,
+      "null": 0.7151726814124951
+    },
+    {
+      "milder": "Trypanosoma vivax",
+      "harsher": "Nematocida parisii",
+      "containment": 0.888421052631579,
+      "null": 0.6406674427629026
+    },
+    {
+      "milder": "Trypanosoma vivax",
+      "harsher": "Vavraia culicis",
+      "containment": 0.8947368421052632,
+      "null": 0.637175009701203
+    },
+    {
+      "milder": "Trypanosoma vivax",
+      "harsher": "Encephalitozoon intestinalis",
+      "containment": 0.871578947368421,
+      "null": 0.6103996895615056
+    },
+    {
+      "milder": "Trypanosoma vivax",
+      "harsher": "Plasmodium vivax",
+      "containment": 0.7248908296943232,
+      "null": 0.3663003663003663
+    },
+    {
+      "milder": "Trypanosoma vivax",
+      "harsher": "Plasmodium berghei",
+      "containment": 0.740174672489083,
+      "null": 0.36874236874236876
+    },
+    {
+      "milder": "Trypanosoma vivax",
+      "harsher": "Plasmodium knowlesi",
+      "containment": 0.7205240174672489,
+      "null": 0.3557183557183557
+    },
+    {
+      "milder": "Trypanosoma vivax",
+      "harsher": "Theileria annulata",
+      "containment": 0.8056768558951966,
+      "null": 0.452991452991453
+    },
+    {
+      "milder": "Trypanosoma vivax",
+      "harsher": "Theileria parva",
+      "containment": 0.7969432314410481,
+      "null": 0.44078144078144077
+    },
+    {
+      "milder": "Trypanosoma vivax",
+      "harsher": "Babesia microti",
+      "containment": 0.8013100436681223,
+      "null": 0.4415954415954416
+    },
+    {
+      "milder": "Trypanosoma vivax",
+      "harsher": "Neospora caninum",
+      "containment": 0.5698689956331878,
+      "null": 0.24786324786324787
+    },
+    {
+      "milder": "Trypanosoma vivax",
+      "harsher": "Hammondia hammondi",
+      "containment": 0.5480349344978166,
+      "null": 0.22385022385022385
+    },
+    {
+      "milder": "Trypanosoma vivax",
+      "harsher": "Cyclospora cayetanensis",
+      "containment": 0.6593886462882096,
+      "null": 0.3207163207163207
+    },
+    {
+      "milder": "Trypanosoma vivax",
+      "harsher": "Cryptosporidium hominis",
+      "containment": 0.7947598253275109,
+      "null": 0.4757834757834758
+    },
+    {
+      "milder": "Trypanosoma vivax",
+      "harsher": "Entamoeba dispar",
+      "containment": 0.6646586345381527,
+      "null": 0.3986212489862125
+    },
+    {
+      "milder": "Trypanosoma vivax",
+      "harsher": "Entamoeba invadens",
+      "containment": 0.6626506024096386,
+      "null": 0.3937550689375507
+    },
+    {
+      "milder": "Trypanosoma vivax",
+      "harsher": "Giardia intestinalis",
+      "containment": 0.8473895582329317,
+      "null": 0.5329648637978681
+    },
+    {
+      "milder": "Trypanosoma vivax",
+      "harsher": "Spironucleus salmonicida",
+      "containment": 0.8473895582329317,
+      "null": 0.5712593762337149
+    },
+    {
+      "milder": "Trypanosoma vivax",
+      "harsher": "Blastocystis hominis",
+      "containment": 0.6151761517615176,
+      "null": 0.313540260908682
+    },
+    {
+      "milder": "Trypanosoma vivax",
+      "harsher": "Thelohanellus kitauei",
+      "containment": 0.711864406779661,
+      "null": 0.4635547576301616
+    },
+    {
+      "milder": "Trypanosoma vivax",
+      "harsher": "Henneguya salminicola",
+      "containment": 0.7,
+      "null": 0.40287253141831236
+    },
+    {
+      "milder": "Trypanosoma vivax",
+      "harsher": "Helicosporidium sp. ATCC 50920",
+      "containment": 0.27808988764044945,
+      "null": 0.1855530474040632
+    },
+    {
+      "milder": "Trypanosoma congolense",
+      "harsher": "Encephalitozoon cuniculi",
+      "containment": 0.6651532349602725,
+      "null": 0.6146682188591386
+    },
+    {
+      "milder": "Trypanosoma congolense",
+      "harsher": "Nosema ceranae",
+      "containment": 0.6793416572077186,
+      "null": 0.6317423360496701
+    },
+    {
+      "milder": "Trypanosoma congolense",
+      "harsher": "Enterocytozoon bieneusi",
+      "containment": 0.7661748013620885,
+      "null": 0.7151726814124951
+    },
+    {
+      "milder": "Trypanosoma congolense",
+      "harsher": "Nematocida parisii",
+      "containment": 0.6918274687854711,
+      "null": 0.6406674427629026
+    },
+    {
+      "milder": "Trypanosoma congolense",
+      "harsher": "Vavraia culicis",
+      "containment": 0.6918274687854711,
+      "null": 0.637175009701203
+    },
+    {
+      "milder": "Trypanosoma congolense",
+      "harsher": "Encephalitozoon intestinalis",
+      "containment": 0.6606129398410897,
+      "null": 0.6103996895615056
+    },
+    {
+      "milder": "Leptomonas pyrrhocoris",
+      "harsher": "Entamoeba histolytica",
+      "containment": 0.6641604010025063,
+      "null": 0.3929440389294404
+    },
+    {
+      "milder": "Leptomonas pyrrhocoris",
+      "harsher": "Ichthyophthirius multifiliis",
+      "containment": 0.45161290322580644,
+      "null": 0.22436722436722437
+    },
+    {
+      "milder": "Leptomonas pyrrhocoris",
+      "harsher": "Perkinsus marinus",
+      "containment": 0.5064516129032258,
+      "null": 0.18876018876018877
+    },
+    {
+      "milder": "Leptomonas pyrrhocoris",
+      "harsher": "Plasmodium falciparum",
+      "containment": 0.7150684931506849,
+      "null": 0.3679283679283679
+    },
+    {
+      "milder": "Leptomonas pyrrhocoris",
+      "harsher": "Babesia bovis",
+      "containment": 0.7780821917808219,
+      "null": 0.4350834350834351
+    },
+    {
+      "milder": "Leptomonas pyrrhocoris",
+      "harsher": "Toxoplasma gondii",
+      "containment": 0.5452054794520548,
+      "null": 0.2271062271062271
+    },
+    {
+      "milder": "Leptomonas pyrrhocoris",
+      "harsher": "Eimeria tenella",
+      "containment": 0.6876712328767123,
+      "null": 0.35653235653235654
+    },
+    {
+      "milder": "Leptomonas pyrrhocoris",
+      "harsher": "Cryptosporidium parvum",
+      "containment": 0.7315068493150685,
+      "null": 0.4192104192104192
+    },
+    {
+      "milder": "Leptomonas pyrrhocoris",
+      "harsher": "Rozella allomycis",
+      "containment": 0.39210526315789473,
+      "null": 0.20644159875824603
+    },
+    {
+      "milder": "Leptomonas pyrrhocoris",
+      "harsher": "Encephalitozoon cuniculi",
+      "containment": 0.8763157894736842,
+      "null": 0.6146682188591386
+    },
+    {
+      "milder": "Leptomonas pyrrhocoris",
+      "harsher": "Nosema ceranae",
+      "containment": 0.8763157894736842,
+      "null": 0.6317423360496701
+    },
+    {
+      "milder": "Leptomonas pyrrhocoris",
+      "harsher": "Pneumocystis jirovecii",
+      "containment": 0.29004329004329005,
+      "null": 0.15137180700094607
+    },
+    {
+      "milder": "Leptomonas pyrrhocoris",
+      "harsher": "Taphrina deformans",
+      "containment": 0.24675324675324675,
+      "null": 0.15373699148533584
+    },
+    {
+      "milder": "Leptomonas pyrrhocoris",
+      "harsher": "Malassezia globosa",
+      "containment": 0.4152823920265781,
+      "null": 0.16417910447761194
+    },
+    {
+      "milder": "Leptomonas pyrrhocoris",
+      "harsher": "Batrachochytrium dendrobatidis",
+      "containment": 0.24473684210526317,
+      "null": 0.10516103996895615
+    },
+    {
+      "milder": "Leptomonas pyrrhocoris",
+      "harsher": "Enterocytozoon bieneusi",
+      "containment": 0.9131578947368421,
+      "null": 0.7151726814124951
+    },
+    {
+      "milder": "Leptomonas pyrrhocoris",
+      "harsher": "Nematocida parisii",
+      "containment": 0.9,
+      "null": 0.6406674427629026
+    },
+    {
+      "milder": "Leptomonas pyrrhocoris",
+      "harsher": "Vavraia culicis",
+      "containment": 0.8868421052631579,
+      "null": 0.637175009701203
+    },
+    {
+      "milder": "Leptomonas pyrrhocoris",
+      "harsher": "Encephalitozoon intestinalis",
+      "containment": 0.8631578947368421,
+      "null": 0.6103996895615056
+    },
+    {
+      "milder": "Leptomonas pyrrhocoris",
+      "harsher": "Plasmodium vivax",
+      "containment": 0.6958904109589041,
+      "null": 0.3663003663003663
+    },
+    {
+      "milder": "Leptomonas pyrrhocoris",
+      "harsher": "Plasmodium berghei",
+      "containment": 0.7232876712328767,
+      "null": 0.36874236874236876
+    },
+    {
+      "milder": "Leptomonas pyrrhocoris",
+      "harsher": "Plasmodium knowlesi",
+      "containment": 0.6931506849315069,
+      "null": 0.3557183557183557
+    },
+    {
+      "milder": "Leptomonas pyrrhocoris",
+      "harsher": "Theileria annulata",
+      "containment": 0.7753424657534247,
+      "null": 0.452991452991453
+    },
+    {
+      "milder": "Leptomonas pyrrhocoris",
+      "harsher": "Theileria parva",
+      "containment": 0.7726027397260274,
+      "null": 0.44078144078144077
+    },
+    {
+      "milder": "Leptomonas pyrrhocoris",
+      "harsher": "Babesia microti",
+      "containment": 0.7726027397260274,
+      "null": 0.4415954415954416
+    },
+    {
+      "milder": "Leptomonas pyrrhocoris",
+      "harsher": "Neospora caninum",
+      "containment": 0.5561643835616439,
+      "null": 0.24786324786324787
+    },
+    {
+      "milder": "Leptomonas pyrrhocoris",
+      "harsher": "Hammondia hammondi",
+      "containment": 0.5452054794520548,
+      "null": 0.22385022385022385
+    },
+    {
+      "milder": "Leptomonas pyrrhocoris",
+      "harsher": "Cyclospora cayetanensis",
+      "containment": 0.6684931506849315,
+      "null": 0.3207163207163207
+    },
+    {
+      "milder": "Leptomonas pyrrhocoris",
+      "harsher": "Cryptosporidium hominis",
+      "containment": 0.7698630136986301,
+      "null": 0.4757834757834758
+    },
+    {
+      "milder": "Leptomonas pyrrhocoris",
+      "harsher": "Entamoeba dispar",
+      "containment": 0.6541353383458647,
+      "null": 0.3986212489862125
+    },
+    {
+      "milder": "Leptomonas pyrrhocoris",
+      "harsher": "Entamoeba invadens",
+      "containment": 0.6491228070175439,
+      "null": 0.3937550689375507
+    },
+    {
+      "milder": "Leptomonas pyrrhocoris",
+      "harsher": "Giardia intestinalis",
+      "containment": 0.8442211055276382,
+      "null": 0.5329648637978681
+    },
+    {
+      "milder": "Leptomonas pyrrhocoris",
+      "harsher": "Spironucleus salmonicida",
+      "containment": 0.871859296482412,
+      "null": 0.5712593762337149
+    },
+    {
+      "milder": "Leptomonas pyrrhocoris",
+      "harsher": "Blastocystis hominis",
+      "containment": 0.6340579710144928,
+      "null": 0.313540260908682
+    },
+    {
+      "milder": "Leptomonas pyrrhocoris",
+      "harsher": "Thelohanellus kitauei",
+      "containment": 0.7080867850098619,
+      "null": 0.4635547576301616
+    },
+    {
+      "milder": "Leptomonas pyrrhocoris",
+      "harsher": "Henneguya salminicola",
+      "containment": 0.6883629191321499,
+      "null": 0.40287253141831236
+    },
+    {
+      "milder": "Leptomonas pyrrhocoris",
+      "harsher": "Trichinella spiralis",
+      "containment": 0.3118279569892473,
+      "null": 0.150489396411093
+    },
+    {
+      "milder": "Leptomonas pyrrhocoris",
+      "harsher": "Schistosoma mansoni",
+      "containment": 0.3172043010752688,
+      "null": 0.132952691680261
+    },
+    {
+      "milder": "Leptomonas pyrrhocoris",
+      "harsher": "Helicosporidium sp. ATCC 50920",
+      "containment": 0.3272058823529412,
+      "null": 0.1855530474040632
+    },
+    {
+      "milder": "Entamoeba dispar",
+      "harsher": "Encephalitozoon cuniculi",
+      "containment": 0.8728620296465223,
+      "null": 0.6756369882622387
+    },
+    {
+      "milder": "Entamoeba dispar",
+      "harsher": "Nosema ceranae",
+      "containment": 0.88654503990878,
+      "null": 0.6908101918121958
+    },
+    {
+      "milder": "Entamoeba dispar",
+      "harsher": "Enterocytozoon bieneusi",
+      "containment": 0.9253135689851767,
+      "null": 0.7646722015459491
+    },
+    {
+      "milder": "Entamoeba dispar",
+      "harsher": "Nematocida parisii",
+      "containment": 0.8768529076396807,
+      "null": 0.6988262238763241
+    },
+    {
+      "milder": "Entamoeba dispar",
+      "harsher": "Vavraia culicis",
+      "containment": 0.8842645381984037,
+      "null": 0.6979673632980247
+    },
+    {
+      "milder": "Entamoeba dispar",
+      "harsher": "Encephalitozoon intestinalis",
+      "containment": 0.8722919042189282,
+      "null": 0.6722015459490409
+    },
+    {
+      "milder": "Entamoeba dispar",
+      "harsher": "Theileria annulata",
+      "containment": 0.6513470681458003,
+      "null": 0.4573342736248237
+    },
+    {
+      "milder": "Entamoeba dispar",
+      "harsher": "Cryptosporidium hominis",
+      "containment": 0.7416798732171157,
+      "null": 0.4975317348377997
+    },
+    {
+      "milder": "Entamoeba dispar",
+      "harsher": "Trypanosoma congolense",
+      "containment": 0.7599186164801628,
+      "null": 0.686536901865369
+    },
+    {
+      "milder": "Entamoeba dispar",
+      "harsher": "Giardia intestinalis",
+      "containment": 0.8734693877551021,
+      "null": 0.6281486146095718
+    },
+    {
+      "milder": "Entamoeba dispar",
+      "harsher": "Spironucleus salmonicida",
+      "containment": 0.8945578231292517,
+      "null": 0.6580604534005038
+    },
+    {
+      "milder": "Entamoeba dispar",
+      "harsher": "Thelohanellus kitauei",
+      "containment": 0.6899755501222494,
+      "null": 0.5187483837600206
+    },
+    {
+      "milder": "Entamoeba dispar",
+      "harsher": "Henneguya salminicola",
+      "containment": 0.6308068459657702,
+      "null": 0.44065166795965865
+    },
+    {
+      "milder": "Entamoeba invadens",
+      "harsher": "Encephalitozoon cuniculi",
+      "containment": 0.8756388415672913,
+      "null": 0.6756369882622387
+    },
+    {
+      "milder": "Entamoeba invadens",
+      "harsher": "Nosema ceranae",
+      "containment": 0.8926746166950597,
+      "null": 0.6908101918121958
+    },
+    {
+      "milder": "Entamoeba invadens",
+      "harsher": "Enterocytozoon bieneusi",
+      "containment": 0.9307211811470755,
+      "null": 0.7646722015459491
+    },
+    {
+      "milder": "Entamoeba invadens",
+      "harsher": "Nematocida parisii",
+      "containment": 0.8864281658148779,
+      "null": 0.6988262238763241
+    },
+    {
+      "milder": "Entamoeba invadens",
+      "harsher": "Vavraia culicis",
+      "containment": 0.8909710391822828,
+      "null": 0.6979673632980247
+    },
+    {
+      "milder": "Entamoeba invadens",
+      "harsher": "Encephalitozoon intestinalis",
+      "containment": 0.8756388415672913,
+      "null": 0.6722015459490409
+    },
+    {
+      "milder": "Entamoeba invadens",
+      "harsher": "Theileria annulata",
+      "containment": 0.6519292604501608,
+      "null": 0.4573342736248237
+    },
+    {
+      "milder": "Entamoeba invadens",
+      "harsher": "Cryptosporidium hominis",
+      "containment": 0.7339228295819936,
+      "null": 0.4975317348377997
+    },
+    {
+      "milder": "Entamoeba invadens",
+      "harsher": "Trypanosoma congolense",
+      "containment": 0.7621009268795057,
+      "null": 0.686536901865369
+    },
+    {
+      "milder": "Entamoeba invadens",
+      "harsher": "Giardia intestinalis",
+      "containment": 0.8805159538357095,
+      "null": 0.6281486146095718
+    },
+    {
+      "milder": "Entamoeba invadens",
+      "harsher": "Spironucleus salmonicida",
+      "containment": 0.8968092328581126,
+      "null": 0.6580604534005038
+    },
+    {
+      "milder": "Entamoeba invadens",
+      "harsher": "Thelohanellus kitauei",
+      "containment": 0.6889859291606016,
+      "null": 0.5187483837600206
+    },
+    {
+      "milder": "Entamoeba invadens",
+      "harsher": "Henneguya salminicola",
+      "containment": 0.6268801552644347,
+      "null": 0.44065166795965865
+    },
+    {
+      "milder": "Giardia intestinalis",
+      "harsher": "Encephalitozoon cuniculi",
+      "containment": 0.8494845360824742,
+      "null": 0.6607929515418502
+    },
+    {
+      "milder": "Giardia intestinalis",
+      "harsher": "Nosema ceranae",
+      "containment": 0.8603092783505155,
+      "null": 0.6746381371932033
+    },
+    {
+      "milder": "Giardia intestinalis",
+      "harsher": "Enterocytozoon bieneusi",
+      "containment": 0.8876288659793814,
+      "null": 0.7454373820012586
+    },
+    {
+      "milder": "Giardia intestinalis",
+      "harsher": "Nematocida parisii",
+      "containment": 0.8530927835051546,
+      "null": 0.6803020767778477
+    },
+    {
+      "milder": "Giardia intestinalis",
+      "harsher": "Vavraia culicis",
+      "containment": 0.856701030927835,
+      "null": 0.6796727501573316
+    },
+    {
+      "milder": "Giardia intestinalis",
+      "harsher": "Encephalitozoon intestinalis",
+      "containment": 0.8438144329896907,
+      "null": 0.6563876651982379
+    },
+    {
+      "milder": "Giardia intestinalis",
+      "harsher": "Trypanosoma congolense",
+      "containment": 0.78,
+      "null": 0.685748124753257
+    },
+    {
+      "milder": "Spironucleus salmonicida",
+      "harsher": "Encephalitozoon cuniculi",
+      "containment": 0.8214285714285714,
+      "null": 0.6607929515418502
+    },
+    {
+      "milder": "Spironucleus salmonicida",
+      "harsher": "Nosema ceranae",
+      "containment": 0.8312133072407045,
+      "null": 0.6746381371932033
+    },
+    {
+      "milder": "Spironucleus salmonicida",
+      "harsher": "Enterocytozoon bieneusi",
+      "containment": 0.8811154598825832,
+      "null": 0.7454373820012586
+    },
+    {
+      "milder": "Spironucleus salmonicida",
+      "harsher": "Nematocida parisii",
+      "containment": 0.8351272015655578,
+      "null": 0.6803020767778477
+    },
+    {
+      "milder": "Spironucleus salmonicida",
+      "harsher": "Vavraia culicis",
+      "containment": 0.8414872798434442,
+      "null": 0.6796727501573316
+    },
+    {
+      "milder": "Spironucleus salmonicida",
+      "harsher": "Encephalitozoon intestinalis",
+      "containment": 0.8160469667318982,
+      "null": 0.6563876651982379
+    },
+    {
+      "milder": "Spironucleus salmonicida",
+      "harsher": "Trypanosoma congolense",
+      "containment": 0.7829993089149966,
+      "null": 0.685748124753257
+    },
+    {
+      "milder": "Phytophthora infestans",
+      "harsher": "Entamoeba histolytica",
+      "containment": 0.7333333333333333,
+      "null": 0.4292682926829268
+    },
+    {
+      "milder": "Phytophthora infestans",
+      "harsher": "Ichthyophthirius multifiliis",
+      "containment": 0.5533333333333333,
+      "null": 0.24268137462876538
+    },
+    {
+      "milder": "Phytophthora infestans",
+      "harsher": "Perkinsus marinus",
+      "containment": 0.54,
+      "null": 0.171828595672465
+    },
+    {
+      "milder": "Phytophthora infestans",
+      "harsher": "Plasmodium falciparum",
+      "containment": 0.7648514851485149,
+      "null": 0.3924274593064402
+    },
+    {
+      "milder": "Phytophthora infestans",
+      "harsher": "Babesia bovis",
+      "containment": 0.8217821782178217,
+      "null": 0.462137296532201
+    },
+    {
+      "milder": "Phytophthora infestans",
+      "harsher": "Toxoplasma gondii",
+      "containment": 0.7178217821782178,
+      "null": 0.27211606510969566
+    },
+    {
+      "milder": "Phytophthora infestans",
+      "harsher": "Eimeria tenella",
+      "containment": 0.7920792079207921,
+      "null": 0.39419674451521586
+    },
+    {
+      "milder": "Phytophthora infestans",
+      "harsher": "Cryptosporidium parvum",
+      "containment": 0.8564356435643564,
+      "null": 0.46461429582448693
+    },
+    {
+      "milder": "Phytophthora infestans",
+      "harsher": "Leishmania major",
+      "containment": 0.47305389221556887,
+      "null": 0.13630229419703105
+    },
+    {
+      "milder": "Phytophthora infestans",
+      "harsher": "Trypanosoma cruzi",
+      "containment": 0.3772455089820359,
+      "null": 0.12640575798470535
+    },
+    {
+      "milder": "Phytophthora infestans",
+      "harsher": "Trypanosoma brucei",
+      "containment": 0.47305389221556887,
+      "null": 0.15519568151147098
+    },
+    {
+      "milder": "Phytophthora infestans",
+      "harsher": "Rozella allomycis",
+      "containment": 0.5708502024291497,
+      "null": 0.2286212914485166
+    },
+    {
+      "milder": "Phytophthora infestans",
+      "harsher": "Encephalitozoon cuniculi",
+      "containment": 0.902834008097166,
+      "null": 0.6335078534031413
+    },
+    {
+      "milder": "Phytophthora infestans",
+      "harsher": "Nosema ceranae",
+      "containment": 0.8825910931174089,
+      "null": 0.6492146596858639
+    },
+    {
+      "milder": "Phytophthora infestans",
+      "harsher": "Pneumocystis jirovecii",
+      "containment": 0.40993788819875776,
+      "null": 0.18012170385395537
+    },
+    {
+      "milder": "Phytophthora infestans",
+      "harsher": "Taphrina deformans",
+      "containment": 0.33540372670807456,
+      "null": 0.1667342799188641
+    },
+    {
+      "milder": "Phytophthora infestans",
+      "harsher": "Malassezia globosa",
+      "containment": 0.4975845410628019,
+      "null": 0.16093690970910465
+    },
+    {
+      "milder": "Phytophthora infestans",
+      "harsher": "Batrachochytrium dendrobatidis",
+      "containment": 0.3765182186234818,
+      "null": 0.10924956369982548
+    },
+    {
+      "milder": "Phytophthora infestans",
+      "harsher": "Enterocytozoon bieneusi",
+      "containment": 0.9068825910931174,
+      "null": 0.7280977312390925
+    },
+    {
+      "milder": "Phytophthora infestans",
+      "harsher": "Nematocida parisii",
+      "containment": 0.8906882591093117,
+      "null": 0.6561954624781849
+    },
+    {
+      "milder": "Phytophthora infestans",
+      "harsher": "Vavraia culicis",
+      "containment": 0.8947368421052632,
+      "null": 0.6561954624781849
+    },
+    {
+      "milder": "Phytophthora infestans",
+      "harsher": "Encephalitozoon intestinalis",
+      "containment": 0.9068825910931174,
+      "null": 0.6296684118673648
+    },
+    {
+      "milder": "Phytophthora infestans",
+      "harsher": "Plasmodium vivax",
+      "containment": 0.75,
+      "null": 0.3878273177636235
+    },
+    {
+      "milder": "Phytophthora infestans",
+      "harsher": "Plasmodium berghei",
+      "containment": 0.754950495049505,
+      "null": 0.39065817409766457
+    },
+    {
+      "milder": "Phytophthora infestans",
+      "harsher": "Plasmodium knowlesi",
+      "containment": 0.75,
+      "null": 0.37933474876150036
+    },
+    {
+      "milder": "Phytophthora infestans",
+      "harsher": "Theileria annulata",
+      "containment": 0.8267326732673267,
+      "null": 0.47983014861995754
+    },
+    {
+      "milder": "Phytophthora infestans",
+      "harsher": "Theileria parva",
+      "containment": 0.8366336633663366,
+      "null": 0.4713375796178344
+    },
+    {
+      "milder": "Phytophthora infestans",
+      "harsher": "Babesia microti",
+      "containment": 0.8044554455445545,
+      "null": 0.4688605803255485
+    },
+    {
+      "milder": "Phytophthora infestans",
+      "harsher": "Neospora caninum",
+      "containment": 0.7301980198019802,
+      "null": 0.28874734607218683
+    },
+    {
+      "milder": "Phytophthora infestans",
+      "harsher": "Hammondia hammondi",
+      "containment": 0.7079207920792079,
+      "null": 0.26716206652512386
+    },
+    {
+      "milder": "Phytophthora infestans",
+      "harsher": "Cyclospora cayetanensis",
+      "containment": 0.7821782178217822,
+      "null": 0.3623496107572541
+    },
+    {
+      "milder": "Phytophthora infestans",
+      "harsher": "Cryptosporidium hominis",
+      "containment": 0.8737623762376238,
+      "null": 0.5205237084217976
+    },
+    {
+      "milder": "Phytophthora infestans",
+      "harsher": "Leishmania infantum",
+      "containment": 0.48502994011976047,
+      "null": 0.14080071974808817
+    },
+    {
+      "milder": "Phytophthora infestans",
+      "harsher": "Leishmania donovani",
+      "containment": 0.47904191616766467,
+      "null": 0.14754835807467387
+    },
+    {
+      "milder": "Phytophthora infestans",
+      "harsher": "Trypanosoma vivax",
+      "containment": 0.48502994011976047,
+      "null": 0.1659919028340081
+    },
+    {
+      "milder": "Phytophthora infestans",
+      "harsher": "Trypanosoma congolense",
+      "containment": 0.844311377245509,
+      "null": 0.6572199730094467
+    },
+    {
+      "milder": "Phytophthora infestans",
+      "harsher": "Leptomonas pyrrhocoris",
+      "containment": 0.40119760479041916,
+      "null": 0.1241565452091768
+    },
+    {
+      "milder": "Phytophthora infestans",
+      "harsher": "Entamoeba dispar",
+      "containment": 0.7244444444444444,
+      "null": 0.43639774859287056
+    },
+    {
+      "milder": "Phytophthora infestans",
+      "harsher": "Entamoeba invadens",
+      "containment": 0.72,
+      "null": 0.4352720450281426
+    },
+    {
+      "milder": "Phytophthora infestans",
+      "harsher": "Giardia intestinalis",
+      "containment": 0.8405797101449275,
+      "null": 0.5427095748907429
+    },
+    {
+      "milder": "Phytophthora infestans",
+      "harsher": "Spironucleus salmonicida",
+      "containment": 0.8502415458937198,
+      "null": 0.5729042510925705
+    },
+    {
+      "milder": "Phytophthora infestans",
+      "harsher": "Thelohanellus kitauei",
+      "containment": 0.7288732394366197,
+      "null": 0.4488482384823848
+    },
+    {
+      "milder": "Phytophthora infestans",
+      "harsher": "Henneguya salminicola",
+      "containment": 0.7429577464788732,
+      "null": 0.3875338753387534
+    },
+    {
+      "milder": "Phytophthora infestans",
+      "harsher": "Trichinella spiralis",
+      "containment": 0.2760416666666667,
+      "null": 0.14580941446613088
+    },
+    {
+      "milder": "Phytophthora infestans",
+      "harsher": "Schistosoma mansoni",
+      "containment": 0.3385416666666667,
+      "null": 0.1350937619594336
+    },
+    {
+      "milder": "Phytophthora infestans",
+      "harsher": "Helicosporidium sp. ATCC 50920",
+      "containment": 0.5106382978723404,
+      "null": 0.223243839646929
+    },
+    {
+      "milder": "Saprolegnia parasitica",
+      "harsher": "Entamoeba histolytica",
+      "containment": 0.7215189873417721,
+      "null": 0.4292682926829268
+    },
+    {
+      "milder": "Saprolegnia parasitica",
+      "harsher": "Ichthyophthirius multifiliis",
+      "containment": 0.5363636363636364,
+      "null": 0.24268137462876538
+    },
+    {
+      "milder": "Saprolegnia parasitica",
+      "harsher": "Perkinsus marinus",
+      "containment": 0.5545454545454546,
+      "null": 0.171828595672465
+    },
+    {
+      "milder": "Saprolegnia parasitica",
+      "harsher": "Plasmodium falciparum",
+      "containment": 0.7742857142857142,
+      "null": 0.3924274593064402
+    },
+    {
+      "milder": "Saprolegnia parasitica",
+      "harsher": "Babesia bovis",
+      "containment": 0.84,
+      "null": 0.462137296532201
+    },
+    {
+      "milder": "Saprolegnia parasitica",
+      "harsher": "Toxoplasma gondii",
+      "containment": 0.7257142857142858,
+      "null": 0.27211606510969566
+    },
+    {
+      "milder": "Saprolegnia parasitica",
+      "harsher": "Eimeria tenella",
+      "containment": 0.7914285714285715,
+      "null": 0.39419674451521586
+    },
+    {
+      "milder": "Saprolegnia parasitica",
+      "harsher": "Cryptosporidium parvum",
+      "containment": 0.8885714285714286,
+      "null": 0.46461429582448693
+    },
+    {
+      "milder": "Saprolegnia parasitica",
+      "harsher": "Leishmania major",
+      "containment": 0.48695652173913045,
+      "null": 0.13630229419703105
+    },
+    {
+      "milder": "Saprolegnia parasitica",
+      "harsher": "Trypanosoma cruzi",
+      "containment": 0.4260869565217391,
+      "null": 0.12640575798470535
+    },
+    {
+      "milder": "Saprolegnia parasitica",
+      "harsher": "Trypanosoma brucei",
+      "containment": 0.4782608695652174,
+      "null": 0.15519568151147098
+    },
+    {
+      "milder": "Saprolegnia parasitica",
+      "harsher": "Rozella allomycis",
+      "containment": 0.6224489795918368,
+      "null": 0.2286212914485166
+    },
+    {
+      "milder": "Saprolegnia parasitica",
+      "harsher": "Encephalitozoon cuniculi",
+      "containment": 0.8979591836734694,
+      "null": 0.6335078534031413
+    },
+    {
+      "milder": "Saprolegnia parasitica",
+      "harsher": "Nosema ceranae",
+      "containment": 0.8979591836734694,
+      "null": 0.6492146596858639
+    },
+    {
+      "milder": "Saprolegnia parasitica",
+      "harsher": "Pneumocystis jirovecii",
+      "containment": 0.48214285714285715,
+      "null": 0.18012170385395537
+    },
+    {
+      "milder": "Saprolegnia parasitica",
+      "harsher": "Taphrina deformans",
+      "containment": 0.32142857142857145,
+      "null": 0.1667342799188641
+    },
+    {
+      "milder": "Saprolegnia parasitica",
+      "harsher": "Malassezia globosa",
+      "containment": 0.4768211920529801,
+      "null": 0.16093690970910465
+    },
+    {
+      "milder": "Saprolegnia parasitica",
+      "harsher": "Batrachochytrium dendrobatidis",
+      "containment": 0.47959183673469385,
+      "null": 0.10924956369982548
+    },
+    {
+      "milder": "Saprolegnia parasitica",
+      "harsher": "Enterocytozoon bieneusi",
+      "containment": 0.9132653061224489,
+      "null": 0.7280977312390925
+    },
+    {
+      "milder": "Saprolegnia parasitica",
+      "harsher": "Nematocida parisii",
+      "containment": 0.9030612244897959,
+      "null": 0.6561954624781849
+    },
+    {
+      "milder": "Saprolegnia parasitica",
+      "harsher": "Vavraia culicis",
+      "containment": 0.9030612244897959,
+      "null": 0.6561954624781849
+    },
+    {
+      "milder": "Saprolegnia parasitica",
+      "harsher": "Encephalitozoon intestinalis",
+      "containment": 0.8979591836734694,
+      "null": 0.6296684118673648
+    },
+    {
+      "milder": "Saprolegnia parasitica",
+      "harsher": "Plasmodium vivax",
+      "containment": 0.7657142857142857,
+      "null": 0.3878273177636235
+    },
+    {
+      "milder": "Saprolegnia parasitica",
+      "harsher": "Plasmodium berghei",
+      "containment": 0.7685714285714286,
+      "null": 0.39065817409766457
+    },
+    {
+      "milder": "Saprolegnia parasitica",
+      "harsher": "Plasmodium knowlesi",
+      "containment": 0.7714285714285715,
+      "null": 0.37933474876150036
+    },
+    {
+      "milder": "Saprolegnia parasitica",
+      "harsher": "Theileria annulata",
+      "containment": 0.8514285714285714,
+      "null": 0.47983014861995754
+    },
+    {
+      "milder": "Saprolegnia parasitica",
+      "harsher": "Theileria parva",
+      "containment": 0.86,
+      "null": 0.4713375796178344
+    },
+    {
+      "milder": "Saprolegnia parasitica",
+      "harsher": "Babesia microti",
+      "containment": 0.8228571428571428,
+      "null": 0.4688605803255485
+    },
+    {
+      "milder": "Saprolegnia parasitica",
+      "harsher": "Neospora caninum",
+      "containment": 0.7457142857142857,
+      "null": 0.28874734607218683
+    },
+    {
+      "milder": "Saprolegnia parasitica",
+      "harsher": "Hammondia hammondi",
+      "containment": 0.7228571428571429,
+      "null": 0.26716206652512386
+    },
+    {
+      "milder": "Saprolegnia parasitica",
+      "harsher": "Cyclospora cayetanensis",
+      "containment": 0.7771428571428571,
+      "null": 0.3623496107572541
+    },
+    {
+      "milder": "Saprolegnia parasitica",
+      "harsher": "Cryptosporidium hominis",
+      "containment": 0.9085714285714286,
+      "null": 0.5205237084217976
+    },
+    {
+      "milder": "Saprolegnia parasitica",
+      "harsher": "Leishmania infantum",
+      "containment": 0.48695652173913045,
+      "null": 0.14080071974808817
+    },
+    {
+      "milder": "Saprolegnia parasitica",
+      "harsher": "Leishmania donovani",
+      "containment": 0.4782608695652174,
+      "null": 0.14754835807467387
+    },
+    {
+      "milder": "Saprolegnia parasitica",
+      "harsher": "Trypanosoma vivax",
+      "containment": 0.5304347826086957,
+      "null": 0.1659919028340081
+    },
+    {
+      "milder": "Saprolegnia parasitica",
+      "harsher": "Trypanosoma congolense",
+      "containment": 0.8608695652173913,
+      "null": 0.6572199730094467
+    },
+    {
+      "milder": "Saprolegnia parasitica",
+      "harsher": "Leptomonas pyrrhocoris",
+      "containment": 0.4,
+      "null": 0.1241565452091768
+    },
+    {
+      "milder": "Saprolegnia parasitica",
+      "harsher": "Entamoeba dispar",
+      "containment": 0.7341772151898734,
+      "null": 0.43639774859287056
+    },
+    {
+      "milder": "Saprolegnia parasitica",
+      "harsher": "Entamoeba invadens",
+      "containment": 0.7215189873417721,
+      "null": 0.4352720450281426
+    },
+    {
+      "milder": "Saprolegnia parasitica",
+      "harsher": "Giardia intestinalis",
+      "containment": 0.803921568627451,
+      "null": 0.5427095748907429
+    },
+    {
+      "milder": "Saprolegnia parasitica",
+      "harsher": "Spironucleus salmonicida",
+      "containment": 0.8366013071895425,
+      "null": 0.5729042510925705
+    },
+    {
+      "milder": "Saprolegnia parasitica",
+      "harsher": "Thelohanellus kitauei",
+      "containment": 0.7637130801687764,
+      "null": 0.4488482384823848
+    },
+    {
+      "milder": "Saprolegnia parasitica",
+      "harsher": "Henneguya salminicola",
+      "containment": 0.7383966244725738,
+      "null": 0.3875338753387534
+    },
+    {
+      "milder": "Saprolegnia parasitica",
+      "harsher": "Trichinella spiralis",
+      "containment": 0.2867132867132867,
+      "null": 0.14580941446613088
+    },
+    {
+      "milder": "Saprolegnia parasitica",
+      "harsher": "Schistosoma mansoni",
+      "containment": 0.38461538461538464,
+      "null": 0.1350937619594336
+    },
+    {
+      "milder": "Saprolegnia parasitica",
+      "harsher": "Helicosporidium sp. ATCC 50920",
+      "containment": 0.5104895104895105,
+      "null": 0.223243839646929
+    },
+    {
+      "milder": "Blastocystis hominis",
+      "harsher": "Entamoeba histolytica",
+      "containment": 0.713495575221239,
+      "null": 0.4292682926829268
+    },
+    {
+      "milder": "Blastocystis hominis",
+      "harsher": "Plasmodium falciparum",
+      "containment": 0.6537102473498233,
+      "null": 0.3924274593064402
+    },
+    {
+      "milder": "Blastocystis hominis",
+      "harsher": "Babesia bovis",
+      "containment": 0.7473498233215548,
+      "null": 0.462137296532201
+    },
+    {
+      "milder": "Blastocystis hominis",
+      "harsher": "Eimeria tenella",
+      "containment": 0.6395759717314488,
+      "null": 0.39419674451521586
+    },
+    {
+      "milder": "Blastocystis hominis",
+      "harsher": "Cryptosporidium parvum",
+      "containment": 0.7676678445229682,
+      "null": 0.46461429582448693
+    },
+    {
+      "milder": "Blastocystis hominis",
+      "harsher": "Encephalitozoon cuniculi",
+      "containment": 0.8691588785046729,
+      "null": 0.6335078534031413
+    },
+    {
+      "milder": "Blastocystis hominis",
+      "harsher": "Nosema ceranae",
+      "containment": 0.8878504672897196,
+      "null": 0.6492146596858639
+    },
+    {
+      "milder": "Blastocystis hominis",
+      "harsher": "Enterocytozoon bieneusi",
+      "containment": 0.9168224299065421,
+      "null": 0.7280977312390925
+    },
+    {
+      "milder": "Blastocystis hominis",
+      "harsher": "Nematocida parisii",
+      "containment": 0.8878504672897196,
+      "null": 0.6561954624781849
+    },
+    {
+      "milder": "Blastocystis hominis",
+      "harsher": "Vavraia culicis",
+      "containment": 0.8897196261682243,
+      "null": 0.6561954624781849
+    },
+    {
+      "milder": "Blastocystis hominis",
+      "harsher": "Encephalitozoon intestinalis",
+      "containment": 0.8663551401869158,
+      "null": 0.6296684118673648
+    },
+    {
+      "milder": "Blastocystis hominis",
+      "harsher": "Plasmodium vivax",
+      "containment": 0.6501766784452296,
+      "null": 0.3878273177636235
+    },
+    {
+      "milder": "Blastocystis hominis",
+      "harsher": "Plasmodium berghei",
+      "containment": 0.6563604240282686,
+      "null": 0.39065817409766457
+    },
+    {
+      "milder": "Blastocystis hominis",
+      "harsher": "Plasmodium knowlesi",
+      "containment": 0.6404593639575972,
+      "null": 0.37933474876150036
+    },
+    {
+      "milder": "Blastocystis hominis",
+      "harsher": "Theileria annulata",
+      "containment": 0.7676678445229682,
+      "null": 0.47983014861995754
+    },
+    {
+      "milder": "Blastocystis hominis",
+      "harsher": "Theileria parva",
+      "containment": 0.7659010600706714,
+      "null": 0.4713375796178344
+    },
+    {
+      "milder": "Blastocystis hominis",
+      "harsher": "Babesia microti",
+      "containment": 0.7402826855123675,
+      "null": 0.4688605803255485
+    },
+    {
+      "milder": "Blastocystis hominis",
+      "harsher": "Cyclospora cayetanensis",
+      "containment": 0.6157243816254417,
+      "null": 0.3623496107572541
+    },
+    {
+      "milder": "Blastocystis hominis",
+      "harsher": "Cryptosporidium hominis",
+      "containment": 0.7915194346289752,
+      "null": 0.5205237084217976
+    },
+    {
+      "milder": "Blastocystis hominis",
+      "harsher": "Trypanosoma congolense",
+      "containment": 0.7776183644189383,
+      "null": 0.6572199730094467
+    },
+    {
+      "milder": "Blastocystis hominis",
+      "harsher": "Entamoeba dispar",
+      "containment": 0.706858407079646,
+      "null": 0.43639774859287056
+    },
+    {
+      "milder": "Blastocystis hominis",
+      "harsher": "Entamoeba invadens",
+      "containment": 0.7168141592920354,
+      "null": 0.4352720450281426
+    },
+    {
+      "milder": "Blastocystis hominis",
+      "harsher": "Giardia intestinalis",
+      "containment": 0.8116113744075829,
+      "null": 0.5427095748907429
+    },
+    {
+      "milder": "Blastocystis hominis",
+      "harsher": "Spironucleus salmonicida",
+      "containment": 0.8234597156398105,
+      "null": 0.5729042510925705
+    },
+    {
+      "milder": "Blastocystis hominis",
+      "harsher": "Thelohanellus kitauei",
+      "containment": 0.6856127886323268,
+      "null": 0.4488482384823848
+    },
+    {
+      "milder": "Blastocystis hominis",
+      "harsher": "Henneguya salminicola",
+      "containment": 0.6456483126110124,
+      "null": 0.3875338753387534
+    },
+    {
+      "milder": "Thelohanellus kitauei",
+      "harsher": "Encephalitozoon cuniculi",
+      "containment": 0.8783369803063458,
+      "null": 0.7211904761904762
+    },
+    {
+      "milder": "Thelohanellus kitauei",
+      "harsher": "Nosema ceranae",
+      "containment": 0.8949671772428884,
+      "null": 0.7347619047619047
+    },
+    {
+      "milder": "Thelohanellus kitauei",
+      "harsher": "Enterocytozoon bieneusi",
+      "containment": 0.925164113785558,
+      "null": 0.7976190476190477
+    },
+    {
+      "milder": "Thelohanellus kitauei",
+      "harsher": "Nematocida parisii",
+      "containment": 0.886652078774617,
+      "null": 0.7421428571428571
+    },
+    {
+      "milder": "Thelohanellus kitauei",
+      "harsher": "Vavraia culicis",
+      "containment": 0.8936542669584245,
+      "null": 0.7392857142857143
+    },
+    {
+      "milder": "Thelohanellus kitauei",
+      "harsher": "Encephalitozoon intestinalis",
+      "containment": 0.8778993435448578,
+      "null": 0.719047619047619
+    },
+    {
+      "milder": "Thelohanellus kitauei",
+      "harsher": "Trypanosoma congolense",
+      "containment": 0.7939581719597212,
+      "null": 0.6937163375224417
+    },
+    {
+      "milder": "Thelohanellus kitauei",
+      "harsher": "Giardia intestinalis",
+      "containment": 0.79041248606466,
+      "null": 0.6361823361823362
+    },
+    {
+      "milder": "Thelohanellus kitauei",
+      "harsher": "Spironucleus salmonicida",
+      "containment": 0.8099219620958752,
+      "null": 0.6672364672364672
+    },
+    {
+      "milder": "Henneguya salminicola",
+      "harsher": "Encephalitozoon cuniculi",
+      "containment": 0.9299457326097681,
+      "null": 0.7211904761904762
+    },
+    {
+      "milder": "Henneguya salminicola",
+      "harsher": "Nosema ceranae",
+      "containment": 0.9358658115441539,
+      "null": 0.7347619047619047
+    },
+    {
+      "milder": "Henneguya salminicola",
+      "harsher": "Enterocytozoon bieneusi",
+      "containment": 0.9551060680809077,
+      "null": 0.7976190476190477
+    },
+    {
+      "milder": "Henneguya salminicola",
+      "harsher": "Nematocida parisii",
+      "containment": 0.9343857918105575,
+      "null": 0.7421428571428571
+    },
+    {
+      "milder": "Henneguya salminicola",
+      "harsher": "Vavraia culicis",
+      "containment": 0.9363591514553528,
+      "null": 0.7392857142857143
+    },
+    {
+      "milder": "Henneguya salminicola",
+      "harsher": "Encephalitozoon intestinalis",
+      "containment": 0.9284657128761716,
+      "null": 0.719047619047619
+    },
+    {
+      "milder": "Henneguya salminicola",
+      "harsher": "Cryptosporidium hominis",
+      "containment": 0.8042105263157895,
+      "null": 0.5465611685940353
+    },
+    {
+      "milder": "Henneguya salminicola",
+      "harsher": "Trypanosoma congolense",
+      "containment": 0.7878787878787878,
+      "null": 0.6937163375224417
+    },
+    {
+      "milder": "Henneguya salminicola",
+      "harsher": "Giardia intestinalis",
+      "containment": 0.8265635074145713,
+      "null": 0.6361823361823362
+    },
+    {
+      "milder": "Henneguya salminicola",
+      "harsher": "Spironucleus salmonicida",
+      "containment": 0.8362346872985171,
+      "null": 0.6672364672364672
+    },
+    {
+      "milder": "Brugia malayi",
+      "harsher": "Entamoeba histolytica",
+      "containment": 0.75,
+      "null": 0.47254725472547254
+    },
+    {
+      "milder": "Brugia malayi",
+      "harsher": "Ichthyophthirius multifiliis",
+      "containment": 0.39849624060150374,
+      "null": 0.26666666666666666
+    },
+    {
+      "milder": "Brugia malayi",
+      "harsher": "Perkinsus marinus",
+      "containment": 0.3684210526315789,
+      "null": 0.2223463687150838
+    },
+    {
+      "milder": "Brugia malayi",
+      "harsher": "Plasmodium falciparum",
+      "containment": 0.7609756097560976,
+      "null": 0.3824673029338989
+    },
+    {
+      "milder": "Brugia malayi",
+      "harsher": "Babesia bovis",
+      "containment": 0.8975609756097561,
+      "null": 0.4418522446094026
+    },
+    {
+      "milder": "Brugia malayi",
+      "harsher": "Toxoplasma gondii",
+      "containment": 0.6439024390243903,
+      "null": 0.24107458465889006
+    },
+    {
+      "milder": "Brugia malayi",
+      "harsher": "Eimeria tenella",
+      "containment": 0.824390243902439,
+      "null": 0.37681159420289856
+    },
+    {
+      "milder": "Brugia malayi",
+      "harsher": "Cryptosporidium parvum",
+      "containment": 0.8780487804878049,
+      "null": 0.42806645457758924
+    },
+    {
+      "milder": "Brugia malayi",
+      "harsher": "Leishmania major",
+      "containment": 0.39473684210526316,
+      "null": 0.16639477977161501
+    },
+    {
+      "milder": "Brugia malayi",
+      "harsher": "Trypanosoma cruzi",
+      "containment": 0.4473684210526316,
+      "null": 0.1366231647634584
+    },
+    {
+      "milder": "Brugia malayi",
+      "harsher": "Trypanosoma brucei",
+      "containment": 0.5657894736842105,
+      "null": 0.17455138662316477
+    },
+    {
+      "milder": "Brugia malayi",
+      "harsher": "Rozella allomycis",
+      "containment": 0.5541125541125541,
+      "null": 0.24934229757380882
+    },
+    {
+      "milder": "Brugia malayi",
+      "harsher": "Encephalitozoon cuniculi",
+      "containment": 0.9437229437229437,
+      "null": 0.667348728441976
+    },
+    {
+      "milder": "Brugia malayi",
+      "harsher": "Nosema ceranae",
+      "containment": 0.9437229437229437,
+      "null": 0.6837182110494008
+    },
+    {
+      "milder": "Brugia malayi",
+      "harsher": "Pneumocystis jirovecii",
+      "containment": 0.4528301886792453,
+      "null": 0.1533309834332041
+    },
+    {
+      "milder": "Brugia malayi",
+      "harsher": "Taphrina deformans",
+      "containment": 0.3081761006289308,
+      "null": 0.19562918575960522
+    },
+    {
+      "milder": "Brugia malayi",
+      "harsher": "Ustilago maydis",
+      "containment": 0.18974358974358974,
+      "null": 0.07259646827992151
+    },
+    {
+      "milder": "Brugia malayi",
+      "harsher": "Malassezia globosa",
+      "containment": 0.4564102564102564,
+      "null": 0.19653368214519293
+    },
+    {
+      "milder": "Brugia malayi",
+      "harsher": "Batrachochytrium dendrobatidis",
+      "containment": 0.24242424242424243,
+      "null": 0.12189418298743057
+    },
+    {
+      "milder": "Brugia malayi",
+      "harsher": "Enterocytozoon bieneusi",
+      "containment": 0.9653679653679653,
+      "null": 0.7594270681087402
+    },
+    {
+      "milder": "Brugia malayi",
+      "harsher": "Nematocida parisii",
+      "containment": 0.961038961038961,
+      "null": 0.6919029523531132
+    },
+    {
+      "milder": "Brugia malayi",
+      "harsher": "Vavraia culicis",
+      "containment": 0.948051948051948,
+      "null": 0.689856767027185
+    },
+    {
+      "milder": "Brugia malayi",
+      "harsher": "Encephalitozoon intestinalis",
+      "containment": 0.9393939393939394,
+      "null": 0.665302543116048
+    },
+    {
+      "milder": "Brugia malayi",
+      "harsher": "Plasmodium vivax",
+      "containment": 0.7658536585365854,
+      "null": 0.3803464121597738
+    },
+    {
+      "milder": "Brugia malayi",
+      "harsher": "Plasmodium berghei",
+      "containment": 0.7560975609756098,
+      "null": 0.3803464121597738
+    },
+    {
+      "milder": "Brugia malayi",
+      "harsher": "Plasmodium knowlesi",
+      "containment": 0.751219512195122,
+      "null": 0.36726758571933543
+    },
+    {
+      "milder": "Brugia malayi",
+      "harsher": "Theileria annulata",
+      "containment": 0.8829268292682927,
+      "null": 0.46588900671615413
+    },
+    {
+      "milder": "Brugia malayi",
+      "harsher": "Theileria parva",
+      "containment": 0.8926829268292683,
+      "null": 0.4496288441145281
+    },
+    {
+      "milder": "Brugia malayi",
+      "harsher": "Babesia microti",
+      "containment": 0.8926829268292683,
+      "null": 0.44715447154471544
+    },
+    {
+      "milder": "Brugia malayi",
+      "harsher": "Neospora caninum",
+      "containment": 0.6731707317073171,
+      "null": 0.26475786496995407
+    },
+    {
+      "milder": "Brugia malayi",
+      "harsher": "Hammondia hammondi",
+      "containment": 0.6390243902439025,
+      "null": 0.2400141392718275
+    },
+    {
+      "milder": "Brugia malayi",
+      "harsher": "Cyclospora cayetanensis",
+      "containment": 0.775609756097561,
+      "null": 0.35100742311770944
+    },
+    {
+      "milder": "Brugia malayi",
+      "harsher": "Cryptosporidium hominis",
+      "containment": 0.8878048780487805,
+      "null": 0.49346058677978083
+    },
+    {
+      "milder": "Brugia malayi",
+      "harsher": "Leishmania infantum",
+      "containment": 0.3881578947368421,
+      "null": 0.16761827079934746
+    },
+    {
+      "milder": "Brugia malayi",
+      "harsher": "Leishmania donovani",
+      "containment": 0.40131578947368424,
+      "null": 0.17536704730831973
+    },
+    {
+      "milder": "Brugia malayi",
+      "harsher": "Trypanosoma vivax",
+      "containment": 0.5592105263157895,
+      "null": 0.18882544861337683
+    },
+    {
+      "milder": "Brugia malayi",
+      "harsher": "Trypanosoma congolense",
+      "containment": 0.8486842105263158,
+      "null": 0.6806688417618271
+    },
+    {
+      "milder": "Brugia malayi",
+      "harsher": "Leptomonas pyrrhocoris",
+      "containment": 0.35526315789473684,
+      "null": 0.15171288743882544
+    },
+    {
+      "milder": "Brugia malayi",
+      "harsher": "Entamoeba dispar",
+      "containment": 0.7589285714285714,
+      "null": 0.47854785478547857
+    },
+    {
+      "milder": "Brugia malayi",
+      "harsher": "Entamoeba invadens",
+      "containment": 0.78125,
+      "null": 0.48334833483348333
+    },
+    {
+      "milder": "Brugia malayi",
+      "harsher": "Giardia intestinalis",
+      "containment": 0.8360655737704918,
+      "null": 0.6004016064257028
+    },
+    {
+      "milder": "Brugia malayi",
+      "harsher": "Spironucleus salmonicida",
+      "containment": 0.8469945355191257,
+      "null": 0.6345381526104418
+    },
+    {
+      "milder": "Brugia malayi",
+      "harsher": "Phytophthora infestans",
+      "containment": 0.17341040462427745,
+      "null": 0.07347876004592423
+    },
+    {
+      "milder": "Brugia malayi",
+      "harsher": "Saprolegnia parasitica",
+      "containment": 0.10404624277456648,
+      "null": 0.05472636815920398
+    },
+    {
+      "milder": "Brugia malayi",
+      "harsher": "Blastocystis hominis",
+      "containment": 0.5549132947976878,
+      "null": 0.3275928052047455
+    },
+    {
+      "milder": "Brugia malayi",
+      "harsher": "Thelohanellus kitauei",
+      "containment": 0.8385269121813032,
+      "null": 0.5551686615886834
+    },
+    {
+      "milder": "Brugia malayi",
+      "harsher": "Henneguya salminicola",
+      "containment": 0.8526912181303116,
+      "null": 0.4883569096844396
+    },
+    {
+      "milder": "Brugia malayi",
+      "harsher": "Helicosporidium sp. ATCC 50920",
+      "containment": 0.2616279069767442,
+      "null": 0.23344310281741676
+    },
+    {
+      "milder": "Trichinella spiralis",
+      "harsher": "Entamoeba histolytica",
+      "containment": 0.6862745098039216,
+      "null": 0.47254725472547254
+    },
+    {
+      "milder": "Trichinella spiralis",
+      "harsher": "Ichthyophthirius multifiliis",
+      "containment": 0.4009546539379475,
+      "null": 0.26666666666666666
+    },
+    {
+      "milder": "Trichinella spiralis",
+      "harsher": "Perkinsus marinus",
+      "containment": 0.4295942720763723,
+      "null": 0.2223463687150838
+    },
+    {
+      "milder": "Trichinella spiralis",
+      "harsher": "Plasmodium falciparum",
+      "containment": 0.668903803131991,
+      "null": 0.3824673029338989
+    },
+    {
+      "milder": "Trichinella spiralis",
+      "harsher": "Babesia bovis",
+      "containment": 0.7516778523489933,
+      "null": 0.4418522446094026
+    },
+    {
+      "milder": "Trichinella spiralis",
+      "harsher": "Toxoplasma gondii",
+      "containment": 0.5279642058165548,
+      "null": 0.24107458465889006
+    },
+    {
+      "milder": "Trichinella spiralis",
+      "harsher": "Eimeria tenella",
+      "containment": 0.6644295302013423,
+      "null": 0.37681159420289856
+    },
+    {
+      "milder": "Trichinella spiralis",
+      "harsher": "Cryptosporidium parvum",
+      "containment": 0.7785234899328859,
+      "null": 0.42806645457758924
+    },
+    {
+      "milder": "Trichinella spiralis",
+      "harsher": "Trypanosoma brucei",
+      "containment": 0.37669376693766937,
+      "null": 0.17455138662316477
+    },
+    {
+      "milder": "Trichinella spiralis",
+      "harsher": "Rozella allomycis",
+      "containment": 0.4438943894389439,
+      "null": 0.24934229757380882
+    },
+    {
+      "milder": "Trichinella spiralis",
+      "harsher": "Encephalitozoon cuniculi",
+      "containment": 0.8712871287128713,
+      "null": 0.667348728441976
+    },
+    {
+      "milder": "Trichinella spiralis",
+      "harsher": "Nosema ceranae",
+      "containment": 0.8910891089108911,
+      "null": 0.6837182110494008
+    },
+    {
+      "milder": "Trichinella spiralis",
+      "harsher": "Taphrina deformans",
+      "containment": 0.30376940133037694,
+      "null": 0.19562918575960522
+    },
+    {
+      "milder": "Trichinella spiralis",
+      "harsher": "Malassezia globosa",
+      "containment": 0.3534136546184739,
+      "null": 0.19653368214519293
+    },
+    {
+      "milder": "Trichinella spiralis",
+      "harsher": "Enterocytozoon bieneusi",
+      "containment": 0.9240924092409241,
+      "null": 0.7594270681087402
+    },
+    {
+      "milder": "Trichinella spiralis",
+      "harsher": "Nematocida parisii",
+      "containment": 0.8877887788778878,
+      "null": 0.6919029523531132
+    },
+    {
+      "milder": "Trichinella spiralis",
+      "harsher": "Vavraia culicis",
+      "containment": 0.8910891089108911,
+      "null": 0.689856767027185
+    },
+    {
+      "milder": "Trichinella spiralis",
+      "harsher": "Encephalitozoon intestinalis",
+      "containment": 0.8712871287128713,
+      "null": 0.665302543116048
+    },
+    {
+      "milder": "Trichinella spiralis",
+      "harsher": "Plasmodium vivax",
+      "containment": 0.6756152125279642,
+      "null": 0.3803464121597738
+    },
+    {
+      "milder": "Trichinella spiralis",
+      "harsher": "Plasmodium berghei",
+      "containment": 0.6621923937360179,
+      "null": 0.3803464121597738
+    },
+    {
+      "milder": "Trichinella spiralis",
+      "harsher": "Plasmodium knowlesi",
+      "containment": 0.6532438478747203,
+      "null": 0.36726758571933543
+    },
+    {
+      "milder": "Trichinella spiralis",
+      "harsher": "Theileria annulata",
+      "containment": 0.7874720357941835,
+      "null": 0.46588900671615413
+    },
+    {
+      "milder": "Trichinella spiralis",
+      "harsher": "Theileria parva",
+      "containment": 0.7695749440715883,
+      "null": 0.4496288441145281
+    },
+    {
+      "milder": "Trichinella spiralis",
+      "harsher": "Babesia microti",
+      "containment": 0.7583892617449665,
+      "null": 0.44715447154471544
+    },
+    {
+      "milder": "Trichinella spiralis",
+      "harsher": "Neospora caninum",
+      "containment": 0.5704697986577181,
+      "null": 0.26475786496995407
+    },
+    {
+      "milder": "Trichinella spiralis",
+      "harsher": "Hammondia hammondi",
+      "containment": 0.5190156599552572,
+      "null": 0.2400141392718275
+    },
+    {
+      "milder": "Trichinella spiralis",
+      "harsher": "Cyclospora cayetanensis",
+      "containment": 0.6331096196868009,
+      "null": 0.35100742311770944
+    },
+    {
+      "milder": "Trichinella spiralis",
+      "harsher": "Cryptosporidium hominis",
+      "containment": 0.8187919463087249,
+      "null": 0.49346058677978083
+    },
+    {
+      "milder": "Trichinella spiralis",
+      "harsher": "Leishmania donovani",
+      "containment": 0.3685636856368564,
+      "null": 0.17536704730831973
+    },
+    {
+      "milder": "Trichinella spiralis",
+      "harsher": "Trypanosoma vivax",
+      "containment": 0.3902439024390244,
+      "null": 0.18882544861337683
+    },
+    {
+      "milder": "Trichinella spiralis",
+      "harsher": "Trypanosoma congolense",
+      "containment": 0.8265582655826558,
+      "null": 0.6806688417618271
+    },
+    {
+      "milder": "Trichinella spiralis",
+      "harsher": "Entamoeba dispar",
+      "containment": 0.6993464052287581,
+      "null": 0.47854785478547857
+    },
+    {
+      "milder": "Trichinella spiralis",
+      "harsher": "Entamoeba invadens",
+      "containment": 0.7254901960784313,
+      "null": 0.48334833483348333
+    },
+    {
+      "milder": "Trichinella spiralis",
+      "harsher": "Giardia intestinalis",
+      "containment": 0.8151750972762646,
+      "null": 0.6004016064257028
+    },
+    {
+      "milder": "Trichinella spiralis",
+      "harsher": "Spironucleus salmonicida",
+      "containment": 0.8268482490272373,
+      "null": 0.6345381526104418
+    },
+    {
+      "milder": "Trichinella spiralis",
+      "harsher": "Blastocystis hominis",
+      "containment": 0.5800524934383202,
+      "null": 0.3275928052047455
+    },
+    {
+      "milder": "Trichinella spiralis",
+      "harsher": "Thelohanellus kitauei",
+      "containment": 0.7955032119914347,
+      "null": 0.5551686615886834
+    },
+    {
+      "milder": "Trichinella spiralis",
+      "harsher": "Henneguya salminicola",
+      "containment": 0.7526766595289079,
+      "null": 0.4883569096844396
+    },
+    {
+      "milder": "Trichinella spiralis",
+      "harsher": "Helicosporidium sp. ATCC 50920",
+      "containment": 0.3691588785046729,
+      "null": 0.23344310281741676
+    },
+    {
+      "milder": "Schistosoma mansoni",
+      "harsher": "Entamoeba histolytica",
+      "containment": 0.7361376673040153,
+      "null": 0.47254725472547254
+    },
+    {
+      "milder": "Schistosoma mansoni",
+      "harsher": "Ichthyophthirius multifiliis",
+      "containment": 0.4301994301994302,
+      "null": 0.26666666666666666
+    },
+    {
+      "milder": "Schistosoma mansoni",
+      "harsher": "Perkinsus marinus",
+      "containment": 0.43304843304843305,
+      "null": 0.2223463687150838
+    },
+    {
+      "milder": "Schistosoma mansoni",
+      "harsher": "Plasmodium falciparum",
+      "containment": 0.7447306791569087,
+      "null": 0.3824673029338989
+    },
+    {
+      "milder": "Schistosoma mansoni",
+      "harsher": "Babesia bovis",
+      "containment": 0.8126463700234192,
+      "null": 0.4418522446094026
+    },
+    {
+      "milder": "Schistosoma mansoni",
+      "harsher": "Toxoplasma gondii",
+      "containment": 0.5971896955503513,
+      "null": 0.24107458465889006
+    },
+    {
+      "milder": "Schistosoma mansoni",
+      "harsher": "Eimeria tenella",
+      "containment": 0.7377049180327869,
+      "null": 0.37681159420289856
+    },
+    {
+      "milder": "Schistosoma mansoni",
+      "harsher": "Cryptosporidium parvum",
+      "containment": 0.8009367681498829,
+      "null": 0.42806645457758924
+    },
+    {
+      "milder": "Schistosoma mansoni",
+      "harsher": "Trypanosoma brucei",
+      "containment": 0.4601226993865031,
+      "null": 0.17455138662316477
+    },
+    {
+      "milder": "Schistosoma mansoni",
+      "harsher": "Rozella allomycis",
+      "containment": 0.4715909090909091,
+      "null": 0.24934229757380882
+    },
+    {
+      "milder": "Schistosoma mansoni",
+      "harsher": "Encephalitozoon cuniculi",
+      "containment": 0.9015151515151515,
+      "null": 0.667348728441976
+    },
+    {
+      "milder": "Schistosoma mansoni",
+      "harsher": "Nosema ceranae",
+      "containment": 0.8901515151515151,
+      "null": 0.6837182110494008
+    },
+    {
+      "milder": "Schistosoma mansoni",
+      "harsher": "Taphrina deformans",
+      "containment": 0.2803234501347709,
+      "null": 0.19562918575960522
+    },
+    {
+      "milder": "Schistosoma mansoni",
+      "harsher": "Malassezia globosa",
+      "containment": 0.3510392609699769,
+      "null": 0.19653368214519293
+    },
+    {
+      "milder": "Schistosoma mansoni",
+      "harsher": "Enterocytozoon bieneusi",
+      "containment": 0.9393939393939394,
+      "null": 0.7594270681087402
+    },
+    {
+      "milder": "Schistosoma mansoni",
+      "harsher": "Nematocida parisii",
+      "containment": 0.9128787878787878,
+      "null": 0.6919029523531132
+    },
+    {
+      "milder": "Schistosoma mansoni",
+      "harsher": "Vavraia culicis",
+      "containment": 0.9034090909090909,
+      "null": 0.689856767027185
+    },
+    {
+      "milder": "Schistosoma mansoni",
+      "harsher": "Encephalitozoon intestinalis",
+      "containment": 0.8901515151515151,
+      "null": 0.665302543116048
+    },
+    {
+      "milder": "Schistosoma mansoni",
+      "harsher": "Plasmodium vivax",
+      "containment": 0.7540983606557377,
+      "null": 0.3803464121597738
+    },
+    {
+      "milder": "Schistosoma mansoni",
+      "harsher": "Plasmodium berghei",
+      "containment": 0.7494145199063232,
+      "null": 0.3803464121597738
+    },
+    {
+      "milder": "Schistosoma mansoni",
+      "harsher": "Plasmodium knowlesi",
+      "containment": 0.7447306791569087,
+      "null": 0.36726758571933543
+    },
+    {
+      "milder": "Schistosoma mansoni",
+      "harsher": "Theileria annulata",
+      "containment": 0.8313817330210773,
+      "null": 0.46588900671615413
+    },
+    {
+      "milder": "Schistosoma mansoni",
+      "harsher": "Theileria parva",
+      "containment": 0.8173302107728337,
+      "null": 0.4496288441145281
+    },
+    {
+      "milder": "Schistosoma mansoni",
+      "harsher": "Babesia microti",
+      "containment": 0.8173302107728337,
+      "null": 0.44715447154471544
+    },
+    {
+      "milder": "Schistosoma mansoni",
+      "harsher": "Neospora caninum",
+      "containment": 0.6346604215456675,
+      "null": 0.26475786496995407
+    },
+    {
+      "milder": "Schistosoma mansoni",
+      "harsher": "Hammondia hammondi",
+      "containment": 0.5878220140515222,
+      "null": 0.2400141392718275
+    },
+    {
+      "milder": "Schistosoma mansoni",
+      "harsher": "Cyclospora cayetanensis",
+      "containment": 0.6838407494145199,
+      "null": 0.35100742311770944
+    },
+    {
+      "milder": "Schistosoma mansoni",
+      "harsher": "Cryptosporidium hominis",
+      "containment": 0.8266978922716628,
+      "null": 0.49346058677978083
+    },
+    {
+      "milder": "Schistosoma mansoni",
+      "harsher": "Leishmania donovani",
+      "containment": 0.39263803680981596,
+      "null": 0.17536704730831973
+    },
+    {
+      "milder": "Schistosoma mansoni",
+      "harsher": "Trypanosoma vivax",
+      "containment": 0.4723926380368098,
+      "null": 0.18882544861337683
+    },
+    {
+      "milder": "Schistosoma mansoni",
+      "harsher": "Trypanosoma congolense",
+      "containment": 0.8251533742331288,
+      "null": 0.6806688417618271
+    },
+    {
+      "milder": "Schistosoma mansoni",
+      "harsher": "Entamoeba dispar",
+      "containment": 0.7437858508604207,
+      "null": 0.47854785478547857
+    },
+    {
+      "milder": "Schistosoma mansoni",
+      "harsher": "Entamoeba invadens",
+      "containment": 0.7648183556405354,
+      "null": 0.48334833483348333
+    },
+    {
+      "milder": "Schistosoma mansoni",
+      "harsher": "Giardia intestinalis",
+      "containment": 0.8651685393258427,
+      "null": 0.6004016064257028
+    },
+    {
+      "milder": "Schistosoma mansoni",
+      "harsher": "Spironucleus salmonicida",
+      "containment": 0.8943820224719101,
+      "null": 0.6345381526104418
+    },
+    {
+      "milder": "Schistosoma mansoni",
+      "harsher": "Blastocystis hominis",
+      "containment": 0.5977337110481586,
+      "null": 0.3275928052047455
+    },
+    {
+      "milder": "Schistosoma mansoni",
+      "harsher": "Thelohanellus kitauei",
+      "containment": 0.845984598459846,
+      "null": 0.5551686615886834
+    },
+    {
+      "milder": "Schistosoma mansoni",
+      "harsher": "Henneguya salminicola",
+      "containment": 0.8283828382838284,
+      "null": 0.4883569096844396
+    },
+    {
+      "milder": "Schistosoma mansoni",
+      "harsher": "Helicosporidium sp. ATCC 50920",
+      "containment": 0.3557951482479784,
+      "null": 0.23344310281741676
+    },
+    {
+      "milder": "Helicosporidium sp. ATCC 50920",
+      "harsher": "Entamoeba histolytica",
+      "containment": 0.598159509202454,
+      "null": 0.43945868945868943
+    },
+    {
+      "milder": "Helicosporidium sp. ATCC 50920",
+      "harsher": "Ichthyophthirius multifiliis",
+      "containment": 0.44969199178644764,
+      "null": 0.250732524068648
+    },
+    {
+      "milder": "Helicosporidium sp. ATCC 50920",
+      "harsher": "Perkinsus marinus",
+      "containment": 0.34291581108829566,
+      "null": 0.18292172457095018
+    },
+    {
+      "milder": "Helicosporidium sp. ATCC 50920",
+      "harsher": "Plasmodium falciparum",
+      "containment": 0.592948717948718,
+      "null": 0.37136627906976744
+    },
+    {
+      "milder": "Helicosporidium sp. ATCC 50920",
+      "harsher": "Babesia bovis",
+      "containment": 0.6346153846153846,
+      "null": 0.42986918604651164
+    },
+    {
+      "milder": "Helicosporidium sp. ATCC 50920",
+      "harsher": "Toxoplasma gondii",
+      "containment": 0.44871794871794873,
+      "null": 0.2467296511627907
+    },
+    {
+      "milder": "Helicosporidium sp. ATCC 50920",
+      "harsher": "Eimeria tenella",
+      "containment": 0.5881410256410257,
+      "null": 0.36773255813953487
+    },
+    {
+      "milder": "Helicosporidium sp. ATCC 50920",
+      "harsher": "Cryptosporidium parvum",
+      "containment": 0.6410256410256411,
+      "null": 0.43968023255813954
+    },
+    {
+      "milder": "Helicosporidium sp. ATCC 50920",
+      "harsher": "Rozella allomycis",
+      "containment": 0.35773480662983426,
+      "null": 0.23653395784543327
+    },
+    {
+      "milder": "Helicosporidium sp. ATCC 50920",
+      "harsher": "Encephalitozoon cuniculi",
+      "containment": 0.7914364640883977,
+      "null": 0.6380060220809636
+    },
+    {
+      "milder": "Helicosporidium sp. ATCC 50920",
+      "harsher": "Nosema ceranae",
+      "containment": 0.8204419889502762,
+      "null": 0.656406825025092
+    },
+    {
+      "milder": "Helicosporidium sp. ATCC 50920",
+      "harsher": "Enterocytozoon bieneusi",
+      "containment": 0.8646408839779005,
+      "null": 0.7286717965874875
+    },
+    {
+      "milder": "Helicosporidium sp. ATCC 50920",
+      "harsher": "Nematocida parisii",
+      "containment": 0.8093922651933702,
+      "null": 0.6620943459350953
+    },
+    {
+      "milder": "Helicosporidium sp. ATCC 50920",
+      "harsher": "Vavraia culicis",
+      "containment": 0.8121546961325967,
+      "null": 0.6570759451321512
+    },
+    {
+      "milder": "Helicosporidium sp. ATCC 50920",
+      "harsher": "Encephalitozoon intestinalis",
+      "containment": 0.7928176795580111,
+      "null": 0.6353295416527267
+    },
+    {
+      "milder": "Helicosporidium sp. ATCC 50920",
+      "harsher": "Plasmodium vivax",
+      "containment": 0.5865384615384616,
+      "null": 0.3691860465116279
+    },
+    {
+      "milder": "Helicosporidium sp. ATCC 50920",
+      "harsher": "Plasmodium berghei",
+      "containment": 0.5849358974358975,
+      "null": 0.3702761627906977
+    },
+    {
+      "milder": "Helicosporidium sp. ATCC 50920",
+      "harsher": "Plasmodium knowlesi",
+      "containment": 0.5673076923076923,
+      "null": 0.3586482558139535
+    },
+    {
+      "milder": "Helicosporidium sp. ATCC 50920",
+      "harsher": "Theileria annulata",
+      "containment": 0.6714743589743589,
+      "null": 0.45494186046511625
+    },
+    {
+      "milder": "Helicosporidium sp. ATCC 50920",
+      "harsher": "Theileria parva",
+      "containment": 0.6522435897435898,
+      "null": 0.44004360465116277
+    },
+    {
+      "milder": "Helicosporidium sp. ATCC 50920",
+      "harsher": "Babesia microti",
+      "containment": 0.657051282051282,
+      "null": 0.43495639534883723
+    },
+    {
+      "milder": "Helicosporidium sp. ATCC 50920",
+      "harsher": "Neospora caninum",
+      "containment": 0.47435897435897434,
+      "null": 0.26199127906976744
+    },
+    {
+      "milder": "Helicosporidium sp. ATCC 50920",
+      "harsher": "Hammondia hammondi",
+      "containment": 0.45032051282051283,
+      "null": 0.24454941860465115
+    },
+    {
+      "milder": "Helicosporidium sp. ATCC 50920",
+      "harsher": "Cyclospora cayetanensis",
+      "containment": 0.5801282051282052,
+      "null": 0.33611918604651164
+    },
+    {
+      "milder": "Helicosporidium sp. ATCC 50920",
+      "harsher": "Cryptosporidium hominis",
+      "containment": 0.6858974358974359,
+      "null": 0.49709302325581395
+    },
+    {
+      "milder": "Helicosporidium sp. ATCC 50920",
+      "harsher": "Trypanosoma congolense",
+      "containment": 0.7712895377128953,
+      "null": 0.6586907449209932
+    },
+    {
+      "milder": "Helicosporidium sp. ATCC 50920",
+      "harsher": "Entamoeba dispar",
+      "containment": 0.6134969325153374,
+      "null": 0.4465811965811966
+    },
+    {
+      "milder": "Helicosporidium sp. ATCC 50920",
+      "harsher": "Entamoeba invadens",
+      "containment": 0.6119631901840491,
+      "null": 0.4440883190883191
+    },
+    {
+      "milder": "Helicosporidium sp. ATCC 50920",
+      "harsher": "Giardia intestinalis",
+      "containment": 0.7801047120418848,
+      "null": 0.5553816046966732
+    },
+    {
+      "milder": "Helicosporidium sp. ATCC 50920",
+      "harsher": "Spironucleus salmonicida",
+      "containment": 0.8150087260034904,
+      "null": 0.5909980430528375
+    },
+    {
+      "milder": "Helicosporidium sp. ATCC 50920",
+      "harsher": "Blastocystis hominis",
+      "containment": 0.6309719934102141,
+      "null": 0.3740345715336521
+    },
+    {
+      "milder": "Helicosporidium sp. ATCC 50920",
+      "harsher": "Thelohanellus kitauei",
+      "containment": 0.6328626444159179,
+      "null": 0.44847890088321885
+    },
+    {
+      "milder": "Helicosporidium sp. ATCC 50920",
+      "harsher": "Henneguya salminicola",
+      "containment": 0.5417201540436457,
+      "null": 0.37978410206084395
+    }
+  ]
+}

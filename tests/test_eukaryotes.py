@@ -217,3 +217,30 @@ def test_keyword_classes_avoid_substring_false_hits():
     assert re.search(kw["uncharacterised"], "DUF1234 Domain of unknown function")
     assert re.search(kw["cilium_flagellum"], "Intraflagellar transport protein")
     assert not re.search(kw["cilium_flagellum"], "facilitated transport")
+
+
+def test_module_model_finds_coupled_losses():
+    import numpy as np
+
+    from organelle_evo.eukaryotes.modules import fit_modules, loss_matrix, predict_hidden
+
+    anc = np.array([1, 2, 0, 3])
+    L = loss_matrix([("a", "d")], {"a": anc, "d": np.array([0, 2, 1, 0])})
+    assert np.isnan(L[0, 2]) and list(L[0, [0, 1, 3]]) == [1, 0, 1]
+
+    # Two modules: each parasite loses one half of the families wholesale.
+    rng = np.random.default_rng(0)
+    group = np.arange(200) % 2
+    which = rng.integers(0, 2, size=40)
+    p = np.where(group[None, :] == which[:, None], 0.9, 0.1)
+    L = (rng.random(p.shape) < p).astype(float)
+    scores = {}
+    for k in (0, 1):
+        model = fit_modules(L[:30], k, epochs=300)
+        aucs = []
+        from organelle_evo.predict import auroc
+        for i in range(30, 40):
+            s, y = predict_hidden(model, L[i], 0.5, np.random.default_rng(i))
+            aucs.append(auroc(s, y))
+        scores[k] = np.mean(aucs)
+    assert scores[1] > scores[0] + 0.2

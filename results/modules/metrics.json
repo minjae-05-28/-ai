@@ -1,0 +1,605 @@
+{
+  "n_pairs": 51,
+  "n_families": 7654,
+  "reveal": 0.5,
+  "ks": [
+    0,
+    2,
+    4,
+    8
+  ],
+  "mean_auroc_hidden": {
+    "k0": 0.8100816159348199,
+    "k2": 0.8113859604558169,
+    "k4": 0.8014064802139009,
+    "k8": 0.801711597588366
+  },
+  "by_clade": {
+    "alveolata": {
+      "k0": 0.8369489063155306,
+      "k2": 0.8393106639433897,
+      "k4": 0.8261432853405863,
+      "k8": 0.8320218517089063
+    },
+    "amoebozoa": {
+      "k0": 0.8103719229390585,
+      "k2": 0.8246244613254184,
+      "k4": 0.8189482971230949,
+      "k8": 0.8010424406150122
+    },
+    "chlorophyta": {
+      "k0": 0.7086249260023493,
+      "k2": 0.71088281603548,
+      "k4": 0.7067664837847166,
+      "k8": 0.699956273735487
+    },
+    "cnidaria": {
+      "k0": 0.8113398400264684,
+      "k2": 0.8143893131850057,
+      "k4": 0.8058925273319394,
+      "k8": 0.8055760960052389
+    },
+    "discoba": {
+      "k0": 0.7787663214197951,
+      "k2": 0.7835294732451756,
+      "k4": 0.7718806493986983,
+      "k8": 0.7633001934946364
+    },
+    "fungi": {
+      "k0": 0.8058297435235756,
+      "k2": 0.8001074969212202,
+      "k4": 0.7936992587274466,
+      "k8": 0.7987929306047762
+    },
+    "metamonada": {
+      "k0": 0.8432612758724997,
+      "k2": 0.8539940045379898,
+      "k4": 0.8391382157772342,
+      "k8": 0.8454374104888277
+    },
+    "nematoda": {
+      "k0": 0.749384094497792,
+      "k2": 0.7471929454945392,
+      "k4": 0.7403323764699424,
+      "k8": 0.7387136169737046
+    },
+    "stramenopiles": {
+      "k0": 0.8296161005198958,
+      "k2": 0.8265917584172161,
+      "k4": 0.8177294498059512,
+      "k8": 0.8099172744170255
+    }
+  },
+  "best_k": 2,
+  "gain_vs_additive": {
+    "mean": 0.0013043445209970927,
+    "n_better": 34,
+    "n": 51
+  },
+  "heldout": [
+    {
+      "pair": "Tetrahymena thermophila -> Ichthyophthirius multifiliis",
+      "clade": "alveolata",
+      "k0": 0.7350492707743288,
+      "k2": 0.7348651041382483,
+      "k4": 0.7337056729922379,
+      "k8": 0.7207507833237314
+    },
+    {
+      "pair": "Tetrahymena thermophila -> Perkinsus marinus",
+      "clade": "alveolata",
+      "k0": 0.8151514531697949,
+      "k2": 0.8167568729634028,
+      "k4": 0.8112412204686473,
+      "k8": 0.8073984112982536
+    },
+    {
+      "pair": "Chromera velia -> Plasmodium falciparum",
+      "clade": "alveolata",
+      "k0": 0.8407693359496372,
+      "k2": 0.842623328289872,
+      "k4": 0.8280843249645606,
+      "k8": 0.834752943172298
+    },
+    {
+      "pair": "Chromera velia -> Babesia bovis",
+      "clade": "alveolata",
+      "k0": 0.8560574721025652,
+      "k2": 0.8617992842201984,
+      "k4": 0.8430790773958824,
+      "k8": 0.8568761848005213
+    },
+    {
+      "pair": "Chromera velia -> Toxoplasma gondii",
+      "clade": "alveolata",
+      "k0": 0.8382454210945526,
+      "k2": 0.8359868434775711,
+      "k4": 0.8305434708953019,
+      "k8": 0.835240833358617
+    },
+    {
+      "pair": "Chromera velia -> Eimeria tenella",
+      "clade": "alveolata",
+      "k0": 0.8206746901556858,
+      "k2": 0.8236689582887996,
+      "k4": 0.8079828612369733,
+      "k8": 0.8139192605441957
+    },
+    {
+      "pair": "Chromera velia -> Cryptosporidium parvum",
+      "clade": "alveolata",
+      "k0": 0.8751955263712681,
+      "k2": 0.8766021333842868,
+      "k4": 0.8622120121844737,
+      "k8": 0.868496974151545
+    },
+    {
+      "pair": "Chromera velia -> Plasmodium vivax",
+      "clade": "alveolata",
+      "k0": 0.8369403238858842,
+      "k2": 0.8417848736722755,
+      "k4": 0.826689478952829,
+      "k8": 0.8333721837075876
+    },
+    {
+      "pair": "Chromera velia -> Plasmodium berghei",
+      "clade": "alveolata",
+      "k0": 0.8411909389336168,
+      "k2": 0.8435894764214721,
+      "k4": 0.8286702138023673,
+      "k8": 0.835929399994476
+    },
+    {
+      "pair": "Chromera velia -> Plasmodium knowlesi",
+      "clade": "alveolata",
+      "k0": 0.8410712576963159,
+      "k2": 0.8455039947764367,
+      "k4": 0.8293844612212075,
+      "k8": 0.8365143713018744
+    },
+    {
+      "pair": "Chromera velia -> Theileria annulata",
+      "clade": "alveolata",
+      "k0": 0.8540860248798112,
+      "k2": 0.8637439569894626,
+      "k4": 0.8441023530812238,
+      "k8": 0.8563270894266145
+    },
+    {
+      "pair": "Chromera velia -> Theileria parva",
+      "clade": "alveolata",
+      "k0": 0.8572665110955112,
+      "k2": 0.8658342114875822,
+      "k4": 0.847125201762593,
+      "k8": 0.8608296337433025
+    },
+    {
+      "pair": "Chromera velia -> Babesia microti",
+      "clade": "alveolata",
+      "k0": 0.8510272307069853,
+      "k2": 0.8535942173591232,
+      "k4": 0.8336127812780177,
+      "k8": 0.8467672675462934
+    },
+    {
+      "pair": "Chromera velia -> Neospora caninum",
+      "clade": "alveolata",
+      "k0": 0.8360143977326855,
+      "k2": 0.8354585588165072,
+      "k4": 0.8250526442721147,
+      "k8": 0.8324137353224342
+    },
+    {
+      "pair": "Chromera velia -> Hammondia hammondi",
+      "clade": "alveolata",
+      "k0": 0.837009205955718,
+      "k2": 0.8345568486373119,
+      "k4": 0.8277521588326988,
+      "k8": 0.8322287943075285
+    },
+    {
+      "pair": "Chromera velia -> Cyclospora cayetanensis",
+      "clade": "alveolata",
+      "k0": 0.8323559408449714,
+      "k2": 0.8332168195501323,
+      "k4": 0.8231604980244098,
+      "k8": 0.8225700440159519
+    },
+    {
+      "pair": "Chromera velia -> Cryptosporidium hominis",
+      "clade": "alveolata",
+      "k0": 0.8600264060146894,
+      "k2": 0.858695804564943,
+      "k4": 0.8420374194244288,
+      "k8": 0.8499835690361826
+    },
+    {
+      "pair": "Dictyostelium discoideum -> Entamoeba histolytica",
+      "clade": "amoebozoa",
+      "k0": 0.8112533864455349,
+      "k2": 0.8247668645292071,
+      "k4": 0.8182337050721107,
+      "k8": 0.8000922792706396
+    },
+    {
+      "pair": "Dictyostelium discoideum -> Entamoeba dispar",
+      "clade": "amoebozoa",
+      "k0": 0.8064717369751202,
+      "k2": 0.8203051205819785,
+      "k4": 0.8134430224236769,
+      "k8": 0.7964488670619406
+    },
+    {
+      "pair": "Dictyostelium discoideum -> Entamoeba invadens",
+      "clade": "amoebozoa",
+      "k0": 0.8133906453965203,
+      "k2": 0.8288013988650699,
+      "k4": 0.825168163873497,
+      "k8": 0.8065861755124564
+    },
+    {
+      "pair": "Auxenochlorella protothecoides -> Helicosporidium sp. ATCC 50920",
+      "clade": "chlorophyta",
+      "k0": 0.7086249260023493,
+      "k2": 0.71088281603548,
+      "k4": 0.7067664837847166,
+      "k8": 0.699956273735487
+    },
+    {
+      "pair": "Nematostella vectensis -> Thelohanellus kitauei",
+      "clade": "cnidaria",
+      "k0": 0.7992366982179829,
+      "k2": 0.7992609197112116,
+      "k4": 0.7916484054174381,
+      "k8": 0.7916949031837137
+    },
+    {
+      "pair": "Nematostella vectensis -> Henneguya salminicola",
+      "clade": "cnidaria",
+      "k0": 0.8234429818349538,
+      "k2": 0.8295177066587999,
+      "k4": 0.8201366492464407,
+      "k8": 0.8194572888267642
+    },
+    {
+      "pair": "Bodo saltans -> Leishmania major",
+      "clade": "discoba",
+      "k0": 0.7970103756781706,
+      "k2": 0.8004345772895922,
+      "k4": 0.7913696582809271,
+      "k8": 0.7831366841990008
+    },
+    {
+      "pair": "Bodo saltans -> Trypanosoma cruzi",
+      "clade": "discoba",
+      "k0": 0.7945988427144073,
+      "k2": 0.7916403323481322,
+      "k4": 0.7798557253551746,
+      "k8": 0.7742403106980839
+    },
+    {
+      "pair": "Bodo saltans -> Trypanosoma brucei",
+      "clade": "discoba",
+      "k0": 0.8018312830134414,
+      "k2": 0.8063069043574433,
+      "k4": 0.7912996769266373,
+      "k8": 0.7818965709885841
+    },
+    {
+      "pair": "Bodo saltans -> Leishmania infantum",
+      "clade": "discoba",
+      "k0": 0.791444830606463,
+      "k2": 0.7955855184045516,
+      "k4": 0.787311843878793,
+      "k8": 0.778760234106198
+    },
+    {
+      "pair": "Bodo saltans -> Leishmania donovani",
+      "clade": "discoba",
+      "k0": 0.7854537642755756,
+      "k2": 0.7922308498509812,
+      "k4": 0.7826769755376058,
+      "k8": 0.7710890062930288
+    },
+    {
+      "pair": "Bodo saltans -> Trypanosoma vivax",
+      "clade": "discoba",
+      "k0": 0.8007232179872322,
+      "k2": 0.8042276330964361,
+      "k4": 0.7903088191378584,
+      "k8": 0.7853116000429808
+    },
+    {
+      "pair": "Bodo saltans -> Trypanosoma congolense",
+      "clade": "discoba",
+      "k0": 0.680867659469134,
+      "k2": 0.6954946254613312,
+      "k4": 0.6830707124012063,
+      "k8": 0.6731093738119567
+    },
+    {
+      "pair": "Bodo saltans -> Leptomonas pyrrhocoris",
+      "clade": "discoba",
+      "k0": 0.7782005976139366,
+      "k2": 0.7823153451529369,
+      "k4": 0.7691517836713833,
+      "k8": 0.7588577678172581
+    },
+    {
+      "pair": "Spizellomyces punctatus -> Rozella allomycis",
+      "clade": "fungi",
+      "k0": 0.7849602171036015,
+      "k2": 0.7755101214961285,
+      "k4": 0.7633153364561548,
+      "k8": 0.766010884650839
+    },
+    {
+      "pair": "Spizellomyces punctatus -> Encephalitozoon cuniculi",
+      "clade": "fungi",
+      "k0": 0.8724784885107365,
+      "k2": 0.8781115477988534,
+      "k4": 0.8749965534282089,
+      "k8": 0.8747168585981235
+    },
+    {
+      "pair": "Spizellomyces punctatus -> Nosema ceranae",
+      "clade": "fungi",
+      "k0": 0.8755775897862481,
+      "k2": 0.8833508706530169,
+      "k4": 0.88007777966255,
+      "k8": 0.8814078197307857
+    },
+    {
+      "pair": "Schizosaccharomyces pombe -> Pneumocystis jirovecii",
+      "clade": "fungi",
+      "k0": 0.7738633059096173,
+      "k2": 0.7534334894408357,
+      "k4": 0.7508926382513398,
+      "k8": 0.7784126224260994
+    },
+    {
+      "pair": "Schizosaccharomyces pombe -> Taphrina deformans",
+      "clade": "fungi",
+      "k0": 0.6515219871961495,
+      "k2": 0.649098023251907,
+      "k4": 0.6438754443475018,
+      "k8": 0.6313572184325403
+    },
+    {
+      "pair": "Coprinopsis cinerea -> Ustilago maydis",
+      "clade": "fungi",
+      "k0": 0.7114076753195118,
+      "k2": 0.6859997373382613,
+      "k4": 0.6755654861910352,
+      "k8": 0.6916134046748423
+    },
+    {
+      "pair": "Coprinopsis cinerea -> Malassezia globosa",
+      "clade": "fungi",
+      "k0": 0.7595432117163953,
+      "k2": 0.747890829389312,
+      "k4": 0.733355198291035,
+      "k8": 0.7471282390110905
+    },
+    {
+      "pair": "Spizellomyces punctatus -> Batrachochytrium dendrobatidis",
+      "clade": "fungi",
+      "k0": 0.7532654565393472,
+      "k2": 0.7254909263283653,
+      "k4": 0.7165371627504445,
+      "k8": 0.7339050913355069
+    },
+    {
+      "pair": "Spizellomyces punctatus -> Enterocytozoon bieneusi",
+      "clade": "fungi",
+      "k0": 0.8691667505653595,
+      "k2": 0.8736202537130401,
+      "k4": 0.868373036121476,
+      "k8": 0.8644632850006753
+    },
+    {
+      "pair": "Spizellomyces punctatus -> Nematocida parisii",
+      "clade": "fungi",
+      "k0": 0.8710248160392696,
+      "k2": 0.8724359440381128,
+      "k4": 0.8673882642463736,
+      "k8": 0.8691459308177966
+    },
+    {
+      "pair": "Spizellomyces punctatus -> Vavraia culicis",
+      "clade": "fungi",
+      "k0": 0.8727722000400274,
+      "k2": 0.8767234265955639,
+      "k4": 0.8730293173646668,
+      "k8": 0.8726520041995784
+    },
+    {
+      "pair": "Spizellomyces punctatus -> Encephalitozoon intestinalis",
+      "clade": "fungi",
+      "k0": 0.8743752235566437,
+      "k2": 0.8796247930112461,
+      "k4": 0.8769848876185744,
+      "k8": 0.8747018083794366
+    },
+    {
+      "pair": "Naegleria gruberi -> Giardia intestinalis",
+      "clade": "metamonada",
+      "k0": 0.8464316243275433,
+      "k2": 0.858866074678725,
+      "k4": 0.8408922007030878,
+      "k8": 0.8469726676691541
+    },
+    {
+      "pair": "Naegleria gruberi -> Spironucleus salmonicida",
+      "clade": "metamonada",
+      "k0": 0.8400909274174561,
+      "k2": 0.8491219343972546,
+      "k4": 0.8373842308513808,
+      "k8": 0.8439021533085013
+    },
+    {
+      "pair": "Caenorhabditis elegans -> Brugia malayi",
+      "clade": "nematoda",
+      "k0": 0.7538352661073685,
+      "k2": 0.7525118422721814,
+      "k4": 0.7485390058376374,
+      "k8": 0.7478155130323721
+    },
+    {
+      "pair": "Caenorhabditis elegans -> Trichinella spiralis",
+      "clade": "nematoda",
+      "k0": 0.7218839296977944,
+      "k2": 0.7229090133434477,
+      "k4": 0.7222963227114881,
+      "k8": 0.7145395134057738
+    },
+    {
+      "pair": "Caenorhabditis elegans -> Schistosoma mansoni",
+      "clade": "nematoda",
+      "k0": 0.7724330876882132,
+      "k2": 0.7661579808679884,
+      "k4": 0.750161800860702,
+      "k8": 0.7537858244829678
+    },
+    {
+      "pair": "Thalassiosira pseudonana -> Phytophthora infestans",
+      "clade": "stramenopiles",
+      "k0": 0.8164592623433036,
+      "k2": 0.8159079414248015,
+      "k4": 0.8074412220932888,
+      "k8": 0.7960392391563403
+    },
+    {
+      "pair": "Thalassiosira pseudonana -> Saprolegnia parasitica",
+      "clade": "stramenopiles",
+      "k0": 0.821556515331927,
+      "k2": 0.8182687241176158,
+      "k4": 0.8020534608888065,
+      "k8": 0.796052624346391
+    },
+    {
+      "pair": "Thalassiosira pseudonana -> Blastocystis hominis",
+      "clade": "stramenopiles",
+      "k0": 0.8508325238844568,
+      "k2": 0.8455986097092308,
+      "k4": 0.8436936664357582,
+      "k8": 0.8376599597483452
+    }
+  ],
+  "modules": [
+    {
+      "strength": 191.1571044921875,
+      "lost_together": [
+        "Gpr1_Fun34_YaaH: GPR1/FUN34/yaaH family",
+        "GH16_XgeA: XgeA-like, catalytic GH16 domain",
+        "B12-binding_2: B12 binding domain",
+        "Met_synt_B12: Vitamin B12 dependent methionine synthase, activation domain",
+        "ADH_N_2: N-terminal domain of oxidoreductase",
+        "LBP_BPI_CETP_C: LBP / BPI / CETP family, C-terminal domain",
+        "GFA: Glutathione-dependent formaldehyde-activating enzyme",
+        "PLA2_B: Lysophospholipase catalytic domain"
+      ],
+      "lost_together_enriched": [
+        [
+          "go:oxidoreductase activity",
+          5.41
+        ],
+        [
+          "go:catalytic activity",
+          2.82
+        ]
+      ],
+      "kept_together": [
+        "UBQLN1: Ubiquilin-1-like domain",
+        "zf-B_box: B-box zinc finger",
+        "UPF0113: UPF0113 PUA domain",
+        "Pus10_C: Pus10, C-terminal",
+        "Chal_sti_synt_C: Chalcone and stilbene synthases, C-terminal domain",
+        "PROCN: PROCN (NUC071) domain",
+        "zf-RING_5: zinc-RING finger domain",
+        "pre-PUA_NIP7: NIP7/UPF0113, pre-PUA domain"
+      ],
+      "kept_together_enriched": [
+        [
+          "go:ribosome",
+          6.32
+        ],
+        [
+          "go:structural molecule activity",
+          5.66
+        ]
+      ],
+      "most_affected": [
+        "Entamoeba dispar",
+        "Entamoeba histolytica",
+        "Plasmodium knowlesi",
+        "Entamoeba invadens",
+        "Plasmodium berghei",
+        "Plasmodium vivax"
+      ],
+      "least_affected": [
+        "Trypanosoma congolense",
+        "Helicosporidium sp. ATCC 50920",
+        "Malassezia globosa",
+        "Trichinella spiralis",
+        "Taphrina deformans",
+        "Ustilago maydis"
+      ]
+    },
+    {
+      "strength": 181.48057556152344,
+      "lost_together": [
+        "DUF92: Integral membrane protein DUF92",
+        "NYD-SP28: Sperm tail",
+        "Indigoidine_A: Indigoidine synthase A like protein",
+        "PIRC1_2: Piercer of microtubule wall 1/2",
+        "TMEM18: Transmembrane protein 18",
+        "Glycos_trans_3N: Glycosyl transferase family, helical bundle domain",
+        "DRC11_N: Dynein regulatory complex subunit 11-like, N-terminal domain",
+        "ODAD1_CC: ODAD1 central coiled coil region"
+      ],
+      "lost_together_enriched": [
+        [
+          "go:transferase activity",
+          2.3
+        ]
+      ],
+      "kept_together": [
+        "DUF760: Protein of unknown function (DUF760)",
+        "DUF1967: Domain of unknown function (DUF1967)",
+        "GNT-I: GNT-I family",
+        "Bromo_TP_like: Histone-fold protein",
+        "Methyltrans_RNA: RNA methyltransferase domain",
+        "Cytidylate_kin: Cytidylate kinase",
+        "Chal_sti_synt_C: Chalcone and stilbene synthases, C-terminal domain",
+        "zf-DBF: DBF zinc finger"
+      ],
+      "kept_together_enriched": [
+        [
+          "go:DNA binding",
+          5.68
+        ],
+        [
+          "go:transferase activity",
+          2.82
+        ]
+      ],
+      "most_affected": [
+        "Encephalitozoon cuniculi",
+        "Plasmodium knowlesi",
+        "Encephalitozoon intestinalis",
+        "Theileria parva",
+        "Plasmodium vivax",
+        "Nosema ceranae"
+      ],
+      "least_affected": [
+        "Entamoeba invadens",
+        "Leishmania major",
+        "Leishmania donovani",
+        "Leishmania infantum",
+        "Entamoeba histolytica",
+        "Entamoeba dispar"
+      ]
+    }
+  ]
+}
