@@ -1,0 +1,84 @@
+{
+  "tree": "((('Plasmodium falciparum', 'Toxoplasma gondii'), 'Cryptosporidium parvum'), ('Tetrahymena thermophila', 'Ichthyophthirius multifiliis'))",
+  "ancestor_families_without_plasmodium": 2129,
+  "ancestor_families_with_plasmodium": 1918,
+  "plasmodium_families": 2383,
+  "plasmodium_lost_from_ancestor": 477,
+  "auroc_which_families_lost": {
+    "parasite (Plasmodium pair held out)": 0.6381477758996147,
+    "parasite (no apicomplexan seen)": 0.6380234110486749,
+    "free-living": 0.6345805351241872,
+    "reference: endosymbiosis (mitochondrion)": 0.6366706260374313,
+    "reference: endosymbiosis (plastid)": 0.6545740884564037,
+    "reference: endosymbiosis (insect_endosymbiont)": 0.6451236288140669,
+    "baseline: fewer copies lost first": 0.6289200308627875
+  },
+  "projected_family_count": {
+    "parasite (Plasmodium pair held out)": [
+      1146.95,
+      1190.0,
+      1224.1999999999998
+    ],
+    "parasite (no apicomplexan seen)": [
+      1176.9,
+      1213.5,
+      1256.05
+    ],
+    "free-living": [
+      2187.0,
+      2222.0,
+      2266.0
+    ]
+  },
+  "fraction_lost_by_class": {
+    "parasite (Plasmodium pair held out)": {
+      "redox_core": 0.33919813108123126,
+      "atp_synthase": 0.092067329469817,
+      "translation": 0.11398829804926149,
+      "transcription": 0.05499957140484285,
+      "protein_targeting": 0.17801855590984247
+    },
+    "parasite (no apicomplexan seen)": {
+      "redox_core": 0.32981683811508183,
+      "atp_synthase": 0.09757314167900623,
+      "translation": 0.11740861416023765,
+      "transcription": 0.05081164455518013,
+      "protein_targeting": 0.1548417072048654
+    },
+    "free-living": {
+      "redox_core": 0.3503732887993564,
+      "atp_synthase": 0.21147310805853373,
+      "translation": 0.15593337771868698,
+      "transcription": 0.053086878837652486,
+      "protein_targeting": 0.27008481668271356
+    },
+    "reference: endosymbiosis (mitochondrion)": {
+      "redox_core": 0.0770172380578413,
+      "atp_synthase": 0.0646144030174649,
+      "translation": 0.12044686532068473,
+      "transcription": 0.5082817818928402,
+      "protein_targeting": 0.4352532841180744
+    },
+    "reference: endosymbiosis (plastid)": {
+      "redox_core": 0.08683563443584869,
+      "atp_synthase": 0.04337105068195424,
+      "translation": 0.08195250411518419,
+      "transcription": 0.01766371859968333,
+      "protein_targeting": 0.13430383066634669
+    },
+    "reference: endosymbiosis (insect_endosymbiont)": {
+      "redox_core": 0.05097123435926282,
+      "atp_synthase": 0.04398309024401453,
+      "translation": 0.014416927939705875,
+      "transcription": 0.05312953422151909,
+      "protein_targeting": 0.13985270265130764
+    },
+    "actual Plasmodium": {
+      "redox_core": 0.0,
+      "atp_synthase": 0.0,
+      "translation": 0.02054794520547945,
+      "transcription": 0.08823529411764706,
+      "protein_targeting": 0.2
+    }
+  }
+}

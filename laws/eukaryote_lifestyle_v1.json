@@ -1,0 +1,273 @@
+{
+  "id": "eukaryote_lifestyle_v1",
+  "scope": "Gene-family (Pfam) duplication, loss and origination in eukaryotes, for free-living lineages and for lineages that became parasites. Learned from free-living-relative -> descendant pairs.",
+  "model": "Linear birth-death per family with origination: log rate = a_pair + x @ w[lifestyle]. Positive loss weight = family lost faster.",
+  "feature_names": [
+    "hydrophobicity_gravy",
+    "tm_helices",
+    "protein_length",
+    "redox_core",
+    "atp_synthase",
+    "translation",
+    "transcription",
+    "protein_targeting"
+  ],
+  "data": {
+    "pairs": [
+      "Dictyostelium discoideum -> Entamoeba histolytica",
+      "Tetrahymena thermophila -> Ichthyophthirius multifiliis",
+      "Tetrahymena thermophila -> Plasmodium falciparum",
+      "Tetrahymena thermophila -> Toxoplasma gondii",
+      "Tetrahymena thermophila -> Cryptosporidium parvum",
+      "Bodo saltans -> Leishmania major",
+      "Bodo saltans -> Trypanosoma brucei",
+      "Spizellomyces punctatus -> Encephalitozoon cuniculi",
+      "Dictyostelium discoideum -> Dictyostelium purpureum",
+      "Naegleria gruberi -> Naegleria fowleri",
+      "Saccharomyces cerevisiae -> Kluyveromyces lactis",
+      "Chlamydomonas reinhardtii -> Volvox carteri",
+      "Monosiga brevicollis -> Salpingoeca rosetta",
+      "Drosophila melanogaster -> Anopheles gambiae"
+    ],
+    "n_families": 10746
+  },
+  "caveats": [
+    "An extant free-living relative stands in for the ancestor; it has evolved too.",
+    "Few pairs per lifestyle; bootstrap over pairs gives wide intervals.",
+    "Pfam families, not orthologues: a family count sums paralogues."
+  ],
+  "contexts": {
+    "loss_free_living": {
+      "hydrophobicity_gravy": {
+        "weight": 0.0628,
+        "ci95": [
+          0.0184,
+          0.1071
+        ]
+      },
+      "tm_helices": {
+        "weight": -0.008,
+        "ci95": [
+          -0.0459,
+          0.0299
+        ]
+      },
+      "protein_length": {
+        "weight": -0.1293,
+        "ci95": [
+          -0.1822,
+          -0.0764
+        ]
+      },
+      "redox_core": {
+        "weight": 0.1309,
+        "ci95": [
+          -0.2275,
+          0.4893
+        ]
+      },
+      "atp_synthase": {
+        "weight": -0.152,
+        "ci95": [
+          -0.7163,
+          0.4123
+        ]
+      },
+      "translation": {
+        "weight": -0.6248,
+        "ci95": [
+          -1.112,
+          -0.1377
+        ]
+      },
+      "transcription": {
+        "weight": -1.4261,
+        "ci95": [
+          -2.1778,
+          -0.6744
+        ]
+      },
+      "protein_targeting": {
+        "weight": 0.055,
+        "ci95": [
+          -0.4749,
+          0.5849
+        ]
+      }
+    },
+    "loss_parasite": {
+      "hydrophobicity_gravy": {
+        "weight": 0.0519,
+        "ci95": [
+          0.0274,
+          0.0763
+        ]
+      },
+      "tm_helices": {
+        "weight": 0.0556,
+        "ci95": [
+          0.0044,
+          0.1067
+        ]
+      },
+      "protein_length": {
+        "weight": -0.0521,
+        "ci95": [
+          -0.0784,
+          -0.0258
+        ]
+      },
+      "redox_core": {
+        "weight": -0.1975,
+        "ci95": [
+          -0.6637,
+          0.2686
+        ]
+      },
+      "atp_synthase": {
+        "weight": -1.2763,
+        "ci95": [
+          -1.5348,
+          -1.0178
+        ]
+      },
+      "translation": {
+        "weight": -1.086,
+        "ci95": [
+          -1.2159,
+          -0.956
+        ]
+      },
+      "transcription": {
+        "weight": -1.5413,
+        "ci95": [
+          -1.7699,
+          -1.3127
+        ]
+      },
+      "protein_targeting": {
+        "weight": -0.5199,
+        "ci95": [
+          -0.6853,
+          -0.3545
+        ]
+      }
+    },
+    "duplication_free_living": {
+      "hydrophobicity_gravy": {
+        "weight": 0.1482,
+        "ci95": [
+          0.0639,
+          0.2325
+        ]
+      },
+      "tm_helices": {
+        "weight": -0.093,
+        "ci95": [
+          -0.1428,
+          -0.0433
+        ]
+      },
+      "protein_length": {
+        "weight": -0.1922,
+        "ci95": [
+          -0.2433,
+          -0.141
+        ]
+      },
+      "redox_core": {
+        "weight": -0.7819,
+        "ci95": [
+          -1.4774,
+          -0.0865
+        ]
+      },
+      "atp_synthase": {
+        "weight": -1.5338,
+        "ci95": [
+          -2.0341,
+          -1.0334
+        ]
+      },
+      "translation": {
+        "weight": -0.7595,
+        "ci95": [
+          -1.1188,
+          -0.4003
+        ]
+      },
+      "transcription": {
+        "weight": -0.9384,
+        "ci95": [
+          -1.854,
+          -0.0227
+        ]
+      },
+      "protein_targeting": {
+        "weight": -0.8839,
+        "ci95": [
+          -1.2899,
+          -0.4779
+        ]
+      }
+    },
+    "duplication_parasite": {
+      "hydrophobicity_gravy": {
+        "weight": 0.1606,
+        "ci95": [
+          0.0415,
+          0.2796
+        ]
+      },
+      "tm_helices": {
+        "weight": 0.0231,
+        "ci95": [
+          -0.1071,
+          0.1533
+        ]
+      },
+      "protein_length": {
+        "weight": -0.0918,
+        "ci95": [
+          -0.1452,
+          -0.0384
+        ]
+      },
+      "redox_core": {
+        "weight": -1.8103,
+        "ci95": [
+          -2.1585,
+          -1.4621
+        ]
+      },
+      "atp_synthase": {
+        "weight": -1.3075,
+        "ci95": [
+          -1.9036,
+          -0.7113
+        ]
+      },
+      "translation": {
+        "weight": -0.7017,
+        "ci95": [
+          -1.0832,
+          -0.3203
+        ]
+      },
+      "transcription": {
+        "weight": -1.6007,
+        "ci95": [
+          -2.5078,
+          -0.6937
+        ]
+      },
+      "protein_targeting": {
+        "weight": -0.8566,
+        "ci95": [
+          -1.3512,
+          -0.3621
+        ]
+      }
+    }
+  }
+}
