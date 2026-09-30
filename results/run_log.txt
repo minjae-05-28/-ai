@@ -1,0 +1,20 @@
+[1/4] Simulating 40 observed lineages from a 575-gene ancestor
+[2/4] Learning evolutionary rules from end states only
+    transfer.hydrophobicity            true -3.00  learned -2.91 ± 0.07
+    transfer.redox_coupling            true -2.00  learned -1.99 ± 0.18
+    transfer.host_redundancy           true +0.50  learned +0.57 ± 0.14
+    transfer.symbiont_essentiality     true +1.50  learned +1.53 ± 0.19
+    loss.hydrophobicity                true +0.00  learned +0.16 ± 0.14
+    loss.redox_coupling                true -0.50  learned -0.70 ± 0.20
+    loss.host_redundancy               true +3.00  learned +3.09 ± 0.21
+    loss.symbiont_essentiality         true -3.00  learned -3.24 ± 0.15
+[3/4] Training posterior network on 20000 simulations (learned rules)
+    log_transfer   R² 0.982   90% interval coverage 0.84
+    log_loss       R² 0.988   90% interval coverage 0.90
+    coupling       R² 0.059   90% interval coverage 0.91
+[4/4] Forecasting 200 unseen true-world lineages from a 60% snapshot
+    AUROC category baseline  0.766
+    AUROC ours               0.799
+    AUROC oracle             0.799
+    final organelle gene count: MAE 5.4 genes, 90% interval coverage 0.94
+Done. Figures and metrics written to results/

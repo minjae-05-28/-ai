@@ -1,0 +1,67 @@
+{
+  "rules": {
+    "transfer.hydrophobicity": {
+      "true": -3.0,
+      "learned": -2.9116067270871153,
+      "se": 0.03621239316907072
+    },
+    "transfer.redox_coupling": {
+      "true": -2.0,
+      "learned": -1.9933638159699139,
+      "se": 0.08972003152131625
+    },
+    "transfer.host_redundancy": {
+      "true": 0.5,
+      "learned": 0.5706606335827996,
+      "se": 0.07337001014056196
+    },
+    "transfer.symbiont_essentiality": {
+      "true": 1.5,
+      "learned": 1.5349010515317358,
+      "se": 0.09451048508235832
+    },
+    "loss.hydrophobicity": {
+      "true": 0.0,
+      "learned": 0.15916399763866032,
+      "se": 0.07156452917622684
+    },
+    "loss.redox_coupling": {
+      "true": -0.5,
+      "learned": -0.7002311224384916,
+      "se": 0.10456651514005702
+    },
+    "loss.host_redundancy": {
+      "true": 3.0,
+      "learned": 3.0908282405155645,
+      "se": 0.10887557939502782
+    },
+    "loss.symbiont_essentiality": {
+      "true": -3.0,
+      "learned": -3.2398285486013783,
+      "se": 0.07751067375789922
+    }
+  },
+  "inference": {
+    "log_transfer": {
+      "r2": 0.9824541340704939,
+      "coverage_90": 0.844
+    },
+    "log_loss": {
+      "r2": 0.9876011543614216,
+      "coverage_90": 0.9
+    },
+    "coupling": {
+      "r2": 0.05938813087736117,
+      "coverage_90": 0.913
+    }
+  },
+  "forecast": {
+    "auroc_which_genes_leave": {
+      "category baseline": 0.7659228428442085,
+      "ours": 0.7990497634497538,
+      "oracle": 0.7991095614931994
+    },
+    "final_gene_count_mae": 5.37,
+    "final_gene_count_coverage_90": 0.935
+  }
+}
