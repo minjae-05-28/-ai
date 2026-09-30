@@ -71,7 +71,24 @@ def main():
         "plasmodium": plas,
         "axes_done": axes is not None,
         "axes_metrics": axes_m,
+        "n_laws": len(list(Path("laws").glob("*.json"))),
+        "n_species": len([f for f in Path("data/eukaryotes").glob("*.json")
+                          if f.name not in ("pfam_meta.json", "family_annotations.json")]),
+        "enrich": load("results/features/metrics.json"),
+        "severity": load("results/severity/metrics.json"),
+        "order": load("results/loss_order/metrics.json"),
+        "modules": load("results/modules/metrics.json"),
+        "expansion": load("results/expansion/metrics.json"),
+        "transfer": load("results/transfer/metrics.json"),
     }
+    if data["enrich"]:
+        data["enrich"] = {k: data["enrich"][k] for k in ("n_features", "mean_heldout_auroc")}
+    if data["modules"]:
+        data["modules"] = {k: data["modules"][k] for k in ("mean_auroc_hidden", "best_k", "gain_vs_additive", "n_pairs")}
+    if data["order"]:
+        data["order"].pop("comparisons", None)
+    if data["transfer"]:
+        data["transfer"].pop("heldout", None)
     html = TEMPLATE.replace("__DATA__", json.dumps(data, ensure_ascii=False))
     Path(args.out).parent.mkdir(parents=True, exist_ok=True)
     Path(args.out).write_text(html)
@@ -198,6 +215,17 @@ svg .muted { fill: var(--muted); }
     <p class="note" id="plas2note"></p>
   </section>
 
+  <section id="r2" hidden>
+    <div class="eyebrow">법칙 탐색 2라운드 · 진핵생물 <span id="r2n"></span></div>
+    <h2>특성을 늘리고, 새로운 종류의 법칙을 찾다</h2>
+    <p class="note">유전자군을 묘사하는 특성을 8개에서 56개로 늘렸습니다(GO 기능, Pfam 클랜, 기능 키워드, 자유생활 종에서의 흔한 정도). 그리고 "어떤 유전자가 사라지나" 말고도 <b>얼마나</b>, <b>어떤 순서로</b>, <b>함께</b>, <b>늘어나는 쪽</b>을 따로 물었습니다.</p>
+    <div class="two">
+      <div class="frame"><svg id="featbars" role="img" aria-label="특성 풍부화 전후 예측 정확도"></svg></div>
+      <div class="frame"><svg id="sevbars" role="img" aria-label="생활 방식별 유전자군 소실 비율"></svg></div>
+    </div>
+    <div class="flow" id="r2laws"></div>
+  </section>
+
   <section>
     <div class="eyebrow">다음</div>
     <h2>진행 중인 작업과 다음 단계</h2>
@@ -213,9 +241,9 @@ const f2 = (x) => (x >= 0 ? "+" : "−") + Math.abs(x).toFixed(2);
 
 $("stats").innerHTML = [
   ["공생체·소기관 유전체", D.stats.symbiont_genomes],
-  ["진핵생물", D.stats.eukaryotes + "종"],
-  ["비교 쌍", (D.axes_done ? 22 : D.stats.euk_pairs) + "개"],
-  ["저장된 법칙", (D.axes_done ? 3 : 2) + "개"],
+  ["진핵생물", (D.n_species || D.stats.eukaryotes) + "종"],
+  ["비교 쌍", (D.severity ? Object.keys(D.severity.severity).length : 22) + "개"],
+  ["저장된 법칙", D.n_laws + "개"],
 ].map(([k, v]) => `<span>${k} <b>${v}</b></span>`).join("");
 
 const laws = [
@@ -399,10 +427,60 @@ if (D.axes_done && D.axes_metrics) {
   })();
 }
 
+if (D.enrich && D.severity) {
+  $("r2").hidden = false;
+  $("r2n").textContent = `${D.n_species}종`;
+  (function featbars() {
+    const m = D.enrich.mean_heldout_auroc;
+    const items = [["copies_only", "복제 수 기준선", css("--muted")], ["base", "법칙 (특성 8개)", css("--muted")],
+                   ["enriched", `법칙 (특성 ${D.enrich.n_features.enriched}개)`, css("--lose")], ["memorisation", "암기 기준선", css("--fg")]];
+    const W = 400, left = 130, rowH = 32, H = items.length * rowH + 46;
+    const x = (v) => left + (v - 0.5) / 0.4 * (W - left - 50);
+    let s = `<svg viewBox="0 0 ${W} ${H}" width="100%" style="max-width:${W}px"><text x="0" y="14" font-size="12" class="muted">처음 보는 기생생물이 잃는 유전자군 맞히기 (AUROC)</text>`;
+    items.forEach(([k, n, c], i) => {
+      const y = 26 + i * rowH;
+      s += `<text x="${left - 8}" y="${y + 16}" text-anchor="end" font-size="12" ${k === "enriched" ? 'font-weight="700"' : ""}>${n}</text>`;
+      s += `<rect x="${x(0.5)}" y="${y + 4}" width="${x(m[k]) - x(0.5)}" height="18" rx="3" fill="${c}"/>`;
+      s += `<text x="${x(m[k]) + 6}" y="${y + 17}" font-size="11" font-family="var(--mono)">${m[k].toFixed(3)}</text>`;
+    });
+    s += `<text x="${x(0.5)}" y="${H - 6}" font-size="11" class="muted">5-fold, 기생 쌍 ${Object.keys(D.order.severity).length}개 · 0.5 = 무작위</text>`;
+    $("featbars").outerHTML = s + "</svg>";
+  })();
+  (function sevbars() {
+    const t = D.severity.typical_share_lost;
+    const items = [["free_living", "자유생활 대조"], ["extracellular_parasite", "세포 밖 기생"],
+                   ["intracellular_parasite", "세포 안 기생"], ["intracellular_reduced_mito", "세포 안 + 미토콘드리아 퇴화"]];
+    const W = 400, left = 170, rowH = 32, H = items.length * rowH + 46;
+    const x = (v) => left + v * (W - left - 44);
+    let s = `<svg viewBox="0 0 ${W} ${H}" width="100%" style="max-width:${W}px"><text x="0" y="14" font-size="12" class="muted">조상 유전자군 중 잃는 비율 (severity_v1)</text>`;
+    items.forEach(([k, n], i) => {
+      const y = 26 + i * rowH;
+      s += `<text x="${left - 8}" y="${y + 16}" text-anchor="end" font-size="12">${n}</text>`;
+      s += `<rect x="${left}" y="${y + 4}" width="${x(t[k]) - left}" height="18" rx="3" fill="color-mix(in srgb, ${css("--lose")} ${Math.round(30 + t[k] * 70)}%, var(--panel))"/>`;
+      s += `<text x="${x(t[k]) + 6}" y="${y + 17}" font-size="11" font-family="var(--mono)">${Math.round(t[k] * 100)}%</text>`;
+    });
+    s += `<text x="0" y="${H - 6}" font-size="11" class="muted">계통 하나를 빼고 맞히기: 오차 ${D.severity.loco_rmse_logit.mean_only.toFixed(2)} → ${D.severity.loco_rmse_logit.all_axes.toFixed(2)}</text>`;
+    $("sevbars").outerHTML = s + "</svg>";
+  })();
+  const o = D.order.containment_over_random, md = D.modules, ex = D.expansion, conv = ex.convergent.map((c) => c.family);
+  const cards = [
+    ["severity_v1", "얼마나 잃나: 생활 방식의 덧셈", `잃는 비율은 기생(+${D.severity.coefficients.parasite.weight.toFixed(2)}), 미토콘드리아 퇴화(+${D.severity.coefficients.reduced_mitochondria.weight.toFixed(2)})가 더해지며 커집니다. 세포 안 효과(+${D.severity.coefficients.intracellular.weight.toFixed(2)})는 계통 단위로 다시 뽑으면 불확실합니다.`],
+    ["loss_order_v1", "어떤 순서로 잃나: 계통을 넘어 같은 순서", `서로 다른 계통의 기생생물 ${D.order.n_cross_clade_comparisons.toLocaleString()}쌍 모두에서, 더 줄어든 쪽이 덜 줄어든 쪽의 소실을 무작위의 ${o.median.toFixed(2)}배로 함께 잃었습니다. 유전자군별 소실률 순위도 일치합니다(Spearman ${D.order.mild_vs_harsh_spearman.toFixed(2)}).`],
+    ["coloss_modules_v1", "함께 잃나: 거의 독립, 예외는 편모", `소실의 절반을 보여 주고 나머지를 맞히게 하면, 모듈을 넣어도 ${md.mean_auroc_hidden.k0.toFixed(3)} → ${md.mean_auroc_hidden["k" + md.best_k].toFixed(3)}로 거의 그대로입니다. 뚜렷한 예외는 편모 축사(미포자충·타일레리아·말라리아 원충이 한꺼번에 잃음)와 B12 대사입니다.`],
+    ["convergent_expansion_v1", "무엇을 늘리나: 아미노산 수송체", `기생생물은 유전자군을 대조군보다 덜 늘리지만(${(ex.expansion_rate.parasites * 100).toFixed(1)}% vs ${(ex.expansion_rate.controls * 100).toFixed(1)}%), ${conv.join(", ")}는 ${ex.clades.length}개 계통 중 5곳에서 독립적으로 늘어났습니다. 숙주에서 영양을 가져오는 쪽으로 수렴합니다.`],
+    ["eukaryote_axes_v3", "특성 56개로 다시 본 축별 효과", "미토콘드리아 퇴화는 전자전달·미토콘드리아 유전자군 소실을 크게 높입니다. 기생생물은 대체로 편모를 지키지만, 세포 안에 살거나 미토콘드리아가 퇴화하면 편모도 버립니다."],
+  ];
+  if (D.transfer) {
+    const t = D.transfer.mean_auroc;
+    cards.push(["transfer", "처음 보는 계통에도 통하나", `계통 하나를 통째로 빼고 학습해도 법칙 ${t.law.toFixed(3)}, 암기 ${t.memorisation.toFixed(3)}, 복제 수 기준선 ${t.copies_only.toFixed(3)}입니다.`]);
+  }
+  $("r2laws").innerHTML = cards.map(([id, h, d]) => `<div class="law"><span class="id">${id}</span><b>${h}</b><div class="data">${d}</div></div>`).join("");
+}
+
 $("next").innerHTML = [
-  [D.axes_done ? "완료" : "진행 중", "축별 법칙 (eukaryote_axes_v1)", D.axes_done ? "세 축으로 나눈 법칙이 데이터를 가장 잘 설명합니다(ΔAIC 368). 다만 처음 보는 기생생물의 유전자 소실 예측은 나누기 전과 거의 같습니다(평균 차이 0.01 미만)." : "기생·세포 안·미토콘드리아 퇴화의 효과를 따로 추정합니다."],
+  ["완료", "특성 풍부화", D.enrich ? `특성을 8개에서 ${D.enrich.n_features.enriched}개로 늘려 처음 보는 기생생물 예측이 ${D.enrich.mean_heldout_auroc.base.toFixed(3)} → ${D.enrich.mean_heldout_auroc.enriched.toFixed(3)}로 올랐습니다. 아직 암기 기준선(${D.enrich.mean_heldout_auroc.memorisation.toFixed(3)})보다 낮습니다.` : "진행 중"],
   ["다음", "복합 법칙", "저장된 법칙들에서 공통 핵(절대 법칙 후보)과 상황별 보정을 분리하거나, 상황에 따라 법칙을 가중 혼합하는 모델을 만듭니다."],
-  ["한계", "지금 알고 있는 약점", "조상 대리로 현생 근연종을 쓰고, 종들을 독립으로 취급해 신뢰구간이 좁게 나옵니다. 8개 특성으로는 유전자군별 사정을 다 담지 못합니다."],
+  ["한계", "지금 알고 있는 약점", "조상 대리로 현생 근연종을 쓰고, 종들을 독립으로 취급해 신뢰구간이 좁게 나옵니다. 계통수 기반 모델이 다음 과제입니다."],
 ].map(([t, h, d]) => `<div class="law ${t === "진행 중" ? "pending" : ""}"><span class="tag" style="justify-self:start;color:${t === "진행 중" ? "var(--pending)" : "var(--accent)"}">${t}</span><b>${h}</b><div class="data">${d}</div></div>`).join("");
 </script>
 """
