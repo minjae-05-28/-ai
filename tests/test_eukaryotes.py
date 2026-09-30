@@ -244,3 +244,13 @@ def test_module_model_finds_coupled_losses():
             aucs.append(auroc(s, y))
         scores[k] = np.mean(aucs)
     assert scores[1] > scores[0] + 0.2
+
+
+def test_every_stored_law_loads():
+    from organelle_evo.laws import LAWS_DIR
+
+    for path in LAWS_DIR.glob("*.json"):
+        law = load_law(path.stem)
+        assert law.id == path.stem and law.scope
+    sev = load_law("severity_v1")
+    assert sev.weights["loss"].shape == (4,) and sev.significant("loss")[[0, 1, 3]].all()

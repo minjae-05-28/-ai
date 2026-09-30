@@ -34,9 +34,12 @@ def load_law(law_id: str, directory: Path = LAWS_DIR) -> Law:
     feats = tuple(d["feature_names"])
     weights, ci = {}, {}
     for ctx, coefs in d["contexts"].items():
+        # Structural laws (modules, orders, lists of families) keep descriptive contexts.
+        if not feats or not isinstance(coefs, dict) or not all(isinstance(coefs.get(f), dict) for f in feats):
+            continue
         weights[ctx] = np.array([coefs[f]["weight"] for f in feats])
         ci[ctx] = np.array([coefs[f]["ci95"] for f in feats])
-    meta = {k: v for k, v in d.items() if k not in ("contexts", "feature_names")}
+    meta = {k: v for k, v in d.items() if k != "feature_names"}
     return Law(d["id"], d["scope"], d["model"], feats, weights, ci, meta)
 
 
