@@ -1,0 +1,166 @@
+{
+  "id": "convergent_expansion_v1",
+  "scope": "Gene-family copy-number expansion in eukaryotic parasites, across independent lineages.",
+  "model": "Family expanded in a pair: parasite copies >= 2x and >= ancestor + 3. Convergent: expanded in more clades than a family-wise 95% permutation threshold.",
+  "feature_names": [],
+  "data": {
+    "pairs": [
+      "Dictyostelium discoideum -> Entamoeba histolytica",
+      "Tetrahymena thermophila -> Ichthyophthirius multifiliis",
+      "Tetrahymena thermophila -> Perkinsus marinus",
+      "Chromera velia -> Plasmodium falciparum",
+      "Chromera velia -> Babesia bovis",
+      "Chromera velia -> Toxoplasma gondii",
+      "Chromera velia -> Eimeria tenella",
+      "Chromera velia -> Cryptosporidium parvum",
+      "Bodo saltans -> Leishmania major",
+      "Bodo saltans -> Trypanosoma cruzi",
+      "Bodo saltans -> Trypanosoma brucei",
+      "Spizellomyces punctatus -> Rozella allomycis",
+      "Spizellomyces punctatus -> Encephalitozoon cuniculi",
+      "Spizellomyces punctatus -> Nosema ceranae",
+      "Schizosaccharomyces pombe -> Pneumocystis jirovecii",
+      "Schizosaccharomyces pombe -> Taphrina deformans",
+      "Coprinopsis cinerea -> Ustilago maydis",
+      "Coprinopsis cinerea -> Malassezia globosa",
+      "Spizellomyces punctatus -> Batrachochytrium dendrobatidis",
+      "Spizellomyces punctatus -> Enterocytozoon bieneusi",
+      "Spizellomyces punctatus -> Nematocida parisii",
+      "Spizellomyces punctatus -> Vavraia culicis",
+      "Spizellomyces punctatus -> Encephalitozoon intestinalis",
+      "Chromera velia -> Plasmodium vivax",
+      "Chromera velia -> Plasmodium berghei",
+      "Chromera velia -> Plasmodium knowlesi",
+      "Chromera velia -> Theileria annulata",
+      "Chromera velia -> Theileria parva",
+      "Chromera velia -> Babesia microti",
+      "Chromera velia -> Neospora caninum",
+      "Chromera velia -> Hammondia hammondi",
+      "Chromera velia -> Cyclospora cayetanensis",
+      "Chromera velia -> Cryptosporidium hominis",
+      "Bodo saltans -> Leishmania infantum",
+      "Bodo saltans -> Leishmania donovani",
+      "Bodo saltans -> Trypanosoma vivax",
+      "Bodo saltans -> Trypanosoma congolense",
+      "Bodo saltans -> Leptomonas pyrrhocoris",
+      "Dictyostelium discoideum -> Entamoeba dispar",
+      "Dictyostelium discoideum -> Entamoeba invadens",
+      "Naegleria gruberi -> Giardia intestinalis",
+      "Naegleria gruberi -> Spironucleus salmonicida",
+      "Thalassiosira pseudonana -> Phytophthora infestans",
+      "Thalassiosira pseudonana -> Saprolegnia parasitica",
+      "Thalassiosira pseudonana -> Blastocystis hominis",
+      "Nematostella vectensis -> Thelohanellus kitauei",
+      "Nematostella vectensis -> Henneguya salminicola",
+      "Caenorhabditis elegans -> Brugia malayi",
+      "Caenorhabditis elegans -> Trichinella spiralis",
+      "Caenorhabditis elegans -> Schistosoma mansoni",
+      "Auxenochlorella protothecoides -> Helicosporidium sp. ATCC 50920"
+    ],
+    "clades": [
+      "alveolata",
+      "amoebozoa",
+      "chlorophyta",
+      "cnidaria",
+      "discoba",
+      "fungi",
+      "metamonada",
+      "nematoda",
+      "stramenopiles"
+    ]
+  },
+  "validation": {
+    "null": "2000 permutations of expanded families within each clade",
+    "familywise_threshold_clades": 4.0,
+    "n_convergent": 3,
+    "expansion_rate": {
+      "parasites": 0.016116906455176223,
+      "controls": 0.022113115047561124
+    }
+  },
+  "caveats": [
+    "Copy number is Pfam-domain gene counts; assembly and annotation quality affect it.",
+    "Clades are coarse; fungi merges several independent parasitic origins.",
+    "Ribosomal_S3Ae may reflect paralogue annotation rather than functional expansion."
+  ],
+  "contexts": {
+    "convergent": [
+      {
+        "family": "Aa_trans",
+        "description": "Transmembrane amino acid transporter protein",
+        "n_clades": 5,
+        "p": 0.0,
+        "clades": [
+          "alveolata",
+          "amoebozoa",
+          "discoba",
+          "fungi",
+          "stramenopiles"
+        ]
+      },
+      {
+        "family": "Fer4",
+        "description": "4Fe-4S binding domain",
+        "n_clades": 5,
+        "p": 0.0,
+        "clades": [
+          "alveolata",
+          "amoebozoa",
+          "fungi",
+          "metamonada",
+          "stramenopiles"
+        ]
+      },
+      {
+        "family": "Ribosomal_S3Ae",
+        "description": "Ribosomal S3Ae family",
+        "n_clades": 5,
+        "p": 0.0,
+        "clades": [
+          "alveolata",
+          "amoebozoa",
+          "discoba",
+          "fungi",
+          "stramenopiles"
+        ]
+      }
+    ],
+    "enriched_functions": [
+      [
+        "go:ribosome",
+        3.16,
+        0.037
+      ],
+      [
+        "kw:cytoskeleton_motor",
+        2.96,
+        0.041
+      ],
+      [
+        "go:oxidoreductase activity",
+        2.86,
+        0.052
+      ],
+      [
+        "go:structural molecule activity",
+        2.63,
+        0.037
+      ],
+      [
+        "go:transporter activity",
+        2.35,
+        0.033
+      ],
+      [
+        "go:catalytic activity",
+        2.2,
+        0.211
+      ],
+      [
+        "kw:transporter_channel",
+        2.07,
+        0.039
+      ]
+    ]
+  }
+}

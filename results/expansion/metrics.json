@@ -1,0 +1,97 @@
+{
+  "n_parasite_pairs": 51,
+  "clades": [
+    "alveolata",
+    "amoebozoa",
+    "chlorophyta",
+    "cnidaria",
+    "discoba",
+    "fungi",
+    "metamonada",
+    "nematoda",
+    "stramenopiles"
+  ],
+  "expansion_rate": {
+    "parasites": 0.016116906455176223,
+    "controls": 0.022113115047561124
+  },
+  "familywise_threshold_clades": 4.0,
+  "convergent": [
+    {
+      "family": "Aa_trans",
+      "description": "Transmembrane amino acid transporter protein",
+      "n_clades": 5,
+      "p": 0.0,
+      "clades": [
+        "alveolata",
+        "amoebozoa",
+        "discoba",
+        "fungi",
+        "stramenopiles"
+      ]
+    },
+    {
+      "family": "Fer4",
+      "description": "4Fe-4S binding domain",
+      "n_clades": 5,
+      "p": 0.0,
+      "clades": [
+        "alveolata",
+        "amoebozoa",
+        "fungi",
+        "metamonada",
+        "stramenopiles"
+      ]
+    },
+    {
+      "family": "Ribosomal_S3Ae",
+      "description": "Ribosomal S3Ae family",
+      "n_clades": 5,
+      "p": 0.0,
+      "clades": [
+        "alveolata",
+        "amoebozoa",
+        "discoba",
+        "fungi",
+        "stramenopiles"
+      ]
+    }
+  ],
+  "enriched_functions_multi_clade": [
+    [
+      "go:ribosome",
+      3.16,
+      0.037
+    ],
+    [
+      "kw:cytoskeleton_motor",
+      2.96,
+      0.041
+    ],
+    [
+      "go:oxidoreductase activity",
+      2.86,
+      0.052
+    ],
+    [
+      "go:structural molecule activity",
+      2.63,
+      0.037
+    ],
+    [
+      "go:transporter activity",
+      2.35,
+      0.033
+    ],
+    [
+      "go:catalytic activity",
+      2.2,
+      0.211
+    ],
+    [
+      "kw:transporter_channel",
+      2.07,
+      0.039
+    ]
+  ]
+}
