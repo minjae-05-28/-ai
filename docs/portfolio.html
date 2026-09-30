@@ -83,7 +83,7 @@ a { color: var(--keep); }
     <p class="en">Learning which genes survive genome reduction, from endosymbiont-to-organelle transitions and free-living-to-parasite transitions, with simulation-validated statistical models trained on ~150 real genomes, and testing honestly where those rules stop working.</p>
     <div class="facts">
       <span>공생체·소기관 유전체 <b>64</b></span><span>진핵생물 <b>87종</b></span><span>Pfam 유전자군 <b>11,162</b></span>
-      <span>비교 쌍 <b>67</b></span><span>저장된 법칙 <b>10</b></span><span>테스트 <b>54</b></span>
+      <span>비교 쌍 <b>67</b></span><span>저장된 법칙 <b>11</b></span><span>테스트 <b>54</b></span>
     </div>
     <div class="links">
       <a class="primary" href="https://claude.ai/artifact/6en5NX62SRcLPZhnut7YJg">원형 역추적기 체험</a>
@@ -123,7 +123,7 @@ a { color: var(--keep); }
       <div class="find"><div class="fig lose">+1.02<small>vs −2.55</small></div><div><h3>RNA 중합효소는 시스템마다 정반대</h3><p class="muted">미토콘드리아는 세균형 RNA 중합효소를 버리고, 엽록체는 가장 강하게 지킵니다. 실제 진화 역사와 같은 방향이며, 모델에 알려주지 않은 사실입니다.</p></div></div>
       <div class="find"><div class="fig lose">+1.54<small>± 0.35</small></div><div><h3>에너지 유전자를 버리는 원인은 기생이 아니라 미토콘드리아 퇴화</h3><p class="muted">기생을 "기생 · 세포 안 · 미토콘드리아 퇴화" 세 축으로 나누자, 전자전달 유전자 소실이 기생 자체가 아니라 미토콘드리아 퇴화에서 온다는 것이 분리됐습니다. 나눈 모델이 데이터를 훨씬 잘 설명합니다(ΔAIC 368).</p></div></div>
       <div class="find"><div class="fig">0.777<small>vs 0.782</small></div><div><h3>기생은 계통을 넘어 같은 종류의 유전자를 버린다</h3><p class="muted">한 계통을 통째로 빼고 학습해도 법칙의 예측력은 거의 그대로(0.782 → 0.777)인데, 유전자군별 소실 빈도를 외우는 모델은 크게 떨어집니다(0.865 → 0.802). 독립적으로 기생이 생겨난 계통들이 같은 규칙을 따른다는 뜻입니다.</p></div></div>
-      <div class="find"><div class="fig lose">10→73%<small>잃는 비율</small></div><div><h3>얼마나, 어떤 순서로 잃는지도 규칙적이다</h3><p class="muted">조상 유전자군 중 잃는 비율은 생활 방식 축의 덧셈으로 예측됩니다(자유생활 10%, 세포 안 + 미토콘드리아 퇴화 73%). 서로 다른 계통의 기생생물 1,034쌍 모두에서, 더 줄어든 쪽이 덜 줄어든 쪽의 소실을 무작위의 1.58배로 함께 잃었습니다.</p></div></div>
+      <div class="find"><div class="fig lose">10→73%<small>잃는 비율</small></div><div><h3>얼마나, 어떤 순서로 잃는지도 규칙적이다</h3><p class="muted">조상 유전자군 중 잃는 비율은 생활 방식 축의 덧셈으로 예측됩니다(자유생활 10%, 세포 안 + 미토콘드리아 퇴화 73%). 서로 다른 계통의 기생생물 1,034쌍 모두에서, 더 줄어든 쪽이 덜 줄어든 쪽의 소실을 무작위의 1.58배로 함께 잃었습니다. 그런데 이 순서는 미토콘드리아·엽록체·공생세균·기생생물 네 시스템 모두에서 <b>유전자별 소실 성향만으로 전부 설명</b>됐습니다. 네 시스템에 공통된 규칙은 “유전자 소실 ≈ 유전자별 성향 × 계통별 축소 강도, 서로 거의 독립”입니다.</p></div></div>
       <div class="find"><div class="fig">5 / 9<small>계통</small></div><div><h3>버리는 대신 늘리는 것: 아미노산 수송체와 편모의 운명</h3><p class="muted">기생생물은 유전자군을 덜 늘리지만, 아미노산 수송체는 9개 계통 중 5곳에서 독립적으로 늘어났습니다. 함께 사라지는 유전자 묶음은 드물었고, 뚜렷한 예외가 편모였습니다. 세포 안에 사는 기생생물은 편모 부품을 한꺼번에 버리고, 혈액을 헤엄치는 트리파노소마는 지킵니다.</p></div></div>
       <div class="find"><div class="fig">0.78<small>AUROC</small></div><div><h3>유전체 하나로 조상을 역추적</h3><p class="muted">현대 기생생물 유전체만 보고 자유생활 조상이 가졌던 유전자군을 복원합니다. 누구나 브라우저에서 해 볼 수 있게 공개했습니다.</p></div></div>
     </div>

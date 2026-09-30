@@ -80,6 +80,7 @@ def main():
         "modules": load("results/modules/metrics.json"),
         "expansion": load("results/expansion/metrics.json"),
         "transfer": load("results/transfer/metrics.json"),
+        "nested": load("results/nestedness/metrics.json"),
     }
     if data["enrich"]:
         data["enrich"] = {k: data["enrich"][k] for k in ("n_features", "mean_heldout_auroc")}
@@ -466,6 +467,7 @@ if (D.enrich && D.severity) {
   const cards = [
     ["severity_v1", "얼마나 잃나: 생활 방식의 덧셈", `잃는 비율은 기생(+${D.severity.coefficients.parasite.weight.toFixed(2)}), 미토콘드리아 퇴화(+${D.severity.coefficients.reduced_mitochondria.weight.toFixed(2)})가 더해지며 커집니다. 세포 안 효과(+${D.severity.coefficients.intracellular.weight.toFixed(2)})는 계통 단위로 다시 뽑으면 불확실합니다.`],
     ["loss_order_v1", "어떤 순서로 잃나: 계통을 넘어 같은 순서", `서로 다른 계통의 기생생물 ${D.order.n_cross_clade_comparisons.toLocaleString()}쌍 모두에서, 더 줄어든 쪽이 덜 줄어든 쪽의 소실을 무작위의 ${o.median.toFixed(2)}배로 함께 잃었습니다. 유전자군별 소실률 순위도 일치합니다(Spearman ${D.order.mild_vs_harsh_spearman.toFixed(2)}).`],
+    ...(D.nested ? [["loss_order_v2", "그 순서는 유전자별 성향이다: 네 시스템 공통", `미토콘드리아·엽록체·곤충 공생세균·기생생물 모두에서 소실은 무작위보다 훨씬 순서가 있지만(예: 기생생물 ${D.nested.eukaryote_parasites.containment.toFixed(2)} vs ${D.nested.eukaryote_parasites.row_null_mean.toFixed(2)}), 유전자별 소실률을 고정한 귀무모형(${D.nested.eukaryote_parasites.fixed_null_mean.toFixed(2)})보다 엄격하지 않습니다. 공통 규칙: 유전자 소실 ≈ 유전자별 성향 × 계통별 축소 강도, 서로 거의 독립.`]] : []),
     ["coloss_modules_v1", "함께 잃나: 거의 독립, 예외는 편모", `소실의 절반을 보여 주고 나머지를 맞히게 하면, 모듈을 넣어도 ${md.mean_auroc_hidden.k0.toFixed(3)} → ${md.mean_auroc_hidden["k" + md.best_k].toFixed(3)}로 거의 그대로입니다. 뚜렷한 예외는 편모 축사(미포자충·타일레리아·말라리아 원충이 한꺼번에 잃음)와 B12 대사입니다.`],
     ["convergent_expansion_v1", "무엇을 늘리나: 아미노산 수송체", `기생생물은 유전자군을 대조군보다 덜 늘리지만(${(ex.expansion_rate.parasites * 100).toFixed(1)}% vs ${(ex.expansion_rate.controls * 100).toFixed(1)}%), ${conv.join(", ")}는 ${ex.clades.length}개 계통 중 5곳에서 독립적으로 늘어났습니다. 숙주에서 영양을 가져오는 쪽으로 수렴합니다.`],
     ["eukaryote_axes_v3", "특성 56개로 다시 본 축별 효과", "미토콘드리아 퇴화는 전자전달·미토콘드리아 유전자군 소실을 크게 높입니다. 기생생물은 대체로 편모를 지키지만, 세포 안에 살거나 미토콘드리아가 퇴화하면 편모도 버립니다."],
