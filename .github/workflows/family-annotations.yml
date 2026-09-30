@@ -1,0 +1,35 @@
+name: Pfam family annotations
+
+# Pfam clans and GO-slim functions per family (small downloads, a few minutes).
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/family-annotations.yml"
+      - "scripts/fetch_family_annotations.py"
+
+permissions:
+  contents: write
+
+jobs:
+  annotate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: python scripts/fetch_family_annotations.py --out data/eukaryotes/family_annotations.json
+      - name: Commit annotations
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -f data/eukaryotes/family_annotations.json
+          if git diff --cached --quiet; then echo "No change."; else
+            git commit -m "Add Pfam family annotations (clans, GO slim)"
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi
