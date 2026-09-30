@@ -112,12 +112,11 @@ SPECIES.update({
     "Leishmania donovani": _par("discoba", INTRA, AEROBIC),
     "Trypanosoma vivax": _par("discoba", EXTRA, AEROBIC),
     "Trypanosoma congolense": _par("discoba", EXTRA, AEROBIC),
-    "Crithidia fasciculata": _par("discoba", EXTRA, AEROBIC),  # insect gut
     "Leptomonas pyrrhocoris": _par("discoba", EXTRA, AEROBIC),
     # Amoebozoa
     "Entamoeba dispar": _par("amoebozoa", EXTRA, REDUCED),
     "Entamoeba invadens": _par("amoebozoa", EXTRA, REDUCED),
-    "Polysphondylium pallidum": _free("amoebozoa"),
+    "Heterostelium pallidum": _free("amoebozoa"),  # formerly Polysphondylium pallidum
     # Metamonads (anaerobic gut parasites; the nearest annotated free-living proxy is distant)
     "Giardia intestinalis": _par("metamonada", EXTRA, REDUCED),
     "Spironucleus salmonicida": _par("metamonada", EXTRA, REDUCED),
@@ -128,7 +127,7 @@ SPECIES.update({
     "Saprolegnia parasitica": _par("stramenopiles", EXTRA, AEROBIC),  # fish pathogen
     "Blastocystis hominis": _par("stramenopiles", EXTRA, REDUCED),  # gut, anaerobic MROs
     # Rhizaria
-    "Bigelowiella natans": _free("rhizaria"),
+    # Bigelowiella natans (free-living proxy for Plasmodiophora) has no annotated assembly in NCBI.
     "Plasmodiophora brassicae": _par("rhizaria", INTRA, AEROBIC),  # clubroot
     # Animals: cnidarians that became parasites (Myxozoa), nematodes, flatworms
     "Nematostella vectensis": _free("cnidaria"),
@@ -195,7 +194,7 @@ PAIR_SPECS += [
         "Cyclospora cayetanensis", "Cryptosporidium hominis")],
     *[(("Bodo saltans",), sp) for sp in (
         "Leishmania infantum", "Leishmania donovani", "Trypanosoma vivax", "Trypanosoma congolense",
-        "Crithidia fasciculata", "Leptomonas pyrrhocoris")],
+        "Leptomonas pyrrhocoris")],
     (("Dictyostelium discoideum",), "Entamoeba dispar"),
     (("Dictyostelium discoideum",), "Entamoeba invadens"),
     (("Naegleria gruberi",), "Giardia intestinalis"),
@@ -203,7 +202,6 @@ PAIR_SPECS += [
     (("Thalassiosira pseudonana",), "Phytophthora infestans"),
     (("Thalassiosira pseudonana",), "Saprolegnia parasitica"),
     (("Thalassiosira pseudonana",), "Blastocystis hominis"),
-    (("Bigelowiella natans",), "Plasmodiophora brassicae"),
     (("Nematostella vectensis",), "Thelohanellus kitauei"),
     (("Nematostella vectensis",), "Henneguya salminicola"),
     (("Caenorhabditis elegans",), "Brugia malayi"),
@@ -213,7 +211,7 @@ PAIR_SPECS += [
     # controls
     (("Neurospora crassa",), "Aspergillus nidulans"),
     (("Coprinopsis cinerea",), "Schizophyllum commune"),
-    (("Dictyostelium discoideum",), "Polysphondylium pallidum"),
+    (("Dictyostelium discoideum",), "Heterostelium pallidum"),
     (("Thalassiosira pseudonana",), "Phaeodactylum tricornutum"),
     (("Nematostella vectensis",), "Hydra vulgaris"),
     (("Salpingoeca rosetta",), "Capsaspora owczarzaki"),
