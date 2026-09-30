@@ -165,3 +165,17 @@ def test_pfam_class():
     assert pfam_class("RNA_pol_Rpb1_1") == "transcription"
     assert pfam_class("SecY") == "protein_targeting"
     assert pfam_class("Pkinase", "Protein kinase domain") == "other"
+
+
+def test_wagner_parsimony_ancestor():
+    import numpy as np
+
+    from organelle_evo.eukaryotes.ancestral import leaves, prune, wagner_ancestor
+
+    tree = ((("P", "T"), "C"), ("Te", "Ich"))
+    c = {"P": np.array([0, 5, 1]), "T": np.array([0, 4, 1]), "C": np.array([1, 4, 0]),
+         "Te": np.array([3, 6, 0]), "Ich": np.array([2, 5, 0])}
+    anc = wagner_ancestor(tree, c)
+    assert anc[2] == 0  # only the P+T clade has it: gained there, not at the root
+    assert 4 <= anc[1] <= 5
+    assert leaves(prune(tree, {"P"})) == ["T", "C", "Te", "Ich"]
