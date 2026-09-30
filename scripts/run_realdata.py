@@ -1,6 +1,9 @@
 """Learn, validate and forecast on real genomes fetched by scripts/fetch_data.py.
 
-    python scripts/run_realdata.py [--data data/raw] [--out results/real]
+    python scripts/run_realdata.py [--data data/raw] [--out results/real] [--no-homology]
+
+Genes are named by protein homology (reciprocal best hits, see realdata/homology.py)
+on top of their annotation; searches are cached in data/processed/homology.json.
 """
 
 import argparse
@@ -16,12 +19,14 @@ from organelle_evo.realdata.analysis import forecast_lineages, leave_one_lineage
 from organelle_evo.realdata.catalog import CATALOG
 from organelle_evo.realdata.dataset import build_dataset, read_genbank
 from organelle_evo.realdata.genes import FEATURE_NAMES
+from organelle_evo.realdata.homology import name_by_homology, reference_from_records
 from organelle_evo.rules import fit_retention_bootstrap
 
 MIN_LINEAGES = 5
 
 
-def load_system(system: str, data_dir: Path):
+def load_system(system: str, data_dir: Path, homology_cache: dict | None):
+    """Dataset for one system; with a cache dict, genes are also named by homology."""
     spec = CATALOG[system]
     files = sorted((data_dir / system).glob("*.gb"))
     ancestor_stem = re.sub(r"[^A-Za-z0-9]+", "_", spec["ancestor"]).strip("_") if spec["ancestor"] else None
@@ -35,7 +40,22 @@ def load_system(system: str, data_dir: Path):
             records.append(rec)
     if spec["ancestor"] and ancestor is None:
         print(f"  {system}: ancestor proxy {spec['ancestor']} missing, using union of lineages")
-    return build_dataset(system, records, ancestor)
+    added = {}
+    if homology_cache is not None:
+        cache = homology_cache.setdefault(system, {})
+        if ancestor is not None:
+            # Symbionts: match every gene against the free-living relative's proteome.
+            records, added = name_by_homology(records, reference_from_records([ancestor]), cache=cache)
+        else:
+            # Organelles: match each genome against the named genes of all the others.
+            named = []
+            for i, rec in enumerate(records):
+                others = records[:i] + records[i + 1 :]
+                (new,), a = name_by_homology([rec], reference_from_records(others), cache=cache)
+                named.append(new)
+                added.update(a)
+            records = named
+    return build_dataset(system, records, ancestor), added
 
 
 def main():
@@ -43,14 +63,20 @@ def main():
     ap.add_argument("--data", default="data/raw")
     ap.add_argument("--out", default="results/real")
     ap.add_argument("--n-boot", type=int, default=20)
+    ap.add_argument("--no-homology", action="store_true", help="match genes by name only")
     args = ap.parse_args()
     torch.set_num_threads(1)
     out = Path(args.out)
     out.mkdir(parents=True, exist_ok=True)
 
-    datasets = {}
+    cache_path = Path(args.data).parent / "processed" / "homology.json"
+    cache = None
+    if not args.no_homology:
+        cache = json.loads(cache_path.read_text()) if cache_path.exists() else {}
+
+    datasets, homology_added = {}, {}
     for system in CATALOG:
-        ds = load_system(system, Path(args.data))
+        ds, homology_added[system] = load_system(system, Path(args.data), cache)
         if len(ds.lineages) < MIN_LINEAGES:
             print(f"  {system}: only {len(ds.lineages)} genomes, skipping (run fetch_data.py)")
             continue
@@ -60,6 +86,9 @@ def main():
               f"kept {sizes.min()}-{sizes.max()}")
     if not datasets:
         raise SystemExit("No data. Run scripts/fetch_data.py first.")
+    if cache is not None:
+        cache_path.parent.mkdir(parents=True, exist_ok=True)
+        cache_path.write_text(json.dumps(cache))
 
     metrics, laws, lolo = {}, {}, {}
     report = ["# Real-genome results\n"]
@@ -70,6 +99,7 @@ def main():
         forecasts = forecast_lineages(ds, law, law.lineage_offsets[0])
         metrics[system] = {
             "n_genomes": len(ds.lineages),
+            "genes_added_by_homology": homology_added.get(system, {}),
             "n_genes": len(ds.genes),
             "law": {f: {"weight": float(w), "se": float(s)}
                     for f, w, s in zip(FEATURE_NAMES, law.weights[0], law.weights_se[0])},

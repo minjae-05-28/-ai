@@ -144,3 +144,14 @@ def test_symbol_from_product(product, organelle, symbol):
     from organelle_evo.realdata.genes import symbol_from_product
 
     assert symbol_from_product(product, organelle) == symbol
+
+
+def test_homology_recovers_stripped_gene_names(arabidopsis_cp):
+    from organelle_evo.realdata.homology import name_by_homology, reference_from_records
+
+    # The same genome with every annotation name removed must be renamed correctly.
+    anon = GenomeRecord("anon", "A", {}, dict(arabidopsis_cp.cds), {})
+    (named,), added = name_by_homology([anon], reference_from_records([arabidopsis_cp]))
+    assert added["anon"] >= 70
+    wrong = [cid for cid, sym in named.cds_symbol.items() if arabidopsis_cp.cds_symbol.get(cid) != sym]
+    assert not wrong

@@ -66,8 +66,9 @@ CATALOG = {
         # Free-living relative used as the proxy ancestor / gene universe.
         "ancestor": "Escherichia coli str. K-12 substr. MG1655",
         "species": [
-            # Sodalis glossinidius (a recent symbiont) would fit here, but its only complete
-            # record names ~7% of genes, which would read as massive false gene loss.
+            # Recent, still gene-rich. Its record names ~7% of genes; the rest are named
+            # by homology to E. coli (realdata/homology.py).
+            "Sodalis glossinidius",
             "Hamiltonella defensa",
             "Serratia symbiotica",
             "Wigglesworthia glossinidia",
