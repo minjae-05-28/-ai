@@ -1,0 +1,264 @@
+<title>진화 법칙 지도</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a single reading column (lab notebook), wide figures scroll inside their own frames */
+:root {
+  --bg: #f5f6f2; --panel: #ffffff; --fg: #1d2420; --muted: #5e6a63; --line: #d9ddd5;
+  --keep: #1f6f78; --keep-soft: #cfe6e7; --lose: #c2551e; --lose-soft: #f6dccd; --accent: #1f6f78;
+  --pending: #8a7a2b;
+  --sans: "IBM Plex Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", system-ui, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #121614; --panel: #1a201d; --fg: #e3e8e4; --muted: #9aa69f; --line: #2c3530;
+  --keep: #5fb8c1; --keep-soft: #1d3a3d; --lose: #e98a55; --lose-soft: #4a2b1c; --accent: #5fb8c1;
+  --pending: #d1bd62; color-scheme: dark } }
+:root[data-theme="dark"] {
+  --bg: #121614; --panel: #1a201d; --fg: #e3e8e4; --muted: #9aa69f; --line: #2c3530;
+  --keep: #5fb8c1; --keep-soft: #1d3a3d; --lose: #e98a55; --lose-soft: #4a2b1c; --accent: #5fb8c1;
+  --pending: #d1bd62; color-scheme: dark }
+body { background: var(--bg); color: var(--fg); font-family: var(--sans); font-size: 15px; line-height: 1.6; }
+.wrap { max-width: 980px; margin: 0 auto; padding-inline: 16px; padding-block: 28px 64px; display: grid; gap: 40px; }
+h1 { font-size: clamp(26px, 5vw, 36px); line-height: 1.2; margin: 0; text-wrap: balance; font-weight: 700; letter-spacing: -0.01em; }
+h2 { font-size: 20px; margin: 0; text-wrap: balance; }
+p { margin: 0; max-width: 65ch; }
+.lede { color: var(--muted); }
+.eyebrow { font-family: var(--mono); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); }
+section { display: grid; gap: 14px; }
+.stats { display: flex; flex-wrap: wrap; gap: 8px 22px; font-family: var(--mono); font-size: 13px; color: var(--muted); }
+.stats b { color: var(--fg); font-weight: 500; font-variant-numeric: tabular-nums; }
+.flow { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 12px; }
+.law { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 14px 16px; display: grid; gap: 6px; min-width: 0; position: relative; }
+.law .id { font-family: var(--mono); font-size: 13px; color: var(--accent); }
+.law .scope { font-size: 14px; }
+.law .data { font-size: 13px; color: var(--muted); }
+.law.pending { border-style: dashed; }
+.law.pending .id { color: var(--pending); }
+.tag { display: inline-block; font-family: var(--mono); font-size: 11px; padding: 1px 7px; border-radius: 99px; border: 1px solid currentColor; }
+.frame { overflow-x: auto; background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 12px; }
+table.heat { border-collapse: separate; border-spacing: 3px; font-size: 13px; min-width: 760px; }
+.heat th { font-weight: 500; color: var(--muted); font-size: 12px; text-align: center; padding: 4px; vertical-align: bottom; }
+.heat th.row { text-align: left; color: var(--fg); font-size: 13px; white-space: nowrap; padding-right: 10px; }
+.heat td.group { font-family: var(--mono); font-size: 11px; color: var(--accent); padding-top: 12px; }
+.heat td.cell { width: 76px; height: 38px; text-align: center; border-radius: 5px; font-family: var(--mono); font-variant-numeric: tabular-nums; font-size: 12px; }
+.heat td.cell.ns { background-image: repeating-linear-gradient(45deg, transparent 0 5px, color-mix(in srgb, var(--bg) 55%, transparent) 5px 7px); }
+.legend { display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: 12px; color: var(--muted); align-items: center; }
+.swatch { display: inline-block; width: 14px; height: 14px; border-radius: 3px; vertical-align: -2px; margin-right: 5px; }
+.findings { display: grid; gap: 10px; padding: 0; margin: 0; list-style: none; }
+.findings li { display: grid; grid-template-columns: 28px 1fr; gap: 10px; align-items: start; }
+.findings .k { font-family: var(--mono); font-size: 12px; color: var(--accent); padding-top: 3px; }
+svg text { fill: var(--fg); font-family: var(--sans); }
+svg .muted { fill: var(--muted); }
+.two { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px; }
+.two > * { min-width: 0; }
+.note { font-size: 13px; color: var(--muted); }
+.pending-box { border: 1px dashed var(--pending); border-radius: 10px; padding: 14px 16px; display: grid; gap: 6px; }
+.pending-box .tag { color: var(--pending); justify-self: start; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+</style>
+
+<div class="wrap">
+  <header style="display:grid;gap:12px">
+    <div class="eyebrow">organelle-evo · 연구 요약</div>
+    <h1>진화 법칙 지도</h1>
+    <p class="lede">공생 세균이 소기관이 되는 과정, 그리고 자유생활 생물이 기생생물이 되는 과정에서 어떤 유전자가 남고 어떤 유전자가 사라지는지를 실제 유전체에서 학습한 법칙들입니다.</p>
+    <div class="stats" id="stats"></div>
+  </header>
+
+  <section>
+    <div class="eyebrow">법칙 계보</div>
+    <h2>법칙은 어떻게 쌓였나</h2>
+    <div class="flow" id="flow"></div>
+  </section>
+
+  <section>
+    <div class="eyebrow">법칙 지도</div>
+    <h2>무엇이 남고, 무엇이 사라지나</h2>
+    <p class="note">칸의 숫자는 유전자가 사라지는 속도에 대한 효과입니다. 파란색은 <b>남는 쪽</b>, 주황색은 <b>사라지는 쪽</b>이고, 빗금 친 칸은 95% 신뢰구간이 0을 포함해 확실하지 않은 값입니다.</p>
+    <div class="frame"><table class="heat" id="heat"></table></div>
+    <div class="legend" id="legend"></div>
+  </section>
+
+  <section>
+    <div class="eyebrow">핵심 발견</div>
+    <h2>지금까지 알게 된 것</h2>
+    <ul class="findings" id="findings"></ul>
+  </section>
+
+  <section>
+    <div class="eyebrow">검증</div>
+    <h2>처음 보는 기생생물의 유전자 소실을 맞힐 수 있나</h2>
+    <p class="note">기생생물 하나를 빼고 학습한 뒤, 그 종이 어떤 유전자군을 잃었는지 맞히게 했습니다. 점수는 AUROC이고, 0.5는 무작위, 1.0은 완벽입니다.</p>
+    <div class="frame"><svg id="dots" role="img" aria-label="보류 기생생물별 예측 정확도"></svg></div>
+    <div class="legend" id="dotlegend"></div>
+  </section>
+
+  <section>
+    <div class="eyebrow">실험</div>
+    <h2>말라리아 원충의 원형을 다른 법칙으로 진화시키기</h2>
+    <p class="note">알베올라타 계통수로 공통 조상의 유전자군을 복원한 뒤(말라리아 원충은 빼고 복원해 정답이 새지 않게 함), 여러 법칙으로 진화시켜 실제 말라리아 원충과 비교했습니다.</p>
+    <div class="two">
+      <div class="frame"><svg id="tree" viewBox="0 0 360 236" role="img" aria-label="알베올라타 계통수"></svg></div>
+      <div class="frame"><svg id="plasbars" role="img" aria-label="법칙별 정확도"></svg></div>
+    </div>
+    <div class="frame"><table class="heat" id="plasclass" style="min-width:560px"></table></div>
+  </section>
+
+  <section>
+    <div class="eyebrow">다음</div>
+    <h2>진행 중인 작업과 다음 단계</h2>
+    <div class="flow" id="next"></div>
+  </section>
+</div>
+
+<script>
+const D = {"features": [["hydrophobicity_gravy", "소수성"], ["tm_helices", "막관통 나선"], ["protein_length", "단백질 길이"], ["redox_core", "전자전달 핵심"], ["atp_synthase", "ATP 합성효소"], ["translation", "번역 장치"], ["transcription", "전사(RNA 중합효소)"], ["protein_targeting", "단백질 수송"]], "rows": [{"group": "공생 소기관·공생체 (endosymbiosis_v1)", "label": "미토콘드리아", "cells": {"hydrophobicity_gravy": {"weight": -0.3241, "ci95": [-0.4773, -0.171]}, "tm_helices": {"weight": -0.3672, "ci95": [-0.6005, -0.1338]}, "protein_length": {"weight": -0.1877, "ci95": [-0.2769, -0.0986]}, "redox_core": {"weight": -1.5404, "ci95": [-2.0497, -1.0311]}, "atp_synthase": {"weight": -1.2993, "ci95": [-1.7659, -0.8327]}, "translation": {"weight": -1.1229, "ci95": [-1.656, -0.5898]}, "transcription": {"weight": 1.0169, "ci95": [0.4912, 1.5425]}, "protein_targeting": {"weight": 0.9043, "ci95": [0.2319, 1.5768]}}}, {"group": "공생 소기관·공생체 (endosymbiosis_v1)", "label": "엽록체·색소체", "cells": {"hydrophobicity_gravy": {"weight": 0.0134, "ci95": [-0.0779, 0.1047]}, "tm_helices": {"weight": -0.0466, "ci95": [-0.1629, 0.0696]}, "protein_length": {"weight": -0.0401, "ci95": [-0.1134, 0.0332]}, "redox_core": {"weight": -1.3648, "ci95": [-1.6763, -1.0533]}, "atp_synthase": {"weight": -1.8488, "ci95": [-2.2789, -1.4188]}, "translation": {"weight": -1.3034, "ci95": [-1.4815, -1.1253]}, "transcription": {"weight": -2.5516, "ci95": [-3.2499, -1.8534]}, "protein_targeting": {"weight": -0.668, "ci95": [-1.1121, -0.2239]}}}, {"group": "공생 소기관·공생체 (endosymbiosis_v1)", "label": "곤충 공생세균", "cells": {"hydrophobicity_gravy": {"weight": -0.0127, "ci95": [-0.0306, 0.0052]}, "tm_helices": {"weight": 0.1623, "ci95": [0.1423, 0.1822]}, "protein_length": {"weight": -0.1346, "ci95": [-0.1497, -0.1195]}, "redox_core": {"weight": -2.0487, "ci95": [-2.5256, -1.5718]}, "atp_synthase": {"weight": -1.7473, "ci95": [-2.4898, -1.0049]}, "translation": {"weight": -3.0736, "ci95": [-3.2896, -2.8575]}, "transcription": {"weight": -1.3994, "ci95": [-1.5843, -1.2146]}, "protein_targeting": {"weight": -0.7963, "ci95": [-0.86, -0.7327]}}}, {"group": "진핵생물 유전자군 소실 (eukaryote_lifestyle_v1)", "label": "자유생활", "cells": {"hydrophobicity_gravy": {"weight": 0.0628, "ci95": [0.0184, 0.1071]}, "tm_helices": {"weight": -0.008, "ci95": [-0.0459, 0.0299]}, "protein_length": {"weight": -0.1293, "ci95": [-0.1822, -0.0764]}, "redox_core": {"weight": 0.1309, "ci95": [-0.2275, 0.4893]}, "atp_synthase": {"weight": -0.152, "ci95": [-0.7163, 0.4123]}, "translation": {"weight": -0.6248, "ci95": [-1.112, -0.1377]}, "transcription": {"weight": -1.4261, "ci95": [-2.1778, -0.6744]}, "protein_targeting": {"weight": 0.055, "ci95": [-0.4749, 0.5849]}}}, {"group": "진핵생물 유전자군 소실 (eukaryote_lifestyle_v1)", "label": "기생", "cells": {"hydrophobicity_gravy": {"weight": 0.0519, "ci95": [0.0274, 0.0763]}, "tm_helices": {"weight": 0.0556, "ci95": [0.0044, 0.1067]}, "protein_length": {"weight": -0.0521, "ci95": [-0.0784, -0.0258]}, "redox_core": {"weight": -0.1975, "ci95": [-0.6637, 0.2686]}, "atp_synthase": {"weight": -1.2763, "ci95": [-1.5348, -1.0178]}, "translation": {"weight": -1.086, "ci95": [-1.2159, -0.956]}, "transcription": {"weight": -1.5413, "ci95": [-1.7699, -1.3127]}, "protein_targeting": {"weight": -0.5199, "ci95": [-0.6853, -0.3545]}}}], "stats": {"symbiont_genomes": 64, "eukaryotes": 32, "euk_pairs": 14, "delta_aic_endo": 786.6381325855909, "delta_aic_life": 213.11879219656112}, "heldout": [{"name": "Entamoeba histolytica", "copies": 0.6538274396929824, "law": 0.6721158652605779, "ref": 0.6718872952141383, "memo": 0.7829968274316306}, {"name": "Ichthyophthirius multifiliis", "copies": 0.6843729713573167, "law": 0.7025731556767747, "ref": 0.7022353404539178, "memo": 0.731079817797725}, {"name": "Plasmodium falciparum", "copies": 0.586142480030169, "law": 0.6140303061469368, "ref": 0.6207658815866159, "memo": 0.8693085124618601}, {"name": "Toxoplasma gondii", "copies": 0.5947059823891765, "law": 0.622996863308265, "ref": 0.6252110653414459, "memo": 0.8837549601300027}, {"name": "Cryptosporidium parvum", "copies": 0.5945160953939455, "law": 0.6243013152074568, "ref": 0.6246472072032775, "memo": 0.8760130546114048}, {"name": "Leishmania major", "copies": 0.6183900794168011, "law": 0.634380463556812, "ref": 0.6312214321990859, "memo": 0.8633756859643051}, {"name": "Trypanosoma brucei", "copies": 0.6070646653008505, "law": 0.6231753634439227, "ref": 0.6219386569400331, "memo": 0.8644611426376956}, {"name": "Encephalitozoon cuniculi", "copies": 0.6851860894847471, "law": 0.7092126006029261, "ref": 0.7061394145670271, "memo": 0.8191473340224577}], "similarity": {"free_living_loss_vs_mitochondrion": {"correlation": -0.41464990417391595, "sign_agreement": 0.625}, "parasite_loss_vs_mitochondrion": {"correlation": -0.127836468559092, "sign_agreement": 0.5}, "free_living_loss_vs_plastid": {"correlation": 0.7092043276266634, "sign_agreement": 0.75}, "parasite_loss_vs_plastid": {"correlation": 0.9043441488310411, "sign_agreement": 0.875}, "free_living_loss_vs_insect_endosymbiont": {"correlation": 0.3614724983320247, "sign_agreement": 0.5}, "parasite_loss_vs_insect_endosymbiont": {"correlation": 0.6612436637765676, "sign_agreement": 0.875}}, "scenario": {"stay_free_living": {"families_now": 4504, "families_after": [4144.95, 4189.0, 4225.0], "p_family_lost_by_class": {"redox_core": 0.238, "atp_synthase": 0.14775, "translation": 0.08553672316384181, "transcription": 0.037222222222222226, "protein_targeting": 0.16642857142857143, "other": 0.13444179957153057}}, "become_parasite": {"families_now": 4504, "families_after": [2266.0, 2318.0, 2363.1], "p_family_lost_by_class": {"redox_core": 0.7112499999999999, "atp_synthase": 0.25375000000000003, "translation": 0.24966101694915252, "transcription": 0.14866666666666667, "protein_targeting": 0.4573809523809524, "other": 0.5280516543680076}}, "actual_Entamoeba_families": 2124}, "plasmodium": {"tree": "((('Plasmodium falciparum', 'Toxoplasma gondii'), 'Cryptosporidium parvum'), ('Tetrahymena thermophila', 'Ichthyophthirius multifiliis'))", "ancestor_families_without_plasmodium": 2129, "ancestor_families_with_plasmodium": 1918, "plasmodium_families": 2383, "plasmodium_lost_from_ancestor": 477, "auroc_which_families_lost": {"parasite (Plasmodium pair held out)": 0.6381477758996147, "parasite (no apicomplexan seen)": 0.6380234110486749, "free-living": 0.6345805351241872, "reference: endosymbiosis (mitochondrion)": 0.6366706260374313, "reference: endosymbiosis (plastid)": 0.6545740884564037, "reference: endosymbiosis (insect_endosymbiont)": 0.6451236288140669, "baseline: fewer copies lost first": 0.6289200308627875}, "projected_family_count": {"parasite (Plasmodium pair held out)": [1146.95, 1190.0, 1224.1999999999998], "parasite (no apicomplexan seen)": [1176.9, 1213.5, 1256.05], "free-living": [2187.0, 2222.0, 2266.0]}, "fraction_lost_by_class": {"parasite (Plasmodium pair held out)": {"redox_core": 0.33919813108123126, "atp_synthase": 0.092067329469817, "translation": 0.11398829804926149, "transcription": 0.05499957140484285, "protein_targeting": 0.17801855590984247}, "parasite (no apicomplexan seen)": {"redox_core": 0.32981683811508183, "atp_synthase": 0.09757314167900623, "translation": 0.11740861416023765, "transcription": 0.05081164455518013, "protein_targeting": 0.1548417072048654}, "free-living": {"redox_core": 0.3503732887993564, "atp_synthase": 0.21147310805853373, "translation": 0.15593337771868698, "transcription": 0.053086878837652486, "protein_targeting": 0.27008481668271356}, "reference: endosymbiosis (mitochondrion)": {"redox_core": 0.0770172380578413, "atp_synthase": 0.0646144030174649, "translation": 0.12044686532068473, "transcription": 0.5082817818928402, "protein_targeting": 0.4352532841180744}, "reference: endosymbiosis (plastid)": {"redox_core": 0.08683563443584869, "atp_synthase": 0.04337105068195424, "translation": 0.08195250411518419, "transcription": 0.01766371859968333, "protein_targeting": 0.13430383066634669}, "reference: endosymbiosis (insect_endosymbiont)": {"redox_core": 0.05097123435926282, "atp_synthase": 0.04398309024401453, "translation": 0.014416927939705875, "transcription": 0.05312953422151909, "protein_targeting": 0.13985270265130764}, "actual Plasmodium": {"redox_core": 0.0, "atp_synthase": 0.0, "translation": 0.02054794520547945, "transcription": 0.08823529411764706, "protein_targeting": 0.2}}}, "axes_done": false, "axes_metrics": null};
+const $ = (id) => document.getElementById(id);
+const css = (v) => getComputedStyle(document.documentElement).getPropertyValue(v).trim();
+const f2 = (x) => (x >= 0 ? "+" : "−") + Math.abs(x).toFixed(2);
+
+$("stats").innerHTML = [
+  ["공생체·소기관 유전체", D.stats.symbiont_genomes],
+  ["진핵생물", D.stats.eukaryotes + "종"],
+  ["비교 쌍", D.stats.euk_pairs + "개 (분석 완료분)"],
+  ["저장된 법칙", (D.axes_done ? 3 : 2) + "개"],
+].map(([k, v]) => `<span>${k} <b>${v}</b></span>`).join("");
+
+const laws = [
+  {id: "endosymbiosis_v1", scope: "의무적 공생에서의 유전체 축소. 소기관과 곤충 공생세균이 어떤 유전자를 남기는가.",
+   data: `실제 유전체 ${D.stats.symbiont_genomes}개 · 세 시스템의 법칙이 서로 다름 (ΔAIC ${D.stats.delta_aic_endo.toFixed(0)})`, tag: "저장됨"},
+  {id: "eukaryote_lifestyle_v1", scope: "진핵생물 유전자군의 복제와 소실. 자유생활과 기생을 따로 학습.",
+   data: `진핵생물 23종, 14쌍 · 기생이 법칙을 바꿈 (ΔAIC ${D.stats.delta_aic_life.toFixed(0)})`, tag: "저장됨"},
+  {id: "eukaryote_axes_v1", scope: "기본 법칙 + 기생 효과 + 세포 안 효과 + 미토콘드리아 퇴화 효과로 나눈 법칙.",
+   data: D.axes_done ? "진핵생물 32종, 22쌍" : "진핵생물 32종, 22쌍 · 분석 중", tag: D.axes_done ? "저장됨" : "진행 중", pending: !D.axes_done},
+];
+$("flow").innerHTML = laws.map((l, i) => `
+  <div class="law ${l.pending ? "pending" : ""}">
+    <div style="display:flex;justify-content:space-between;gap:8px;align-items:center">
+      <span class="id">${String(i + 1)}. ${l.id}</span><span class="tag" style="color:${l.pending ? "var(--pending)" : "var(--accent)"}">${l.tag}</span>
+    </div>
+    <div class="scope">${l.scope}</div>
+    <div class="data">${l.data}</div>
+  </div>`).join("");
+
+function heatColor(w) {
+  const t = Math.min(Math.abs(w) / 2.5, 1);
+  const base = w < 0 ? css("--keep") : css("--lose");
+  return `color-mix(in srgb, ${base} ${Math.round(12 + t * 78)}%, var(--panel))`;
+}
+(function heat() {
+  const feats = D.features;
+  let h = "<tr><th></th>" + feats.map(([, ko]) => `<th>${ko}</th>`).join("") + "</tr>";
+  let group = null;
+  for (const r of D.rows) {
+    if (r.group !== group) { group = r.group; h += `<tr><td class="group" colspan="${feats.length + 1}">${group}</td></tr>`; }
+    h += `<tr><th class="row" scope="row">${r.label}</th>` + feats.map(([k]) => {
+      const c = r.cells[k]; const [lo, hi] = c.ci95; const ns = lo <= 0 && hi >= 0;
+      const strong = Math.abs(c.weight) > 1.4;
+      return `<td class="cell ${ns ? "ns" : ""}" style="background-color:${heatColor(c.weight)};color:${strong ? "var(--panel)" : "var(--fg)"}" title="${r.label} · ${k}: ${f2(c.weight)} [${lo.toFixed(2)}, ${hi.toFixed(2)}]">${f2(c.weight)}</td>`;
+    }).join("") + "</tr>";
+  }
+  $("heat").innerHTML = h;
+  $("legend").innerHTML = `<span><span class="swatch" style="background:${heatColor(-2.5)}"></span>강하게 남음</span>
+    <span><span class="swatch" style="background:${heatColor(-0.6)}"></span>약하게 남음</span>
+    <span><span class="swatch" style="background:${heatColor(0.6)}"></span>약하게 사라짐</span>
+    <span><span class="swatch" style="background:${heatColor(2.5)}"></span>강하게 사라짐</span>
+    <span><span class="swatch" style="background:${heatColor(0.3)};background-image:repeating-linear-gradient(45deg,transparent 0 3px,var(--bg) 3px 5px)"></span>불확실</span>`;
+})();
+
+const sim = D.similarity;
+const sc = D.scenario;
+const findings = [
+  ["에너지와 번역은 어디서나 남는다", "전자전달 핵심, ATP 합성효소, 번역 장치는 소기관·공생세균·기생생물 모두에서 남는 쪽입니다."],
+  ["RNA 중합효소는 시스템마다 반대", "미토콘드리아는 세균형 RNA 중합효소를 버렸고(소실 효과 +1.02), 엽록체는 강하게 지킵니다(−2.55). 실제 역사와 같은 방향입니다."],
+  ["막단백질이 남는 효과는 미토콘드리아에서만", "핵으로 옮겨 갈 길이 있을 때만 나타나는 효과로, 소수성 가설과 맞습니다."],
+  ["기생은 법칙을 바꾼다", `기생 계통은 유전자군을 대량으로 잃지만 핵심 장치는 더 강하게 지킵니다. 이 소실 법칙은 저장된 엽록체 공생 법칙과 상관 ${sim.parasite_loss_vs_plastid.correlation.toFixed(2)}로 닮았습니다.`],
+  ["자유생활 아메바를 기생으로 전환하면", `딕티오스텔리움(유전자군 ${sc.become_parasite.families_now.toLocaleString()}개)이 기생 법칙으로 진화하면 약 ${Math.round(sc.become_parasite.families_after[1]).toLocaleString()}개가 남습니다. 실제 기생 아메바인 이질아메바는 ${sc.actual_Entamoeba_families.toLocaleString()}개입니다(학습에 포함된 쌍이라 독립 검증은 아님).`],
+];
+$("findings").innerHTML = findings.map(([t, d], i) => `<li><span class="k">${String(i + 1).padStart(2, "0")}</span><div><b>${t}</b><br><span class="note">${d}</span></div></li>`).join("");
+
+(function dots() {
+  const rows = D.heldout, W = 720, rowH = 30, top = 28, left = 190, right = 20;
+  const H = top + rows.length * rowH + 30;
+  const x = (v) => left + (v - 0.5) / 0.45 * (W - left - right);
+  const series = [["copies", "복제 수 기준선", css("--muted")], ["law", "학습된 법칙", css("--lose")],
+                  ["ref", "엽록체 공생 법칙(참고)", css("--keep")], ["memo", "다른 기생생물 소실 빈도(암기)", css("--fg")]];
+  let s = `<svg viewBox="0 0 ${W} ${H}" width="${W}" height="${H}">`;
+  for (const t of [0.5, 0.6, 0.7, 0.8, 0.9]) {
+    s += `<line x1="${x(t)}" x2="${x(t)}" y1="${top - 8}" y2="${H - 24}" stroke="${css("--line")}"/>`;
+    s += `<text x="${x(t)}" y="${H - 8}" text-anchor="middle" font-size="11" class="muted">${t.toFixed(1)}</text>`;
+  }
+  rows.forEach((r, i) => {
+    const y = top + i * rowH + rowH / 2;
+    s += `<text x="${left - 12}" y="${y + 4}" text-anchor="end" font-size="12" font-style="italic">${r.name}</text>`;
+    const vals = series.map(([k]) => r[k]);
+    s += `<line x1="${x(Math.min(...vals))}" x2="${x(Math.max(...vals))}" y1="${y}" y2="${y}" stroke="${css("--line")}" stroke-width="2"/>`;
+    series.forEach(([k, , c], j) => {
+      s += `<circle cx="${x(r[k])}" cy="${y}" r="${j === 1 ? 6 : 4.5}" fill="${c}" stroke="${css("--panel")}" stroke-width="1.5"><title>${series[j][1]}: ${r[k].toFixed(3)}</title></circle>`;
+    });
+  });
+  $("dots").outerHTML = s + "</svg>";
+  $("dotlegend").innerHTML = series.map(([, n, c]) => `<span><span class="swatch" style="background:${c};border-radius:50%"></span>${n}</span>`).join("");
+})();
+
+(function tree() {
+  const svg = $("tree"), c = css("--fg"), acc = css("--accent"), lose = css("--lose"), mut = css("--muted");
+  const leaves = [["말라리아 원충", 30, true], ["톡소플라스마", 70], ["크립토스포리디움", 110], ["테트라히메나", 160], ["백점충", 200]];
+  let s = "";
+  const lx = 210;
+  leaves.forEach(([n, y, hl]) => { s += `<text x="${lx + 8}" y="${y + 4}" font-size="13" ${hl ? `fill="${lose}" font-weight="700"` : ""}>${n}</text>`; });
+  const path = (d, col = c, w = 1.6, dash = "") => `<path d="${d}" stroke="${col}" stroke-width="${w}" fill="none" ${dash ? `stroke-dasharray="${dash}"` : ""}/>`;
+  // (Plasmodium, Toxoplasma) joins at x=150; + Cryptosporidium at x=100; ciliates at x=130; root at x=40
+  s += path(`M150 30 H${lx}`, lose, 2.2, "5 4") + path(`M150 30 V70 M150 70 H${lx}`);
+  s += path(`M100 50 H150 M100 50 V110 M100 110 H${lx}`);
+  s += path(`M130 160 H${lx} M130 160 V200 M130 200 H${lx}`);
+  s += path(`M40 80 V180 M40 80 H100 M40 180 H130`);
+  s += `<circle cx="40" cy="130" r="9" fill="${acc}"/>`;
+  s += `<text x="14" y="222" font-size="11" fill="${acc}">● 복원한 원형 · 유전자군 ${D.plasmodium.ancestor_families_without_plasmodium.toLocaleString()}개</text>`;
+  s += `<text x="${lx + 8}" y="222" font-size="10" class="muted">점선: 채점할 정답</text>`;
+  svg.innerHTML = s;
+})();
+
+(function plasbars() {
+  const a = D.plasmodium.auroc_which_families_lost;
+  const ko = {"parasite (Plasmodium pair held out)": "기생 법칙", "parasite (no apicomplexan seen)": "기생 법칙 (아피콤플렉사 미학습)",
+    "free-living": "자유생활 법칙", "reference: endosymbiosis (mitochondrion)": "미토콘드리아 공생 법칙", "reference: endosymbiosis (plastid)": "엽록체 공생 법칙",
+    "reference: endosymbiosis (insect_endosymbiont)": "곤충 공생세균 법칙", "baseline: fewer copies lost first": "기준선: 복제 수"};
+  const items = Object.entries(a).sort((p, q) => q[1] - p[1]);
+  const W = 420, rowH = 26, left = 190, H = items.length * rowH + 34;
+  const x = (v) => left + (v - 0.5) / 0.2 * (W - left - 40);
+  let s = `<svg viewBox="0 0 ${W} ${H}" width="100%" style="max-width:${W}px">`;
+  items.forEach(([k, v], i) => {
+    const y = 8 + i * rowH, base = k.startsWith("baseline");
+    s += `<text x="${left - 8}" y="${y + 15}" text-anchor="end" font-size="12">${ko[k] || k}</text>`;
+    s += `<rect x="${x(0.5)}" y="${y + 3}" width="${x(v) - x(0.5)}" height="16" rx="3" fill="${base ? css("--muted") : k.startsWith("reference") ? css("--keep") : css("--lose")}"/>`;
+    s += `<text x="${x(v) + 5}" y="${y + 15}" font-size="11" font-family="var(--mono)">${v.toFixed(2)}</text>`;
+  });
+  s += `<text x="${x(0.5)}" y="${H - 6}" font-size="11" class="muted">0.5 = 무작위 · 모든 법칙이 기준선 근처</text></svg>`;
+  $("plasbars").outerHTML = s;
+})();
+
+(function plasclass() {
+  const fl = D.plasmodium.fraction_lost_by_class;
+  const cols = [["actual Plasmodium", "실제 말라리아 원충"], ["parasite (no apicomplexan seen)", "기생 법칙 예측"], ["reference: endosymbiosis (mitochondrion)", "미토콘드리아 법칙 예측"]];
+  const classes = Object.keys(fl["actual Plasmodium"]);
+  const name = {redox_core: "전자전달 핵심", atp_synthase: "ATP 합성효소", translation: "번역 장치", transcription: "전사(RNA 중합효소)", protein_targeting: "단백질 수송"};
+  let h = `<tr><th class="row">원형이 가진 유전자군 중 사라진 비율</th>${cols.map(([, n]) => `<th>${n}</th>`).join("")}</tr>`;
+  for (const c of classes) {
+    const actual = fl["actual Plasmodium"][c];
+    h += `<tr><th class="row">${name[c]}</th>` + cols.map(([k]) => {
+      const v = fl[k][c]; const off = Math.abs(v - actual) > 0.2;
+      return `<td class="cell" style="background-color:${off ? `color-mix(in srgb, ${css("--lose")} 30%, var(--panel))` : "transparent"}">${Math.round(v * 100)}%</td>`;
+    }).join("") + "</tr>";
+  }
+  h += `<tr><td colspan="4" class="note" style="padding-top:8px">색칠한 칸은 실제와 20%p 넘게 어긋난 예측입니다. 기생 법칙은 호흡 유전자를 버린 이질아메바·미포자충을 닮아 전자전달 유전자 소실을 과대 예측했고, 미토콘드리아 법칙은 소기관 전용 규칙(RNA 중합효소 버리기)을 핵 유전체에 적용해 틀렸습니다.</td></tr>`;
+  $("plasclass").innerHTML = h;
+})();
+
+$("next").innerHTML = [
+  [D.axes_done ? "완료" : "진행 중", "축별 법칙 (eukaryote_axes_v1)", "기생·세포 안·미토콘드리아 퇴화의 효과를 따로 추정합니다. 말라리아 원충 원형을 자유생활 친척 Chromera·Vitrella와 함께 다시 복원해, 실제 생활 방식(세포 안, 호흡 유지)에 맞는 법칙이 가장 잘 맞히는지 검증합니다."],
+  ["다음", "복합 법칙", "저장된 법칙들에서 공통 핵(절대 법칙 후보)과 상황별 보정을 분리하거나, 상황에 따라 법칙을 가중 혼합하는 모델을 만듭니다."],
+  ["한계", "지금 알고 있는 약점", "조상 대리로 현생 근연종을 쓰고, 종들을 독립으로 취급해 신뢰구간이 좁게 나옵니다. 8개 특성으로는 유전자군별 사정을 다 담지 못합니다."],
+].map(([t, h, d]) => `<div class="law ${t === "진행 중" ? "pending" : ""}"><span class="tag" style="justify-self:start;color:${t === "진행 중" ? "var(--pending)" : "var(--accent)"}">${t}</span><b>${h}</b><div class="data">${d}</div></div>`).join("");
+</script>
