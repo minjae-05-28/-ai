@@ -1,0 +1,679 @@
+{
+  "n_features": {
+    "base": 8,
+    "enriched": 56
+  },
+  "feature_names": [
+    "hydrophobicity_gravy",
+    "tm_helices",
+    "protein_length",
+    "redox_core",
+    "atp_synthase",
+    "translation",
+    "transcription",
+    "protein_targeting",
+    "ubiquity_free_living",
+    "copies_free_living",
+    "hmm_length",
+    "clan_size",
+    "in_clan",
+    "has_go_annotation",
+    "go:DNA binding",
+    "go:RNA binding",
+    "go:catalytic activity",
+    "go:structural molecule activity",
+    "go:transporter activity",
+    "go:nucleus",
+    "go:mitochondrion",
+    "go:ribosome",
+    "go:carbohydrate metabolic process",
+    "go:DNA-templated transcription",
+    "go:regulation of DNA-templated transcription",
+    "go:lipid metabolic process",
+    "go:oxidoreductase activity",
+    "go:transferase activity",
+    "go:hydrolase activity",
+    "go:lyase activity",
+    "go:isomerase activity",
+    "go:ligase activity",
+    "go:signaling",
+    "go:organelle",
+    "go:transmembrane transport",
+    "go:nucleobase-containing small molecule metabolic process",
+    "go:molecular function regulator activity",
+    "go:catalytic activity, acting on a protein",
+    "go:catalytic activity, acting on RNA",
+    "go:carbohydrate derivative metabolic process",
+    "kw:kinase",
+    "kw:phosphatase",
+    "kw:transporter_channel",
+    "kw:zinc_finger",
+    "kw:repeat_domain",
+    "kw:ubiquitin_system",
+    "kw:protease",
+    "kw:helicase_nucleic",
+    "kw:gtpase_signalling",
+    "kw:methyl_glyco_transferase",
+    "kw:cytoskeleton_motor",
+    "kw:cilium_flagellum",
+    "kw:cell_adhesion_surface",
+    "kw:lipid_metabolism",
+    "kw:amino_acid_metabolism",
+    "kw:uncharacterised"
+  ],
+  "mean_heldout_auroc": {
+    "copies_only": 0.6389212574704102,
+    "base": 0.6691095102604668,
+    "enriched": 0.7822704099704495,
+    "memorisation": 0.8652363915596909
+  },
+  "heldout": [
+    {
+      "pair": "Chromera velia -> Plasmodium falciparum",
+      "copies_only": 0.624691069050213,
+      "memorisation": 0.9498164667413971,
+      "base": 0.668746089896938,
+      "enriched": 0.8091151511333871
+    },
+    {
+      "pair": "Spizellomyces punctatus -> Encephalitozoon cuniculi",
+      "copies_only": 0.6851860894847471,
+      "memorisation": 0.9313786922311033,
+      "base": 0.7119595185579556,
+      "enriched": 0.8437562660757253
+    },
+    {
+      "pair": "Schizosaccharomyces pombe -> Pneumocystis jirovecii",
+      "copies_only": 0.5885882177917663,
+      "memorisation": 0.7735057516275698,
+      "base": 0.6236126823978124,
+      "enriched": 0.7433223073662878
+    },
+    {
+      "pair": "Coprinopsis cinerea -> Malassezia globosa",
+      "copies_only": 0.5893012103855477,
+      "memorisation": 0.7741954651593206,
+      "base": 0.6017533752473512,
+      "enriched": 0.7386121060819856
+    },
+    {
+      "pair": "Spizellomyces punctatus -> Encephalitozoon intestinalis",
+      "copies_only": 0.6854698940477216,
+      "memorisation": 0.9325343483504178,
+      "base": 0.7088851322249978,
+      "enriched": 0.8447952019984495
+    },
+    {
+      "pair": "Chromera velia -> Theileria parva",
+      "copies_only": 0.6076658641801806,
+      "memorisation": 0.9515954001637561,
+      "base": 0.6691503012379474,
+      "enriched": 0.8209492967041024
+    },
+    {
+      "pair": "Chromera velia -> Cyclospora cayetanensis",
+      "copies_only": 0.6551266858529429,
+      "memorisation": 0.9249780495992976,
+      "base": 0.6989942508122605,
+      "enriched": 0.8158973505531597
+    },
+    {
+      "pair": "Bodo saltans -> Leishmania donovani",
+      "copies_only": 0.621126188392402,
+      "memorisation": 0.895520166204533,
+      "base": 0.6318994920619341,
+      "enriched": 0.7498545437691022
+    },
+    {
+      "pair": "Bodo saltans -> Leptomonas pyrrhocoris",
+      "copies_only": 0.6310439167441528,
+      "memorisation": 0.8921694323248218,
+      "base": 0.642656700760556,
+      "enriched": 0.7602710821829626
+    },
+    {
+      "pair": "Nematostella vectensis -> Thelohanellus kitauei",
+      "copies_only": 0.6671940548775719,
+      "memorisation": 0.7559046102541161,
+      "base": 0.6857681827709076,
+      "enriched": 0.753005408922689
+    },
+    {
+      "pair": "Nematostella vectensis -> Henneguya salminicola",
+      "copies_only": 0.6469388206881096,
+      "memorisation": 0.7757325543399047,
+      "base": 0.6760487143199695,
+      "enriched": 0.8180970807140943
+    },
+    {
+      "pair": "Tetrahymena thermophila -> Ichthyophthirius multifiliis",
+      "copies_only": 0.6843729713573167,
+      "memorisation": 0.73635136986408,
+      "base": 0.699699001966178,
+      "enriched": 0.7538798156182719
+    },
+    {
+      "pair": "Chromera velia -> Babesia bovis",
+      "copies_only": 0.6090961112595233,
+      "memorisation": 0.9513233503009848,
+      "base": 0.6684062523873685,
+      "enriched": 0.8196334267113753
+    },
+    {
+      "pair": "Chromera velia -> Cryptosporidium parvum",
+      "copies_only": 0.6330129445537315,
+      "memorisation": 0.9215352958271814,
+      "base": 0.6775510740557379,
+      "enriched": 0.8223021551214255
+    },
+    {
+      "pair": "Bodo saltans -> Trypanosoma cruzi",
+      "copies_only": 0.6282412855577649,
+      "memorisation": 0.8934303732297204,
+      "base": 0.6422291573672037,
+      "enriched": 0.7515572373493487
+    },
+    {
+      "pair": "Spizellomyces punctatus -> Rozella allomycis",
+      "copies_only": 0.6630970516017967,
+      "memorisation": 0.8437830256217949,
+      "base": 0.6900503253168067,
+      "enriched": 0.8116852070572663
+    },
+    {
+      "pair": "Chromera velia -> Plasmodium berghei",
+      "copies_only": 0.6191111999759492,
+      "memorisation": 0.9498648814378161,
+      "base": 0.6661147078571098,
+      "enriched": 0.8118339809703055
+    },
+    {
+      "pair": "Chromera velia -> Neospora caninum",
+      "copies_only": 0.6402126539997026,
+      "memorisation": 0.9415513590966444,
+      "base": 0.6829529646574692,
+      "enriched": 0.8222210175183288
+    },
+    {
+      "pair": "Bodo saltans -> Trypanosoma congolense",
+      "copies_only": 0.6986458868647127,
+      "memorisation": 0.6976801233362983,
+      "base": 0.6996496819374409,
+      "enriched": 0.5458629523792772
+    },
+    {
+      "pair": "Naegleria gruberi -> Giardia intestinalis",
+      "copies_only": 0.6555109348621645,
+      "memorisation": 0.8671531941770833,
+      "base": 0.6954640468344159,
+      "enriched": 0.7714850872504885
+    },
+    {
+      "pair": "Thalassiosira pseudonana -> Phytophthora infestans",
+      "copies_only": 0.611587689524816,
+      "memorisation": 0.860719584569733,
+      "base": 0.6382591154831104,
+      "enriched": 0.7867886468029754
+    },
+    {
+      "pair": "Spizellomyces punctatus -> Batrachochytrium dendrobatidis",
+      "copies_only": 0.6337720568970403,
+      "memorisation": 0.8352575634765304,
+      "base": 0.6507126900342012,
+      "enriched": 0.8131533446451161
+    },
+    {
+      "pair": "Spizellomyces punctatus -> Enterocytozoon bieneusi",
+      "copies_only": 0.7040097077452271,
+      "memorisation": 0.9140542746725048,
+      "base": 0.731752818702595,
+      "enriched": 0.8284731105928067
+    },
+    {
+      "pair": "Spizellomyces punctatus -> Vavraia culicis",
+      "copies_only": 0.6919951903909303,
+      "memorisation": 0.9312642938174596,
+      "base": 0.717116744470943,
+      "enriched": 0.8418485371829536
+    },
+    {
+      "pair": "Chromera velia -> Hammondia hammondi",
+      "copies_only": 0.6259803786879641,
+      "memorisation": 0.951109671136186,
+      "base": 0.6684709603360688,
+      "enriched": 0.8144523617624072
+    },
+    {
+      "pair": "Bodo saltans -> Trypanosoma vivax",
+      "copies_only": 0.61762359067857,
+      "memorisation": 0.8975714091118655,
+      "base": 0.6334884110817721,
+      "enriched": 0.7548419883482124
+    },
+    {
+      "pair": "Dictyostelium discoideum -> Entamoeba invadens",
+      "copies_only": 0.660396609475909,
+      "memorisation": 0.8684030727054635,
+      "base": 0.684240191063557,
+      "enriched": 0.8076636708253874
+    },
+    {
+      "pair": "Naegleria gruberi -> Spironucleus salmonicida",
+      "copies_only": 0.6778121200430228,
+      "memorisation": 0.8596415544332211,
+      "base": 0.7158807402731013,
+      "enriched": 0.7698086185933408
+    },
+    {
+      "pair": "Caenorhabditis elegans -> Brugia malayi",
+      "copies_only": 0.6088821757907794,
+      "memorisation": 0.7086525249308541,
+      "base": 0.6441546902244317,
+      "enriched": 0.6996139231423982
+    },
+    {
+      "pair": "Caenorhabditis elegans -> Trichinella spiralis",
+      "copies_only": 0.6382975788094088,
+      "memorisation": 0.6988168212476457,
+      "base": 0.6588416305886782,
+      "enriched": 0.7075862568877488
+    },
+    {
+      "pair": "Caenorhabditis elegans -> Schistosoma mansoni",
+      "copies_only": 0.5974347490412371,
+      "memorisation": 0.7446045079595061,
+      "base": 0.6351260581867337,
+      "enriched": 0.7080641577636458
+    },
+    {
+      "pair": "Dictyostelium discoideum -> Entamoeba histolytica",
+      "copies_only": 0.6538274396929824,
+      "memorisation": 0.8443837074303405,
+      "base": 0.678633538119195,
+      "enriched": 0.8087187177502579
+    },
+    {
+      "pair": "Tetrahymena thermophila -> Perkinsus marinus",
+      "copies_only": 0.6243565597008711,
+      "memorisation": 0.8265972505838644,
+      "base": 0.6467210417170568,
+      "enriched": 0.7643761474074044
+    },
+    {
+      "pair": "Bodo saltans -> Trypanosoma brucei",
+      "copies_only": 0.6070646653008505,
+      "memorisation": 0.897527795679164,
+      "base": 0.6218485548224686,
+      "enriched": 0.7532399677610229
+    },
+    {
+      "pair": "Chromera velia -> Babesia microti",
+      "copies_only": 0.596199045904687,
+      "memorisation": 0.95193794822227,
+      "base": 0.6581875796033978,
+      "enriched": 0.8128785807210746
+    },
+    {
+      "pair": "Chromera velia -> Cryptosporidium hominis",
+      "copies_only": 0.6432884108352236,
+      "memorisation": 0.9003472510284235,
+      "base": 0.6871574029295654,
+      "enriched": 0.8166482194563772
+    },
+    {
+      "pair": "Bodo saltans -> Leishmania infantum",
+      "copies_only": 0.6207786668276684,
+      "memorisation": 0.9048032732539841,
+      "base": 0.6323129291631657,
+      "enriched": 0.7560494431745063
+    },
+    {
+      "pair": "Dictyostelium discoideum -> Entamoeba dispar",
+      "copies_only": 0.6573835709065989,
+      "memorisation": 0.8394117926497328,
+      "base": 0.6804931173999044,
+      "enriched": 0.8049693797826718
+    },
+    {
+      "pair": "Thalassiosira pseudonana -> Saprolegnia parasitica",
+      "copies_only": 0.6073954643381707,
+      "memorisation": 0.862479480269007,
+      "base": 0.6357317844710578,
+      "enriched": 0.7837280275138586
+    },
+    {
+      "pair": "Thalassiosira pseudonana -> Blastocystis hominis",
+      "copies_only": 0.6458674527786876,
+      "memorisation": 0.8426315529165185,
+      "base": 0.6809626948288374,
+      "enriched": 0.8036937808746958
+    },
+    {
+      "pair": "Auxenochlorella protothecoides -> Helicosporidium sp. ATCC 50920",
+      "copies_only": 0.6748961370955746,
+      "memorisation": 0.7200447622309164,
+      "base": 0.7102472300342808,
+      "enriched": 0.7433173171718849
+    },
+    {
+      "pair": "Chromera velia -> Toxoplasma gondii",
+      "copies_only": 0.6233197287534065,
+      "memorisation": 0.9450472146523861,
+      "base": 0.6626569491095761,
+      "enriched": 0.8073350655935103
+    },
+    {
+      "pair": "Chromera velia -> Eimeria tenella",
+      "copies_only": 0.6630382613043462,
+      "memorisation": 0.9101105530131565,
+      "base": 0.7044612902240831,
+      "enriched": 0.8190006908370578
+    },
+    {
+      "pair": "Bodo saltans -> Leishmania major",
+      "copies_only": 0.6183900794168011,
+      "memorisation": 0.9183767084500015,
+      "base": 0.6311287343200133,
+      "enriched": 0.7522511539481431
+    },
+    {
+      "pair": "Spizellomyces punctatus -> Nosema ceranae",
+      "copies_only": 0.6890765047252576,
+      "memorisation": 0.9357241078645564,
+      "base": 0.7118152946721892,
+      "enriched": 0.8410783767266053
+    },
+    {
+      "pair": "Schizosaccharomyces pombe -> Taphrina deformans",
+      "copies_only": 0.648480487776635,
+      "memorisation": 0.6689268022748032,
+      "base": 0.6601704874222278,
+      "enriched": 0.7078484358184298
+    },
+    {
+      "pair": "Coprinopsis cinerea -> Ustilago maydis",
+      "copies_only": 0.5771335042578518,
+      "memorisation": 0.7854891842278529,
+      "base": 0.5886000540679599,
+      "enriched": 0.7101139787478035
+    },
+    {
+      "pair": "Spizellomyces punctatus -> Nematocida parisii",
+      "copies_only": 0.6793454871052335,
+      "memorisation": 0.926644716446435,
+      "base": 0.7083286223334221,
+      "enriched": 0.8388712656967477
+    },
+    {
+      "pair": "Chromera velia -> Plasmodium vivax",
+      "copies_only": 0.6212876672589477,
+      "memorisation": 0.9348975977311375,
+      "base": 0.6675590642850736,
+      "enriched": 0.8064784631739264
+    },
+    {
+      "pair": "Chromera velia -> Plasmodium knowlesi",
+      "copies_only": 0.6172615991923694,
+      "memorisation": 0.9389005194636661,
+      "base": 0.6628164110060648,
+      "enriched": 0.8070062232586899
+    },
+    {
+      "pair": "Chromera velia -> Theileria annulata",
+      "copies_only": 0.6151684992058313,
+      "memorisation": 0.9426745632072103,
+      "base": 0.6751165396407156,
+      "enriched": 0.8177563810532278
+    }
+  ],
+  "significant_loss_effects": {
+    "base": [
+      [
+        "go:ligase activity",
+        -0.5414524198105305,
+        0.04816495577284116
+      ],
+      [
+        "ubiquity_free_living",
+        -0.4821673548845708,
+        0.031266309072587324
+      ],
+      [
+        "kw:gtpase_signalling",
+        -0.43515480934375095,
+        0.04461008064916025
+      ],
+      [
+        "copies_free_living",
+        0.42840955825518445,
+        0.025775845786514213
+      ],
+      [
+        "translation",
+        -0.3904232845453161,
+        0.07988949155837305
+      ],
+      [
+        "go:ribosome",
+        0.310837168800849,
+        0.0861643976545738
+      ],
+      [
+        "protein_targeting",
+        -0.31024736702761474,
+        0.10416088511987764
+      ],
+      [
+        "transcription",
+        -0.28604487131737605,
+        0.08943027106311445
+      ],
+      [
+        "go:carbohydrate metabolic process",
+        0.28083976085065254,
+        0.12720722640661697
+      ],
+      [
+        "go:nucleus",
+        -0.26799557690801834,
+        0.06288619055004954
+      ],
+      [
+        "go:oxidoreductase activity",
+        0.2471339220750904,
+        0.05606995769645126
+      ],
+      [
+        "go:DNA-templated transcription",
+        -0.23881643466790725,
+        0.07498486113510335
+      ]
+    ],
+    "parasite": [
+      [
+        "kw:cilium_flagellum",
+        -0.8540888734076695,
+        0.1308957878609999
+      ],
+      [
+        "atp_synthase",
+        -0.4410319831688851,
+        0.07969209329165038
+      ],
+      [
+        "go:mitochondrion",
+        -0.2861930057367012,
+        0.14013780975238846
+      ],
+      [
+        "go:regulation of DNA-templated transcription",
+        0.2671806616695641,
+        0.07244200409905326
+      ],
+      [
+        "kw:lipid_metabolism",
+        0.2625481087221274,
+        0.11786094406265483
+      ],
+      [
+        "kw:gtpase_signalling",
+        -0.23474500828655595,
+        0.03618285920473782
+      ],
+      [
+        "kw:helicase_nucleic",
+        -0.21709384578409702,
+        0.054063543233739284
+      ],
+      [
+        "in_clan",
+        0.19850916767278232,
+        0.0068337634516715245
+      ],
+      [
+        "go:nucleobase-containing small molecule metabolic process",
+        -0.18961456149400407,
+        0.0874146420601893
+      ],
+      [
+        "kw:cell_adhesion_surface",
+        -0.15031069626793575,
+        0.049422292775104036
+      ],
+      [
+        "go:isomerase activity",
+        -0.14596049994417476,
+        0.04343275383357761
+      ],
+      [
+        "kw:kinase",
+        -0.1440480785031325,
+        0.04341535094230819
+      ]
+    ],
+    "intracellular": [
+      [
+        "kw:cilium_flagellum",
+        0.4603081034041474,
+        0.12386494558998437
+      ],
+      [
+        "go:carbohydrate derivative metabolic process",
+        -0.37864298067824226,
+        0.05052054947379088
+      ],
+      [
+        "go:ribosome",
+        -0.3458993502652996,
+        0.042872475711071195
+      ],
+      [
+        "go:DNA-templated transcription",
+        -0.31878678678156963,
+        0.04873241749700174
+      ],
+      [
+        "kw:gtpase_signalling",
+        -0.2739703314777309,
+        0.04796918212628483
+      ],
+      [
+        "go:DNA binding",
+        -0.2622965195198348,
+        0.003731553302717966
+      ],
+      [
+        "atp_synthase",
+        -0.2573114290870582,
+        0.11648989695365253
+      ],
+      [
+        "kw:ubiquitin_system",
+        -0.2477223270291629,
+        0.03399491224058062
+      ],
+      [
+        "protein_targeting",
+        -0.23110068791704888,
+        0.03289836052521013
+      ],
+      [
+        "go:isomerase activity",
+        0.21210722772617002,
+        0.06586830180551087
+      ],
+      [
+        "go:ligase activity",
+        0.1886816959265698,
+        0.0454831361785975
+      ],
+      [
+        "kw:cell_adhesion_surface",
+        -0.1763025522990206,
+        0.0867242609118023
+      ]
+    ],
+    "reduced_mitochondria": [
+      [
+        "redox_core",
+        0.9723644304840035,
+        0.07095256954687085
+      ],
+      [
+        "go:mitochondrion",
+        0.9186937142121986,
+        0.18689885678808013
+      ],
+      [
+        "kw:cilium_flagellum",
+        0.4695874445008112,
+        0.11411002691611574
+      ],
+      [
+        "kw:gtpase_signalling",
+        0.3964208564697707,
+        0.03490114283146616
+      ],
+      [
+        "go:DNA-templated transcription",
+        -0.36893169516558216,
+        0.08639504220133953
+      ],
+      [
+        "go:lyase activity",
+        0.33876932797506815,
+        0.026240585326037964
+      ],
+      [
+        "go:nucleobase-containing small molecule metabolic process",
+        0.33520043916223663,
+        0.0651447914986661
+      ],
+      [
+        "go:carbohydrate metabolic process",
+        -0.3237469430719613,
+        0.06513771577519335
+      ],
+      [
+        "kw:zinc_finger",
+        -0.281519288181259,
+        0.031045125673537326
+      ],
+      [
+        "kw:cytoskeleton_motor",
+        0.25206914221745197,
+        0.09667205396891825
+      ],
+      [
+        "go:signaling",
+        0.24055193113308912,
+        0.10225890089040786
+      ],
+      [
+        "go:catalytic activity, acting on RNA",
+        -0.23378095062470386,
+        0.053093328056479115
+      ]
+    ]
+  }
+}
