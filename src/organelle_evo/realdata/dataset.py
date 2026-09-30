@@ -6,7 +6,13 @@ from pathlib import Path
 import numpy as np
 from Bio import SeqIO
 
-from .genes import FEATURE_NAMES, functional_class, gene_features, normalize_gene_name
+from .genes import (
+    FEATURE_NAMES,
+    functional_class,
+    gene_features,
+    normalize_gene_name,
+    symbol_from_product,
+)
 
 
 @dataclass
@@ -22,10 +28,16 @@ def read_genbank(path: str | Path) -> GenomeRecord:
     for rec in SeqIO.parse(str(path), "genbank"):
         organism = organism or rec.annotations.get("organism", "")
         accession = accession or rec.id
+        organelle = next(
+            (f.qualifiers.get("organelle", [""])[0] for f in rec.features if f.type == "source"), ""
+        )
         for feat in rec.features:
             if feat.type != "CDS" or "pseudo" in feat.qualifiers or "pseudogene" in feat.qualifiers:
                 continue
-            name = normalize_gene_name(feat.qualifiers.get("gene", [""])[0])
+            if "gene" in feat.qualifiers:
+                name = normalize_gene_name(feat.qualifiers["gene"][0])
+            else:
+                name = symbol_from_product(feat.qualifiers.get("product", [""])[0], organelle)
             if name is None:
                 continue
             prot = feat.qualifiers.get("translation", [""])[0]

@@ -124,3 +124,21 @@ def test_ncbi_fetch_with_mocked_eutils(tmp_path, monkeypatch):
     assert len(read_genbank(path).proteins) == 78
     ncbi.fetch_species("Arabidopsis thaliana", "{org}", tmp_path)  # cached
     assert calls == ["esearch.fcgi", "esummary.fcgi", "efetch.fcgi"]
+
+
+@pytest.mark.parametrize(
+    "product, organelle, symbol",
+    [("NADH dehydrogenase subunit 4L", "mitochondrion", "nad4l"),
+     ("NADH dehydrogenase subunit 2", "plastid:chloroplast", None),  # that's ndhB
+     ("cytochrome c oxidase subunit III", "mitochondrion", "cox3"),
+     ("apocytochrome b", "mitochondrion", "cob"),
+     ("ATPase subunit 9", "mitochondrion", "atp9"),
+     ("ribosomal protein S12", "plastid:apicoplast", "rps12"),
+     ("RNA polymerase beta' chain", "plastid:apicoplast", "rpoc1"),
+     ("RNA polymerase beta'' subunit", "plastid:chloroplast", "rpoc2"),
+     ("hypothetical protein", "mitochondrion", None)],
+)  # fmt: skip
+def test_symbol_from_product(product, organelle, symbol):
+    from organelle_evo.realdata.genes import symbol_from_product
+
+    assert symbol_from_product(product, organelle) == symbol

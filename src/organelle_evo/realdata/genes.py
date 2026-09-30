@@ -44,6 +44,40 @@ def normalize_gene_name(name: str) -> str | None:
     return n
 
 
+_ROMAN = {"i": "1", "ii": "2", "iii": "3"}
+_RNAP = {"alpha": "rpoa", "beta": "rpob", "beta'": "rpoc1", "beta''": "rpoc2"}
+
+
+def symbol_from_product(product: str, organelle: str = "") -> str | None:
+    """Canonical symbol from a /product description, for records without /gene.
+
+    Only unambiguous core organelle genes are mapped; the organelle matters because
+    "NADH dehydrogenase subunit 2" is nad2 in mitochondria but ndhB in plastids.
+    """
+    p = product.strip().lower()
+    if m := re.fullmatch(r"(?:small subunit |large subunit )?ribosomal protein ([sl])(\d+)", p):
+        return f"rp{m[1]}{m[2]}"
+    if m := re.fullmatch(r"(?:ycf|hypothetical chloroplast rf)(\d+)", p):
+        return f"ycf{m[1]}"
+    if organelle.startswith("mitochondri"):
+        if m := re.fullmatch(r"nadh dehydrogenase subunit (\d+l?)", p):
+            return f"nad{m[1]}"
+        if m := re.fullmatch(r"cytochrome c oxidase subunit (1|2|3|i{1,3})", p):
+            return f"cox{_ROMAN.get(m[1], m[1])}"
+        if p in ("cytochrome b", "apocytochrome b"):
+            return "cob"
+        if m := re.fullmatch(r"atp(?:ase| synthase) (?:f0 )?subunit (6|8|9|a|c)", p):
+            return "atp" + {"a": "6", "c": "9"}.get(m[1], m[1])
+    if organelle.startswith(("plastid", "chloroplast", "chromatophore", "apicoplast")):
+        if m := re.fullmatch(r"(?:dna-directed )?rna polymerase (alpha|beta'{0,2}) (?:subunit|chain)", p):
+            return _RNAP[m[1]]
+        if p == "elongation factor tu":
+            return "tufa"
+        if p == "atp-dependent clp protease proteolytic subunit":
+            return "clpp"
+    return None
+
+
 # (class name, regex on canonical symbol). First match wins.
 FUNCTIONAL_CLASSES = [
     ("redox_core", r"^(nad\d|nad4l|ndh[a-z]|nuo[a-n]|cob|cox[123]|cyo[a-d]|cyd[ab]|sdh[1-4a-d]|"

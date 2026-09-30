@@ -28,25 +28,27 @@ def _get(endpoint: str, **params) -> bytes:
             time.sleep(2**attempt)
 
 
-def _score(summary: dict) -> tuple:
+def _score(summary: dict, organism: str | None = None) -> tuple:
     title = summary.get("title", "").lower()
     acc = summary.get("caption", "")
     return (
-        acc.startswith(("NC_", "NZ_")),
+        organism is not None and summary.get("organism", "").lower() == organism.lower(),
+        2 if acc.startswith("NC_") else 1 if acc.startswith("NZ_") else 0,
         "complete" in title and "plasmid" not in title,
         int(summary.get("slen", 0)),
     )
 
 
-def find_accession(term: str) -> tuple[str, str] | None:
-    """Best matching record for a query: prefer RefSeq, complete, longest."""
+def find_accession(term: str, organism: str | None = None) -> tuple[str, str] | None:
+    """Best matching record: the exact organism (not a subspecies or strain), RefSeq,
+    complete, longest."""
     ids = json.loads(_get("esearch.fcgi", db="nuccore", term=term, retmax=50, retmode="json"))
     ids = ids["esearchresult"]["idlist"]
     if not ids:
         return None
     summ = json.loads(_get("esummary.fcgi", db="nuccore", id=",".join(ids), retmode="json"))
     docs = [summ["result"][i] for i in summ["result"]["uids"]]
-    best = max(docs, key=_score)
+    best = max(docs, key=lambda d: _score(d, organism))
     return best["accessionversion"], best["title"]
 
 
@@ -60,7 +62,11 @@ def fetch_species(org: str, query: str, cache_dir: Path) -> Path | None:
     path = cache_dir / (re.sub(r"[^A-Za-z0-9]+", "_", org).strip("_") + ".gb")
     if path.exists() and path.stat().st_size > 0:
         return path
-    hit = find_accession(query.format(org=org))
+    query = query.format(org=org)
+    hit = find_accession(query, org)
+    if hit is None and "refseq[filter]" in query:
+        # Some genomes (e.g. many Candidatus symbionts) are only in GenBank proper.
+        hit = find_accession(query.replace(" AND refseq[filter]", ""), org)
     if hit is None:
         return None
     path.write_text(fetch_genbank(hit[0]))

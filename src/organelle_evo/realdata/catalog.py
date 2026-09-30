@@ -25,17 +25,21 @@ CATALOG = {
             "Nephroselmis olivacea", "Prototheca wickerhamii", "Chlamydomonas reinhardtii",
             # red algae, stramenopiles, alveolates
             "Chondrus crispus", "Cyanidioschyzon merolae", "Phytophthora infestans",
-            "Thalassiosira pseudonana", "Tetrahymena thermophila", "Plasmodium falciparum",
+            "Thalassiosira pseudonana", "Tetrahymena thermophila",
             # amoebozoa
             "Dictyostelium discoideum", "Acanthamoeba castellanii",
             # fungi
             "Allomyces macrogynus", "Neurospora crassa", "Schizosaccharomyces pombe",
             "Saccharomyces cerevisiae",
             # animals and relatives
-            "Monosiga brevicollis", "Trichoplax adhaerens", "Nematostella vectensis",
+            "Monosiga brevicollis", "Trichoplax adhaerens", "Metridium senile",
             "Drosophila melanogaster", "Caenorhabditis elegans", "Danio rerio",
             "Gallus gallus", "Mus musculus", "Homo sapiens",
         ],  # fmt: skip
+        # Its ~6 kb genome (3 proteins) is not titled "complete genome".
+        "extra_queries": {
+            "Plasmodium falciparum": '"Plasmodium falciparum 3D7"[Organism] AND mitochondrion[filter] AND refseq[filter]',
+        },
     },
     "plastid": {
         "query": PLASTID_QUERY,
@@ -50,10 +54,11 @@ CATALOG = {
             "Marchantia polymorpha", "Physcomitrium patens", "Amborella trichopoda",
             "Oryza sativa", "Nicotiana tabacum", "Arabidopsis thaliana", "Euglena gracilis",
             # non-photosynthetic plastids: parasitic plant, apicomplexans
-            "Epifagus virginiana", "Toxoplasma gondii", "Plasmodium falciparum",
+            "Epifagus virginiana", "Toxoplasma gondii",
         ],  # fmt: skip
         # A second, independent primary endosymbiosis (~100 Myr old).
         "extra_queries": {
+            "Plasmodium falciparum": '"Plasmodium falciparum 3D7"[Organism] AND plastid[filter] AND refseq[filter]',
             "Paulinella chromatophora": '"Paulinella chromatophora"[Organism] AND chromatophore[Title] AND complete[Title]',
         },
     },
@@ -66,15 +71,22 @@ CATALOG = {
             "Hamiltonella defensa",
             "Serratia symbiotica",
             "Wigglesworthia glossinidia",
-            "Blochmannia floridanus",
             "Blochmannia pennsylvanicus",
             "Baumannia cicadellinicola",
             "Riesia pediculicola",
             "Buchnera aphidicola str. APS (Acyrthosiphon pisum)",
-            "Buchnera aphidicola str. Sg (Schizaphis graminum)",
-            "Buchnera aphidicola str. Bp (Baizongia pistaciae)",
-            "Buchnera aphidicola BCc",
-            "Moranella endobia",
         ],
+        # Strains that are not separate taxa, and Candidatus names that NCBI lists
+        # under renamed genera: search by the host in the title instead.
+        "extra_queries": {
+            name: f'"{org}"[All Fields] AND {host}[Title] AND complete genome[Title] NOT plasmid[Title]'
+            for name, org, host in [
+                ("Blochmannia floridanus", "Blochmannia", "floridanus"),
+                ("Buchnera aphidicola Sg (Schizaphis graminum)", "Buchnera aphidicola", "Schizaphis"),
+                ("Buchnera aphidicola Bp (Baizongia pistaciae)", "Buchnera aphidicola", "Baizongia"),
+                ("Buchnera aphidicola BCc (Cinara cedri)", "Buchnera aphidicola", "Cinara"),
+                ("Moranella endobia", "Moranella", "endobia"),
+            ]
+        },
     },
 }
