@@ -139,6 +139,14 @@
       "base": 0.6691095102604668,
       "enriched": 0.7822704099704495,
       "memorisation": 0.8652363915596909
+    },
+    "leave_one_clade_out": {
+      "mean_auroc": {
+        "copies_only": 0.6389,
+        "law": 0.7769,
+        "memorisation": 0.8022
+      },
+      "note": "Law loses 0.005 AUROC on unseen clades; memorisation loses 0.063: the law transfers across independent origins of parasitism."
     }
   },
   "caveats": [

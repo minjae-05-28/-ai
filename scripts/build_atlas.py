@@ -472,7 +472,8 @@ if (D.enrich && D.severity) {
   ];
   if (D.transfer) {
     const t = D.transfer.mean_auroc;
-    cards.push(["transfer", "처음 보는 계통에도 통하나", `계통 하나를 통째로 빼고 학습해도 법칙 ${t.law.toFixed(3)}, 암기 ${t.memorisation.toFixed(3)}, 복제 수 기준선 ${t.copies_only.toFixed(3)}입니다.`]);
+    const w = D.enrich.mean_heldout_auroc;
+    cards.push(["수렴", "처음 보는 계통에도 통한다", `계통 하나를 통째로 빼고 학습하면 암기는 ${w.memorisation.toFixed(3)} → ${t.memorisation.toFixed(3)}로 떨어지지만, 법칙은 ${w.enriched.toFixed(3)} → ${t.law.toFixed(3)}로 거의 그대로입니다. 독립적으로 기생이 생겨난 계통들이 같은 종류의 유전자군을 잃는다는 뜻입니다.`]);
   }
   $("r2laws").innerHTML = cards.map(([id, h, d]) => `<div class="law"><span class="id">${id}</span><b>${h}</b><div class="data">${d}</div></div>`).join("");
 }

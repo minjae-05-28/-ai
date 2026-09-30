@@ -1,0 +1,420 @@
+{
+  "scheme": "leave-one-clade-out",
+  "mean_auroc": {
+    "copies_only": 0.6389212574704102,
+    "law": 0.77686407420726,
+    "memorisation": 0.8021551404320857
+  },
+  "by_clade": {
+    "alveolata": {
+      "copies_only": 0.6295993912396005,
+      "law": 0.8001759133637699,
+      "memorisation": 0.8325558612174635
+    },
+    "amoebozoa": {
+      "copies_only": 0.6572025400251634,
+      "law": 0.8070704367141479,
+      "memorisation": 0.8083828567820381
+    },
+    "chlorophyta": {
+      "copies_only": 0.6748961370955746,
+      "law": 0.7419412417886905,
+      "memorisation": 0.72302003230906
+    },
+    "cnidaria": {
+      "copies_only": 0.6570664377828408,
+      "law": 0.7899935007367693,
+      "memorisation": 0.7640899080306793
+    },
+    "discoba": {
+      "copies_only": 0.6303642849728652,
+      "law": 0.7282853605461372,
+      "memorisation": 0.7702108654792214
+    },
+    "fungi": {
+      "copies_only": 0.6529546168508128,
+      "law": 0.7873523172943108,
+      "memorisation": 0.8030269912331512
+    },
+    "metamonada": {
+      "copies_only": 0.6666615274525937,
+      "law": 0.7590030186079801,
+      "memorisation": 0.8432217064541808
+    },
+    "nematoda": {
+      "copies_only": 0.6148715012138084,
+      "law": 0.7053863548470556,
+      "memorisation": 0.7157988625180564
+    },
+    "stramenopiles": {
+      "copies_only": 0.6216168688805581,
+      "law": 0.7884206367745158,
+      "memorisation": 0.8160877611762772
+    }
+  },
+  "within_clade_5fold": {
+    "copies_only": 0.6389212574704102,
+    "base": 0.6691095102604668,
+    "enriched": 0.7822704099704495,
+    "memorisation": 0.8652363915596909
+  },
+  "heldout": [
+    {
+      "pair": "Tetrahymena thermophila -> Ichthyophthirius multifiliis",
+      "clade": "alveolata",
+      "copies_only": 0.6843729713573167,
+      "memorisation": 0.7364042994381681,
+      "law": 0.7586726663895648
+    },
+    {
+      "pair": "Tetrahymena thermophila -> Perkinsus marinus",
+      "clade": "alveolata",
+      "copies_only": 0.6243565597008711,
+      "memorisation": 0.8194830272919401,
+      "law": 0.7655196888171643
+    },
+    {
+      "pair": "Chromera velia -> Plasmodium falciparum",
+      "clade": "alveolata",
+      "copies_only": 0.624691069050213,
+      "memorisation": 0.8355602130818269,
+      "law": 0.7984562877320471
+    },
+    {
+      "pair": "Chromera velia -> Babesia bovis",
+      "clade": "alveolata",
+      "copies_only": 0.6090961112595233,
+      "memorisation": 0.8512406044123679,
+      "law": 0.8040095139524507
+    },
+    {
+      "pair": "Chromera velia -> Toxoplasma gondii",
+      "clade": "alveolata",
+      "copies_only": 0.6233197287534065,
+      "memorisation": 0.8308357944102922,
+      "law": 0.8058487863616198
+    },
+    {
+      "pair": "Chromera velia -> Eimeria tenella",
+      "clade": "alveolata",
+      "copies_only": 0.6630382613043462,
+      "memorisation": 0.8201138783821436,
+      "law": 0.8054291777512299
+    },
+    {
+      "pair": "Chromera velia -> Cryptosporidium parvum",
+      "clade": "alveolata",
+      "copies_only": 0.6330129445537315,
+      "memorisation": 0.8678448006861962,
+      "law": 0.8174901167010592
+    },
+    {
+      "pair": "Chromera velia -> Plasmodium vivax",
+      "clade": "alveolata",
+      "copies_only": 0.6212876672589477,
+      "memorisation": 0.8317266677227209,
+      "law": 0.7978397329582433
+    },
+    {
+      "pair": "Chromera velia -> Plasmodium berghei",
+      "clade": "alveolata",
+      "copies_only": 0.6191111999759492,
+      "memorisation": 0.8367784232143377,
+      "law": 0.8002545373161536
+    },
+    {
+      "pair": "Chromera velia -> Plasmodium knowlesi",
+      "clade": "alveolata",
+      "copies_only": 0.6172615991923694,
+      "memorisation": 0.8353638201762589,
+      "law": 0.798914651089118
+    },
+    {
+      "pair": "Chromera velia -> Theileria annulata",
+      "clade": "alveolata",
+      "copies_only": 0.6151684992058313,
+      "memorisation": 0.8493308051270054,
+      "law": 0.8032037627590283
+    },
+    {
+      "pair": "Chromera velia -> Theileria parva",
+      "clade": "alveolata",
+      "copies_only": 0.6076658641801806,
+      "memorisation": 0.8536764472253113,
+      "law": 0.8067042246636278
+    },
+    {
+      "pair": "Chromera velia -> Babesia microti",
+      "clade": "alveolata",
+      "copies_only": 0.596199045904687,
+      "memorisation": 0.8494147429026548,
+      "law": 0.7968311693882316
+    },
+    {
+      "pair": "Chromera velia -> Neospora caninum",
+      "clade": "alveolata",
+      "copies_only": 0.6402126539997026,
+      "memorisation": 0.8281889023229951,
+      "law": 0.8162873258574272
+    },
+    {
+      "pair": "Chromera velia -> Hammondia hammondi",
+      "clade": "alveolata",
+      "copies_only": 0.6259803786879641,
+      "memorisation": 0.8292587894441188,
+      "law": 0.809552376416569
+    },
+    {
+      "pair": "Chromera velia -> Cyclospora cayetanensis",
+      "clade": "alveolata",
+      "copies_only": 0.6551266858529429,
+      "memorisation": 0.8238947805868552,
+      "law": 0.8070083947131576
+    },
+    {
+      "pair": "Chromera velia -> Cryptosporidium hominis",
+      "clade": "alveolata",
+      "copies_only": 0.6432884108352236,
+      "memorisation": 0.8543336442716859,
+      "law": 0.8109681143173959
+    },
+    {
+      "pair": "Dictyostelium discoideum -> Entamoeba histolytica",
+      "clade": "amoebozoa",
+      "copies_only": 0.6538274396929824,
+      "memorisation": 0.8099034926470589,
+      "law": 0.8088166763415893
+    },
+    {
+      "pair": "Dictyostelium discoideum -> Entamoeba dispar",
+      "clade": "amoebozoa",
+      "copies_only": 0.6573835709065989,
+      "memorisation": 0.8044434943535288,
+      "law": 0.805330212183602
+    },
+    {
+      "pair": "Dictyostelium discoideum -> Entamoeba invadens",
+      "clade": "amoebozoa",
+      "copies_only": 0.660396609475909,
+      "memorisation": 0.8108015833455268,
+      "law": 0.8070644216172523
+    },
+    {
+      "pair": "Auxenochlorella protothecoides -> Helicosporidium sp. ATCC 50920",
+      "clade": "chlorophyta",
+      "copies_only": 0.6748961370955746,
+      "memorisation": 0.72302003230906,
+      "law": 0.7419412417886905
+    },
+    {
+      "pair": "Nematostella vectensis -> Thelohanellus kitauei",
+      "clade": "cnidaria",
+      "copies_only": 0.6671940548775719,
+      "memorisation": 0.7529518619436876,
+      "law": 0.7602283593560181
+    },
+    {
+      "pair": "Nematostella vectensis -> Henneguya salminicola",
+      "clade": "cnidaria",
+      "copies_only": 0.6469388206881096,
+      "memorisation": 0.775227954117671,
+      "law": 0.8197586421175206
+    },
+    {
+      "pair": "Bodo saltans -> Leishmania major",
+      "clade": "discoba",
+      "copies_only": 0.6183900794168011,
+      "memorisation": 0.7859075066180667,
+      "law": 0.7514775480118833
+    },
+    {
+      "pair": "Bodo saltans -> Trypanosoma cruzi",
+      "clade": "discoba",
+      "copies_only": 0.6282412855577649,
+      "memorisation": 0.7860729339974841,
+      "law": 0.7468005620257274
+    },
+    {
+      "pair": "Bodo saltans -> Trypanosoma brucei",
+      "clade": "discoba",
+      "copies_only": 0.6070646653008505,
+      "memorisation": 0.7922533605617538,
+      "law": 0.7539234252869396
+    },
+    {
+      "pair": "Bodo saltans -> Leishmania infantum",
+      "clade": "discoba",
+      "copies_only": 0.6207786668276684,
+      "memorisation": 0.7837763954738397,
+      "law": 0.7501521969184946
+    },
+    {
+      "pair": "Bodo saltans -> Leishmania donovani",
+      "clade": "discoba",
+      "copies_only": 0.621126188392402,
+      "memorisation": 0.7776259143839445,
+      "law": 0.7468685331959202
+    },
+    {
+      "pair": "Bodo saltans -> Trypanosoma vivax",
+      "clade": "discoba",
+      "copies_only": 0.61762359067857,
+      "memorisation": 0.7912053627561927,
+      "law": 0.7536045098285762
+    },
+    {
+      "pair": "Bodo saltans -> Trypanosoma congolense",
+      "clade": "discoba",
+      "copies_only": 0.6986458868647127,
+      "memorisation": 0.6703297382431423,
+      "law": 0.5598823304018936
+    },
+    {
+      "pair": "Bodo saltans -> Leptomonas pyrrhocoris",
+      "clade": "discoba",
+      "copies_only": 0.6310439167441528,
+      "memorisation": 0.7745157117993468,
+      "law": 0.7635737786996638
+    },
+    {
+      "pair": "Spizellomyces punctatus -> Rozella allomycis",
+      "clade": "fungi",
+      "copies_only": 0.6630970516017967,
+      "memorisation": 0.785320464302142,
+      "law": 0.8071363304385123
+    },
+    {
+      "pair": "Spizellomyces punctatus -> Encephalitozoon cuniculi",
+      "clade": "fungi",
+      "copies_only": 0.6851860894847471,
+      "memorisation": 0.8716043271358244,
+      "law": 0.8305465141604669
+    },
+    {
+      "pair": "Spizellomyces punctatus -> Nosema ceranae",
+      "clade": "fungi",
+      "copies_only": 0.6890765047252576,
+      "memorisation": 0.8699575147994745,
+      "law": 0.8241483693246278
+    },
+    {
+      "pair": "Schizosaccharomyces pombe -> Pneumocystis jirovecii",
+      "clade": "fungi",
+      "copies_only": 0.5885882177917663,
+      "memorisation": 0.7561058462857531,
+      "law": 0.7378121968155729
+    },
+    {
+      "pair": "Schizosaccharomyces pombe -> Taphrina deformans",
+      "clade": "fungi",
+      "copies_only": 0.648480487776635,
+      "memorisation": 0.6550871999688402,
+      "law": 0.7083207448587266
+    },
+    {
+      "pair": "Coprinopsis cinerea -> Ustilago maydis",
+      "clade": "fungi",
+      "copies_only": 0.5771335042578518,
+      "memorisation": 0.7191289390034926,
+      "law": 0.7073767882759733
+    },
+    {
+      "pair": "Coprinopsis cinerea -> Malassezia globosa",
+      "clade": "fungi",
+      "copies_only": 0.5893012103855477,
+      "memorisation": 0.7488185590595229,
+      "law": 0.736912167032649
+    },
+    {
+      "pair": "Spizellomyces punctatus -> Batrachochytrium dendrobatidis",
+      "clade": "fungi",
+      "copies_only": 0.6337720568970403,
+      "memorisation": 0.7561864294509922,
+      "law": 0.8080123688822809
+    },
+    {
+      "pair": "Spizellomyces punctatus -> Enterocytozoon bieneusi",
+      "clade": "fungi",
+      "copies_only": 0.7040097077452271,
+      "memorisation": 0.8605109175129467,
+      "law": 0.8068973891658427
+    },
+    {
+      "pair": "Spizellomyces punctatus -> Nematocida parisii",
+      "clade": "fungi",
+      "copies_only": 0.6793454871052335,
+      "memorisation": 0.8703521806762686,
+      "law": 0.8247690394301574
+    },
+    {
+      "pair": "Spizellomyces punctatus -> Vavraia culicis",
+      "clade": "fungi",
+      "copies_only": 0.6919951903909303,
+      "memorisation": 0.8706013098664038,
+      "law": 0.8251607884569382
+    },
+    {
+      "pair": "Spizellomyces punctatus -> Encephalitozoon intestinalis",
+      "clade": "fungi",
+      "copies_only": 0.6854698940477216,
+      "memorisation": 0.872650206736153,
+      "law": 0.8311351106899819
+    },
+    {
+      "pair": "Naegleria gruberi -> Giardia intestinalis",
+      "clade": "metamonada",
+      "copies_only": 0.6555109348621645,
+      "memorisation": 0.8466892450725966,
+      "law": 0.7642058828949727
+    },
+    {
+      "pair": "Naegleria gruberi -> Spironucleus salmonicida",
+      "clade": "metamonada",
+      "copies_only": 0.6778121200430228,
+      "memorisation": 0.8397541678357651,
+      "law": 0.7538001543209877
+    },
+    {
+      "pair": "Caenorhabditis elegans -> Brugia malayi",
+      "clade": "nematoda",
+      "copies_only": 0.6088821757907794,
+      "memorisation": 0.706189663204949,
+      "law": 0.7004596948734734
+    },
+    {
+      "pair": "Caenorhabditis elegans -> Trichinella spiralis",
+      "clade": "nematoda",
+      "copies_only": 0.6382975788094088,
+      "memorisation": 0.6971403785470518,
+      "law": 0.707680022634724
+    },
+    {
+      "pair": "Caenorhabditis elegans -> Schistosoma mansoni",
+      "clade": "nematoda",
+      "copies_only": 0.5974347490412371,
+      "memorisation": 0.7440665458021681,
+      "law": 0.7080193470329695
+    },
+    {
+      "pair": "Thalassiosira pseudonana -> Phytophthora infestans",
+      "clade": "stramenopiles",
+      "copies_only": 0.611587689524816,
+      "memorisation": 0.8046814662005609,
+      "law": 0.7791898703304744
+    },
+    {
+      "pair": "Thalassiosira pseudonana -> Saprolegnia parasitica",
+      "clade": "stramenopiles",
+      "copies_only": 0.6073954643381707,
+      "memorisation": 0.8047000983832263,
+      "law": 0.7813841098547663
+    },
+    {
+      "pair": "Thalassiosira pseudonana -> Blastocystis hominis",
+      "clade": "stramenopiles",
+      "copies_only": 0.6458674527786876,
+      "memorisation": 0.8388817189450446,
+      "law": 0.8046879301383069
+    }
+  ]
+}
