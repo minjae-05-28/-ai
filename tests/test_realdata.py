@@ -66,7 +66,7 @@ def test_build_dataset_and_learn_on_real_features(arabidopsis_cp):
     ds = build_dataset("plastid", [arabidopsis_cp, *records], min_lineages=1)
     assert ds.genes == universe.genes
     assert ds.present[0].all()
-    law = fit_retention([(ds.features, ds.present[1:])], l2=1e-3)
+    law = fit_retention([(ds.features, ds.present[1:])])
     assert law.weights[0][3] < -0.7  # redox_core retained
     assert law.weights[0][1] < -0.3  # TM helices retained
 
@@ -136,6 +136,8 @@ def test_ncbi_fetch_with_mocked_eutils(tmp_path, monkeypatch):
      ("ribosomal protein S12", "plastid:apicoplast", "rps12"),
      ("RNA polymerase beta' chain", "plastid:apicoplast", "rpoc1"),
      ("RNA polymerase beta'' subunit", "plastid:chloroplast", "rpoc2"),
+     ("apicoplast ribosomal protein L14", "plastid:apicoplast", "rpl14"),
+     ("elongation factor Tu, putative", "plastid:apicoplast", "tufa"),
      ("hypothetical protein", "mitochondrion", None)],
 )  # fmt: skip
 def test_symbol_from_product(product, organelle, symbol):

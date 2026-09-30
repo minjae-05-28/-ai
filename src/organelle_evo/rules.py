@@ -146,7 +146,7 @@ def fit_retention(
     groups: list[int] | None = None,
     epochs: int = 1500,
     lr: float = 0.05,
-    l2: float = 1e-2,
+    prior_sd: float = 2.0,
     seed: int = 0,
 ) -> RetentionLaw:
     """Fit retention laws to one or more gene-content blocks.
@@ -154,7 +154,8 @@ def fit_retention(
     Each block is (features (G_b, F), present (L_b, G_b) bool) — e.g. one per system
     (mitochondria, plastids, endosymbionts), with its own gene universe. `groups[b]`
     says which law block b obeys: all zeros = one universal law shared by every
-    system; 0..B-1 = a separate law per system.
+    system; 0..B-1 = a separate law per system. Weights get a N(0, prior_sd^2) prior,
+    so shrinkage does not grow with the number of genes.
     """
     torch.manual_seed(seed)
     groups = [0] * len(blocks) if groups is None else list(groups)
@@ -173,8 +174,10 @@ def fit_retention(
         for (x, y), a, g in zip(data, offsets, groups):
             log_p = retention_log_probs(a + x @ w[g])
             nll = nll - log_p.gather(-1, y.unsqueeze(-1)).sum()
+        penalty = w.square().sum() / (2 * prior_sd**2)
+        loss = (nll + penalty) / total  # per-observation scale keeps Adam's step sizes sane
         nll = nll / total
-        return nll + l2 * w.square().sum()
+        return loss
 
     _optimise([w, *offsets], closure, epochs, lr)
     return RetentionLaw(

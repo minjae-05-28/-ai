@@ -55,6 +55,8 @@ def symbol_from_product(product: str, organelle: str = "") -> str | None:
     "NADH dehydrogenase subunit 2" is nad2 in mitochondria but ndhB in plastids.
     """
     p = product.strip().lower()
+    p = re.sub(r"^(?:putative |probable )?(?:apicoplast |chloroplast |plastid |mitochondrial )?", "", p)
+    p = re.sub(r",? putative$", "", p)
     if m := re.fullmatch(r"(?:small subunit |large subunit )?ribosomal protein ([sl])(\d+)", p):
         return f"rp{m[1]}{m[2]}"
     if m := re.fullmatch(r"(?:ycf|hypothetical chloroplast rf)(\d+)", p):

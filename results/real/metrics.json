@@ -1,0 +1,149 @@
+{
+  "mitochondrion": {
+    "n_genomes": 30,
+    "n_genes": 68,
+    "law": {
+      "hydrophobicity_gravy": {
+        "weight": -0.3582105101645652,
+        "se": 0.09104135567866406
+      },
+      "tm_helices": {
+        "weight": -0.5067480935241753,
+        "se": 0.13769561526557278
+      },
+      "protein_length": {
+        "weight": -0.17580829125553254,
+        "se": 0.05800704383357862
+      },
+      "redox_core": {
+        "weight": -1.9862983259495697,
+        "se": 0.3128195143224388
+      },
+      "atp_synthase": {
+        "weight": -1.8344869348321924,
+        "se": 0.4031871704298388
+      },
+      "translation": {
+        "weight": -1.758820102585548,
+        "se": 0.38456087295285996
+      },
+      "transcription": {
+        "weight": 0.6838621189967699,
+        "se": 0.3429874008609202
+      },
+      "protein_targeting": {
+        "weight": 0.8142825729185565,
+        "se": 0.35448132881916206
+      }
+    },
+    "lolo_auroc": {
+      "law_features_only": 0.8587487396106372,
+      "gene_prevalence": 0.9417485457166153,
+      "law_plus_prevalence": 0.9283866514593441
+    }
+  },
+  "plastid": {
+    "n_genomes": 21,
+    "n_genes": 233,
+    "law": {
+      "hydrophobicity_gravy": {
+        "weight": 0.03820795467263346,
+        "se": 0.05168642170804541
+      },
+      "tm_helices": {
+        "weight": -0.07768106918238564,
+        "se": 0.06413788484228825
+      },
+      "protein_length": {
+        "weight": -0.03925998206865918,
+        "se": 0.03806468218799253
+      },
+      "redox_core": {
+        "weight": -1.3172173315041724,
+        "se": 0.15166305427102134
+      },
+      "atp_synthase": {
+        "weight": -1.8360815767175709,
+        "se": 0.21513881573655266
+      },
+      "translation": {
+        "weight": -1.3229215347319225,
+        "se": 0.10238410884725364
+      },
+      "transcription": {
+        "weight": -2.459409545219923,
+        "se": 0.30501896271590284
+      },
+      "protein_targeting": {
+        "weight": -0.581704077258722,
+        "se": 0.2134598940477808
+      }
+    },
+    "lolo_auroc": {
+      "law_features_only": 0.7344557766165328,
+      "gene_prevalence": 0.8656098490321741,
+      "law_plus_prevalence": 0.844817683630568
+    }
+  },
+  "insect_endosymbiont": {
+    "n_genomes": 12,
+    "n_genes": 4277,
+    "law": {
+      "hydrophobicity_gravy": {
+        "weight": -0.008035083960800903,
+        "se": 0.008236424247148289
+      },
+      "tm_helices": {
+        "weight": 0.1825009011108409,
+        "se": 0.007107195087028218
+      },
+      "protein_length": {
+        "weight": -0.12294508253607642,
+        "se": 0.008759873551662894
+      },
+      "redox_core": {
+        "weight": -1.8095981474440432,
+        "se": 0.16619796024615172
+      },
+      "atp_synthase": {
+        "weight": -1.5749172071476263,
+        "se": 0.316424482224293
+      },
+      "translation": {
+        "weight": -2.7203713052492247,
+        "se": 0.14653715981099585
+      },
+      "transcription": {
+        "weight": -1.2812418923367501,
+        "se": 0.10208277205400768
+      },
+      "protein_targeting": {
+        "weight": -0.909924112890208,
+        "se": 0.030752474832619142
+      }
+    },
+    "lolo_auroc": {
+      "law_features_only": 0.6694583247268714,
+      "gene_prevalence": 0.9528696271609093,
+      "law_plus_prevalence": 0.9457777829852779
+    }
+  },
+  "universality": {
+    "systems": [
+      "mitochondrion",
+      "plastid",
+      "insect_endosymbiont"
+    ],
+    "delta_aic_shared_minus_separate": 798.9466989885477,
+    "shared_weights": {
+      "hydrophobicity_gravy": -0.007216566239659355,
+      "tm_helices": 0.15734657231303753,
+      "protein_length": -0.128166037731077,
+      "redox_core": -2.0800001703127298,
+      "atp_synthase": -1.9938861408555313,
+      "translation": -1.5091820127680253,
+      "transcription": -1.076744762905217,
+      "protein_targeting": -0.8431899925263869
+    }
+  }
+}
