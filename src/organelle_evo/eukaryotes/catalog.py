@@ -40,7 +40,8 @@ SPECIES = {
     "Dictyostelium discoideum": _free("amoebozoa"),
     "Dictyostelium purpureum": _free("amoebozoa"),
     "Acanthamoeba castellanii": _free("amoebozoa"),
-    "Mastigamoeba balamuthi": _free("amoebozoa", REDUCED),  # free-living anaerobe, Entamoeba's relative
+    # Mastigamoeba balamuthi (free-living anaerobe, Entamoeba's relative) would separate
+    # "reduced mitochondria" from parasitism, but NCBI has no annotated assembly for it.
     "Entamoeba histolytica": _par("amoebozoa", EXTRA, REDUCED),
     # Alveolates
     "Tetrahymena thermophila": _free("alveolata"),
@@ -81,8 +82,7 @@ SPECIES = {
 _APICOMPLEXAN_PROXY = ("Chromera velia", "Vitrella brassicaformis", "Tetrahymena thermophila")
 PAIR_SPECS = [
     # lifestyle or energy change
-    (("Mastigamoeba balamuthi", "Dictyostelium discoideum"), "Entamoeba histolytica"),
-    (("Dictyostelium discoideum",), "Mastigamoeba balamuthi"),  # free-living, mitochondria reduced
+    (("Dictyostelium discoideum",), "Entamoeba histolytica"),
     (("Tetrahymena thermophila",), "Ichthyophthirius multifiliis"),
     (("Tetrahymena thermophila",), "Perkinsus marinus"),
     (_APICOMPLEXAN_PROXY, "Plasmodium falciparum"),
