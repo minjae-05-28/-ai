@@ -1,131 +1,201 @@
 {
   "mitochondrion": {
     "n_genomes": 30,
-    "n_genes": 68,
+    "genes_added_by_homology": {
+      "Acanthamoeba castellanii": 1,
+      "Allomyces macrogynus": 2,
+      "Andalucia godoyi": 0,
+      "Arabidopsis thaliana": 1,
+      "Caenorhabditis elegans": 0,
+      "Chlamydomonas reinhardtii": 0,
+      "Chondrus crispus": 0,
+      "Cyanidioschyzon merolae": 4,
+      "Danio rerio": 0,
+      "Dictyostelium discoideum": 3,
+      "Drosophila melanogaster": 0,
+      "Gallus gallus": 0,
+      "Homo sapiens": 0,
+      "Jakoba libera": 0,
+      "Marchantia polymorpha subsp. ruderalis": 1,
+      "Metridium senile": 0,
+      "Monosiga brevicollis": 0,
+      "Mus musculus": 0,
+      "Nephroselmis olivacea": 2,
+      "Neurospora crassa OR74A": 1,
+      "Physcomitrium patens": 1,
+      "Phytophthora infestans": 0,
+      "Plasmodium falciparum": 0,
+      "Prototheca wickerhamii": 1,
+      "Reclinomonas americana": 0,
+      "Saccharomyces cerevisiae S288C": 1,
+      "Schizosaccharomyces pombe": 1,
+      "Tetrahymena thermophila": 1,
+      "Thalassiosira pseudonana": 1,
+      "Trichoplax adhaerens": 1
+    },
+    "n_genes": 71,
     "law": {
       "hydrophobicity_gravy": {
-        "weight": -0.3582105101645652,
-        "se": 0.09104135567866406
+        "weight": -0.3241418241760178,
+        "se": 0.07812490827748861
       },
       "tm_helices": {
-        "weight": -0.5067480935241753,
-        "se": 0.13769561526557278
+        "weight": -0.3671598749796798,
+        "se": 0.11905868574019886
       },
       "protein_length": {
-        "weight": -0.17580829125553254,
-        "se": 0.05800704383357862
+        "weight": -0.1877466109932678,
+        "se": 0.04548552858076347
       },
       "redox_core": {
-        "weight": -1.9862983259495697,
-        "se": 0.3128195143224388
+        "weight": -1.5404350977773398,
+        "se": 0.25985244014032344
       },
       "atp_synthase": {
-        "weight": -1.8344869348321924,
-        "se": 0.4031871704298388
+        "weight": -1.29932218522161,
+        "se": 0.23807102474607147
       },
       "translation": {
-        "weight": -1.758820102585548,
-        "se": 0.38456087295285996
+        "weight": -1.122903065311948,
+        "se": 0.27198708302460084
       },
       "transcription": {
-        "weight": 0.6838621189967699,
-        "se": 0.3429874008609202
+        "weight": 1.0168733663072134,
+        "se": 0.2681975563217674
       },
       "protein_targeting": {
-        "weight": 0.8142825729185565,
-        "se": 0.35448132881916206
+        "weight": 0.9043493497199327,
+        "se": 0.34310091762599876
       }
     },
     "lolo_auroc": {
-      "law_features_only": 0.8587487396106372,
-      "gene_prevalence": 0.9417485457166153,
-      "law_plus_prevalence": 0.9283866514593441
+      "law_features_only": 0.852371101721746,
+      "gene_prevalence": 0.9238715260006425,
+      "law_plus_prevalence": 0.9099172749702327
     }
   },
   "plastid": {
     "n_genomes": 21,
-    "n_genes": 233,
+    "genes_added_by_homology": {
+      "Amborella trichopoda": 3,
+      "Arabidopsis thaliana": 0,
+      "Chlamydomonas reinhardtii": 1,
+      "Cyanidioschyzon merolae strain 10D": 7,
+      "Cyanophora paradoxa": 4,
+      "Emiliania huxleyi": 3,
+      "Epifagus virginiana": 1,
+      "Euglena gracilis": 0,
+      "Guillardia theta": 2,
+      "Marchantia polymorpha": 3,
+      "Mesostigma viride": 0,
+      "Nephroselmis olivacea": 0,
+      "Nicotiana tabacum": 0,
+      "Oryza sativa Japonica Group": 1,
+      "Paulinella chromatophora": 32,
+      "Phaeodactylum tricornutum": 0,
+      "Physcomitrium patens": 2,
+      "Plasmodium falciparum 3D7": 2,
+      "Porphyra purpurea": 18,
+      "Thalassiosira pseudonana": 0,
+      "Toxoplasma gondii RH": 0
+    },
+    "n_genes": 252,
     "law": {
       "hydrophobicity_gravy": {
-        "weight": 0.03820795467263346,
-        "se": 0.05168642170804541
+        "weight": 0.013405401849953383,
+        "se": 0.04655984972687289
       },
       "tm_helices": {
-        "weight": -0.07768106918238564,
-        "se": 0.06413788484228825
+        "weight": -0.04664167495332825,
+        "se": 0.059313435989215485
       },
       "protein_length": {
-        "weight": -0.03925998206865918,
-        "se": 0.03806468218799253
+        "weight": -0.04012684807099351,
+        "se": 0.0373882530071814
       },
       "redox_core": {
-        "weight": -1.3172173315041724,
-        "se": 0.15166305427102134
+        "weight": -1.364761403819263,
+        "se": 0.15892393019594317
       },
       "atp_synthase": {
-        "weight": -1.8360815767175709,
-        "se": 0.21513881573655266
+        "weight": -1.848839314336799,
+        "se": 0.2194269317094987
       },
       "translation": {
-        "weight": -1.3229215347319225,
-        "se": 0.10238410884725364
+        "weight": -1.3034161951242544,
+        "se": 0.0908535455095053
       },
       "transcription": {
-        "weight": -2.459409545219923,
-        "se": 0.30501896271590284
+        "weight": -2.5516116783998766,
+        "se": 0.3562524824727305
       },
       "protein_targeting": {
-        "weight": -0.581704077258722,
-        "se": 0.2134598940477808
+        "weight": -0.6680114134096448,
+        "se": 0.22656746263645053
       }
     },
     "lolo_auroc": {
-      "law_features_only": 0.7344557766165328,
-      "gene_prevalence": 0.8656098490321741,
-      "law_plus_prevalence": 0.844817683630568
+      "law_features_only": 0.7363440881318014,
+      "gene_prevalence": 0.8666595274366087,
+      "law_plus_prevalence": 0.8454312691012017
     }
   },
   "insect_endosymbiont": {
-    "n_genomes": 12,
+    "n_genomes": 13,
+    "genes_added_by_homology": {
+      "Candidatus Palibaumannia cicadellinicola": 111,
+      "Candidatus Blochmanniella floridana": 91,
+      "Candidatus Blochmanniella pennsylvanica": 112,
+      "Buchnera aphidicola str. Bp (Baizongia pistaciae)": 80,
+      "Buchnera aphidicola (Cinara tujafilina)": 48,
+      "Buchnera aphidicola (Schizaphis graminum)": 130,
+      "Buchnera aphidicola str. APS (Acyrthosiphon pisum)": 125,
+      "Candidatus Hamiltonella defensa (Bemisia tabaci)": 237,
+      "Candidatus Moranella endobia PCIT": 101,
+      "Candidatus Riesia pediculicola": 133,
+      "Serratia symbiotica": 472,
+      "Sodalis glossinidius str. 'morsitans'": 1439,
+      "Wigglesworthia glossinidia endosymbiont of Glossina morsitans morsitans (Yale colony)": 71
+    },
     "n_genes": 4277,
     "law": {
       "hydrophobicity_gravy": {
-        "weight": -0.008035083960800903,
-        "se": 0.008236424247148289
+        "weight": -0.012701211750331594,
+        "se": 0.009137284346539033
       },
       "tm_helices": {
-        "weight": 0.1825009011108409,
-        "se": 0.007107195087028218
+        "weight": 0.16227785939474115,
+        "se": 0.010179706246226286
       },
       "protein_length": {
-        "weight": -0.12294508253607642,
-        "se": 0.008759873551662894
+        "weight": -0.13458257554168274,
+        "se": 0.007699312044840191
       },
       "redox_core": {
-        "weight": -1.8095981474440432,
-        "se": 0.16619796024615172
+        "weight": -2.0486728551204476,
+        "se": 0.24330917668783283
       },
       "atp_synthase": {
-        "weight": -1.5749172071476263,
-        "se": 0.316424482224293
+        "weight": -1.747347733149512,
+        "se": 0.37878029047937006
       },
       "translation": {
-        "weight": -2.7203713052492247,
-        "se": 0.14653715981099585
+        "weight": -3.073558285494741,
+        "se": 0.11022108597299336
       },
       "transcription": {
-        "weight": -1.2812418923367501,
-        "se": 0.10208277205400768
+        "weight": -1.3994394449666816,
+        "se": 0.09429999392687857
       },
       "protein_targeting": {
-        "weight": -0.909924112890208,
-        "se": 0.030752474832619142
+        "weight": -0.7963226288444202,
+        "se": 0.03247843144612104
       }
     },
     "lolo_auroc": {
-      "law_features_only": 0.6694583247268714,
-      "gene_prevalence": 0.9528696271609093,
-      "law_plus_prevalence": 0.9457777829852779
+      "law_features_only": 0.6447232455484303,
+      "gene_prevalence": 0.9533839192735963,
+      "law_plus_prevalence": 0.9447103083621958
     }
   },
   "universality": {
@@ -134,16 +204,16 @@
       "plastid",
       "insect_endosymbiont"
     ],
-    "delta_aic_shared_minus_separate": 798.9466989885477,
+    "delta_aic_shared_minus_separate": 786.6381325855909,
     "shared_weights": {
-      "hydrophobicity_gravy": -0.007216566239659355,
-      "tm_helices": 0.15734657231303753,
-      "protein_length": -0.128166037731077,
-      "redox_core": -2.0800001703127298,
-      "atp_synthase": -1.9938861408555313,
-      "translation": -1.5091820127680253,
-      "transcription": -1.076744762905217,
-      "protein_targeting": -0.8431899925263869
+      "hydrophobicity_gravy": -0.012185535834246265,
+      "tm_helices": 0.14364596722106382,
+      "protein_length": -0.13865754264813954,
+      "redox_core": -2.099747593227983,
+      "atp_synthase": -2.0106604695359174,
+      "translation": -1.494367311011397,
+      "transcription": -1.0963252210737076,
+      "protein_targeting": -0.7878280236921446
     }
   }
 }
