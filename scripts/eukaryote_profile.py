@@ -21,6 +21,7 @@ def main():
     ap.add_argument("--pfam", default="pfam/Pfam-A.hmm")
     ap.add_argument("--list-missing", action="store_true")
     ap.add_argument("--dump-meta", action="store_true")
+    ap.add_argument("--families", help="only search these Pfam families (one name per line)")
     args = ap.parse_args()
 
     if args.list_missing:
@@ -32,6 +33,11 @@ def main():
     OUT.mkdir(parents=True, exist_ok=True)
     t0 = time.time()
     hmms = load_hmms(args.pfam)
+    if args.families and not args.dump_meta:
+        # Cuts search time roughly in half; families never seen in the first 32 species are
+        # not counted for later species (they could not enter shared laws anyway).
+        keep = set(Path(args.families).read_text().split())
+        hmms = [h for h in hmms if (h.name.decode() if isinstance(h.name, bytes) else h.name) in keep]
     print(f"loaded {len(hmms)} Pfam HMMs in {time.time() - t0:.0f}s")
     if args.dump_meta:
         (OUT / "pfam_meta.json").write_text(json.dumps(hmm_metadata(hmms)))

@@ -73,7 +73,10 @@ jobs:
       - name: Profile ${{ matrix.species }}
         env:
           PYTHONPATH: src
-        run: python scripts/eukaryote_profile.py --species "${{ matrix.species }}" --pfam pfam/Pfam-A.hmm
+        run: |
+          subset=""
+          if [ -f data/eukaryotes/pfam_subset.txt ]; then subset="--families data/eukaryotes/pfam_subset.txt"; fi
+          python scripts/eukaryote_profile.py --species "${{ matrix.species }}" --pfam pfam/Pfam-A.hmm $subset
       - uses: actions/upload-artifact@v4
         with:
           name: profile-${{ strategy.job-index }}

@@ -42,8 +42,8 @@ def _log_binom(n, k):
     return torch.lgamma(n + 1) - torch.lgamma(k + 1) - torch.lgamma(n - k + 1)
 
 
-def transition_log_prob(n: torch.Tensor, m: torch.Tensor, log_lam, log_mu) -> torch.Tensor:
-    """log P(m | n) for n >= 1 (elementwise; all tensors broadcast together)."""
+def transition_log_prob(n: torch.Tensor, m: torch.Tensor, log_lam, log_mu, max_count: int = MAX_COUNT) -> torch.Tensor:
+    """log P(m | n) for n >= 1 (elementwise; all tensors broadcast together; n, m <= max_count)."""
     shape = torch.broadcast_shapes(n.shape, m.shape, log_lam.shape, log_mu.shape)
     n = n.to(log_lam.dtype).expand(shape)
     m = m.to(log_lam.dtype).expand(shape)
@@ -52,7 +52,7 @@ def transition_log_prob(n: torch.Tensor, m: torch.Tensor, log_lam, log_mu) -> to
     l1a, l1b = torch.log1p(-alpha), torch.log1p(-beta)
     # j of the n copies leave surviving descendants (binomial); j surviving lineages
     # hold m copies in total (negative binomial). Sum over j on a new leading axis.
-    j = torch.arange(1, MAX_COUNT + 1, dtype=n.dtype).reshape(-1, *([1] * len(shape)))
+    j = torch.arange(1, max_count + 1, dtype=n.dtype).reshape(-1, *([1] * len(shape)))
     valid = j <= torch.minimum(n, m)
     jj = torch.minimum(j, torch.minimum(n, m).clamp_min(1))
     terms = (

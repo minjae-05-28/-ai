@@ -78,6 +78,78 @@ SPECIES = {
     "Anopheles gambiae": _free("holozoa"),
 }
 
+# Expansion toward ~90 species: more parasites, each with a free-living relative, plus
+# free-living controls in new groups. Lifestyle labels follow the standard literature.
+SPECIES.update({
+    # Fungi
+    "Schizosaccharomyces pombe": _free("fungi_tapho"),
+    "Pneumocystis jirovecii": _par("fungi_tapho", EXTRA, AEROBIC),  # lung parasite
+    "Taphrina deformans": _par("fungi_tapho", EXTRA, AEROBIC),  # peach leaf curl
+    "Neurospora crassa": _free("fungi"),
+    "Aspergillus nidulans": _free("fungi"),
+    "Coprinopsis cinerea": _free("fungi_basidio"),
+    "Schizophyllum commune": _free("fungi_basidio"),
+    "Ustilago maydis": _par("fungi_basidio", INTRA, AEROBIC),  # corn smut, intracellular hyphae
+    "Malassezia globosa": _par("fungi_basidio", EXTRA, AEROBIC),  # skin
+    "Batrachochytrium dendrobatidis": _par("fungi", INTRA, AEROBIC),  # amphibian chytrid
+    "Enterocytozoon bieneusi": _par("fungi", INTRA, REDUCED),  # microsporidia
+    "Nematocida parisii": _par("fungi", INTRA, REDUCED),
+    "Vavraia culicis": _par("fungi", INTRA, REDUCED),
+    "Encephalitozoon intestinalis": _par("fungi", INTRA, REDUCED),
+    # Alveolates
+    "Plasmodium vivax": _par("alveolata", INTRA, AEROBIC),
+    "Plasmodium berghei": _par("alveolata", INTRA, AEROBIC),
+    "Plasmodium knowlesi": _par("alveolata", INTRA, AEROBIC),
+    "Theileria annulata": _par("alveolata", INTRA, AEROBIC),
+    "Theileria parva": _par("alveolata", INTRA, AEROBIC),
+    "Babesia microti": _par("alveolata", INTRA, AEROBIC),
+    "Neospora caninum": _par("alveolata", INTRA, AEROBIC),
+    "Hammondia hammondi": _par("alveolata", INTRA, AEROBIC),
+    "Cyclospora cayetanensis": _par("alveolata", INTRA, AEROBIC),
+    "Cryptosporidium hominis": _par("alveolata", INTRA, REDUCED),
+    # Kinetoplastids
+    "Leishmania infantum": _par("discoba", INTRA, AEROBIC),
+    "Leishmania donovani": _par("discoba", INTRA, AEROBIC),
+    "Trypanosoma vivax": _par("discoba", EXTRA, AEROBIC),
+    "Trypanosoma congolense": _par("discoba", EXTRA, AEROBIC),
+    "Crithidia fasciculata": _par("discoba", EXTRA, AEROBIC),  # insect gut
+    "Leptomonas pyrrhocoris": _par("discoba", EXTRA, AEROBIC),
+    # Amoebozoa
+    "Entamoeba dispar": _par("amoebozoa", EXTRA, REDUCED),
+    "Entamoeba invadens": _par("amoebozoa", EXTRA, REDUCED),
+    "Polysphondylium pallidum": _free("amoebozoa"),
+    # Metamonads (anaerobic gut parasites; the nearest annotated free-living proxy is distant)
+    "Giardia intestinalis": _par("metamonada", EXTRA, REDUCED),
+    "Spironucleus salmonicida": _par("metamonada", EXTRA, REDUCED),
+    # Stramenopiles
+    "Thalassiosira pseudonana": _free("stramenopiles"),
+    "Phaeodactylum tricornutum": _free("stramenopiles"),
+    "Phytophthora infestans": _par("stramenopiles", EXTRA, AEROBIC),  # potato blight
+    "Saprolegnia parasitica": _par("stramenopiles", EXTRA, AEROBIC),  # fish pathogen
+    "Blastocystis hominis": _par("stramenopiles", EXTRA, REDUCED),  # gut, anaerobic MROs
+    # Rhizaria
+    "Bigelowiella natans": _free("rhizaria"),
+    "Plasmodiophora brassicae": _par("rhizaria", INTRA, AEROBIC),  # clubroot
+    # Animals: cnidarians that became parasites (Myxozoa), nematodes, flatworms
+    "Nematostella vectensis": _free("cnidaria"),
+    "Hydra vulgaris": _free("cnidaria"),
+    "Thelohanellus kitauei": _par("cnidaria", EXTRA, AEROBIC),
+    "Henneguya salminicola": _par("cnidaria", EXTRA, REDUCED),  # lost its mitochondrial genome
+    "Caenorhabditis elegans": _free("nematoda"),
+    "Brugia malayi": _par("nematoda", EXTRA, AEROBIC),
+    "Trichinella spiralis": _par("nematoda", INTRA, AEROBIC),  # inside muscle cells
+    "Schistosoma mansoni": _par("nematoda", EXTRA, AEROBIC),  # flatworm; C. elegans is a distant proxy
+    "Capsaspora owczarzaki": _free("holozoa"),
+    # Green and red algae
+    "Auxenochlorella protothecoides": _free("chlorophyta"),
+    "Helicosporidium sp. ATCC 50920": _par("chlorophyta", EXTRA, AEROBIC),  # non-photosynthetic insect parasite
+    "Chlorella variabilis": _free("chlorophyta"),
+    "Ostreococcus lucimarinus": _free("chlorophyta"),
+    "Ostreococcus tauri": _free("chlorophyta"),
+    "Cyanidioschyzon merolae": _free("rhodophyta"),
+    "Galdieria sulphuraria": _free("rhodophyta"),
+})
+
 # (ancestor proxy candidates, closest first; descendant)
 _APICOMPLEXAN_PROXY = ("Chromera velia", "Vitrella brassicaformis", "Tetrahymena thermophila")
 PAIR_SPECS = [
@@ -105,6 +177,49 @@ PAIR_SPECS = [
     (("Chlamydomonas reinhardtii",), "Volvox carteri"),
     (("Monosiga brevicollis",), "Salpingoeca rosetta"),
     (("Drosophila melanogaster",), "Anopheles gambiae"),
+]
+
+PAIR_SPECS += [
+    (("Schizosaccharomyces pombe",), "Pneumocystis jirovecii"),
+    (("Schizosaccharomyces pombe",), "Taphrina deformans"),
+    (("Coprinopsis cinerea",), "Ustilago maydis"),
+    (("Coprinopsis cinerea",), "Malassezia globosa"),
+    (("Spizellomyces punctatus",), "Batrachochytrium dendrobatidis"),
+    (("Spizellomyces punctatus",), "Enterocytozoon bieneusi"),
+    (("Spizellomyces punctatus",), "Nematocida parisii"),
+    (("Spizellomyces punctatus",), "Vavraia culicis"),
+    (("Spizellomyces punctatus",), "Encephalitozoon intestinalis"),
+    *[(_APICOMPLEXAN_PROXY, sp) for sp in (
+        "Plasmodium vivax", "Plasmodium berghei", "Plasmodium knowlesi", "Theileria annulata",
+        "Theileria parva", "Babesia microti", "Neospora caninum", "Hammondia hammondi",
+        "Cyclospora cayetanensis", "Cryptosporidium hominis")],
+    *[(("Bodo saltans",), sp) for sp in (
+        "Leishmania infantum", "Leishmania donovani", "Trypanosoma vivax", "Trypanosoma congolense",
+        "Crithidia fasciculata", "Leptomonas pyrrhocoris")],
+    (("Dictyostelium discoideum",), "Entamoeba dispar"),
+    (("Dictyostelium discoideum",), "Entamoeba invadens"),
+    (("Naegleria gruberi",), "Giardia intestinalis"),
+    (("Naegleria gruberi",), "Spironucleus salmonicida"),
+    (("Thalassiosira pseudonana",), "Phytophthora infestans"),
+    (("Thalassiosira pseudonana",), "Saprolegnia parasitica"),
+    (("Thalassiosira pseudonana",), "Blastocystis hominis"),
+    (("Bigelowiella natans",), "Plasmodiophora brassicae"),
+    (("Nematostella vectensis",), "Thelohanellus kitauei"),
+    (("Nematostella vectensis",), "Henneguya salminicola"),
+    (("Caenorhabditis elegans",), "Brugia malayi"),
+    (("Caenorhabditis elegans",), "Trichinella spiralis"),
+    (("Caenorhabditis elegans",), "Schistosoma mansoni"),
+    (("Auxenochlorella protothecoides", "Chlamydomonas reinhardtii"), "Helicosporidium sp. ATCC 50920"),
+    # controls
+    (("Neurospora crassa",), "Aspergillus nidulans"),
+    (("Coprinopsis cinerea",), "Schizophyllum commune"),
+    (("Dictyostelium discoideum",), "Polysphondylium pallidum"),
+    (("Thalassiosira pseudonana",), "Phaeodactylum tricornutum"),
+    (("Nematostella vectensis",), "Hydra vulgaris"),
+    (("Salpingoeca rosetta",), "Capsaspora owczarzaki"),
+    (("Chlamydomonas reinhardtii",), "Chlorella variabilis"),
+    (("Ostreococcus lucimarinus",), "Ostreococcus tauri"),
+    (("Cyanidioschyzon merolae",), "Galdieria sulphuraria"),
 ]
 
 # Design axes for splitting laws: every pair gets a base law plus the effect of each
