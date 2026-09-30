@@ -1,0 +1,132 @@
+{
+  "id": "severity_v1",
+  "scope": "Share of ancestral gene families lost by a eukaryotic lineage, from its lifestyle axes.",
+  "model": "logit(share lost) = b0 + b_parasite + b_intracellular + b_reduced_mitochondria (additive).",
+  "feature_names": [
+    "base",
+    "parasite",
+    "intracellular",
+    "reduced_mitochondria"
+  ],
+  "data": {
+    "pairs": [
+      "Dictyostelium discoideum -> Entamoeba histolytica",
+      "Tetrahymena thermophila -> Ichthyophthirius multifiliis",
+      "Tetrahymena thermophila -> Perkinsus marinus",
+      "Chromera velia -> Plasmodium falciparum",
+      "Chromera velia -> Babesia bovis",
+      "Chromera velia -> Toxoplasma gondii",
+      "Chromera velia -> Eimeria tenella",
+      "Chromera velia -> Cryptosporidium parvum",
+      "Bodo saltans -> Leishmania major",
+      "Bodo saltans -> Trypanosoma cruzi",
+      "Bodo saltans -> Trypanosoma brucei",
+      "Spizellomyces punctatus -> Rozella allomycis",
+      "Spizellomyces punctatus -> Encephalitozoon cuniculi",
+      "Spizellomyces punctatus -> Nosema ceranae",
+      "Dictyostelium discoideum -> Dictyostelium purpureum",
+      "Dictyostelium discoideum -> Acanthamoeba castellanii",
+      "Chromera velia -> Vitrella brassicaformis",
+      "Naegleria gruberi -> Naegleria fowleri",
+      "Saccharomyces cerevisiae -> Kluyveromyces lactis",
+      "Chlamydomonas reinhardtii -> Volvox carteri",
+      "Monosiga brevicollis -> Salpingoeca rosetta",
+      "Drosophila melanogaster -> Anopheles gambiae",
+      "Schizosaccharomyces pombe -> Pneumocystis jirovecii",
+      "Schizosaccharomyces pombe -> Taphrina deformans",
+      "Coprinopsis cinerea -> Ustilago maydis",
+      "Coprinopsis cinerea -> Malassezia globosa",
+      "Spizellomyces punctatus -> Batrachochytrium dendrobatidis",
+      "Spizellomyces punctatus -> Enterocytozoon bieneusi",
+      "Spizellomyces punctatus -> Nematocida parisii",
+      "Spizellomyces punctatus -> Vavraia culicis",
+      "Spizellomyces punctatus -> Encephalitozoon intestinalis",
+      "Chromera velia -> Plasmodium vivax",
+      "Chromera velia -> Plasmodium berghei",
+      "Chromera velia -> Plasmodium knowlesi",
+      "Chromera velia -> Theileria annulata",
+      "Chromera velia -> Theileria parva",
+      "Chromera velia -> Babesia microti",
+      "Chromera velia -> Neospora caninum",
+      "Chromera velia -> Hammondia hammondi",
+      "Chromera velia -> Cyclospora cayetanensis",
+      "Chromera velia -> Cryptosporidium hominis",
+      "Bodo saltans -> Leishmania infantum",
+      "Bodo saltans -> Leishmania donovani",
+      "Bodo saltans -> Trypanosoma vivax",
+      "Bodo saltans -> Trypanosoma congolense",
+      "Bodo saltans -> Leptomonas pyrrhocoris",
+      "Dictyostelium discoideum -> Entamoeba dispar",
+      "Dictyostelium discoideum -> Entamoeba invadens",
+      "Naegleria gruberi -> Giardia intestinalis",
+      "Naegleria gruberi -> Spironucleus salmonicida",
+      "Thalassiosira pseudonana -> Phytophthora infestans",
+      "Thalassiosira pseudonana -> Saprolegnia parasitica",
+      "Thalassiosira pseudonana -> Blastocystis hominis",
+      "Nematostella vectensis -> Thelohanellus kitauei",
+      "Nematostella vectensis -> Henneguya salminicola",
+      "Caenorhabditis elegans -> Brugia malayi",
+      "Caenorhabditis elegans -> Trichinella spiralis",
+      "Caenorhabditis elegans -> Schistosoma mansoni",
+      "Auxenochlorella protothecoides -> Helicosporidium sp. ATCC 50920",
+      "Neurospora crassa -> Aspergillus nidulans",
+      "Coprinopsis cinerea -> Schizophyllum commune",
+      "Thalassiosira pseudonana -> Phaeodactylum tricornutum",
+      "Nematostella vectensis -> Hydra vulgaris",
+      "Salpingoeca rosetta -> Capsaspora owczarzaki",
+      "Chlamydomonas reinhardtii -> Chlorella variabilis",
+      "Ostreococcus lucimarinus -> Ostreococcus tauri",
+      "Cyanidioschyzon merolae -> Galdieria sulphuraria"
+    ]
+  },
+  "validation": {
+    "loco_rmse_logit": {
+      "mean_only": 1.241038714571497,
+      "parasite_only": 0.9161379848172072,
+      "all_axes": 0.7721708942332304
+    },
+    "bootstrap": "2000 clade resamples"
+  },
+  "caveats": [
+    "Assembly/annotation completeness inflates apparent loss (e.g. Trypanosoma congolense).",
+    "Free-living controls measure drift between relatives, not zero change."
+  ],
+  "contexts": {
+    "loss": {
+      "base": {
+        "weight": -2.1692,
+        "ci95": [
+          -2.3699,
+          -1.9705
+        ]
+      },
+      "parasite": {
+        "weight": 1.1697,
+        "ci95": [
+          0.7206,
+          1.6069
+        ]
+      },
+      "intracellular": {
+        "weight": 0.5161,
+        "ci95": [
+          -0.4809,
+          0.909
+        ]
+      },
+      "reduced_mitochondria": {
+        "weight": 1.4637,
+        "ci95": [
+          0.7747,
+          2.1438
+        ]
+      }
+    },
+    "typical_share_lost": {
+      "free_living": 0.103,
+      "extracellular_parasite": 0.269,
+      "intracellular_parasite": 0.381,
+      "intracellular_reduced_mito": 0.727
+    }
+  }
+}
