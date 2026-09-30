@@ -185,6 +185,19 @@ svg .muted { fill: var(--muted); }
     <div class="frame"><table class="heat" id="plasclass" style="min-width:560px"></table></div>
   </section>
 
+  <section id="axes-sec" hidden>
+    <div class="eyebrow">축별 법칙</div>
+    <h2>기생을 세 축으로 나눠 보니</h2>
+    <p class="note">법칙을 "기본 + 기생 효과 + 세포 안 효과 + 미토콘드리아 퇴화 효과"의 합으로 학습했습니다. 진핵생물 32종, 비교 쌍 22개입니다.</p>
+    <div class="two">
+      <div class="frame"><svg id="aic" role="img" aria-label="모델 비교"></svg></div>
+      <div class="frame"><table class="heat" id="axeshl" style="min-width:320px"></table></div>
+    </div>
+    <h2 style="font-size:17px">말라리아 원충 원형, 다시: 자유생활 친척(Chromera·Vitrella)과 함께 복원</h2>
+    <div class="frame"><table class="heat" id="plas2" style="min-width:620px"></table></div>
+    <p class="note" id="plas2note"></p>
+  </section>
+
   <section>
     <div class="eyebrow">다음</div>
     <h2>진행 중인 작업과 다음 단계</h2>
@@ -201,7 +214,7 @@ const f2 = (x) => (x >= 0 ? "+" : "−") + Math.abs(x).toFixed(2);
 $("stats").innerHTML = [
   ["공생체·소기관 유전체", D.stats.symbiont_genomes],
   ["진핵생물", D.stats.eukaryotes + "종"],
-  ["비교 쌍", D.stats.euk_pairs + "개 (분석 완료분)"],
+  ["비교 쌍", (D.axes_done ? 22 : D.stats.euk_pairs) + "개"],
   ["저장된 법칙", (D.axes_done ? 3 : 2) + "개"],
 ].map(([k, v]) => `<span>${k} <b>${v}</b></span>`).join("");
 
@@ -211,7 +224,7 @@ const laws = [
   {id: "eukaryote_lifestyle_v1", scope: "진핵생물 유전자군의 복제와 소실. 자유생활과 기생을 따로 학습.",
    data: `진핵생물 23종, 14쌍 · 기생이 법칙을 바꿈 (ΔAIC ${D.stats.delta_aic_life.toFixed(0)})`, tag: "저장됨"},
   {id: "eukaryote_axes_v1", scope: "기본 법칙 + 기생 효과 + 세포 안 효과 + 미토콘드리아 퇴화 효과로 나눈 법칙.",
-   data: D.axes_done ? "진핵생물 32종, 22쌍" : "진핵생물 32종, 22쌍 · 분석 중", tag: D.axes_done ? "저장됨" : "진행 중", pending: !D.axes_done},
+   data: D.axes_done ? `진핵생물 32종, 22쌍 · 나누는 편이 더 잘 맞음 (ΔAIC ${D.axes_metrics.aic_relative.parasite_only.toFixed(0)})` : "진핵생물 32종, 22쌍 · 분석 중", tag: D.axes_done ? "저장됨" : "진행 중", pending: !D.axes_done},
 ];
 $("flow").innerHTML = laws.map((l, i) => `
   <div class="law ${l.pending ? "pending" : ""}">
@@ -254,6 +267,7 @@ const findings = [
   ["RNA 중합효소는 시스템마다 반대", "미토콘드리아는 세균형 RNA 중합효소를 버렸고(소실 효과 +1.02), 엽록체는 강하게 지킵니다(−2.55). 실제 역사와 같은 방향입니다."],
   ["막단백질이 남는 효과는 미토콘드리아에서만", "핵으로 옮겨 갈 길이 있을 때만 나타나는 효과로, 소수성 가설과 맞습니다."],
   ["기생은 법칙을 바꾼다", `기생 계통은 유전자군을 대량으로 잃지만 핵심 장치는 더 강하게 지킵니다. 이 소실 법칙은 저장된 엽록체 공생 법칙과 상관 ${sim.parasite_loss_vs_plastid.correlation.toFixed(2)}로 닮았습니다.`],
+  ...(D.axes_done ? [["미토콘드리아 퇴화가 에너지 유전자를 버리게 한다", `기생을 세 축으로 나누니, 전자전달 유전자를 버리는 효과는 기생 자체가 아니라 미토콘드리아 퇴화(+${D.axes_metrics.loss_effects.reduced_mitochondria.redox_core.weight.toFixed(2)})와 세포 안 생활(+${D.axes_metrics.loss_effects.intracellular.redox_core.weight.toFixed(2)})에서 왔습니다. 기생 자체는 ATP 합성효소를 오히려 더 지킵니다(${D.axes_metrics.loss_effects.parasite.atp_synthase.weight.toFixed(2)}).`]] : []),
   ["자유생활 아메바를 기생으로 전환하면", `딕티오스텔리움(유전자군 ${sc.become_parasite.families_now.toLocaleString()}개)이 기생 법칙으로 진화하면 약 ${Math.round(sc.become_parasite.families_after[1]).toLocaleString()}개가 남습니다. 실제 기생 아메바인 이질아메바는 ${sc.actual_Entamoeba_families.toLocaleString()}개입니다(학습에 포함된 쌍이라 독립 검증은 아님).`],
 ];
 $("findings").innerHTML = findings.map(([t, d], i) => `<li><span class="k">${String(i + 1).padStart(2, "0")}</span><div><b>${t}</b><br><span class="note">${d}</span></div></li>`).join("");
@@ -336,8 +350,57 @@ $("findings").innerHTML = findings.map(([t, d], i) => `<li><span class="k">${Str
   $("plasclass").innerHTML = h;
 })();
 
+
+if (D.axes_done && D.axes_metrics) {
+  $("axes-sec").hidden = false;
+  const am = D.axes_metrics;
+  (function aic() {
+    const a = am.aic_relative, ko = {shared: "법칙 하나", parasite_only: "기생 / 자유생활", axes: "세 축으로 나눔"};
+    const items = Object.entries(a), W = 380, left = 120, rowH = 34, H = items.length * rowH + 40;
+    const mx = Math.max(...Object.values(a)) || 1, x = (v) => left + v / mx * (W - left - 60);
+    let s = `<svg viewBox="0 0 ${W} ${H}" width="100%" style="max-width:${W}px"><text x="0" y="14" font-size="12" class="muted">최선 모델 대비 ΔAIC (작을수록 좋음)</text>`;
+    items.forEach(([k, v], i) => {
+      const y = 26 + i * rowH;
+      s += `<text x="${left - 8}" y="${y + 16}" text-anchor="end" font-size="12">${ko[k]}</text>`;
+      s += `<rect x="${left}" y="${y + 4}" width="${Math.max(x(v) - left, 3)}" height="18" rx="3" fill="${k === "axes" ? css("--keep") : css("--muted")}"/>`;
+      s += `<text x="${Math.max(x(v), left + 3) + 6}" y="${y + 17}" font-size="11">${v === 0 ? "최선" : "+" + v.toFixed(0)}</text>`;
+    });
+    $("aic").outerHTML = s + "</svg>";
+  })();
+  (function hl() {
+    const e = am.loss_effects, rows = [["reduced_mitochondria", "미토콘드리아 퇴화"], ["intracellular", "세포 안"], ["parasite", "기생"]];
+    const cols = [["redox_core", "전자전달 핵심"], ["atp_synthase", "ATP 합성효소"], ["translation", "번역 장치"]];
+    let h = `<tr><th class="row">축이 더하는 소실 효과</th>${cols.map(([, n]) => `<th>${n}</th>`).join("")}</tr>`;
+    for (const [r, n] of rows) {
+      h += `<tr><th class="row">+ ${n}</th>` + cols.map(([c]) => {
+        const w = e[r][c].weight, se = e[r][c].se, ns = Math.abs(w) < 1.96 * se;
+        return `<td class="cell ${ns ? "ns" : ""}" style="background-color:${heatColor(w)};color:${Math.abs(w) > 1.4 ? "var(--panel)" : "var(--fg)"}">${f2(w)}</td>`;
+      }).join("") + "</tr>";
+    }
+    $("axeshl").innerHTML = h;
+  })();
+  (function plas2() {
+    const p = am.plasmodium_ancestor, act = p.actual_fraction_lost_by_class;
+    const cls = [["redox_core", "전자전달 핵심"], ["atp_synthase", "ATP 합성효소"], ["translation", "번역 장치"], ["protein_targeting", "단백질 수송"]];
+    const order = Object.entries(p.laws).sort((a, b) => b[1].auroc - a[1].auroc);
+    const ko = (k) => k.replace("free-living", "자유생활").replace("parasite", "기생").replace(", intracellular", " · 세포 안")
+      .replace(", reduced mito", " · 미토콘드리아 퇴화").replace(", aerobic", " · 호흡 유지").replace("reference: endosymbiosis ", "참고: 공생 법칙 ")
+      .replace("(mitochondrion)", "(미토콘드리아)").replace("(plastid)", "(엽록체)").replace("(insect_endosymbiont)", "(곤충 공생세균)");
+    let h = `<tr><th class="row">적용한 법칙</th><th>AUROC</th>${cls.map(([, n]) => `<th>${n}<br>소실 비율</th>`).join("")}</tr>`;
+    h += `<tr><th class="row"><b>실제 말라리아 원충</b></th><td class="cell">—</td>${cls.map(([c]) => `<td class="cell"><b>${Math.round(act[c] * 100)}%</b></td>`).join("")}</tr>`;
+    for (const [k, v] of order) {
+      const mark = v.matches_plasmodium_biology;
+      h += `<tr><th class="row" style="${mark ? "color:var(--lose);font-weight:700" : ""}">${ko(k)}${mark ? " ← 실제 생활 방식" : ""}</th><td class="cell">${v.auroc.toFixed(3)}</td>` +
+        cls.map(([c]) => { const d = Math.abs(v.fraction_lost_by_class[c] - act[c]);
+          return `<td class="cell" style="background-color:${d > 0.2 ? `color-mix(in srgb, ${css("--lose")} 30%, var(--panel))` : "transparent"}">${Math.round(v.fraction_lost_by_class[c] * 100)}%</td>`; }).join("") + "</tr>";
+    }
+    $("plas2").innerHTML = h;
+    $("plas2note").textContent = `원형(유전자군 ${p.ancestor_families.toLocaleString()}개)에서 말라리아 원충은 ${p.lost.toLocaleString()}개를 잃었습니다. 실제 생활 방식에 맞는 법칙이 1위지만 차이는 작습니다. 대신 "미토콘드리아 퇴화"가 붙은 법칙은 전자전달 유전자 소실을 77–95%로 크게 과대 예측해, 에너지 축을 나눈 것이 어디서 효과가 있는지 보여줍니다. 색칠한 칸은 실제와 20%p 넘게 어긋난 예측입니다.`;
+  })();
+}
+
 $("next").innerHTML = [
-  [D.axes_done ? "완료" : "진행 중", "축별 법칙 (eukaryote_axes_v1)", "기생·세포 안·미토콘드리아 퇴화의 효과를 따로 추정합니다. 말라리아 원충 원형을 자유생활 친척 Chromera·Vitrella와 함께 다시 복원해, 실제 생활 방식(세포 안, 호흡 유지)에 맞는 법칙이 가장 잘 맞히는지 검증합니다."],
+  [D.axes_done ? "완료" : "진행 중", "축별 법칙 (eukaryote_axes_v1)", D.axes_done ? "세 축으로 나눈 법칙이 데이터를 가장 잘 설명합니다(ΔAIC 368). 다만 처음 보는 기생생물의 유전자 소실 예측은 나누기 전과 거의 같습니다(평균 차이 0.01 미만)." : "기생·세포 안·미토콘드리아 퇴화의 효과를 따로 추정합니다."],
   ["다음", "복합 법칙", "저장된 법칙들에서 공통 핵(절대 법칙 후보)과 상황별 보정을 분리하거나, 상황에 따라 법칙을 가중 혼합하는 모델을 만듭니다."],
   ["한계", "지금 알고 있는 약점", "조상 대리로 현생 근연종을 쓰고, 종들을 독립으로 취급해 신뢰구간이 좁게 나옵니다. 8개 특성으로는 유전자군별 사정을 다 담지 못합니다."],
 ].map(([t, h, d]) => `<div class="law ${t === "진행 중" ? "pending" : ""}"><span class="tag" style="justify-self:start;color:${t === "진행 중" ? "var(--pending)" : "var(--accent)"}">${t}</span><b>${h}</b><div class="data">${d}</div></div>`).join("");
