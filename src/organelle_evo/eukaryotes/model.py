@@ -72,8 +72,12 @@ def counts(profile: dict, fams: list[str]) -> np.ndarray:
 
 @dataclass
 class BDLaw:
-    lifestyles: tuple[str, ...]
-    w_lam: np.ndarray  # (S, F)
+    """Laws as rows of weights. A pair's effective weights are design @ W, where the
+    design is a one-hot lifestyle (one law per lifestyle) or an additive design such as
+    [base, parasite, intracellular, reduced_mitochondria] (base law + axis effects)."""
+
+    lifestyles: tuple[str, ...]  # row labels of the weight matrices
+    w_lam: np.ndarray  # (D, F)
     w_mu: np.ndarray
     w_nu: np.ndarray
     a_lam: np.ndarray  # (P,)
@@ -81,7 +85,19 @@ class BDLaw:
     a_nu: np.ndarray
     nll: float  # total negative log-likelihood
     n_params: int
-    se: dict | None = None  # name -> (S, F) bootstrap standard errors
+    se: dict | None = None  # name -> (D, F) bootstrap standard errors
+
+    def weights(self, design) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
+        z = _as_design(design, len(self.lifestyles))
+        return z @ self.w_lam, z @ self.w_mu, z @ self.w_nu
+
+
+def _as_design(z, d: int) -> np.ndarray:
+    if isinstance(z, (int, np.integer)):
+        out = np.zeros(d)
+        out[z] = 1.0
+        return out
+    return np.asarray(z, dtype=float)
 
 
 def _pair_terms(x, n, m, a_lam, a_mu, a_nu, w_lam, w_mu, w_nu):
@@ -95,7 +111,7 @@ def _pair_terms(x, n, m, a_lam, a_mu, a_nu, w_lam, w_mu, w_nu):
 
 def fit_bd(
     x: np.ndarray,
-    pairs: list[tuple[np.ndarray, np.ndarray, int]],
+    pairs: list[tuple],
     lifestyles: tuple[str, ...],
     *,
     epochs: int = 600,
@@ -103,27 +119,31 @@ def fit_bd(
     prior_sd: float = 2.0,
     seed: int = 0,
 ) -> BDLaw:
-    """pairs: (ancestor counts, descendant counts, lifestyle index). Counts are (F,)."""
+    """pairs: (ancestor counts, descendant counts, design). Counts are (F,); the design is
+    a lifestyle index or a vector over `lifestyles` (see BDLaw)."""
     torch.manual_seed(seed)
     xt = torch.as_tensor(x, dtype=torch.float64)
-    data = [(torch.as_tensor(n), torch.as_tensor(m), s) for n, m, s in pairs]
-    S, F, P = len(lifestyles), x.shape[1], len(pairs)
-    w = {k: torch.zeros(S, F, dtype=torch.float64, requires_grad=True) for k in ("lam", "mu", "nu")}
+    D, F, P = len(lifestyles), x.shape[1], len(pairs)
+    designs = np.array([_as_design(z, D) for _, _, z in pairs])
+    zt = torch.as_tensor(designs, dtype=torch.float64)
+    data = [(torch.as_tensor(n), torch.as_tensor(m)) for n, m, _ in pairs]
+    w = {k: torch.zeros(D, F, dtype=torch.float64, requires_grad=True) for k in ("lam", "mu", "nu")}
     a = {k: torch.full((P,), -1.0, dtype=torch.float64, requires_grad=True) for k in ("lam", "mu", "nu")}
     n_obs = sum(len(n) for n, _, _ in pairs)
     opt = torch.optim.Adam([*w.values(), *a.values()], lr=lr)
     nll = None
     for _ in range(epochs):
         opt.zero_grad()
+        eff = {k: zt @ v for k, v in w.items()}  # (P, F) effective weights per pair
         ll = sum(
-            _pair_terms(xt, n, m, a["lam"][p], a["mu"][p], a["nu"][p], w["lam"][s], w["mu"][s], w["nu"][s])
-            for p, (n, m, s) in enumerate(data)
+            _pair_terms(xt, n, m, a["lam"][p], a["mu"][p], a["nu"][p], eff["lam"][p], eff["mu"][p], eff["nu"][p])
+            for p, (n, m) in enumerate(data)
         )
         penalty = sum(v.square().sum() for v in w.values()) / (2 * prior_sd**2)
         nll = -ll
         ((nll + penalty) / n_obs).backward()
         opt.step()
-    used = sorted({s for _, _, s in pairs})
+    used = int((np.abs(designs).sum(0) > 0).sum())
     return BDLaw(
         lifestyles=lifestyles,
         w_lam=w["lam"].detach().numpy().copy(),
@@ -133,20 +153,20 @@ def fit_bd(
         a_mu=a["mu"].detach().numpy().copy(),
         a_nu=a["nu"].detach().numpy().copy(),
         nll=float(nll.detach()),
-        n_params=3 * F * len(used) + 3 * P,
+        n_params=3 * F * used + 3 * P,
     )
 
 
 def fit_bd_bootstrap(x, pairs, lifestyles, *, n_boot: int = 20, seed: int = 0, **kw) -> BDLaw:
-    """Standard errors by resampling pairs within each lifestyle."""
+    """Standard errors by resampling pairs within each design group."""
     law = fit_bd(x, pairs, lifestyles, seed=seed, **kw)
     rng = np.random.default_rng(seed)
-    by_s = {}
-    for i, (_, _, s) in enumerate(pairs):
-        by_s.setdefault(s, []).append(i)
+    groups = {}
+    for i, (_, _, z) in enumerate(pairs):
+        groups.setdefault(tuple(_as_design(z, len(lifestyles))), []).append(i)
     boots = {"lam": [], "mu": [], "nu": []}
     for b in range(n_boot):
-        idx = [i for ids in by_s.values() for i in rng.choice(ids, len(ids))]
+        idx = [i for ids in groups.values() for i in rng.choice(ids, len(ids))]
         f = fit_bd(x, [pairs[i] for i in idx], lifestyles, seed=seed + b + 1, **kw)
         boots["lam"].append(f.w_lam)
         boots["mu"].append(f.w_mu)

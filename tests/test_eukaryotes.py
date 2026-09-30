@@ -179,3 +179,28 @@ def test_wagner_parsimony_ancestor():
     assert anc[2] == 0  # only the P+T clade has it: gained there, not at the root
     assert 4 <= anc[1] <= 5
     assert leaves(prune(tree, {"P"})) == ["T", "C", "Te", "Ich"]
+
+
+def test_additive_design_recovers_axis_effects():
+    import numpy as np
+    import torch
+
+    from organelle_evo.eukaryotes.birthdeath import simulate
+    from organelle_evo.eukaryotes.model import fit_bd
+
+    torch.set_num_threads(1)
+    rng = np.random.default_rng(1)
+    F = 800
+    x = np.stack([rng.normal(size=F), (rng.random(F) < 0.15).astype(float)], 1)
+    # base law, + parasite effect, + reduced-mitochondria effect
+    W_mu = np.array([[0.0, -0.5], [0.0, -1.0], [0.8, 0.0]])
+    designs = [(1, 0, 0), (1, 1, 0), (1, 1, 1), (1, 0, 1), (1, 1, 0), (1, 0, 0)]
+    pairs = []
+    for z in designs:
+        n0 = rng.geometric(0.4, size=F) * (rng.random(F) < 0.8)
+        m = simulate(n0, -1.2 + np.zeros(F), -1.0 + x @ (np.array(z) @ W_mu), -3 + np.zeros(F),
+                     n_steps=200, rng=rng)
+        pairs.append((n0, m, z))
+    law = fit_bd(x, pairs, ("base", "parasite", "reduced"), epochs=300)
+    np.testing.assert_allclose(law.w_mu, W_mu, atol=0.4)
+    np.testing.assert_allclose(law.weights((1, 1, 1))[1], W_mu.sum(0), atol=0.4)
