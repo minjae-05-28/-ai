@@ -89,6 +89,9 @@ START = np.array([v[0] for v in MODULES.values()], dtype=np.int64)
 REQ = np.array([v[1] for v in MODULES.values()], dtype=float)
 ESSENTIAL = np.array([v[2] for v in MODULES.values()])
 IDX = {n: i for i, n in enumerate(NAMES)}
+# A population is extinct when its best cell falls below this log fitness: the starting cell
+# in the early-Mars lake scores about -2.5, so this is ~7x worse than the cell at home.
+VIABILITY = -4.5
 GENE_COST = 4e-4  # log-fitness cost per gene (replication and expression)
 DOSAGE_COST = 3e-3  # extra cost per gene beyond twice what a module needs (dosage burden)
 
@@ -155,7 +158,8 @@ def interpolate(a: Environment, b: Environment, t: float) -> Environment:
 
 
 def evolve(law: RandomLaw, path: list[Environment], *, n: int = 300, generations: int = 6000,
-           ramp: float = 0.7, rng=None, record_every: int = 500, gain_scale: float = 1.0) -> dict:
+           ramp: float = 0.7, rng=None, record_every: int = 500, gain_scale: float = 1.0,
+           viability: float = VIABILITY) -> dict:
     """Population of n asexual cells; the environment moves along `path` over the first
     `ramp` share of generations, then stays at the last one. gain_scale < 1 models an
     isolated biosphere (no other organisms to take genes from: new functions must arise de
@@ -175,7 +179,7 @@ def evolve(law: RandomLaw, path: list[Environment], *, n: int = 300, generations
         G = G - rng.binomial(G, np.minimum(loss, 0.5)) + rng.poisson(dup * np.minimum(G, REQ)) \
             + rng.poisson(gain, size=G.shape)
         lw = log_fitness(G, env)
-        if not np.isfinite(lw).any() or lw.max() < np.log(1e-3):
+        if not np.isfinite(lw).any() or lw.max() < viability:
             return {"survived": False, "extinct_at": t, "env_at_extinction": env.vector().tolist(),
                     "final": G.mean(0).tolist(), "trajectory": traj}
         w = np.exp(lw - lw.max())
