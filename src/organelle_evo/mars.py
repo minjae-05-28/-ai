@@ -155,10 +155,11 @@ def interpolate(a: Environment, b: Environment, t: float) -> Environment:
 
 
 def evolve(law: RandomLaw, path: list[Environment], *, n: int = 300, generations: int = 6000,
-           ramp: float = 0.7, rng=None, record_every: int = 500) -> dict:
+           ramp: float = 0.7, rng=None, record_every: int = 500, gain_scale: float = 1.0) -> dict:
     """Population of n asexual cells; the environment moves along `path` over the first
-    `ramp` share of generations, then stays at the last one. Returns survival, the final
-    mean genome and a trajectory."""
+    `ramp` share of generations, then stays at the last one. gain_scale < 1 models an
+    isolated biosphere (no other organisms to take genes from: new functions must arise de
+    novo). Returns survival, the final mean genome and a trajectory."""
     rng = rng or np.random.default_rng()
     G = np.repeat(START[None, :], n, 0)
     traj = []
@@ -167,6 +168,7 @@ def evolve(law: RandomLaw, path: list[Environment], *, n: int = 300, generations
         k = min(int(u), len(path) - 2)
         env = interpolate(path[k], path[k + 1], u - k)
         loss, dup, gain = law.rates(env)
+        gain = gain * gain_scale
         # Mutation: per-gene loss, duplication, and per-module gain (horizontal transfer).
         # Duplication events scale with module size up to what the module needs, so a
         # duplication-biased law grows a module linearly rather than exponentially.

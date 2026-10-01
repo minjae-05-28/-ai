@@ -6,6 +6,8 @@ Scenarios (the same random laws are reused across scenarios, so they are paired)
   gradual   early Mars lake -> present subsurface brine over 70% of the run
   abrupt    the same change over 10% of the run
   earth     Earth soil throughout (control: what random laws do with no Mars pressure)
+  isolated_gradual / isolated_abrupt
+            as above, but gene gain at 2%: no other organisms to take genes from
 For each module: how often it grew or shrank among surviving lineages, and how much
 more than in the Earth control. A module that changes the same way under most random
 laws is a law-independent prediction; one that goes either way depends on the law.
@@ -25,18 +27,23 @@ import numpy as np
 from organelle_evo.mars import (EARLY_MARS, EARTH_SOIL, ENV_VARS, MODERN_MARS, NAMES, START, STRESS_NAMES,
                                 RandomLaw, evolve)
 
+# name: (environment path, ramp share, gain scale)
 SCENARIOS = {
-    "gradual": ([EARLY_MARS, MODERN_MARS], 0.7),
-    "abrupt": ([EARLY_MARS, MODERN_MARS], 0.1),
-    "earth": ([EARTH_SOIL, EARTH_SOIL], 0.7),
+    "gradual": ([EARLY_MARS, MODERN_MARS], 0.7, 1.0),
+    "abrupt": ([EARLY_MARS, MODERN_MARS], 0.1, 1.0),
+    "earth": ([EARTH_SOIL, EARTH_SOIL], 0.7, 1.0),
+    # Mars has no other organisms to take genes from: new functions arise de novo only.
+    "isolated_gradual": ([EARLY_MARS, MODERN_MARS], 0.7, 0.02),
+    "isolated_abrupt": ([EARLY_MARS, MODERN_MARS], 0.1, 0.02),
 }
 
 
 def one(args):
     seed, scenario, generations = args
     law = RandomLaw.sample(np.random.default_rng(seed))
-    path, ramp = SCENARIOS[scenario]
-    r = evolve(law, path, generations=generations, ramp=ramp, rng=np.random.default_rng(10_000 + seed))
+    path, ramp, gain_scale = SCENARIOS[scenario]
+    r = evolve(law, path, generations=generations, ramp=ramp, gain_scale=gain_scale,
+               rng=np.random.default_rng(10_000 + seed))
     r.update(seed=seed, scenario=scenario)
     return r
 
@@ -52,7 +59,8 @@ def main():
     out = Path(args.out)
     out.mkdir(parents=True, exist_ok=True)
 
-    jobs = [(s, sc, args.generations) for sc in ("gradual", "abrupt") for s in range(args.laws)]
+    mars_scenarios = [sc for sc in SCENARIOS if sc != "earth"]
+    jobs = [(s, sc, args.generations) for sc in mars_scenarios for s in range(args.laws)]
     jobs += [(s, "earth", args.generations) for s in range(args.control_laws)]
     with ProcessPoolExecutor(args.workers) as ex:
         runs = list(ex.map(one, jobs, chunksize=4))
@@ -88,7 +96,10 @@ def main():
               f"     {r['earth_median']:8.1f}   {r['earth_grew']:.2f}/{r['earth_shrank']:.2f}")
 
     # Which random-law coefficients separate survivors from extinctions (abrupt scenario)?
-    ab = [r for r in runs if r["scenario"] == "abrupt"]
+    cand = [sc for sc in ("isolated_abrupt", "isolated_gradual", "abrupt")
+            if 0 < np.mean([r["survived"] for r in runs if r["scenario"] == sc]) < 1]
+    driver_scenario = cand[0] if cand else "abrupt"
+    ab = [r for r in runs if r["scenario"] == driver_scenario]
     y = np.array([r["survived"] for r in ab], dtype=float)
     drivers = []
     if 0 < y.mean() < 1:
@@ -100,14 +111,14 @@ def main():
                     corr = float(np.corrcoef(v, y)[0, 1])
                     drivers.append({"kind": kind, "module": m, "stress": s, "corr_with_survival": corr})
         drivers.sort(key=lambda d: -abs(d["corr_with_survival"]))
-        print("\nrandom-law terms that most decide survival under abrupt change:")
+        print(f"\nrandom-law terms that most decide survival ({driver_scenario}):")
         for d in drivers[:10]:
             print(f"  {d['kind']:4s} rate of {d['module']:22s} under {d['stress']:11s} r = {d['corr_with_survival']:+.2f}")
 
     (out / "metrics.json").write_text(json.dumps({
         "environments": {e.name: dict(zip(ENV_VARS, e.vector().tolist())) for e in (EARTH_SOIL, EARLY_MARS, MODERN_MARS)},
         "start_genome": dict(zip(NAMES, map(int, START))), "summary": summary, "modules": conv,
-        "survival_drivers": drivers[:30],
+        "survival_drivers": drivers[:30], "driver_scenario": driver_scenario,
         "extinctions": [{"scenario": r["scenario"], "seed": r["seed"], "at": r["extinct_at"]} for r in runs if not r["survived"]],
     }, indent=2))
 
