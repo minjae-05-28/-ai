@@ -1,0 +1,135 @@
+{
+  "id": "severity_endosymbiosis_v1",
+  "scope": "Share of the ancestral gene set lost by organelles and insect endosymbionts.",
+  "model": "logit(share lost) = system + non-photosynthetic plastid + animal host (mitochondria).",
+  "feature_names": [
+    "mitochondrion",
+    "plastid",
+    "insect_endosymbiont",
+    "nonphotosynthetic_plastid",
+    "animal_mitochondrion"
+  ],
+  "data": {
+    "lineages": [
+      "mitochondrion: Acanthamoeba castellanii",
+      "mitochondrion: Allomyces macrogynus",
+      "mitochondrion: Andalucia godoyi",
+      "mitochondrion: Arabidopsis thaliana",
+      "mitochondrion: Caenorhabditis elegans",
+      "mitochondrion: Chlamydomonas reinhardtii",
+      "mitochondrion: Chondrus crispus",
+      "mitochondrion: Cyanidioschyzon merolae",
+      "mitochondrion: Danio rerio",
+      "mitochondrion: Dictyostelium discoideum",
+      "mitochondrion: Drosophila melanogaster",
+      "mitochondrion: Gallus gallus",
+      "mitochondrion: Homo sapiens",
+      "mitochondrion: Jakoba libera",
+      "mitochondrion: Marchantia polymorpha subsp. ruderalis",
+      "mitochondrion: Metridium senile",
+      "mitochondrion: Monosiga brevicollis",
+      "mitochondrion: Mus musculus",
+      "mitochondrion: Nephroselmis olivacea",
+      "mitochondrion: Neurospora crassa OR74A",
+      "mitochondrion: Physcomitrium patens",
+      "mitochondrion: Phytophthora infestans",
+      "mitochondrion: Plasmodium falciparum",
+      "mitochondrion: Prototheca wickerhamii",
+      "mitochondrion: Reclinomonas americana",
+      "mitochondrion: Saccharomyces cerevisiae S288C",
+      "mitochondrion: Schizosaccharomyces pombe",
+      "mitochondrion: Tetrahymena thermophila",
+      "mitochondrion: Thalassiosira pseudonana",
+      "mitochondrion: Trichoplax adhaerens",
+      "plastid: Amborella trichopoda",
+      "plastid: Arabidopsis thaliana",
+      "plastid: Chlamydomonas reinhardtii",
+      "plastid: Cyanidioschyzon merolae strain 10D",
+      "plastid: Cyanophora paradoxa",
+      "plastid: Emiliania huxleyi",
+      "plastid: Epifagus virginiana",
+      "plastid: Euglena gracilis",
+      "plastid: Guillardia theta",
+      "plastid: Marchantia polymorpha",
+      "plastid: Mesostigma viride",
+      "plastid: Nephroselmis olivacea",
+      "plastid: Nicotiana tabacum",
+      "plastid: Oryza sativa Japonica Group",
+      "plastid: Paulinella chromatophora",
+      "plastid: Phaeodactylum tricornutum",
+      "plastid: Physcomitrium patens",
+      "plastid: Plasmodium falciparum 3D7",
+      "plastid: Porphyra purpurea",
+      "plastid: Thalassiosira pseudonana",
+      "plastid: Toxoplasma gondii RH",
+      "insect_endosymbiont: Candidatus Palibaumannia cicadellinicola",
+      "insect_endosymbiont: Candidatus Blochmanniella floridana",
+      "insect_endosymbiont: Candidatus Blochmanniella pennsylvanica",
+      "insect_endosymbiont: Buchnera aphidicola str. Bp (Baizongia pistaciae)",
+      "insect_endosymbiont: Buchnera aphidicola (Cinara tujafilina)",
+      "insect_endosymbiont: Buchnera aphidicola (Schizaphis graminum)",
+      "insect_endosymbiont: Buchnera aphidicola str. APS (Acyrthosiphon pisum)",
+      "insect_endosymbiont: Candidatus Hamiltonella defensa (Bemisia tabaci)",
+      "insect_endosymbiont: Candidatus Moranella endobia PCIT",
+      "insect_endosymbiont: Candidatus Riesia pediculicola",
+      "insect_endosymbiont: Serratia symbiotica",
+      "insect_endosymbiont: Sodalis glossinidius str. 'morsitans'",
+      "insect_endosymbiont: Wigglesworthia glossinidia endosymbiont of Glossina morsitans morsitans (Yale colony)"
+    ]
+  },
+  "validation": {
+    "leave_one_lineage_out_rmse_logit": {
+      "system_only": 1.1293370756426218,
+      "with_covariates": 1.079493964514492
+    },
+    "typical_share_lost": {
+      "mitochondrion": 0.5955428872989247,
+      "plastid": 0.6086227892280358,
+      "insect_endosymbiont": 0.8477143476793177,
+      "plastid, non-photosynthetic": 0.9166666666666665,
+      "mitochondrion, animal": 0.8205057785575004
+    }
+  },
+  "caveats": [
+    "Mitochondrial and plastid universes are the union over lineages, not a true ancestor."
+  ],
+  "contexts": {
+    "loss": {
+      "mitochondrion": {
+        "weight": 0.3869,
+        "ci95": [
+          -0.1713,
+          0.9543
+        ]
+      },
+      "plastid": {
+        "weight": 0.4415,
+        "ci95": [
+          0.0173,
+          0.8907
+        ]
+      },
+      "insect_endosymbiont": {
+        "weight": 1.7168,
+        "ci95": [
+          1.328,
+          2.0223
+        ]
+      },
+      "nonphotosynthetic_plastid": {
+        "weight": 1.9564,
+        "ci95": [
+          1.5072,
+          2.3806
+        ]
+      },
+      "animal_mitochondrion": {
+        "weight": 1.1329,
+        "ci95": [
+          0.5645,
+          1.6756
+        ]
+      }
+    }
+  }
+}

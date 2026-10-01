@@ -1,0 +1,135 @@
+{
+  "environment_how_much": {
+    "coef": {
+      "base": [
+        -1.2147835882742741,
+        -1.6631025406645514,
+        -0.8210418336614985
+      ],
+      "colder": [
+        0.010709756337221932,
+        -0.5999286303443255,
+        0.45634088490338676
+      ],
+      "saltier": [
+        0.451458432463978,
+        -0.08396981874671149,
+        1.8140545306073856
+      ],
+      "anaerobic": [
+        0.44695971663041206,
+        -1.338519690905675,
+        1.4651418191939698
+      ],
+      "radiation_resistant": [
+        -0.2930501746705836,
+        -0.9652769230989101,
+        0.4966126875924814
+      ],
+      "oligotrophic": [
+        0.8046353589634229,
+        0.1852692171848047,
+        1.393616684101237
+      ]
+    },
+    "loo_rmse": {
+      "mean_only": 0.6391636523201131,
+      "environment": 0.9200934479644522
+    },
+    "share_lost": {
+      "Shewanella frigidimarina": 0.1473069435431538,
+      "Colwellia psychrerythraea": 0.2235561323815704,
+      "Psychrobacter arcticus": 0.29120198265179675,
+      "Planococcus halocryophilus": 0.33482142857142855,
+      "Geobacillus kaustophilus": 0.2780612244897959,
+      "Lactiplantibacillus plantarum": 0.5038265306122449,
+      "Psychroflexus torquis": 0.3261173184357542,
+      "Salinibacter ruber": 0.23210504023718764,
+      "Deinococcus radiodurans": 0.20127118644067796,
+      "Kineococcus radiotolerans": 0.13509060955518945,
+      "Chroococcidiopsis thermalis": 0.12346688470973018,
+      "Prochlorococcus marinus": 0.34324324324324323,
+      "Candidatus Pelagibacter ubique": 0.5318910854158896,
+      "Desulfotalea psychrophila": 0.2596685082872928,
+      "Geobacter sulfurreducens": 0.42021449463763405,
+      "Methanococcoides burtonii": 0.27049559981472904,
+      "Halobacterium salinarum": 0.4367762853172765,
+      "Haloferax volcanii": 0.3742473367299676,
+      "Methanocaldococcus jannaschii": 0.1657069737683941,
+      "Bacillus licheniformis": 0.1329719387755102,
+      "Pseudomonas putida": 0.17484388938447815
+    }
+  },
+  "environment_order": {
+    "lineages": 21,
+    "genes": 142,
+    "containment": 0.1638279632505176,
+    "row_null_mean": 0.13142454516045549,
+    "row_null_z": 2.1781934996269925,
+    "fixed_null_mean": 0.13541804412525882,
+    "fixed_null_z": 2.000303257535527,
+    "fixed_null_p": 0.02
+  },
+  "environment_together": {
+    "k0": 0.8200052425180805,
+    "k2": 0.8142243742805868,
+    "n": 21
+  },
+  "endosymbiosis_how_much": {
+    "coef": {
+      "mitochondrion": [
+        0.3869276997593847,
+        -0.17129336106116366,
+        0.9543014636188637
+      ],
+      "plastid": [
+        0.44152685373085565,
+        0.01729910706732814,
+        0.8907029539506893
+      ],
+      "insect_endosymbiont": [
+        1.7167856761214917,
+        1.3279913265329293,
+        2.022320714128255
+      ],
+      "nonphotosynthetic_plastid": [
+        1.956368419067514,
+        1.5071923188476801,
+        2.3805961657310433
+      ],
+      "animal_mitochondrion": [
+        1.1328502385837071,
+        0.5645348990663519,
+        1.6755802093132748
+      ]
+    },
+    "loo_rmse": {
+      "system_only": 1.1293370756426218,
+      "with_covariates": 1.079493964514492
+    },
+    "typical_share_lost": {
+      "mitochondrion": 0.5955428872989247,
+      "plastid": 0.6086227892280358,
+      "insect_endosymbiont": 0.8477143476793177,
+      "plastid, non-photosynthetic": 0.9166666666666665,
+      "mitochondrion, animal": 0.8205057785575004
+    }
+  },
+  "endosymbiosis_together": {
+    "mitochondrion": {
+      "k0": 0.9228128254253551,
+      "k2": 0.9637254017913983,
+      "n": 30
+    },
+    "plastid": {
+      "k0": 0.8320091051411939,
+      "k2": 0.9145550163102488,
+      "n": 21
+    },
+    "insect_endosymbiont": {
+      "k0": 0.8535771020108011,
+      "k2": 0.881820855520693,
+      "n": 13
+    }
+  }
+}

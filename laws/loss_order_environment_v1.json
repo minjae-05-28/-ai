@@ -1,0 +1,24 @@
+{
+  "id": "loss_order_environment_v1",
+  "scope": "Order of gene-family loss when bacteria and archaea move to extreme environments.",
+  "model": "Nestedness against row-fixed and fixed-fixed (curveball) nulls.",
+  "feature_names": [],
+  "data": {
+    "pairs": 21,
+    "families": 432
+  },
+  "validation": {
+    "lineages": 21,
+    "genes": 142,
+    "containment": 0.1638279632505176,
+    "row_null_mean": 0.13142454516045549,
+    "row_null_z": 2.1781934996269925,
+    "fixed_null_mean": 0.13541804412525882,
+    "fixed_null_z": 2.000303257535527,
+    "fixed_null_p": 0.02
+  },
+  "contexts": {},
+  "caveats": [
+    "Uses only families present in every relative."
+  ]
+}

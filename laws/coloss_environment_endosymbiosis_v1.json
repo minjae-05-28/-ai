@@ -1,0 +1,33 @@
+{
+  "id": "coloss_environment_endosymbiosis_v1",
+  "scope": "Whether genes are lost in modules (beyond per-gene propensity) in extremophiles, organelles and insect endosymbionts.",
+  "model": "Logistic rank-k factorisation; half of a held-out lineage revealed, the rest predicted.",
+  "feature_names": [],
+  "data": {},
+  "validation": {
+    "environment": {
+      "k0": 0.8200052425180805,
+      "k2": 0.8142243742805868,
+      "n": 21
+    },
+    "mitochondrion": {
+      "k0": 0.9228128254253551,
+      "k2": 0.9637254017913983,
+      "n": 30
+    },
+    "plastid": {
+      "k0": 0.8320091051411939,
+      "k2": 0.9145550163102488,
+      "n": 21
+    },
+    "insect_endosymbiont": {
+      "k0": 0.8535771020108011,
+      "k2": 0.881820855520693,
+      "n": 13
+    }
+  },
+  "contexts": {},
+  "caveats": [
+    "Held out one pair or lineage at a time; related lineages remain in training."
+  ]
+}

@@ -1,0 +1,93 @@
+{
+  "id": "severity_environment_v1",
+  "scope": "Share of a relative's gene families lost when a bacterium or archaeon moves to an extreme environment.",
+  "model": "logit(share lost) = environment change @ b (base, colder, saltier, anaerobic, radiation, oligotrophic).",
+  "feature_names": [
+    "base",
+    "colder",
+    "saltier",
+    "anaerobic",
+    "radiation_resistant",
+    "oligotrophic"
+  ],
+  "data": {
+    "pairs": [
+      "Shewanella oneidensis -> Shewanella frigidimarina",
+      "Shewanella oneidensis -> Colwellia psychrerythraea",
+      "Acinetobacter baylyi -> Psychrobacter arcticus",
+      "Bacillus subtilis -> Planococcus halocryophilus",
+      "Bacillus subtilis -> Geobacillus kaustophilus",
+      "Bacillus subtilis -> Lactiplantibacillus plantarum",
+      "Flavobacterium johnsoniae -> Psychroflexus torquis",
+      "Rhodothermus marinus -> Salinibacter ruber",
+      "Thermus thermophilus -> Deinococcus radiodurans",
+      "Micrococcus luteus -> Kineococcus radiotolerans",
+      "Synechocystis sp. PCC 6803 -> Chroococcidiopsis thermalis",
+      "Synechococcus elongatus -> Prochlorococcus marinus",
+      "Cereibacter sphaeroides -> Candidatus Pelagibacter ubique",
+      "Nitratidesulfovibrio vulgaris -> Desulfotalea psychrophila",
+      "Myxococcus xanthus -> Geobacter sulfurreducens",
+      "Methanosarcina acetivorans -> Methanococcoides burtonii",
+      "Methanosarcina acetivorans -> Halobacterium salinarum",
+      "Methanosarcina acetivorans -> Haloferax volcanii",
+      "Methanococcus maripaludis -> Methanocaldococcus jannaschii",
+      "Bacillus subtilis -> Bacillus licheniformis",
+      "Pseudomonas aeruginosa -> Pseudomonas putida"
+    ]
+  },
+  "validation": {
+    "leave_one_pair_out_rmse_logit": {
+      "mean_only": 0.6391636523201131,
+      "environment": 0.9200934479644522
+    }
+  },
+  "caveats": [
+    "21 pairs for 6 coefficients; intervals are wide."
+  ],
+  "contexts": {
+    "loss": {
+      "base": {
+        "weight": -1.2148,
+        "ci95": [
+          -1.6631,
+          -0.821
+        ]
+      },
+      "colder": {
+        "weight": 0.0107,
+        "ci95": [
+          -0.5999,
+          0.4563
+        ]
+      },
+      "saltier": {
+        "weight": 0.4515,
+        "ci95": [
+          -0.084,
+          1.8141
+        ]
+      },
+      "anaerobic": {
+        "weight": 0.447,
+        "ci95": [
+          -1.3385,
+          1.4651
+        ]
+      },
+      "radiation_resistant": {
+        "weight": -0.2931,
+        "ci95": [
+          -0.9653,
+          0.4966
+        ]
+      },
+      "oligotrophic": {
+        "weight": 0.8046,
+        "ci95": [
+          0.1853,
+          1.3936
+        ]
+      }
+    }
+  }
+}
