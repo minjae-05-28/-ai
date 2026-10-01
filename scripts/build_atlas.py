@@ -81,7 +81,21 @@ def main():
         "expansion": load("results/expansion/metrics.json"),
         "transfer": load("results/transfer/metrics.json"),
         "nested": load("results/nestedness/metrics.json"),
+        "sequence": load("results/sequence/metrics.json"),
+        "family_seq": load("results/family_sequence/metrics.json"),
+        "phylo": load("results/phylo/metrics.json"),
+        "n_literature": len(json.loads(Path("laws/literature/laws.json").read_text())["laws"]),
     }
+    if data["sequence"]:
+        q = data["sequence"]
+        data["sequence"] = {"temperature": q["temperature"],
+                            "salt": {k: q["salt"][k] for k in ("spearman_acidic_excess", "spearman_median_pi")},
+                            "pairs_r2": {k: v.get("loo_r2_environment") for k, v in q["environment_pairs"]["by_statistic"].items()},
+                            "n_pairs": q["environment_pairs"]["n_pairs"],
+                            "oligo": q["oligotrophy"], "symb": {k: q["endosymbionts"][k] for k in ("spearman_size_fymink", "spearman_size_pi")}}
+    if data["family_seq"]:
+        data["family_seq"] = {k: {kk: v[kk] for kk in ("families_tested", "share_positive")}
+                              for k, v in data["family_seq"].items() if isinstance(v, dict)}
     if data["enrich"]:
         data["enrich"] = {k: data["enrich"][k] for k in ("n_features", "mean_heldout_auroc")}
     if data["modules"]:
@@ -160,7 +174,7 @@ svg .muted { fill: var(--muted); }
   <header style="display:grid;gap:12px">
     <div class="eyebrow">organelle-evo · 연구 요약</div>
     <h1>진화 법칙 지도</h1>
-    <p class="lede">공생 세균이 소기관이 되는 과정, 그리고 자유생활 생물이 기생생물이 되는 과정에서 어떤 유전자가 남고 어떤 유전자가 사라지는지를 실제 유전체에서 학습한 법칙들입니다.</p>
+    <p class="lede">공생 세균이 소기관이 되는 과정, 그리고 자유생활 생물이 기생생물이 되는 과정에서 어떤 유전자가 남고 어떤 유전자가 사라지는지, 그리고 극한 환경 세균이 단백질 서열을 어떻게 바꾸는지를 실제 유전체에서 학습한 법칙들입니다.</p>
     <div class="stats" id="stats"></div>
   </header>
 
@@ -227,6 +241,16 @@ svg .muted { fill: var(--muted); }
     <div class="flow" id="r2laws"></div>
   </section>
 
+  <section id="r3" hidden>
+    <div class="eyebrow">법칙 탐색 3라운드 · 단백질 서열과 계통 보정</div>
+    <h2>환경 적응은 단백질 서열에 있다</h2>
+    <p class="note">극한 환경 세균의 유전자 소실은 환경으로 예측되지 않았습니다. 그래서 단백질 아미노산 조성을 봤고, 모든 종 단위 법칙을 NCBI 분류 단계별 분산 GLS로 다시 검정했습니다.</p>
+    <div class="flow" id="r3laws"></div>
+    <h2 style="font-size:17px">계통 보정 전후 유의성</h2>
+    <p class="note">점이 오른쪽일수록 강한 증거입니다(−log₁₀ p). 회색은 보정 전(종을 독립으로 취급), 색은 보정 후입니다. 점선은 p = 0.05입니다.</p>
+    <div class="frame"><svg id="phylo" role="img" aria-label="계통 보정 전후 p값"></svg></div>
+  </section>
+
   <section>
     <div class="eyebrow">다음</div>
     <h2>진행 중인 작업과 다음 단계</h2>
@@ -245,6 +269,7 @@ $("stats").innerHTML = [
   ["진핵생물", (D.n_species || D.stats.eukaryotes) + "종"],
   ["비교 쌍", (D.severity ? Object.keys(D.severity.severity).length : 22) + "개"],
   ["저장된 법칙", D.n_laws + "개"],
+  ...(D.n_literature ? [["문헌 법칙", D.n_literature + "개"]] : []),
 ].map(([k, v]) => `<span>${k} <b>${v}</b></span>`).join("");
 
 const laws = [
@@ -480,10 +505,50 @@ if (D.enrich && D.severity) {
   $("r2laws").innerHTML = cards.map(([id, h, d]) => `<div class="law"><span class="id">${id}</span><b>${h}</b><div class="data">${d}</div></div>`).join("");
 }
 
+if (D.sequence && D.phylo) {
+  $("r3").hidden = false;
+  const q = D.sequence, ph = Object.entries(D.phylo), surv = ph.filter(([, r]) => r.survives).length;
+  const fs = D.family_seq || {};
+  const r2 = ["ivywrel", "cvp", "acidic_excess"].map((k) => q.pairs_r2[k]);
+  const ol = q.oligo.filter((o) => o.n_side_change < 0).length;
+  const cards = [
+    ["sequence_v1", "온도: IVYWREL", `${q.temperature.n}종에서 최적 온도와 r ${q.temperature.pearson_ivywrel.toFixed(2)} (Zeldovich 2007 재현). IVYWREL 하나로 처음 보는 계통의 온도를 오차 ${q.temperature.rmse_ivywrel_loo_group.toFixed(1)}°C로 맞힙니다(평균만 쓰면 ${q.temperature.rmse_mean_only.toFixed(1)}°C).`],
+    ["sequence_v1", "염분: 산성 단백질체", `최적 염분과 산성 과잉 Spearman ${q.salt.spearman_acidic_excess.toFixed(2)}, 등전점 ${q.salt.spearman_median_pi.toFixed(2)}.`],
+    ["sequence_v1", "환경 변화 → 조성 변화", `${q.n_pairs}개 쌍에서 환경 변화가 온도·염분 지표(IVYWREL, 전하−극성, 산성 과잉)의 변화를 R² ${Math.min(...r2).toFixed(2)}–${Math.max(...r2).toFixed(2)}로 설명합니다(쌍 하나씩 빼고 맞히기). 같은 쌍에서 유전자 소실은 환경으로 설명되지 않았습니다.`],
+    ["sequence_v1", "빈영양: 질소 절약 · 공생세균: AT 편향", `빈영양 ${q.oligo.length}쌍 중 ${ol}쌍에서 곁사슬 질소 감소. 공생세균은 유전체가 작을수록 FYMINK 증가(Spearman ${q.symb.spearman_size_fymink.toFixed(2)}), 등전점 상승(${q.symb.spearman_size_pi.toFixed(2)}).`],
+    ...(fs.ivywrel ? [["family_sequence_v1", "유전자군 단위로 보면", `온도 적응은 유전자군 ${fs.ivywrel.families_tested.toLocaleString()}개 중 ${Math.round(fs.ivywrel.share_positive * 100)}%, 염분 적응은 ${Math.round(fs.acidic_excess.share_positive * 100)}%가 적응 방향으로 바뀝니다. 막단백질·수송체는 덜 바뀝니다.`]] : []),
+    ["phylo_check_v1", `계통 보정: ${surv} / ${ph.length} 유지`, "세포 안 생활 효과만 탈락했습니다. 빈영양 질소 절약은 보정 전에는 보이지 않다가 보정 뒤에 유의해졌습니다."],
+  ];
+  $("r3laws").innerHTML = cards.map(([id, h, d]) => `<div class="law"><span class="id">${id}</span><b>${h}</b><div class="data">${d}</div></div>`).join("");
+  const KO = {ivywrel_vs_temperature: "IVYWREL ~ 온도", cvp_vs_temperature: "전하−극성 ~ 온도", acidic_vs_salt: "산성 과잉 ~ 염분",
+    nitrogen_vs_oligotrophy: "곁사슬 질소 ~ 빈영양", fymink_vs_anoxia: "FYMINK ~ 무산소", regulator_scaling: "조절 유전자 스케일링",
+    symbiont_fymink_vs_size: "공생세균 FYMINK ~ 크기", severity_parasite: "잃는 비율 ~ 기생", severity_intracellular: "잃는 비율 ~ 세포 안",
+    severity_reduced_mitochondria: "잃는 비율 ~ 미토 퇴화",
+    pair_ivywrel_colder: "Δ IVYWREL ~ 추위", pair_cvp_colder: "Δ 전하−극성 ~ 추위",
+    pair_acidic_excess_saltier: "Δ 산성 과잉 ~ 염분", pair_fymink_anaerobic: "Δ FYMINK ~ 무산소"};
+  const label = (k) => KO[k] || k.replace(/^pair_/, "Δ ").replace(/_/g, " ");
+  const lp = (p) => Math.min(-Math.log10(Math.max(p, 1e-12)), 12);
+  const W = 360, left = 150, rowH = 24, H = ph.length * rowH + 40;
+  const x = (v) => left + v / 12 * (W - left - 20);
+  let s = `<svg viewBox="0 0 ${W} ${H}" width="100%" style="max-width:640px">`;
+  s += `<line x1="${x(lp(0.05))}" x2="${x(lp(0.05))}" y1="0" y2="${H - 28}" stroke="${css("--muted")}" stroke-dasharray="3 3"/>`;
+  ph.forEach(([k, r], i) => {
+    const y = 12 + i * rowH, a = x(lp(r.ols[1])), b = x(lp(r.rank_gls[1]));
+    const c = r.survives ? css("--keep") : css("--lose");
+    s += `<text x="${left - 8}" y="${y + 4}" text-anchor="end" font-size="10.5" ${r.survives ? "" : 'font-weight="700"'}>${label(k)}</text>`;
+    s += `<line x1="${a}" x2="${b}" y1="${y}" y2="${y}" stroke="${css("--line")}" stroke-width="2"/>`;
+    s += `<circle cx="${a}" cy="${y}" r="4.5" fill="${css("--muted")}" opacity="0.6"><title>보정 전 p ${r.ols[1].toExponential(1)}</title></circle>`;
+    s += `<circle cx="${b}" cy="${y}" r="5.5" fill="${c}"><title>보정 후 p ${r.rank_gls[1].toExponential(1)} · 공유 역사 ${Math.round(r.shared_history * 100)}%</title></circle>`;
+  });
+  [0, 3, 6, 9, 12].forEach((t) => { s += `<text x="${x(t)}" y="${H - 8}" text-anchor="middle" font-size="11" font-family="var(--mono)" class="muted">${t === 12 ? "≥12" : t}</text>`; });
+  $("phylo").outerHTML = s + "</svg>";
+}
+
 $("next").innerHTML = [
   ["완료", "특성 풍부화", D.enrich ? `특성을 8개에서 ${D.enrich.n_features.enriched}개로 늘려 처음 보는 기생생물 예측이 ${D.enrich.mean_heldout_auroc.base.toFixed(3)} → ${D.enrich.mean_heldout_auroc.enriched.toFixed(3)}로 올랐습니다. 아직 암기 기준선(${D.enrich.mean_heldout_auroc.memorisation.toFixed(3)})보다 낮습니다.` : "진행 중"],
-  ["다음", "복합 법칙", "저장된 법칙들에서 공통 핵(절대 법칙 후보)과 상황별 보정을 분리하거나, 상황에 따라 법칙을 가중 혼합하는 모델을 만듭니다."],
-  ["한계", "지금 알고 있는 약점", "조상 대리로 현생 근연종을 쓰고, 종들을 독립으로 취급해 신뢰구간이 좁게 나옵니다. 계통수 기반 모델이 다음 과제입니다."],
+  ["완료", "계통 보정", D.phylo ? `분류 단계별 분산 GLS로 ${Object.values(D.phylo).filter((r) => r.survives).length} / ${Object.keys(D.phylo).length} 법칙 유지.` : "진행 중"],
+  ["다음", "GC 함량 교란 검증", "아미노산 조성은 유전체 GC 함량에 크게 좌우됩니다. GC를 공변량으로 넣어 서열 법칙이 적응인지 돌연변이 편향인지 가릅니다."],
+  ["한계", "지금 알고 있는 약점", "조상 대리로 현생 근연종을 쓰고, 계통 보정은 분류 체계를 근사 계통수로 씁니다. 유전자는 있다·없다 수준만 봅니다."],
 ].map(([t, h, d]) => `<div class="law ${t === "진행 중" ? "pending" : ""}"><span class="tag" style="justify-self:start;color:${t === "진행 중" ? "var(--pending)" : "var(--accent)"}">${t}</span><b>${h}</b><div class="data">${d}</div></div>`).join("");
 </script>
 """

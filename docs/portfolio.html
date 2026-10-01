@@ -79,15 +79,16 @@ a { color: var(--keep); }
   <header class="col" style="gap:20px">
     <div class="eyebrow">개인 연구 프로젝트 · 진화유전체학 × 머신러닝</div>
     <h1>organelle-evo</h1>
-    <p class="thesis">공생 세균이 미토콘드리아가 되고 자유생활 생물이 기생충이 될 때, 유전체는 무엇을 남기고 무엇을 버릴까. 실제 유전체 약 150개에서 그 규칙을 학습하고, 그 규칙이 어디까지 통하는지 검증했습니다.</p>
-    <p class="en">Learning which genes survive genome reduction, from endosymbiont-to-organelle transitions and free-living-to-parasite transitions, with simulation-validated statistical models trained on ~150 real genomes, and testing honestly where those rules stop working.</p>
+    <p class="thesis">공생 세균이 미토콘드리아가 되고, 자유생활 생물이 기생충이 되고, 평범한 세균이 극한 환경으로 갈 때, 유전체는 무엇을 남기고 무엇을 바꿀까. 실제 유전체 약 270개와 단백질체 260개에서 규칙을 학습하고, 계통 보정과 문헌 비교로 어디까지 통하는지 검증했습니다.</p>
+    <p class="en">Learning which genes survive genome reduction, from endosymbiont-to-organelle transitions and free-living-to-parasite transitions, with simulation-validated statistical models trained on ~270 real genomes and 260 proteomes, corrected for phylogeny, and testing honestly where those rules stop working.</p>
     <div class="facts">
-      <span>공생체·소기관 유전체 <b>64</b></span><span>진핵생물 <b>87종</b></span><span>Pfam 유전자군 <b>11,162</b></span>
-      <span>비교 쌍 <b>67</b></span><span>저장된 법칙 <b>11</b></span><span>테스트 <b>54</b></span>
+      <span>공생체·소기관 유전체 <b>64</b></span><span>진핵생물 <b>120종</b></span><span>세균·고세균 <b>65종</b></span>
+      <span>비교 쌍 <b>99 + 43</b></span><span>단백질 조성 <b>260</b></span><span>법칙 <b>19 + 문헌 13</b></span><span>테스트 <b>60</b></span>
     </div>
     <div class="links">
       <a class="primary" href="https://claude.ai/artifact/6en5NX62SRcLPZhnut7YJg">원형 역추적기 체험</a>
       <a href="https://claude.ai/artifact/6P3rWZp3Y1sjwuh2JycjVj">진화 법칙 지도</a>
+      <a href="https://claude.ai/artifact/BqL7Xh35uPsdYF3t8utzrs">화성 세포 실험</a>
       <a href="https://github.com/minjae-05-28/-ai">GitHub 저장소</a>
     </div>
   </header>
@@ -118,14 +119,23 @@ a { color: var(--keep); }
   <section class="col">
     <div class="eyebrow">결과</div>
     <h2>데이터가 스스로 찾아낸 것</h2>
+    <div class="frame"><table class="results">
+      <tr><th>질문</th><th>무엇이 결정하나</th><th>근거</th></tr>
+      <tr><td><b>무엇을</b> 잃나</td><td>유전자별 성향</td><td class="v">환경 정보 추가해도 0.816 → 0.808</td></tr>
+      <tr><td><b>얼마나</b> 잃나</td><td>생활 방식</td><td class="v">10% → 26% → 72%</td></tr>
+      <tr><td>환경에 <b>어떻게</b> 적응하나</td><td>단백질 서열</td><td class="v">R² 0.53–0.63</td></tr>
+    </table></div>
     <div class="finds">
       <div class="find"><div class="fig">3 / 3<small>시스템</small></div><div><h3>에너지와 번역 장치는 어디서나 끝까지 남는다</h3><p class="muted">미토콘드리아, 엽록체, 곤충 공생세균 모두에서 전자전달, ATP 합성효소, 리보솜 유전자가 가장 강하게 보존됐습니다.</p></div></div>
       <div class="find"><div class="fig lose">+1.02<small>vs −2.55</small></div><div><h3>RNA 중합효소는 시스템마다 정반대</h3><p class="muted">미토콘드리아는 세균형 RNA 중합효소를 버리고, 엽록체는 가장 강하게 지킵니다. 실제 진화 역사와 같은 방향이며, 모델에 알려주지 않은 사실입니다.</p></div></div>
       <div class="find"><div class="fig lose">+1.54<small>± 0.35</small></div><div><h3>에너지 유전자를 버리는 원인은 기생이 아니라 미토콘드리아 퇴화</h3><p class="muted">기생을 "기생 · 세포 안 · 미토콘드리아 퇴화" 세 축으로 나누자, 전자전달 유전자 소실이 기생 자체가 아니라 미토콘드리아 퇴화에서 온다는 것이 분리됐습니다. 나눈 모델이 데이터를 훨씬 잘 설명합니다(ΔAIC 368).</p></div></div>
       <div class="find"><div class="fig">0.777<small>vs 0.782</small></div><div><h3>기생은 계통을 넘어 같은 종류의 유전자를 버린다</h3><p class="muted">한 계통을 통째로 빼고 학습해도 법칙의 예측력은 거의 그대로(0.782 → 0.777)인데, 유전자군별 소실 빈도를 외우는 모델은 크게 떨어집니다(0.865 → 0.802). 독립적으로 기생이 생겨난 계통들이 같은 규칙을 따른다는 뜻입니다.</p></div></div>
       <div class="find"><div class="fig lose">10→73%<small>잃는 비율</small></div><div><h3>얼마나, 어떤 순서로 잃는지도 규칙적이다</h3><p class="muted">조상 유전자군 중 잃는 비율은 생활 방식 축의 덧셈으로 예측됩니다(자유생활 10%, 세포 안 + 미토콘드리아 퇴화 73%). 서로 다른 계통의 기생생물 1,034쌍 모두에서, 더 줄어든 쪽이 덜 줄어든 쪽의 소실을 무작위의 1.58배로 함께 잃었습니다. 그런데 이 순서는 미토콘드리아·엽록체·공생세균·기생생물 네 시스템 모두에서 <b>유전자별 소실 성향만으로 전부 설명</b>됐습니다. 네 시스템에 공통된 규칙은 “유전자 소실 ≈ 유전자별 성향 × 계통별 축소 강도, 서로 거의 독립”입니다.</p></div></div>
-      <div class="find"><div class="fig">5 / 9<small>계통</small></div><div><h3>버리는 대신 늘리는 것: 아미노산 수송체와 편모의 운명</h3><p class="muted">기생생물은 유전자군을 덜 늘리지만, 아미노산 수송체는 9개 계통 중 5곳에서 독립적으로 늘어났습니다. 함께 사라지는 유전자 묶음은 드물었고, 뚜렷한 예외가 편모였습니다. 세포 안에 사는 기생생물은 편모 부품을 한꺼번에 버리고, 혈액을 헤엄치는 트리파노소마는 지킵니다.</p></div></div>
+      <div class="find"><div class="fig">6 / 11<small>계통</small></div><div><h3>버리는 대신 늘리는 것: 아미노산 수송체와 편모의 운명</h3><p class="muted">기생생물은 유전자군을 덜 늘리지만, 아미노산 수송체는 11개 계통 중 6곳, 퓨린 재활용 효소는 7곳에서 독립적으로 늘어났습니다. 함께 사라지는 유전자 묶음은 드물었고, 뚜렷한 예외가 편모였습니다. 세포 안에 사는 기생생물은 편모 부품을 한꺼번에 버리고, 혈액을 헤엄치는 트리파노소마는 지킵니다.</p></div></div>
       <div class="find"><div class="fig">0.78<small>AUROC</small></div><div><h3>유전체 하나로 조상을 역추적</h3><p class="muted">현대 기생생물 유전체만 보고 자유생활 조상이 가졌던 유전자군을 복원합니다. 누구나 브라우저에서 해 볼 수 있게 공개했습니다.</p></div></div>
+      <div class="find"><div class="fig">r 0.82<small>IVYWREL</small></div><div><h3>환경 적응은 유전자 목록이 아니라 단백질 서열에서 일어난다</h3><p class="muted">극한 세균의 유전자 소실은 환경으로 예측되지 않았지만, 아미노산 조성 변화는 환경 변화로 R² 0.53–0.63까지 설명됩니다. 고온성은 IVYWREL 증가(Zeldovich 2007 재현), 호염성은 산성화, 빈영양은 질소 절약, 공생세균은 AT 편향(부크네라 등전점 약 10). 유전자군 단위로 보면 90%가 같은 방향으로 바뀌고, 막단백질·수송체는 덜 바뀝니다.</p></div></div>
+      <div class="find"><div class="fig">13 / 14<small>법칙 유지</small></div><div><h3>계통 보정 뒤에도 대부분 살아남는다</h3><p class="muted">NCBI 분류 단계마다 분산을 따로 추정하는 GLS로 다시 검정했습니다. 세포 안 생활 효과만 탈락했고, 빈영양 질소 절약은 오히려 보정 뒤에야 드러났습니다(p 0.70 → 0.003).</p></div></div>
+      <div class="find"><div class="fig">10 / 13<small>문헌 일치</small></div><div><h3>이미 발표된 법칙과 대조</h3><p class="muted">Krylov 2003의 소실 성향, van Nimwegen 2003의 조절 유전자 스케일링(지수 1.95), Black Queen 가설 등 13개를 우리 데이터로 다시 시험했습니다. 10개 일치, 2개 부분 일치, 1개 검증 불가입니다.</p></div></div>
     </div>
   </section>
 
@@ -140,6 +150,10 @@ a { color: var(--keep); }
       <li class="fail"><span class="when">한계 · 예측력</span><br>나눈 법칙은 데이터를 더 잘 설명했지만, 새 기생생물의 유전자 소실 예측은 거의 그대로(0.65 안팎). 다른 기생생물에서의 소실 빈도를 외우는 기준선(0.84)이 더 강함.</li>
       <li><span class="when">v3 · 특성 풍부화</span><br>문제는 데이터 양이 아니라 유전자를 묘사하는 특성이 8개뿐이라는 점이라고 판단. GO 기능, Pfam 클랜, 기능 키워드 등 56개로 늘리자 예측이 0.67 → 0.78로 상승.</li>
       <li><span class="when">v4 · 다른 질문으로 법칙 찾기</span><br>"무엇이 사라지나" 외에 얼마나, 어떤 순서로, 함께, 무엇을 늘리나를 따로 물어 법칙 4개를 추가. 함께 사라지는 묶음(모듈)은 예측을 거의 개선하지 못해, 소실이 대체로 독립적이라는 음성 결과도 법칙으로 기록.</li>
+      <li class="fail"><span class="when">음성 결과 · 극한 환경 세균</span><br>세균·고세균 극한 환경 쌍을 추가했지만, 환경 축은 유전자 소실 예측을 더 좋게 하지 못함(0.816 → 0.808). 무엇을 잃는지는 환경이 아니라 유전자 성향이 결정.</li>
+      <li><span class="when">v5 · 단백질 서열</span><br>환경 신호가 어디 있는지 단백질 조성에서 찾음. 환경 변화가 조성 변화를 R² 0.53–0.63으로 설명. 소기관은 반대로 묶음 단위로 잃는다는 것도 확인.</li>
+      <li><span class="when">v6 · 계통 보정과 문헌 대조</span><br>분류 단계별 분산 GLS로 14개 법칙 중 13개 유지. 발표된 법칙 13개 중 10개 재현.</li>
+      <li class="fail"><span class="when">중단 · 미래 예측</span><br>기후 변화 병원체 예측은 모든 종에 같은 답을 내고 리보솜 유전자까지 버린다고 예측해, 믿을 수 없다고 판단하고 중단.</li>
     </ul>
   </section>
 
@@ -153,6 +167,9 @@ a { color: var(--keep); }
       <tr><td>처음 보는 기생생물이 어떤 유전자군을 잃나</td><td>법칙 (특성 56개) / 특성 8개 / 복제 수 / 암기</td><td class="v">0.78 / 0.67 / 0.64 / 0.87</td></tr>
       <tr><td>처음 보는 <b>계통</b> 전체를 빼고 맞히기</td><td>법칙 / 암기</td><td class="v">0.78 / 0.80</td></tr>
       <tr><td>잃는 비율 예측 (계통 빼고)</td><td>생활 방식 축의 덧셈</td><td class="v">오차 1.24 → 0.77</td></tr>
+      <tr><td>처음 보는 극한 세균이 잃는 유전자군</td><td>환경 없이 / 환경 축 추가 / 암기</td><td class="v">0.816 / 0.808 / 0.804</td></tr>
+      <tr><td>환경 변화 → 아미노산 조성 변화</td><td>쌍 단위 선형 법칙</td><td class="v">R² 0.53–0.63</td></tr>
+      <tr><td>IVYWREL만으로 최적 온도</td><td>계통 빼고 맞히기</td><td class="v">오차 9.8°C (평균 15.5°C)</td></tr>
       <tr><td>유전체 하나로 조상 복원</td><td>사전 지식 + 법칙</td><td class="v">AUROC 0.78</td></tr>
     </table></div>
   </section>
@@ -162,7 +179,8 @@ a { color: var(--keep); }
     <h2>알고 있는 약점</h2>
     <ul class="limits">
       <li>찾은 것은 인과가 증명된 법칙이 아니라 통계적 경향입니다.</li>
-      <li>가까운 종들을 서로 독립으로 취급해 신뢰구간이 실제보다 좁습니다. 계통수 기반 모델이 다음 과제입니다.</li>
+      <li>계통 보정은 NCBI 분류 체계를 근사 계통수로 쓴 것입니다. 서열 기반 계통수가 아닙니다.</li>
+      <li>아미노산 조성은 유전체 GC 함량에 크게 좌우됩니다. GC 교란 검증이 다음 과제입니다.</li>
       <li>조상 대신 현생 친척 종을 조상 대리로 씁니다.</li>
       <li>역추적 성능의 대부분은 "흔한 유전자는 원래 있었다"는 사전 지식에서 나오고, 법칙이 더하는 몫은 작습니다(+0.002~0.005).</li>
     </ul>
@@ -172,9 +190,9 @@ a { color: var(--keep); }
     <div class="eyebrow">기술</div>
     <h2>사용한 도구</h2>
     <div class="stack">
-      <span>Python</span><span>PyTorch</span><span>NumPy</span><span>HMMER (pyhmmer)</span><span>Biopython</span><span>NCBI E-utilities</span><span>NCBI Datasets</span><span>Pfam · Gene Ontology</span><span>GitHub Actions</span><span>pytest</span><span>JavaScript</span><span>Matplotlib</span>
+      <span>Python</span><span>PyTorch</span><span>NumPy</span><span>HMMER (pyhmmer)</span><span>Biopython</span><span>NCBI E-utilities</span><span>NCBI Datasets</span><span>Pfam · Gene Ontology</span><span>GitHub Actions</span><span>pytest</span><span>JavaScript</span><span>Matplotlib</span><span>SciPy</span><span>three.js</span><span>Obsidian</span>
     </div>
-    <p class="muted" style="font-size:14px">핵심 모델: 경쟁위험 생존 모형, 선형 birth-death 과정(Kendall), 시뮬레이션 기반 추론, Wagner 절약법 조상 복원, 베이즈 역추적. 54개 테스트.</p>
+    <p class="muted" style="font-size:14px">핵심 모델: 경쟁위험 생존 모형, 선형 birth-death 과정(Kendall), 시뮬레이션 기반 추론, Wagner 절약법 조상 복원, 베이즈 역추적, 저차원 모듈 모형, 분류 단계별 분산 성분 GLS. 60개 테스트.</p>
   </section>
 </div>
 
