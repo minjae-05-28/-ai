@@ -148,6 +148,10 @@ SPECIES.update({
     "Galdieria sulphuraria": _free("rhodophyta"),
 })
 
+# No annotated NCBI assembly (failed twice, removed): Melampsora larici-populina,
+# Hyaloperonospora arabidopsidis, Albugo laibachii, Pythium ultimum, Paratrypanosoma confusum,
+# Sarcocystis neurona, Ascaris suum, Onchocerca volvulus, Schmidtea mediterranea,
+# Hymenolepis microstoma.
 # Round 3 (public repo, Actions minutes unlimited): species chosen to test the laws where
 # they are weakest — extracellular vs intracellular within a clade, a microsporidian
 # relative that kept its mitochondria, new origins of plant parasitism, flatworms with a
@@ -157,7 +161,6 @@ SPECIES.update({
     "Blumeria graminis": _par("fungi", INTRA, AEROBIC),  # powdery mildew, obligate
     "Pyricularia oryzae": _par("fungi", INTRA, AEROBIC),  # rice blast, invasive hyphae
     "Puccinia graminis": _par("fungi_basidio", INTRA, AEROBIC),  # stem rust, obligate
-    "Melampsora larici-populina": _par("fungi_basidio", INTRA, AEROBIC),  # poplar rust, obligate
     "Laccaria bicolor": _free("fungi_basidio"),  # ectomycorrhizal mutualist
     "Mitosporidium daphniae": _par("fungi", INTRA, AEROBIC),  # early microsporidian, keeps mitochondria
     "Edhazardia aedis": _par("fungi", INTRA, REDUCED),
@@ -165,38 +168,29 @@ SPECIES.update({
     "Nosema bombycis": _par("fungi", INTRA, REDUCED),
     "Pseudoloma neurophilia": _par("fungi", INTRA, REDUCED),
     # Oomycetes
-    "Hyaloperonospora arabidopsidis": _par("stramenopiles", INTRA, AEROBIC),  # downy mildew, obligate
-    "Albugo laibachii": _par("stramenopiles", INTRA, AEROBIC),  # white rust, obligate
     "Phytophthora sojae": _par("stramenopiles", EXTRA, AEROBIC),
-    "Pythium ultimum": _par("stramenopiles", EXTRA, AEROBIC),
     "Aphanomyces astaci": _par("stramenopiles", EXTRA, AEROBIC),  # crayfish plague
     # Kinetoplastids: extracellular insect and vertebrate parasites vs intracellular Leishmania
     "Angomonas deanei": _par("discoba", EXTRA, AEROBIC),  # insect gut
     "Strigomonas culicis": _par("discoba", EXTRA, AEROBIC),
-    "Paratrypanosoma confusum": _par("discoba", EXTRA, AEROBIC),  # early-branching, mosquito gut
     "Trypanosoma grayi": _par("discoba", EXTRA, AEROBIC),
     "Leishmania braziliensis": _par("discoba", INTRA, AEROBIC),
     "Leishmania mexicana": _par("discoba", INTRA, AEROBIC),
     # Alveolates: an extracellular gut gregarine, more intracellular coccidia and Plasmodium,
     # and a free-living ciliate control
     "Gregarina niphandrodes": _par("alveolata", EXTRA, AEROBIC),
-    "Sarcocystis neurona": _par("alveolata", INTRA, AEROBIC),
     "Besnoitia besnoiti": _par("alveolata", INTRA, AEROBIC),
     "Plasmodium yoelii": _par("alveolata", INTRA, AEROBIC),
     "Plasmodium malariae": _par("alveolata", INTRA, AEROBIC),
     "Paramecium tetraurelia": _free("alveolata"),
     # Nematodes
-    "Ascaris suum": _par("nematoda", EXTRA, AEROBIC),
     "Haemonchus contortus": _par("nematoda", EXTRA, AEROBIC),
     "Strongyloides ratti": _par("nematoda", EXTRA, AEROBIC),
-    "Onchocerca volvulus": _par("nematoda", EXTRA, AEROBIC),
     "Caenorhabditis briggsae": _free("nematoda"),
     "Pristionchus pacificus": _free("nematoda"),
     # Flatworms, with free-living flatworms as proxies
-    "Schmidtea mediterranea": _free("platyhelminthes"),
     "Macrostomum lignano": _free("platyhelminthes"),
     "Echinococcus multilocularis": _par("platyhelminthes", EXTRA, AEROBIC),
-    "Hymenolepis microstoma": _par("platyhelminthes", EXTRA, AEROBIC),
     "Fasciola hepatica": _par("platyhelminthes", EXTRA, AEROBIC),
     "Clonorchis sinensis": _par("platyhelminthes", EXTRA, AEROBIC),
     "Schistosoma japonicum": _par("platyhelminthes", EXTRA, AEROBIC),
@@ -209,7 +203,7 @@ SPECIES.update({
 
 # (ancestor proxy candidates, closest first; descendant)
 _APICOMPLEXAN_PROXY = ("Chromera velia", "Vitrella brassicaformis", "Tetrahymena thermophila")
-_FLATWORM_PROXY = ("Schmidtea mediterranea", "Macrostomum lignano", "Caenorhabditis elegans")
+_FLATWORM_PROXY = ("Macrostomum lignano", "Caenorhabditis elegans")
 PAIR_SPECS = [
     # lifestyle or energy change
     (("Dictyostelium discoideum",), "Entamoeba histolytica"),
@@ -280,20 +274,20 @@ PAIR_SPECS += [
 
 PAIR_SPECS += [
     *[(("Neurospora crassa", "Aspergillus nidulans"), sp) for sp in ("Blumeria graminis", "Pyricularia oryzae")],
-    *[(("Coprinopsis cinerea", "Schizophyllum commune"), sp) for sp in ("Puccinia graminis", "Melampsora larici-populina")],
+    *[(("Coprinopsis cinerea", "Schizophyllum commune"), sp) for sp in ("Puccinia graminis",)],
     *[(("Spizellomyces punctatus",), sp) for sp in (
         "Mitosporidium daphniae", "Edhazardia aedis", "Anncaliia algerae", "Nosema bombycis", "Pseudoloma neurophilia")],
     *[(("Thalassiosira pseudonana",), sp) for sp in (
-        "Hyaloperonospora arabidopsidis", "Albugo laibachii", "Phytophthora sojae", "Pythium ultimum", "Aphanomyces astaci")],
+        "Phytophthora sojae", "Aphanomyces astaci")],
     *[(("Bodo saltans",), sp) for sp in (
-        "Angomonas deanei", "Strigomonas culicis", "Paratrypanosoma confusum", "Trypanosoma grayi",
+        "Angomonas deanei", "Strigomonas culicis", "Trypanosoma grayi",
         "Leishmania braziliensis", "Leishmania mexicana")],
     *[(_APICOMPLEXAN_PROXY, sp) for sp in (
-        "Gregarina niphandrodes", "Sarcocystis neurona", "Besnoitia besnoiti", "Plasmodium yoelii", "Plasmodium malariae")],
+        "Gregarina niphandrodes", "Besnoitia besnoiti", "Plasmodium yoelii", "Plasmodium malariae")],
     *[(("Caenorhabditis elegans",), sp) for sp in (
-        "Ascaris suum", "Haemonchus contortus", "Strongyloides ratti", "Onchocerca volvulus")],
+        "Haemonchus contortus", "Strongyloides ratti")],
     *[(_FLATWORM_PROXY, sp) for sp in (
-        "Echinococcus multilocularis", "Hymenolepis microstoma", "Fasciola hepatica", "Clonorchis sinensis",
+        "Echinococcus multilocularis", "Fasciola hepatica", "Clonorchis sinensis",
         "Schistosoma japonicum")],
     *[(("Naegleria gruberi",), sp) for sp in ("Trichomonas vaginalis", "Tritrichomonas foetus")],
     (("Drosophila melanogaster", "Anopheles gambiae"), "Pediculus humanus"),
@@ -302,7 +296,6 @@ PAIR_SPECS += [
     (("Tetrahymena thermophila",), "Paramecium tetraurelia"),
     (("Caenorhabditis elegans",), "Caenorhabditis briggsae"),
     (("Caenorhabditis elegans",), "Pristionchus pacificus"),
-    (("Schmidtea mediterranea",), "Macrostomum lignano"),
 ]
 
 # Design axes for splitting laws: every pair gets a base law plus the effect of each
