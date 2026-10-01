@@ -130,6 +130,16 @@ td.mars { color: var(--dust); }
 .limits { display: grid; gap: 8px; padding-left: 18px; margin: 0; font-size: 15px; }
 :focus-visible { outline: 2px solid var(--dust); outline-offset: 2px; }
 [hidden] { display: none !important; }
+.colony { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: 20px; align-items: center; }
+@media (max-width: 760px) { .colony { grid-template-columns: 1fr; } }
+.stage.tall { aspect-ratio: 1 / 1.05; }
+.zones { display: grid; gap: 10px; }
+.zones > div { display: grid; grid-template-columns: 92px 1fr; gap: 10px; font-size: 14px; align-items: baseline; }
+.zone-k { font-family: var(--mono); font-size: 12px; color: var(--muted); }
+table.tissue td:first-child { white-space: nowrap; font-weight: 700; }
+table.tissue td.ev { font-size: 13px; color: var(--muted); }
+.why { border-left: 3px solid var(--dust); padding-left: 14px; display: grid; gap: 6px; max-width: 760px; }
+
 </style>
 
 <div class="page">
@@ -170,6 +180,28 @@ td.mars { color: var(--dust); }
     <h2>얼마나 크고, 얼마나 느리고, 어디에 사나</h2>
     <p class="note">시뮬레이션은 유전자 구성만 정합니다. 아래는 비슷한 조건에 사는 지구 미생물에서 가져온 추정입니다.</p>
     <div class="analog" id="analog"></div>
+  </section>
+
+  <section>
+    <div class="eyebrow">추론 · 분열을 계속해 몸을 이룬다면</div>
+    <h2>위아래를 잇는 살아 있는 전선</h2>
+    <p>화성 지하에서 연료(수소)는 깊은 지각에서 올라오고, 산화제(과염소산염)는 지표 흙에 있습니다. 둘 사이는 수 mm에서 수 cm 떨어져 있습니다. 지구에는 같은 문제를 다세포 몸으로 푼 생물이 있습니다. 케이블 박테리아는 세포 수천 개가 이어진 실 하나가 깊은 곳의 연료와 위쪽의 산소를 이어, 몸속 섬유로 전자를 나릅니다. 화성 세포가 군체를 이룬다면 가장 그럴듯한 몸은 이 모양입니다.</p>
+    <div class="colony">
+      <div class="stage tall"><canvas id="c-colony" aria-label="화성 다세포 생물 추론 3D"></canvas><span class="fallback" hidden>이 브라우저에서는 3D를 표시할 수 없습니다.</span></div>
+      <div class="zones">
+        <div><span class="zone-k">지표</span><span>먼지와 강한 방사선. 살 수 없는 층</span></div>
+        <div><span class="zone-k" style="color:var(--dust)">수 mm–cm</span><span>과염소산염이 섞인 흙 → <b>잎 세포</b></span></div>
+        <div><span class="zone-k" style="color:var(--brine)">그 아래</span><span>얼음과 소금물 틈을 따라 뻗은 <b>실 모양 몸</b></span></div>
+        <div><span class="zone-k" style="color:#c99a1f">깊은 쪽</span><span>지각에서 스며 나오는 수소 → <b>뿌리 세포</b></span></div>
+        <p class="note">세포는 실제보다 크게 그렸습니다. 노란 점은 몸속 섬유를 따라 위로 흐르는 전자입니다.</p>
+      </div>
+    </div>
+    <div class="frame"><table class="tissue" id="tissue"></table></div>
+    <div class="analog" id="colony-size"></div>
+    <div class="why">
+      <h3>기관과 뇌를 가진 생물은 왜 어려운가</h3>
+      <p class="note">세포 하나가 쓸 수 있는 에너지가 지구 심부 미생물 수준(약 10⁻²⁰ W)으로, 동물 세포의 수억 분의 1입니다. 두꺼운 몸을 채울 물도 없고, 소금물은 얇은 막으로만 존재합니다. 지구에서도 기관을 가진 생물은 대기에 산소가 충분히 쌓인 뒤(약 5.4억 년 전)에야 나타났습니다. 그래서 화성에서 기대할 수 있는 다세포성은 역할이 몇 가지로 나뉜 실이나 막 수준입니다.</p>
+    </div>
   </section>
 
   <section>
@@ -436,6 +468,97 @@ if (M.survival_drivers && M.survival_drivers.length) {
   $("drvnote").textContent = `'${D.scen_ko[M.driver_scenario] || M.driver_scenario}' 시나리오에서 살아남은 법칙과 멸종한 법칙을 가른 계수입니다. r은 그 계수와 생존의 상관입니다. 양수면 그 반응이 클수록 살아남았습니다.`;
   $("drivers").innerHTML = M.survival_drivers.slice(0, 8).map((d) => `<li><span class="r">${d.corr_with_survival >= 0 ? "+" : "−"}${Math.abs(d.corr_with_survival).toFixed(2)}</span><span>${stKo[d.stress]}에 따라 <b>${ko[d.module]}</b> 유전자의 ${kindKo[d.kind]} 속도가 ${d.corr_with_survival >= 0 ? "빨라지는" : "느려지는"} 법칙일수록 생존</span></li>`).join("");
 }
+
+// ---- Multicellular inference: tissues, size, and a 3D colony ----
+$("tissue").innerHTML = `<tr><th>부위</th><th>하는 일</th><th>근거</th></tr>` + [
+  ["뿌리 세포", "아래쪽 수소층에서 H₂를 산화해 전자를 떼어 내고, CO₂를 고정해 몸 전체가 쓸 탄소를 만든다.", `시뮬레이션: 수소 산화 ${med("h2_oxidation").toFixed(0)}개·탄소 고정 ${med("carbon_fixation").toFixed(0)}개 유지 · 지구: 케이블 박테리아의 아래쪽 세포`],
+  ["전선", "세포 사이 껍질 속 섬유로 전자를 위로 나르고, 영양분을 나눈다.", "지구: 케이블 박테리아는 cm 길이의 몸에 전류를 흘린다"],
+  ["잎 세포", "위쪽 흙의 과염소산염(ClO₄⁻)을 염화이온으로 바꿔 에너지 회로를 닫는다. 그 과정에서 세포 안에 산소가 생겨, 독을 먹이로 바꾼다.", `시뮬레이션: 계통의 ${pct(g("perchlorate_reduction").share_grew)}가 과염소산염 환원을 새로 얻음 · 지구: 과염소산염 호흡 세균 Dechloromonas`],
+  ["점액 덮개", "과염소산염 소금이 공기 중 수증기를 빨아들이는 성질(조해성)을 이용해, −15 °C에서도 얼지 않는 소금물 막을 몸 둘레에 붙잡아 둔다.", `시뮬레이션: 삼투 보호 증가 ${pct(g("osmoprotection").share_grew)} · 지구: 아타카마 사막 소금 바위 속 남세균`],
+  ["모든 세포", "DNA 수선 효소가 두 배. 얼어 있는 동안 쌓인 방사선 손상을 녹을 때 고친다.", `시뮬레이션: DNA 수선 증가 ${pct(g("dna_repair").share_grew)}`],
+  ["번식", "얼고 녹을 때 실이 끊어지고, 조각 하나하나가 새 개체가 된다. 포자는 거의 만들지 못한다.", `시뮬레이션: 고립 조건에서 포자 획득 ${pct(g("dormancy").share_grew)} · 지구: 남세균의 실 조각(호르모고니아)`],
+  ["감각과 행동", "움직이지 못하는 대신 자라는 방향을 바꾼다. 뿌리 쪽은 수소를 따라 아래로, 잎 쪽은 과염소산염을 따라 위로. 화성의 1년(687일) 중 소금물이 녹는 계절에만 대사한다.", `시뮬레이션: 운동(편모) ${start.motility} → ${med("motility").toFixed(0)}개`],
+].map(([a, b, c]) => `<tr><td>${a}</td><td>${b}</td><td class="ev">${c}</td></tr>`).join("");
+
+$("colony-size").innerHTML = [
+  ["몸 길이", "수 mm – 수 cm", "수소층과 과염소산염층 사이 거리에 맞춰짐. 지구 케이블 박테리아는 최대 약 7 cm"],
+  ["세포 수", "1 cm 실에 약 1만 개", "세포 길이를 약 1 µm로 가정"],
+  ["다 자라는 데", "1,300 – 13,000년", "1만 개 = 약 13번 분열, 분열 주기 100–1000년 가정"],
+  ["수명", "수만 년 이상일 수도", "끊어진 조각이 계속 살아가므로 개체의 경계가 흐림"],
+].map(([k, v, d]) => `<div><span class="note">${k}</span><span class="val">${v}</span><span class="note">${d}</span></div>`).join("");
+
+(function colony() {
+  const canvas = $("c-colony");
+  if (!(window.THREE && THREE.OrbitControls)) { canvas.hidden = true; canvas.parentNode.querySelector(".fallback").hidden = false; return; }
+  let renderer;
+  try { renderer = new THREE.WebGLRenderer({canvas, antialias: true, alpha: true}); }
+  catch (e) { canvas.hidden = true; canvas.parentNode.querySelector(".fallback").hidden = false; return; }
+  const T = THREE, scene = new T.Scene(), camera = new T.PerspectiveCamera(34, 1, 0.1, 100);
+  scene.add(new T.HemisphereLight(0xffffff, 0x445566, 0.85));
+  const key = new T.DirectionalLight(0xffffff, 0.7); key.position.set(4, 6, 5); scene.add(key);
+  const controls = new T.OrbitControls(camera, canvas);
+  controls.enablePan = false; controls.enableDamping = true; controls.minDistance = 5; controls.maxDistance = 18;
+  camera.position.set(6.2, 1.8, 7.4); controls.target.set(0, 0, 0); controls.update();
+  const r = rng(11), world = new T.Group(); scene.add(world);
+  const mat = (c, o = {}) => new T.MeshStandardMaterial(Object.assign({color: c, roughness: 0.6}, o));
+  const TOP = 2.7, BOT = -2.7, HX = 2.2, HZ = 1.4;
+  // soil column: layers as translucent slabs
+  const slab = (y0, y1, c, op) => { const m = new T.Mesh(new T.BoxGeometry(HX * 2, y1 - y0, HZ * 2), mat(c, {transparent: true, opacity: op, depthWrite: false})); m.position.y = (y0 + y1) / 2; world.add(m); };
+  slab(TOP, TOP + 0.25, "#b0683a", 0.55);           // dusty surface
+  slab(1.5, TOP, "#c46a2e", 0.08);                   // perchlorate-bearing regolith
+  slab(BOT, -1.5, "#d1a531", 0.08);                  // hydrogen seeping from below
+  const edges = new T.LineSegments(new T.EdgesGeometry(new T.BoxGeometry(HX * 2, TOP - BOT + 0.25, HZ * 2)), new T.LineBasicMaterial({color: 0x8a959b, transparent: true, opacity: 0.35}));
+  edges.position.y = (TOP + 0.25 + BOT) / 2; world.add(edges);
+  // regolith grains and brine pockets
+  const grain = mat("#9a7b62", {flatShading: true, transparent: true, opacity: 0.38, depthWrite: false});
+  for (let i = 0; i < 70; i++) {
+    const m = new T.Mesh(new T.IcosahedronGeometry(0.12 + r() * 0.22, 0), grain);
+    m.position.set((r() * 2 - 1) * HX * 0.95, BOT + r() * (TOP - BOT), (r() * 2 - 1) * HZ * 0.95); m.rotation.set(r() * 3, r() * 3, r() * 3); world.add(m);
+  }
+  const brineM = mat(PART_COLORS.brine, {transparent: true, opacity: 0.18, depthWrite: false});
+  for (let i = 0; i < 9; i++) { const m = new T.Mesh(new T.SphereGeometry(0.18 + r() * 0.2, 16, 12), brineM); m.position.set((r() * 2 - 1) * HX * 0.8, -1 + r() * 2.4, (r() * 2 - 1) * HZ * 0.8); world.add(m); }
+  // filaments: cells colored by depth (root -> cable -> leaf), sheath, conductive fiber, electrons
+  const cellGeo = new T.SphereGeometry(1, 14, 10);
+  const root = new T.Color("#d1a531"), cable = new T.Color(PART_COLORS.membrane), leaf = new T.Color(PART_COLORS.perc);
+  const electrons = [];
+  const filament = (x0, z0, y0, y1, seed) => {
+    const fr = rng(seed), pts = [];
+    for (let i = 0; i <= 10; i++) { const t = i / 10; pts.push(new T.Vector3(x0 + Math.sin(t * 5 + seed) * 0.35 + (fr() - 0.5) * 0.2, y0 + (y1 - y0) * t, z0 + Math.cos(t * 4 + seed) * 0.3 + (fr() - 0.5) * 0.2)); }
+    const curve = new T.CatmullRomCurve3(pts), len = curve.getLength(), n = Math.floor(len / 0.11);
+    world.add(new T.Mesh(new T.TubeGeometry(curve, 160, 0.1, 10), mat(PART_COLORS.brine, {transparent: true, opacity: 0.16, depthWrite: false})));
+    world.add(new T.Mesh(new T.TubeGeometry(curve, 160, 0.012, 6), new T.MeshBasicMaterial({color: 0xe8c547})));
+    for (let i = 0; i < n; i++) {
+      const u = i / n, p = curve.getPointAt(u), tan = curve.getTangentAt(u), h = (p.y - BOT) / (TOP - BOT);
+      const c = h < 0.3 ? root.clone().lerp(cable, h / 0.3 * 0.4) : h > 0.72 ? cable.clone().lerp(leaf, Math.min((h - 0.72) / 0.18, 1)) : cable.clone();
+      const m = new T.Mesh(cellGeo, mat(c, {roughness: 0.45}));
+      m.scale.set(0.055, 0.075, 0.055); m.position.copy(p); m.quaternion.setFromUnitVectors(new T.Vector3(0, 1, 0), tan); world.add(m);
+    }
+    for (let k = 0; k < 4; k++) {
+      const e = new T.Mesh(new T.SphereGeometry(0.035, 8, 6), new T.MeshBasicMaterial({color: 0xffd84a}));
+      e.userData = {curve, u: k / 4 + fr() * 0.1}; world.add(e); electrons.push(e);
+    }
+  };
+  [[-1.2, -0.4, 1], [-0.3, 0.6, 2], [0.7, -0.6, 3], [1.4, 0.4, 4], [0.1, -0.1, 5]].forEach(([x, z, s]) => filament(x, z, BOT + 0.3, TOP - 0.35, s));
+  // a fragment drifting off: reproduction by breaking
+  filament(1.8, 1.0, -0.4, 0.5, 9);
+  // hydrogen rising from below, perchlorate grains near the top
+  const h2 = [];
+  const h2M = new T.MeshBasicMaterial({color: 0xe8c547, transparent: true, opacity: 0.7});
+  for (let i = 0; i < 26; i++) { const m = new T.Mesh(new T.SphereGeometry(0.025, 6, 4), h2M); m.position.set((r() * 2 - 1) * HX, BOT + r() * 1.2, (r() * 2 - 1) * HZ); m.userData.v = 0.002 + r() * 0.004; world.add(m); h2.push(m); }
+  const pcM = mat(PART_COLORS.perc, {flatShading: true});
+  for (let i = 0; i < 40; i++) { const m = new T.Mesh(new T.OctahedronGeometry(0.03), pcM); m.position.set((r() * 2 - 1) * HX, 1.6 + r() * 1.05, (r() * 2 - 1) * HZ); world.add(m); }
+  const resize = () => { const w = canvas.clientWidth, h = canvas.clientHeight; if (!w || !h) return;
+    renderer.setPixelRatio(Math.min(devicePixelRatio, 2)); renderer.setSize(w, h, false); camera.aspect = w / h; camera.updateProjectionMatrix(); };
+  new ResizeObserver(resize).observe(canvas); resize();
+  (function loop() {
+    if (!still) {
+      world.rotation.y += 0.0025;
+      for (const e of electrons) { e.userData.u = (e.userData.u + 0.0016) % 1; e.position.copy(e.userData.curve.getPointAt(e.userData.u)); }
+      for (const m of h2) { m.position.y += m.userData.v; if (m.position.y > -1.3) m.position.y = BOT + 0.05; }
+    } else for (const e of electrons) e.position.copy(e.userData.curve.getPointAt(e.userData.u));
+    controls.update(); renderer.render(scene, camera); requestAnimationFrame(loop);
+  })();
+})();
 </script>
 """
 
