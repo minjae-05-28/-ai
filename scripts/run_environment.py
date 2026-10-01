@@ -65,6 +65,7 @@ def main():
     ap.add_argument("--n-boot", type=int, default=4)
     ap.add_argument("--threads", type=int, default=4)
     ap.add_argument("--out", default="results/environment")
+    ap.add_argument("--law-id", default="environment_v1")
     args = ap.parse_args()
     torch.set_num_threads(args.threads)
     out = Path(args.out)
@@ -168,8 +169,8 @@ def main():
                                                      "n": len(gain)},
          "heldout": rows, "significant_effects": effects, "mars": mars}, indent=2))
     save_law(
-        LAWS_DIR / "environment_v1.json",
-        id="environment_v1",
+        LAWS_DIR / f"{args.law_id}.json",
+        id=args.law_id,
         scope=("Gene-family loss, duplication and gain in bacteria and archaea when a lineage moves to a "
                "colder, saltier, anoxic, radiation-exposed or nutrient-poor environment."),
         model="Linear birth-death per family; log rate = a_pair + x @ (environment change @ W).",
@@ -200,7 +201,7 @@ def main():
            title="Which families does an extremophile lose?")
     fig.tight_layout()
     fig.savefig(out / "fig_environment.png", dpi=130)
-    print(f"Done -> {out}/ and laws/environment_v1.json")
+    print(f"Done -> {out}/ and laws/{args.law_id}.json")
 
 
 if __name__ == "__main__":

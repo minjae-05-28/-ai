@@ -1,0 +1,48 @@
+name: Run analysis
+
+# Long analyses that outlive the development container. Commits results/ and laws/.
+
+on:
+  workflow_dispatch:
+    inputs:
+      command:
+        description: "Command to run from the repo root, e.g. python scripts/run_environment.py --law-id environment_v2 --out results/environment_v2"
+        required: true
+
+permissions:
+  contents: write
+
+concurrency:
+  group: run-analysis
+  cancel-in-progress: false
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install numpy scipy matplotlib biopython && pip install torch --index-url https://download.pytorch.org/whl/cpu
+      - name: Run
+        env:
+          PYTHONPATH: src
+          CMD: ${{ inputs.command }}
+        run: |
+          case "$CMD" in
+            "python scripts/"*) ;;
+            *) echo "only 'python scripts/...' commands are allowed"; exit 1 ;;
+          esac
+          bash -c "$CMD"
+      - name: Commit results
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -f results laws
+          if git diff --cached --quiet; then echo "No changes."; else
+            git commit -m "Analysis results: ${{ inputs.command }}"
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi
