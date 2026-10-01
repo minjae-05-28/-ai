@@ -1,44 +1,44 @@
 {
   "coefficients": {
     "base": {
-      "weight": -2.1691897553964186,
+      "weight": -2.2306803330227414,
       "ci95": [
-        -2.369929736518764,
-        -1.9704920406302109
+        -2.449254243188232,
+        -1.9921410231916723
       ]
     },
     "parasite": {
-      "weight": 1.169686356990485,
+      "weight": 1.2059129298037163,
       "ci95": [
-        0.7205685372895609,
-        1.6068764322192024
+        0.7579854069479998,
+        1.6063694658741665
       ]
     },
     "intracellular": {
-      "weight": 0.5160770258570652,
+      "weight": 0.4466596074652834,
       "ci95": [
-        -0.48086310946839583,
-        0.9089862007135865
+        -0.42721013099654975,
+        0.8988393795448916
       ]
     },
     "reduced_mitochondria": {
-      "weight": 1.4637028936700858,
+      "weight": 1.5330490287689527,
       "ci95": [
-        0.7747209674855,
-        2.143809326721398
+        0.7490897674326203,
+        2.304063596512112
       ]
     }
   },
   "loco_rmse_logit": {
-    "mean_only": 1.241038714571497,
-    "parasite_only": 0.9161379848172072,
-    "all_axes": 0.7721708942332304
+    "mean_only": 1.3295061077461687,
+    "parasite_only": 1.0912253540186991,
+    "all_axes": 0.9465311777270958
   },
   "typical_share_lost": {
-    "free_living": 0.1025515800961063,
-    "extracellular_parasite": 0.26903907037209135,
-    "intracellular_parasite": 0.38144336433249204,
-    "intracellular_reduced_mito": 0.727163080729952
+    "free_living": 0.09702901768178142,
+    "extracellular_parasite": 0.26409980903259433,
+    "intracellular_parasite": 0.3593681059580343,
+    "intracellular_reduced_mito": 0.7221078133429718
   },
   "severity": {
     "Entamoeba histolytica": 0.5737122557726465,
@@ -98,7 +98,7 @@
     "Henneguya salminicola": 0.6120176910172335,
     "Brugia malayi": 0.0919773095623987,
     "Trichinella spiralis": 0.22710696920583467,
-    "Schistosoma mansoni": 0.22771474878444084,
+    "Schistosoma mansoni": 0.24139775361026922,
     "Helicosporidium sp. ATCC 50920": 0.300350498786735,
     "Aspergillus nidulans": 0.07451238220468989,
     "Schizophyllum commune": 0.05069559066257958,
@@ -107,9 +107,45 @@
     "Capsaspora owczarzaki": 0.21976909054081425,
     "Chlorella variabilis": 0.20012652889076338,
     "Ostreococcus tauri": 0.03716766142159523,
-    "Galdieria sulphuraria": 0.09415022499134648
+    "Galdieria sulphuraria": 0.09415022499134648,
+    "Blumeria graminis": 0.14902476440937978,
+    "Pyricularia oryzae": 0.04054350208196362,
+    "Puccinia graminis": 0.1671775524640415,
+    "Mitosporidium daphniae": 0.6270410195141378,
+    "Edhazardia aedis": 0.7682198327359617,
+    "Anncaliia algerae": 0.7863401035444046,
+    "Nosema bombycis": 0.781162883313421,
+    "Pseudoloma neurophilia": 0.806252489048188,
+    "Phytophthora sojae": 0.19671675013912077,
+    "Aphanomyces astaci": 0.167779632721202,
+    "Angomonas deanei": 0.2598376014990631,
+    "Strigomonas culicis": 0.3297938788257339,
+    "Trypanosoma grayi": 0.19706433479075577,
+    "Leishmania braziliensis": 0.23266708307307932,
+    "Leishmania mexicana": 0.22517176764522173,
+    "Gregarina niphandrodes": 0.5846153846153846,
+    "Besnoitia besnoiti": 0.3831501831501832,
+    "Plasmodium yoelii": 0.5042735042735043,
+    "Plasmodium malariae": 0.503052503052503,
+    "Haemonchus contortus": 0.07273095623987035,
+    "Strongyloides ratti": 0.146677471636953,
+    "Echinococcus multilocularis": 0.2583348190408272,
+    "Fasciola hepatica": 0.9679087181315743,
+    "Clonorchis sinensis": 0.2246389730789802,
+    "Schistosoma japonicum": 0.2430023177036905,
+    "Trichomonas vaginalis": 0.46588935747953364,
+    "Tritrichomonas foetus": 0.46985859588191514,
+    "Pediculus humanus": 0.11789749467823808,
+    "Laccaria bicolor": 0.11388823390709739,
+    "Paramecium tetraurelia": 0.14706740589436826,
+    "Caenorhabditis briggsae": 0.029781199351701784,
+    "Pristionchus pacificus": 0.0682739059967585
   },
   "more_lost_than_predicted": [
+    [
+      "Fasciola hepatica",
+      0.9679087181315743
+    ],
     [
       "Trypanosoma congolense",
       0.7117426608369769
@@ -119,30 +155,18 @@
       0.6641756901021809
     ],
     [
-      "Acanthamoeba castellanii",
-      0.22135879218472468
+      "Gregarina niphandrodes",
+      0.5846153846153846
     ],
     [
-      "Capsaspora owczarzaki",
-      0.21976909054081425
-    ],
-    [
-      "Theileria annulata",
-      0.5885225885225885
+      "Mitosporidium daphniae",
+      0.6270410195141378
     ]
   ],
   "less_lost_than_predicted": [
     [
-      "Leishmania major",
-      0.22361024359775142
-    ],
-    [
-      "Trypanosoma cruzi",
-      0.18988132417239226
-    ],
-    [
-      "Ostreococcus tauri",
-      0.03716766142159523
+      "Caenorhabditis briggsae",
+      0.029781199351701784
     ],
     [
       "Brugia malayi",
@@ -151,6 +175,14 @@
     [
       "Ustilago maydis",
       0.11530299457675076
+    ],
+    [
+      "Haemonchus contortus",
+      0.07273095623987035
+    ],
+    [
+      "Pyricularia oryzae",
+      0.04054350208196362
     ]
   ]
 }

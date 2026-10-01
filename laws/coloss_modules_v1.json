@@ -54,21 +54,49 @@
       "Nematostella vectensis -> Henneguya salminicola",
       "Caenorhabditis elegans -> Brugia malayi",
       "Caenorhabditis elegans -> Trichinella spiralis",
-      "Caenorhabditis elegans -> Schistosoma mansoni",
-      "Auxenochlorella protothecoides -> Helicosporidium sp. ATCC 50920"
+      "Macrostomum lignano -> Schistosoma mansoni",
+      "Auxenochlorella protothecoides -> Helicosporidium sp. ATCC 50920",
+      "Neurospora crassa -> Blumeria graminis",
+      "Neurospora crassa -> Pyricularia oryzae",
+      "Coprinopsis cinerea -> Puccinia graminis",
+      "Spizellomyces punctatus -> Mitosporidium daphniae",
+      "Spizellomyces punctatus -> Edhazardia aedis",
+      "Spizellomyces punctatus -> Anncaliia algerae",
+      "Spizellomyces punctatus -> Nosema bombycis",
+      "Spizellomyces punctatus -> Pseudoloma neurophilia",
+      "Thalassiosira pseudonana -> Phytophthora sojae",
+      "Thalassiosira pseudonana -> Aphanomyces astaci",
+      "Bodo saltans -> Angomonas deanei",
+      "Bodo saltans -> Strigomonas culicis",
+      "Bodo saltans -> Trypanosoma grayi",
+      "Bodo saltans -> Leishmania braziliensis",
+      "Bodo saltans -> Leishmania mexicana",
+      "Chromera velia -> Gregarina niphandrodes",
+      "Chromera velia -> Besnoitia besnoiti",
+      "Chromera velia -> Plasmodium yoelii",
+      "Chromera velia -> Plasmodium malariae",
+      "Caenorhabditis elegans -> Haemonchus contortus",
+      "Caenorhabditis elegans -> Strongyloides ratti",
+      "Macrostomum lignano -> Echinococcus multilocularis",
+      "Macrostomum lignano -> Fasciola hepatica",
+      "Macrostomum lignano -> Clonorchis sinensis",
+      "Macrostomum lignano -> Schistosoma japonicum",
+      "Naegleria gruberi -> Trichomonas vaginalis",
+      "Naegleria gruberi -> Tritrichomonas foetus",
+      "Drosophila melanogaster -> Pediculus humanus"
     ],
-    "n_families": 7654
+    "n_families": 8416
   },
   "validation": {
     "scheme": "leave-one-clade-out, half of each held-out parasite's families revealed",
     "mean_auroc_hidden": {
-      "k0": 0.8100816159348199,
-      "k2": 0.8113859604558169,
-      "k4": 0.8014064802139009,
-      "k8": 0.801711597588366
+      "k0": 0.8071302836576933,
+      "k2": 0.8077885990131175,
+      "k4": 0.805814520679523,
+      "k8": 0.7997572951905778
     },
     "best_k": 2,
-    "gain_vs_additive": 0.0013043445209970927
+    "gain_vs_additive": 0.0006583153554241564
   },
   "caveats": [
     "Modules are statistical: co-loss can reflect shared pathways or shared host niche.",
@@ -77,117 +105,104 @@
   "contexts": {
     "modules": [
       {
-        "strength": 191.1571044921875,
+        "strength": 259.2604675292969,
         "lost_together": [
-          "Gpr1_Fun34_YaaH: GPR1/FUN34/yaaH family",
-          "GH16_XgeA: XgeA-like, catalytic GH16 domain",
-          "B12-binding_2: B12 binding domain",
-          "Met_synt_B12: Vitamin B12 dependent methionine synthase, activation domain",
-          "ADH_N_2: N-terminal domain of oxidoreductase",
-          "LBP_BPI_CETP_C: LBP / BPI / CETP family, C-terminal domain",
-          "GFA: Glutathione-dependent formaldehyde-activating enzyme",
-          "PLA2_B: Lysophospholipase catalytic domain"
+          "SMP_MUG190-like: MUG190-like SMP domain",
+          "Helitron_like_N: Helitron helicase-like domain at N-terminus",
+          "Noggin: Noggin",
+          "OCD_Mu_crystall: Ornithine cyclodeaminase/mu-crystallin family",
+          "zf-Nse: Zinc-finger of the MIZ type in Nse subunit",
+          "Thioredoxin_4: Thioredoxin",
+          "Glyco_transf_15: Glycolipid 2-alpha-mannosyltransferase",
+          "MULE: MULE transposase domain"
         ],
-        "lost_together_enriched": [
-          [
-            "go:oxidoreductase activity",
-            5.41
-          ],
-          [
-            "go:catalytic activity",
-            2.82
-          ]
-        ],
+        "lost_together_enriched": [],
         "kept_together": [
-          "UBQLN1: Ubiquilin-1-like domain",
-          "zf-B_box: B-box zinc finger",
-          "UPF0113: UPF0113 PUA domain",
-          "Pus10_C: Pus10, C-terminal",
-          "Chal_sti_synt_C: Chalcone and stilbene synthases, C-terminal domain",
-          "PROCN: PROCN (NUC071) domain",
-          "zf-RING_5: zinc-RING finger domain",
-          "pre-PUA_NIP7: NIP7/UPF0113, pre-PUA domain"
+          "Topo_C_assoc: C-terminal topoisomerase domain",
+          "TMEM43: Transmembrane protein 43",
+          "ACBP: Acyl CoA binding protein",
+          "Glutaredoxin: Glutaredoxin",
+          "Thioredoxin_8: Thioredoxin-like",
+          "ACP_syn_III: 3-Oxoacyl-[acyl-carrier-protein (ACP)] synthase III",
+          "DBR1: Lariat debranching enzyme, C-terminal domain",
+          "EGF_MSP1_1: MSP1 EGF domain 1"
         ],
         "kept_together_enriched": [
           [
-            "go:ribosome",
-            6.32
-          ],
-          [
-            "go:structural molecule activity",
-            5.66
+            "go:catalytic activity",
+            2.33
           ]
         ],
         "most_affected": [
-          "Entamoeba dispar",
-          "Entamoeba histolytica",
+          "Plasmodium malariae",
           "Plasmodium knowlesi",
-          "Entamoeba invadens",
-          "Plasmodium berghei",
-          "Plasmodium vivax"
+          "Plasmodium vivax",
+          "Plasmodium yoelii",
+          "Plasmodium falciparum",
+          "Plasmodium berghei"
         ],
         "least_affected": [
-          "Trypanosoma congolense",
-          "Helicosporidium sp. ATCC 50920",
-          "Malassezia globosa",
-          "Trichinella spiralis",
-          "Taphrina deformans",
-          "Ustilago maydis"
+          "Edhazardia aedis",
+          "Nosema bombycis",
+          "Encephalitozoon intestinalis",
+          "Encephalitozoon cuniculi",
+          "Anncaliia algerae",
+          "Nosema ceranae"
         ]
       },
       {
-        "strength": 181.48057556152344,
+        "strength": 241.06878662109375,
         "lost_together": [
-          "DUF92: Integral membrane protein DUF92",
-          "NYD-SP28: Sperm tail",
-          "Indigoidine_A: Indigoidine synthase A like protein",
-          "PIRC1_2: Piercer of microtubule wall 1/2",
-          "TMEM18: Transmembrane protein 18",
-          "Glycos_trans_3N: Glycosyl transferase family, helical bundle domain",
-          "DRC11_N: Dynein regulatory complex subunit 11-like, N-terminal domain",
-          "ODAD1_CC: ODAD1 central coiled coil region"
+          "DIOX_N: non-haem dioxygenase in morphine synthesis N-terminal",
+          "Cu-oxidase_2: Multicopper oxidase",
+          "AICARFT_IMPCHas: AICARFT/IMPCHase bienzyme",
+          "Pdase_M17_N2: M17 aminopeptidase N-terminal domain 2",
+          "ArgJ: ArgJ family",
+          "Cu-oxidase: Multicopper oxidase",
+          "GFA: Glutathione-dependent formaldehyde-activating enzyme",
+          "Semialdhyde_dhC_1: Semialdehyde dehydrogenase, dimerisation domain"
         ],
         "lost_together_enriched": [
           [
-            "go:transferase activity",
-            2.3
-          ]
-        ],
-        "kept_together": [
-          "DUF760: Protein of unknown function (DUF760)",
-          "DUF1967: Domain of unknown function (DUF1967)",
-          "GNT-I: GNT-I family",
-          "Bromo_TP_like: Histone-fold protein",
-          "Methyltrans_RNA: RNA methyltransferase domain",
-          "Cytidylate_kin: Cytidylate kinase",
-          "Chal_sti_synt_C: Chalcone and stilbene synthases, C-terminal domain",
-          "zf-DBF: DBF zinc finger"
-        ],
-        "kept_together_enriched": [
-          [
-            "go:DNA binding",
-            5.68
+            "kw:methyl_glyco_transferase",
+            3.05
           ],
           [
             "go:transferase activity",
-            2.82
+            2.41
+          ]
+        ],
+        "kept_together": [
+          "Glutaredoxin: Glutaredoxin",
+          "Glycolytic: Fructose-bisphosphate aldolase class-I",
+          "Methyltrans_RNA: RNA methyltransferase domain",
+          "zf-AN1: AN1-like Zinc finger",
+          "TFIIA_gamma_C: Transcription initiation factor IIA, gamma subunit",
+          "Peptidase_M17: Cytosol aminopeptidase family, catalytic domain",
+          "DUF760: Protein of unknown function (DUF760)",
+          "DUF1967: Domain of unknown function (DUF1967)"
+        ],
+        "kept_together_enriched": [
+          [
+            "go:nucleus",
+            3.56
           ]
         ],
         "most_affected": [
-          "Encephalitozoon cuniculi",
           "Plasmodium knowlesi",
-          "Encephalitozoon intestinalis",
-          "Theileria parva",
           "Plasmodium vivax",
-          "Nosema ceranae"
+          "Plasmodium malariae",
+          "Plasmodium falciparum",
+          "Encephalitozoon cuniculi",
+          "Plasmodium yoelii"
         ],
         "least_affected": [
-          "Entamoeba invadens",
+          "Leishmania braziliensis",
+          "Leptomonas pyrrhocoris",
+          "Leishmania mexicana",
           "Leishmania major",
           "Leishmania donovani",
-          "Leishmania infantum",
-          "Entamoeba histolytica",
-          "Entamoeba dispar"
+          "Leishmania infantum"
         ]
       }
     ]
