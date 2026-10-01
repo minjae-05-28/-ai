@@ -14,7 +14,8 @@ from collections import defaultdict
 from pathlib import Path
 
 from organelle_evo.prokaryotes.catalog import SPECIES, slug
-from organelle_evo.sequence import AA
+
+AA = "ACDEFGHIKLMNPQRSTVWY"  # same order as organelle_evo.sequence.AA (kept numpy-free for --list-missing)
 
 OUT = Path("data/family_composition/prokaryotes")
 
