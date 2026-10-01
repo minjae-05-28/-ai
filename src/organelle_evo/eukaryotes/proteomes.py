@@ -8,6 +8,7 @@ import io
 import json
 import re
 import urllib.parse
+import urllib.error
 import urllib.request
 import zipfile
 
@@ -15,10 +16,22 @@ API = "https://api.ncbi.nlm.nih.gov/datasets/v2"
 _LEVEL = {"Complete Genome": 3, "Chromosome": 2, "Scaffold": 1, "Contig": 0}
 
 
-def _get(url: str) -> bytes:
+def _get(url: str, attempts: int = 4) -> bytes:
+    """GET with retries: NCBI downloads sometimes drop mid-stream (IncompleteRead, resets)."""
+    import http.client
+    import time
+
     req = urllib.request.Request(url, headers={"Accept": "application/json, application/zip"})
-    with urllib.request.urlopen(req, timeout=600) as r:
-        return r.read()
+    for i in range(attempts):
+        try:
+            with urllib.request.urlopen(req, timeout=600) as r:
+                return r.read()
+        except (http.client.IncompleteRead, ConnectionError, TimeoutError, urllib.error.URLError) as e:
+            if isinstance(e, urllib.error.HTTPError) and e.code < 500 and e.code != 429:
+                raise
+            if i == attempts - 1:
+                raise
+            time.sleep(15 * 2**i)
 
 
 def _score(report: dict, species: str) -> tuple:
