@@ -84,6 +84,7 @@ def main():
         "sequence": load("results/sequence/metrics.json"),
         "family_seq": load("results/family_sequence/metrics.json"),
         "phylo": load("results/phylo/metrics.json"),
+        "gc": load("results/gc_confound/metrics.json"),
         "n_literature": len(json.loads(Path("laws/literature/laws.json").read_text())["laws"]),
     }
     if data["sequence"]:
@@ -547,7 +548,8 @@ if (D.sequence && D.phylo) {
 $("next").innerHTML = [
   ["완료", "특성 풍부화", D.enrich ? `특성을 8개에서 ${D.enrich.n_features.enriched}개로 늘려 처음 보는 기생생물 예측이 ${D.enrich.mean_heldout_auroc.base.toFixed(3)} → ${D.enrich.mean_heldout_auroc.enriched.toFixed(3)}로 올랐습니다. 아직 암기 기준선(${D.enrich.mean_heldout_auroc.memorisation.toFixed(3)})보다 낮습니다.` : "진행 중"],
   ["완료", "계통 보정", D.phylo ? `분류 단계별 분산 GLS로 ${Object.values(D.phylo).filter((r) => r.survives).length} / ${Object.keys(D.phylo).length} 법칙 유지.` : "진행 중"],
-  ["다음", "GC 함량 교란 검증", "아미노산 조성은 유전체 GC 함량에 크게 좌우됩니다. GC를 공변량으로 넣어 서열 법칙이 적응인지 돌연변이 편향인지 가릅니다."],
+  ...(D.gc ? [["완료", "GC 함량 교란 검증", `GC를 공변량으로 넣자 온도 IVYWREL 효과는 ${Math.round(D.gc.species.ivywrel_vs_temperature.retained_share_of_effect * 100)}%, 염분 산성 과잉은 ${Math.round(D.gc.species.acidic_vs_salt.retained_share_of_effect * 100)}% 남았습니다. 빈영양 질소 절약(${Math.round(D.gc.species.nitrogen_vs_oligotrophy.retained_share_of_effect * 100)}%)과 무산소 FYMINK, 공생세균 AT 편향은 GC로 설명됩니다.`]] : [["다음", "GC 함량 교란 검증", "GC를 공변량으로 넣어 서열 법칙이 적응인지 돌연변이 편향인지 가립니다."]]),
+  ["다음", "서열 기반 계통수", "분류 체계 대신 리보솜 단백질 서열로 계통수를 만들어 보정을 다시 합니다."],
   ["한계", "지금 알고 있는 약점", "조상 대리로 현생 근연종을 쓰고, 계통 보정은 분류 체계를 근사 계통수로 씁니다. 유전자는 있다·없다 수준만 봅니다."],
 ].map(([t, h, d]) => `<div class="law ${t === "진행 중" ? "pending" : ""}"><span class="tag" style="justify-self:start;color:${t === "진행 중" ? "var(--pending)" : "var(--accent)"}">${t}</span><b>${h}</b><div class="data">${d}</div></div>`).join("");
 </script>

@@ -1,0 +1,268 @@
+{
+  "species": {
+    "ivywrel_vs_temperature": {
+      "n": 70,
+      "without_gc": {
+        "coef": 0.0008303391441150914,
+        "p_ols": 2.7620234622711122e-18,
+        "p_rank_gls": 1.564169822278961e-22
+      },
+      "with_gc": {
+        "coef": 0.000806291450503194,
+        "p_ols": 1.8520821287087738e-17,
+        "p_rank_gls": 2.6978061697837382e-20,
+        "gc_coef": 0.01486517128981293,
+        "gc_p_rank_gls": 0.2307689267668661
+      },
+      "corr_env_gc": 0.1999262948246676,
+      "retained_share_of_effect": 0.9710387089632808,
+      "survives": true
+    },
+    "cvp_vs_temperature": {
+      "n": 70,
+      "without_gc": {
+        "coef": 0.001104149552652472,
+        "p_ols": 7.939292914853843e-12,
+        "p_rank_gls": 7.26486650870933e-12
+      },
+      "with_gc": {
+        "coef": 0.000966658190715989,
+        "p_ols": 1.2200482740350612e-11,
+        "p_rank_gls": 2.073080599068762e-09,
+        "gc_coef": 0.08312113667141612,
+        "gc_p_rank_gls": 0.0002795009049677168
+      },
+      "corr_env_gc": 0.1999262948246676,
+      "retained_share_of_effect": 0.8754775912319207,
+      "survives": true
+    },
+    "acidic_vs_salt": {
+      "n": 70,
+      "without_gc": {
+        "coef": 0.0021871446046727687,
+        "p_ols": 2.4769459203940413e-18,
+        "p_rank_gls": 3.502842017483026e-14
+      },
+      "with_gc": {
+        "coef": 0.002103755997204382,
+        "p_ols": 9.484764916102759e-18,
+        "p_rank_gls": 2.2312906808984254e-14,
+        "gc_coef": 0.025358771014634348,
+        "gc_p_rank_gls": 0.0163201404943371
+      },
+      "corr_env_gc": 0.1521461556625473,
+      "retained_share_of_effect": 0.9618732994196043,
+      "survives": true
+    },
+    "nitrogen_vs_oligotrophy": {
+      "n": 70,
+      "without_gc": {
+        "coef": -0.02362844838904612,
+        "p_ols": 0.702203192820845,
+        "p_rank_gls": 0.002799713368396544
+      },
+      "with_gc": {
+        "coef": -0.003170416531265041,
+        "p_ols": 0.2207354260040387,
+        "p_rank_gls": 0.5618097345507198,
+        "gc_coef": 0.14277727317962965,
+        "gc_p_rank_gls": 5.877802746770501e-22
+      },
+      "corr_env_gc": -0.20865321784478358,
+      "retained_share_of_effect": 0.134177940043444,
+      "survives": false
+    },
+    "fymink_vs_anoxia": {
+      "n": 70,
+      "without_gc": {
+        "coef": 0.07698278422301505,
+        "p_ols": 0.004953320715856638,
+        "p_rank_gls": 0.009685417336776954
+      },
+      "with_gc": {
+        "coef": 0.014803791750582052,
+        "p_ols": 0.00012482760737322205,
+        "p_rank_gls": 0.030955600463396446,
+        "gc_coef": -0.4737950740914759,
+        "gc_p_rank_gls": 1.301805539516232e-163
+      },
+      "corr_env_gc": -0.2160985346736017,
+      "retained_share_of_effect": 0.19230003045481248,
+      "survives": true
+    },
+    "gc_explains": {
+      "fymink": -0.9576139040272919,
+      "garp": 0.9779527951401329,
+      "ivywrel": 0.2671800840872752,
+      "cvp": 0.4559449301384153,
+      "acidic_excess": 0.20110231284481386,
+      "n_side": 0.7133823348450429
+    }
+  },
+  "pairs": {
+    "ivywrel_colder": {
+      "n": 43,
+      "without_gc": {
+        "coef": -0.017704453069119833,
+        "p_ols": 7.305808723462514e-09,
+        "p_rank_gls": 2.04251375044595e-17
+      },
+      "with_gc": {
+        "coef": -0.017999433166937206,
+        "p_ols": 3.2927301741872656e-08,
+        "p_rank_gls": 4.763090715554255e-17,
+        "gc_coef": -0.008084773898702696,
+        "gc_p_rank_gls": 0.6067243899665975
+      },
+      "corr_env_gc": -0.24552332069599184,
+      "retained_share_of_effect": 1.0166613504899442,
+      "survives": true,
+      "loo_r2_env": 0.5293330878836784,
+      "loo_r2_env_gc": 0.4856257465791334,
+      "loo_r2_gc_only": -0.056290221554913034
+    },
+    "cvp_colder": {
+      "n": 43,
+      "without_gc": {
+        "coef": -0.03411835138757162,
+        "p_ols": 1.0244726907993878e-09,
+        "p_rank_gls": 1.441275649135486e-09
+      },
+      "with_gc": {
+        "coef": -0.0332804721066348,
+        "p_ols": 7.825967940690187e-09,
+        "p_rank_gls": 5.3602517429254275e-09,
+        "gc_coef": 0.024604050516454107,
+        "gc_p_rank_gls": 0.334499363519862
+      },
+      "corr_env_gc": -0.24552332069599184,
+      "retained_share_of_effect": 0.975441976330602,
+      "survives": true,
+      "loo_r2_env": 0.6297580325441852,
+      "loo_r2_env_gc": 0.6147225882854903,
+      "loo_r2_gc_only": 0.0208891223272637
+    },
+    "acidic_excess_saltier": {
+      "n": 43,
+      "without_gc": {
+        "coef": 0.01707879371379367,
+        "p_ols": 1.2238567227377165e-06,
+        "p_rank_gls": 3.1027483107363982e-06
+      },
+      "with_gc": {
+        "coef": 0.01609342761059825,
+        "p_ols": 2.7927384011174075e-06,
+        "p_rank_gls": 3.9931815916246205e-12,
+        "gc_coef": 0.07870430046975749,
+        "gc_p_rank_gls": 2.5920839205140337e-16
+      },
+      "corr_env_gc": 0.4552367241086253,
+      "retained_share_of_effect": 0.9423047013912002,
+      "survives": true,
+      "loo_r2_env": 0.5950949092993361,
+      "loo_r2_env_gc": 0.6441448117873445,
+      "loo_r2_gc_only": 0.2852079090095847
+    },
+    "n_side_oligotrophic": {
+      "n": 43,
+      "without_gc": {
+        "coef": -0.017617056189328816,
+        "p_ols": 0.017289942002837694,
+        "p_rank_gls": 0.0027180121073696454
+      },
+      "with_gc": {
+        "coef": -0.0010193869045483535,
+        "p_ols": 0.9764732507430011,
+        "p_rank_gls": 0.8529229048964442,
+        "gc_coef": 0.10131751968873515,
+        "gc_p_rank_gls": 3.188699484404799e-09
+      },
+      "corr_env_gc": -0.46875270607057384,
+      "retained_share_of_effect": 0.05786363474085,
+      "survives": false,
+      "loo_r2_env": 0.4445705965152851,
+      "loo_r2_env_gc": 0.6688439934269349,
+      "loo_r2_gc_only": 0.3091461479362728
+    },
+    "fymink_anaerobic": {
+      "n": 43,
+      "without_gc": {
+        "coef": 0.06411596797918603,
+        "p_ols": 0.003495246436783293,
+        "p_rank_gls": 0.0025713326252818445
+      },
+      "with_gc": {
+        "coef": 0.004883303692205528,
+        "p_ols": 0.14542458496689645,
+        "p_rank_gls": 0.5044299365799794,
+        "gc_coef": -0.5223536380029875,
+        "gc_p_rank_gls": 1.0997871787457302e-103
+      },
+      "corr_env_gc": -0.5377348393633088,
+      "retained_share_of_effect": 0.07616361175098837,
+      "survives": false,
+      "loo_r2_env": 0.42029448244436785,
+      "loo_r2_env_gc": 0.9391899930012767,
+      "loo_r2_gc_only": 0.9387584283029797
+    }
+  },
+  "symbionts": {
+    "fymink": {
+      "n": 13,
+      "without_gc": {
+        "coef": -0.05854398628687931,
+        "p_ols": 0.0019898713808777536,
+        "p_rank_gls": 0.000139932945956631
+      },
+      "with_gc": {
+        "coef": 0.009764907849572842,
+        "p_ols": 0.27022407040181756,
+        "p_rank_gls": 0.3073463745224624,
+        "gc_coef": -0.7009109013189763,
+        "gc_p_rank_gls": 3.6821337739124614e-19
+      },
+      "corr_env_gc": 0.8302324288004453,
+      "retained_share_of_effect": -0.16679608733376125,
+      "survives": false,
+      "r_gc": -0.9753250830727747,
+      "r_size_gc": 0.8302324288004453
+    },
+    "median_pi": {
+      "n": 13,
+      "without_gc": {
+        "coef": -0.6757401044269624,
+        "p_ols": 0.0004918911770746727,
+        "p_rank_gls": 1.3649765622131992e-07
+      },
+      "with_gc": {
+        "coef": -0.16203886415007696,
+        "p_ols": 0.6573130397860307,
+        "p_rank_gls": 0.19105450737658103,
+        "gc_coef": -8.050059178184977,
+        "gc_p_rank_gls": 3.0099278216504846e-09
+      },
+      "corr_env_gc": 0.8302324288004453,
+      "retained_share_of_effect": 0.23979465343038697,
+      "survives": false,
+      "r_gc": -0.9675137403671108,
+      "r_size_gc": 0.8302324288004453
+    }
+  },
+  "summary": {
+    "adaptive_laws_tested": 10,
+    "survive": [
+      "pair:acidic_excess_saltier",
+      "pair:cvp_colder",
+      "pair:ivywrel_colder",
+      "species:acidic_vs_salt",
+      "species:cvp_vs_temperature",
+      "species:fymink_vs_anoxia",
+      "species:ivywrel_vs_temperature"
+    ],
+    "do_not_survive": [
+      "pair:fymink_anaerobic",
+      "pair:n_side_oligotrophic",
+      "species:nitrogen_vs_oligotrophy"
+    ]
+  }
+}

@@ -83,7 +83,7 @@ a { color: var(--keep); }
     <p class="en">Learning which genes survive genome reduction, from endosymbiont-to-organelle transitions and free-living-to-parasite transitions, with simulation-validated statistical models trained on ~270 real genomes and 260 proteomes, corrected for phylogeny, and testing honestly where those rules stop working.</p>
     <div class="facts">
       <span>공생체·소기관 유전체 <b>64</b></span><span>진핵생물 <b>120종</b></span><span>세균·고세균 <b>65종</b></span>
-      <span>비교 쌍 <b>99 + 43</b></span><span>단백질 조성 <b>260</b></span><span>법칙 <b>19 + 문헌 13</b></span><span>테스트 <b>60</b></span>
+      <span>비교 쌍 <b>99 + 43</b></span><span>단백질 조성 <b>260</b></span><span>법칙 <b>20 + 문헌 13</b></span><span>테스트 <b>60</b></span>
     </div>
     <div class="links">
       <a class="primary" href="https://claude.ai/artifact/6en5NX62SRcLPZhnut7YJg">원형 역추적기 체험</a>
@@ -135,6 +135,7 @@ a { color: var(--keep); }
       <div class="find"><div class="fig">0.78<small>AUROC</small></div><div><h3>유전체 하나로 조상을 역추적</h3><p class="muted">현대 기생생물 유전체만 보고 자유생활 조상이 가졌던 유전자군을 복원합니다. 누구나 브라우저에서 해 볼 수 있게 공개했습니다.</p></div></div>
       <div class="find"><div class="fig">r 0.82<small>IVYWREL</small></div><div><h3>환경 적응은 유전자 목록이 아니라 단백질 서열에서 일어난다</h3><p class="muted">극한 세균의 유전자 소실은 환경으로 예측되지 않았지만, 아미노산 조성 변화는 환경 변화로 R² 0.53–0.63까지 설명됩니다. 고온성은 IVYWREL 증가(Zeldovich 2007 재현), 호염성은 산성화, 빈영양은 질소 절약, 공생세균은 AT 편향(부크네라 등전점 약 10). 유전자군 단위로 보면 90%가 같은 방향으로 바뀌고, 막단백질·수송체는 덜 바뀝니다.</p></div></div>
       <div class="find"><div class="fig">13 / 14<small>법칙 유지</small></div><div><h3>계통 보정 뒤에도 대부분 살아남는다</h3><p class="muted">NCBI 분류 단계마다 분산을 따로 추정하는 GLS로 다시 검정했습니다. 세포 안 생활 효과만 탈락했고, 빈영양 질소 절약은 오히려 보정 뒤에야 드러났습니다(p 0.70 → 0.003).</p></div></div>
+      <div class="find"><div class="fig">97%<small>GC 보정 후</small></div><div><h3>온도·염분 적응은 GC 편향이 아니다</h3><p class="muted">아미노산 조성은 유전체 GC에 크게 좌우됩니다(FYMINK와 r −0.96). GC를 넣고 다시 검정하자 온도(IVYWREL 97%, 쌍 단위 102%)와 염분(산성 과잉 96%) 효과는 그대로 남았습니다. 반대로 빈영양 질소 절약, 무산소 FYMINK, 공생세균 AT 편향은 GC로 설명됩니다. 이 셋은 아미노산 선택이 아니라 GC 수준에서 일어나는 변화입니다.</p></div></div>
       <div class="find"><div class="fig">10 / 13<small>문헌 일치</small></div><div><h3>이미 발표된 법칙과 대조</h3><p class="muted">Krylov 2003의 소실 성향, van Nimwegen 2003의 조절 유전자 스케일링(지수 1.95), Black Queen 가설 등 13개를 우리 데이터로 다시 시험했습니다. 10개 일치, 2개 부분 일치, 1개 검증 불가입니다.</p></div></div>
     </div>
   </section>
@@ -153,6 +154,7 @@ a { color: var(--keep); }
       <li class="fail"><span class="when">음성 결과 · 극한 환경 세균</span><br>세균·고세균 극한 환경 쌍을 추가했지만, 환경 축은 유전자 소실 예측을 더 좋게 하지 못함(0.816 → 0.808). 무엇을 잃는지는 환경이 아니라 유전자 성향이 결정.</li>
       <li><span class="when">v5 · 단백질 서열</span><br>환경 신호가 어디 있는지 단백질 조성에서 찾음. 환경 변화가 조성 변화를 R² 0.53–0.63으로 설명. 소기관은 반대로 묶음 단위로 잃는다는 것도 확인.</li>
       <li><span class="when">v6 · 계통 보정과 문헌 대조</span><br>분류 단계별 분산 GLS로 14개 법칙 중 13개 유지. 발표된 법칙 13개 중 10개 재현.</li>
+      <li><span class="when">v7 · GC 교란</span><br>GC를 공변량으로 넣자 서열 법칙 10개 중 온도·염분 법칙은 유지, 질소 절약과 무산소 FYMINK는 GC로 설명됨. 공생세균 AT 편향도 크기가 아니라 GC가 원인.</li>
       <li class="fail"><span class="when">중단 · 미래 예측</span><br>기후 변화 병원체 예측은 모든 종에 같은 답을 내고 리보솜 유전자까지 버린다고 예측해, 믿을 수 없다고 판단하고 중단.</li>
     </ul>
   </section>
@@ -180,7 +182,7 @@ a { color: var(--keep); }
     <ul class="limits">
       <li>찾은 것은 인과가 증명된 법칙이 아니라 통계적 경향입니다.</li>
       <li>계통 보정은 NCBI 분류 체계를 근사 계통수로 쓴 것입니다. 서열 기반 계통수가 아닙니다.</li>
-      <li>아미노산 조성은 유전체 GC 함량에 크게 좌우됩니다. GC 교란 검증이 다음 과제입니다.</li>
+      <li>GC 교란은 유전체 전체 GC로만 통제했습니다. GC 자체가 환경 적응이라면 GC를 넣는 것이 진짜 효과까지 지울 수 있습니다.</li>
       <li>조상 대신 현생 친척 종을 조상 대리로 씁니다.</li>
       <li>역추적 성능의 대부분은 "흔한 유전자는 원래 있었다"는 사전 지식에서 나오고, 법칙이 더하는 몫은 작습니다(+0.002~0.005).</li>
     </ul>
