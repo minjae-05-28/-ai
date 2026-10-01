@@ -71,6 +71,45 @@ SPECIES = {
     "Methanocaldococcus jannaschii": Env("archaea", 85, 3, 0),
 }
 
+# Round 2: at least five pairs per environment axis.
+SPECIES.update({
+    # cold
+    "Vibrio natriegens": Env("gamma", 37, 2, 1),
+    "Photobacterium profundum": Env("gamma", 15, 3, 1),  # deep-sea, piezophile
+    "Alteromonas macleodii": Env("gamma", 30, 3, 1),
+    "Pseudoalteromonas haloplanktis": Env("gamma", 15, 3, 1),  # Antarctic seawater
+    # salt
+    "Halomonas elongata": Env("gamma", 30, 10, 1),
+    "Chromohalobacter salexigens": Env("gamma", 37, 10, 1),
+    "Halobacillus halophilus": Env("firmicutes", 35, 10, 1),
+    "Haloarcula marismortui": Env("archaea", 40, 20, 1),  # Dead Sea
+    "Natronomonas pharaonis": Env("archaea", 45, 20, 1),  # soda lakes
+    # no oxygen
+    "Clostridium acetobutylicum": Env("firmicutes", 37, 0.5, 0),
+    "Geobacter metallireducens": Env("delta", 30, 0.5, 0),
+    "Desulfuromonas acetoxidans": Env("delta", 30, 2, 0),
+    # radiation
+    "Deinococcus geothermalis": Env("deinococcus", 50, 0.5, 1, radiation=1),
+    "Deinococcus deserti": Env("deinococcus", 30, 0.5, 1, radiation=1),  # Sahara
+    "Truepera radiovictrix": Env("deinococcus", 50, 1, 1, radiation=1),
+    "Rubrobacter xylanophilus": Env("actino", 60, 0.5, 1, radiation=1),
+    "Hymenobacter swuensis": Env("bacteroidetes", 25, 0.5, 1, radiation=1),
+    "Methylorubrum extorquens": Env("alpha", 30, 0.5, 1),
+    "Methylobacterium radiotolerans": Env("alpha", 30, 0.5, 1, radiation=1),
+    "Thermococcus kodakarensis": Env("archaea", 85, 3, 0),
+    "Thermococcus gammatolerans": Env("archaea", 88, 3, 0, radiation=1),  # survives 30 kGy
+    # nutrient-poor
+    "Sphingobium japonicum": Env("alpha", 30, 0.5, 1),
+    "Sphingopyxis alaskensis": Env("alpha", 22, 3, 1, oligo=1),
+    "Nitrososphaera viennensis": Env("archaea", 42, 0.5, 1),  # soil ammonia oxidiser
+    "Nitrosopumilus maritimus": Env("archaea", 28, 3.5, 1, oligo=1),  # ocean ammonia oxidiser
+    "Synechococcus sp. WH 8102": Env("cyano", 25, 3.5, 1, oligo=1),  # open ocean
+    "Cupriavidus necator": Env("beta", 30, 0.5, 1),
+    "Polynucleobacter asymbioticus": Env("beta", 25, 0, 1, oligo=1),  # streamlined freshwater
+    # control
+    "Bacillus pumilus": Env("firmicutes", 37, 0.5, 1),
+})
+
 # (relative candidates, closest first; extremophile)
 PAIR_SPECS = [
     (("Shewanella oneidensis",), "Shewanella frigidimarina"),
@@ -95,6 +134,31 @@ PAIR_SPECS = [
     # controls (little or no change in environment)
     (("Bacillus subtilis",), "Bacillus licheniformis"),
     (("Pseudomonas aeruginosa",), "Pseudomonas putida"),
+]
+
+PAIR_SPECS += [
+    (("Vibrio natriegens",), "Photobacterium profundum"),
+    (("Alteromonas macleodii",), "Pseudoalteromonas haloplanktis"),
+    (("Pseudomonas aeruginosa",), "Halomonas elongata"),
+    (("Pseudomonas aeruginosa",), "Chromohalobacter salexigens"),
+    (("Bacillus subtilis",), "Halobacillus halophilus"),
+    (("Methanosarcina acetivorans",), "Haloarcula marismortui"),
+    (("Methanosarcina acetivorans",), "Natronomonas pharaonis"),
+    (("Bacillus subtilis",), "Clostridium acetobutylicum"),
+    (("Myxococcus xanthus",), "Geobacter metallireducens"),
+    (("Myxococcus xanthus",), "Desulfuromonas acetoxidans"),
+    (("Thermus thermophilus",), "Deinococcus geothermalis"),
+    (("Thermus thermophilus",), "Deinococcus deserti"),
+    (("Thermus thermophilus",), "Truepera radiovictrix"),
+    (("Micrococcus luteus",), "Rubrobacter xylanophilus"),
+    (("Flavobacterium johnsoniae",), "Hymenobacter swuensis"),
+    (("Methylorubrum extorquens",), "Methylobacterium radiotolerans"),
+    (("Thermococcus kodakarensis",), "Thermococcus gammatolerans"),
+    (("Sphingobium japonicum",), "Sphingopyxis alaskensis"),
+    (("Nitrososphaera viennensis",), "Nitrosopumilus maritimus"),
+    (("Synechococcus elongatus",), "Synechococcus sp. WH 8102"),
+    (("Cupriavidus necator",), "Polynucleobacter asymbioticus"),
+    (("Bacillus subtilis",), "Bacillus pumilus"),
 ]
 
 AXES = ("colder", "saltier", "anaerobic", "radiation_resistant", "oligotrophic")
