@@ -1,0 +1,297 @@
+<title>두 행성의 45억 년</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=IBM+Plex+Sans+KR:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: one shared time axis (4.5 billion years ago -> now); small multiples stacked under a live readout */
+:root {
+  --bg: #eef1f1; --panel: #f9fafa; --fg: #17212a; --muted: #56636c; --line: #d3d9db; --grid: #e2e7e8;
+  --earth: #1f6fa6; --mars: #b5561a; --era: #e4e9ea; --era2: #d8dfe1; --sim: #17212a;
+  --display: "Gowun Batang", "Nanum Myeongjo", "AppleMyungjo", serif;
+  --sans: "IBM Plex Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", system-ui, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #0f1519; --panel: #162026; --fg: #e3e9ec; --muted: #94a3ab; --line: #27343b; --grid: #1f2a30;
+  --earth: #3d8cc4; --mars: #c4702e; --era: #1b262c; --era2: #223038; --sim: #e3e9ec; color-scheme: dark } }
+:root[data-theme="dark"] {
+  --bg: #0f1519; --panel: #162026; --fg: #e3e9ec; --muted: #94a3ab; --line: #27343b; --grid: #1f2a30;
+  --earth: #3d8cc4; --mars: #c4702e; --era: #1b262c; --era2: #223038; --sim: #e3e9ec; color-scheme: dark }
+body { background: var(--bg); color: var(--fg); font-family: var(--sans); font-size: 16px; line-height: 1.65; }
+.page { max-width: 1040px; margin: 0 auto; padding-inline: 16px; padding-block: 36px 72px; display: grid; gap: 36px; }
+.col { max-width: 720px; display: grid; gap: 12px; }
+h1 { font-family: var(--display); font-weight: 700; font-size: clamp(34px, 6.5vw, 54px); line-height: 1.12; margin: 0; text-wrap: balance; }
+h2 { font-family: var(--display); font-weight: 700; font-size: 22px; margin: 0; text-wrap: balance; }
+p { margin: 0; max-width: 66ch; }
+.eyebrow { font-family: var(--mono); font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--mars); }
+.note { font-size: 14px; color: var(--muted); }
+.key { display: flex; flex-wrap: wrap; gap: 6px 20px; font-size: 14px; align-items: center; }
+.key i { display: inline-block; width: 22px; height: 3px; border-radius: 2px; vertical-align: 4px; margin-right: 6px; }
+.key .band { width: 22px; height: 10px; border-radius: 2px; opacity: 0.25; vertical-align: -1px; }
+/* readout */
+.readout { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; display: grid; gap: 8px; }
+@media (min-width: 900px) and (min-height: 900px) { .readout { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 2; } }
+.ro-head { display: flex; flex-wrap: wrap; gap: 4px 14px; align-items: baseline; }
+.ro-time { font-family: var(--display); font-weight: 700; font-size: 22px; }
+.ro-era { font-size: 13px; color: var(--muted); }
+.ro-grid { display: grid; grid-template-columns: auto 1fr 1fr; gap: 2px 14px; font-size: 14px; align-items: baseline; }
+.ro-grid .h { font-size: 12px; color: var(--muted); }
+.ro-grid .v { font-family: var(--mono); font-variant-numeric: tabular-nums; font-size: 13px; }
+.ro-grid .sw { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 6px; vertical-align: 1px; }
+.jumps { display: flex; flex-wrap: wrap; gap: 6px; }
+.jumps button { font: 500 13px var(--sans); padding: 4px 10px; border-radius: 99px; border: 1px solid var(--line); background: var(--bg); color: var(--fg); cursor: pointer; }
+.jumps button:hover { border-color: var(--fg); }
+/* charts */
+.scroller { overflow-x: auto; }
+.charts { min-width: 760px; display: grid; gap: 4px; }
+.chart svg { width: 100%; height: auto; display: block; touch-action: pan-y; }
+svg text { font-family: var(--sans); fill: var(--fg); }
+svg .mute { fill: var(--muted); }
+svg .mono { font-family: var(--mono); }
+.events { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+.events ol { margin: 0; padding: 0; list-style: none; display: grid; gap: 6px; font-size: 14px; }
+.events li { display: grid; grid-template-columns: 26px 96px 1fr; gap: 8px; align-items: baseline; cursor: pointer; }
+.events li:hover span:last-child { text-decoration: underline; }
+.events .n { width: 20px; height: 20px; border-radius: 50%; font: 500 11px/20px var(--mono); text-align: center; color: var(--panel); }
+.events .t { font-family: var(--mono); font-size: 13px; color: var(--muted); font-variant-numeric: tabular-nums; }
+.sources { font-size: 13px; color: var(--muted); display: grid; gap: 6px; padding-left: 18px; margin: 0; }
+a { color: var(--earth); }
+:focus-visible { outline: 2px solid var(--mars); outline-offset: 2px; }
+</style>
+
+<div class="page">
+  <header class="col" style="gap:16px">
+    <div class="eyebrow">organelle-evo · 화성 실험의 배경</div>
+    <h1>두 행성의 45억 년</h1>
+    <p>지구와 화성은 비슷하게 출발했습니다. 둘 다 물이 흐르고 대기가 두꺼웠습니다. 화성은 약 40억 년 전 자기장을 잃은 뒤 대기와 물을 함께 잃었고, 지구는 생명이 산소를 채웠습니다. 같은 시간축에서 두 행성의 환경을 나란히 봅니다.</p>
+    <div class="key">
+      <span><i style="background:var(--earth)"></i>지구</span>
+      <span><i style="background:var(--mars)"></i>화성</span>
+      <span><i class="band" style="background:var(--muted)"></i>추정 범위</span>
+      <span><i style="background:var(--sim);height:2px;width:14px"></i>화성 실험의 환경</span>
+    </div>
+  </header>
+
+  <section style="display:grid;gap:14px">
+    <div class="readout" aria-live="polite">
+      <div class="ro-head"><span class="ro-time" id="ro-time"></span><span class="ro-era" id="ro-era"></span></div>
+      <div class="ro-grid" id="ro-grid"></div>
+      <div class="jumps" id="jumps"></div>
+    </div>
+    <p class="note">차트 위를 움직이거나 누르면 그 시점의 값이 위에 표시됩니다. 휴대폰에서는 차트를 옆으로 밀어 볼 수 있습니다.</p>
+    <div class="scroller"><div class="charts" id="charts"></div></div>
+  </section>
+
+  <section style="display:grid;gap:14px">
+    <div class="eyebrow">사건</div>
+    <h2>번호로 표시한 일들</h2>
+    <div class="events">
+      <div><b style="color:var(--earth)">지구</b><ol id="ev-earth"></ol></div>
+      <div><b style="color:var(--mars)">화성</b><ol id="ev-mars"></ol></div>
+    </div>
+  </section>
+
+  <section class="col">
+    <div class="eyebrow">읽는 법</div>
+    <h2>값은 추정치입니다</h2>
+    <ul class="sources">
+      <li>수십억 년 전의 온도·기압·산소는 암석과 동위원소, 모델에서 추정한 값이라 범위가 넓습니다. 띠가 그 범위입니다. 초기 화성이 "따뜻하고 습했는지, 춥고 얼음 덮였는지"는 아직 논쟁 중이라 화성 온도 범위를 넓게 잡았습니다.</li>
+      <li>산소는 지구 현재 대기의 산소 분압을 1로 둔 값(로그 눈금)입니다. 현재 화성은 대기의 0.13%가 산소이지만 대기가 지구의 0.6%밖에 안 되어 약 0.00004입니다.</li>
+      <li>지표 방사선은 지구 지표를 1로 둔 대략의 배수입니다. 현재 화성 지표는 연간 약 0.2 Gy로, 지구의 수십 배입니다.</li>
+      <li>시대 구분: 지구는 명왕누대·시생누대·원생누대·현생누대, 화성은 전노아키스·노아키스·헤스페리아·아마조니스 시대. 화성 시대의 경계 연대는 운석 충돌구 수로 추정해 수억 년 오차가 있습니다.</li>
+      <li>검은 세로선 두 개는 <a href="https://claude.ai/artifact/BqL7Xh35uPsdYF3t8utzrs">화성 소금물 세포</a> 실험이 쓴 환경입니다. 38억 년 전 초기 화성 호수에서 출발해, 현재 화성 지하 소금물까지 바뀌게 했습니다.</li>
+    </ul>
+  </section>
+</div>
+
+<script>
+// Time in billions of years ago (Ga). Each series: [Ga, central, low, high].
+const SERIES = {
+  temp: {
+    title: "평균 표면 온도", unit: "°C", log: false, domain: [-75, 75], ticks: [-60, -30, 0, 30, 60],
+    fmt: (v) => `${v >= 0 ? "" : "−"}${Math.abs(Math.round(v))} °C`,
+    earth: [[4.5, 40, 0, 75], [4.0, 35, 5, 65], [3.5, 30, 5, 55], [3.0, 25, 5, 45], [2.5, 20, 0, 35], [2.4, -20, -50, 10], [2.2, -10, -45, 15], [2.05, 20, 5, 35],
+      [1.0, 18, 5, 30], [0.73, 15, 0, 28], [0.7, -35, -55, -5], [0.64, -25, -50, 5], [0.6, 20, 5, 30], [0.5, 28, 20, 35], [0.3, 15, 10, 22], [0.25, 30, 22, 38],
+      [0.1, 25, 20, 30], [0.056, 30, 25, 35], [0.03, 18, 14, 22], [0.002, 13, 10, 16], [0, 15, 14, 16]],
+    mars: [[4.5, -10, -50, 25], [4.0, -15, -50, 15], [3.7, -25, -55, 5], [3.5, -40, -60, -10], [3.0, -55, -65, -35], [2.0, -60, -68, -50], [1.0, -62, -68, -55], [0, -63, -65, -60]],
+  },
+  pressure: {
+    title: "대기압", unit: "bar", log: true, domain: [0.003, 30], ticks: [0.01, 0.1, 1, 10],
+    fmt: (v) => v >= 1 ? `${v.toFixed(1)} bar` : v >= 0.1 ? `${v.toFixed(2)} bar` : `${(v * 1000).toFixed(0)} mbar`,
+    earth: [[4.5, 5, 1, 30], [4.0, 2, 0.5, 10], [3.5, 1, 0.4, 3], [2.7, 0.6, 0.25, 1.1], [2.0, 1, 0.5, 1.5], [1.0, 1, 0.8, 1.2], [0, 1.013, 1.01, 1.02]],
+    mars: [[4.5, 1, 0.3, 3], [4.0, 0.8, 0.2, 2], [3.7, 0.4, 0.1, 1.5], [3.5, 0.2, 0.05, 1], [3.0, 0.05, 0.01, 0.3], [2.0, 0.01, 0.007, 0.05], [0, 0.006, 0.006, 0.0062]],
+  },
+  oxygen: {
+    title: "대기 산소 (지구 현재 = 1)", unit: "", log: true, domain: [1e-7, 3], ticks: [1e-6, 1e-4, 1e-2, 1],
+    fmt: (v) => v >= 0.1 ? v.toFixed(1) : v >= 0.001 ? v.toFixed(3) : v.toExponential(0).replace("e-", "×10⁻").replace(/(\d+)$/, (d) => d.split("").map((c) => "⁰¹²³⁴⁵⁶⁷⁸⁹"[c]).join("")),
+    earth: [[4.5, 1e-6, 1e-7, 1e-5], [2.45, 1e-6, 1e-7, 1e-5], [2.3, 0.01, 1e-3, 0.1], [2.1, 0.05, 0.01, 0.3], [1.8, 0.01, 1e-3, 0.1], [0.8, 0.01, 1e-3, 0.1],
+      [0.55, 0.5, 0.1, 1], [0.42, 1, 0.6, 1.3], [0.3, 1.4, 1.0, 1.6], [0.2, 0.8, 0.6, 1.0], [0, 1, 0.99, 1.01]],
+    mars: [[4.5, 1e-6, 1e-7, 1e-4], [3.0, 1e-5, 1e-6, 1e-4], [0, 3.7e-5, 3.6e-5, 3.8e-5]],
+  },
+  radiation: {
+    title: "지표 방사선 (지구 지표 = 1)", unit: "×", log: true, domain: [0.5, 200], ticks: [1, 10, 100],
+    fmt: (v) => `${v < 10 ? v.toFixed(1) : Math.round(v)}×`,
+    earth: [[4.5, 2, 1, 5], [3.5, 1.5, 1, 3], [2.0, 1, 0.8, 1.5], [0, 1, 1, 1]],
+    mars: [[4.5, 2, 1, 5], [4.1, 3, 1, 10], [3.9, 10, 3, 30], [3.5, 20, 5, 50], [3.0, 50, 20, 80], [1.0, 75, 50, 100], [0, 80, 60, 100]],
+  },
+};
+// Spans: [from Ga, to Ga, label, strength 0-1, dashed]
+const LANES = {
+  water: {title: "지표의 액체 물",
+    earth: [[4.4, 0, "바다", 1]],
+    mars: [[4.1, 3.5, "강과 호수", 1], [3.5, 3.0, "간헐적 대홍수", 0.6], [3.0, 0, "얼음 · 일시적 소금물", 0.25], [4.0, 0, "깊은 지하수 (가능성)", 0, true]]},
+  field: {title: "자기장 (대기와 지표 보호)",
+    earth: [[4.2, 3.5, "있었을 가능성", 0.5, true], [3.5, 0, "지자기장", 1]],
+    mars: [[4.5, 4.1, "자기장", 1], [4.1, 3.9, "소멸", 0.4]]},
+};
+const ERAS = {
+  earth: [[4.5, 4.0, "명왕누대"], [4.0, 2.5, "시생누대"], [2.5, 0.539, "원생누대"], [0.539, 0, "현생"]],
+  mars: [[4.5, 4.1, "전노아키스"], [4.1, 3.7, "노아키스"], [3.7, 3.0, "헤스페리아"], [3.0, 0, "아마조니스"]],
+};
+const EVENTS = {
+  earth: [[4.4, "바다가 있었다는 가장 오래된 증거 (지르콘 결정)"], [3.48, "가장 오래된 생명 흔적 (스트로마톨라이트)"], [2.4, "대산화 사건: 남세균이 대기에 산소를 채움"],
+    [2.3, "휴로니안 빙하기"], [1.8, "진핵생물 등장"], [0.7, "눈덩이 지구 (적도까지 얼음)"], [0.54, "캄브리아기 대폭발"], [0.066, "공룡 대멸종"]],
+  mars: [[4.0, "자기장 소멸 → 태양풍이 대기를 깎아냄"], [3.8, "예제로 크레이터 호수와 삼각주 (퍼서비어런스 탐사지)"], [3.5, "호수 시대 끝, 대홍수 시대"], [3.0, "춥고 건조한 아마조니스 시대 시작"],
+    [0.0, "토양에 과염소산염 0.5% (피닉스 2008) · 지각 깊은 곳 물 신호 (인사이트 2024)"]],
+};
+const SIM = [[3.8, "실험 출발: 초기 화성 호수"], [0, "현재 화성 지하 소금물"]];
+
+const css = (v) => getComputedStyle(document.documentElement).getPropertyValue(v).trim();
+const $ = (id) => document.getElementById(id);
+const W = 900, L = 150, R = 120, X0 = 4.5;
+const x = (ga) => L + (X0 - ga) / X0 * (W - L - R);
+const ga = (px) => Math.min(X0, Math.max(0, X0 - (px - L) / (W - L - R) * X0));
+const interp = (arr, t, k) => {
+  if (t >= arr[0][0]) return arr[0][k];
+  for (let i = 1; i < arr.length; i++) if (t >= arr[i][0]) {
+    const [a, b] = [arr[i - 1], arr[i]], u = (a[0] - t) / (a[0] - b[0]);
+    return a[k] + (b[k] - a[k]) * u;
+  }
+  return arr[arr.length - 1][k];
+};
+const interpLog = (arr, t, k) => Math.exp(interp(arr.map((r) => [r[0], ...r.slice(1).map(Math.log)]), t, k));
+let T = 3.8;
+const svgs = [];
+
+function axisTime(h, showLabels) {
+  let s = "";
+  for (let g = 4.5; g >= 0; g -= 0.5) {
+    s += `<line x1="${x(g)}" x2="${x(g)}" y1="6" y2="${h - (showLabels ? 22 : 4)}" stroke="${css("--grid")}"/>`;
+    if (showLabels) s += `<text x="${x(g)}" y="${h - 6}" text-anchor="middle" font-size="12" class="mute mono">${g === 0 ? "지금" : Math.round(g * 10) + "억"}</text>`;
+  }
+  return s;
+}
+const gaLabel = (g) => g === 0 ? "지금" : g < 0.1 ? `${Math.round(g * 10000)}만 년 전` : `${+(g * 10).toFixed(1)}억 년 전`;
+
+function lineChart(key) {
+  const S = SERIES[key], h = 150, top = 26, bot = 18;
+  const [d0, d1] = S.domain, f = S.log ? Math.log : (v) => v;
+  const y = (v) => top + (1 - (f(Math.max(v, d0)) - f(d0)) / (f(d1) - f(d0))) * (h - top - bot);
+  let s = `<svg viewBox="0 0 ${W} ${h}" role="img" aria-label="${S.title}: 지구와 화성">`;
+  s += axisTime(h, false);
+  for (const tk of S.ticks) s += `<line x1="${L}" x2="${W - R}" y1="${y(tk)}" y2="${y(tk)}" stroke="${css("--grid")}"/><text x="${L - 8}" y="${y(tk) + 4}" text-anchor="end" font-size="11" class="mute mono">${S.log ? (tk >= 1 ? tk : tk >= 0.01 ? tk : "10⁻" + String(-Math.log10(tk)).split("").map((c) => "⁰¹²³⁴⁵⁶⁷⁸⁹"[c]).join("")) : tk}</text>`;
+  s += `<text x="0" y="16" font-size="14" font-weight="700">${S.title}</text>`;
+  for (const p of ["earth", "mars"]) {
+    const a = S[p], col = css(`--${p}`);
+    const dense = [];
+    for (let i = 0; i < a.length - 1; i++) for (let j = 0; j < 8; j++) dense.push(a[i][0] - (a[i][0] - a[i + 1][0]) * j / 8);
+    dense.push(0);
+    const v = (t, k) => S.log ? interpLog(a, t, k) : interp(a, t, k);
+    const up = dense.map((t) => `${x(t).toFixed(1)},${y(v(t, 3)).toFixed(1)}`), lo = dense.slice().reverse().map((t) => `${x(t).toFixed(1)},${y(v(t, 2)).toFixed(1)}`);
+    s += `<polygon points="${up.join(" ")} ${lo.join(" ")}" fill="${col}" opacity="0.16"/>`;
+    s += `<polyline points="${dense.map((t) => `${x(t).toFixed(1)},${y(v(t, 1)).toFixed(1)}`).join(" ")}" fill="none" stroke="${col}" stroke-width="2" stroke-linejoin="round"/>`;
+    const end = v(0, 1);
+    s += `<circle cx="${x(0)}" cy="${y(end)}" r="4" fill="${col}" stroke="${css("--bg")}" stroke-width="2"/>`;
+    s += `<text x="${x(0) + 10}" y="${y(end) + 4 + (p === "mars" && key === "oxygen" ? 0 : 0)}" font-size="12">${p === "earth" ? "지구" : "화성"} <tspan class="mono">${S.fmt(end)}</tspan></text>`;
+  }
+  return s + simMarks(h) + cursor(h) + hit(h) + "</svg>";
+}
+
+function laneChart(key) {
+  const Ln = LANES[key], dashedRows = ["earth", "mars"].filter((p) => Ln[p].some((r) => r[4]));
+  const rowH = 24, rows = {earth: 30, mars: 30 + rowH + (dashedRows.includes("earth") ? 16 : 4)};
+  const h = rows.mars + rowH + (dashedRows.includes("mars") ? 18 : 6);
+  let s = `<svg viewBox="0 0 ${W} ${h}" role="img" aria-label="${Ln.title}: 지구와 화성">${axisTime(h, false)}`;
+  s += `<text x="0" y="16" font-size="14" font-weight="700">${Ln.title}</text>`;
+  for (const p of ["earth", "mars"]) {
+    const col = css(`--${p}`), y0 = rows[p];
+    s += `<text x="${L - 8}" y="${y0 + 16}" text-anchor="end" font-size="12" class="mute">${p === "earth" ? "지구" : "화성"}</text>`;
+    for (const [a, b, label, k, dashed] of Ln[p]) {
+      const x0 = x(a), x1 = x(b), w = x1 - x0;
+      if (dashed) s += `<rect x="${x0}" y="${y0 + rowH - 6}" width="${w}" height="3" rx="1.5" fill="none" stroke="${col}" stroke-dasharray="4 3"/>`;
+      else s += `<rect x="${x0 + 1}" y="${y0 + 1}" width="${Math.max(w - 2, 2)}" height="${rowH - 8}" rx="4" fill="${col}" opacity="${0.2 + 0.75 * k}"/>`;
+      if (w > label.length * 12 + 12) s += `<text x="${x0 + 8}" y="${dashed ? y0 + rowH + 10 : y0 + 13}" font-size="11.5" ${!dashed && k > 0.55 ? `style="fill:${css("--panel")}"` : dashed ? 'class="mute"' : ""}>${label}</text>`;
+    }
+  }
+  return s + simMarks(h) + cursor(h) + hit(h) + "</svg>";
+}
+
+function eraChart() {
+  const h = 120;
+  let s = `<svg viewBox="0 0 ${W} ${h}" role="img" aria-label="시대와 사건">${axisTime(h, true)}`;
+  const rows = {earth: 8, mars: 52};
+  for (const p of ["earth", "mars"]) {
+    const y0 = rows[p], col = css(`--${p}`);
+    s += `<text x="${L - 8}" y="${y0 + 15}" text-anchor="end" font-size="12" style="fill:${col}" font-weight="700">${p === "earth" ? "지구" : "화성"}</text>`;
+    ERAS[p].forEach(([a, b, label], i) => {
+      s += `<rect x="${x(a) + 1}" y="${y0}" width="${x(b) - x(a) - 2}" height="20" rx="3" fill="${css(i % 2 ? "--era2" : "--era")}"/>`;
+      if (x(b) - x(a) > label.length * 12 + 10) s += `<text x="${x(a) + 7}" y="${y0 + 14}" font-size="11.5" class="mute">${label}</text>`;
+    });
+    EVENTS[p].forEach(([g], i) => {
+      const cx = Math.max(x(g), L + 9) - (g === 0 ? 0 : 0);
+      s += `<circle cx="${cx}" cy="${y0 + 32}" r="8.5" fill="${col}" stroke="${css("--bg")}" stroke-width="2"/><text x="${cx}" y="${y0 + 36}" text-anchor="middle" font-size="10" class="mono" style="fill:${css("--panel")}">${i + 1}</text>`;
+    });
+  }
+  return s + cursor(h) + hit(h) + "</svg>";
+}
+
+const simMarks = (h) => SIM.map(([g]) => `<line x1="${x(g)}" x2="${x(g)}" y1="22" y2="${h - 4}" stroke="${css("--sim")}" stroke-width="1.5" stroke-dasharray="1 3"/>`).join("");
+const cursor = (h) => `<line class="cur" x1="0" x2="0" y1="4" y2="${h - 2}" stroke="${css("--fg")}" stroke-width="1" opacity="0.55"/>`;
+const hit = (h) => `<rect class="hit" x="${L}" y="0" width="${W - L - R + 12}" height="${h}" fill="transparent"/>`;
+
+function render() {
+  const parts = [eraChart(), lineChart("temp"), laneChart("water"), lineChart("pressure"), lineChart("oxygen"), laneChart("field"), lineChart("radiation")];
+  $("charts").innerHTML = parts.map((p) => `<div class="chart">${p}</div>`).join("");
+  document.querySelectorAll("#charts svg").forEach((svg) => {
+    const move = (e) => {
+      const pt = svg.createSVGPoint(); pt.x = e.clientX; pt.y = e.clientY;
+      const p = pt.matrixTransform(svg.getScreenCTM().inverse());
+      if (p.x < L - 4) return;
+      setT(ga(p.x));
+    };
+    svg.addEventListener("pointermove", move);
+    svg.addEventListener("pointerdown", move);
+  });
+  const evList = (p) => EVENTS[p].map(([g, d], i) => `<li data-t="${g}"><span class="n" style="background:var(--${p})">${i + 1}</span><span class="t">${gaLabel(g)}</span><span>${d}</span></li>`).join("");
+  $("ev-earth").innerHTML = evList("earth"); $("ev-mars").innerHTML = evList("mars");
+  document.querySelectorAll(".events li").forEach((li) => li.addEventListener("click", () => setT(+li.dataset.t)));
+  setT(T);
+}
+
+function laneAt(p, key, t) {
+  const hits = LANES[key][p].filter(([a, b, , , dashed]) => t <= a && t >= b && !dashed).map((r) => r[2]);
+  const maybe = LANES[key][p].filter(([a, b, , , dashed]) => t <= a && t >= b && dashed).map((r) => r[2]);
+  return hits.concat(maybe).join(" · ") || "없음";
+}
+
+function setT(t) {
+  T = Math.round(t * 100) / 100;
+  document.querySelectorAll("#charts .cur").forEach((c) => { c.setAttribute("x1", x(T)); c.setAttribute("x2", x(T)); });
+  $("ro-time").textContent = gaLabel(T);
+  const era = (p) => (ERAS[p].find(([a, b]) => T <= a && T >= b) || ["", "", ""])[2];
+  const sim = SIM.find(([g]) => Math.abs(g - T) < 0.03);
+  $("ro-era").textContent = `지구 ${era("earth")} · 화성 ${era("mars")}${sim ? ` · ${sim[1]}` : ""}`;
+  const val = (key, p) => { const S = SERIES[key], v = S.log ? interpLog(S[p], T, 1) : interp(S[p], T, 1); return S.fmt(v); };
+  const rows = [["온도", (p) => val("temp", p)], ["물", (p) => laneAt(p, "water", T)], ["대기압", (p) => val("pressure", p)], ["산소", (p) => val("oxygen", p)],
+    ["자기장", (p) => laneAt(p, "field", T)], ["방사선", (p) => val("radiation", p)]];
+  $("ro-grid").innerHTML = `<span class="h"></span><span class="h"><span class="sw" style="background:var(--earth)"></span>지구</span><span class="h"><span class="sw" style="background:var(--mars)"></span>화성</span>` +
+    rows.map(([k, f]) => `<span class="h">${k}</span><span class="v">${f("earth")}</span><span class="v">${f("mars")}</span>`).join("");
+}
+
+$("jumps").innerHTML = [[4.0, "40억 년 전"], [3.8, "38억 년 전 · 실험 출발"], [2.4, "24억 년 전 · 대산화"], [0.7, "7억 년 전 · 눈덩이 지구"], [0, "지금"]]
+  .map(([g, l]) => `<button type="button" data-t="${g}">${l}</button>`).join("");
+document.querySelectorAll("#jumps button").forEach((b) => b.addEventListener("click", () => setT(+b.dataset.t)));
+
+render();
+matchMedia("(prefers-color-scheme: dark)").addEventListener("change", render);
+new MutationObserver(render).observe(document.documentElement, {attributes: true, attributeFilter: ["data-theme"]});
+</script>
