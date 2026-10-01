@@ -148,6 +148,16 @@ SPECIES.update({
     "Galdieria sulphuraria": _free("rhodophyta"),
 })
 
+# Climate-linked fungal pathogens: forecast targets only (not in any pair).
+CLIMATE_TARGETS = {
+    "Candida auris": _par("fungi", EXTRA, AEROBIC),  # proposed first fungus to emerge with warming
+    "Cryptococcus gattii": _par("fungi_basidio", EXTRA, AEROBIC),  # spread to the Pacific Northwest
+    "Cryptococcus neoformans": _par("fungi_basidio", EXTRA, AEROBIC),
+    "Coccidioides immitis": _par("fungi", EXTRA, AEROBIC),  # valley fever, range growing with heat and drought
+    "Aspergillus fumigatus": _par("fungi", EXTRA, AEROBIC),  # thermotolerant mould
+}
+SPECIES.update(CLIMATE_TARGETS)
+
 # No annotated NCBI assembly (failed twice, removed): Melampsora larici-populina,
 # Hyaloperonospora arabidopsidis, Albugo laibachii, Pythium ultimum, Paratrypanosoma confusum,
 # Sarcocystis neurona, Ascaris suum, Onchocerca volvulus, Schmidtea mediterranea,

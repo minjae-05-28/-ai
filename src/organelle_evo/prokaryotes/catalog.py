@@ -110,6 +110,17 @@ SPECIES.update({
     "Bacillus pumilus": Env("firmicutes", 37, 0.5, 1),
 })
 
+# Climate-sensitive pathogens: forecast targets only (not in any pair, so no law is fitted
+# on them).
+CLIMATE_TARGETS = {
+    "Vibrio vulnificus": Env("gamma", 37, 2, 1),  # warming coastal seas
+    "Vibrio parahaemolyticus": Env("gamma", 37, 3, 1),
+    "Vibrio cholerae": Env("gamma", 37, 1, 1),
+    "Legionella pneumophila": Env("gamma", 37, 0.5, 1),  # warm water systems
+    "Burkholderia pseudomallei": Env("beta", 37, 0.5, 1),  # melioidosis
+}
+SPECIES.update(CLIMATE_TARGETS)
+
 # (relative candidates, closest first; extremophile)
 PAIR_SPECS = [
     (("Shewanella oneidensis",), "Shewanella frigidimarina"),
