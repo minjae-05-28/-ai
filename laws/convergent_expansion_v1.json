@@ -54,8 +54,36 @@
       "Nematostella vectensis -> Henneguya salminicola",
       "Caenorhabditis elegans -> Brugia malayi",
       "Caenorhabditis elegans -> Trichinella spiralis",
-      "Caenorhabditis elegans -> Schistosoma mansoni",
-      "Auxenochlorella protothecoides -> Helicosporidium sp. ATCC 50920"
+      "Macrostomum lignano -> Schistosoma mansoni",
+      "Auxenochlorella protothecoides -> Helicosporidium sp. ATCC 50920",
+      "Neurospora crassa -> Blumeria graminis",
+      "Neurospora crassa -> Pyricularia oryzae",
+      "Coprinopsis cinerea -> Puccinia graminis",
+      "Spizellomyces punctatus -> Mitosporidium daphniae",
+      "Spizellomyces punctatus -> Edhazardia aedis",
+      "Spizellomyces punctatus -> Anncaliia algerae",
+      "Spizellomyces punctatus -> Nosema bombycis",
+      "Spizellomyces punctatus -> Pseudoloma neurophilia",
+      "Thalassiosira pseudonana -> Phytophthora sojae",
+      "Thalassiosira pseudonana -> Aphanomyces astaci",
+      "Bodo saltans -> Angomonas deanei",
+      "Bodo saltans -> Strigomonas culicis",
+      "Bodo saltans -> Trypanosoma grayi",
+      "Bodo saltans -> Leishmania braziliensis",
+      "Bodo saltans -> Leishmania mexicana",
+      "Chromera velia -> Gregarina niphandrodes",
+      "Chromera velia -> Besnoitia besnoiti",
+      "Chromera velia -> Plasmodium yoelii",
+      "Chromera velia -> Plasmodium malariae",
+      "Caenorhabditis elegans -> Haemonchus contortus",
+      "Caenorhabditis elegans -> Strongyloides ratti",
+      "Macrostomum lignano -> Echinococcus multilocularis",
+      "Macrostomum lignano -> Fasciola hepatica",
+      "Macrostomum lignano -> Clonorchis sinensis",
+      "Macrostomum lignano -> Schistosoma japonicum",
+      "Naegleria gruberi -> Trichomonas vaginalis",
+      "Naegleria gruberi -> Tritrichomonas foetus",
+      "Drosophila melanogaster -> Pediculus humanus"
     ],
     "clades": [
       "alveolata",
@@ -64,63 +92,124 @@
       "cnidaria",
       "discoba",
       "fungi",
+      "holozoa",
       "metamonada",
       "nematoda",
+      "platyhelminthes",
       "stramenopiles"
     ]
   },
   "validation": {
     "null": "2000 permutations of expanded families within each clade",
-    "familywise_threshold_clades": 4.0,
-    "n_convergent": 3,
+    "familywise_threshold_clades": 5.0,
+    "n_convergent": 7,
     "expansion_rate": {
-      "parasites": 0.016116906455176223,
-      "controls": 0.022113115047561124
+      "parasites": 0.019538940578441324,
+      "controls": 0.03154251166722874
     }
   },
   "caveats": [
     "Copy number is Pfam-domain gene counts; assembly and annotation quality affect it.",
-    "Clades are coarse; fungi merges several independent parasitic origins.",
-    "Ribosomal_S3Ae may reflect paralogue annotation rather than functional expansion."
+    "Clades are coarse; fungi merges several independent parasitic origins."
   ],
   "contexts": {
     "convergent": [
       {
-        "family": "Aa_trans",
-        "description": "Transmembrane amino acid transporter protein",
-        "n_clades": 5,
+        "family": "PNP_UDP_1",
+        "description": "Phosphorylase superfamily",
+        "n_clades": 7,
         "p": 0.0,
         "clades": [
           "alveolata",
           "amoebozoa",
           "discoba",
           "fungi",
+          "metamonada",
+          "nematoda",
           "stramenopiles"
         ]
       },
       {
-        "family": "Fer4",
-        "description": "4Fe-4S binding domain",
-        "n_clades": 5,
+        "family": "Aa_trans",
+        "description": "Transmembrane amino acid transporter protein",
+        "n_clades": 6,
         "p": 0.0,
         "clades": [
           "alveolata",
           "amoebozoa",
+          "discoba",
           "fungi",
           "metamonada",
           "stramenopiles"
         ]
       },
       {
-        "family": "Ribosomal_S3Ae",
-        "description": "Ribosomal S3Ae family",
-        "n_clades": 5,
+        "family": "Fer4",
+        "description": "4Fe-4S binding domain",
+        "n_clades": 6,
+        "p": 0.0,
+        "clades": [
+          "alveolata",
+          "amoebozoa",
+          "fungi",
+          "metamonada",
+          "nematoda",
+          "stramenopiles"
+        ]
+      },
+      {
+        "family": "Malic_M",
+        "description": "Malic enzyme, NAD binding domain",
+        "n_clades": 6,
         "p": 0.0,
         "clades": [
           "alveolata",
           "amoebozoa",
           "discoba",
+          "metamonada",
+          "nematoda",
+          "stramenopiles"
+        ]
+      },
+      {
+        "family": "Suf",
+        "description": "Suppressor of forked protein (Suf)",
+        "n_clades": 6,
+        "p": 0.0,
+        "clades": [
+          "alveolata",
+          "amoebozoa",
+          "discoba",
+          "holozoa",
+          "nematoda",
+          "stramenopiles"
+        ]
+      },
+      {
+        "family": "malic",
+        "description": "Malic enzyme, N-terminal domain",
+        "n_clades": 6,
+        "p": 0.0,
+        "clades": [
+          "alveolata",
+          "amoebozoa",
+          "discoba",
+          "metamonada",
+          "nematoda",
+          "stramenopiles"
+        ]
+      },
+      {
+        "family": "zf-CCHC",
+        "description": "Zinc knuckle",
+        "n_clades": 6,
+        "p": 0.0,
+        "clades": [
+          "alveolata",
+          "amoebozoa",
           "fungi",
+          "holozoa",
+          "nematoda",
           "stramenopiles"
         ]
       }
@@ -128,38 +217,38 @@
     "enriched_functions": [
       [
         "go:ribosome",
-        3.16,
-        0.037
-      ],
-      [
-        "kw:cytoskeleton_motor",
-        2.96,
-        0.041
-      ],
-      [
-        "go:oxidoreductase activity",
-        2.86,
-        0.052
+        3.96,
+        0.048
       ],
       [
         "go:structural molecule activity",
-        2.63,
-        0.037
+        3.37,
+        0.049
       ],
       [
-        "go:transporter activity",
-        2.35,
-        0.033
+        "go:hydrolase activity",
+        2.36,
+        0.068
       ],
       [
         "go:catalytic activity",
-        2.2,
-        0.211
+        2.28,
+        0.218
       ],
       [
-        "kw:transporter_channel",
-        2.07,
+        "go:oxidoreductase activity",
+        2.21,
         0.039
+      ],
+      [
+        "go:catalytic activity, acting on a protein",
+        2.13,
+        0.033
+      ],
+      [
+        "kw:protease",
+        2.08,
+        0.047
       ]
     ]
   }

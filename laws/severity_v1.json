@@ -67,7 +67,7 @@
       "Nematostella vectensis -> Henneguya salminicola",
       "Caenorhabditis elegans -> Brugia malayi",
       "Caenorhabditis elegans -> Trichinella spiralis",
-      "Caenorhabditis elegans -> Schistosoma mansoni",
+      "Macrostomum lignano -> Schistosoma mansoni",
       "Auxenochlorella protothecoides -> Helicosporidium sp. ATCC 50920",
       "Neurospora crassa -> Aspergillus nidulans",
       "Coprinopsis cinerea -> Schizophyllum commune",
@@ -76,14 +76,46 @@
       "Salpingoeca rosetta -> Capsaspora owczarzaki",
       "Chlamydomonas reinhardtii -> Chlorella variabilis",
       "Ostreococcus lucimarinus -> Ostreococcus tauri",
-      "Cyanidioschyzon merolae -> Galdieria sulphuraria"
+      "Cyanidioschyzon merolae -> Galdieria sulphuraria",
+      "Neurospora crassa -> Blumeria graminis",
+      "Neurospora crassa -> Pyricularia oryzae",
+      "Coprinopsis cinerea -> Puccinia graminis",
+      "Spizellomyces punctatus -> Mitosporidium daphniae",
+      "Spizellomyces punctatus -> Edhazardia aedis",
+      "Spizellomyces punctatus -> Anncaliia algerae",
+      "Spizellomyces punctatus -> Nosema bombycis",
+      "Spizellomyces punctatus -> Pseudoloma neurophilia",
+      "Thalassiosira pseudonana -> Phytophthora sojae",
+      "Thalassiosira pseudonana -> Aphanomyces astaci",
+      "Bodo saltans -> Angomonas deanei",
+      "Bodo saltans -> Strigomonas culicis",
+      "Bodo saltans -> Trypanosoma grayi",
+      "Bodo saltans -> Leishmania braziliensis",
+      "Bodo saltans -> Leishmania mexicana",
+      "Chromera velia -> Gregarina niphandrodes",
+      "Chromera velia -> Besnoitia besnoiti",
+      "Chromera velia -> Plasmodium yoelii",
+      "Chromera velia -> Plasmodium malariae",
+      "Caenorhabditis elegans -> Haemonchus contortus",
+      "Caenorhabditis elegans -> Strongyloides ratti",
+      "Macrostomum lignano -> Echinococcus multilocularis",
+      "Macrostomum lignano -> Fasciola hepatica",
+      "Macrostomum lignano -> Clonorchis sinensis",
+      "Macrostomum lignano -> Schistosoma japonicum",
+      "Naegleria gruberi -> Trichomonas vaginalis",
+      "Naegleria gruberi -> Tritrichomonas foetus",
+      "Drosophila melanogaster -> Pediculus humanus",
+      "Coprinopsis cinerea -> Laccaria bicolor",
+      "Tetrahymena thermophila -> Paramecium tetraurelia",
+      "Caenorhabditis elegans -> Caenorhabditis briggsae",
+      "Caenorhabditis elegans -> Pristionchus pacificus"
     ]
   },
   "validation": {
     "loco_rmse_logit": {
-      "mean_only": 1.241038714571497,
-      "parasite_only": 0.9161379848172072,
-      "all_axes": 0.7721708942332304
+      "mean_only": 1.3295061077461687,
+      "parasite_only": 1.0912253540186991,
+      "all_axes": 0.9465311777270958
     },
     "bootstrap": "2000 clade resamples"
   },
@@ -94,39 +126,39 @@
   "contexts": {
     "loss": {
       "base": {
-        "weight": -2.1692,
+        "weight": -2.2307,
         "ci95": [
-          -2.3699,
-          -1.9705
+          -2.4493,
+          -1.9921
         ]
       },
       "parasite": {
-        "weight": 1.1697,
+        "weight": 1.2059,
         "ci95": [
-          0.7206,
-          1.6069
+          0.758,
+          1.6064
         ]
       },
       "intracellular": {
-        "weight": 0.5161,
+        "weight": 0.4467,
         "ci95": [
-          -0.4809,
-          0.909
+          -0.4272,
+          0.8988
         ]
       },
       "reduced_mitochondria": {
-        "weight": 1.4637,
+        "weight": 1.533,
         "ci95": [
-          0.7747,
-          2.1438
+          0.7491,
+          2.3041
         ]
       }
     },
     "typical_share_lost": {
-      "free_living": 0.103,
-      "extracellular_parasite": 0.269,
-      "intracellular_parasite": 0.381,
-      "intracellular_reduced_mito": 0.727
+      "free_living": 0.097,
+      "extracellular_parasite": 0.264,
+      "intracellular_parasite": 0.359,
+      "intracellular_reduced_mito": 0.722
     }
   }
 }

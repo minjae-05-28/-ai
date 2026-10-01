@@ -1,0 +1,240 @@
+{
+  "id": "organelle_modules_v1",
+  "scope": "Genes that organelles and insect endosymbionts lose together (co-loss modules).",
+  "model": "Logistic rank-2 factorisation of gene loss per lineage; modules named by top-loading genes.",
+  "feature_names": [],
+  "data": {
+    "mitochondrion": 2,
+    "plastid": 2,
+    "insect_endosymbiont": 2
+  },
+  "validation": {
+    "hidden_half_auroc": {
+      "mitochondrion": {
+        "k0": 0.9228128254253551,
+        "k2": 0.9637254017913983,
+        "n": 30
+      },
+      "plastid": {
+        "k0": 0.8320091051411939,
+        "k2": 0.9145550163102488,
+        "n": 21
+      },
+      "insect_endosymbiont": {
+        "k0": 0.8535771020108011,
+        "k2": 0.881820855520693,
+        "n": 13
+      }
+    }
+  },
+  "caveats": [
+    "Modules can reflect shared function (complexes, operons) or shared phylogeny."
+  ],
+  "contexts": {
+    "modules": {
+      "mitochondrion": [
+        {
+          "genes": [
+            "ai1",
+            "bi2",
+            "scei",
+            "cox2",
+            "atp8",
+            "ccmfc",
+            "ccmfn",
+            "yejr",
+            "cox3",
+            "atp6",
+            "sdh2",
+            "sdh3",
+            "ccmc",
+            "secy",
+            "sdh4"
+          ],
+          "classes": {
+            "other": 4,
+            "redox_core": 5,
+            "atp_synthase": 2,
+            "protein_targeting": 4
+          },
+          "lost_by": [
+            "Reclinomonas americana",
+            "Andalucia godoyi",
+            "Acanthamoeba castellanii",
+            "Jakoba libera",
+            "Dictyostelium discoideum",
+            "Prototheca wickerhamii"
+          ],
+          "strength": 32.56332015991211
+        },
+        {
+          "genes": [
+            "rpl14",
+            "yejr",
+            "nad10",
+            "atp9",
+            "rpl20",
+            "ccma",
+            "nad11",
+            "sdh2",
+            "rps8",
+            "scei",
+            "rps14",
+            "rpl11",
+            "rps3",
+            "secy",
+            "rpl27"
+          ],
+          "classes": {
+            "translation": 7,
+            "other": 4,
+            "atp_synthase": 1,
+            "protein_targeting": 2,
+            "redox_core": 1
+          },
+          "lost_by": [
+            "Physcomitrium patens",
+            "Marchantia polymorpha subsp. ruderalis",
+            "Arabidopsis thaliana",
+            "Trichoplax adhaerens",
+            "Caenorhabditis elegans",
+            "Danio rerio"
+          ],
+          "strength": 27.938318252563477
+        }
+      ],
+      "plastid": [
+        {
+          "genes": [
+            "rpl4",
+            "rpl11",
+            "rps5",
+            "rps17",
+            "ycf24",
+            "rpl6",
+            "ycf29",
+            "cpcb",
+            "ycf23",
+            "apce",
+            "apcb",
+            "rpl28",
+            "cpca",
+            "apca",
+            "apcf"
+          ],
+          "classes": {
+            "translation": 6,
+            "other": 9
+          },
+          "lost_by": [
+            "Mesostigma viride",
+            "Marchantia polymorpha",
+            "Physcomitrium patens",
+            "Oryza sativa Japonica Group",
+            "Nephroselmis olivacea",
+            "Amborella trichopoda"
+          ],
+          "strength": 45.39604568481445
+        },
+        {
+          "genes": [
+            "matk",
+            "ycf2",
+            "ycf1",
+            "clpp",
+            "infa",
+            "accd",
+            "ndhf",
+            "ndhi",
+            "ndhh",
+            "ndhk",
+            "ndhb",
+            "ndha",
+            "ndhc",
+            "ndhd",
+            "ndhg"
+          ],
+          "classes": {
+            "other": 5,
+            "translation": 1,
+            "redox_core": 9
+          },
+          "lost_by": [
+            "Thalassiosira pseudonana",
+            "Phaeodactylum tricornutum",
+            "Guillardia theta",
+            "Emiliania huxleyi",
+            "Porphyra purpurea",
+            "Toxoplasma gondii RH"
+          ],
+          "strength": 41.00163650512695
+        }
+      ],
+      "insect_endosymbiont": [
+        {
+          "genes": [
+            "talb",
+            "rhta",
+            "alr",
+            "glnq",
+            "dgka",
+            "yggr",
+            "ppda",
+            "roxa",
+            "rele",
+            "opge",
+            "ogt",
+            "yicr",
+            "icd",
+            "yran",
+            "rpos"
+          ],
+          "classes": {
+            "other": 14,
+            "transcription": 1
+          },
+          "lost_by": [
+            "Candidatus Blochmanniella pennsylvanica",
+            "Sodalis glossinidius str. 'morsitans'",
+            "Candidatus Blochmanniella floridana",
+            "Buchnera aphidicola str. APS (Acyrthosiphon pisum)",
+            "Buchnera aphidicola str. Bp (Baizongia pistaciae)",
+            "Buchnera aphidicola (Schizaphis graminum)"
+          ],
+          "strength": 57.691627502441406
+        },
+        {
+          "genes": [
+            "plsb",
+            "dfp",
+            "nhaa",
+            "coaa",
+            "guaa",
+            "fumc",
+            "cdsa",
+            "ubih",
+            "guab",
+            "ubie",
+            "pgpa",
+            "ubib",
+            "folb",
+            "ubif",
+            "folk"
+          ],
+          "classes": {
+            "other": 15
+          },
+          "lost_by": [
+            "Buchnera aphidicola (Schizaphis graminum)",
+            "Buchnera aphidicola str. APS (Acyrthosiphon pisum)",
+            "Buchnera aphidicola str. Bp (Baizongia pistaciae)",
+            "Buchnera aphidicola (Cinara tujafilina)",
+            "Candidatus Moranella endobia PCIT",
+            "Serratia symbiotica"
+          ],
+          "strength": 46.470638275146484
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,103 @@
+{
+  "about": "Published laws of genome evolution, re-tested on this project's data (scripts/run_literature.py). Statements paraphrase the cited papers.",
+  "laws": [
+    {
+      "id": "lit_gene_loss_propensity",
+      "statement": "Genes with low dispensability and high conservation have a low propensity to be lost (propensity for gene loss, PGL).",
+      "source": "Krylov, Wolf, Rogozin & Koonin 2003, Genome Research 13:2229",
+      "url": "https://genome.cshlp.org/content/13/10/2229",
+      "our_test": "Family loss rate in 79 parasite pairs vs ubiquity in free-living eukaryotes: Spearman -0.58 over 8416 families; least-ubiquitous quartile loses 68%, most-ubiquitous 24%.",
+      "verdict": "consistent",
+      "related": [
+        "loss_order_v2",
+        "eukaryote_axes_v3"
+      ]
+    },
+    {
+      "id": "lit_ordered_mito_loss",
+      "statement": "Mitochondrial gene loss follows the same order across eukaryote lineages.",
+      "source": "Johnston & Williams 2016, Cell Systems",
+      "url": "https://www.eurekalert.org/news-releases/770432",
+      "our_test": "Loss is strongly nested in mitochondria (containment 0.95 vs 0.78 random), explained by per-gene loss rates (fixed-fixed null 0.95).",
+      "verdict": "consistent",
+      "related": [
+        "loss_order_v2"
+      ]
+    },
+    {
+      "id": "lit_universal_retention",
+      "statement": "The same gene features (hydrophobicity, pKa, GC) predict retention in mitochondria and plastids; a model trained on one predicts the other.",
+      "source": "Giannakis et al. 2022, Cell Systems",
+      "url": "https://wrap.warwick.ac.uk/id/eprint/169973/",
+      "our_test": "Retention-rate model trained on mitochondria ranks plastid genes with Spearman 0.43 (plastid-trained, leave-one-gene-out: 0.50); plastid->mitochondria 0.36 (within 0.55). A shared component transfers, and system-specific laws fit better (endosymbiosis_v1, delta AIC 787).",
+      "verdict": "partly",
+      "related": [
+        "endosymbiosis_v1"
+      ]
+    },
+    {
+      "id": "lit_hydrophobicity",
+      "statement": "Hydrophobic, membrane-embedded proteins are retained in organelle genomes because they are hard to import.",
+      "source": "von Heijne 1986; Bjorkholm et al. 2015",
+      "url": "https://www.news-medical.net/news/20220916/Researchers-identify-universal-features-shaping-organelle-gene-retention.aspx",
+      "our_test": "Mitochondria: hydrophobicity loss weight -0.32 and TM helices -0.37 (both retained, CIs exclude 0). Plastids: no effect (CIs include 0). Insect endosymbionts, which import nothing: membrane proteins are lost more (+0.16).",
+      "verdict": "partly",
+      "related": [
+        "endosymbiosis_v1"
+      ]
+    },
+    {
+      "id": "lit_plastome_degradation_order",
+      "statement": "In plants turning parasitic the plastome degrades in stages: ndh, then photosynthesis and plastid RNA polymerase, then ATP synthase, then housekeeping genes.",
+      "source": "Wicke & Naumann 2018; Graham et al. 2017, New Phytologist",
+      "url": "https://nph.onlinelibrary.wiley.com/doi/10.1111/nph.14398",
+      "our_test": "Epifagus vs tobacco: ndh 100%, photosynthesis+PEP 100%, ATP synthase 100%, housekeeping 23% lost. Monotone with stage. One lineage only; the plastid co-loss modules (organelle_modules_v1) also put ndh genes in one block.",
+      "verdict": "consistent (one lineage)",
+      "related": [
+        "organelle_modules_v1"
+      ]
+    },
+    {
+      "id": "lit_scaling_laws",
+      "statement": "Genes per functional category scale as a power of total gene number: transcription regulators and signalling ~N^2, metabolism ~N^1, translation ~N^0.",
+      "source": "van Nimwegen 2003, Trends in Genetics",
+      "url": "https://arxiv.org/html/physics/0307001v1",
+      "our_test": "Across 36 bacteria and archaea: transcription regulation exponent 1.95 [1.63, 2.27], signalling 2.47 [1.80, 3.36], metabolism 0.70 [0.53, 0.89], translation 0.01 [-0.02, 0.04].",
+      "verdict": "consistent (metabolism exponent lower: 0.7)",
+      "related": []
+    },
+    {
+      "id": "lit_black_queen",
+      "statement": "Free-living bacteria lose 'leaky' functions that the community supplies, e.g. hydrogen-peroxide removal in Prochlorococcus.",
+      "source": "Morris, Lenski & Zinser 2012, mBio 3:e00036-12",
+      "url": "https://journals.asm.org/doi/pdf/10.1128/mbio.00036-12",
+      "our_test": "Synechococcus elongatus 2 catalase/peroxidase genes -> Prochlorococcus marinus 0; Cereibacter sphaeroides 3 catalase/peroxidase genes -> Candidatus Pelagibacter ubique 0.",
+      "verdict": "consistent",
+      "related": [
+        "severity_environment_v1"
+      ]
+    },
+    {
+      "id": "lit_streamlining",
+      "statement": "Oligotrophs evolve small genomes with few regulators (selection for nutrient economy).",
+      "source": "Giovannoni, Thrash & Temperton 2014, ISME Journal 8:1553",
+      "url": "https://www.nature.com/articles/ismej201460",
+      "our_test": "Median genes 1598 (oligotrophs) vs 3327 (others); transcription regulators per 1000 genes 20 vs 60. Oligotrophy is the only environment axis that raises the share of families lost (severity_environment_v1, +0.80).",
+      "verdict": "consistent",
+      "related": [
+        "severity_environment_v1"
+      ]
+    },
+    {
+      "id": "lit_deletional_bias",
+      "statement": "Bacterial genomes shrink through a pervasive bias toward deletions; in symbionts relaxed selection plus drift removes unused genes.",
+      "source": "Mira, Ochman & Moran 2001, Trends in Genetics 17:589",
+      "url": "https://computingbiology.github.io/docs/mira2001.pdf",
+      "our_test": "Not testable with gene-family presence (needs indel spectra). Consistent in outline: insect endosymbionts lose ~85% of their ancestor's genes (severity_endosymbiosis_v1).",
+      "verdict": "not testable here",
+      "related": [
+        "severity_endosymbiosis_v1"
+      ]
+    }
+  ]
+}

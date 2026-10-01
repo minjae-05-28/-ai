@@ -23,3 +23,19 @@ from organelle_evo.laws import load_law
 law = load_law("endosymbiosis_v1")
 law.weights["mitochondrion"], law.ci95["mitochondrion"], law.scope
 ```
+
+## 문헌 법칙 (`literature/laws.json`)
+
+이미 발표된 유전체 진화 법칙 9개를 출처와 함께 모으고, 이 프로젝트 데이터로 다시 시험했습니다(`scripts/run_literature.py`).
+
+| 법칙 | 출처 | 우리 데이터 |
+|---|---|---|
+| 덜 필수적이고 덜 보존된 유전자가 잘 사라진다 | Krylov 외 2003 | 일치 (Spearman −0.58, 가장 드문 유전자군 68% vs 흔한 유전자군 24% 소실) |
+| 미토콘드리아는 계통을 넘어 같은 순서로 잃는다 | Johnston & Williams 2016 | 일치 (유전자별 성향으로 설명됨) |
+| 같은 특징이 미토콘드리아·엽록체 보존을 모두 예측 | Giannakis 외 2022 | 부분 일치 (교차 예측 0.36–0.43 vs 시스템 안 0.50–0.55) |
+| 소수성 막단백질은 소기관에 남는다 | von Heijne 1986 등 | 부분 일치 (미토콘드리아만, 엽록체는 효과 없음) |
+| 기생 식물 엽록체는 ndh → 광합성 → ATP 합성효소 → 기본 유전자 순으로 퇴화 | Wicke & Naumann 2018, Graham 외 2017 | 일치 (Epifagus 한 계통) |
+| 기능 범주별 유전자 수는 전체 유전자 수의 거듭제곱 (조절 ≈2, 번역 ≈0) | van Nimwegen 2003 | 일치 (전사 조절 1.95, 번역 0.01; 대사는 0.70으로 낮음) |
+| 빈영양 세균은 공동체가 대신해 주는 기능(과산화수소 제거)을 버린다 | Morris 외 2012 (Black Queen) | 일치 (Prochlorococcus, Pelagibacter 모두 카탈레이스·퍼옥시데이스 0) |
+| 빈영양 세균은 작은 유전체, 적은 조절 유전자 | Giovannoni 외 2014 | 일치 (유전자 1,598 vs 3,327, 조절 유전자 1천 개당 20 vs 60) |
+| 결실 편향과 표류가 공생 세균 유전체를 줄인다 | Mira, Ochman & Moran 2001 | 직접 검증 불가 (방향은 일치) |
