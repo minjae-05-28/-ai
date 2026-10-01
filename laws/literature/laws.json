@@ -98,6 +98,50 @@
       "related": [
         "severity_endosymbiosis_v1"
       ]
+    },
+    {
+      "id": "lit_ivywrel_temperature",
+      "statement": "The proteome share of I, V, Y, W, R, E, L rises linearly with optimal growth temperature.",
+      "source": "Zeldovich, Berezovsky & Shakhnovich 2007, PLoS Computational Biology",
+      "url": "https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.0030005",
+      "our_test": "70 bacteria and archaea: Pearson 0.82 (Spearman 0.57); +0.01 IVYWREL = +6.4 C. Predicting a held-out group's temperature from IVYWREL alone: RMSE 9.8 C vs 15.5 C for the mean; a 20-amino-acid ridge model does worse (11.3 C).",
+      "verdict": "consistent (correlation weaker than the published 0.93)",
+      "related": [
+        "sequence_v1"
+      ]
+    },
+    {
+      "id": "lit_halophile_acidic_proteome",
+      "statement": "'Salt-in' halophiles have acidic proteomes (excess Asp and Glu, low pI).",
+      "source": "Reviewed in Oren 2008, Saline Systems; e.g. Paul et al. 2008, Genome Biology",
+      "url": "https://genomebiology.biomedcentral.com/articles/10.1186/gb-2008-9-4-r70",
+      "our_test": "Across species, acidic excess vs optimal NaCl Spearman 0.58, median pI -0.52; in relative->extremophile pairs a 10% NaCl rise adds +0.022 acidic excess.",
+      "verdict": "consistent",
+      "related": [
+        "sequence_v1"
+      ]
+    },
+    {
+      "id": "lit_nitrogen_economy",
+      "statement": "Microbes in nitrogen-poor oceans use amino acids with fewer side-chain nitrogen atoms.",
+      "source": "Grzymski & Dussaq 2012, ISME Journal",
+      "url": "https://www.nature.com/articles/ismej201193",
+      "our_test": "Side-chain N per residue falls in 5 of 6 oligotroph pairs: Synechococcus elongatus -> Prochlorococcus marinus -0.026, Cereibacter sphaeroides -> Candidatus Pelagibacter ubique -0.036, Sphingobium japonicum -> Sphingopyxis alaskensis -0.007, Nitrososphaera viennensis -> Nitrosopumilus maritimus -0.029, Synechococcus elongatus -> Synechococcus sp. WH 8102 +0.008, Cupriavidus necator -> Polynucleobacter asymbioticus -0.038.",
+      "verdict": "consistent",
+      "related": [
+        "sequence_v1"
+      ]
+    },
+    {
+      "id": "lit_symbiont_at_bias",
+      "statement": "Reduced symbiont genomes drift to AT-rich codons, enriching F, Y, M, I, N, K and raising protein pI.",
+      "source": "Moran 1996 PNAS; McCutcheon & Moran 2012, Nature Reviews Microbiology",
+      "url": "https://www.nature.com/articles/nrmicro2670",
+      "our_test": "14 insect endosymbionts and E. coli: proteome size vs FYMINK Spearman -0.65, vs median pI -0.72 (E. coli FYMINK 0.24, pI 6.6; Buchnera 0.40-0.43, pI ~10).",
+      "verdict": "consistent",
+      "related": [
+        "sequence_v1"
+      ]
     }
   ]
 }
