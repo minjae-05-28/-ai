@@ -21,13 +21,15 @@ from .model import FAMILY_FEATURES, family_features
 MIN_FAMILIES_PER_SLIM = 60
 
 
-def enriched_features(profiles: dict, meta: dict, annotations: dict, counts_by_species: dict):
-    """(family names, feature names, X). profiles: species -> profile JSON."""
+def enriched_features(profiles: dict, meta: dict, annotations: dict, counts_by_species: dict, free=None):
+    """(family names, feature names, X). profiles: species -> profile JSON. free: species
+    whose counts define ubiquity (default: free-living eukaryotes in the catalog)."""
     fams, base = family_features(list(profiles.values()), meta)
     ann = annotations["families"]
     slim_names = annotations["slims"]
 
-    free = [s for s in counts_by_species if SPECIES.get(s) and SPECIES[s].lifestyle == FREE]
+    if free is None:
+        free = [s for s in counts_by_species if SPECIES.get(s) and SPECIES[s].lifestyle == FREE]
     free_counts = np.array([counts_by_species[s] for s in free])  # (S, F)
     present = free_counts > 0
     ubiquity = present.mean(0)
