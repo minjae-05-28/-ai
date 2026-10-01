@@ -1,0 +1,82 @@
+name: Proteome composition
+
+# Amino-acid composition and related statistics of every catalogued proteome (no HMMER;
+# a few minutes per species). Commits data/composition/<catalog>/<species>.json.
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/proteome-composition.yml"
+      - "scripts/proteome_composition.py"
+      - "src/organelle_evo/sequence.py"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: proteome-composition
+  cancel-in-progress: false
+
+jobs:
+  plan:
+    runs-on: ubuntu-latest
+    outputs:
+      entries: ${{ steps.list.outputs.entries }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - id: list
+        env:
+          PYTHONPATH: src
+        run: echo "entries=$(python scripts/proteome_composition.py --list-missing)" >> "$GITHUB_OUTPUT"
+
+  composition:
+    needs: plan
+    if: needs.plan.outputs.entries != '[]'
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    strategy:
+      fail-fast: false
+      max-parallel: 20
+      matrix:
+        entry: ${{ fromJSON(needs.plan.outputs.entries) }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install numpy
+      - name: Composition of ${{ matrix.entry }}
+        env:
+          PYTHONPATH: src
+        run: python scripts/proteome_composition.py --entry "${{ matrix.entry }}"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: composition-${{ strategy.job-index }}
+          path: data/composition
+
+  collect:
+    needs: [plan, composition]
+    if: always() && needs.plan.result == 'success'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: composition-*
+          path: data/composition
+          merge-multiple: true
+      - name: Commit composition
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -f data/composition
+          if git diff --cached --quiet; then echo "No new composition files."; else
+            git commit -m "Add proteome composition statistics"
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi
