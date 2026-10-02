@@ -41,6 +41,9 @@ def test(name, names, X, y, col=1, tree=None):
            "pgls_lambda": [float(lam.coef[col]), float(lam.p[col]), lam.lam],
            "rank_gls": [float(rg.coef[col]), float(rg.p[col])], "shared_history": rg.shares["shared_history"]}
     row["survives"] = bool(np.sign(rg.coef[col]) == np.sign(ols.coef[col]) and rg.p[col] < 0.05)
+    print(f"{name:42s} n={len(y):3d}  OLS {ols.coef[col]:+.4g} (p {ols.p[col]:.1e})  "
+          f"rank GLS {rg.coef[col]:+.4g} (p {rg.p[col]:.1e}, history {rg.shares['shared_history']:.0%})  "
+          f"{'survives' if row['survives'] else 'DOES NOT SURVIVE'}")
     if tree in TREES:
         keep, V = tree_cov(names, TREES[tree])
         ix = [names.index(k) for k in keep]
@@ -61,9 +64,6 @@ def test(name, names, X, y, col=1, tree=None):
                   f"of {len(reps)} (median p {row['bootstrap_trees']['median_p']:.1e})")
         print(f"{'':42s} tree PGLS {tp.coef[col]:+.4g} (p {tp.p[col]:.1e}, lambda {tp.lam:.2f}, n={len(keep)})  "
               f"{'survives' if row['survives_tree'] else 'DOES NOT SURVIVE'}")
-    print(f"{name:42s} n={len(y):3d}  OLS {ols.coef[col]:+.4g} (p {ols.p[col]:.1e})  "
-          f"rank GLS {rg.coef[col]:+.4g} (p {rg.p[col]:.1e}, history {rg.shares['shared_history']:.0%})  "
-          f"{'survives' if row['survives'] else 'DOES NOT SURVIVE'}")
     return row
 
 

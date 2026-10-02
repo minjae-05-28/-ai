@@ -21,15 +21,22 @@ Whether genes that laboratory knockouts show to be dispensable are the ones lost
 Knockout phenotype classes and family essential shares compared with observed retention; Spearman with and without ubiquity; held-out pair AUROC.
 
 ## 검증
+- symbionts_vs_ecoli_knockouts:
+  - essential: `{"n_genes": 352, "share_kept_mean": 0.5920454545454545, "by_symbiont": {"Arsenophonus nasoniae": 0.8778409090909091, "Candidatus Palibaumannia cicadellinicola":`
+  - costly in rich medium: `{"n_genes": 50, "share_kept_mean": 0.3512, "by_symbiont": {"Arsenophonus nasoniae": 0.82, "Candidatus Palibaumannia cicadellinicola": 0.5, "Candidatus Blochmann`
+  - needed only in minimal medium: `{"n_genes": 676, "share_kept_mean": 0.20142011834319526, "by_symbiont": {"Arsenophonus nasoniae": 0.5340236686390533, "Candidatus Palibaumannia cicadellinicola"`
+  - dispensable: `{"n_genes": 2249, "share_kept_mean": 0.076016007114273, "by_symbiont": {"Arsenophonus nasoniae": 0.2810137839039573, "Candidatus Palibaumannia cicadellinicola":`
+  - auroc_essential_predicts_retention: 0.874
+  - n_matched_genes: 3327
 - families_with_knockout_data:
-  - eukaryote_screens: 8143
-  - bacterial_screens: 10572
+  - eukaryote_screens: 8186
+  - bacterial_screens: 10573
 - parasites (eukaryote screens):
-  - n_families: 7170
-  - spearman_essential_vs_loss: -0.305
-  - partial_controlling_ubiquity: -0.147
-  - groups: `{"never essential": {"n_families": 4587, "mean_loss_rate": 0.46302498718096397}, "sometimes essential (≤50%)": {"n_families": 1609, "mean_loss_rate": 0.27236738`
-  - heldout_auroc_knockout_only: 0.642
+  - n_families: 7189
+  - spearman_essential_vs_loss: -0.295
+  - partial_controlling_ubiquity: -0.133
+  - groups: `{"never essential": {"n_families": 4522, "mean_loss_rate": 0.4634944677018225}, "sometimes essential (≤50%)": {"n_families": 1678, "mean_loss_rate": 0.286613767`
+  - heldout_auroc_knockout_only: 0.641
   - heldout_auroc_memorisation_same_families: 0.837
   - n_pairs: 90
 - extremophiles (bacterial screens):

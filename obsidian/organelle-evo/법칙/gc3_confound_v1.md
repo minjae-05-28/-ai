@@ -22,21 +22,21 @@ Environment effect with and without GC (or change in GC) as a covariate; OLS and
 
 ## 검증
 - species:
-  - ivywrel_vs_temperature: `{"n": 70, "without_gc": {"coef": 0.0008303391441150914, "p_ols": 2.7620234622711122e-18, "p_rank_gls": 1.564169822278961e-22}, "with_gc": {"coef": 0.00080849065`
-  - cvp_vs_temperature: `{"n": 70, "without_gc": {"coef": 0.001104149552652472, "p_ols": 7.939292914853843e-12, "p_rank_gls": 7.26486650870933e-12}, "with_gc": {"coef": 0.00092117820642`
-  - acidic_vs_salt: `{"n": 70, "without_gc": {"coef": 0.0021871446046727687, "p_ols": 2.4769459203940413e-18, "p_rank_gls": 3.502842017483026e-14}, "with_gc": {"coef": 0.00215488255`
-  - nitrogen_vs_oligotrophy: `{"n": 70, "without_gc": {"coef": -0.02362844838904612, "p_ols": 0.702203192820845, "p_rank_gls": 0.002799713368396544}, "with_gc": {"coef": 0.000154481772342521`
-  - fymink_vs_anoxia: `{"n": 70, "without_gc": {"coef": 0.07698278422301505, "p_ols": 0.004953320715856638, "p_rank_gls": 0.009685417336776954}, "with_gc": {"coef": 0.0245152789362674`
-  - gc_explains: `{"fymink": -0.92590408334341, "garp": 0.9562716966776067, "ivywrel": 0.3120770882626159, "cvp": 0.5091577588046032, "acidic_excess": 0.19399745831924667, "n_sid`
+  - ivywrel_vs_temperature: `{"n": 86, "without_gc": {"coef": 0.0007846827969093175, "p_ols": 4.445318433615807e-25, "p_rank_gls": 1.4026427901225574e-29}, "with_gc": {"coef": 0.00076505830`
+  - cvp_vs_temperature: `{"n": 86, "without_gc": {"coef": 0.0011314911195783488, "p_ols": 1.2826360080756616e-15, "p_rank_gls": 2.7956914349351982e-14}, "with_gc": {"coef": 0.0010238985`
+  - acidic_vs_salt: `{"n": 86, "without_gc": {"coef": 0.0016532843066467589, "p_ols": 2.8549288559408527e-21, "p_rank_gls": 9.102153725007249e-12}, "with_gc": {"coef": 0.00162005493`
+  - nitrogen_vs_oligotrophy: `{"n": 86, "without_gc": {"coef": -0.021897687755785544, "p_ols": 0.8118705882493471, "p_rank_gls": 0.0006753135619025098}, "with_gc": {"coef": 0.004565489509680`
+  - fymink_vs_anoxia: `{"n": 86, "without_gc": {"coef": 0.0805164234477487, "p_ols": 5.687965000989708e-06, "p_rank_gls": 0.0003614792927730401}, "with_gc": {"coef": 0.032779386405759`
+  - gc_explains: `{"fymink": -0.9136108943984269, "garp": 0.9538625657905346, "ivywrel": 0.15463430406834236, "cvp": 0.3447141519092007, "acidic_excess": 0.19349975270073777, "n_`
 - pairs:
-  - ivywrel_colder: `{"n": 43, "without_gc": {"coef": -0.017704453069119833, "p_ols": 7.305808723462514e-09, "p_rank_gls": 2.04251375044595e-17}, "with_gc": {"coef": -0.018016124490`
-  - cvp_colder: `{"n": 43, "without_gc": {"coef": -0.03411835138757162, "p_ols": 1.0244726907993878e-09, "p_rank_gls": 1.441275649135486e-09}, "with_gc": {"coef": -0.03305444210`
-  - acidic_excess_saltier: `{"n": 43, "without_gc": {"coef": 0.01707879371379367, "p_ols": 1.2238567227377165e-06, "p_rank_gls": 3.1027483107363982e-06}, "with_gc": {"coef": 0.016096477118`
-  - n_side_oligotrophic: `{"n": 43, "without_gc": {"coef": -0.017617056189328816, "p_ols": 0.017289942002837694, "p_rank_gls": 0.0027180121073696454}, "with_gc": {"coef": -0.001550060685`
-  - fymink_anaerobic: `{"n": 43, "without_gc": {"coef": 0.06411596797918603, "p_ols": 0.003495246436783293, "p_rank_gls": 0.0025713326252818445}, "with_gc": {"coef": 0.016109661546452`
+  - ivywrel_colder: `{"n": 57, "without_gc": {"coef": -0.017009680749822505, "p_ols": 1.3155166503670074e-10, "p_rank_gls": 2.4306774423716094e-24}, "with_gc": {"coef": -0.017184961`
+  - cvp_colder: `{"n": 57, "without_gc": {"coef": -0.03335808144228063, "p_ols": 6.614835738467015e-11, "p_rank_gls": 1.8305065944083973e-13}, "with_gc": {"coef": -0.01843908443`
+  - acidic_excess_saltier: `{"n": 57, "without_gc": {"coef": 0.01720806023615845, "p_ols": 1.08300918510543e-06, "p_rank_gls": 2.908775330088942e-07}, "with_gc": {"coef": 0.011800716737823`
+  - n_side_oligotrophic: `{"n": 57, "without_gc": {"coef": -0.014979902483507293, "p_ols": 0.019935786879246412, "p_rank_gls": 0.00365956595022934}, "with_gc": {"coef": -0.00794026844689`
+  - fymink_anaerobic: `{"n": 57, "without_gc": {"coef": 0.05476146791344761, "p_ols": 0.004980798902836206, "p_rank_gls": 0.003240480891754966}, "with_gc": {"coef": 0.0159750297421532`
 - symbionts:
-  - fymink: `{"n": 13, "without_gc": {"coef": -0.05854398628687931, "p_ols": 0.0019898713808777536, "p_rank_gls": 0.000139932945956631}, "with_gc": {"coef": -0.0020296291328`
-  - median_pi: `{"n": 13, "without_gc": {"coef": -0.6757401044269624, "p_ols": 0.0004918911770746727, "p_rank_gls": 1.3649765622131992e-07}, "with_gc": {"coef": -0.532674821664`
+  - fymink: `{"n": 25, "without_gc": {"coef": -0.08783153151544101, "p_ols": 2.240287806120025e-06, "p_rank_gls": 7.011868635315649e-10}, "with_gc": {"coef": -0.039841167767`
+  - median_pi: `{"n": 25, "without_gc": {"coef": -1.033058827127401, "p_ols": 3.0858241450494217e-07, "p_rank_gls": 2.8504147968063422e-12}, "with_gc": {"coef": -0.448731711420`
 - summary:
   - adaptive_laws_tested: 10
   - survive: `["pair:acidic_excess_saltier", "pair:cvp_colder", "pair:ivywrel_colder", "species:acidic_vs_salt", "species:cvp_vs_temperature", "species:fymink_vs_anoxia", "sp`
