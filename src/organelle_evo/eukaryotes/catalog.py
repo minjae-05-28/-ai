@@ -308,6 +308,55 @@ PAIR_SPECS += [
     (("Caenorhabditis elegans",), "Pristionchus pacificus"),
 ]
 
+# Round 4 (October 2026): new independent origins of parasitism (mites and ticks, true
+# bugs, copepod lice, parasitic plants) and more lineages in existing clades.
+SPECIES.update({
+    # Chelicerates: free-living mites -> bee mite, tick, scabies mite
+    "Galendromus occidentalis": _free("chelicerata"),  # predatory mite
+    "Tetranychus urticae": _free("chelicerata"),  # spider mite (plant feeder)
+    "Varroa destructor": _par("chelicerata", EXTRA, AEROBIC),
+    "Ixodes scapularis": _par("chelicerata", EXTRA, AEROBIC),
+    "Sarcoptes scabiei": _par("chelicerata", EXTRA, AEROBIC),
+    # True bugs: stink bug -> bed bug
+    "Halyomorpha halys": _free("insecta"),
+    "Cimex lectularius": _par("insecta", EXTRA, AEROBIC),
+    # Copepods: free-living copepod -> salmon louse
+    "Tigriopus californicus": _free("crustacea"),
+    "Lepeophtheirus salmonis": _par("crustacea", EXTRA, AEROBIC),
+    # Parasitic plants: morning glory -> dodder (stem parasite)
+    "Ipomoea nil": _free("streptophyta"),
+    "Ipomoea triloba": _free("streptophyta"),
+    "Cuscuta campestris": _par("streptophyta", EXTRA, AEROBIC),
+    "Cuscuta australis": _par("streptophyta", EXTRA, AEROBIC),
+    # Rhizaria: chlorarachniophyte as the free-living proxy for Plasmodiophora
+    "Bigelowiella natans": _free("rhizaria"),
+    # More nematodes and flatworms
+    "Ascaris suum": _par("nematoda", EXTRA, AEROBIC),
+    "Toxocara canis": _par("nematoda", EXTRA, AEROBIC),
+    "Onchocerca volvulus": _par("nematoda", EXTRA, AEROBIC),
+    "Necator americanus": _par("nematoda", EXTRA, AEROBIC),
+    "Opisthorchis viverrini": _par("platyhelminthes", EXTRA, AEROBIC),
+    "Schistosoma haematobium": _par("platyhelminthes", EXTRA, AEROBIC),
+    # More oomycetes (obligate biotrophs)
+    "Hyaloperonospora arabidopsidis": _par("stramenopiles", EXTRA, AEROBIC),
+    "Albugo laibachii": _par("stramenopiles", EXTRA, AEROBIC),
+})
+
+_MITE_PROXY = ("Galendromus occidentalis", "Tetranychus urticae")
+PAIR_SPECS += [
+    *[(_MITE_PROXY, sp) for sp in ("Varroa destructor", "Ixodes scapularis", "Sarcoptes scabiei")],
+    (("Halyomorpha halys",), "Cimex lectularius"),
+    (("Tigriopus californicus",), "Lepeophtheirus salmonis"),
+    *[(("Ipomoea nil", "Ipomoea triloba"), sp) for sp in ("Cuscuta campestris", "Cuscuta australis")],
+    (("Bigelowiella natans",), "Plasmodiophora brassicae"),
+    *[(("Caenorhabditis elegans",), sp) for sp in ("Ascaris suum", "Toxocara canis", "Onchocerca volvulus", "Necator americanus")],
+    *[(_FLATWORM_PROXY, sp) for sp in ("Opisthorchis viverrini", "Schistosoma haematobium")],
+    *[(("Thalassiosira pseudonana",), sp) for sp in ("Hyaloperonospora arabidopsidis", "Albugo laibachii")],
+    # controls
+    (("Galendromus occidentalis",), "Tetranychus urticae"),
+    (("Ipomoea nil",), "Ipomoea triloba"),
+]
+
 # Design axes for splitting laws: every pair gets a base law plus the effect of each
 # axis that applies to its descendant.
 AXES = ("parasite", "intracellular", "reduced_mitochondria")
