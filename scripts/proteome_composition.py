@@ -13,7 +13,7 @@ import json
 from pathlib import Path
 
 OUT = Path("data/composition")
-CATALOGS = ("prokaryotes", "eukaryotes")
+CATALOGS = ("prokaryotes", "eukaryotes", "animals")
 
 
 def main():

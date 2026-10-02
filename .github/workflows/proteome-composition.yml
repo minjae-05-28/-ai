@@ -41,7 +41,7 @@ jobs:
     timeout-minutes: 40
     strategy:
       fail-fast: false
-      max-parallel: 20
+      max-parallel: 24
       matrix:
         entry: ${{ fromJSON(needs.plan.outputs.entries) }}
     steps:
@@ -77,6 +77,10 @@ jobs:
           git add -f data/composition
           if git diff --cached --quiet; then echo "No new composition files."; else
             git commit -m "Add proteome composition statistics"
-            git pull --rebase origin main
-            git push origin HEAD:main
+            ok=0
+            for i in 1 2 3 4 5 6; do
+              git pull --rebase origin main && git push origin HEAD:main && { ok=1; break; }
+              echo "push attempt $i failed; retrying"; sleep $((i*10))
+            done
+            [ "$ok" = 1 ] || { echo "::error::could not push composition after 6 attempts"; exit 1; }
           fi
