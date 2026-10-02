@@ -1,0 +1,123 @@
+name: Animal Pfam profiles
+
+# Downloads one proteome per animal from NCBI Datasets, counts Pfam families with HMMER,
+# and commits data/animals/<species>.json. Species already profiled are skipped.
+# Full Pfam, no subset: see the docstring of scripts/animal_profile.py for why.
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/animal-pfam.yml"
+      - "src/organelle_evo/animals/catalog.py"
+      - "scripts/animal_profile.py"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: animal-pfam
+  cancel-in-progress: false
+
+env:
+  PFAM_URL: https://ftp.ebi.ac.uk/pub/databases/Pfam/current_release/Pfam-A.hmm.gz
+  PFAM_KEY: pfam-a-current-v1
+
+jobs:
+  plan:
+    runs-on: ubuntu-latest
+    outputs:
+      species: ${{ steps.list.outputs.species }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - id: list
+        env:
+          PYTHONPATH: src
+        run: echo "species=$(python scripts/animal_profile.py --list-missing)" >> "$GITHUB_OUTPUT"
+      - name: Download Pfam once and cache it
+        uses: actions/cache@v4
+        id: cache
+        with:
+          path: pfam
+          key: ${{ env.PFAM_KEY }}
+      - if: steps.cache.outputs.cache-hit != 'true'
+        run: mkdir -p pfam && curl -fsSL "$PFAM_URL" -o pfam/Pfam-A.hmm.gz && ls -lh pfam
+
+  profile:
+    needs: plan
+    if: needs.plan.outputs.species != '[]'
+    runs-on: ubuntu-latest
+    timeout-minutes: 330
+    strategy:
+      fail-fast: false
+      max-parallel: 12
+      matrix:
+        species: ${{ fromJSON(needs.plan.outputs.species) }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install pyhmmer numpy biopython
+      - uses: actions/cache/restore@v4
+        with:
+          path: pfam
+          key: ${{ env.PFAM_KEY }}
+          fail-on-cache-miss: true
+      - run: gunzip -kf pfam/Pfam-A.hmm.gz
+      - name: Profile ${{ matrix.species }}
+        env:
+          PYTHONPATH: src
+        run: python scripts/animal_profile.py --species "${{ matrix.species }}" --pfam pfam/Pfam-A.hmm
+      - uses: actions/upload-artifact@v4
+        with:
+          name: animal-profile-${{ strategy.job-index }}
+          path: data/animals/*.json
+
+  collect:
+    needs: [plan, profile]
+    if: always() && needs.plan.result == 'success'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install pyhmmer numpy biopython
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: animal-profile-*
+          path: data/animals
+          merge-multiple: true
+      - uses: actions/cache/restore@v4
+        with:
+          path: pfam
+          key: ${{ env.PFAM_KEY }}
+      - name: Pfam family names and descriptions
+        env:
+          PYTHONPATH: src
+        run: |
+          if [ ! -f data/animals/pfam_meta.json ] && [ -f pfam/Pfam-A.hmm.gz ]; then
+            gunzip -kf pfam/Pfam-A.hmm.gz
+            python scripts/animal_profile.py --pfam pfam/Pfam-A.hmm --dump-meta
+          fi
+      - name: Commit profiles
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -f data/animals
+          if git diff --cached --quiet; then
+            echo "No new profiles."
+          else
+            git commit -m "Add animal Pfam profiles"
+            ok=0
+            for i in 1 2 3 4 5 6; do
+              git pull --rebase origin main && git push origin HEAD:main && { ok=1; break; }
+              echo "push attempt $i failed; retrying"; sleep $((i*10))
+            done
+            [ "$ok" = 1 ] || { echo "::error::could not push"; exit 1; }
+          fi
