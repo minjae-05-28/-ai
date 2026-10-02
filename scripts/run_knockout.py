@@ -133,6 +133,29 @@ def family_knockout_cost():
                 ess[fam] += row[i]
         for fam in tot:
             pro_frac[fam].append(ess[fam] / tot[fam])
+    # DEG: essential genes per organism; denominators from the project's own Pfam profiles of
+    # the same species. Descendants (parasites, extremophiles) are excluded so the knockout
+    # data never come from the lineages being predicted.
+    euk_desc = {d for _, d in euk.resolve_pairs(euk.SPECIES)}
+    pro_desc = {d for _, d in pro.resolve_pairs(pro.SPECIES)}
+    for domain, prof_dir, frac, desc in (("eukaryotes", "data/eukaryotes", euk_frac, euk_desc),
+                                         ("bacteria", "data/prokaryotes", pro_frac, pro_desc),
+                                         ("archaea", "data/prokaryotes", pro_frac, pro_desc)):
+        d = load(PH / "deg" / f"{domain}.json")
+        if not d:
+            continue
+        prof = profiles(prof_dir)
+        by_binomial = {" ".join(k.split()[:2]): v for k, v in prof.items()}
+        for org, e in d.items():
+            key = " ".join(org.split()[:2])
+            if key in desc or key not in by_binomial or e["n_essential"] < 100:
+                continue
+            fams = by_binomial[key]["families"]
+            # every family the organism has: essential share (0 when no member is essential)
+            for fam, v in fams.items():
+                if v[0] > 0:
+                    frac[fam].append(min(1.0, e["families"].get(fam, 0) / v[0]))
+            print(f"  DEG {domain}: {org} ({e['n_essential']} essential) matched to profile {key}")
     return ({f: float(np.mean(v)) for f, v in euk_frac.items()}, {f: float(np.mean(v)) for f, v in pro_frac.items()},
             {f: len(v) for f, v in euk_frac.items()}, {f: len(v) for f, v in pro_frac.items()})
 
