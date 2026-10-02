@@ -126,10 +126,15 @@ def main():
           f"{int(sum(r['endo'] for r in rows))} endotherms, "
           f"{int(sum(r['parasite'] for r in rows))} parasites\n")
 
+    # scripts/fetch_gc.py writes {catalogue: {species: {accession, gc, gc3?}}}
     gc = {}
-    gcf = Path("data/gc.json")
+    gcf = Path("results/gc/gc.json")
     if gcf.exists():
-        gc = {k: v for k, v in json.loads(gcf.read_text()).items() if k in an.SPECIES}
+        for sp, v in json.loads(gcf.read_text()).get("animals", {}).items():
+            if v.get("gc") is not None:
+                gc[sp] = v["gc"]
+    print(f"genome GC available for {len(gc)} of the animals"
+          f"{'' if gc else ' -> GC control skipped; run scripts/fetch_gc.py on Actions'}")
 
     res = {"n_species": len(rows), "n_clades": len(groups), "axes": AXES, "traits": {}}
     for trait in TRAITS:
