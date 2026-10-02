@@ -1,6 +1,6 @@
 """GC confound check: do the sequence laws survive genome GC content as a covariate?
 
-    python scripts/run_gc_confound.py
+    python scripts/run_gc_confound.py [--covariate gc3]
 
 Amino-acid composition follows genome GC: GC-rich codons encode G, A, R, P (GARP) and
 AT-rich codons F, Y, M, I, N, K (FYMINK). A composition law could therefore be mutation
@@ -78,8 +78,14 @@ def compare(name, names, env, gc, y, extra=None, tree=None):
 
 
 def main():
+    import argparse
+
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--covariate", choices=("gc", "gc3"), default="gc",
+                    help="genome GC, or GC at third codon positions (closer to pure mutation bias)")
+    key = ap.parse_args().covariate
     res = {"species": {}, "pairs": {}, "symbionts": {}}
-    gpro = {s: v["gc"] for s, v in GC["prokaryotes"].items() if v["gc"] is not None}
+    gpro = {s: v.get(key) for s, v in GC["prokaryotes"].items() if v.get(key) is not None}
     P = {s: d for s, d in load("prokaryotes").items() if s in pro.SPECIES and s in gpro}
     sp = sorted(P)
     E = lambda k: np.array([P[s][k] for s in sp])  # noqa: E731
@@ -111,7 +117,7 @@ def main():
         res["pairs"][f"{k}_{pro.AXES[axis]}"] = row
 
     print("\nsymbiont AT bias")
-    gs = {s: v["gc"] for s, v in GC["endosymbiosis/insect_endosymbiont"].items() if v["gc"] is not None}
+    gs = {s: v.get(key) for s, v in GC["endosymbiosis/insect_endosymbiont"].items() if v.get(key) is not None}
     Sy = {s: d for s, d in load("endosymbiosis/insect_endosymbiont").items() if s in gs}
     ss = sorted(Sy)
     size = np.log([Sy[s]["n_proteins"] for s in ss])
@@ -129,10 +135,11 @@ def main():
                       "do_not_survive": sorted(k for k, v in adaptive.items() if not v["survives"])}
     print(f"\n{len(res['summary']['survive'])}/{len(adaptive)} environment laws survive GC; "
           f"not: {res['summary']['do_not_survive']}")
-    out = Path("results/gc_confound")
+    law_id = "gc_confound_v1" if key == "gc" else "gc3_confound_v1"
+    out = Path("results/gc_confound" if key == "gc" else "results/gc3_confound")
     out.mkdir(parents=True, exist_ok=True)
     (out / "metrics.json").write_text(json.dumps(res, indent=2))
-    save_law(LAWS_DIR / "gc_confound_v1.json", id="gc_confound_v1",
+    save_law(LAWS_DIR / f"{law_id}.json", id=law_id,
              scope="Whether the proteome-composition laws (temperature, salt, oxygen, nutrients, symbiont AT bias) survive genome GC content as a covariate.",
              model="Environment effect with and without GC (or change in GC) as a covariate; OLS and taxonomy rank GLS; leave-one-pair-out R^2.",
              feature_names=[], data={"prokaryotes": len(sp), "pairs": len(pp), "insect_endosymbionts": len(ss)},
@@ -140,7 +147,7 @@ def main():
              caveats=["Genome GC from NCBI assembly stats (organelles and symbionts counted from GenBank records).",
                       "GC is itself shaped by environment and lifestyle, so adding it can remove real effects (over-adjustment).",
                       "Taxonomy is a coarse stand-in for a sequence-based phylogeny."])
-    print(f"Done -> {out}/ and laws/gc_confound_v1.json")
+    print(f"Done -> {out}/ and laws/{law_id}.json")
 
 
 if __name__ == "__main__":
