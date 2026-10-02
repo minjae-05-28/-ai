@@ -138,6 +138,77 @@ def gene_content(res, prof, fams, names, x, c, epochs=300):
     res["gene_content"] = {"per_ancestor": rows, "validation_auroc": scores, "gut_commensals_tested": targets}
 
 
+def optimal_cell(res, prof, fams, names, x, c, epochs=300):
+    """The gene set the laws most favour at each body site: every family in the pool that the
+    law keeps (or gains) with probability above half, starting from a generic free-living cell."""
+    pairs = resolve_pairs(prof)
+    train = [(c[a], c[d], design(a, d)) for a, d in pairs]
+    law = fit_bd(x, train, LABELS, epochs=epochs)
+    meta = json.loads((ANN / "pfam_meta.json").read_text())
+    cats = [k for k, nm in enumerate(names) if nm.startswith(("go:", "kw:"))]
+    X_cat = x[:, cats]
+    free = [s for s in c if s not in HUMAN_TARGETS and s in SPECIES]
+    prevalence = np.mean([c[s] > 0 for s in free], axis=0)
+    typical = np.median([c[s][c[s] > 0].mean() for s in free])
+    pool = np.flatnonzero(prevalence >= 0.2)  # families real bacteria commonly carry
+    desc = lambda j: f"{fams[j]}: {meta.get(fams[j], {}).get('description', '')[:70]}"  # noqa: E731
+
+    def functions(sel):
+        if len(sel) == 0:
+            return []
+        fr = X_cat[sel].mean(0)
+        ratio = (fr + 0.01) / (X_cat[pool].mean(0) + 0.01)
+        return [(names[cats[k]], round(float(ratio[k]), 2)) for k in np.argsort(-ratio)[:8] if fr[k] >= 0.02]
+
+    out = {}
+    for site, env in HUMAN_SITES.items():
+        z = env_change(SPECIES["Bacillus subtilis"], env)
+        wl, wm, wn = law.weights(z)
+        a_lam = float(np.mean(law.a_lam))
+        n = np.full(len(fams), max(int(typical), 1))
+        p_loss = loss_probability(n, x, wl, wm, a_lam, offset_for_losses(n, x, wl, wm, a_lam, len(fams) * 0.3))
+        # size the cell by the law itself: it keeps the share of the pool the law expects to survive
+        order_loss = pool[np.argsort(p_loss[pool])]
+        n_keep = int(round(len(pool) * (1 - float(p_loss[pool].mean()))))
+        keep, drop = order_loss[:n_keep], order_loss[n_keep:]
+        growth = np.exp(np.exp(a_lam + x @ wl) - np.exp(np.mean(law.a_mu) + x @ wm))
+        order = keep[np.argsort(-growth[keep])]
+        out[site] = {
+            "pool_families": int(len(pool)), "kept_families": int(len(keep)),
+            "share_of_pool_kept": round(float(len(keep) / len(pool)), 3),
+            "functions_kept": functions(keep), "functions_dropped": functions(drop),
+            "most_favoured": [desc(j) for j in order[:15]],
+            "most_disfavoured": [desc(j) for j in pool[np.argsort(-p_loss[pool])][:15]],
+            "kept_in_most_free_living_too": int((prevalence[keep] > 0.5).sum()),
+            "kept_though_rare_in_free_living": [desc(j) for j in keep[prevalence[keep] < 0.2][:10]],
+        }
+        print(f"\n{site}: {len(keep)} of {len(pool)} common bacterial families ({len(keep) / len(pool):.0%}), "
+              f"vs a typical free-living bacterium's {int(np.median([(c[s] > 0).sum() for s in free]))}")
+        print("   favoured functions: " + ", ".join(f"{k} x{v}" for k, v in out[site]["functions_kept"][:5]))
+        print("   dropped functions:  " + ", ".join(f"{k} x{v}" for k, v in out[site]["functions_dropped"][:5]))
+        print("   top families: " + "; ".join(d.split(":")[0] for d in out[site]["most_favoured"][:8]))
+    # how the ideal gut cell compares with real gut commensals
+    gut = HUMAN_SITES["gut lumen (anaerobic, nutrient-rich)"]
+    z = env_change(SPECIES["Bacillus subtilis"], gut)
+    wl, wm, _ = law.weights(z)
+    a_lam = float(np.mean(law.a_lam))
+    n = np.full(len(fams), max(int(typical), 1))
+    p_loss = loss_probability(n, x, wl, wm, a_lam, offset_for_losses(n, x, wl, wm, a_lam, len(fams) * 0.3))
+    order_loss = pool[np.argsort(p_loss[pool])]
+    keep = set(order_loss[:int(round(len(pool) * (1 - float(p_loss[pool].mean()))))].tolist())
+    comp = {}
+    for t in HUMAN_TARGETS:
+        if t not in c:
+            continue
+        has = set(np.flatnonzero(c[t] > 0).tolist())
+        comp[t] = {"families": len(has), "shared_with_ideal": len(has & keep),
+                   "ideal_only": len(keep - has), "commensal_only": len(has - keep),
+                   "jaccard": round(len(has & keep) / max(len(has | keep), 1), 3)}
+        print(f"   vs {t:36s} shares {len(has & keep):4d}, ideal-only {len(keep - has):4d}, its own {len(has - keep):4d}")
+    out["vs_real_commensals"] = comp
+    res["optimal_cell"] = out
+
+
 def main():
     torch.set_num_threads(4)
     res = {"sites": {k: dict(zip(("group", "temp", "nacl", "aerobic", "radiation", "oligo"), v)) for k, v in HUMAN_SITES.items()},
@@ -150,6 +221,8 @@ def main():
     genome_size(res, prof)
     print("\n3. Gene content: soil bacterium -> gut, scored against real gut commensals")
     gene_content(res, prof, fams, names, x, c)
+    print("\n4. The cell the laws most favour at each body site")
+    optimal_cell(res, prof, fams, names, x, c)
     OUT.mkdir(parents=True, exist_ok=True)
     (OUT / "metrics.json").write_text(json.dumps(res, indent=2))
     save_law(LAWS_DIR / "human_cell_v1.json", id="human_cell_v1",
@@ -157,7 +230,7 @@ def main():
              model="Sequence law for composition, severity law for genome size, environment birth-death law for gene content; "
                    "commensals are never in a training pair.",
              feature_names=[], data={"commensals": sorted(set(HUMAN_TARGETS) & set(prof))},
-             validation={k: res[k] for k in ("composition", "genome_size", "gene_content") if k in res}, contexts={},
+             validation={k: res[k] for k in ("composition", "genome_size", "gene_content", "optimal_cell") if k in res}, contexts={},
              caveats=["Body sites are coarse: temperature, salt, oxygen and nutrient level only.",
                       "Host-specific pressures (immune system, mucus, host metabolites) are not in the model.",
                       "Commensal genomes are real but their habitat values are approximate."])

@@ -32,18 +32,6 @@
         "commensals": [],
         "errors": {}
       },
-      "mouth / dental plaque": {
-        "predicted": {
-          "ivywrel": 0.3956,
-          "cvp": 0.0254,
-          "acidic_excess": 0.0024,
-          "n_side": 0.3187
-        },
-        "observed_commensals": {},
-        "n_commensals": 0,
-        "commensals": [],
-        "errors": {}
-      },
       "blood and tissue (aerobic, nutrient-rich)": {
         "predicted": {
           "ivywrel": 0.3962,
@@ -148,6 +136,276 @@
       },
       "validation_auroc": {},
       "gut_commensals_tested": []
+    },
+    "optimal_cell": {
+      "gut lumen (anaerobic, nutrient-rich)": {
+        "pool_families": 3186,
+        "kept_families": 2721,
+        "share_of_pool_kept": 0.854,
+        "functions_kept": [
+          [
+            "go:catalytic activity, acting on RNA",
+            1.12
+          ],
+          [
+            "kw:helicase_nucleic",
+            1.12
+          ],
+          [
+            "go:amino acid metabolic process",
+            1.11
+          ]
+        ],
+        "functions_dropped": [
+          [
+            "kw:repeat_domain",
+            2.1
+          ],
+          [
+            "go:oxidoreductase activity",
+            2.09
+          ],
+          [
+            "kw:lipid_metabolism",
+            1.71
+          ],
+          [
+            "kw:protease",
+            1.45
+          ],
+          [
+            "go:transmembrane transport",
+            1.45
+          ],
+          [
+            "go:transporter activity",
+            1.34
+          ],
+          [
+            "kw:uncharacterised",
+            1.33
+          ]
+        ],
+        "most_favoured": [
+          "vATP-synt_E: ATP synthase (E/31 kDa) subunit",
+          "ATP-synt_ab_Xtn: ATPsynthase alpha/beta subunit barrel-sandwich domain",
+          "ATP-synt_I: ATP synthase I chain",
+          "vATP-synt_AC39: ATP synthase (C/AC39) subunit",
+          "ATP-synt_D: ATP synthase subunit D",
+          "ATP-synt_DE: ATP synthase, Delta/Epsilon chain, long alpha-helix domain",
+          "ATP-synt_ab: ATP synthase alpha/beta family, nucleotide-binding domain",
+          "ATP-synt_F: ATP synthase (F/14-kDa) subunit",
+          "Bac_DNA_binding: Bacterial DNA-binding protein",
+          "ATP-synt_B: ATP synthase B/B' CF(0)",
+          "OSCP: ATP synthase delta (OSCP) subunit",
+          "ATP-synt_A: ATP synthase A chain",
+          "ATP-synt_ab_N: ATP synthase alpha/beta family, beta-barrel domain",
+          "ATP-synt: ATP synthase",
+          "ATP-synt_VA_C: C-terminal domain of V and A type ATP synthase"
+        ],
+        "most_disfavoured": [
+          "Uma2: Putative restriction endonuclease",
+          "CarbopepD_reg_2: CarboxypepD_reg-like domain",
+          "TonB_dep_Rec_b-barrel: TonB dependent receptor-like, beta-barrel",
+          "TctC: Tripartite tricarboxylate transporter family receptor",
+          "CarboxypepD_reg: Carboxypeptidase regulatory-like domain",
+          "Transposase_mut: Transposase, Mutator family",
+          "Plug: TonB-dependent Receptor Plug Domain",
+          "Oxidored_nitro: Nitrogenase component 1 type Oxidoreductase",
+          "Porin_4: Gram-negative porin",
+          "ABC_tran: ABC transporter",
+          "HisKA_2: Histidine kinase",
+          "OMP_b-brl_3: Outer membrane protein beta-barrel family",
+          "TauD: Taurine catabolism dioxygenase TauD, TfdA family",
+          "Arabinose_bd: Arabinose-binding domain of AraC transcription regulator, N-term",
+          "OrfB_IS605: Probable transposase"
+        ],
+        "kept_in_most_free_living_too": 1594,
+        "kept_though_rare_in_free_living": []
+      },
+      "skin surface (aerobic, dry, nutrient-poor)": {
+        "pool_families": 3186,
+        "kept_families": 2674,
+        "share_of_pool_kept": 0.839,
+        "functions_kept": [
+          [
+            "kw:helicase_nucleic",
+            1.14
+          ],
+          [
+            "go:catalytic activity, acting on RNA",
+            1.13
+          ],
+          [
+            "go:amino acid metabolic process",
+            1.12
+          ],
+          [
+            "go:organelle",
+            1.12
+          ],
+          [
+            "go:ligase activity",
+            1.12
+          ]
+        ],
+        "functions_dropped": [
+          [
+            "kw:cilium_flagellum",
+            2.72
+          ],
+          [
+            "kw:repeat_domain",
+            2.06
+          ],
+          [
+            "go:regulation of DNA-templated transcription",
+            1.81
+          ],
+          [
+            "go:carbohydrate metabolic process",
+            1.81
+          ],
+          [
+            "go:transmembrane transport",
+            1.68
+          ],
+          [
+            "kw:methyl_glyco_transferase",
+            1.51
+          ],
+          [
+            "kw:transporter_channel",
+            1.48
+          ]
+        ],
+        "most_favoured": [
+          "CarbopepD_reg_2: CarboxypepD_reg-like domain",
+          "ABC_tran: ABC transporter",
+          "LysR_substrate: LysR substrate binding domain",
+          "GGDEF: Diguanylate cyclase, GGDEF domain",
+          "Response_reg: Response regulator receiver domain",
+          "MFS_1: Major Facilitator Superfamily",
+          "adh_short: short chain dehydrogenase",
+          "adh_short_C2: Enoyl-(Acyl carrier protein) reductase",
+          "Methyltransf_25: Methyltransferase domain",
+          "FAD_binding_2: FAD binding domain",
+          "KR: KR domain",
+          "Epimerase: NAD dependent epimerase/dehydratase family",
+          "Methyltransf_31: Methyltransferase domain",
+          "Radical_SAM: Radical SAM superfamily",
+          "TPR_8: Tetratricopeptide repeat"
+        ],
+        "most_disfavoured": [
+          "Transposase_mut: Transposase, Mutator family",
+          "Flagellin_N: Bacterial flagellin N-terminal helical region",
+          "Glyco_hydro_43: Glycosyl hydrolases family 43",
+          "FleQ: Flagellar regulatory protein FleQ",
+          "Porin_4: Gram-negative porin",
+          "FapA: Flagellar Assembly Protein A beta solenoid domain",
+          "HisKA_2: Histidine kinase",
+          "TctC: Tripartite tricarboxylate transporter family receptor",
+          "Flagellin_IN: Flagellin hook IN motif",
+          "PilZNR: Flagellar protein YcgR",
+          "OprB: Carbohydrate-selective porin, OprB family",
+          "Glyco_hydro_20: Glycosyl hydrolase family 20, catalytic domain",
+          "Glyco_hydro_18: Glycosyl hydrolases family 18",
+          "FapA_N: Flagellar Assembly Protein A N-terminal region",
+          "Glyco_hydro_2: Glycosyl hydrolases family 2"
+        ],
+        "kept_in_most_free_living_too": 1632,
+        "kept_though_rare_in_free_living": []
+      },
+      "blood and tissue (aerobic, nutrient-rich)": {
+        "pool_families": 3186,
+        "kept_families": 2678,
+        "share_of_pool_kept": 0.841,
+        "functions_kept": [
+          [
+            "kw:helicase_nucleic",
+            1.14
+          ],
+          [
+            "go:catalytic activity, acting on RNA",
+            1.13
+          ],
+          [
+            "go:amino acid metabolic process",
+            1.12
+          ],
+          [
+            "go:organelle",
+            1.12
+          ],
+          [
+            "go:ligase activity",
+            1.12
+          ]
+        ],
+        "functions_dropped": [
+          [
+            "kw:repeat_domain",
+            3.41
+          ],
+          [
+            "kw:transporter_channel",
+            2.17
+          ],
+          [
+            "go:transmembrane transport",
+            2.03
+          ],
+          [
+            "kw:methyl_glyco_transferase",
+            2.01
+          ],
+          [
+            "go:carbohydrate metabolic process",
+            1.61
+          ],
+          [
+            "go:transporter activity",
+            1.56
+          ]
+        ],
+        "most_favoured": [
+          "AAA_5: AAA domain (dynein-related subfamily)",
+          "Aldedh: Aldehyde dehydrogenase family",
+          "CbiA: CobQ/CobB/MinD/ParA nucleotide binding domain",
+          "DEAD: DEAD/DEAH box helicase",
+          "Fer4: 4Fe-4S binding domain",
+          "3Beta_HSD: 3-beta hydroxysteroid dehydrogenase/isomerase family",
+          "Lactamase_B: Metallo-beta-lactamase superfamily",
+          "AhpC-TSA: AhpC/TSA family",
+          "ATP-synt_ab: ATP synthase alpha/beta family, nucleotide-binding domain",
+          "Helicase_C: Helicase conserved C-terminal domain",
+          "RNA_pol_Rpb2_6: RNA polymerase Rpb2, domain 6",
+          "RNA_pol_Rpb1_5: RNA polymerase Rpb1, domain 5",
+          "RNA_pol_A_CTD: Bacterial RNA polymerase, alpha chain C terminal domain",
+          "RNA_pol_Rpb2_1: RNA polymerase beta subunit",
+          "RNA_pol_Rpb1_3: RNA polymerase Rpb1, domain 3"
+        ],
+        "most_disfavoured": [
+          "CarbopepD_reg_2: CarboxypepD_reg-like domain",
+          "TctC: Tripartite tricarboxylate transporter family receptor",
+          "Uma2: Putative restriction endonuclease",
+          "TonB_dep_Rec_b-barrel: TonB dependent receptor-like, beta-barrel",
+          "Plug: TonB-dependent Receptor Plug Domain",
+          "Transposase_mut: Transposase, Mutator family",
+          "Big_2: Bacterial Ig-like domain (group 2)",
+          "CarboxypepD_reg: Carboxypeptidase regulatory-like domain",
+          "Porin_4: Gram-negative porin",
+          "Cas12f1-like_TNB: Cas12f1-like, TNB domain",
+          "OrfB_IS605: Probable transposase",
+          "OMP_b-brl_3: Outer membrane protein beta-barrel family",
+          "Glyco_hydro_43: Glycosyl hydrolases family 43",
+          "TPR_4: Tetratricopeptide repeat",
+          "Arabinose_bd: Arabinose-binding domain of AraC transcription regulator, N-term"
+        ],
+        "kept_in_most_free_living_too": 1584,
+        "kept_though_rare_in_free_living": []
+      },
+      "vs_real_commensals": {}
     }
   },
   "contexts": {},

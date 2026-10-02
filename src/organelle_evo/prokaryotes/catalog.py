@@ -157,10 +157,10 @@ PAIR_SPECS_ROUND3 = [
 # Human-body commensals: validation targets for the human-body prediction (not in any pair,
 # so no law is fitted on them). Ordinary members of the healthy microbiome; the point is to
 # test whether laws learned elsewhere predict what host-associated cells actually look like.
+# Dental plaque is left out: on these four axes it is identical to the gut lumen.
 HUMAN_SITES = {
     "gut lumen (anaerobic, nutrient-rich)": Env("human", 37, 0.9, 0),
     "skin surface (aerobic, dry, nutrient-poor)": Env("human", 33, 2.0, 1, oligo=1),
-    "mouth / dental plaque": Env("human", 37, 0.9, 0),
     "blood and tissue (aerobic, nutrient-rich)": Env("human", 37, 0.9, 1),
 }
 
