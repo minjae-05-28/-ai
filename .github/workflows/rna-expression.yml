@@ -1,0 +1,102 @@
+name: RNA expression
+
+# Measured RNA expression of the free-living relatives (ancestor proxies): public Illumina
+# RNA-seq runs from ENA, quantified with salmon, mapped to Pfam families.
+# Commits data/expression/<catalog>/.
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/rna-expression.yml"
+      - "scripts/rna_expression.py"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: rna-expression
+  cancel-in-progress: false
+
+env:
+  PFAM_KEY: pfam-a-current-v1
+  SALMON: https://github.com/COMBINE-lab/salmon/releases/download/v1.10.0/salmon-1.10.0_linux_x86_64.tar.gz
+
+jobs:
+  plan:
+    runs-on: ubuntu-latest
+    outputs:
+      entries: ${{ steps.list.outputs.entries }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install numpy
+      - id: list
+        env:
+          PYTHONPATH: src
+        run: echo "entries=$(python scripts/rna_expression.py --list-missing)" >> "$GITHUB_OUTPUT"
+
+  quantify:
+    needs: plan
+    if: needs.plan.outputs.entries != '[]'
+    runs-on: ubuntu-latest
+    timeout-minutes: 300
+    strategy:
+      fail-fast: false
+      max-parallel: 20
+      matrix:
+        entry: ${{ fromJSON(needs.plan.outputs.entries) }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install pyhmmer numpy
+      - name: Install salmon
+        run: |
+          curl -sSL "$SALMON" -o salmon.tgz && tar xzf salmon.tgz
+          echo "$PWD/$(ls -d salmon-*linux_x86_64)/bin" >> "$GITHUB_PATH"
+      - uses: actions/cache/restore@v4
+        with:
+          path: pfam
+          key: ${{ env.PFAM_KEY }}
+          fail-on-cache-miss: true
+      - run: gunzip -kf pfam/Pfam-A.hmm.gz
+      - run: sudo mkdir -p /mnt/work && sudo chown "$USER" /mnt/work
+      - name: Expression of ${{ matrix.entry }}
+        env:
+          PYTHONPATH: src
+          RNA_TMP: /mnt/work
+        run: |
+          salmon --version
+          subset=""
+          case "${{ matrix.entry }}" in eukaryotes/*) subset="--families data/eukaryotes/pfam_subset.txt";; esac
+          python scripts/rna_expression.py --entry "${{ matrix.entry }}" --pfam pfam/Pfam-A.hmm $subset
+      - uses: actions/upload-artifact@v4
+        with:
+          name: expression-${{ strategy.job-index }}
+          path: data/expression
+
+  collect:
+    needs: [plan, quantify]
+    if: always() && needs.plan.result == 'success'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: expression-*
+          path: data/expression
+          merge-multiple: true
+      - name: Commit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -f data/expression
+          if git diff --cached --quiet; then echo "Nothing new."; else
+            git commit -m "Add RNA-seq expression of ancestor proxies"
+            for i in 1 2 3 4; do git pull --rebase origin main && git push origin HEAD:main && break; sleep $((i*5)); done
+          fi
