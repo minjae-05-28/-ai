@@ -129,8 +129,14 @@ def main():
                     print(f"  {r['run_accession']}: download failed")
                     continue
                 q = Path(tmp) / f"q_{r['run_accession']}"
-                subprocess.run(["salmon", "quant", "-i", f"{tmp}/idx", "-l", "A", "-r", str(fq), "-p", "4",
-                                "--validateMappings", "-o", str(q)], check=True, capture_output=True)
+                n = sum(1 for _ in fq.open("rb")) // 4 * 4  # a cut-off download can end mid-record
+                subprocess.run(["bash", "-c", f"head -n {n} '{fq}' > '{fq}.ok' && mv '{fq}.ok' '{fq}'"], check=True)
+                sq = subprocess.run(["salmon", "quant", "-i", f"{tmp}/idx", "-l", "A", "-r", str(fq), "-p", "4",
+                                     "--validateMappings", "-o", str(q)], capture_output=True, text=True)
+                if sq.returncode:
+                    print(f"  {r['run_accession']}: salmon failed: {sq.stderr.strip()[-300:]}")
+                    fq.unlink()
+                    continue
                 meta = json.loads((q / "aux_info" / "meta_info.json").read_text())
                 rate = meta.get("percent_mapped", 0)
                 print(f"  {r['run_accession']} ({r['study_accession']}): mapping rate {rate:.1f}%", flush=True)
