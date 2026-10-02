@@ -1,0 +1,76 @@
+name: Phenotypes
+
+# Measured knockout phenotypes (Fitness Browser, DEG, yeast deletion collections) and
+# protein abundance (PaxDb), mapped to Pfam families. Commits data/phenotypes/.
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/phenotypes.yml"
+      - "scripts/collect_phenotypes.py"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: phenotypes
+  cancel-in-progress: false
+
+env:
+  PFAM_URL: https://ftp.ebi.ac.uk/pub/databases/Pfam/current_release/Pfam-A.hmm.gz
+  PFAM_KEY: pfam-a-current-v1
+
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 340
+    strategy:
+      fail-fast: false
+      matrix:
+        source: [fitness, deg, yeast, pombe, paxdb]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install pyhmmer numpy
+      - uses: actions/cache/restore@v4
+        with:
+          path: pfam
+          key: ${{ env.PFAM_KEY }}
+          fail-on-cache-miss: true
+      - run: gunzip -kf pfam/Pfam-A.hmm.gz
+      - run: sudo mkdir -p /mnt/work && sudo chown "$USER" /mnt/work && df -h /mnt
+      - name: Collect ${{ matrix.source }}
+        env:
+          PYTHONPATH: src
+        run: python scripts/collect_phenotypes.py --source ${{ matrix.source }} --pfam pfam/Pfam-A.hmm --tmp /mnt/work
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: phenotypes-${{ matrix.source }}
+          path: data/phenotypes
+          if-no-files-found: ignore
+
+  commit:
+    needs: collect
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: phenotypes-*
+          path: data/phenotypes
+          merge-multiple: true
+      - name: Commit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -f data/phenotypes
+          if git diff --cached --quiet; then echo "Nothing new."; else
+            git commit -m "Add knockout phenotypes and protein abundance"
+            for i in 1 2 3 4; do git pull --rebase origin main && git push origin HEAD:main && break; sleep $((i*5)); done
+          fi
