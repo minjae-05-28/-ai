@@ -4,7 +4,18 @@
   "model": "Sequence law for composition, severity law for genome size, environment birth-death law for gene content; commensals are never in a training pair.",
   "feature_names": [],
   "data": {
-    "commensals": []
+    "commensals": [
+      "Akkermansia muciniphila",
+      "Bacteroides thetaiotaomicron",
+      "Bifidobacterium longum",
+      "Corynebacterium glutamicum",
+      "Cutibacterium acnes",
+      "Escherichia coli",
+      "Faecalibacterium prausnitzii",
+      "Lactobacillus crispatus",
+      "Staphylococcus epidermidis",
+      "Streptococcus salivarius"
+    ]
   },
   "validation": {
     "composition": {
@@ -15,10 +26,27 @@
           "acidic_excess": 0.0024,
           "n_side": 0.3187
         },
-        "observed_commensals": {},
-        "n_commensals": 0,
-        "commensals": [],
-        "errors": {}
+        "observed_commensals": {
+          "ivywrel": 0.3851,
+          "cvp": 0.0309,
+          "acidic_excess": 0.0123,
+          "n_side": 0.3381
+        },
+        "n_commensals": 6,
+        "commensals": [
+          "Bacteroides thetaiotaomicron",
+          "Bifidobacterium longum",
+          "Akkermansia muciniphila",
+          "Faecalibacterium prausnitzii",
+          "Streptococcus salivarius",
+          "Lactobacillus crispatus"
+        ],
+        "errors": {
+          "ivywrel": 0.0105,
+          "cvp": -0.0055,
+          "acidic_excess": -0.0099,
+          "n_side": -0.0194
+        }
       },
       "skin surface (aerobic, dry, nutrient-poor)": {
         "predicted": {
@@ -27,10 +55,23 @@
           "acidic_excess": 0.0045,
           "n_side": 0.3094
         },
-        "observed_commensals": {},
-        "n_commensals": 0,
-        "commensals": [],
-        "errors": {}
+        "observed_commensals": {
+          "ivywrel": 0.3924,
+          "cvp": 0.019,
+          "acidic_excess": 0.0234,
+          "n_side": 0.3322
+        },
+        "n_commensals": 2,
+        "commensals": [
+          "Staphylococcus epidermidis",
+          "Corynebacterium glutamicum"
+        ],
+        "errors": {
+          "ivywrel": -0.0032,
+          "cvp": 0.0279,
+          "acidic_excess": -0.0189,
+          "n_side": -0.0228
+        }
       },
       "blood and tissue (aerobic, nutrient-rich)": {
         "predicted": {
@@ -39,14 +80,38 @@
           "acidic_excess": 0.0136,
           "n_side": 0.3267
         },
-        "observed_commensals": {},
-        "n_commensals": 0,
-        "commensals": [],
-        "errors": {}
+        "observed_commensals": {
+          "ivywrel": 0.3933,
+          "cvp": 0.0143,
+          "acidic_excess": 0.0111,
+          "n_side": 0.3497
+        },
+        "n_commensals": 2,
+        "commensals": [
+          "Escherichia coli",
+          "Staphylococcus epidermidis"
+        ],
+        "errors": {
+          "ivywrel": 0.0029,
+          "cvp": 0.0269,
+          "acidic_excess": 0.0025,
+          "n_side": -0.023
+        }
       }
     },
     "genome_size": {
-      "commensal_genes": {},
+      "commensal_genes": {
+        "Bacteroides thetaiotaomicron": 4596,
+        "Bifidobacterium longum": 1871,
+        "Akkermansia muciniphila": 2344,
+        "Faecalibacterium prausnitzii": 2848,
+        "Escherichia coli": 5098,
+        "Cutibacterium acnes": 2304,
+        "Staphylococcus epidermidis": 2189,
+        "Corynebacterium glutamicum": 2925,
+        "Streptococcus salivarius": 1917,
+        "Lactobacillus crispatus": 1860
+      },
       "free_living_median": 3215.0,
       "severity_reference": {}
     },
@@ -59,12 +124,12 @@
             "TctC: Tripartite tricarboxylate transporter family receptor",
             "CarboxypepD_reg: Carboxypeptidase regulatory-like domain",
             "DUF4181: Domain of unknown function (DUF4181)",
-            "DUF5344: Family of unknown function (DUF5344)",
-            "ECF_trnsprt: ECF transporter, substrate-specific component",
             "TEN_YD-shell: Teneurin YD-shell",
+            "DUF5344: Family of unknown function (DUF5344)",
+            "LCAT: Lecithin:cholesterol acyltransferase",
             "DUF6044: Protein of unknown function (DUF6044)",
-            "CBM_35_2: Carbohydrate binding module (family 35)",
-            "DUF1093: Protein of unknown function (DUF1093)"
+            "4HB_MCP_1: Four helix bundle sensory module for signal transduction",
+            "ECF_trnsprt: ECF transporter, substrate-specific component"
           ],
           "most_likely_kept": [
             "MarR: MarR family",
@@ -74,35 +139,35 @@
             "Acetyltransf_7: Acetyltransferase (GNAT) domain",
             "HTH_27: Winged helix DNA-binding domain",
             "FR47: FR47-like protein",
+            "PP-binding: Phosphopantetheine attachment site",
             "Acetyltransf_10: Acetyltransferase (GNAT) domain",
-            "Sigma70_r4: Sigma-70, region 4",
             "tRNA-synt_2b: tRNA synthetase class II core domain (G, H, P, S and T)"
           ]
         },
         "Pseudomonas putida": {
           "families_today": 3156,
           "most_likely_lost": [
+            "Fimbrial: Fimbrial protein",
             "TctC: Tripartite tricarboxylate transporter family receptor",
             "FecR_C: FecR, C-terminal",
+            "PapD_C: Pili assembly chaperone PapD, C-terminal domain",
             "DUF3077: Protein of unknown function (DUF3077)",
-            "Fimbrial: Fimbrial protein",
+            "Arm-DNA-bind_1: Bacteriophage lambda integrase, Arm DNA-binding domain",
             "NEL: C-terminal novel E3 ligase, LRR-interacting",
             "PTS_EIIC: Phosphotransferase system, EIIC",
-            "LIP: Secretory lipase",
-            "YNCE: YNCE-like beta-propeller",
             "KshA_C: 3-Ketosteroid 9alpha-hydroxylase C-terminal domain",
-            "Autoind_bind: Autoinducer binding domain"
+            "LIP: Secretory lipase"
           ],
           "most_likely_kept": [
+            "AAA_5: AAA domain (dynein-related subfamily)",
             "BPD_transp_1: Binding-protein-dependent transport system inner membrane component",
             "SBP_bac_3: Bacterial extracellular solute-binding proteins, family 3",
-            "AAA_5: AAA domain (dynein-related subfamily)",
-            "Sigma54_activat: Sigma-54 interaction domain",
             "Cupin_2: Cupin domain",
+            "Sigma54_activat: Sigma-54 interaction domain",
             "Sigma70_r4_2: Sigma-70, region 4",
             "Sigma70_r4: Sigma-70, region 4",
-            "AraC_binding: AraC-like ligand binding domain",
             "Gln-synt_C: Glutamine synthetase, catalytic domain",
+            "AraC_binding: AraC-like ligand binding domain",
             "MMR_HSR1: 50S ribosome-binding GTPase"
           ]
         },
@@ -111,13 +176,13 @@
           "most_likely_lost": [
             "TctC: Tripartite tricarboxylate transporter family receptor",
             "MULE: MULE transposase domain",
-            "Lsr2_DNA-bd: Lsr2 DNA-binding domain",
-            "Whib: Transcription factor WhiB",
-            "WXG100: Proteins of 100 residues with WXG",
             "HisKA_2: Histidine kinase",
+            "WXG100: Proteins of 100 residues with WXG",
             "LIP: Secretory lipase",
-            "DUF885: Bacterial protein of unknown function (DUF885)",
             "HWE_HK: HWE histidine kinase",
+            "GST_N_2: Glutathione S-transferase, N-terminal domain",
+            "Lsr2_DNA-bd: Lsr2 DNA-binding domain",
+            "DUF885: Bacterial protein of unknown function (DUF885)",
             "Peripla_BP_1: Periplasmic binding proteins and sugar binding domain of LacI family"
           ],
           "most_likely_kept": [
@@ -130,60 +195,134 @@
             "ATP-synt_ab: ATP synthase alpha/beta family, nucleotide-binding domain",
             "tRNA-synt_2d: tRNA synthetases class II core domain (F)",
             "AAA_19: AAA domain",
-            "HTH_23: Homeodomain-like domain"
+            "GTP_EFTU_D2: Elongation factor Tu domain 2"
           ]
         }
       },
-      "validation_auroc": {},
-      "gut_commensals_tested": []
+      "validation_auroc": {
+        "Bacteroides thetaiotaomicron": {
+          "Bacillus subtilis": 0.8931925097845066,
+          "Bacillus subtilis (memorisation)": 0.930595505137248,
+          "Bacillus subtilis (rarity baseline)": 0.93714526706966,
+          "Pseudomonas putida": 0.8571700535137367,
+          "Pseudomonas putida (memorisation)": 0.91462643202663,
+          "Pseudomonas putida (rarity baseline)": 0.9229027065323387,
+          "Micrococcus luteus": 0.882926809409172,
+          "Micrococcus luteus (memorisation)": 0.9197846920469319,
+          "Micrococcus luteus (rarity baseline)": 0.9281630564881436
+        },
+        "Bifidobacterium longum": {
+          "Bacillus subtilis": 0.8644835480947145,
+          "Bacillus subtilis (memorisation)": 0.8981436143846482,
+          "Bacillus subtilis (rarity baseline)": 0.9105100994435287,
+          "Pseudomonas putida": 0.8426511576773593,
+          "Pseudomonas putida (memorisation)": 0.901305876443998,
+          "Pseudomonas putida (rarity baseline)": 0.9144491413075578,
+          "Micrococcus luteus": 0.8104706450377073,
+          "Micrococcus luteus (memorisation)": 0.8130120127842475,
+          "Micrococcus luteus (rarity baseline)": 0.8318761250505124
+        },
+        "Akkermansia muciniphila": {
+          "Bacillus subtilis": 0.8900544048465158,
+          "Bacillus subtilis (memorisation)": 0.9313202270958134,
+          "Bacillus subtilis (rarity baseline)": 0.9378282905201881,
+          "Pseudomonas putida": 0.8547787335696343,
+          "Pseudomonas putida (memorisation)": 0.9105571293905791,
+          "Pseudomonas putida (rarity baseline)": 0.9179785720412209,
+          "Micrococcus luteus": 0.8616520166547504,
+          "Micrococcus luteus (memorisation)": 0.9082207471877173,
+          "Micrococcus luteus (rarity baseline)": 0.9171901169939314
+        },
+        "Faecalibacterium prausnitzii": {
+          "Bacillus subtilis": 0.858665481948387,
+          "Bacillus subtilis (memorisation)": 0.8808200410478703,
+          "Bacillus subtilis (rarity baseline)": 0.8917089356639883,
+          "Pseudomonas putida": 0.8595414298929562,
+          "Pseudomonas putida (memorisation)": 0.9096556181445752,
+          "Pseudomonas putida (rarity baseline)": 0.9199387554513017,
+          "Micrococcus luteus": 0.8451052882988676,
+          "Micrococcus luteus (memorisation)": 0.89245267997532,
+          "Micrococcus luteus (rarity baseline)": 0.9070200077622753
+        },
+        "Streptococcus salivarius": {
+          "Bacillus subtilis": 0.8552973945736523,
+          "Bacillus subtilis (memorisation)": 0.8626295057861064,
+          "Bacillus subtilis (rarity baseline)": 0.8779825016743438,
+          "Pseudomonas putida": 0.8644134581634582,
+          "Pseudomonas putida (memorisation)": 0.9158712908712908,
+          "Pseudomonas putida (rarity baseline)": 0.9281881547506547,
+          "Micrococcus luteus": 0.8468386270095902,
+          "Micrococcus luteus (memorisation)": 0.8758547535891549,
+          "Micrococcus luteus (rarity baseline)": 0.8928887492864069
+        },
+        "Lactobacillus crispatus": {
+          "Bacillus subtilis": 0.8316384957462526,
+          "Bacillus subtilis (memorisation)": 0.8297862455306058,
+          "Bacillus subtilis (rarity baseline)": 0.8462691722005055,
+          "Pseudomonas putida": 0.8292019688028189,
+          "Pseudomonas putida (memorisation)": 0.8826692622539891,
+          "Pseudomonas putida (rarity baseline)": 0.8973723930730226,
+          "Micrococcus luteus": 0.8123594935853011,
+          "Micrococcus luteus (memorisation)": 0.8272190656489434,
+          "Micrococcus luteus (rarity baseline)": 0.8465350001328095
+        }
+      },
+      "gut_commensals_tested": [
+        "Bacteroides thetaiotaomicron",
+        "Bifidobacterium longum",
+        "Akkermansia muciniphila",
+        "Faecalibacterium prausnitzii",
+        "Streptococcus salivarius",
+        "Lactobacillus crispatus"
+      ]
     },
     "optimal_cell": {
       "gut lumen (anaerobic, nutrient-rich)": {
         "pool_families": 3186,
-        "kept_families": 2721,
-        "share_of_pool_kept": 0.854,
+        "kept_families": 2726,
+        "share_of_pool_kept": 0.856,
         "functions_kept": [
           [
             "go:catalytic activity, acting on RNA",
-            1.12
-          ],
-          [
-            "kw:helicase_nucleic",
-            1.12
+            1.11
           ],
           [
             "go:amino acid metabolic process",
+            1.11
+          ],
+          [
+            "kw:helicase_nucleic",
             1.11
           ]
         ],
         "functions_dropped": [
           [
-            "kw:repeat_domain",
-            2.1
+            "go:oxidoreductase activity",
+            2.06
           ],
           [
-            "go:oxidoreductase activity",
-            2.09
+            "kw:repeat_domain",
+            2.0
           ],
           [
             "kw:lipid_metabolism",
-            1.71
+            1.82
           ],
           [
             "kw:protease",
-            1.45
-          ],
-          [
-            "go:transmembrane transport",
-            1.45
-          ],
-          [
-            "go:transporter activity",
-            1.34
+            1.46
           ],
           [
             "kw:uncharacterised",
-            1.33
+            1.41
+          ],
+          [
+            "go:transmembrane transport",
+            1.39
+          ],
+          [
+            "kw:transporter_channel",
+            1.38
           ]
         ],
         "most_favoured": [
@@ -198,35 +337,35 @@
           "Bac_DNA_binding: Bacterial DNA-binding protein",
           "ATP-synt_B: ATP synthase B/B' CF(0)",
           "OSCP: ATP synthase delta (OSCP) subunit",
-          "ATP-synt_A: ATP synthase A chain",
           "ATP-synt_ab_N: ATP synthase alpha/beta family, beta-barrel domain",
+          "ATP-synt_A: ATP synthase A chain",
           "ATP-synt: ATP synthase",
           "ATP-synt_VA_C: C-terminal domain of V and A type ATP synthase"
         ],
         "most_disfavoured": [
           "Uma2: Putative restriction endonuclease",
-          "CarbopepD_reg_2: CarboxypepD_reg-like domain",
-          "TonB_dep_Rec_b-barrel: TonB dependent receptor-like, beta-barrel",
           "TctC: Tripartite tricarboxylate transporter family receptor",
+          "TonB_dep_Rec_b-barrel: TonB dependent receptor-like, beta-barrel",
+          "CarbopepD_reg_2: CarboxypepD_reg-like domain",
           "CarboxypepD_reg: Carboxypeptidase regulatory-like domain",
-          "Transposase_mut: Transposase, Mutator family",
           "Plug: TonB-dependent Receptor Plug Domain",
           "Oxidored_nitro: Nitrogenase component 1 type Oxidoreductase",
           "Porin_4: Gram-negative porin",
-          "ABC_tran: ABC transporter",
-          "HisKA_2: Histidine kinase",
+          "Transposase_mut: Transposase, Mutator family",
           "OMP_b-brl_3: Outer membrane protein beta-barrel family",
           "TauD: Taurine catabolism dioxygenase TauD, TfdA family",
+          "ABC_tran: ABC transporter",
+          "HisKA_2: Histidine kinase",
           "Arabinose_bd: Arabinose-binding domain of AraC transcription regulator, N-term",
           "OrfB_IS605: Probable transposase"
         ],
-        "kept_in_most_free_living_too": 1594,
+        "kept_in_most_free_living_too": 1600,
         "kept_though_rare_in_free_living": []
       },
       "skin surface (aerobic, dry, nutrient-poor)": {
         "pool_families": 3186,
-        "kept_families": 2674,
-        "share_of_pool_kept": 0.839,
+        "kept_families": 2659,
+        "share_of_pool_kept": 0.835,
         "functions_kept": [
           [
             "kw:helicase_nucleic",
@@ -238,7 +377,7 @@
           ],
           [
             "go:amino acid metabolic process",
-            1.12
+            1.13
           ],
           [
             "go:organelle",
@@ -252,78 +391,78 @@
         "functions_dropped": [
           [
             "kw:cilium_flagellum",
-            2.72
+            2.65
           ],
           [
             "kw:repeat_domain",
-            2.06
+            2.11
           ],
           [
             "go:regulation of DNA-templated transcription",
-            1.81
-          ],
-          [
-            "go:carbohydrate metabolic process",
-            1.81
+            1.93
           ],
           [
             "go:transmembrane transport",
-            1.68
+            1.78
+          ],
+          [
+            "go:carbohydrate metabolic process",
+            1.77
           ],
           [
             "kw:methyl_glyco_transferase",
-            1.51
+            1.64
           ],
           [
             "kw:transporter_channel",
-            1.48
+            1.58
           ]
         ],
         "most_favoured": [
           "CarbopepD_reg_2: CarboxypepD_reg-like domain",
           "ABC_tran: ABC transporter",
-          "LysR_substrate: LysR substrate binding domain",
-          "GGDEF: Diguanylate cyclase, GGDEF domain",
-          "Response_reg: Response regulator receiver domain",
-          "MFS_1: Major Facilitator Superfamily",
           "adh_short: short chain dehydrogenase",
-          "adh_short_C2: Enoyl-(Acyl carrier protein) reductase",
           "Methyltransf_25: Methyltransferase domain",
           "FAD_binding_2: FAD binding domain",
-          "KR: KR domain",
           "Epimerase: NAD dependent epimerase/dehydratase family",
+          "TPR_8: Tetratricopeptide repeat",
           "Methyltransf_31: Methyltransferase domain",
-          "Radical_SAM: Radical SAM superfamily",
-          "TPR_8: Tetratricopeptide repeat"
+          "TPR_16: Tetratricopeptide repeat",
+          "Pyr_redox_2: Pyridine nucleotide-disulphide oxidoreductase",
+          "TPR_19: Tetratricopeptide repeat",
+          "NAD_binding_8: NAD(P)-binding Rossmann-like domain",
+          "BPD_transp_1: Binding-protein-dependent transport system inner membrane component",
+          "Aminotran_1_2: Aminotransferase class I and II",
+          "Methyltransf_12: Methyltransferase domain"
         ],
         "most_disfavoured": [
           "Transposase_mut: Transposase, Mutator family",
           "Flagellin_N: Bacterial flagellin N-terminal helical region",
           "Glyco_hydro_43: Glycosyl hydrolases family 43",
-          "FleQ: Flagellar regulatory protein FleQ",
-          "Porin_4: Gram-negative porin",
-          "FapA: Flagellar Assembly Protein A beta solenoid domain",
-          "HisKA_2: Histidine kinase",
-          "TctC: Tripartite tricarboxylate transporter family receptor",
-          "Flagellin_IN: Flagellin hook IN motif",
-          "PilZNR: Flagellar protein YcgR",
-          "OprB: Carbohydrate-selective porin, OprB family",
           "Glyco_hydro_20: Glycosyl hydrolase family 20, catalytic domain",
+          "Porin_4: Gram-negative porin",
+          "TctC: Tripartite tricarboxylate transporter family receptor",
+          "Glyco_hydro_2: Glycosyl hydrolases family 2",
+          "FleQ: Flagellar regulatory protein FleQ",
+          "FapA: Flagellar Assembly Protein A beta solenoid domain",
+          "OprB: Carbohydrate-selective porin, OprB family",
           "Glyco_hydro_18: Glycosyl hydrolases family 18",
-          "FapA_N: Flagellar Assembly Protein A N-terminal region",
-          "Glyco_hydro_2: Glycosyl hydrolases family 2"
+          "HisKA_2: Histidine kinase",
+          "Glyco_hydro_2_N: Glycosyl hydrolases family 2, sugar binding domain",
+          "Flagellin_IN: Flagellin hook IN motif",
+          "Glyco_hydro_2_C: Glycosyl hydrolases family 2, TIM barrel domain"
         ],
-        "kept_in_most_free_living_too": 1632,
+        "kept_in_most_free_living_too": 1607,
         "kept_though_rare_in_free_living": []
       },
       "blood and tissue (aerobic, nutrient-rich)": {
         "pool_families": 3186,
-        "kept_families": 2678,
-        "share_of_pool_kept": 0.841,
+        "kept_families": 2677,
+        "share_of_pool_kept": 0.84,
         "functions_kept": [
           [
             "kw:helicase_nucleic",
-            1.14
+            1.13
           ],
           [
             "go:catalytic activity, acting on RNA",
@@ -345,7 +484,7 @@
         "functions_dropped": [
           [
             "kw:repeat_domain",
-            3.41
+            3.51
           ],
           [
             "kw:transporter_channel",
@@ -353,37 +492,41 @@
           ],
           [
             "go:transmembrane transport",
-            2.03
+            2.1
           ],
           [
             "kw:methyl_glyco_transferase",
-            2.01
+            1.96
+          ],
+          [
+            "go:transporter activity",
+            1.66
           ],
           [
             "go:carbohydrate metabolic process",
             1.61
           ],
           [
-            "go:transporter activity",
-            1.56
+            "go:regulation of DNA-templated transcription",
+            1.49
           ]
         ],
         "most_favoured": [
           "AAA_5: AAA domain (dynein-related subfamily)",
-          "Aldedh: Aldehyde dehydrogenase family",
-          "CbiA: CobQ/CobB/MinD/ParA nucleotide binding domain",
-          "DEAD: DEAD/DEAH box helicase",
-          "Fer4: 4Fe-4S binding domain",
-          "3Beta_HSD: 3-beta hydroxysteroid dehydrogenase/isomerase family",
-          "Lactamase_B: Metallo-beta-lactamase superfamily",
-          "AhpC-TSA: AhpC/TSA family",
           "ATP-synt_ab: ATP synthase alpha/beta family, nucleotide-binding domain",
-          "Helicase_C: Helicase conserved C-terminal domain",
           "RNA_pol_Rpb2_6: RNA polymerase Rpb2, domain 6",
           "RNA_pol_Rpb1_5: RNA polymerase Rpb1, domain 5",
-          "RNA_pol_A_CTD: Bacterial RNA polymerase, alpha chain C terminal domain",
           "RNA_pol_Rpb2_1: RNA polymerase beta subunit",
-          "RNA_pol_Rpb1_3: RNA polymerase Rpb1, domain 3"
+          "RNA_pol_L: RNA polymerase Rpb3/Rpb11 dimerisation domain",
+          "RNA_pol_Rpb1_3: RNA polymerase Rpb1, domain 3",
+          "RNA_pol_A_CTD: Bacterial RNA polymerase, alpha chain C terminal domain",
+          "RNA_pol_Rpb2_7: RNA polymerase Rpb2, domain 7",
+          "RNA_pol_Rpb6: RNA polymerase Rpb6",
+          "RNA_pol_Rpb1_2: RNA polymerase Rpb1, domain 2",
+          "RNA_pol_Rpb2_3: RNA polymerase Rpb2, domain 3",
+          "RNA_pol_Rpb1_1: RNA polymerase Rpb1, domain 1",
+          "RNA_pol_Rpb1_4: RNA polymerase Rpb1, domain 4",
+          "RNA_pol_Rpb2_2: RNA polymerase Rpb2, domain 2"
         ],
         "most_disfavoured": [
           "CarbopepD_reg_2: CarboxypepD_reg-like domain",
@@ -391,21 +534,92 @@
           "Uma2: Putative restriction endonuclease",
           "TonB_dep_Rec_b-barrel: TonB dependent receptor-like, beta-barrel",
           "Plug: TonB-dependent Receptor Plug Domain",
-          "Transposase_mut: Transposase, Mutator family",
-          "Big_2: Bacterial Ig-like domain (group 2)",
           "CarboxypepD_reg: Carboxypeptidase regulatory-like domain",
-          "Porin_4: Gram-negative porin",
-          "Cas12f1-like_TNB: Cas12f1-like, TNB domain",
-          "OrfB_IS605: Probable transposase",
-          "OMP_b-brl_3: Outer membrane protein beta-barrel family",
+          "Transposase_mut: Transposase, Mutator family",
           "Glyco_hydro_43: Glycosyl hydrolases family 43",
-          "TPR_4: Tetratricopeptide repeat",
-          "Arabinose_bd: Arabinose-binding domain of AraC transcription regulator, N-term"
+          "Porin_4: Gram-negative porin",
+          "Big_2: Bacterial Ig-like domain (group 2)",
+          "OMP_b-brl_3: Outer membrane protein beta-barrel family",
+          "ABC_tran: ABC transporter",
+          "Glyco_hydro_20: Glycosyl hydrolase family 20, catalytic domain",
+          "Cas12f1-like_TNB: Cas12f1-like, TNB domain",
+          "OrfB_IS605: Probable transposase"
         ],
-        "kept_in_most_free_living_too": 1584,
+        "kept_in_most_free_living_too": 1578,
         "kept_though_rare_in_free_living": []
       },
-      "vs_real_commensals": {}
+      "vs_real_commensals": {
+        "Bacteroides thetaiotaomicron": {
+          "families": 2712,
+          "shared_with_ideal": 1624,
+          "ideal_only": 1102,
+          "commensal_only": 1088,
+          "jaccard": 0.426
+        },
+        "Bifidobacterium longum": {
+          "families": 1601,
+          "shared_with_ideal": 1215,
+          "ideal_only": 1511,
+          "commensal_only": 386,
+          "jaccard": 0.39
+        },
+        "Akkermansia muciniphila": {
+          "families": 1740,
+          "shared_with_ideal": 1376,
+          "ideal_only": 1350,
+          "commensal_only": 364,
+          "jaccard": 0.445
+        },
+        "Faecalibacterium prausnitzii": {
+          "families": 1972,
+          "shared_with_ideal": 1407,
+          "ideal_only": 1319,
+          "commensal_only": 565,
+          "jaccard": 0.428
+        },
+        "Escherichia coli": {
+          "families": 3625,
+          "shared_with_ideal": 2105,
+          "ideal_only": 621,
+          "commensal_only": 1520,
+          "jaccard": 0.496
+        },
+        "Cutibacterium acnes": {
+          "families": 1814,
+          "shared_with_ideal": 1388,
+          "ideal_only": 1338,
+          "commensal_only": 426,
+          "jaccard": 0.44
+        },
+        "Staphylococcus epidermidis": {
+          "families": 1982,
+          "shared_with_ideal": 1477,
+          "ideal_only": 1249,
+          "commensal_only": 505,
+          "jaccard": 0.457
+        },
+        "Corynebacterium glutamicum": {
+          "families": 2094,
+          "shared_with_ideal": 1518,
+          "ideal_only": 1208,
+          "commensal_only": 576,
+          "jaccard": 0.46
+        },
+        "Streptococcus salivarius": {
+          "families": 1793,
+          "shared_with_ideal": 1322,
+          "ideal_only": 1404,
+          "commensal_only": 471,
+          "jaccard": 0.414
+        },
+        "Lactobacillus crispatus": {
+          "families": 1557,
+          "shared_with_ideal": 1131,
+          "ideal_only": 1595,
+          "commensal_only": 426,
+          "jaccard": 0.359
+        }
+      }
     }
   },
   "contexts": {},
