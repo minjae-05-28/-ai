@@ -118,6 +118,104 @@
           ]
         }
       }
+    },
+    "context_parasites": {
+      "n_rows": 79,
+      "n_units": 11,
+      "unit": "clade",
+      "stats": {
+        "law_base": {
+          "estimate": 0.7607,
+          "ci95": [
+            0.7283,
+            0.7835
+          ]
+        },
+        "law_context": {
+          "estimate": 0.766,
+          "ci95": [
+            0.7331,
+            0.7875
+          ]
+        },
+        "memorisation": {
+          "estimate": 0.7978,
+          "ci95": [
+            0.7599,
+            0.8187
+          ]
+        },
+        "combined_s3": {
+          "estimate": 0.8079,
+          "ci95": [
+            0.7707,
+            0.8326
+          ]
+        },
+        "law_context - law_base": {
+          "estimate": 0.0054,
+          "ci95": [
+            0.0026,
+            0.0087
+          ]
+        },
+        "combined_s3 - memorisation": {
+          "estimate": 0.0101,
+          "ci95": [
+            0.0016,
+            0.0188
+          ]
+        }
+      }
+    },
+    "context_extremophiles": {
+      "n_rows": 40,
+      "n_units": 40,
+      "unit": "pair",
+      "stats": {
+        "law_base": {
+          "estimate": 0.8191,
+          "ci95": [
+            0.8058,
+            0.8315
+          ]
+        },
+        "law_context": {
+          "estimate": 0.8232,
+          "ci95": [
+            0.8108,
+            0.8341
+          ]
+        },
+        "memorisation": {
+          "estimate": 0.844,
+          "ci95": [
+            0.8242,
+            0.8626
+          ]
+        },
+        "combined_s3": {
+          "estimate": 0.8605,
+          "ci95": [
+            0.8432,
+            0.876
+          ]
+        },
+        "law_context - law_base": {
+          "estimate": 0.0041,
+          "ci95": [
+            0.0011,
+            0.0069
+          ]
+        },
+        "combined_s3 - memorisation": {
+          "estimate": 0.0165,
+          "ci95": [
+            0.0092,
+            0.0254
+          ]
+        }
+      }
     }
   },
   "fdr": {

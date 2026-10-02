@@ -328,30 +328,24 @@ SPECIES.update({
     "Ipomoea triloba": _free("streptophyta"),
     "Cuscuta campestris": _par("streptophyta", EXTRA, AEROBIC),
     "Cuscuta australis": _par("streptophyta", EXTRA, AEROBIC),
-    # Rhizaria: chlorarachniophyte as the free-living proxy for Plasmodiophora
-    "Bigelowiella natans": _free("rhizaria"),
     # More nematodes and flatworms
-    "Ascaris suum": _par("nematoda", EXTRA, AEROBIC),
     "Toxocara canis": _par("nematoda", EXTRA, AEROBIC),
-    "Onchocerca volvulus": _par("nematoda", EXTRA, AEROBIC),
     "Necator americanus": _par("nematoda", EXTRA, AEROBIC),
     "Opisthorchis viverrini": _par("platyhelminthes", EXTRA, AEROBIC),
     "Schistosoma haematobium": _par("platyhelminthes", EXTRA, AEROBIC),
-    # More oomycetes (obligate biotrophs)
-    "Hyaloperonospora arabidopsidis": _par("stramenopiles", EXTRA, AEROBIC),
-    "Albugo laibachii": _par("stramenopiles", EXTRA, AEROBIC),
 })
 
+# Removed after Pfam profiling found no annotated NCBI assembly (October 2026):
+# Bigelowiella natans, Ascaris suum, Onchocerca volvulus, Hyaloperonospora arabidopsidis,
+# Albugo laibachii.
 _MITE_PROXY = ("Galendromus occidentalis", "Tetranychus urticae")
 PAIR_SPECS += [
     *[(_MITE_PROXY, sp) for sp in ("Varroa destructor", "Ixodes scapularis", "Sarcoptes scabiei")],
     (("Halyomorpha halys",), "Cimex lectularius"),
     (("Tigriopus californicus",), "Lepeophtheirus salmonis"),
     *[(("Ipomoea nil", "Ipomoea triloba"), sp) for sp in ("Cuscuta campestris", "Cuscuta australis")],
-    (("Bigelowiella natans",), "Plasmodiophora brassicae"),
-    *[(("Caenorhabditis elegans",), sp) for sp in ("Ascaris suum", "Toxocara canis", "Onchocerca volvulus", "Necator americanus")],
+    *[(("Caenorhabditis elegans",), sp) for sp in ("Toxocara canis", "Necator americanus")],
     *[(_FLATWORM_PROXY, sp) for sp in ("Opisthorchis viverrini", "Schistosoma haematobium")],
-    *[(("Thalassiosira pseudonana",), sp) for sp in ("Hyaloperonospora arabidopsidis", "Albugo laibachii")],
     # controls
     (("Galendromus occidentalis",), "Tetranychus urticae"),
     (("Ipomoea nil",), "Ipomoea triloba"),

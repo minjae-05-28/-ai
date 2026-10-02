@@ -30,7 +30,13 @@
         1.0,
         70
       ],
-      "survives_tree": true
+      "survives_tree": true,
+      "bootstrap_trees": {
+        "n": 20,
+        "share_surviving": 1.0,
+        "median_p": 3.127043006517173e-11,
+        "max_p": 8.55965535745602e-11
+      }
     },
     "cvp_vs_temperature": {
       "n": 70,
@@ -55,7 +61,13 @@
         1.0,
         70
       ],
-      "survives_tree": true
+      "survives_tree": true,
+      "bootstrap_trees": {
+        "n": 20,
+        "share_surviving": 1.0,
+        "median_p": 4.194228372080152e-09,
+        "max_p": 1.1138804705274087e-08
+      }
     },
     "acidic_vs_salt": {
       "n": 70,
@@ -80,7 +92,13 @@
         1.0,
         70
       ],
-      "survives_tree": true
+      "survives_tree": true,
+      "bootstrap_trees": {
+        "n": 20,
+        "share_surviving": 1.0,
+        "median_p": 1.0380241546348439e-08,
+        "max_p": 1.9066256746495333e-08
+      }
     },
     "nitrogen_vs_oligotrophy": {
       "n": 70,
@@ -105,7 +123,13 @@
         1.0,
         70
       ],
-      "survives_tree": true
+      "survives_tree": true,
+      "bootstrap_trees": {
+        "n": 20,
+        "share_surviving": 1.0,
+        "median_p": 0.025298117866146823,
+        "max_p": 0.03062683485090932
+      }
     },
     "fymink_vs_anoxia": {
       "n": 70,
@@ -130,7 +154,13 @@
         1.0,
         70
       ],
-      "survives_tree": true
+      "survives_tree": true,
+      "bootstrap_trees": {
+        "n": 20,
+        "share_surviving": 1.0,
+        "median_p": 0.02055693902857112,
+        "max_p": 0.026099472384657832
+      }
     },
     "regulator_scaling": {
       "n": 70,
@@ -155,7 +185,13 @@
         1.0,
         70
       ],
-      "survives_tree": true
+      "survives_tree": true,
+      "bootstrap_trees": {
+        "n": 20,
+        "share_surviving": 1.0,
+        "median_p": 1.681606316438704e-29,
+        "max_p": 4.9266851770768436e-29
+      }
     },
     "symbiont_fymink_vs_size": {
       "n": 13,
@@ -180,7 +216,13 @@
         1.0,
         12
       ],
-      "survives_tree": false
+      "survives_tree": false,
+      "bootstrap_trees": {
+        "n": 20,
+        "share_surviving": 0.0,
+        "median_p": 0.062457392230232445,
+        "max_p": 0.10849529632799931
+      }
     },
     "severity_parasite": {
       "n": 99,
@@ -205,7 +247,13 @@
         1.0,
         99
       ],
-      "survives_tree": true
+      "survives_tree": true,
+      "bootstrap_trees": {
+        "n": 20,
+        "share_surviving": 1.0,
+        "median_p": 1.5887810957283454e-07,
+        "max_p": 3.262329131839069e-07
+      }
     },
     "severity_intracellular": {
       "n": 99,
@@ -230,7 +278,13 @@
         1.0,
         99
       ],
-      "survives_tree": false
+      "survives_tree": false,
+      "bootstrap_trees": {
+        "n": 20,
+        "share_surviving": 0.0,
+        "median_p": 0.687427355474584,
+        "max_p": 0.8182440257600279
+      }
     },
     "severity_reduced_mitochondria": {
       "n": 99,
@@ -255,7 +309,13 @@
         1.0,
         99
       ],
-      "survives_tree": true
+      "survives_tree": true,
+      "bootstrap_trees": {
+        "n": 20,
+        "share_surviving": 1.0,
+        "median_p": 0.0052323468572973994,
+        "max_p": 0.0101227758883444
+      }
     },
     "pair_ivywrel_colder": {
       "n": 43,
@@ -280,7 +340,13 @@
         1.0,
         43
       ],
-      "survives_tree": true
+      "survives_tree": true,
+      "bootstrap_trees": {
+        "n": 20,
+        "share_surviving": 1.0,
+        "median_p": 4.785950626462223e-06,
+        "max_p": 9.047927180168154e-06
+      }
     },
     "pair_cvp_colder": {
       "n": 43,
@@ -305,7 +371,13 @@
         0.9500000000000001,
         43
       ],
-      "survives_tree": true
+      "survives_tree": true,
+      "bootstrap_trees": {
+        "n": 20,
+        "share_surviving": 1.0,
+        "median_p": 4.70199871393776e-07,
+        "max_p": 9.309163527738352e-07
+      }
     },
     "pair_acidic_excess_saltier": {
       "n": 43,
@@ -330,7 +402,13 @@
         0.9750000000000001,
         43
       ],
-      "survives_tree": true
+      "survives_tree": true,
+      "bootstrap_trees": {
+        "n": 20,
+        "share_surviving": 1.0,
+        "median_p": 3.838325779598244e-05,
+        "max_p": 7.773230311051831e-05
+      }
     },
     "pair_fymink_anaerobic": {
       "n": 43,
@@ -355,7 +433,13 @@
         0.0,
         43
       ],
-      "survives_tree": true
+      "survives_tree": true,
+      "bootstrap_trees": {
+        "n": 20,
+        "share_surviving": 1.0,
+        "median_p": 0.0022533936951719393,
+        "max_p": 0.0029815277210417045
+      }
     }
   },
   "contexts": {},
