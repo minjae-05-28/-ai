@@ -241,7 +241,15 @@ def pombe(pfam, tmp):
     url = pep if pep.startswith("http") else base + "genome_sequence_and_features/fasta_format/" + pep
     raw = get(url)
     raw = gzip.decompress(raw) if raw[:2] == b"\x1f\x8b" else raw
-    seqs = {k.split(":")[0]: v.rstrip("*") for k, v in fasta(raw.decode()).items()}
+    known = viable | inviable
+    print(f"PHAF: {len(viable)} viable, {len(inviable)} inviable deletions; e.g. {sorted(known)[:3]}")
+    seqs = {}
+    for k, v in fasta(raw.decode()).items():
+        g = k.split()[0].split(":")[0]
+        if g not in known and g.rsplit(".", 1)[0] in known:  # peptide ids carry a transcript suffix (.1)
+            g = g.rsplit(".", 1)[0]
+        seqs.setdefault(g, v.rstrip("*"))
+    print(f"peptides: {len(seqs)}, e.g. {list(seqs)[:3]}; matched {len(known & set(seqs))}")
     fams = families_of(seqs, pfam)
     genes = {g: [fams.get(g, []), int(g in inviable), int(g in viable and g not in inviable)] for g in seqs if g in viable | inviable}
     (OUT / "pombe").mkdir(parents=True, exist_ok=True)
