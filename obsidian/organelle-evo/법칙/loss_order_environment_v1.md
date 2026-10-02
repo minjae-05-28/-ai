@@ -21,14 +21,14 @@ Order of gene-family loss when bacteria and archaea move to extreme environments
 Nestedness against row-fixed and fixed-fixed (curveball) nulls.
 
 ## 검증
-- lineages: 21
-- genes: 142
-- containment: 0.164
-- row_null_mean: 0.131
-- row_null_z: 2.178
-- fixed_null_mean: 0.135
-- fixed_null_z: 2.0
-- fixed_null_p: 0.02
+- lineages: 57
+- genes: 112
+- containment: 0.085
+- row_null_mean: 0.073
+- row_null_z: 2.559
+- fixed_null_mean: 0.08
+- fixed_null_z: 1.307
+- fixed_null_p: 0.09
 
 ## 한계
 - Uses only families present in every relative.

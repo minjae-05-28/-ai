@@ -30,6 +30,7 @@ OLS vs PGLS (Pagel's lambda) vs rank GLS on NCBI taxonomy.
   - survives: True
   - tree_pgls: `[0.000764916814474806, 2.847373604326506e-11, 1.0, 70]`
   - survives_tree: True
+  - bootstrap_trees: `{"n": 20, "share_surviving": 1.0, "median_p": 3.127043006517173e-11, "max_p": 8.55965535745602e-11}`
 - cvp_vs_temperature:
   - n: 70
   - ols: `[0.0016456034228139974, 7.939292914853843e-12]`
@@ -39,6 +40,7 @@ OLS vs PGLS (Pagel's lambda) vs rank GLS on NCBI taxonomy.
   - survives: True
   - tree_pgls: `[0.0012055621674759269, 3.3162650114876e-09, 1.0, 70]`
   - survives_tree: True
+  - bootstrap_trees: `{"n": 20, "share_surviving": 1.0, "median_p": 4.194228372080152e-09, "max_p": 1.1138804705274087e-08}`
 - acidic_vs_salt:
   - n: 70
   - ols: `[0.002949472322582756, 2.4769459203940413e-18]`
@@ -48,6 +50,7 @@ OLS vs PGLS (Pagel's lambda) vs rank GLS on NCBI taxonomy.
   - survives: True
   - tree_pgls: `[0.001864410869771614, 1.2537245159808267e-08, 1.0, 70]`
   - survives_tree: True
+  - bootstrap_trees: `{"n": 20, "share_surviving": 1.0, "median_p": 1.0380241546348439e-08, "max_p": 1.9066256746495333e-08}`
 - nitrogen_vs_oligotrophy:
   - n: 70
   - ols: `[-0.004206671874999986, 0.702203192820845]`
@@ -57,6 +60,7 @@ OLS vs PGLS (Pagel's lambda) vs rank GLS on NCBI taxonomy.
   - survives: True
   - tree_pgls: `[-0.01913259018913508, 0.024274549278638792, 1.0, 70]`
   - survives_tree: True
+  - bootstrap_trees: `{"n": 20, "share_surviving": 1.0, "median_p": 0.025298117866146823, "max_p": 0.03062683485090932}`
 - fymink_vs_anoxia:
   - n: 70
   - ols: `[0.05557516194331986, 0.004953320715856638]`
@@ -66,6 +70,7 @@ OLS vs PGLS (Pagel's lambda) vs rank GLS on NCBI taxonomy.
   - survives: True
   - tree_pgls: `[0.061440604766459135, 0.018886622060614564, 1.0, 70]`
   - survives_tree: True
+  - bootstrap_trees: `{"n": 20, "share_surviving": 1.0, "median_p": 0.02055693902857112, "max_p": 0.026099472384657832}`
 - regulator_scaling:
   - n: 70
   - ols: `[2.0262862926128147, 5.677340081991301e-25]`
@@ -75,6 +80,7 @@ OLS vs PGLS (Pagel's lambda) vs rank GLS on NCBI taxonomy.
   - survives: True
   - tree_pgls: `[1.7460377680778367, 2.5058657388084773e-29, 1.0, 70]`
   - survives_tree: True
+  - bootstrap_trees: `{"n": 20, "share_surviving": 1.0, "median_p": 1.681606316438704e-29, "max_p": 4.9266851770768436e-29}`
 - symbiont_fymink_vs_size:
   - n: 13
   - ols: `[-0.07134185376713292, 0.0019898713808777536]`
@@ -84,6 +90,7 @@ OLS vs PGLS (Pagel's lambda) vs rank GLS on NCBI taxonomy.
   - survives: True
   - tree_pgls: `[-0.028138923895258308, 0.06128255800881313, 1.0, 12]`
   - survives_tree: False
+  - bootstrap_trees: `{"n": 20, "share_surviving": 0.0, "median_p": 0.062457392230232445, "max_p": 0.10849529632799931}`
 - severity_parasite:
   - n: 99
   - ols: `[1.2059129298037188, 2.722226706923579e-06]`
@@ -93,6 +100,7 @@ OLS vs PGLS (Pagel's lambda) vs rank GLS on NCBI taxonomy.
   - survives: True
   - tree_pgls: `[0.9334041692497064, 1.242928479896559e-07, 1.0, 99]`
   - survives_tree: True
+  - bootstrap_trees: `{"n": 20, "share_surviving": 1.0, "median_p": 1.5887810957283454e-07, "max_p": 3.262329131839069e-07}`
 - severity_intracellular:
   - n: 99
   - ols: `[0.4466596074652846, 0.021410670484648987]`
@@ -102,6 +110,7 @@ OLS vs PGLS (Pagel's lambda) vs rank GLS on NCBI taxonomy.
   - survives: False
   - tree_pgls: `[-0.05114605055882444, 0.7119919370074701, 1.0, 99]`
   - survives_tree: False
+  - bootstrap_trees: `{"n": 20, "share_surviving": 0.0, "median_p": 0.687427355474584, "max_p": 0.8182440257600279}`
 - severity_reduced_mitochondria:
   - n: 99
   - ols: `[1.5330490287689509, 2.0269920603413446e-10]`
@@ -111,6 +120,7 @@ OLS vs PGLS (Pagel's lambda) vs rank GLS on NCBI taxonomy.
   - survives: True
   - tree_pgls: `[0.9458129152821226, 0.003099775078703134, 1.0, 99]`
   - survives_tree: True
+  - bootstrap_trees: `{"n": 20, "share_surviving": 1.0, "median_p": 0.0052323468572973994, "max_p": 0.0101227758883444}`
 - pair_ivywrel_colder:
   - n: 43
   - ols: `[-0.031875400729469455, 7.305808723462514e-09]`
@@ -120,6 +130,7 @@ OLS vs PGLS (Pagel's lambda) vs rank GLS on NCBI taxonomy.
   - survives: True
   - tree_pgls: `[-0.021262461988824845, 5.625166135314826e-06, 1.0, 43]`
   - survives_tree: True
+  - bootstrap_trees: `{"n": 20, "share_surviving": 1.0, "median_p": 4.785950626462223e-06, "max_p": 9.047927180168154e-06}`
 - pair_cvp_colder:
   - n: 43
   - ols: `[-0.04848238171187283, 1.0244726907993878e-09]`
@@ -129,6 +140,7 @@ OLS vs PGLS (Pagel's lambda) vs rank GLS on NCBI taxonomy.
   - survives: True
   - tree_pgls: `[-0.03823264760351483, 5.856904388878752e-07, 0.9500000000000001, 43]`
   - survives_tree: True
+  - bootstrap_trees: `{"n": 20, "share_surviving": 1.0, "median_p": 4.70199871393776e-07, "max_p": 9.309163527738352e-07}`
 
 ## 한계
 - Taxonomy is a coarse stand-in for a sequence-based phylogeny.

@@ -22,21 +22,21 @@ Logistic rank-k factorisation; half of a held-out lineage revealed, the rest pre
 
 ## 검증
 - environment:
-  - k0: 0.82
-  - k2: 0.814
-  - n: 21
+  - k0: 0.855
+  - k2: 0.873
+  - n: 57
 - mitochondrion:
-  - k0: 0.923
-  - k2: 0.964
-  - n: 30
+  - k0: 0.941
+  - k2: 0.97
+  - n: 75
 - plastid:
-  - k0: 0.832
-  - k2: 0.915
-  - n: 21
+  - k0: 0.896
+  - k2: 0.962
+  - n: 54
 - insect_endosymbiont:
-  - k0: 0.854
-  - k2: 0.882
-  - n: 13
+  - k0: 0.913
+  - k2: 0.926
+  - n: 25
 
 ## 한계
 - Held out one pair or lineage at a time; related lineages remain in training.

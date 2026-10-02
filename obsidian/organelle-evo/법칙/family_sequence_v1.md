@@ -21,25 +21,25 @@ Which protein families carry temperature (IVYWREL) and salt (acidic excess) adap
 Per-family change in domain composition across relative -> extremophile pairs, regressed on the environment change.
 
 ## 검증
-- n_pairs: 43
+- n_pairs: 57
 - ivywrel:
   - axis: colder
-  - uniform_share_of_family_variance: 0.24
-  - families_tested: 1797
-  - median_sensitivity: 0.028
-  - share_positive: 0.9
-  - most_sensitive: `[["LpqE-like: Putative lipoprotein LpqE-like", 0.1337], ["DciA: Dna[CI] antecedent, DciA", 0.1271], ["SpoIID: Stage II sporulation protein", 0.1179], ["PspA_IM3`
-  - least_sensitive: `[["RDD: RDD family", -0.048], ["Sigma70_r1_1: Sigma-70 factor, region 1.1", -0.0482], ["TetR_C_13: Tetracyclin repressor-like, C-terminal domain", -0.0602], ["A`
-  - feature_correlations: `[["hydrophobicity_gravy", -0.1650210988021524], ["tm_helices", -0.11248096099097678], ["kw:transporter_channel", -0.1012335374791002], ["go:transmembrane transp`
+  - uniform_share_of_family_variance: 0.243
+  - families_tested: 2099
+  - median_sensitivity: 0.024
+  - share_positive: 0.906
+  - most_sensitive: `[["LpqE-like: Putative lipoprotein LpqE-like", 0.1356], ["UVR: UvrB/uvrC motif", 0.108], ["FtsX_ECD: FtsX extracellular domain", 0.1016], ["Smr: Smr domain", 0.`
+  - least_sensitive: `[["UPF0093: Protoporphyrinogen oxidase HemJ", -0.0464], ["MAPEG: MAPEG family", -0.0469], ["GST_C_3: Glutathione S-transferase, C-terminal domain", -0.0482], ["`
+  - feature_correlations: `[["hydrophobicity_gravy", -0.16312864689105405], ["tm_helices", -0.12985374798727495], ["kw:transporter_channel", -0.11448278597817009], ["go:transporter activi`
 - acidic_excess:
   - axis: saltier
-  - uniform_share_of_family_variance: 0.354
-  - families_tested: 1797
-  - median_sensitivity: 0.022
-  - share_positive: 0.903
-  - most_sensitive: `[["SbcC_Walker_B: SbcC/RAD50-like, Walker B motif", 0.3626], ["Lipoprotein_9: NlpA lipoprotein", 0.154], ["Sortase: Sortase domain", 0.1312], ["PBP5_C: Penicill`
-  - least_sensitive: `[["CobU: Cobinamide kinase / cobinamide phosphate guanyltransferase", -0.0451], ["HTH_17: Helix-turn-helix domain", -0.0458], ["HTH_AsnC-type: AsnC-type helix-t`
-  - feature_correlations: `[["ubiquity_free_living", 0.2540366754428382], ["tm_helices", -0.18186385354470141], ["hydrophobicity_gravy", -0.1774686130805182], ["kw:transporter_channel", -`
+  - uniform_share_of_family_variance: 0.309
+  - families_tested: 2099
+  - median_sensitivity: 0.019
+  - share_positive: 0.892
+  - most_sensitive: `[["Sortase: Sortase domain", 0.1312], ["Lipoprotein_9: NlpA lipoprotein", 0.1297], ["Ribosomal_L26: Ribosomal proteins L26 eukaryotic, L24P archaeal", 0.1151], `
+  - least_sensitive: `[["PolyA_pol_arg_C: Polymerase A arginine-rich C-terminus", -0.0427], ["HTH_AsnC-type: AsnC-type helix-turn-helix domain", -0.0428], ["PNK3P: Polynucleotide kin`
+  - feature_correlations: `[["tm_helices", -0.184424926806161], ["hydrophobicity_gravy", -0.1711561564727651], ["translation", 0.13298573931332688], ["ubiquity_free_living", 0.13013996963`
 
 ## 한계
 - Composition is over Pfam domain regions only.

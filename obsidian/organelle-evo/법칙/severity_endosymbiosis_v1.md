@@ -22,14 +22,14 @@ logit(share lost) = system + non-photosynthetic plastid + animal host (mitochond
 
 ## 검증
 - leave_one_lineage_out_rmse_logit:
-  - system_only: 1.129
-  - with_covariates: 1.079
+  - system_only: 1.011
+  - with_covariates: 0.995
 - typical_share_lost:
-  - mitochondrion: 0.596
-  - plastid: 0.609
-  - insect_endosymbiont: 0.848
-  - plastid, non-photosynthetic: 0.917
-  - mitochondrion, animal: 0.821
+  - mitochondrion: 0.695
+  - plastid: 0.721
+  - insect_endosymbiont: 0.877
+  - plastid, non-photosynthetic: 0.924
+  - mitochondrion, animal: 0.841
 
 ## 한계
 - Mitochondrial and plastid universes are the union over lineages, not a true ancestor.

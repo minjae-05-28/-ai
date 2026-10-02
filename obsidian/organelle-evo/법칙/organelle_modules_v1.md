@@ -22,9 +22,9 @@ Logistic rank-2 factorisation of gene loss per lineage; modules named by top-loa
 
 ## 검증
 - hidden_half_auroc:
-  - mitochondrion: `{"k0": 0.9228128254253551, "k2": 0.9637254017913983, "n": 30}`
-  - plastid: `{"k0": 0.8320091051411939, "k2": 0.9145550163102488, "n": 21}`
-  - insect_endosymbiont: `{"k0": 0.8535771020108011, "k2": 0.881820855520693, "n": 13}`
+  - mitochondrion: `{"k0": 0.940909424514252, "k2": 0.9700009050910232, "n": 75}`
+  - plastid: `{"k0": 0.8961833597818687, "k2": 0.9618011251469091, "n": 54}`
+  - insect_endosymbiont: `{"k0": 0.9126341304685982, "k2": 0.92585790375942, "n": 25}`
 
 ## 한계
 - Modules can reflect shared function (complexes, operons) or shared phylogeny.

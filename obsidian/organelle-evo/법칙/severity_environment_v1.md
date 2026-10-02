@@ -22,8 +22,8 @@ logit(share lost) = environment change @ b (base, colder, saltier, anaerobic, ra
 
 ## 검증
 - leave_one_pair_out_rmse_logit:
-  - mean_only: 0.639
-  - environment: 0.92
+  - mean_only: 0.569
+  - environment: 0.537
 
 ## 한계
 - 21 pairs for 6 coefficients; intervals are wide.

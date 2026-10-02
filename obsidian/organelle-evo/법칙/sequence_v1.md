@@ -22,27 +22,27 @@ Correlations and least-squares axis laws on proteome statistics (scripts/run_seq
 
 ## 검증
 - temperature:
-  - n: 70
-  - spearman_ivywrel: 0.569
-  - pearson_ivywrel: 0.822
-  - ogt_per_0.01_ivywrel: 6.445
-  - spearman_cvp: 0.588
-  - rmse_mean_only: 15.489
-  - rmse_ivywrel_loo_group: 9.79
-  - rmse_20aa_ridge_loo_group: 11.34
+  - n: 86
+  - spearman_ivywrel: 0.65
+  - pearson_ivywrel: 0.85
+  - ogt_per_0.01_ivywrel: 7.342
+  - spearman_cvp: 0.626
+  - rmse_mean_only: 17.962
+  - rmse_ivywrel_loo_group: 10.32
+  - rmse_20aa_ridge_loo_group: 11.289
 - salt:
-  - spearman_acidic_excess: 0.583
-  - spearman_median_pi: -0.523
+  - spearman_acidic_excess: 0.563
+  - spearman_median_pi: -0.511
   - halophiles_ge_15pct: `{"Haloarcula marismortui": {"acidic_excess": 0.084855, "median_pi": 4.206884}, "Halobacterium salinarum": {"acidic_excess": 0.078672, "median_pi": 4.26881}, "Ha`
-  - others_median_pi: 6.592
+  - others_median_pi: 6.648
 - environment_pairs:
-  - n_pairs: 43
-  - by_statistic: `{"ivywrel": {"loo_r2_environment": 0.5293330878836784, "coef": {"base": 0.008396499457378383, "colder": -0.03187540072946943, "saltier": -0.010651241887525377, `
+  - n_pairs: 57
+  - by_statistic: `{"ivywrel": {"loo_r2_environment": 0.5686674176506967, "coef": {"base": 0.003998825936436327, "colder": -0.02658101206765905, "saltier": -0.0062457141524740085,`
 - oligotrophy: `[{"pair": "Synechococcus elongatus -> Prochlorococcus marinus", "n_side_change": -0.025682999999999956}, {"pair": "Cereibacter sphaeroides -> Candidatus Pelagib`
 - endosymbionts:
-  - spearman_size_fymink: -0.653
-  - spearman_size_pi: -0.719
-  - table: `{"Buchnera aphidicola (Cinara tujafilina)": {"n_proteins": 359, "fymink": 0.429202, "median_pi": 10.209863, "n_side": 0.375721}, "Buchnera aphidicola (Schizaphi`
+  - spearman_size_fymink: -0.796
+  - spearman_size_pi: -0.828
+  - table: `{"Arsenophonus nasoniae": {"n_proteins": 4221, "fymink": 0.293604, "median_pi": 8.466324, "n_side": 0.372428}, "Buchnera aphidicola (Cinara tujafilina)": {"n_pr`
 - eukaryote_pairs:
   - n_pairs: 99
   - by_statistic: `{"fymink": {"loo_clade_r2": 0.06772146651298305, "coef": {"base": -0.0030539000000000087, "parasite": 0.0008898947149867734, "intracellular": 0.0726791389203473`
