@@ -158,29 +158,21 @@ def deg(pfam, tmp):
         z = zipfile.ZipFile(io.BytesIO(get(base + ann)))
         text = z.read(z.namelist()[0]).decode("utf-8", "replace")
         rows = list(csv.reader(io.StringIO(text), delimiter=";" if text.count(";") > text.count(",") else ","))
-        print(domain, "annotation sample:", rows[:3])
-        # Organism column: the one whose values repeat most among a few dozen distinct strings
-        org_of = {}
-        ncol = max(len(r) for r in rows[:50])
-        best = None
-        for c in range(ncol):
-            vals = [r[c] for r in rows if len(r) > c]
-            distinct = set(vals)
-            if 3 <= len(distinct) <= 2000 and any(re.match(r"^[A-Z][a-z]+ [a-z]+", v) for v in list(distinct)[:50]):
-                score = len(vals) / len(distinct)
-                if best is None or score > best[0]:
-                    best = (score, c)
-        id_col = next(c for c in range(ncol) if any(re.match(r"^DEG\d+", r[c]) for r in rows[:20] if len(r) > c))
+        # One row per study: organism name first, study id (DEGnnnn) near the end. Protein ids
+        # in the FASTA start with the study id (e.g. DEG10010001 -> DEG1001).
+        study_org = {}
         for r in rows:
-            if len(r) > max(id_col, best[1]):
-                org_of[r[id_col]] = r[best[1]]
-        print(f"{domain}: {len(seqs)} essential proteins, organism column {best[1]}, {len(set(org_of.values()))} organisms")
+            sid = next((c for c in r if re.fullmatch(r"DEG\d{4}", c.strip())), None)
+            if sid and r and r[0].strip():
+                study_org[sid] = r[0].strip()
+        org_of = {k: study_org.get(m.group(1), "unknown") for k in seqs if (m := re.match(r"(DEG\d{4})", k))}
+        print(f"{domain}: {len(seqs)} essential proteins, {len(study_org)} studies, {len(set(org_of.values()))} organisms")
         per_org = defaultdict(dict)
         for k, v in seqs.items():
             per_org[org_of.get(k, "unknown")][k] = v
         res = {}
         for org, prots in sorted(per_org.items()):
-            if len(prots) > 6000:
+            if org == "unknown" or len(prots) > 8000:
                 print(f"  skip {org}: {len(prots)} entries")
                 continue
             fams = families_of(prots, pfam)

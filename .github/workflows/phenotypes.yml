@@ -5,17 +5,16 @@ name: Phenotypes
 
 on:
   workflow_dispatch:
-  push:
-    branches: [main]
-    paths:
-      - ".github/workflows/phenotypes.yml"
-      - "scripts/collect_phenotypes.py"
+    inputs:
+      sources:
+        description: 'JSON list of sources, e.g. ["deg"]'
+        default: '["fitness", "deg", "yeast", "pombe", "paxdb"]'
 
 permissions:
   contents: write
 
 concurrency:
-  group: phenotypes
+  group: phenotypes-${{ inputs.sources }}
   cancel-in-progress: false
 
 env:
@@ -29,7 +28,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        source: [fitness, deg, yeast, pombe, paxdb]
+        source: ${{ fromJSON(inputs.sources) }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
