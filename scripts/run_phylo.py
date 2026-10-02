@@ -16,18 +16,19 @@ import numpy as np
 from organelle_evo.eukaryotes import catalog as euk
 from organelle_evo.eukaryotes.model import counts, family_features
 from organelle_evo.laws import LAWS_DIR, save_law
-from organelle_evo.phylo import pgls, rank_gls, taxonomy_cov
+from organelle_evo.phylo import pgls, rank_gls, taxonomy_cov, tree_cov
 from organelle_evo.prokaryotes import catalog as pro
 
 TAX = json.loads(Path("results/taxonomy/taxonomy.json").read_text())
 C = Path("data/composition")
+TREES = {f.stem: f.read_text() for f in Path("results/phylo_tree").glob("*.nwk")}
 
 
 def load(sub):
     return {json.loads(f.read_text())["species"]: json.loads(f.read_text()) for f in (C / sub).glob("**/*.json")}
 
 
-def test(name, names, X, y, col=1):
+def test(name, names, X, y, col=1, tree=None):
     X = np.c_[np.ones(len(y)), X]
     keep = [i for i, n in enumerate(names) if n in TAX]
     names, X, y = [names[i] for i in keep], X[keep], y[keep]
@@ -38,6 +39,14 @@ def test(name, names, X, y, col=1):
            "pgls_lambda": [float(lam.coef[col]), float(lam.p[col]), lam.lam],
            "rank_gls": [float(rg.coef[col]), float(rg.p[col])], "shared_history": rg.shares["shared_history"]}
     row["survives"] = bool(np.sign(rg.coef[col]) == np.sign(ols.coef[col]) and rg.p[col] < 0.05)
+    if tree in TREES:
+        keep, V = tree_cov(names, TREES[tree])
+        ix = [names.index(k) for k in keep]
+        tp = pgls(X[ix], y[ix], V)
+        row["tree_pgls"] = [float(tp.coef[col]), float(tp.p[col]), tp.lam, len(keep)]
+        row["survives_tree"] = bool(np.sign(tp.coef[col]) == np.sign(ols.coef[col]) and tp.p[col] < 0.05)
+        print(f"{'':42s} tree PGLS {tp.coef[col]:+.4g} (p {tp.p[col]:.1e}, lambda {tp.lam:.2f}, n={len(keep)})  "
+              f"{'survives' if row['survives_tree'] else 'DOES NOT SURVIVE'}")
     print(f"{name:42s} n={len(y):3d}  OLS {ols.coef[col]:+.4g} (p {ols.p[col]:.1e})  "
           f"rank GLS {rg.coef[col]:+.4g} (p {rg.p[col]:.1e}, history {rg.shares['shared_history']:.0%})  "
           f"{'survives' if row['survives'] else 'DOES NOT SURVIVE'}")
@@ -50,11 +59,11 @@ def main():
     sp = sorted(P)
     E = lambda k: np.array([P[s][k] for s in sp])  # noqa: E731
     env = lambda k: np.array([getattr(pro.SPECIES[s], k) for s in sp], dtype=float)  # noqa: E731
-    res["ivywrel_vs_temperature"] = test("IVYWREL ~ optimal temperature", sp, env("temp"), E("ivywrel"))
-    res["cvp_vs_temperature"] = test("charged-vs-polar ~ optimal temperature", sp, env("temp"), E("cvp"))
-    res["acidic_vs_salt"] = test("acidic excess ~ optimal NaCl", sp, env("nacl"), E("acidic_excess"))
-    res["nitrogen_vs_oligotrophy"] = test("side-chain N ~ oligotroph", sp, env("oligo"), E("n_side"))
-    res["fymink_vs_anoxia"] = test("FYMINK ~ anaerobe", sp, 1 - env("aerobic"), E("fymink"))
+    res["ivywrel_vs_temperature"] = test("IVYWREL ~ optimal temperature", sp, env("temp"), E("ivywrel"), tree="prokaryotes")
+    res["cvp_vs_temperature"] = test("charged-vs-polar ~ optimal temperature", sp, env("temp"), E("cvp"), tree="prokaryotes")
+    res["acidic_vs_salt"] = test("acidic excess ~ optimal NaCl", sp, env("nacl"), E("acidic_excess"), tree="prokaryotes")
+    res["nitrogen_vs_oligotrophy"] = test("side-chain N ~ oligotroph", sp, env("oligo"), E("n_side"), tree="prokaryotes")
+    res["fymink_vs_anoxia"] = test("FYMINK ~ anaerobe", sp, 1 - env("aerobic"), E("fymink"), tree="prokaryotes")
 
     # van Nimwegen scaling: transcription regulators vs genome size
     ann = json.loads(Path("data/eukaryotes/family_annotations.json").read_text())
@@ -65,13 +74,13 @@ def main():
     ps = sorted(s for s in prof if s in pro.SPECIES)
     N = np.log([prof[s]["n_genes"] for s in ps])
     T = np.log([max(sum(v[0] for f, v in prof[s]["families"].items() if f in tf), 1) for s in ps])
-    res["regulator_scaling"] = test("log regulators ~ log genes (exponent)", ps, N, T)
+    res["regulator_scaling"] = test("log regulators ~ log genes (exponent)", ps, N, T, tree="prokaryotes")
 
     # Endosymbiont AT bias
     S = load("endosymbiosis/insect_endosymbiont")
     ss = sorted(S)
     res["symbiont_fymink_vs_size"] = test("FYMINK ~ log proteome size (symbionts)", ss,
-                                          np.log([S[s]["n_proteins"] for s in ss]), np.array([S[s]["fymink"] for s in ss]))
+                                          np.log([S[s]["n_proteins"] for s in ss]), np.array([S[s]["fymink"] for s in ss]), tree="symbionts")
 
     # Eukaryote severity (pairs, named by descendant)
     profs = {}
@@ -88,7 +97,7 @@ def main():
     Z = np.array([euk.design(d)[1:] for _, d in pairs])
     names = [d for _, d in pairs]
     for j, ax in enumerate(euk.AXES):
-        res[f"severity_{ax}"] = test(f"share lost ~ axes [{ax}]", names, Z, y, col=1 + j)
+        res[f"severity_{ax}"] = test(f"share lost ~ axes [{ax}]", names, Z, y, col=1 + j, tree="eukaryotes")
 
     # Environment -> sequence change (pairs, named by descendant)
     pp = pro.resolve_pairs(P)
@@ -96,7 +105,7 @@ def main():
     dn = [d for _, d in pp]
     for k, axis in (("ivywrel", 0), ("cvp", 0), ("acidic_excess", 1), ("fymink", 2)):
         dy = np.array([P[d][k] - P[a][k] for a, d in pp])
-        res[f"pair_{k}_{pro.AXES[axis]}"] = test(f"change in {k} ~ env [{pro.AXES[axis]}]", dn, Zp, dy, col=1 + axis)
+        res[f"pair_{k}_{pro.AXES[axis]}"] = test(f"change in {k} ~ env [{pro.AXES[axis]}]", dn, Zp, dy, col=1 + axis, tree="prokaryotes")
 
     out = Path("results/phylo")
     out.mkdir(parents=True, exist_ok=True)
@@ -106,7 +115,10 @@ def main():
              model="OLS vs PGLS (Pagel's lambda) vs rank GLS on NCBI taxonomy.", feature_names=[],
              data={"taxa": len(TAX)}, validation=res, contexts={},
              caveats=["Taxonomy is a coarse stand-in for a sequence-based phylogeny."])
-    print(f"{sum(r['survives'] for r in res.values())}/{len(res)} survive -> {out}/")
+    print(f"{sum(r['survives'] for r in res.values())}/{len(res)} survive rank GLS")
+    if TREES:
+        t = [r for r in res.values() if "survives_tree" in r]
+        print(f"{sum(r['survives_tree'] for r in t)}/{len(t)} survive tree PGLS -> {out}/")
 
 
 if __name__ == "__main__":

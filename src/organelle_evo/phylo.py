@@ -142,3 +142,29 @@ def rank_gls(X: np.ndarray, y: np.ndarray, names: list[str], tax: dict[str, dict
     comps = np.exp(opt.x)
     shares = {"species": float(comps[0] / comps.sum()), "shared_history": float(comps[1:].sum() / comps.sum())}
     return RankGLSResult(b, se, p, shares, float(-opt.fun))
+
+
+def tree_cov(names: list[str], newick: str) -> tuple[list[str], np.ndarray]:
+    """Brownian-motion covariance from a (midpoint-rooted) tree: V[i, j] = root-to-MRCA
+    length, V[i, i] = root-to-tip length, scaled to a mean diagonal of 1. Returns the names
+    found in the tree (in input order) and V for them."""
+    from io import StringIO
+
+    from Bio import Phylo
+
+    tree = Phylo.read(StringIO(newick), "newick")
+    tree.root_at_midpoint()
+    tips = {t.name.strip("'\""): t for t in tree.get_terminals()}
+    keep = [n for n in names if n in tips]
+    depth = tree.depths()
+    paths = {n: tree.get_path(tips[n]) for n in keep}
+    V = np.zeros((len(keep), len(keep)))
+    for i, a in enumerate(keep):
+        for j, b in enumerate(keep[i:], i):
+            shared = None
+            for x, y in zip(paths[a], paths[b]):
+                if x is not y:
+                    break
+                shared = x
+            V[i, j] = V[j, i] = depth[shared] if shared is not None else 0.0
+    return keep, V / np.mean(np.diag(V))

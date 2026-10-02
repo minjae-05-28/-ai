@@ -31,3 +31,13 @@ def test_pgls_discounts_pseudoreplicated_clades():
     false_ols = np.mean([t[0] for t in trials])
     false_pgls = np.mean([t[1] for t in trials])
     assert false_ols > 0.3 and false_pgls < 0.15
+
+
+def test_tree_cov_shares_history_by_clade():
+    from organelle_evo.phylo import tree_cov
+
+    nwk = "((A:1,B:1):2,(C:1,D:1):2);"
+    keep, V = tree_cov(["A", "B", "C", "D", "E"], nwk)
+    assert keep == ["A", "B", "C", "D"]
+    assert np.allclose(np.diag(V), 1)
+    assert V[0, 1] > 0.5 and V[0, 2] == 0 and np.allclose(V, V.T)

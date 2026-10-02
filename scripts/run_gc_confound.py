@@ -21,12 +21,13 @@ from pathlib import Path
 import numpy as np
 
 from organelle_evo.laws import LAWS_DIR, save_law
-from organelle_evo.phylo import pgls, rank_gls, taxonomy_cov
+from organelle_evo.phylo import pgls, rank_gls, taxonomy_cov, tree_cov
 from organelle_evo.prokaryotes import catalog as pro
 
 TAX = json.loads(Path("results/taxonomy/taxonomy.json").read_text())
 GC = json.loads(Path("results/gc/gc.json").read_text())
 C = Path("data/composition")
+TREES = {f.stem: f.read_text() for f in Path("results/phylo_tree").glob("*.nwk")}
 
 
 def load(sub):
@@ -51,7 +52,7 @@ def loo_r2(X, y):
     return float(1 - ((y - pred) ** 2).sum() / ((y - y.mean()) ** 2).sum())
 
 
-def compare(name, names, env, gc, y, extra=None):
+def compare(name, names, env, gc, y, extra=None, tree=None):
     """Environment effect (column 1) without and with GC."""
     extra = np.zeros((len(y), 0)) if extra is None else extra
     o0, r0, n = fit(names, np.c_[env, extra], y)
@@ -63,6 +64,13 @@ def compare(name, names, env, gc, y, extra=None):
            "corr_env_gc": float(np.corrcoef(env, gc)[0, 1])}
     row["retained_share_of_effect"] = row["with_gc"]["coef"] / row["without_gc"]["coef"]
     row["survives"] = bool(np.sign(r1.coef[1]) == np.sign(r0.coef[1]) and r1.p[1] < 0.05)
+    if tree in TREES:
+        keep, V = tree_cov(names, TREES[tree])
+        ix = [names.index(k) for k in keep]
+        X1 = np.c_[np.ones(len(y)), env, extra, gc][ix]
+        tp = pgls(X1, y[ix], V)
+        row["with_gc"]["tree_pgls"] = [float(tp.coef[1]), float(tp.p[1]), tp.lam, len(keep)]
+        row["survives_tree"] = bool(np.sign(tp.coef[1]) == np.sign(r0.coef[1]) and tp.p[1] < 0.05)
     print(f"{name:40s} n={n:3d} r(env,GC) {row['corr_env_gc']:+.2f} | env {r0.coef[1]:+.4g} (p {r0.p[1]:.1e}) -> "
           f"{r1.coef[1]:+.4g} (p {r1.p[1]:.1e}), {row['retained_share_of_effect']:.0%} kept | GC p {r1.p[gcol]:.1e}  "
           f"{'survives' if row['survives'] else 'DOES NOT SURVIVE'}")
@@ -79,11 +87,11 @@ def main():
     g = np.array([gpro[s] for s in sp])
     print(f"species laws ({len(sp)} bacteria and archaea with GC)")
     S = res["species"]
-    S["ivywrel_vs_temperature"] = compare("IVYWREL ~ optimal temperature", sp, env("temp"), g, E("ivywrel"))
-    S["cvp_vs_temperature"] = compare("charged-vs-polar ~ optimal temperature", sp, env("temp"), g, E("cvp"))
-    S["acidic_vs_salt"] = compare("acidic excess ~ optimal NaCl", sp, env("nacl"), g, E("acidic_excess"))
-    S["nitrogen_vs_oligotrophy"] = compare("side-chain N ~ oligotroph", sp, env("oligo"), g, E("n_side"))
-    S["fymink_vs_anoxia"] = compare("FYMINK ~ anaerobe", sp, 1 - env("aerobic"), g, E("fymink"))
+    S["ivywrel_vs_temperature"] = compare("IVYWREL ~ optimal temperature", sp, env("temp"), g, E("ivywrel"), tree="prokaryotes")
+    S["cvp_vs_temperature"] = compare("charged-vs-polar ~ optimal temperature", sp, env("temp"), g, E("cvp"), tree="prokaryotes")
+    S["acidic_vs_salt"] = compare("acidic excess ~ optimal NaCl", sp, env("nacl"), g, E("acidic_excess"), tree="prokaryotes")
+    S["nitrogen_vs_oligotrophy"] = compare("side-chain N ~ oligotroph", sp, env("oligo"), g, E("n_side"), tree="prokaryotes")
+    S["fymink_vs_anoxia"] = compare("FYMINK ~ anaerobe", sp, 1 - env("aerobic"), g, E("fymink"), tree="prokaryotes")
     S["gc_explains"] = {k: float(np.corrcoef(g, E(k))[0, 1]) for k in ("fymink", "garp", "ivywrel", "cvp", "acidic_excess", "n_side")}
     print("   r(GC, statistic): " + ", ".join(f"{k} {v:+.2f}" for k, v in S["gc_explains"].items()))
 
@@ -95,7 +103,7 @@ def main():
     for k, axis in (("ivywrel", 0), ("cvp", 0), ("acidic_excess", 1), ("n_side", 4), ("fymink", 2)):
         dy = np.array([P[d][k] - P[a][k] for a, d in pp])
         others = np.delete(Z, axis, axis=1)
-        row = compare(f"change in {k} ~ {pro.AXES[axis]}", dn, Z[:, axis], dg, dy, extra=others)
+        row = compare(f"change in {k} ~ {pro.AXES[axis]}", dn, Z[:, axis], dg, dy, extra=others, tree="prokaryotes")
         row["loo_r2_env"] = loo_r2(Z, dy)
         row["loo_r2_env_gc"] = loo_r2(np.c_[Z, dg], dy)
         row["loo_r2_gc_only"] = loo_r2(dg[:, None], dy)
@@ -110,7 +118,7 @@ def main():
     gg = np.array([gs[s] for s in ss])
     for k in ("fymink", "median_pi"):
         y = np.array([Sy[s][k] for s in ss])
-        row = compare(f"{k} ~ log proteome size", ss, size, gg, y)
+        row = compare(f"{k} ~ log proteome size", ss, size, gg, y, tree="symbionts")
         row["r_gc"] = float(np.corrcoef(gg, y)[0, 1])
         row["r_size_gc"] = float(np.corrcoef(size, gg)[0, 1])
         res["symbionts"][k] = row
