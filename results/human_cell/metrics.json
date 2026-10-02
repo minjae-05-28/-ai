@@ -1,0 +1,179 @@
+{
+  "sites": {
+    "gut lumen (anaerobic, nutrient-rich)": {
+      "group": "human",
+      "temp": 37,
+      "nacl": 0.9,
+      "aerobic": 0,
+      "radiation": 0,
+      "oligo": 0
+    },
+    "skin surface (aerobic, dry, nutrient-poor)": {
+      "group": "human",
+      "temp": 33,
+      "nacl": 2.0,
+      "aerobic": 1,
+      "radiation": 0,
+      "oligo": 1
+    },
+    "mouth / dental plaque": {
+      "group": "human",
+      "temp": 37,
+      "nacl": 0.9,
+      "aerobic": 0,
+      "radiation": 0,
+      "oligo": 0
+    },
+    "blood and tissue (aerobic, nutrient-rich)": {
+      "group": "human",
+      "temp": 37,
+      "nacl": 0.9,
+      "aerobic": 1,
+      "radiation": 0,
+      "oligo": 0
+    }
+  },
+  "note": "Prediction from laws trained on other systems; human commensals are held out.",
+  "composition": {
+    "gut lumen (anaerobic, nutrient-rich)": {
+      "predicted": {
+        "ivywrel": 0.3956,
+        "cvp": 0.0254,
+        "acidic_excess": 0.0024,
+        "n_side": 0.3187
+      },
+      "observed_commensals": {},
+      "n_commensals": 0,
+      "commensals": [],
+      "errors": {}
+    },
+    "skin surface (aerobic, dry, nutrient-poor)": {
+      "predicted": {
+        "ivywrel": 0.3892,
+        "cvp": 0.0469,
+        "acidic_excess": 0.0045,
+        "n_side": 0.3094
+      },
+      "observed_commensals": {},
+      "n_commensals": 0,
+      "commensals": [],
+      "errors": {}
+    },
+    "mouth / dental plaque": {
+      "predicted": {
+        "ivywrel": 0.3956,
+        "cvp": 0.0254,
+        "acidic_excess": 0.0024,
+        "n_side": 0.3187
+      },
+      "observed_commensals": {},
+      "n_commensals": 0,
+      "commensals": [],
+      "errors": {}
+    },
+    "blood and tissue (aerobic, nutrient-rich)": {
+      "predicted": {
+        "ivywrel": 0.3962,
+        "cvp": 0.0412,
+        "acidic_excess": 0.0136,
+        "n_side": 0.3267
+      },
+      "observed_commensals": {},
+      "n_commensals": 0,
+      "commensals": [],
+      "errors": {}
+    }
+  },
+  "genome_size": {
+    "commensal_genes": {},
+    "free_living_median": 3215.0,
+    "severity_reference": {}
+  },
+  "gene_content": {
+    "per_ancestor": {
+      "Bacillus subtilis": {
+        "families_today": 3136,
+        "most_likely_lost": [
+          "CarbopepD_reg_2: CarboxypepD_reg-like domain",
+          "TctC: Tripartite tricarboxylate transporter family receptor",
+          "CarboxypepD_reg: Carboxypeptidase regulatory-like domain",
+          "DUF4181: Domain of unknown function (DUF4181)",
+          "DUF5344: Family of unknown function (DUF5344)",
+          "ECF_trnsprt: ECF transporter, substrate-specific component",
+          "TEN_YD-shell: Teneurin YD-shell",
+          "DUF6044: Protein of unknown function (DUF6044)",
+          "CBM_35_2: Carbohydrate binding module (family 35)",
+          "DUF1093: Protein of unknown function (DUF1093)"
+        ],
+        "most_likely_kept": [
+          "MarR: MarR family",
+          "BPD_transp_1: Binding-protein-dependent transport system inner membrane component",
+          "MarR_2: MarR family",
+          "MMR_HSR1: 50S ribosome-binding GTPase",
+          "Acetyltransf_7: Acetyltransferase (GNAT) domain",
+          "HTH_27: Winged helix DNA-binding domain",
+          "FR47: FR47-like protein",
+          "Acetyltransf_10: Acetyltransferase (GNAT) domain",
+          "Sigma70_r4: Sigma-70, region 4",
+          "tRNA-synt_2b: tRNA synthetase class II core domain (G, H, P, S and T)"
+        ]
+      },
+      "Pseudomonas putida": {
+        "families_today": 3156,
+        "most_likely_lost": [
+          "TctC: Tripartite tricarboxylate transporter family receptor",
+          "FecR_C: FecR, C-terminal",
+          "DUF3077: Protein of unknown function (DUF3077)",
+          "Fimbrial: Fimbrial protein",
+          "NEL: C-terminal novel E3 ligase, LRR-interacting",
+          "PTS_EIIC: Phosphotransferase system, EIIC",
+          "LIP: Secretory lipase",
+          "YNCE: YNCE-like beta-propeller",
+          "KshA_C: 3-Ketosteroid 9alpha-hydroxylase C-terminal domain",
+          "Autoind_bind: Autoinducer binding domain"
+        ],
+        "most_likely_kept": [
+          "BPD_transp_1: Binding-protein-dependent transport system inner membrane component",
+          "SBP_bac_3: Bacterial extracellular solute-binding proteins, family 3",
+          "AAA_5: AAA domain (dynein-related subfamily)",
+          "Sigma54_activat: Sigma-54 interaction domain",
+          "Cupin_2: Cupin domain",
+          "Sigma70_r4_2: Sigma-70, region 4",
+          "Sigma70_r4: Sigma-70, region 4",
+          "AraC_binding: AraC-like ligand binding domain",
+          "Gln-synt_C: Glutamine synthetase, catalytic domain",
+          "MMR_HSR1: 50S ribosome-binding GTPase"
+        ]
+      },
+      "Micrococcus luteus": {
+        "families_today": 1821,
+        "most_likely_lost": [
+          "TctC: Tripartite tricarboxylate transporter family receptor",
+          "MULE: MULE transposase domain",
+          "Lsr2_DNA-bd: Lsr2 DNA-binding domain",
+          "Whib: Transcription factor WhiB",
+          "WXG100: Proteins of 100 residues with WXG",
+          "HisKA_2: Histidine kinase",
+          "LIP: Secretory lipase",
+          "DUF885: Bacterial protein of unknown function (DUF885)",
+          "HWE_HK: HWE histidine kinase",
+          "Peripla_BP_1: Periplasmic binding proteins and sugar binding domain of LacI family"
+        ],
+        "most_likely_kept": [
+          "BPD_transp_1: Binding-protein-dependent transport system inner membrane component",
+          "MMR_HSR1: 50S ribosome-binding GTPase",
+          "tRNA-synt_1g: tRNA synthetases class I (M)",
+          "tRNA-synt_2b: tRNA synthetase class II core domain (G, H, P, S and T)",
+          "tRNA-synt_1: tRNA synthetases class I (I, L, M and V)",
+          "GTP_EFTU: Elongation factor Tu GTP binding domain",
+          "ATP-synt_ab: ATP synthase alpha/beta family, nucleotide-binding domain",
+          "tRNA-synt_2d: tRNA synthetases class II core domain (F)",
+          "AAA_19: AAA domain",
+          "HTH_23: Homeodomain-like domain"
+        ]
+      }
+    },
+    "validation_auroc": {},
+    "gut_commensals_tested": []
+  }
+}
