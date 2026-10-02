@@ -20,6 +20,7 @@ import csv
 import gzip
 import io
 import json
+import os
 import re
 import sqlite3
 import sys
@@ -115,7 +116,10 @@ def fitness(pfam, tmp):
         org, locus = k.split(":", 1)
         by_org[org][locus] = v
     (OUT / "fitness").mkdir(parents=True, exist_ok=True)
+    only = set(filter(None, os.environ.get("FB_ORGS", "").split(",")))
     for org, name in sorted(orgs.items()):
+        if only and org not in only:
+            continue
         exps = {r[0]: (r[1] or "", r[2] or "", r[3] or "") for r in cur.execute(
             "select expName, expGroup, condition_1, media from Experiment where orgId=?", (org,))}
         if not exps:
@@ -123,7 +127,9 @@ def fitness(pfam, tmp):
         fit = defaultdict(dict)
         for locus, exp, f in cur.execute("select locusId, expName, fit from GeneFitness where orgId=?", (org,)):
             fit[locus][exp] = f
-        genes = [r[0] for r in cur.execute("select locusId from Gene where orgId=? and type=1", (org,))]
+        names = {r[0]: (r[1] or "", r[2] or "") for r in cur.execute(
+            "select locusId, sysName, gene from Gene where orgId=? and type=1", (org,))}
+        genes = list(names)
         prots = {g: by_org[org].get(g) for g in genes if by_org[org].get(g)}
         fams = families_of(prots, pfam)
         rich = {e for e, (grp, cond, media) in exps.items() if RICH.search(media) and grp.lower() not in ("carbon source", "nitrogen source")}
@@ -137,10 +143,12 @@ def fitness(pfam, tmp):
             essential = int(not vals and len(p) >= 100)  # no mutants recovered: likely essential
             rows[g] = [fams.get(g, []), essential, len(vals),
                        round(sum(vals) / len(vals), 3) if vals else None, round(min(vals), 3) if vals else None,
-                       round(sum(r) / len(r), 3) if r else None, round(min(m), 3) if m else None]
+                       round(sum(r) / len(r), 3) if r else None, round(min(m), 3) if m else None,
+                       names[g][0], names[g][1]]
         (OUT / "fitness" / f"{org}.json").write_text(json.dumps(
             {"org": org, "organism": name, "n_experiments": len(exps), "n_rich": len(rich), "n_minimal": len(minimal),
-             "columns": ["families", "likely_essential", "n_fitness", "mean_fit", "min_fit", "rich_mean_fit", "minimal_min_fit"],
+             "columns": ["families", "likely_essential", "n_fitness", "mean_fit", "min_fit", "rich_mean_fit", "minimal_min_fit",
+                         "sys_name", "gene"],
              "genes": rows}, separators=(",", ":")))
         print(f"{org:24s} {name[:40]:40s} {len(prots)} genes, {sum(r[1] for r in rows.values())} likely essential, "
               f"{len(exps)} experiments ({len(rich)} rich, {len(minimal)} minimal)", flush=True)
