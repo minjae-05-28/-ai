@@ -35,7 +35,7 @@ import numpy as np
 from scipy import stats
 
 from organelle_evo.animals import catalog as an
-from organelle_evo.laws import LAWS_DIR, save_law
+from organelle_evo.laws import ANIMAL_LAWS_DIR, save_law
 
 COMP = Path("data/composition/animals")
 OUT = Path("results/animal_laws")
@@ -177,7 +177,7 @@ def main():
 
     OUT.mkdir(parents=True, exist_ok=True)
     (OUT / "metrics.json").write_text(json.dumps(res, indent=2))
-    save_law(LAWS_DIR / "animal_axes_v1.json", id="animal_axes_v1",
+    save_law(ANIMAL_LAWS_DIR / "animal_axes_v1.json", id="animal_axes_v1",
              scope="Composition laws fitted to animal cells on the variables an animal cell experiences: "
                    "operating temperature, intracellular osmolarity, hypoxia, endothermy, parasitism and "
                    "urea-based osmoconformity.",

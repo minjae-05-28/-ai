@@ -13,6 +13,25 @@ import numpy as np
 
 LAWS_DIR = Path(__file__).resolve().parents[2] / "laws"
 
+# Laws fitted to animal cells live in their own registry and are never mixed with the
+# microbial ones. This is not tidiness: the project measured that the microbial
+# temperature law does not transfer to animals (laws/animals/animal_temperature_v1.json),
+# so a coefficient from one registry applied to the other gives a wrong answer, and on
+# IVYWREL it gave the wrong sign. ANIMAL_LAWS_DIR holds the animal registry.
+ANIMAL_LAWS_DIR = LAWS_DIR / "animals"
+
+# which registry a catalogue's species belong to
+REGISTRY = {"prokaryotes": LAWS_DIR, "eukaryotes": LAWS_DIR, "realdata": LAWS_DIR,
+            "animals": ANIMAL_LAWS_DIR}
+
+
+def registry_for(catalog: str) -> Path:
+    """The law directory a catalogue may read and write. Raises on an unknown catalogue
+    rather than silently defaulting to the microbial registry."""
+    if catalog not in REGISTRY:
+        raise KeyError(f"unknown catalogue {catalog!r}; known: {sorted(REGISTRY)}")
+    return REGISTRY[catalog]
+
 
 @dataclass(frozen=True)
 class Law:

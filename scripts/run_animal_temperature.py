@@ -27,7 +27,7 @@ from pathlib import Path
 import numpy as np
 from scipy.stats import mannwhitneyu, spearmanr
 
-from organelle_evo.laws import LAWS_DIR, save_law
+from organelle_evo.laws import ANIMAL_LAWS_DIR, save_law
 
 MITO = Path("data/composition/endosymbiosis/mitochondrion")
 OUT = Path("results/animal_temperature")
@@ -144,7 +144,7 @@ def main():
 
     OUT.mkdir(parents=True, exist_ok=True)
     (OUT / "metrics.json").write_text(json.dumps(res, indent=2))
-    save_law(LAWS_DIR / "animal_temperature_v1.json", id="animal_temperature_v1",
+    save_law(ANIMAL_LAWS_DIR / "animal_temperature_v1.json", id="animal_temperature_v1",
              scope="Whether the prokaryote temperature-composition law transfers to animal cells, tested on "
                    "mitochondrion-encoded proteomes of endotherms (cells at 36-42 C) against ectotherms "
                    "(cells near ambient, 12-27 C).",
@@ -158,7 +158,15 @@ def main():
                       "composition is dominated by mitochondrial AT bias; nuclear proteomes would be the "
                       "better test and are not in this dataset.",
                       "A failure to transfer does not mean temperature has no effect on animal proteins, only "
-                      "that this law, fitted to microbes, does not predict it."])
+                      "that this law, fitted to microbes, does not predict it.",
+                      "SUPERSEDED IN PART by animal_axes_v1, which uses nuclear proteomes (69 species, ~20k "
+                      "proteins each) instead of the 13 mitochondrion-encoded genes: there the temperature "
+                      "coefficient for IVYWREL is +0.0002 per C, the SAME sign as the microbial law but about "
+                      "five times weaker, and it does not survive leave-one-clade-out or the clade-level "
+                      "refit. So the reversed sign reported here is a property of mitochondrial proteomes, "
+                      "driven by mitochondrial AT bias, and not of animal cells in general. The conclusion "
+                      "that the microbial law must not be applied to animal cells stands on both datasets; "
+                      "the claim of an inverted law does not."])
     print(f"\nDone -> {OUT}/")
 
 
