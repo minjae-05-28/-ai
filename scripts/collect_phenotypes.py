@@ -116,7 +116,7 @@ def fitness(pfam, tmp):
         org, locus = k.split(":", 1)
         by_org[org][locus] = v
     (OUT / "fitness").mkdir(parents=True, exist_ok=True)
-    only = set(filter(None, os.environ.get("FB_ORGS", "").split(",")))
+    only = set(filter(None, os.environ.get("FB_ORGS", "").split(",")))  # set by --orgs
     for org, name in sorted(orgs.items()):
         if only and org not in only:
             continue
@@ -320,7 +320,9 @@ def main():
     ap.add_argument("--source", required=True, choices=["fitness", "deg", "yeast", "pombe", "paxdb"])
     ap.add_argument("--pfam", default="pfam/Pfam-A.hmm")
     ap.add_argument("--tmp", default="/tmp")
+    ap.add_argument("--orgs", default="", help="Fitness Browser orgIds to export (comma-separated; default all)")
     args = ap.parse_args()
+    os.environ["FB_ORGS"] = args.orgs
     globals()[args.source](args.pfam, args.tmp)
 
 
