@@ -110,6 +110,50 @@ SPECIES.update({
     "Bacillus pumilus": Env("firmicutes", 37, 0.5, 1),
 })
 
+# Round 3 (October 2026): new lineages and the heat axis, so each axis has independent
+# origins in several phyla. Values are literature optima (approximate).
+SPECIES.update({
+    # heat (warmer = negative "colder")
+    "Caldicellulosiruptor saccharolyticus": Env("firmicutes", 70, 0.5, 0),
+    "Thermoanaerobacter pseudethanolicus": Env("firmicutes", 65, 0.5, 0),
+    "Mesotoga prima": Env("thermotogae", 37, 1, 0),  # mesophilic Thermotogae
+    "Thermotoga maritima": Env("thermotogae", 80, 2.7, 0),
+    "Pyrococcus furiosus": Env("archaea", 100, 2.5, 0),
+    "Methanothermococcus thermolithotrophicus": Env("archaea", 65, 2, 0),
+    "Thermosynechococcus vestitus": Env("cyano", 55, 0, 1),  # formerly T. elongatus BP-1
+    # cold
+    "Psychromonas ingrahamii": Env("gamma", 5, 2.5, 1),  # Arctic sea ice, grows at -12 C
+    # salt
+    "Halothermothrix orenii": Env("firmicutes", 60, 10, 0),  # hot salt lake
+    "Haloquadratum walsbyi": Env("archaea", 40, 25, 1),  # square archaeon of saturated brines
+    "Methanohalophilus mahii": Env("archaea", 35, 12, 0),
+    "Halothece sp. PCC 7418": Env("cyano", 30, 15, 1),  # halophilic cyanobacterium
+    # no oxygen
+    "Bacteroides fragilis": Env("bacteroidetes", 37, 0.5, 0),
+    # radiation
+    "Deinococcus proteolyticus": Env("deinococcus", 30, 0.5, 1, radiation=1),
+    # nutrient-poor
+    "Methylobacillus flagellatus": Env("beta", 37, 0.5, 1),
+    "Candidatus Methylopumilus planktonicus": Env("beta", 20, 0, 1, oligo=1),  # streamlined freshwater methylotroph
+})
+
+PAIR_SPECS_ROUND3 = [
+    (("Clostridium acetobutylicum",), "Caldicellulosiruptor saccharolyticus"),
+    (("Clostridium acetobutylicum",), "Thermoanaerobacter pseudethanolicus"),
+    (("Mesotoga prima",), "Thermotoga maritima"),
+    (("Thermococcus kodakarensis",), "Pyrococcus furiosus"),
+    (("Methanococcus maripaludis",), "Methanothermococcus thermolithotrophicus"),
+    (("Synechococcus elongatus",), "Thermosynechococcus vestitus"),
+    (("Shewanella oneidensis",), "Psychromonas ingrahamii"),
+    (("Clostridium acetobutylicum",), "Halothermothrix orenii"),
+    (("Haloferax volcanii",), "Haloquadratum walsbyi"),
+    (("Methanosarcina acetivorans",), "Methanohalophilus mahii"),
+    (("Synechocystis sp. PCC 6803",), "Halothece sp. PCC 7418"),
+    (("Flavobacterium johnsoniae",), "Bacteroides fragilis"),
+    (("Thermus thermophilus",), "Deinococcus proteolyticus"),
+    (("Methylobacillus flagellatus",), "Candidatus Methylopumilus planktonicus"),
+]
+
 # Climate-sensitive pathogens: forecast targets only (not in any pair, so no law is fitted
 # on them).
 CLIMATE_TARGETS = {
@@ -171,6 +215,8 @@ PAIR_SPECS += [
     (("Cupriavidus necator",), "Polynucleobacter asymbioticus"),
     (("Bacillus subtilis",), "Bacillus pumilus"),
 ]
+
+PAIR_SPECS += PAIR_SPECS_ROUND3
 
 AXES = ("colder", "saltier", "anaerobic", "radiation_resistant", "oligotrophic")
 TEMP_SCALE, NACL_SCALE = 30.0, 10.0
