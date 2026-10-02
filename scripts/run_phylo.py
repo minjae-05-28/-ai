@@ -21,7 +21,9 @@ from organelle_evo.prokaryotes import catalog as pro
 
 TAX = json.loads(Path("results/taxonomy/taxonomy.json").read_text())
 C = Path("data/composition")
-TREES = {f.stem: f.read_text() for f in Path("results/phylo_tree").glob("*.nwk")}
+TREES = {f.stem: f.read_text() for f in Path("results/phylo_tree").glob("*.nwk") if not f.stem.endswith(".boot")}
+BOOTS = {f.name.split(".")[0]: [t for t in f.read_text().splitlines() if t.strip()]
+         for f in Path("results/phylo_tree").glob("*.boot.nwk")}
 
 
 def load(sub):
@@ -45,6 +47,18 @@ def test(name, names, X, y, col=1, tree=None):
         tp = pgls(X[ix], y[ix], V)
         row["tree_pgls"] = [float(tp.coef[col]), float(tp.p[col]), tp.lam, len(keep)]
         row["survives_tree"] = bool(np.sign(tp.coef[col]) == np.sign(ols.coef[col]) and tp.p[col] < 0.05)
+        if tree in BOOTS:
+            reps = []
+            for t in BOOTS[tree]:
+                k2, V2 = tree_cov(names, t)
+                ix2 = [names.index(k) for k in k2]
+                r2 = pgls(X[ix2], y[ix2], V2)
+                reps.append((float(r2.p[col]), bool(np.sign(r2.coef[col]) == np.sign(ols.coef[col]) and r2.p[col] < 0.05)))
+            row["bootstrap_trees"] = {"n": len(reps), "share_surviving": float(np.mean([r[1] for r in reps])),
+                                      "median_p": float(np.median([r[0] for r in reps])),
+                                      "max_p": float(max(r[0] for r in reps))}
+            print(f"{'':42s} bootstrap trees: survives in {row['bootstrap_trees']['share_surviving']:.0%} "
+                  f"of {len(reps)} (median p {row['bootstrap_trees']['median_p']:.1e})")
         print(f"{'':42s} tree PGLS {tp.coef[col]:+.4g} (p {tp.p[col]:.1e}, lambda {tp.lam:.2f}, n={len(keep)})  "
               f"{'survives' if row['survives_tree'] else 'DOES NOT SURVIVE'}")
     print(f"{name:42s} n={len(y):3d}  OLS {ols.coef[col]:+.4g} (p {ols.p[col]:.1e})  "

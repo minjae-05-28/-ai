@@ -134,8 +134,8 @@ a { color: var(--keep); }
       <div class="find"><div class="fig">6 / 11<small>계통</small></div><div><h3>버리는 대신 늘리는 것: 아미노산 수송체와 편모의 운명</h3><p class="muted">기생생물은 유전자군을 덜 늘리지만, 아미노산 수송체는 11개 계통 중 6곳, 퓨린 재활용 효소는 7곳에서 독립적으로 늘어났습니다. 함께 사라지는 유전자 묶음은 드물었고, 뚜렷한 예외가 편모였습니다. 세포 안에 사는 기생생물은 편모 부품을 한꺼번에 버리고, 혈액을 헤엄치는 트리파노소마는 지킵니다.</p></div></div>
       <div class="find"><div class="fig">0.78<small>AUROC</small></div><div><h3>유전체 하나로 조상을 역추적</h3><p class="muted">현대 기생생물 유전체만 보고 자유생활 조상이 가졌던 유전자군을 복원합니다. 누구나 브라우저에서 해 볼 수 있게 공개했습니다.</p></div></div>
       <div class="find"><div class="fig">r 0.82<small>IVYWREL</small></div><div><h3>환경 적응은 유전자 목록이 아니라 단백질 서열에서 일어난다</h3><p class="muted">극한 세균의 유전자 소실은 환경으로 예측되지 않았지만, 아미노산 조성 변화는 환경 변화로 R² 0.53–0.63까지 설명됩니다. 고온성은 IVYWREL 증가(Zeldovich 2007 재현), 호염성은 산성화, 빈영양은 질소 절약, 공생세균은 AT 편향(부크네라 등전점 약 10). 유전자군 단위로 보면 90%가 같은 방향으로 바뀌고, 막단백질·수송체는 덜 바뀝니다.</p></div></div>
-      <div class="find"><div class="fig">13 / 14<small>법칙 유지</small></div><div><h3>계통 보정 뒤에도 대부분 살아남는다</h3><p class="muted">NCBI 분류 단계마다 분산을 따로 추정하는 GLS로 다시 검정했습니다. 세포 안 생활 효과만 탈락했고, 빈영양 질소 절약은 오히려 보정 뒤에야 드러났습니다(p 0.70 → 0.003).</p></div></div>
-      <div class="find"><div class="fig">97%<small>GC 보정 후</small></div><div><h3>온도·염분 적응은 GC 편향이 아니다</h3><p class="muted">아미노산 조성은 유전체 GC에 크게 좌우됩니다(FYMINK와 r −0.96). GC를 넣고 다시 검정하자 온도(IVYWREL 97%, 쌍 단위 102%)와 염분(산성 과잉 96%) 효과는 그대로 남았습니다. 반대로 빈영양 질소 절약, 무산소 FYMINK, 공생세균 AT 편향은 GC로 설명됩니다. 이 셋은 아미노산 선택이 아니라 GC 수준에서 일어나는 변화입니다.</p></div></div>
+      <div class="find"><div class="fig">12–13 / 14<small>법칙 유지</small></div><div><h3>계통 보정 뒤에도 대부분 살아남는다</h3><p class="muted">NCBI 분류 단계마다 분산을 따로 추정해 보정하면 13개, 리보솜 단백질 서열로 만든 실제 계통수(진핵 125종, 세균·고세균 70종)로 보정하면 12개가 유지됩니다. 세포 안 생활 효과는 두 방식 모두에서 탈락했습니다.</p></div></div>
+      <div class="find"><div class="fig">97%<small>GC·GC3 보정 후</small></div><div><h3>온도·염분 적응은 GC 편향이 아니다</h3><p class="muted">아미노산 조성은 유전체 GC에 크게 좌우됩니다(FYMINK와 r −0.96). GC를 넣고 다시 검정하자 온도(IVYWREL 97%, 쌍 단위 102%)와 염분(산성 과잉 96%) 효과는 그대로 남았습니다. 반대로 빈영양 질소 절약, 무산소 FYMINK, 공생세균 AT 편향은 GC로 설명됩니다. 이 셋은 아미노산 선택이 아니라 GC 수준에서 일어나는 변화입니다. 돌연변이 편향에 더 가까운 코돈 셋째 자리 GC(GC3)와 서열 계통수로 다시 해도 같은 결론입니다.</p></div></div>
       <div class="find"><div class="fig">10 / 13<small>문헌 일치</small></div><div><h3>이미 발표된 법칙과 대조</h3><p class="muted">Krylov 2003의 소실 성향, van Nimwegen 2003의 조절 유전자 스케일링(지수 1.95), Black Queen 가설 등 13개를 우리 데이터로 다시 시험했습니다. 10개 일치, 2개 부분 일치, 1개 검증 불가입니다.</p></div></div>
     </div>
   </section>
@@ -155,6 +155,7 @@ a { color: var(--keep); }
       <li><span class="when">v5 · 단백질 서열</span><br>환경 신호가 어디 있는지 단백질 조성에서 찾음. 환경 변화가 조성 변화를 R² 0.53–0.63으로 설명. 소기관은 반대로 묶음 단위로 잃는다는 것도 확인.</li>
       <li><span class="when">v6 · 계통 보정과 문헌 대조</span><br>분류 단계별 분산 GLS로 14개 법칙 중 13개 유지. 발표된 법칙 13개 중 10개 재현.</li>
       <li><span class="when">v7 · GC 교란</span><br>GC를 공변량으로 넣자 서열 법칙 10개 중 온도·염분 법칙은 유지, 질소 절약과 무산소 FYMINK는 GC로 설명됨. 공생세균 AT 편향도 크기가 아니라 GC가 원인.</li>
+      <li><span class="when">v8 · 견고성</span><br>형제 계통으로 예측 천장(0.90)을 재서, 처음 보는 계통에서는 0.80 근처가 현실적 한계임을 확인. 리보솜 단백질 계통수, GC3, 부트스트랩, 다중 비교 보정을 추가해도 온도·염분 서열 법칙은 그대로.</li>
       <li class="fail"><span class="when">중단 · 미래 예측</span><br>기후 변화 병원체 예측은 모든 종에 같은 답을 내고 리보솜 유전자까지 버린다고 예측해, 믿을 수 없다고 판단하고 중단.</li>
     </ul>
   </section>
@@ -172,6 +173,8 @@ a { color: var(--keep); }
       <tr><td>처음 보는 극한 세균이 잃는 유전자군</td><td>환경 없이 / 환경 축 추가 / 암기</td><td class="v">0.816 / 0.808 / 0.804</td></tr>
       <tr><td>환경 변화 → 아미노산 조성 변화</td><td>쌍 단위 선형 법칙</td><td class="v">R² 0.53–0.63</td></tr>
       <tr><td>IVYWREL만으로 최적 온도</td><td>계통 빼고 맞히기</td><td class="v">오차 9.8°C (평균 15.5°C)</td></tr>
+      <tr><td>천장: 형제 계통의 소실로 맞히기</td><td>기생 / 극한 세균</td><td class="v">0.90 / 0.86</td></tr>
+      <tr><td>처음 보는 계통에서 암기 − 법칙</td><td>계통 단위 부트스트랩</td><td class="v">+0.025 [0.011, 0.036]</td></tr>
       <tr><td>유전체 하나로 조상 복원</td><td>사전 지식 + 법칙</td><td class="v">AUROC 0.78</td></tr>
     </table></div>
   </section>

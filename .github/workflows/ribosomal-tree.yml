@@ -81,7 +81,7 @@ jobs:
     needs: [plan, markers]
     if: always() && needs.plan.result == 'success'
     runs-on: ubuntu-latest
-    timeout-minutes: 120
+    timeout-minutes: 330
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -96,7 +96,7 @@ jobs:
       - name: Build trees
         env:
           PYTHONPATH: src
-        run: python scripts/ribosomal_tree.py --build
+        run: python scripts/ribosomal_tree.py --build --bootstrap 20
       - name: Commit
         run: |
           git config user.name "github-actions[bot]"

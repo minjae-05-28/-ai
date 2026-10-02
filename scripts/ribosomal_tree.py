@@ -93,7 +93,7 @@ def collect(entry, pfam):
     print(f"{entry}: {len(best)} ribosomal markers")
 
 
-def build():
+def build(n_boot=0):
     import tempfile
 
     TREES.mkdir(parents=True, exist_ok=True)
@@ -124,11 +124,29 @@ def build():
                     concat[s].append(seqs.get(ids[s], "-" * width))
             sup = Path(tmp) / "concat.fa"
             sup.write_text("".join(f">{ids[s]}\n{''.join(concat[s])}\n" for s in species))
-            ft = shutil.which("FastTree") or shutil.which("fasttree")
+            ft = shutil.which("FastTreeMP") or shutil.which("FastTree") or shutil.which("fasttree")
             nwk = subprocess.run([ft, "-lg", "-gamma", "-quiet", str(sup)], capture_output=True, text=True, check=True).stdout
+            boots = []
+            if n_boot:
+                # Nonparametric bootstrap: resample alignment columns, one tree per replicate
+                import random
+
+                rng = random.Random(0)
+                rows = {s: "".join(concat[s]) for s in species}
+                width = len(rows[species[0]])
+                for b in range(n_boot):
+                    cols = [rng.randrange(width) for _ in range(width)]
+                    rep = Path(tmp) / f"boot{b}.fa"
+                    rep.write_text("".join(f">{ids[s]}\n{''.join(rows[s][c] for c in cols)}\n" for s in species))
+                    boots.append(subprocess.run([ft, "-lg", "-gamma", "-quiet", "-nosupport", str(rep)],
+                                                capture_output=True, text=True, check=True).stdout.strip())
+                    print(f"  {cat_dir.name} bootstrap {b + 1}/{n_boot}", flush=True)
         back = {v: k for k, v in ids.items()}
-        nwk = re.sub(r"\b(t\d+)(?=[:,)])", lambda m: "'" + back[m.group(1)].replace("'", "") + "'", nwk)
+        rename = lambda t: re.sub(r"\b(t\d+)(?=[:,)])", lambda m: "'" + back[m.group(1)].replace("'", "") + "'", t)  # noqa: E731
+        nwk = rename(nwk)
         (TREES / f"{cat_dir.name}.nwk").write_text(nwk)
+        if boots:
+            (TREES / f"{cat_dir.name}.boot.nwk").write_text("\n".join(rename(t) for t in boots) + "\n")
         (TREES / f"{cat_dir.name}.json").write_text(json.dumps({"species": len(species), "families": fams,
                                                                 "alignment_length": len("".join(concat[species[0]]))}, indent=1))
         print(f"{cat_dir.name}: {len(species)} species, {len(fams)} families -> {TREES / cat_dir.name}.nwk")
@@ -140,11 +158,12 @@ def main():
     ap.add_argument("--pfam", default="pfam/Pfam-A.hmm")
     ap.add_argument("--list-missing", action="store_true")
     ap.add_argument("--build", action="store_true")
+    ap.add_argument("--bootstrap", type=int, default=0, help="bootstrap replicate trees per set")
     args = ap.parse_args()
     if args.list_missing:
         print(json.dumps([e for e in entries() if not path(e).exists()]))
     elif args.build:
-        build()
+        build(args.bootstrap)
     else:
         collect(args.entry, args.pfam)
 
