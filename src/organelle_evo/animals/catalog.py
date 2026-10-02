@@ -121,12 +121,10 @@ SPECIES = {
     "Amphimedon queenslandica": Env("sponge", 25.0, 1000),
     "Capitella teleta": Env("annelid", 18.0, 1000, hypoxia=1),  # organic-rich sediment
     "Penaeus vannamei": Env("crustacean", 27.0, 1000),
-    "Eurytemora affinis": Env("crustacean", 15.0, 1000),
 
     # --- Freshwater and terrestrial invertebrates: osmoregulate near 300
     "Daphnia pulex": Env("crustacean", 20.0, 300),
     "Helobdella robusta": Env("annelid", 20.0, 300),
-    "Schmidtea mediterranea": Env("flatworm", 20.0, 300),
     "Caenorhabditis elegans": Env("nematode", 20.0, 300),
     "Drosophila melanogaster": Env("insect", 25.0, 300),
     "Anopheles gambiae": Env("insect", 27.0, 300),
@@ -134,18 +132,26 @@ SPECIES = {
     "Bombyx mori": Env("insect", 25.0, 300),
     "Tribolium castaneum": Env("insect", 30.0, 300),
     "Acyrthosiphon pisum": Env("insect", 20.0, 300),
-    "Belgica antarctica": Env("insect", 2.0, 300),  # Antarctic midge
     "Ixodes scapularis": Env("arachnid", 22.0, 300),
     "Tetranychus urticae": Env("arachnid", 27.0, 300),
 
     # --- Parasites of warm-blooded hosts: cells at host temperature, often little oxygen
-    "Ascaris suum": Env("nematode", 39.0, 300, hypoxia=1, parasite=1),
     "Brugia malayi": Env("nematode", 37.0, 300, parasite=1),
     "Trichinella spiralis": Env("nematode", 37.0, 300, parasite=1),
     "Schistosoma mansoni": Env("flatworm", 37.0, 300, hypoxia=1, parasite=1),
     "Echinococcus granulosus": Env("flatworm", 37.0, 300, hypoxia=1, parasite=1),
-    "Hymenolepis microstoma": Env("flatworm", 37.0, 300, hypoxia=1, parasite=1),
 }
+
+
+# Dropped: no annotated assembly reachable through the NCBI Datasets API, so no proteome
+# can be fetched for them (same reason five round-4 eukaryotes were dropped).
+#   Eurytemora affinis     crustacean, 15 C, osmoconformer
+#   Schmidtea mediterranea freshwater flatworm, 20 C
+#   Belgica antarctica     Antarctic midge, 2 C - the coldest terrestrial point in the design
+#   Ascaris suum           nematode parasite of pigs, 39 C, hypoxic gut
+#   Hymenolepis microstoma tapeworm parasite, 37 C, hypoxic gut
+# Losing Belgica costs the cold end of the terrestrial range, and the two parasites leave
+# four in the set. If annotated assemblies appear, add them back and refit.
 
 
 def slug(name: str) -> str:
