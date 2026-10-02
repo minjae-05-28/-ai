@@ -236,6 +236,60 @@ def abundance(res):
     res["abundance_proxy_check"] = out
 
 
+def rna(res, sets):
+    """Measured RNA (salmon TPM on public RNA-seq) of the ancestor proxies: checks the codon proxy,
+    then asks whether families the relative expresses weakly are the ones its descendant loses."""
+    ctx, expr = {}, {}
+    for cat in ("eukaryotes", "prokaryotes"):
+        for f in Path(f"data/family_context/{cat}").glob("*.json"):
+            d = json.loads(f.read_text())
+            ctx[d["species"]] = d["families"]
+        for f in Path(f"data/expression/{cat}").glob("*.json"):
+            d = json.loads(f.read_text())
+            if d["runs"] and len(d["families"]) > 100:
+                expr[d["species"]] = {k: v[2] for k, v in d["families"].items()}  # mean within-species percentile
+    print(f"  {len(expr)} relatives with measured RNA")
+    proxy = []
+    for sp, e in expr.items():
+        common = [k for k in e if sp in ctx and k in ctx[sp] and ctx[sp][k][2]]
+        if len(common) > 30:
+            proxy.append(float(spearmanr([ctx[sp][k][1] / ctx[sp][k][2] for k in common], [e[k] for k in common]).correlation))
+    if proxy:
+        print(f"  codon proxy vs measured RNA: median Spearman {np.median(proxy):+.2f} over {len(proxy)} species "
+              f"(range {min(proxy):+.2f} to {max(proxy):+.2f})")
+    out = {"n_relatives_with_rna": len(expr), "codon_proxy_vs_rna_spearman": proxy}
+    for name, prof, pairs in sets:
+        auc_rna, auc_cod, prs = [], [], []
+        for a, d in pairs:
+            if a not in expr or a not in prof or d not in prof:
+                continue
+            fa, fd = prof[a]["families"], prof[d]["families"]
+            fams = [k for k in fa if fa[k][0] > 0 and k in expr[a]]
+            if len(fams) < 50:
+                continue
+            y = np.array([fd.get(k, [0])[0] == 0 for k in fams])
+            if y.all() or not y.any():
+                continue
+            x = np.array([expr[a][k] for k in fams])
+            auc_rna.append(auroc(-x, y))
+            ubi = np.array([np.mean([k in prof[s]["families"] and prof[s]["families"][k][0] > 0 for s, _ in pairs if s in prof]) for k in fams])
+            prs.append(partial_spearman(x, y.astype(float), ubi))
+            if a in ctx:
+                cf = [k for k in fams if k in ctx[a] and ctx[a][k][2]]
+                yc = np.array([fd.get(k, [0])[0] == 0 for k in cf])
+                if yc.any() and not yc.all():
+                    auc_cod.append(auroc(-np.array([ctx[a][k][1] / ctx[a][k][2] for k in cf]), yc))
+        if auc_rna:
+            r = {"n_pairs": len(auc_rna), "auroc_low_rna_predicts_loss": float(np.mean(auc_rna)),
+                 "auroc_low_codon_proxy_predicts_loss": float(np.mean(auc_cod)) if auc_cod else None,
+                 "partial_spearman_rna_vs_loss_controlling_ubiquity": float(np.mean(prs))}
+            out[name] = r
+            print(f"  {name}: {len(auc_rna)} pairs; low RNA predicts loss AUROC {r['auroc_low_rna_predicts_loss']:.3f} "
+                  f"(codon proxy {r['auroc_low_codon_proxy_predicts_loss'] or float('nan'):.3f}); "
+                  f"partial Spearman after ubiquity {r['partial_spearman_rna_vs_loss_controlling_ubiquity']:+.2f}")
+    res["measured_rna"] = out
+
+
 def main():
     res = {}
     print("1. E. coli knockouts vs insect symbiont genomes")
@@ -253,6 +307,8 @@ def main():
     pairs_test("extremophiles (bacterial screens)", P, ppairs, pro_ess, res, list(P))
     print("\n4. Measured protein abundance")
     abundance(res)
+    print("\n5. Measured RNA of the relatives")
+    rna(res, [("parasites", E, epairs), ("extremophiles", P, ppairs)])
     OUT.mkdir(parents=True, exist_ok=True)
     (OUT / "metrics.json").write_text(json.dumps(res, indent=2))
     save_law(LAWS_DIR / "knockout_v1.json", id="knockout_v1",
