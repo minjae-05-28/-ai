@@ -12,6 +12,15 @@ import urllib.request
 from pathlib import Path
 
 CANDIDATES = {
+    # round 3: processed RNA-seq expression
+    "atlas_ftp": "https://ftp.ebi.ac.uk/pub/databases/microarray/data/atlas/experiments/",
+    "atlas_api_species": "https://www.ebi.ac.uk/gxa/json/experiments",
+    "imodulondb_site": "https://imodulondb.org/",
+    "imodulondb_github": "https://api.github.com/repos/SBRG/iModulonDB/contents/",
+    "imodulondb_data_github": "https://api.github.com/search/repositories?q=imodulon+data",
+    "sra_tools_release": "https://api.github.com/repos/ncbi/sra-tools/releases/latest",
+    "ena_filereport": "https://www.ebi.ac.uk/ena/portal/api/search?result=read_run&query=tax_eq(1140)%20AND%20library_strategy=%22RNA-Seq%22&fields=run_accession,fastq_ftp,read_count,base_count&limit=5",
+
     # round 2: directory listings and bulk files
     "fb_cgi_data": "https://fit.genomics.lbl.gov/cgi_data/",
     "fb_feba_db": "https://fit.genomics.lbl.gov/cgi_data/feba.db",
@@ -68,7 +77,7 @@ def probe(url):
     text = raw.decode("utf-8", "replace")
     import re
 
-    links = sorted(set(re.findall(r'href="([^"?#][^"]*)"', text)))[:400]
+    links = sorted(set(re.findall(r'href="([^"?#][^"]*)"', text)))[:3000]
     return {"ok": True, "status": status, "bytes_read": len(raw), "head": text[:3000], "links": links}
 
 
