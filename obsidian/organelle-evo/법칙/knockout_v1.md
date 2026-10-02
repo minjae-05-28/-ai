@@ -56,9 +56,9 @@ Knockout phenotype classes and family essential shares compared with observed re
   - Macrostomum lignano: `{"n_families": 2048, "spearman_codon_proxy_vs_measured": 0.27713572178081364}`
   - Chlamydomonas reinhardtii: `{"n_families": 4150, "spearman_codon_proxy_vs_measured": 0.49417425063921355}`
 - measured_rna:
-  - n_relatives_with_rna: 49
+  - n_relatives_with_rna: 51
   - codon_proxy_vs_rna_spearman: `[0.2581962597265621, 0.07231285054085326, 0.37467379603096107, 0.43423390220133434, 0.33228976188649695, 0.5508534578590172, 0.1912835344120802, 0.5324837390666`
-  - parasites: `{"n_pairs": 71, "auroc_low_rna_predicts_loss": 0.5923274431731593, "auroc_low_codon_proxy_predicts_loss": 0.5745254644275567, "partial_spearman_rna_vs_loss_cont`
+  - parasites: `{"n_pairs": 78, "auroc_low_rna_predicts_loss": 0.5842293369314946, "auroc_low_codon_proxy_predicts_loss": 0.5736129513262872, "partial_spearman_rna_vs_loss_cont`
   - extremophiles: `{"n_pairs": 36, "auroc_low_rna_predicts_loss": 0.636585209599741, "auroc_low_codon_proxy_predicts_loss": 0.623053513913076, "partial_spearman_rna_vs_loss_contro`
 
 ## 한계
