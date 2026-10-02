@@ -35,6 +35,24 @@ CATALOG = {
             "Monosiga brevicollis", "Trichoplax adhaerens", "Metridium senile",
             "Drosophila melanogaster", "Caenorhabditis elegans", "Danio rerio",
             "Gallus gallus", "Mus musculus", "Homo sapiens",
+            # --- expansion (October 2026): more independent lineages per supergroup ---
+            # jakobids, malawimonads, excavates
+            "Seculamonas ecuadoriensis", "Histiona aroides", "Malawimonas jakobiformis", "Naegleria gruberi",
+            # green lineage
+            "Ostreococcus tauri", "Micromonas pusilla", "Chlorokybus atmophyticus", "Chara vulgaris",
+            "Mesostigma viride", "Pycnococcus provasolii", "Zea mays", "Oryza sativa", "Nicotiana tabacum",
+            "Cycas taitungensis", "Ginkgo biloba", "Selaginella moellendorffii", "Huperzia squarrosa",
+            # red algae, cryptophytes, haptophytes, stramenopiles, alveolates
+            "Porphyra purpurea", "Gracilaria vermiculophylla", "Cyanophora paradoxa", "Rhodomonas salina",
+            "Emiliania huxleyi", "Ectocarpus siliculosus", "Phaeodactylum tricornutum", "Saprolegnia ferax",
+            "Chromera velia", "Babesia bovis", "Theileria parva", "Toxoplasma gondii", "Eimeria tenella",
+            # amoebozoa, fungi
+            "Polysphondylium pallidum", "Rhizopus oryzae", "Batrachochytrium dendrobatidis", "Yarrowia lipolytica",
+            "Candida albicans", "Aspergillus nidulans", "Podospora anserina",
+            # animals
+            "Amphimedon queenslandica", "Nematostella vectensis", "Schistosoma mansoni", "Ascaris suum",
+            "Apis mellifera", "Anopheles gambiae", "Daphnia pulex", "Strongylocentrotus purpuratus",
+            "Branchiostoma floridae", "Ciona intestinalis", "Xenopus laevis",
         ],  # fmt: skip
         # Search hits for its ~6 kb genome (3 proteins) are unannotated; use the RefSeq record.
         # "accession:" entries are fetched directly.
@@ -54,6 +72,19 @@ CATALOG = {
             "Oryza sativa", "Nicotiana tabacum", "Arabidopsis thaliana", "Euglena gracilis",
             # non-photosynthetic plastids: parasitic plant, apicomplexans
             "Epifagus virginiana", "Toxoplasma gondii",
+            # --- expansion (October 2026) ---
+            # green algae and early land plants
+            "Ostreococcus tauri", "Micromonas pusilla", "Chlorella vulgaris", "Chara vulgaris",
+            "Chaetosphaeridium globosum", "Zygnema circumcarinatum", "Anthoceros angustus",
+            "Selaginella moellendorffii", "Huperzia lucidula", "Ginkgo biloba", "Pinus thunbergii", "Zea mays",
+            # heterotrophic and parasitic plants / algae: graded plastid reduction
+            "Cuscuta reflexa", "Cuscuta gronovii", "Orobanche gracilis", "Conopholis americana",
+            "Neottia nidus-avis", "Rhizanthella gardneri", "Euglena longa", "Helicosporidium sp. ex Simulium jonesi",
+            "Prototheca wickerhamii",
+            # red lineage, secondary and tertiary plastids
+            "Gracilaria tenuistipitata", "Cyanidium caldarium", "Galdieria sulphuraria", "Ectocarpus siliculosus",
+            "Vaucheria litorea", "Heterosigma akashiwo", "Rhodomonas salina", "Bigelowiella natans",
+            "Chromera velia", "Vitrella brassicaformis", "Eimeria tenella", "Theileria parva", "Babesia bovis",
         ],  # fmt: skip
         # A second, independent primary endosymbiosis (~100 Myr old).
         "extra_queries": {
@@ -76,6 +107,13 @@ CATALOG = {
             "Baumannia cicadellinicola",
             "Riesia pediculicola",
             "Buchnera aphidicola str. APS (Acyrthosiphon pisum)",
+            # --- expansion (October 2026): more gammaproteobacterial symbionts, from
+            # facultative (gene-rich) to the smallest bacterial genomes known ---
+            "Arsenophonus nasoniae", "Regiella insecticola",
+            "Candidatus Ishikawaella capsulata", "Candidatus Portiera aleyrodidarum",
+            "Candidatus Carsonella ruddii", "Candidatus Westeberhardia cardiocondylae",
+            "Candidatus Annandia pinicola", "Candidatus Purcelliella pentastirinorum",
+            "Candidatus Doolittlea endobia", "Candidatus Gullanella endobia", "Candidatus Mikella endobia",
         ],
         # Strains that are not separate taxa, and Candidatus names that NCBI lists
         # under renamed genera: search by the host in the title instead.
@@ -87,6 +125,11 @@ CATALOG = {
                 ("Buchnera aphidicola Bp (Baizongia pistaciae)", "Buchnera aphidicola", "Baizongia"),
                 ("Buchnera aphidicola (Cinara)", "Buchnera aphidicola", "Cinara"),
                 ("Moranella endobia", "Moranella", "endobia"),
+                ("Blochmannia vafer", "Blochmannia", "vafer"),
+                ("Buchnera aphidicola (Cinara cedri)", "Buchnera aphidicola", "cedri"),
+                ("Buchnera aphidicola (Uroleucon)", "Buchnera aphidicola", "Uroleucon"),
+                ("Buchnera aphidicola (Myzus persicae)", "Buchnera aphidicola", "Myzus"),
+                ("Riesia pediculischaeffi", "Riesia", "pediculischaeffi"),
             ]
         },
     },
