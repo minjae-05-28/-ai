@@ -1,300 +1,300 @@
 {
-  "n_pairs": 43,
+  "n_pairs": 57,
   "ivywrel": {
     "axis": "colder",
-    "uniform_share_of_family_variance": 0.2396882928001186,
-    "families_tested": 1797,
-    "median_sensitivity": 0.02775533129497514,
-    "share_positive": 0.9003895381190874,
+    "uniform_share_of_family_variance": 0.2429368648126074,
+    "families_tested": 2099,
+    "median_sensitivity": 0.0239712862814852,
+    "share_positive": 0.9056693663649357,
     "most_sensitive": [
       [
         "LpqE-like: Putative lipoprotein LpqE-like",
-        0.1337
+        0.1356
       ],
       [
-        "DciA: Dna[CI] antecedent, DciA",
-        0.1271
-      ],
-      [
-        "SpoIID: Stage II sporulation protein",
-        0.1179
-      ],
-      [
-        "PspA_IM30: PspA/IM30 family",
-        0.1177
-      ],
-      [
-        "TPR_11: TPR repeat",
-        0.1176
-      ],
-      [
-        "LolA: Outer membrane lipoprotein carrier protein LolA",
-        0.1157
-      ],
-      [
-        "Ank_2: Ankyrin repeats (3 copies)",
-        0.1107
+        "UVR: UvrB/uvrC motif",
+        0.108
       ],
       [
         "FtsX_ECD: FtsX extracellular domain",
-        0.1093
+        0.1016
       ],
       [
-        "GSH-S_N: Prokaryotic glutathione synthetase, N-terminal domain",
-        0.1093
+        "Smr: Smr domain",
+        0.1008
       ],
       [
-        "LptD_N: LptA/(LptD N-terminal domain) LPS transport protein",
-        0.1012
+        "CcmH: Cytochrome C biogenesis protein",
+        0.0971
       ],
       [
         "DUF3108: Protein of unknown function (DUF3108)",
-        0.0998
+        0.0946
       ],
       [
-        "MlaC: MlaC protein",
-        0.0998
+        "LTXXQ: LTXXQ motif family protein",
+        0.0944
+      ],
+      [
+        "Secretin_N: Bacterial type II/III secretion system short domain",
+        0.0935
+      ],
+      [
+        "Pyridox_oxase_2: Pyridoxamine 5'-phosphate oxidase, FMN-binding domain",
+        0.0924
+      ],
+      [
+        "GSHPx: Glutathione peroxidase",
+        0.0914
+      ],
+      [
+        "PspA_IM30: PspA/IM30 family",
+        0.0907
+      ],
+      [
+        "TPR_14: Tetratricopeptide repeat",
+        0.0897
       ]
     ],
     "least_sensitive": [
       [
-        "RDD: RDD family",
-        -0.048
+        "UPF0093: Protoporphyrinogen oxidase HemJ",
+        -0.0464
       ],
       [
-        "Sigma70_r1_1: Sigma-70 factor, region 1.1",
+        "MAPEG: MAPEG family",
+        -0.0469
+      ],
+      [
+        "GST_C_3: Glutathione S-transferase, C-terminal domain",
         -0.0482
       ],
       [
-        "TetR_C_13: Tetracyclin repressor-like, C-terminal domain",
-        -0.0602
-      ],
-      [
-        "AAA_32: LonB-like, AAA domain",
-        -0.061
-      ],
-      [
-        "PolyA_pol_arg_C: Polymerase A arginine-rich C-terminus",
-        -0.0618
+        "FKBP_N: Domain amino terminal to FKBP-type peptidyl-prolyl isomerase",
+        -0.0511
       ],
       [
         "Cons_hypoth698: Conserved hypothetical protein 698",
-        -0.0634
+        -0.0536
+      ],
+      [
+        "TetR_C_13: Tetracyclin repressor-like, C-terminal domain",
+        -0.0545
+      ],
+      [
+        "Rimk_N: RimK PreATP-grasp domain",
+        -0.0563
+      ],
+      [
+        "PolyA_pol_arg_C: Polymerase A arginine-rich C-terminus",
+        -0.0581
       ],
       [
         "sCache_2: Single Cache domain 2",
-        -0.067
+        -0.0604
       ],
       [
         "PolyA_pol_RNAbd: Probable RNA and SrmB- binding site of polymerase A",
-        -0.072
+        -0.0829
       ],
       [
-        "AAA_27: AAA domain",
-        -0.073
-      ],
-      [
-        "UPF0093: Protoporphyrinogen oxidase HemJ",
-        -0.0733
-      ],
-      [
-        "PhaG_MnhG_YufB: Na+/H+ antiporter subunit",
-        -0.0929
+        "DUF493: Protein of unknown function (DUF493)",
+        -0.0944
       ],
       [
         "Copper-bind: Copper binding proteins, plastocyanin/azurin family",
-        -0.0942
+        -0.0956
       ]
     ],
     "feature_correlations": [
       [
         "hydrophobicity_gravy",
-        -0.1650210988021524
+        -0.16312864689105405
       ],
       [
         "tm_helices",
-        -0.11248096099097678
+        -0.12985374798727495
       ],
       [
         "kw:transporter_channel",
-        -0.1012335374791002
-      ],
-      [
-        "go:transmembrane transport",
-        -0.08369067570194469
+        -0.11448278597817009
       ],
       [
         "go:transporter activity",
-        -0.07237147250989315
+        -0.08431938069382701
       ],
       [
         "hmm_length",
-        -0.06841553230512812
+        -0.06542390544939804
       ],
       [
-        "kw:phosphatase",
-        0.064774970175367
+        "go:transmembrane transport",
+        -0.06148036647724844
       ],
       [
         "protein_length",
-        -0.06099855616327784
+        -0.05839410702202965
+      ],
+      [
+        "ubiquity_free_living",
+        0.05646643136721691
       ],
       [
         "kw:repeat_domain",
-        0.05148910877564905
+        0.04730885024798392
       ],
       [
-        "go:catalytic activity, acting on DNA",
-        0.049786886942846685
+        "kw:cilium_flagellum",
+        0.044886511743429856
       ]
     ]
   },
   "acidic_excess": {
     "axis": "saltier",
-    "uniform_share_of_family_variance": 0.3535185673810575,
-    "families_tested": 1797,
-    "median_sensitivity": 0.022414882127224853,
-    "share_positive": 0.9031719532554258,
+    "uniform_share_of_family_variance": 0.3091491903385355,
+    "families_tested": 2099,
+    "median_sensitivity": 0.018933482848515305,
+    "share_positive": 0.8918532634587899,
     "most_sensitive": [
-      [
-        "SbcC_Walker_B: SbcC/RAD50-like, Walker B motif",
-        0.3626
-      ],
-      [
-        "Lipoprotein_9: NlpA lipoprotein",
-        0.154
-      ],
       [
         "Sortase: Sortase domain",
         0.1312
       ],
       [
-        "PBP5_C: Penicillin-binding protein 5, C-terminal domain",
-        0.11
+        "Lipoprotein_9: NlpA lipoprotein",
+        0.1297
       ],
       [
-        "Peptidase_M17_N: Cytosol aminopeptidase family, N-terminal domain",
-        0.1083
+        "Ribosomal_L26: Ribosomal proteins L26 eukaryotic, L24P archaeal",
+        0.1151
       ],
       [
-        "SNase: Staphylococcal nuclease homologue",
-        0.1077
+        "Prefoldin_2: Prefoldin subunit",
+        0.1125
       ],
       [
-        "ATP-synt_ab_Xtn: ATPsynthase alpha/beta subunit barrel-sandwich domain",
-        0.0996
+        "Lig_chan-Glu_bd: Ligated ion channel L-glutamate- and glycine-binding site",
+        0.1112
       ],
       [
-        "LpqE-like: Putative lipoprotein LpqE-like",
-        0.0978
-      ],
-      [
-        "AMIN: AMIN domain",
-        0.0975
-      ],
-      [
-        "UbiD_N: 3-octaprenyl-4-hydroxybenzoate carboxy-lyase N-terminal domain",
-        0.0916
-      ],
-      [
-        "Bmp: ABC transporter substrate-binding protein PnrA-like",
-        0.0885
+        "CAP: Cysteine-rich secretory protein family",
+        0.1039
       ],
       [
         "PCB_OB: Penicillin-binding protein OB-like domain",
-        0.0878
+        0.0926
+      ],
+      [
+        "sCache_3_2: Single cache domain 3",
+        0.0905
+      ],
+      [
+        "PolyA_pol_RNAbd: Probable RNA and SrmB- binding site of polymerase A",
+        0.0899
+      ],
+      [
+        "Prefoldin: Prefoldin subunit",
+        0.0892
+      ],
+      [
+        "ATP-synt_ab_Xtn: ATPsynthase alpha/beta subunit barrel-sandwich domain",
+        0.0886
+      ],
+      [
+        "Ribosomal_L19e_C: Ribosomal protein L19e, C-terminal domain",
+        0.087
       ]
     ],
     "least_sensitive": [
       [
-        "CobU: Cobinamide kinase / cobinamide phosphate guanyltransferase",
-        -0.0451
-      ],
-      [
-        "HTH_17: Helix-turn-helix domain",
-        -0.0458
+        "PolyA_pol_arg_C: Polymerase A arginine-rich C-terminus",
+        -0.0427
       ],
       [
         "HTH_AsnC-type: AsnC-type helix-turn-helix domain",
-        -0.0466
+        -0.0428
       ],
       [
-        "PSP1: PSP1 C-terminal conserved region",
-        -0.0469
+        "PNK3P: Polynucleotide kinase 3 phosphatase",
+        -0.0443
       ],
       [
-        "PolyA_pol_arg_C: Polymerase A arginine-rich C-terminus",
-        -0.0479
+        "UDPGT: UDP-glucoronosyl and UDP-glucosyl transferase",
+        -0.0447
       ],
       [
-        "RNase_J_C: Ribonuclease J C-terminal domain",
-        -0.0502
-      ],
-      [
-        "SbcD_C: Type 5 capsule protein repressor C-terminal domain",
-        -0.0639
-      ],
-      [
-        "Methyltransf_30: S-adenosyl-L-methionine-dependent methyltransferase",
-        -0.0721
-      ],
-      [
-        "Glyco_hydro_57: Glycosyl hydrolase family 57",
-        -0.0742
+        "DUF493: Protein of unknown function (DUF493)",
+        -0.048
       ],
       [
         "rve: Integrase core domain",
-        -0.0747
+        -0.0637
+      ],
+      [
+        "SbcD_C: Type 5 capsule protein repressor C-terminal domain",
+        -0.0661
+      ],
+      [
+        "DUF402: Protein of unknown function (DUF402)",
+        -0.0664
+      ],
+      [
+        "PSP1: PSP1 C-terminal conserved region",
+        -0.0691
+      ],
+      [
+        "MotA_N: Motility protein A N-terminal",
+        -0.0701
       ],
       [
         "HD_assoc: Phosphohydrolase-associated domain",
-        -0.1124
+        -0.132
       ],
       [
-        "YgjP-like: YgjP-like, metallopeptidase domain",
-        -0.1468
+        "HRDC: HRDC domain",
+        -0.1437
       ]
     ],
     "feature_correlations": [
       [
-        "ubiquity_free_living",
-        0.2540366754428382
-      ],
-      [
         "tm_helices",
-        -0.18186385354470141
+        -0.184424926806161
       ],
       [
         "hydrophobicity_gravy",
-        -0.1774686130805182
-      ],
-      [
-        "kw:transporter_channel",
-        -0.14970188649286292
+        -0.1711561564727651
       ],
       [
         "translation",
-        0.10262875213044063
+        0.13298573931332688
       ],
       [
-        "copies_free_living",
-        0.09367729495487252
+        "ubiquity_free_living",
+        0.1301399696336436
       ],
       [
-        "go:transporter activity",
-        -0.08753648598499558
+        "kw:transporter_channel",
+        -0.12751654971276252
+      ],
+      [
+        "protein_length",
+        -0.07381031172266964
       ],
       [
         "redox_core",
-        -0.08188568113603487
+        -0.07252579007083933
       ],
       [
-        "clan_size",
-        0.07363041233206469
+        "kw:protease",
+        -0.06795946091260197
       ],
       [
-        "atp_synthase",
-        0.07263130475681576
+        "hmm_length",
+        -0.06597327796061334
+      ],
+      [
+        "go:transporter activity",
+        -0.06457652596765283
       ]
     ]
   }

@@ -1,17 +1,17 @@
 {
   "temperature": {
-    "n": 70,
-    "spearman_ivywrel": 0.5689758525653628,
-    "pearson_ivywrel": 0.8219732518891948,
-    "ogt_per_0.01_ivywrel": 6.445134857492431,
-    "spearman_cvp": 0.5876126545632369,
-    "rmse_mean_only": 15.488797795273113,
-    "rmse_ivywrel_loo_group": 9.789936523944226,
-    "rmse_20aa_ridge_loo_group": 11.339564113567782
+    "n": 86,
+    "spearman_ivywrel": 0.6503418536324437,
+    "pearson_ivywrel": 0.8497887914025964,
+    "ogt_per_0.01_ivywrel": 7.341561238234158,
+    "spearman_cvp": 0.6257737241651956,
+    "rmse_mean_only": 17.961589930118638,
+    "rmse_ivywrel_loo_group": 10.320447078832231,
+    "rmse_20aa_ridge_loo_group": 11.288500013648383
   },
   "salt": {
-    "spearman_acidic_excess": 0.5830810042110691,
-    "spearman_median_pi": -0.5232043560119862,
+    "spearman_acidic_excess": 0.5629008502955345,
+    "spearman_median_pi": -0.510548714340798,
     "halophiles_ge_15pct": {
       "Haloarcula marismortui": {
         "acidic_excess": 0.084855,
@@ -25,6 +25,14 @@
         "acidic_excess": 0.079275,
         "median_pi": 4.272771
       },
+      "Haloquadratum walsbyi": {
+        "acidic_excess": 0.070832,
+        "median_pi": 4.339017
+      },
+      "Halothece sp. PCC 7418": {
+        "acidic_excess": 0.025868,
+        "median_pi": 5.401764
+      },
       "Natronomonas pharaonis": {
         "acidic_excess": 0.093704,
         "median_pi": 4.190665
@@ -34,152 +42,152 @@
         "median_pi": 4.713526
       }
     },
-    "others_median_pi": 6.591565
+    "others_median_pi": 6.648356
   },
   "environment_pairs": {
-    "n_pairs": 43,
+    "n_pairs": 57,
     "by_statistic": {
       "ivywrel": {
-        "loo_r2_environment": 0.5293330878836784,
+        "loo_r2_environment": 0.5686674176506967,
         "coef": {
-          "base": 0.008396499457378383,
-          "colder": -0.03187540072946943,
-          "saltier": -0.010651241887525377,
-          "anaerobic": -0.005042833665370804,
-          "radiation_resistant": -0.015973122238076495,
-          "oligotrophic": -0.00562474879097184
+          "base": 0.003998825936436327,
+          "colder": -0.02658101206765905,
+          "saltier": -0.0062457141524740085,
+          "anaerobic": -0.0006571969824258252,
+          "radiation_resistant": -0.015625741623805128,
+          "oligotrophic": -0.002747757602957949
         }
       },
       "cvp": {
-        "loo_r2_environment": 0.6297580325441852,
+        "loo_r2_environment": 0.6065368100307953,
         "coef": {
-          "base": 0.006362339417513649,
-          "colder": -0.04848238171187279,
-          "saltier": 0.0037453548695934886,
-          "anaerobic": -0.018446833954263192,
-          "radiation_resistant": -0.026109140932570524,
-          "oligotrophic": 0.004586456988254065
+          "base": 0.0019542583997788415,
+          "colder": -0.04144075488029967,
+          "saltier": 0.00325518265976435,
+          "anaerobic": -0.01579191112084569,
+          "radiation_resistant": -0.02558616057644775,
+          "oligotrophic": 0.01089178265507703
         }
       },
       "acidic_excess": {
-        "loo_r2_environment": 0.5950949092993361,
+        "loo_r2_environment": 0.5388751409066659,
         "coef": {
-          "base": 0.00036772770934582235,
-          "colder": 0.004487063125706419,
-          "saltier": 0.02172448290984256,
-          "anaerobic": -0.01036900253596579,
-          "radiation_resistant": -0.0034759740447434582,
-          "oligotrophic": -0.012719231936994849
+          "base": -0.0004035415366262374,
+          "colder": 0.004966627807735196,
+          "saltier": 0.018446693075596297,
+          "anaerobic": -0.011164886580372577,
+          "radiation_resistant": -0.0014734955945175548,
+          "oligotrophic": -0.011740134445712928
         }
       },
       "median_pi": {
-        "loo_r2_environment": 0.23801386347299525,
+        "loo_r2_environment": 0.23598902879022743,
         "coef": {
-          "base": 0.08724071165914993,
-          "colder": -0.5728258911341827,
-          "saltier": -0.825766253587969,
-          "anaerobic": 0.14817017762925527,
-          "radiation_resistant": 0.15278789972572243,
-          "oligotrophic": 0.8213037560402917
+          "base": 0.03798152087893734,
+          "colder": -0.43671067458760443,
+          "saltier": -0.7303652929219004,
+          "anaerobic": 0.15423237767649042,
+          "radiation_resistant": 0.0807346614108509,
+          "oligotrophic": 0.8540274985986673
         }
       },
       "share_pi_below_5": {
-        "loo_r2_environment": 0.7121669823235854,
+        "loo_r2_environment": 0.6439767829584997,
         "coef": {
-          "base": 0.0062428276789016435,
-          "colder": 0.06113806279266841,
-          "saltier": 0.2087397037622002,
-          "anaerobic": -0.04827505999930422,
-          "radiation_resistant": -0.044044431898523376,
-          "oligotrophic": -0.09064707036416343
+          "base": -0.003562643117780746,
+          "colder": 0.07195906316938326,
+          "saltier": 0.18052287782014406,
+          "anaerobic": -0.061019453458169774,
+          "radiation_resistant": -0.024517765230706128,
+          "oligotrophic": -0.08217642493548678
         }
       },
       "n_side": {
-        "loo_r2_environment": 0.4445705965152851,
+        "loo_r2_environment": 0.38908236724305967,
         "coef": {
-          "base": 0.0032488648832011487,
-          "colder": -0.02047089194838195,
-          "saltier": -0.012693440692328587,
-          "anaerobic": -0.016417856885501837,
-          "radiation_resistant": 0.007950743976111339,
-          "oligotrophic": -0.015868266857217133
+          "base": 0.00018034519043403933,
+          "colder": -0.01815792783732561,
+          "saltier": -0.006008656019902381,
+          "anaerobic": -0.008038508962693708,
+          "radiation_resistant": 0.009483076208114862,
+          "oligotrophic": -0.014288098303329638
         }
       },
       "c_side": {
-        "loo_r2_environment": 0.4769744345911513,
+        "loo_r2_environment": 0.4898465978329676,
         "coef": {
-          "base": 0.02021371558020018,
-          "colder": -0.0562190085006128,
-          "saltier": -0.07630211736342919,
-          "anaerobic": 0.07722314998905593,
-          "radiation_resistant": -0.07546008170669197,
-          "oligotrophic": 0.11318971602748724
+          "base": 0.020187629500891202,
+          "colder": -0.051138179302767525,
+          "saltier": -0.06773124992203088,
+          "anaerobic": 0.06888580490784714,
+          "radiation_resistant": -0.08404610548136475,
+          "oligotrophic": 0.11238232776714795
         }
       },
       "gravy": {
-        "loo_r2_environment": 0.05683454765673801,
+        "loo_r2_environment": 0.1061955894525789,
         "coef": {
-          "base": 0.016904506292661315,
-          "colder": -0.009799514436740903,
-          "saltier": -0.03103893339360334,
-          "anaerobic": 0.00118149406193187,
-          "radiation_resistant": 0.0026712198006602966,
-          "oligotrophic": -0.08376673576112958
+          "base": 0.01290055194850071,
+          "colder": -0.006194869782846502,
+          "saltier": -0.03225309476148692,
+          "anaerobic": 0.0005926354830897163,
+          "radiation_resistant": -0.0005786320516110825,
+          "oligotrophic": -0.0797013797675021
         }
       },
       "fymink": {
-        "loo_r2_environment": 0.42029448244436785,
+        "loo_r2_environment": 0.38974130854747235,
         "coef": {
-          "base": 0.0035075870654169574,
-          "colder": 0.011729714957180509,
-          "saltier": -0.022040012705495528,
-          "anaerobic": 0.06427794795820066,
-          "radiation_resistant": -0.02193405777699909,
-          "oligotrophic": 0.07710582545570888
+          "base": 0.007311506492245107,
+          "colder": 0.012861623307422607,
+          "saltier": -0.023618253281103962,
+          "anaerobic": 0.051498109181310904,
+          "radiation_resistant": -0.026966073255421975,
+          "oligotrophic": 0.0727892959017813
         }
       },
       "garp": {
-        "loo_r2_environment": 0.37176478037465843,
+        "loo_r2_environment": 0.3503746387057395,
         "coef": {
-          "base": -0.0027927764062038577,
-          "colder": -0.020058031588950143,
-          "saltier": 0.008542397575215376,
-          "anaerobic": -0.04902693636349681,
-          "radiation_resistant": 0.01774306393403604,
-          "oligotrophic": -0.06257918123054663
+          "base": -0.006566997778052101,
+          "colder": -0.018160048776351592,
+          "saltier": 0.010481012786625282,
+          "anaerobic": -0.038890336618082895,
+          "radiation_resistant": 0.021106463973912262,
+          "oligotrophic": -0.058473387392211425
         }
       },
       "aromatic": {
-        "loo_r2_environment": 0.37872519012622974,
+        "loo_r2_environment": 0.37270799127631393,
         "coef": {
-          "base": 7.035304074689323e-05,
-          "colder": -0.0034877122403358897,
-          "saltier": -0.0045902997433821795,
-          "anaerobic": 0.008869833888510223,
-          "radiation_resistant": -0.003909726862796898,
-          "oligotrophic": 0.009092278492521559
+          "base": -0.00027070586492152176,
+          "colder": -0.00253735357072973,
+          "saltier": -0.004586029318861033,
+          "anaerobic": 0.0076017251014893735,
+          "radiation_resistant": -0.004343801516489771,
+          "oligotrophic": 0.009162326138578121
         }
       },
       "cysteine": {
-        "loo_r2_environment": 0.5467320365298736,
+        "loo_r2_environment": 0.5313656007272635,
         "coef": {
-          "base": -0.0003424338832763837,
-          "colder": 0.00015635896596789692,
-          "saltier": -0.0007783379719527119,
-          "anaerobic": 0.003100434141099314,
-          "radiation_resistant": 0.0013856911237874272,
-          "oligotrophic": 0.001051489318673123
+          "base": -0.00034153118086970084,
+          "colder": 0.0004230320520278017,
+          "saltier": -0.0006612790271108277,
+          "anaerobic": 0.0033438259459494064,
+          "radiation_resistant": 0.001355336675305469,
+          "oligotrophic": 0.0009151433441911943
         }
       },
       "mean_length": {
-        "loo_r2_environment": -0.12505417673520713,
+        "loo_r2_environment": -0.18785623369853677,
         "coef": {
-          "base": -3.782570217205194,
-          "colder": 6.2756599078830355,
-          "saltier": -9.283423148393759,
-          "anaerobic": -13.687379956563156,
-          "radiation_resistant": 2.246439950593377,
-          "oligotrophic": -1.342578471131843
+          "base": -0.8335299776104422,
+          "colder": 0.8308708870112138,
+          "saltier": -6.973488569003225,
+          "anaerobic": -8.115995585953637,
+          "radiation_resistant": 1.4732412176234029,
+          "oligotrophic": -5.119949855266174
         }
       }
     }
@@ -208,23 +216,51 @@
     {
       "pair": "Cupriavidus necator -> Polynucleobacter asymbioticus",
       "n_side_change": -0.03782399999999997
+    },
+    {
+      "pair": "Methylobacillus flagellatus -> Candidatus Methylopumilus planktonicus",
+      "n_side_change": -0.01929900000000001
     }
   ],
   "endosymbionts": {
-    "spearman_size_fymink": -0.6527472527472528,
-    "spearman_size_pi": -0.7186813186813187,
+    "spearman_size_fymink": -0.7962393162393162,
+    "spearman_size_pi": -0.8276923076923076,
     "table": {
+      "Arsenophonus nasoniae": {
+        "n_proteins": 4221,
+        "fymink": 0.293604,
+        "median_pi": 8.466324,
+        "n_side": 0.372428
+      },
       "Buchnera aphidicola (Cinara tujafilina)": {
         "n_proteins": 359,
         "fymink": 0.429202,
         "median_pi": 10.209863,
         "n_side": 0.375721
       },
+      "Buchnera aphidicola (Myzus persicae)": {
+        "n_proteins": 578,
+        "fymink": 0.399056,
+        "median_pi": 9.884229,
+        "n_side": 0.36666
+      },
       "Buchnera aphidicola (Schizaphis graminum)": {
         "n_proteins": 567,
         "fymink": 0.406538,
         "median_pi": 9.992353,
         "n_side": 0.367233
+      },
+      "Buchnera aphidicola (Uroleucon sonchi)": {
+        "n_proteins": 538,
+        "fymink": 0.408111,
+        "median_pi": 9.8372,
+        "n_side": 0.37152
+      },
+      "Buchnera aphidicola BCc": {
+        "n_proteins": 364,
+        "fymink": 0.473183,
+        "median_pi": 10.497503,
+        "n_side": 0.384942
       },
       "Buchnera aphidicola str. APS (Acyrthosiphon pisum)": {
         "n_proteins": 569,
@@ -238,6 +274,12 @@
         "median_pi": 9.99036,
         "n_side": 0.367974
       },
+      "Candidatus Annandia pinicola": {
+        "n_proteins": 315,
+        "fymink": 0.510115,
+        "median_pi": 10.386768,
+        "n_side": 0.37476
+      },
       "Candidatus Blochmanniella floridana": {
         "n_proteins": 583,
         "fymink": 0.366577,
@@ -250,11 +292,29 @@
         "median_pi": 9.086376,
         "n_side": 0.372403
       },
+      "Candidatus Blochmanniella vafra str. BVAF": {
+        "n_proteins": 587,
+        "fymink": 0.369416,
+        "median_pi": 9.404272,
+        "n_side": 0.364651
+      },
+      "Candidatus Carsonella ruddii": {
+        "n_proteins": 207,
+        "fymink": 0.569199,
+        "median_pi": 10.472337,
+        "n_side": 0.358901
+      },
       "Candidatus Hamiltonella defensa (Bemisia tabaci)": {
         "n_proteins": 1542,
         "fymink": 0.286601,
         "median_pi": 8.533178,
         "n_side": 0.371673
+      },
+      "Candidatus Ishikawaella capsulata Mpkobe": {
+        "n_proteins": 597,
+        "fymink": 0.346236,
+        "median_pi": 9.00225,
+        "n_side": 0.366303
       },
       "Candidatus Moranella endobia PCIT": {
         "n_proteins": 406,
@@ -268,11 +328,35 @@
         "median_pi": 8.31519,
         "n_side": 0.374464
       },
+      "Candidatus Portiera aleyrodidarum": {
+        "n_proteins": 245,
+        "fymink": 0.419578,
+        "median_pi": 10.251646,
+        "n_side": 0.374137
+      },
+      "Candidatus Purcelliella pentastirinorum": {
+        "n_proteins": 437,
+        "fymink": 0.463145,
+        "median_pi": 10.232832,
+        "n_side": 0.370967
+      },
       "Candidatus Riesia pediculicola": {
         "n_proteins": 463,
         "fymink": 0.393101,
         "median_pi": 10.126061,
         "n_side": 0.391395
+      },
+      "Candidatus Riesia pediculischaeffi": {
+        "n_proteins": 441,
+        "fymink": 0.377539,
+        "median_pi": 9.930036,
+        "n_side": 0.395694
+      },
+      "Candidatus Westeberhardia cardiocondylae": {
+        "n_proteins": 372,
+        "fymink": 0.415402,
+        "median_pi": 10.107808,
+        "n_side": 0.377505
       },
       "Escherichia coli str. K-12 substr. MG1655": {
         "n_proteins": 4210,
