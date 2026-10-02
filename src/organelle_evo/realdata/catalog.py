@@ -39,24 +39,25 @@ CATALOG = {
             # jakobids, malawimonads, excavates
             "Seculamonas ecuadoriensis", "Histiona aroides", "Malawimonas jakobiformis", "Naegleria gruberi",
             # green lineage
-            "Ostreococcus tauri", "Micromonas pusilla", "Chlorokybus atmophyticus", "Chara vulgaris",
+            "Ostreococcus tauri", "Micromonas commoda", "Chlorokybus atmophyticus", "Chara vulgaris",
             "Mesostigma viride", "Pycnococcus provasolii", "Zea mays", "Oryza sativa", "Nicotiana tabacum",
             "Cycas taitungensis", "Ginkgo biloba", "Selaginella moellendorffii", "Huperzia squarrosa",
             # red algae, cryptophytes, haptophytes, stramenopiles, alveolates
             "Porphyra purpurea", "Gracilaria vermiculophylla", "Cyanophora paradoxa", "Rhodomonas salina",
             "Emiliania huxleyi", "Ectocarpus siliculosus", "Phaeodactylum tricornutum", "Saprolegnia ferax",
-            "Chromera velia", "Babesia bovis", "Theileria parva", "Toxoplasma gondii", "Eimeria tenella",
+            "Babesia bovis", "Theileria parva", "Eimeria tenella",  # Chromera and Toxoplasma: no complete annotated mtDNA
             # amoebozoa, fungi
-            "Polysphondylium pallidum", "Rhizopus oryzae", "Batrachochytrium dendrobatidis", "Yarrowia lipolytica",
+            "Polysphondylium pallidum", "Rhizopus oryzae", "Yarrowia lipolytica",
             "Candida albicans", "Aspergillus nidulans", "Podospora anserina",
             # animals
-            "Amphimedon queenslandica", "Nematostella vectensis", "Schistosoma mansoni", "Ascaris suum",
+            "Amphimedon queenslandica", "Schistosoma mansoni", "Ascaris suum",
             "Apis mellifera", "Anopheles gambiae", "Daphnia pulex", "Strongylocentrotus purpuratus",
             "Branchiostoma floridae", "Ciona intestinalis", "Xenopus laevis",
         ],  # fmt: skip
         # Search hits for its ~6 kb genome (3 proteins) are unannotated; use the RefSeq record.
         # "accession:" entries are fetched directly.
-        "extra_queries": {"Plasmodium falciparum": "accession:NC_037526.1"},
+        "extra_queries": {"Plasmodium falciparum": "accession:NC_037526.1",
+                          "Nematostella vectensis": "accession:NC_008164.1"},
     },
     "plastid": {
         "query": PLASTID_QUERY,
@@ -74,7 +75,7 @@ CATALOG = {
             "Epifagus virginiana", "Toxoplasma gondii",
             # --- expansion (October 2026) ---
             # green algae and early land plants
-            "Ostreococcus tauri", "Micromonas pusilla", "Chlorella vulgaris", "Chara vulgaris",
+            "Ostreococcus tauri", "Micromonas commoda", "Chlorella vulgaris", "Chara vulgaris",
             "Chaetosphaeridium globosum", "Zygnema circumcarinatum", "Anthoceros angustus",
             "Selaginella moellendorffii", "Huperzia lucidula", "Ginkgo biloba", "Pinus thunbergii", "Zea mays",
             # heterotrophic and parasitic plants / algae: graded plastid reduction
@@ -84,7 +85,7 @@ CATALOG = {
             # red lineage, secondary and tertiary plastids
             "Gracilaria tenuistipitata", "Cyanidium caldarium", "Galdieria sulphuraria", "Ectocarpus siliculosus",
             "Vaucheria litorea", "Heterosigma akashiwo", "Rhodomonas salina", "Bigelowiella natans",
-            "Chromera velia", "Vitrella brassicaformis", "Eimeria tenella", "Theileria parva", "Babesia bovis",
+            "Chromera velia", "Eimeria tenella", "Theileria parva", "Babesia bovis",
         ],  # fmt: skip
         # A second, independent primary endosymbiosis (~100 Myr old).
         "extra_queries": {
@@ -109,11 +110,9 @@ CATALOG = {
             "Buchnera aphidicola str. APS (Acyrthosiphon pisum)",
             # --- expansion (October 2026): more gammaproteobacterial symbionts, from
             # facultative (gene-rich) to the smallest bacterial genomes known ---
-            "Arsenophonus nasoniae", "Regiella insecticola",
+            "Arsenophonus nasoniae", "Candidatus Regiella insecticola",
             "Candidatus Ishikawaella capsulata", "Candidatus Portiera aleyrodidarum",
-            "Candidatus Carsonella ruddii", "Candidatus Westeberhardia cardiocondylae",
-            "Candidatus Annandia pinicola", "Candidatus Purcelliella pentastirinorum",
-            "Candidatus Doolittlea endobia", "Candidatus Gullanella endobia", "Candidatus Mikella endobia",
+            "Candidatus Carsonella ruddii", "Candidatus Annandia pinicola", "Candidatus Purcelliella pentastirinorum",
         ],
         # Strains that are not separate taxa, and Candidatus names that NCBI lists
         # under renamed genera: search by the host in the title instead.
@@ -126,11 +125,13 @@ CATALOG = {
                 ("Buchnera aphidicola (Cinara)", "Buchnera aphidicola", "Cinara"),
                 ("Moranella endobia", "Moranella", "endobia"),
                 ("Blochmannia vafer", "Blochmannia", "vafer"),
-                ("Buchnera aphidicola (Cinara cedri)", "Buchnera aphidicola", "cedri"),
                 ("Buchnera aphidicola (Uroleucon)", "Buchnera aphidicola", "Uroleucon"),
                 ("Buchnera aphidicola (Myzus persicae)", "Buchnera aphidicola", "Myzus"),
                 ("Riesia pediculischaeffi", "Riesia", "pediculischaeffi"),
             ]
+        } | {
+            "Buchnera aphidicola (Cinara cedri)": "accession:NC_008513.1",  # 416 kb, among the smallest Buchnera
+            "Candidatus Westeberhardia cardiocondylae": "accession:LN774881.1",
         },
     },
 }
