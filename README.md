@@ -105,6 +105,7 @@
 | `docs/RESEARCH_LOG.md` | 단계별 연구 일지 |
 | `docs/DATA.md` | 모든 유전체의 출처와 쓰임 |
 | `docs/BACKLOG.md` | 남은 과제와 완료 기록 |
+| `docs/kids_guide.pdf` | 초등학생도 읽을 수 있는 프로젝트 안내서 (용어 사전 포함) |
 
 ## 파이프라인
 

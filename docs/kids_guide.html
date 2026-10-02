@@ -1,0 +1,447 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>유전자를 버리는 생물들의 비밀</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jua&family=Gowun+Dodum&display=swap">
+<style>
+@page { size: A4; margin: 14mm 14mm 15mm; }
+:root {
+  --ink: #23302b; --soft: #5b6a63; --line: #d8dfd9;
+  --green: #2f7d5b; --green-bg: #e6f3ec;
+  --blue: #2a6ea6; --blue-bg: #e5eff8;
+  --orange: #c4621f; --orange-bg: #fbeadd;
+  --purple: #6b4fa0; --purple-bg: #eee8f7;
+  --yellow-bg: #fff6d6;
+}
+* { box-sizing: border-box; }
+body { margin: 0; color: var(--ink); font-family: "Gowun Dodum", "WenQuanYi Zen Hei", sans-serif; font-size: 11.4pt; line-height: 1.62; word-break: keep-all; }
+h1, h2, h3, .jua { font-family: "Jua", "Gowun Dodum", sans-serif; font-weight: normal; }
+h2 { font-size: 22pt; margin: 0 0 4mm; color: var(--green); line-height: 1.3; }
+h3 { font-size: 15pt; margin: 6mm 0 2mm; line-height: 1.35; }
+p { margin: 0 0 3mm; }
+.page { page-break-after: always; }
+.page:last-child { page-break-after: auto; }
+.chapter { display: inline-block; font-family: "Jua"; font-size: 11pt; color: #fff; background: var(--green); border-radius: 20px; padding: 1mm 4mm; margin-bottom: 3mm; }
+.box { border-radius: 10px; padding: 4mm 5mm; margin: 3mm 0 4mm; }
+.box.green { background: var(--green-bg); }
+.box.blue { background: var(--blue-bg); }
+.box.orange { background: var(--orange-bg); }
+.box.purple { background: var(--purple-bg); }
+.box.yellow { background: var(--yellow-bg); }
+.box h3 { margin-top: 0; }
+.label { font-family: "Jua"; font-size: 12pt; display: block; margin-bottom: 1mm; }
+.green .label { color: var(--green); } .blue .label { color: var(--blue); } .orange .label { color: var(--orange); } .purple .label { color: var(--purple); }
+.yellow .label { color: #9a7400; }
+.two { display: grid; grid-template-columns: 1fr 1fr; gap: 4mm; }
+.three { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 3mm; }
+.card { border: 1.5px solid var(--line); border-radius: 10px; padding: 3mm 4mm; break-inside: avoid; }
+.card b.jua { font-size: 13pt; display: block; margin-bottom: 1mm; }
+.term { break-inside: avoid; border-bottom: 1px dashed var(--line); padding: 1.4mm 0; }
+.term b { font-family: "Jua"; font-weight: normal; font-size: 13pt; color: var(--blue); }
+.term .en { color: var(--soft); font-size: 10pt; margin-left: 2mm; }
+table { border-collapse: collapse; width: 100%; margin: 2mm 0 4mm; font-size: 11.5pt; }
+th, td { border-bottom: 1px solid var(--line); padding: 2mm 2.5mm; text-align: left; vertical-align: top; }
+th { font-family: "Jua"; font-weight: normal; background: #f3f6f4; }
+.big { font-family: "Jua"; font-size: 26pt; line-height: 1.1; }
+.muted { color: var(--soft); }
+.small { font-size: 10.5pt; }
+svg { display: block; margin: 2mm auto; max-width: 100%; }
+svg text { font-family: "Gowun Dodum", sans-serif; }
+.cover { height: 255mm; display: flex; flex-direction: column; justify-content: center; text-align: center; }
+.cover h1 { font-size: 34pt; margin: 6mm 0 4mm; color: var(--green); line-height: 1.25; }
+.cover .sub { font-size: 14pt; color: var(--soft); }
+ul { margin: 0 0 3mm; padding-left: 6mm; } li { margin-bottom: 1.5mm; }
+.toc li { font-size: 13pt; margin-bottom: 2mm; }
+.gloss .term { font-size: 10.9pt; line-height: 1.55; padding: 1.1mm 0; }
+.foot { font-size: 9.5pt; color: var(--soft); margin-top: 4mm; }
+</style>
+</head>
+<body>
+
+<!-- 표지 -->
+<section class="page cover">
+  <svg width="300" height="190" viewBox="0 0 300 190" aria-hidden="true">
+    <ellipse cx="150" cy="95" rx="135" ry="80" fill="#e6f3ec" stroke="#2f7d5b" stroke-width="4"/>
+    <circle cx="150" cy="92" r="30" fill="#e5eff8" stroke="#2a6ea6" stroke-width="3"/>
+    <path d="M136 92 q7 -12 14 0 q7 12 14 0" stroke="#2a6ea6" stroke-width="3" fill="none"/>
+    <ellipse cx="70" cy="80" rx="26" ry="14" fill="#fbeadd" stroke="#c4621f" stroke-width="3"/>
+    <path d="M52 80 q6 -8 12 0 q6 8 12 0 q6 -8 12 0" stroke="#c4621f" stroke-width="2" fill="none"/>
+    <ellipse cx="225" cy="115" rx="28" ry="15" fill="#e6f3ec" stroke="#2f7d5b" stroke-width="3"/>
+    <line x1="205" y1="112" x2="245" y2="112" stroke="#2f7d5b" stroke-width="2"/><line x1="205" y1="118" x2="245" y2="118" stroke="#2f7d5b" stroke-width="2"/>
+    <circle cx="95" cy="135" r="8" fill="#eee8f7" stroke="#6b4fa0" stroke-width="2"/>
+    <circle cx="205" cy="55" r="6" fill="#eee8f7" stroke="#6b4fa0" stroke-width="2"/>
+  </svg>
+  <h1>유전자를 버리는 생물들의 비밀</h1>
+  <p class="sub">organelle-evo 프로젝트를 초등학생도 알 수 있게 풀어 쓴 안내서</p>
+  <p class="muted small" style="margin-top:10mm">2026년 10월 · 김민재와 Claude가 함께 만든 연구 프로젝트</p>
+</section>
+
+<!-- 차례 -->
+<section class="page">
+  <h2>차례</h2>
+  <ol class="toc">
+    <li>이 프로젝트는 무슨 질문에서 시작했을까?</li>
+    <li>먼저 알아 둘 생명과학 낱말 사전</li>
+    <li>유전자를 버리는 세 가지 이야기</li>
+    <li>어떻게 연구했을까? (컴퓨터가 한 일)</li>
+    <li>발견 ①: 무엇을 버릴지는 유전자의 "성격"이 정한다</li>
+    <li>발견 ②: 얼마나 버릴지는 "사는 방식"이 정한다</li>
+    <li>발견 ③: 환경에 맞추는 건 단백질 글자 바꾸기</li>
+    <li>발견 ④: 소기관은 세트로 버리고, 기생생물은 훔치는 도구를 늘린다</li>
+    <li>정말 맞는지 확인하기 (함정 피하기)</li>
+    <li>얼마나 잘 맞히나? 그리고 어디가 한계일까?</li>
+    <li>번외 편: 화성 생명체 상상 실험</li>
+    <li>아직 모르는 것, 앞으로 할 것</li>
+    <li>한눈에 보는 정리</li>
+  </ol>
+  <div class="box yellow">
+    <span class="label">이 안내서를 읽는 방법</span>
+    파란 글씨로 된 낱말은 2장 "낱말 사전"에 쉽게 풀어 두었어요. 모르는 낱말이 나오면 2장으로 돌아가서 찾아보세요. 숫자가 어렵게 느껴지면 그냥 "크다, 작다"만 봐도 괜찮아요.
+  </div>
+</section>
+
+<!-- 1장 -->
+<section class="page">
+  <span class="chapter">1장</span>
+  <h2>이 프로젝트는 무슨 질문에서 시작했을까?</h2>
+  <p>여러분 몸속 세포 하나하나에는 <b>미토콘드리아</b>라는 작은 발전소가 들어 있어요. 아주 먼 옛날, 약 20억 년 전에 미토콘드리아는 혼자 살던 <b>세균</b>이었어요. 그런데 다른 세포 안으로 들어가 함께 살게 되었고, 시간이 흐르면서 세포의 한 부분이 되었지요.</p>
+  <p>신기한 건 그다음이에요. 처음에 그 세균은 <b>유전자</b>를 수천 개 가지고 있었는데, 지금 사람의 미토콘드리아에는 단백질을 만드는 유전자가 <b>딱 13개</b>만 남아 있어요. 나머지는 버려지거나 세포의 본부(핵)로 옮겨 갔어요.</p>
+  <svg width="560" height="150" viewBox="0 0 560 150" aria-label="유전자 수가 줄어드는 그림">
+    <text x="0" y="22" font-size="14">옛날 세균 (유전자 수천 개)</text>
+    <g fill="#2f7d5b">
+      <rect x="0" y="32" width="540" height="14" rx="4"/>
+    </g>
+    <text x="0" y="72" font-size="14">자코바이드 원생생물의 미토콘드리아 (65개)</text>
+    <rect x="0" y="82" width="65" height="14" rx="4" fill="#2f7d5b"/>
+    <text x="0" y="122" font-size="14">사람의 미토콘드리아 (13개)</text>
+    <rect x="0" y="132" width="13" height="14" rx="4" fill="#2f7d5b"/>
+  </svg>
+  <p>이런 일은 미토콘드리아에게만 일어나지 않았어요. 다른 생물 몸속에 사는 <b>기생생물</b>도, 아주 뜨겁거나 짠 곳에 사는 <b>극한 환경 생물</b>도 유전자를 버리거나 바꿔요. 그래서 우리는 이렇게 물었어요.</p>
+  <div class="box green">
+    <span class="label">우리의 질문</span>
+    <b>생물이 유전자를 버릴 때, 아무거나 버리는 걸까? 아니면 규칙(법칙)이 있을까?</b><br>
+    그리고 그 규칙을 컴퓨터가 데이터에서 스스로 찾아낼 수 있을까?
+  </div>
+  <div class="box yellow">
+    <span class="label">쉬운 비유: 이사할 때 짐 싸기</span>
+    큰 집에서 작은 방으로 이사한다고 생각해 보세요. 짐을 많이 버려야 해요. 그런데 아무거나 버리지는 않죠. 칫솔이나 이불처럼 꼭 필요한 건 챙기고, 잘 안 쓰는 장난감부터 버려요. 생물도 비슷할까요? 이 프로젝트는 그 "짐 싸는 규칙"을 찾는 연구예요.
+  </div>
+</section>
+
+<!-- 2장 용어 -->
+<section class="page gloss">
+  <span class="chapter">2장</span>
+  <h2>먼저 알아 둘 생명과학 낱말 사전</h2>
+  <div class="term"><b>세포</b><span class="en">cell</span><br>모든 생물을 이루는 아주 작은 방이에요. 사람 몸에는 약 37조 개가 있어요. 세균은 세포 하나가 생물 하나예요.</div>
+  <div class="term"><b>DNA</b><br>세포 안에 있는 긴 설계도예요. A, T, G, C라는 네 가지 글자로만 쓰여 있어요.</div>
+  <div class="term"><b>유전자</b><span class="en">gene</span><br>DNA 설계도 중에서 "이 부품을 이렇게 만들어라"라고 적힌 한 문단이에요. 대부분의 유전자는 단백질 하나를 만드는 방법이에요.</div>
+  <div class="term"><b>유전체</b><span class="en">genome</span><br>한 생물이 가진 DNA 설계도 전체, 즉 유전자를 모두 모은 책이에요. 사람 유전체에는 유전자가 약 2만 개 있어요.</div>
+  <div class="term"><b>단백질</b><span class="en">protein</span><br>세포에서 일하는 일꾼이자 부품이에요. 음식을 소화하고, 몸을 움직이고, 에너지를 만들어요.</div>
+  <div class="term"><b>아미노산</b><span class="en">amino acid</span><br>단백질을 만드는 20가지 블록이에요. 레고 블록 20종류를 줄줄이 이어 붙이면 단백질 하나가 돼요. 이 프로젝트에서는 각 블록을 알파벳 한 글자(I, V, Y, W, R, E, L 등)로 불러요.</div>
+  <div class="term"><b>진화</b><span class="en">evolution</span><br>생물이 아주 오랜 시간 동안 대를 이어 가며 조금씩 바뀌는 것이에요.</div>
+  <div class="term"><b>세균 · 고세균</b><span class="en">bacteria · archaea</span><br>핵이 없는 아주 작은 단세포 생물이에요. 고세균은 세균과 비슷해 보이지만 다른 무리예요. 둘을 합쳐 "원핵생물"이라고 해요.</div>
+  <div class="term"><b>진핵생물</b><span class="en">eukaryote</span><br>세포 안에 핵(설계도 보관실)이 따로 있는 생물이에요. 사람, 동물, 식물, 곰팡이, 아메바가 모두 진핵생물이에요.</div>
+  <div class="term"><b>소기관</b><span class="en">organelle</span><br>세포 안에서 특별한 일을 하는 작은 기관이에요. 미토콘드리아와 엽록체가 대표적이에요.</div>
+  <div class="term"><b>미토콘드리아</b><span class="en">mitochondrion</span><br>세포의 발전소예요. 음식에서 에너지를 꺼내요. 옛날에는 혼자 사는 세균이었어요.</div>
+  <div class="term"><b>엽록체</b><span class="en">chloroplast, plastid</span><br>식물 세포의 햇빛 공장이에요. 광합성을 해요. 옛날에는 남세균(시아노박테리아)이라는 세균이었어요.</div>
+  <div class="term"><b>공생</b><span class="en">symbiosis</span><br>서로 다른 두 생물이 붙어서 함께 사는 것이에요. 진딧물 몸속에 사는 부크네라라는 세균은 진딧물에게 영양분을 만들어 주고, 대신 안전한 집을 얻어요.</div>
+  <div class="term"><b>내공생</b><span class="en">endosymbiosis</span><br>한 생물이 다른 생물의 세포 <i>안</i>에 들어가 사는 공생이에요. 미토콘드리아와 엽록체가 이렇게 생겨났어요.</div>
+  <div class="term"><b>기생 · 기생생물</b><span class="en">parasite</span><br>다른 생물(숙주)에게 붙어 영양을 빼앗아 사는 것이에요. 말라리아를 일으키는 말라리아 원충이 기생생물이에요.</div>
+  <div class="term"><b>숙주</b><span class="en">host</span><br>기생생물이나 공생생물이 몸에 들어가 사는 쪽 생물이에요.</div>
+  <div class="term"><b>자유생활</b><span class="en">free-living</span><br>다른 생물에 기대지 않고 혼자 먹이를 구해 사는 것이에요.</div>
+  <div class="term"><b>극한 환경 생물</b><span class="en">extremophile</span><br>아주 뜨겁거나(80℃ 이상), 아주 춥거나, 아주 짜거나, 산소가 없거나, 방사선이 강한 곳에서 사는 생물이에요.</div>
+  <div class="term"><b>유전자군</b><span class="en">gene family (Pfam)</span><br>생김새가 비슷한 유전자들을 묶은 무리예요. "망치 종류", "드라이버 종류"처럼 공구를 종류별로 나누는 것과 같아요. 이 프로젝트는 Pfam이라는 세계 공통 분류표를 썼어요.</div>
+  <div class="term"><b>유전자 소실</b><span class="en">gene loss</span><br>진화하면서 어떤 유전자가 유전체에서 사라지는 것이에요.</div>
+  <div class="term"><b>계통 · 계통수</b><span class="en">lineage · phylogenetic tree</span><br>생물들의 족보예요. 누가 누구와 가까운 친척인지 나뭇가지 모양으로 그린 그림이 계통수예요.</div>
+  <div class="term"><b>GC 함량</b><span class="en">GC content</span><br>DNA 글자 A, T, G, C 중에서 G와 C가 차지하는 비율이에요. 생물마다 "G·C를 좋아하는 습관"이 달라요. 이 습관이 아미노산 블록 선택에도 영향을 줘요.</div>
+  <div class="term"><b>코돈</b><span class="en">codon</span><br>DNA 글자 3개가 모여 아미노산 하나를 가리키는 "세 글자 암호"예요. 같은 아미노산을 가리키는 암호가 여러 개 있어서, 생물마다 즐겨 쓰는 암호가 달라요.</div>
+  <div class="term"><b>오페론</b><span class="en">operon</span><br>세균에서 함께 일하는 유전자들이 DNA 위에 나란히 붙어 있는 묶음이에요. 한꺼번에 켜지고 꺼져요.</div>
+  <div class="term"><b>리보솜</b><span class="en">ribosome</span><br>단백질을 만드는 공장이에요. 모든 생물이 가지고 있어서, 리보솜 단백질을 비교하면 생물들의 족보를 그릴 수 있어요.</div>
+</section>
+
+<!-- 3장 -->
+<section class="page">
+  <span class="chapter">3장</span>
+  <h2>유전자를 버리는 세 가지 이야기</h2>
+  <p>우리는 생물이 사는 곳이나 사는 방식을 크게 바꾼 세 가지 경우를 비교했어요.</p>
+  <div class="three">
+    <div class="card"><b class="jua" style="color:var(--green)">① 공생세균 → 소기관</b>
+      혼자 살던 세균이 다른 세포 안에 들어가 미토콘드리아나 엽록체가 됐어요. 집주인(세포)이 많은 걸 대신해 주니까 유전자를 엄청 많이 버렸어요.<br><span class="muted small">예: 미토콘드리아 30종, 엽록체 21종, 곤충 공생세균 13종</span></div>
+    <div class="card"><b class="jua" style="color:var(--orange)">② 자유생활 → 기생</b>
+      혼자 먹이를 구하던 생물이 다른 생물 몸에서 영양을 빼앗아 살게 됐어요. 숙주가 음식을 다 차려 주니까, 음식 만드는 유전자를 버렸어요.<br><span class="muted small">예: 말라리아 원충, 미포자충, 트리파노소마 (진핵생물 120종, 비교 쌍 99개)</span></div>
+    <div class="card"><b class="jua" style="color:var(--blue)">③ 보통 → 극한 환경</b>
+      평범한 곳에 살던 세균이 뜨겁거나, 차갑거나, 짜거나, 산소가 없거나, 방사선이 센 곳으로 갔어요.<br><span class="muted small">예: 온천 세균, 소금호수 고세균, 남극 세균 (세균·고세균 65종, 비교 쌍 43개)</span></div>
+  </div>
+  <h3>"비교 쌍"이 뭘까?</h3>
+  <p>옛날 조상은 이미 사라져서 볼 수 없어요. 그래서 조상과 가장 비슷하게 사는 <b>현재의 친척</b>을 조상 대신 썼어요. 예를 들어 기생하는 말라리아 원충과, 기생하지 않고 바다에서 사는 친척 크로메라를 짝지어서 "말라리아 원충은 크로메라와 비교해 무엇을 잃었나?"를 봤어요.</p>
+  <svg width="520" height="130" viewBox="0 0 520 130" aria-label="비교 쌍 그림">
+    <rect x="10" y="20" width="190" height="90" rx="14" fill="#e6f3ec" stroke="#2f7d5b" stroke-width="2"/>
+    <text x="105" y="52" text-anchor="middle" font-size="15">크로메라 (자유생활)</text>
+    <text x="105" y="80" text-anchor="middle" font-size="13" fill="#5b6a63">조상 대신</text>
+    <path d="M210 65 L300 65" stroke="#23302b" stroke-width="2.5" marker-end="url(#a)"/>
+    <defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0 L10 5 L0 10z" fill="#23302b"/></marker></defs>
+    <text x="255" y="55" text-anchor="middle" font-size="12" fill="#5b6a63">무엇을 잃었나?</text>
+    <rect x="310" y="20" width="200" height="90" rx="14" fill="#fbeadd" stroke="#c4621f" stroke-width="2"/>
+    <text x="410" y="52" text-anchor="middle" font-size="15">말라리아 원충 (기생)</text>
+    <text x="410" y="80" text-anchor="middle" font-size="13" fill="#5b6a63">후손 대신</text>
+  </svg>
+  <div class="box yellow"><span class="label">모은 데이터의 양</span>
+    실제 생물 약 270종의 유전체(설계도 책 전체)와 260개의 단백질 목록을 컴퓨터로 모았어요. 사람 손으로 하나하나 읽는다면 평생 걸려도 다 못 읽을 양이에요.</div>
+</section>
+
+<!-- 4장 -->
+<section class="page">
+  <span class="chapter">4장</span>
+  <h2>어떻게 연구했을까? (컴퓨터가 한 일)</h2>
+  <h3>1단계 · 가짜 세상에서 먼저 연습</h3>
+  <p>컴퓨터 속에 "정답 규칙을 숨긴 가짜 진화"를 만들고, 우리 프로그램이 그 숨긴 규칙을 다시 찾아내는지 먼저 시험했어요. 답을 아는 문제로 연습해야 진짜 문제에서도 믿을 수 있으니까요.</p>
+  <h3>2단계 · 데이터 모으기</h3>
+  <p>미국 국립생물정보센터(NCBI)라는 거대한 생물 도서관에서 유전체를 내려받았어요. 이 일은 <b>GitHub Actions</b>라는 "심부름 로봇"이 대신해 줬어요. 로봇 20대가 동시에 일해서, 사람 손으로는 몇 달 걸릴 일을 며칠 만에 끝냈어요.</p>
+  <h3>3단계 · 유전자 이름표 붙이기</h3>
+  <p>유전자마다 어떤 "종류(유전자군)"인지 이름표를 붙였어요. HMMER라는 프로그램이 단백질 글자를 읽고 "이건 망치 종류, 이건 드라이버 종류" 하고 분류해 줬어요.</p>
+  <h3>4단계 · 규칙(법칙) 배우기</h3>
+  <p>컴퓨터가 "어떤 성격의 유전자가, 어떤 생활을 하는 생물에서 잘 사라지나?"를 배웠어요. 유전자의 성격은 56가지 특징으로 설명했어요. 예를 들면 "얼마나 흔한가", "어떤 일을 하나", "막에 박혀 있나" 같은 것이에요.</p>
+  <h3>5단계 · 시험 보기</h3>
+  <p>배운 규칙이 진짜인지 알려면, <b>공부할 때 보지 못한 생물</b>로 시험을 봐야 해요. 생물 하나를 빼고 배운 다음, 그 생물이 무엇을 잃었는지 맞혀 보게 했어요. 심지어 한 족보(계통)를 통째로 빼고 시험을 보기도 했어요.</p>
+  <div class="box blue"><span class="label">점수 읽는 법 (AUROC)</span>
+    점수는 0.5부터 1.0 사이예요. <b>0.5</b>는 동전 던지기처럼 아무렇게나 찍은 것, <b>1.0</b>은 완벽하게 맞힌 것이에요. 잃은 유전자 하나와 남은 유전자 하나를 무작위로 골랐을 때, 컴퓨터가 "잃은 쪽"을 제대로 고를 확률이라고 생각하면 돼요. 0.8이면 10번 중 8번 맞히는 셈이에요.</div>
+  <div class="box yellow"><span class="label">"암기"와 "법칙"은 어떻게 다를까?</span>
+    <b>암기</b>: "이 유전자는 다른 기생생물에서 80%가 사라졌으니, 이번에도 사라질 거야." 시험 문제를 외워 푸는 방식이에요.<br>
+    <b>법칙</b>: "이 유전자는 흔하지 않고 에너지 만드는 일과 관계없으니 사라지기 쉬워." 원리를 이해해서 푸는 방식이에요. 처음 보는 유전자에도 쓸 수 있어요.<br>
+    우리는 두 방법을 <b>따로</b> 점수 매겨 비교했어요.</div>
+</section>
+
+<!-- 5장 -->
+<section class="page">
+  <span class="chapter">5장</span>
+  <h2>발견 ①: 무엇을 버릴지는 유전자의 "성격"이 정한다</h2>
+  <p>가장 중요한 발견이에요. 생물이 유전자를 버릴 때 <b>어떤 유전자부터 버리는지</b>는 그 생물이 어디 사는지보다 <b>유전자 자체의 성격</b>이 정했어요.</p>
+  <div class="box green"><span class="label">쉬운 비유: 방 정리할 때 버리는 순서</span>
+    누가 이사를 가든, 어디로 가든, 대부분 비슷한 순서로 버려요. 먼저 잘 안 쓰는 물건, 그다음 가끔 쓰는 물건, 마지막까지 칫솔과 이불은 남겨요. 유전자도 똑같았어요. <b>여러 상황에서 두루 필요한 유전자</b>는 끝까지 남고, <b>특별한 경우에만 필요한 유전자</b>는 먼저 버려졌어요.</div>
+  <h3>어떻게 알았을까?</h3>
+  <ul>
+    <li><b>미토콘드리아, 엽록체, 곤충 공생세균, 기생생물</b>이라는 완전히 다른 네 무리에서 버리는 순서가 비슷했어요.</li>
+    <li>그 순서는 "유전자마다 사라지기 쉬운 정도"만 알면 다 설명됐어요. 따로 복잡한 규칙이 필요 없었어요.</li>
+    <li>극한 환경 세균에 "얼마나 뜨거운지, 얼마나 짠지" 같은 환경 정보를 알려 줘도 맞히는 점수가 오르지 않았어요(0.819 → 0.819). 환경은 <i>무엇을 버릴지</i>를 정하지 않는다는 뜻이에요.</li>
+  </ul>
+  <h3>끝까지 남는 유전자</h3>
+  <p>모든 무리에서 <b>에너지를 만드는 유전자</b>와 <b>단백질 공장(리보솜) 유전자</b>가 가장 오래 남았어요. 생명에서 가장 기본이 되는 "칫솔과 이불"인 셈이에요.</p>
+  <div class="box purple"><span class="label">재미있는 예외</span>
+    RNA 중합효소(유전자를 읽어 주는 기계)는 무리마다 반대였어요. 미토콘드리아는 이걸 버리고 핵에서 빌려 쓰는데, 엽록체는 가장 소중하게 지켰어요. 컴퓨터에게 미리 알려 주지 않았는데 실제 생물학에서 알려진 사실과 같은 결과를 찾아냈어요.</div>
+  <p class="muted small">이 결과는 2003년 크릴로프(Krylov) 연구팀이 발표한 "유전자 소실 성향" 법칙과 같아요. 우리는 다른 데이터로 같은 결론에 독립적으로 도착했어요.</p>
+</section>
+
+<!-- 6장 -->
+<section class="page">
+  <span class="chapter">6장</span>
+  <h2>발견 ②: 얼마나 버릴지는 "사는 방식"이 정한다</h2>
+  <p><b>무엇을</b> 버릴지는 유전자의 성격이 정했지만, <b>얼마나 많이</b> 버릴지는 생물이 사는 방식이 정했어요. 조상이 가졌던 유전자군 중에서 버린 비율을 보면 이래요.</p>
+  <svg width="560" height="190" viewBox="0 0 560 190" aria-label="생활 방식별 잃은 비율 막대그래프">
+    <g font-size="14">
+      <text x="0" y="32">자유생활 (기생 안 함)</text>
+      <rect x="200" y="18" width="34" height="22" rx="4" fill="#9bc9b0"/><text x="242" y="34">10%</text>
+      <text x="0" y="82">기생생물</text>
+      <rect x="200" y="68" width="88" height="22" rx="4" fill="#e3a074"/><text x="296" y="84">26%</text>
+      <text x="0" y="132">기생 + 미토콘드리아 퇴화</text>
+      <rect x="200" y="118" width="245" height="22" rx="4" fill="#c4621f"/><text x="453" y="134">72%</text>
+    </g>
+    <text x="200" y="175" font-size="12" fill="#5b6a63">조상이 가진 유전자군 중 잃은 비율</text>
+  </svg>
+  <ul>
+    <li><b>기생</b>을 하면 버리는 양이 크게 늘었어요. 숙주가 많은 걸 대신해 주니까요.</li>
+    <li><b>미토콘드리아까지 약해진</b> 기생생물(미포자충 등)은 72%나 버렸어요. 에너지 만드는 유전자를 버린 건 기생 때문이 아니라 미토콘드리아가 약해졌기 때문이라는 것도 알아냈어요.</li>
+    <li>곤충 몸속 공생세균은 조상 유전자의 약 85%를 버렸어요.</li>
+  </ul>
+  <div class="box orange"><span class="label">세 가지 "생활 축"으로 나눠 보니</span>
+    "기생"을 하나로 보지 않고 ① 기생하는지 ② 세포 안에 사는지 ③ 미토콘드리아가 약해졌는지, 세 가지로 나눴어요. 마치 레시피에서 "설탕, 소금, 간장"을 따로 재는 것처럼요. 이렇게 나누자 각각이 얼마나 영향을 주는지 따로 볼 수 있었어요. 다만 "세포 안에 사는지"의 효과는 나중에 족보(계통)를 고려하자 확실하지 않은 것으로 나왔어요.</div>
+</section>
+
+<!-- 7장 -->
+<section class="page">
+  <span class="chapter">7장</span>
+  <h2>발견 ③: 환경에 맞추는 건 단백질 글자 바꾸기</h2>
+  <p>환경 정보로 "어떤 유전자를 버릴지"는 맞힐 수 없었어요. 그럼 극한 환경 생물은 환경에 어떻게 적응했을까요? 답은 <b>단백질을 이루는 아미노산 블록의 종류를 바꾸는 것</b>이었어요. 같은 일꾼(단백질)을 계속 쓰되, 더 튼튼한 재료로 다시 만드는 거예요.</p>
+  <div class="two">
+    <div class="box orange"><span class="label">🔥 뜨거운 곳</span>
+      I, V, Y, W, R, E, L이라는 7가지 블록이 많아졌어요. 이 블록들은 단백질을 단단하게 묶어서 뜨거워도 풀리지 않게 해 줘요. 이 7가지 블록의 비율만 보고 그 세균이 사는 온도를 약 10℃ 오차로 맞힐 수 있었어요.</div>
+    <div class="box blue"><span class="label">🧂 아주 짠 곳</span>
+      단백질 표면에 음(−)전기를 띤 블록이 많아졌어요(산성화). 소금물 속에서도 단백질이 물을 붙잡고 뭉치지 않게 도와줘요.</div>
+  </div>
+  <div class="two">
+    <div class="box green"><span class="label">🌊 영양이 부족한 바다</span>
+      질소가 적게 들어가는 블록을 더 썼어요. 질소는 귀한 영양분이라 아끼는 거예요. 하지만 뒤에서 보듯, 이건 DNA 글자 습관(GC) 때문일 수도 있었어요.</div>
+    <div class="box purple"><span class="label">🐛 곤충 몸속 공생세균</span>
+      유전체가 작을수록 F, Y, M, I, N, K 블록이 많아졌어요. 이건 적응이라기보다 DNA가 A·T 글자를 좋아하는 습관 때문이었어요.</div>
+  </div>
+  <p>환경이 변한 정도로 블록 비율이 변한 정도를 <b>53~63%</b> 설명할 수 있었어요. 유전자를 버리는 건 환경으로 설명이 안 됐는데, 블록 바꾸기는 잘 설명됐어요.</p>
+  <div class="box yellow"><span class="label">한 줄 요약</span>
+    극한 환경 생물은 "도구를 버려서" 적응하지 않고, "도구를 더 튼튼한 재료로 바꿔서" 적응해요. 그리고 유전자군 90%가 같은 방향으로 바뀌었어요. 일부 일꾼만 바꾸는 게 아니라 거의 모든 일꾼의 재료를 함께 바꾼 거예요.</div>
+</section>
+
+<!-- 8장 -->
+<section class="page">
+  <span class="chapter">8장</span>
+  <h2>발견 ④: 소기관은 세트로 버리고, 기생생물은 훔치는 도구를 늘린다</h2>
+  <h3>소기관은 "레고 세트째" 버린다</h3>
+  <p>기생생물과 극한 세균은 유전자를 거의 <b>하나씩 따로따로</b> 버렸어요. 그런데 미토콘드리아와 엽록체는 달랐어요. 함께 일하는 유전자들을 <b>세트로 한꺼번에</b> 버렸어요.</p>
+  <div class="box green"><span class="label">예시</span>
+    엽록체에는 NDH라는 여러 부품으로 된 기계가 있어요. 어떤 엽록체는 이 기계의 부품을 하나만 버리지 않고 통째로 다 버렸어요. 레고 우주선 세트를 버릴 때 부품 하나만 빼지 않고 상자째 버리는 것과 같아요. 이 "세트" 정보를 넣었더니 남은 유전자를 맞히는 점수가 미토콘드리아 0.923 → 0.964, 엽록체 0.832 → 0.915로 올랐어요.</div>
+  <h3>기생생물은 버리기만 하지 않는다</h3>
+  <p>기생생물은 대부분 유전자를 버렸지만, 오히려 <b>늘린</b> 것도 있었어요.</p>
+  <ul>
+    <li><b>아미노산 수송체</b>: 숙주에게서 단백질 재료를 빨아들이는 펌프예요. 서로 다른 기생생물 11무리 중 6무리가 따로따로 이 펌프를 늘렸어요.</li>
+    <li><b>퓨린 재활용 효소</b>: 숙주의 DNA 재료를 주워서 다시 쓰는 도구예요. 7무리에서 늘었어요.</li>
+  </ul>
+  <div class="box orange"><span class="label">무슨 뜻일까?</span>
+    서로 친척이 아닌 기생생물들이 각자 따로 "숙주에게서 영양을 훔치는 도구"를 늘렸어요. 같은 문제(남의 몸에서 먹고살기)를 풀다 보니 비슷한 답에 도착한 거예요. 이런 현상을 <b>수렴 진화</b>라고 해요. 박쥐와 새가 따로따로 날개를 갖게 된 것과 비슷해요.</div>
+  <h3>편모(꼬리)의 운명</h3>
+  <p>세포 안에 숨어 사는 기생생물은 헤엄칠 필요가 없어서 꼬리(편모) 부품을 한꺼번에 버렸어요. 하지만 피 속을 헤엄치는 트리파노소마는 꼬리를 지켰어요.</p>
+</section>
+
+<!-- 9장 -->
+<section class="page">
+  <span class="chapter">9장</span>
+  <h2>정말 맞는지 확인하기 (함정 피하기)</h2>
+  <p>과학에서는 "찾았다!"보다 "정말 맞나?"가 더 중요해요. 우리는 결과가 함정에 빠진 건 아닌지 여러 번 확인했어요.</p>
+  <h3>함정 ① 가족이라서 닮은 걸까?</h3>
+  <p>형제자매는 원래 닮았어요. 그걸 보고 "같은 학교에 다니면 닮는다"고 하면 틀리겠죠? 생물도 친척끼리는 원래 닮아서, <b>족보(계통수)</b>를 고려해 다시 계산했어요. 이것을 <b>계통 보정</b>이라고 해요.</p>
+  <ul>
+    <li>생물 분류표로 족보를 대신 만들어 다시 계산하니 법칙 14개 중 <b>13개</b>가 살아남았어요.</li>
+    <li>리보솜 단백질 글자를 비교해서 <b>진짜 족보 나무</b>를 그리고 다시 계산하니 <b>12개</b>가 살아남았어요.</li>
+    <li>"세포 안에 사는 것의 효과"는 두 번 모두 탈락했어요. 친척끼리 닮아서 생긴 착각이었을 수 있어요.</li>
+  </ul>
+  <h3>함정 ② DNA 글자 습관(GC) 때문일까?</h3>
+  <p>어떤 생물은 DNA에 G·C 글자를 많이 쓰는 습관이 있어요. 그러면 단백질 블록도 자동으로 특정 종류가 많아져요. 그래서 블록 변화가 "적응" 때문인지 "글자 습관" 때문인지 나눠 봤어요.</p>
+  <table>
+    <tr><th>법칙</th><th>글자 습관을 빼고도 남았나?</th><th>결론</th></tr>
+    <tr><td>뜨거운 곳 → I·V·Y·W·R·E·L 증가</td><td>거의 다 남음 (97%)</td><td><b>진짜 적응</b></td></tr>
+    <tr><td>짠 곳 → 산성 단백질</td><td>거의 다 남음 (96%)</td><td><b>진짜 적응</b></td></tr>
+    <tr><td>영양 부족 → 질소 절약</td><td>거의 사라짐</td><td>글자 습관 때문</td></tr>
+    <tr><td>산소 없는 곳 → F·Y·M·I·N·K 증가</td><td>대부분 사라짐</td><td>대부분 글자 습관</td></tr>
+    <tr><td>공생세균 → F·Y·M·I·N·K 증가</td><td>사라짐</td><td>글자 습관 때문</td></tr>
+  </table>
+  <p class="small muted">글자 습관 자체가 적응일 수도 있어요. A·T 글자는 G·C보다 질소가 적게 들어서, 영양이 부족한 세균이 A·T를 많이 쓰는 건 질소를 아끼는 방법일 수 있거든요. 그래서 "적응이 아니다"가 아니라 "블록을 고르는 수준이 아니라 DNA 글자 수준에서 일어난다"가 정확한 결론이에요.</p>
+  <h3>함정 ③ 우연히 나온 결과일까?</h3>
+  <p>검사를 많이 하면 우연히 맞아 보이는 결과가 섞여요. 검사 26개 전체에서 우연을 걸러 내는 계산을 했더니, 판정이 바뀐 법칙은 없었어요.</p>
+  <h3>함정 ④ 이미 알려진 것과 맞나?</h3>
+  <p>다른 과학자들이 이미 발표한 법칙 13개를 모아서 우리 데이터로 다시 시험했어요. <b>10개 일치, 2개 부분 일치, 1개는 시험할 수 없었어요.</b> 우리 방법이 믿을 만하다는 증거예요.</p>
+</section>
+
+<!-- 10장 -->
+<section class="page">
+  <span class="chapter">10장</span>
+  <h2>얼마나 잘 맞히나? 그리고 어디가 한계일까?</h2>
+  <table>
+    <tr><th>시험 문제</th><th>법칙</th><th>암기</th></tr>
+    <tr><td>처음 보는 기생생물이 잃을 유전자군</td><td>0.78</td><td>0.87</td></tr>
+    <tr><td>처음 보는 <b>족보 전체</b>가 잃을 유전자군</td><td>0.78</td><td>0.80</td></tr>
+    <tr><td>처음 보는 극한 세균이 잃을 유전자군</td><td>0.82</td><td>0.84</td></tr>
+  </table>
+  <p>처음 보는 족보 전체를 빼고 시험하면, 법칙의 점수는 거의 그대로(0.78)인데 암기의 점수는 크게 떨어져요(0.87 → 0.80). 서로 친척이 아닌 기생생물들도 <b>같은 종류의</b> 유전자를 버린다는 뜻이에요.</p>
+  <h3>점수의 "천장"을 재 보았어요</h3>
+  <p>아무리 좋은 방법이라도 100점은 불가능해요. 진화에는 <b>운</b>도 섞여 있으니까요. 그래서 "가장 가까운 형제 생물들이 버린 것"으로 맞히는 점수를 쟀어요. 이게 사실상 최고 점수예요.</p>
+  <svg width="560" height="170" viewBox="0 0 560 170" aria-label="천장과 점수 비교">
+    <g font-size="13">
+      <line x1="150" y1="20" x2="150" y2="140" stroke="#d8dfd9"/>
+      <text x="0" y="40">형제 생물로 맞히기</text><rect x="150" y="26" width="360" height="20" rx="4" fill="#2f7d5b"/><text x="516" y="41">0.90</text>
+      <text x="0" y="80">암기 (다른 족보)</text><rect x="150" y="66" width="270" height="20" rx="4" fill="#9bc9b0"/><text x="426" y="81">0.80</text>
+      <text x="0" y="120">법칙 (다른 족보)</text><rect x="150" y="106" width="252" height="20" rx="4" fill="#e3a074"/><text x="408" y="121">0.78</text>
+    </g>
+    <text x="150" y="160" font-size="11" fill="#5b6a63">막대 길이 = 0.5(찍기)부터 1.0(완벽)까지</text>
+  </svg>
+  <ul>
+    <li><b>0.10 정도는 운</b>이에요. 같은 부모에게서 태어난 형제 생물도 서로 다른 유전자를 버려요.</li>
+    <li>또 다른 <b>0.10 정도는 그 족보만의 역사</b>예요. 다른 족보에서 배운 규칙으로는 알 수 없는 부분이에요.</li>
+    <li>그래서 처음 보는 족보를 맞히는 문제에서는 지금 점수(0.78~0.80)가 거의 한계에 가까워요. 더 잘 맞히려면 가까운 친척의 데이터가 필요해요.</li>
+  </ul>
+  <div class="box blue"><span class="label">지금 시험 중인 새 단서</span>
+    유전자가 얼마나 많이 쓰이는지(발현량), 다른 유전자와 얼마나 붙어 다니는지(오페론, 도메인 연결) 같은 새 특징을 넣어 보고 있어요. 많이 쓰이는 유전자는 잘 안 버려진다는 연구가 있거든요. 결과는 컴퓨터가 계산 중이에요.</div>
+</section>
+
+<!-- 11장 -->
+<section class="page">
+  <span class="chapter">11장 · 번외 편</span>
+  <h2>화성 생명체 상상 실험</h2>
+  <p>이 실험은 지금까지 배운 법칙과는 <b>따로</b> 한 상상 놀이예요. "만약 화성에 아주 단순한 세포가 있었다면, 화성 환경에 맞춰 어떻게 바뀌었을까?"를 컴퓨터로 흉내 냈어요.</p>
+  <h3>어떻게 했을까?</h3>
+  <ol>
+    <li>가장 기본적인 세포 하나를 만들었어요.</li>
+    <li>화성 환경을 숫자로 넣었어요: 아주 춥고(평균 영하 60℃), 공기가 거의 없고, 방사선이 세고, 땅에 과염소산염이라는 독한 소금이 있어요.</li>
+    <li>"진화 규칙"을 무작위로 수백 개 만들어서, 규칙마다 세포를 진화시켜 봤어요.</li>
+  </ol>
+  <h3>결과</h3>
+  <ul>
+    <li>어떤 규칙을 쓰든 살아남은 세포는 비슷한 모습이 됐어요. <b>과염소산염을 먹고 숨쉬기</b>, <b>얼지 않게 보호하기</b>, <b>망가진 DNA 고치기</b>를 갖추고, 쓸모없는 <b>꼬리(편모)는 버렸어요</b>.</li>
+    <li>다른 생물에게서 유전자를 빌려 올 수 없는 고립된 상황에서 환경이 갑자기 바뀌면 64.5%만 살아남았어요.</li>
+  </ul>
+  <div class="box purple"><span class="label">지구와 화성의 45억 년</span>
+    두 행성의 온도, 물, 공기가 45억 년 동안 어떻게 변했는지 그림으로 비교하는 페이지도 만들었어요. 화성은 처음에는 물이 있었지만 약 35억 년 전부터 점점 춥고 건조해졌어요.</div>
+  <div class="box yellow"><span class="label">조심할 점</span>
+    이건 진짜 화성 생명체를 발견한 게 아니라 "만약 있다면?" 하는 상상 실험이에요. 미래 예측(기후 변화로 병원균이 어떻게 바뀔지)도 해 봤지만, 결과를 믿기 어려워서 중단했어요. 모르는 걸 아는 척하지 않는 것도 과학자의 중요한 태도예요.</div>
+</section>
+
+<!-- 12장 -->
+<section class="page">
+  <span class="chapter">12장</span>
+  <h2>아직 모르는 것, 앞으로 할 것</h2>
+  <h3>솔직하게 말하는 약점</h3>
+  <ul>
+    <li>우리가 찾은 건 "자주 그렇다"는 <b>경향</b>이에요. "반드시 그렇다"는 <b>원인</b>까지 증명한 건 아니에요.</li>
+    <li>진짜 조상은 볼 수 없어서, 현재의 친척을 조상 대신 썼어요.</li>
+    <li>유전자는 "있다/없다"만 봤어요. 유전자가 얼마나 일하는지는 아직 대부분 못 봤어요.</li>
+    <li>족보 나무는 리보솜 단백질만으로 그렸어요. 나무가 조금 틀렸을 가능성도 계산 중이에요.</li>
+    <li>NCBI가 알려 주는 GC 숫자 중 절반은 반올림된 값이에요(오차 0.5% 정도, 결론에는 영향 없음).</li>
+  </ul>
+  <h3>지금 컴퓨터가 계산 중인 것</h3>
+  <ul>
+    <li>새 단서(발현량, 오페론, 도메인 연결)로 예측이 좋아지는지</li>
+    <li>족보 나무를 20번 조금씩 다르게 그려도 결론이 같은지</li>
+  </ul>
+  <h3>이 프로젝트에서 만든 것들</h3>
+  <table>
+    <tr><th>만든 것</th><th>무엇을 할 수 있나</th></tr>
+    <tr><td>법칙 저장소</td><td>찾은 법칙 20개 + 다른 과학자 법칙 13개를 정리해 둔 곳</td></tr>
+    <tr><td>포트폴리오 페이지</td><td>프로젝트 전체 이야기</td></tr>
+    <tr><td>진화 법칙 지도</td><td>법칙들을 그림으로 한눈에</td></tr>
+    <tr><td>조상 역추적기</td><td>지금 생물의 유전체로 옛 조상이 가졌던 유전자 추측하기</td></tr>
+    <tr><td>화성 세포 3D 페이지</td><td>지구 세포와 화성 세포를 돌려 보며 비교</td></tr>
+    <tr><td>Obsidian 노트</td><td>법칙과 주제가 서로 연결된 노트 43개</td></tr>
+    <tr><td>자동 테스트 63개</td><td>코드를 고칠 때마다 망가진 곳이 없는지 자동 확인</td></tr>
+  </table>
+</section>
+
+<!-- 13장 -->
+<section class="page">
+  <span class="chapter">13장</span>
+  <h2>한눈에 보는 정리</h2>
+  <div class="box green"><span class="label">세 줄 요약</span>
+    <p style="font-size:14pt"><b>1. 무엇을 버리나?</b> → 유전자의 성격이 정한다 (어디 살든 비슷한 순서)<br>
+    <b>2. 얼마나 버리나?</b> → 사는 방식이 정한다 (자유생활 10%, 기생 26%, 미토콘드리아까지 약해지면 72%)<br>
+    <b>3. 환경에는 어떻게 맞추나?</b> → 단백질 블록 바꾸기 (뜨거우면 단단하게, 짜면 산성으로)</p></div>
+  <div class="two">
+    <div class="card"><b class="jua">숫자로 보기</b>
+      <ul class="small">
+        <li>모은 생물: 약 270종</li>
+        <li>비교한 쌍: 기생 99쌍 + 극한 세균 43쌍</li>
+        <li>찾은 법칙: 20개</li>
+        <li>다른 과학자 법칙과 비교: 13개 중 10개 일치</li>
+        <li>족보 보정 후에도 남은 법칙: 14개 중 12~13개</li>
+        <li>처음 보는 족보 맞히기: 0.78 (천장 0.90)</li>
+      </ul></div>
+    <div class="card"><b class="jua">과학자처럼 생각하기</b>
+      <ul class="small">
+        <li>답을 아는 가짜 문제로 먼저 연습했어요.</li>
+        <li>공부할 때 안 본 문제로 시험 봤어요.</li>
+        <li>가족이 닮은 것, 글자 습관, 우연이라는 함정을 하나씩 확인했어요.</li>
+        <li>다른 과학자의 결과와 비교했어요.</li>
+        <li>믿기 어려운 결과는 솔직하게 버렸어요.</li>
+      </ul></div>
+  </div>
+  <div class="box yellow"><span class="label">마지막으로 생각해 볼 질문</span>
+    여러분 몸속 미토콘드리아도 20억 년 동안 유전자를 버리며 지금의 모습이 됐어요. 만약 여러분이 아주 작은 방으로 이사를 가야 한다면, 무엇부터 버리고 무엇을 끝까지 남길 건가요? 생물들도 아마 비슷한 고민을 했을 거예요.</div>
+  <p class="foot">이 안내서는 organelle-evo 프로젝트(github.com/minjae-05-28/-ai)의 결과를 바탕으로 썼어요. 숫자는 2026년 10월 2일 기준이고, 계산 중인 결과가 나오면 바뀔 수 있어요.</p>
+</section>
+
+</body>
+</html>
