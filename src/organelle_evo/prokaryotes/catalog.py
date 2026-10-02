@@ -154,6 +154,33 @@ PAIR_SPECS_ROUND3 = [
     (("Methylobacillus flagellatus",), "Candidatus Methylopumilus planktonicus"),
 ]
 
+# Human-body commensals: validation targets for the human-body prediction (not in any pair,
+# so no law is fitted on them). Ordinary members of the healthy microbiome; the point is to
+# test whether laws learned elsewhere predict what host-associated cells actually look like.
+HUMAN_SITES = {
+    "gut lumen (anaerobic, nutrient-rich)": Env("human", 37, 0.9, 0),
+    "skin surface (aerobic, dry, nutrient-poor)": Env("human", 33, 2.0, 1, oligo=1),
+    "mouth / dental plaque": Env("human", 37, 0.9, 0),
+    "blood and tissue (aerobic, nutrient-rich)": Env("human", 37, 0.9, 1),
+}
+
+HUMAN_TARGETS = {
+    # gut
+    "Bacteroides thetaiotaomicron": Env("bacteroidetes", 37, 0.9, 0),
+    "Bifidobacterium longum": Env("actino", 37, 0.9, 0),
+    "Akkermansia muciniphila": Env("verrucomicrobia", 37, 0.9, 0),
+    "Faecalibacterium prausnitzii": Env("firmicutes", 37, 0.9, 0),
+    "Escherichia coli": Env("gamma", 37, 0.9, 1),
+    # skin
+    "Cutibacterium acnes": Env("actino", 33, 1.5, 0),
+    "Staphylococcus epidermidis": Env("firmicutes", 35, 2.0, 1),
+    "Corynebacterium glutamicum": Env("actino", 30, 0.5, 1),  # free-living relative of skin corynebacteria
+    # mouth and urogenital
+    "Streptococcus salivarius": Env("firmicutes", 37, 0.9, 0),
+    "Lactobacillus crispatus": Env("firmicutes", 37, 0.9, 0),
+}
+SPECIES.update(HUMAN_TARGETS)
+
 # Climate-sensitive pathogens: forecast targets only (not in any pair, so no law is fitted
 # on them).
 CLIMATE_TARGETS = {
