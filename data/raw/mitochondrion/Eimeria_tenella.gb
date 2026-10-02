@@ -1,0 +1,728 @@
+LOCUS       NC_088458               6213 bp    DNA     circular INV 01-MAY-2024
+DEFINITION  Eimeria tenella mitochondrion, complete genome.
+ACCESSION   NC_088458
+VERSION     NC_088458.1
+DBLINK      BioProject: PRJNA927338
+KEYWORDS    RefSeq.
+SOURCE      mitochondrion Eimeria tenella
+  ORGANISM  Eimeria tenella
+            Eukaryota; Sar; Alveolata; Apicomplexa; Conoidasida; Coccidia;
+            Eucoccidiorida; Eimeriorina; Eimeriidae; Eimeria.
+REFERENCE   1  (bases 1 to 6213)
+  AUTHORS   Kruth,P.S. and Barta,J.R.
+  TITLE     Expression of fragmented ribosomal RNA from the mitochondrial
+            genome of Eimeria tenella
+  JOURNAL   Unpublished
+REFERENCE   2  (bases 1 to 6213)
+  CONSRTM   NCBI Genome Project
+  TITLE     Direct Submission
+  JOURNAL   Submitted (30-APR-2024) National Center for Biotechnology
+            Information, NIH, Bethesda, MD 20894, USA
+REFERENCE   3  (bases 1 to 6213)
+  AUTHORS   Kruth,P.S. and Barta,J.R.
+  TITLE     Direct Submission
+  JOURNAL   Submitted (07-MAR-2024) Pathobiology, University of Guelph, 50
+            Stone Road East, Guelph, ON N1G 2W1, Canada
+COMMENT     PROVISIONAL REFSEQ: This record has not yet been subject to final
+            NCBI review. The reference sequence is identical to PP464288.
+            
+            ##Assembly-Data-START##
+            Assembly Method       :: Geneious Prime v. 2023.1.2
+            Coverage              :: 203
+            Sequencing Technology :: Illumina
+            ##Assembly-Data-END##
+            COMPLETENESS: full length.
+FEATURES             Location/Qualifiers
+     source          1..6213
+                     /organism="Eimeria tenella"
+                     /organelle="mitochondrion"
+                     /mol_type="genomic DNA"
+                     /host="Gallus gallus"
+                     /db_xref="taxon:5802"
+                     /dev_stage="sporozoite"
+                     /geo_loc_name="Canada: Ontario"
+     misc_feature    1..11
+                     /inference="similar to DNA sequence:INSD:KP658101.1"
+                     /note="eimeriid mt start motif; putative 5' genome start
+                     eimeriid conserved motif (TATTTWWAADA); see:
+                     10.1016/j.ijpara.2015.02.006"
+     gene            27..83
+                     /locus_tag="AAIN42_mgr01"
+                     /db_xref="GeneID:89910049"
+     rRNA            27..83
+                     /locus_tag="AAIN42_mgr01"
+                     /product="small subunit ribosomal RNA"
+                     /experiment="COORDINATES:expression confirmed via Illumina
+                     NovaSeq RNA sequencing"
+                     /inference="similar to DNA sequence:INSD:M76611.1"
+                     /note="RNA9; fragmented; see:
+                     10.1371/journal.pone.0038320"
+                     /db_xref="GeneID:89910049"
+     gene            84..197
+                     /locus_tag="AAIN42_mgr02"
+                     /db_xref="GeneID:89910050"
+     rRNA            84..197
+                     /locus_tag="AAIN42_mgr02"
+                     /product="small subunit ribosomal RNA"
+                     /experiment="COORDINATES:expression confirmed via Illumina
+                     NovaSeq RNA sequencing"
+                     /inference="similar to DNA sequence:INSD:M76611.1"
+                     /note="SSUA; fragmented; see:
+                     10.1371/journal.pone.0038320"
+                     /db_xref="GeneID:89910050"
+     misc_feature    84..104
+                     /locus_tag="AAIN42_mgr02"
+                     /experiment="COORDINATES:expression confirmed via Illumina
+                     NovaSeq RNA sequencing"
+                     /experiment="EXISTENCE:expression in sporozoites confirmed
+                     via Illumina NovaSeq RNA sequencing"
+                     /inference="similar to DNA sequence:INSD:M76611.1"
+                     /note="SSUAs; small subunit ribosomal RNA; fragmented;
+                     abundant shorter expressed RNA from rRNA fragment SSUA"
+     misc_feature    198..230
+                     /experiment="COORDINATES:expression confirmed via Illumina
+                     NovaSeq RNA sequencing"
+                     /inference="DESCRIPTION: similar to DNA
+                     sequence:INSD:KX524144.1"
+                     /inference="EXISTENCE: similar to DNA
+                     sequence:INSD:M76611.1"
+                     /note="RNA23; fragmented; putative ribosomal RNA; see:
+                     10.1371/journal.pone.0038320"
+     gene            243..1322
+                     /gene="cob"
+                     /locus_tag="AAIN42_mgp03"
+                     /db_xref="GeneID:89910051"
+     CDS             243..1322
+                     /gene="cob"
+                     /locus_tag="AAIN42_mgp03"
+                     /inference="similar to DNA sequence:INSD:AB564272.1"
+                     /codon_start=1
+                     /transl_table=4
+                     /product="cytochrome b"
+                     /protein_id="YP_011098840.1"
+                     /db_xref="GeneID:89910051"
+                     /translation="MSQVRSHLQSYPCPTNMNFLWNFGFLLGISFVVQIVTGLLLASR
+                     YTSEMSHAFASVQHIIREVSFGWEFRFLHATGASCVFFCLFLHILRALVMSSYTYLSL
+                     TWITGLIIYFISIATGFLGYVLPWGQMSFWGATVICNLLSPIPYLVTWLLGGFYVDNP
+                     TLKRFFVLHFVLPFVALVLVVLHIFYLHLNGSSNPLGTETALKIPFYPHMLSTDGKGF
+                     NYLILFLLAQSFFGLIELSHPDNSIPVNRFVTPLQIVPEWYFLAYYAILKVIPSKTGG
+                     LLLFAGSILLLLLLSEVRSLTSVINLRQQFSSRNCATSWSIIYIYSFIALIIVGAQLP
+                     QEVFISYGRFFTVIYLLSTFSLFKL"
+     gene            1355..2797
+                     /gene="cox1"
+                     /locus_tag="AAIN42_mgp02"
+                     /db_xref="GeneID:89910046"
+     CDS             1355..2797
+                     /gene="cox1"
+                     /locus_tag="AAIN42_mgp02"
+                     /inference="similar to DNA sequence:INSD:AB564272.1"
+                     /codon_start=1
+                     /transl_table=4
+                     /product="cytochrome c oxidase subunit 1"
+                     /protein_id="YP_011098841.1"
+                     /db_xref="GeneID:89910046"
+                     /translation="MNSSILTAANHKELGIYYVWFAFLFSIVGTLLSVLIRLELSSSG
+                     LRVVALENQNFYNLAFTLHGAIMIFFVVMPGLFGGYGNYFLPIYLGASEVAFPRVNCV
+                     SLLLVPISWVIVSTSLISEFGSGVGWTLYPPLSTSLMSLSPTSVDLIVFGLALSGISS
+                     FLSSINFLTTIAVLGVTNGSKPWCLFTWAIVFTAIMLLGTLPILTGGLLMLVLDLHLN
+                     TQFYDAAFNGDPVLYQHLFWFFGHPEVYIIILPAFGVVSQTLSTSAGKLVFGGPSMIL
+                     AMGCITVLGSLVWAHHMMTVGLETDTRAYFSAITMMIAIPTGTKIFNWLSTYMGNPFS
+                     TISLDIWYALSFIFLFTLGGTTGVVLGNTALDVALHDTYYVIAHFHFVLSLGAVIGLI
+                     CGFFYFQESMFGYTANVFTRNTSDSPYLRVWSIVFLFSILLTFLPMHLLGFNVMPRRI
+                     PDYPDYVTYLNTMCSIGSISTVFILYSLIL"
+     gene            2802..2835
+                     /locus_tag="AAIN42_mgr03"
+                     /db_xref="GeneID:89910047"
+     rRNA            2802..2835
+                     /locus_tag="AAIN42_mgr03"
+                     /product="large subunit ribosomal RNA"
+                     /experiment="COORDINATES:expression confirmed via Illumina
+                     NovaSeq RNA sequencing"
+                     /inference="DESCRIPTION: similar to DNA
+                     sequence:INSD:M76611.1"
+                     /inference="similar to DNA sequence:INSD:KX524144.1"
+                     /note="RNA20; fragmented; large subunit putatively
+                     assigned based on 63% homology with Stylonychia lemnae
+                     (KX524144.1), not previously assigned; see:
+                     10.1371/journal.pone.0038320"
+                     /db_xref="GeneID:89910047"
+     misc_feature    2853..3070
+                     /experiment="COORDINATES:expression confirmed via Illumina
+                     NovaSeq RNA sequencing"
+                     /experiment="EXISTENCE:expression confirmed via Illumina
+                     NovaSeq RNA sequencing"
+                     /note="polycistronic expression unit of LSU fragments
+                     LSUF/LSUG"
+     gene            2853..2930
+                     /locus_tag="AAIN42_mgr04"
+                     /db_xref="GeneID:89910052"
+     rRNA            2853..2930
+                     /locus_tag="AAIN42_mgr04"
+                     /product="large subunit ribosomal RNA"
+                     /experiment="COORDINATES:expression confirmed via Illumina
+                     NovaSeq RNA sequencing"
+                     /inference="similar to DNA sequence:INSD:M76611.1"
+                     /note="LSUF; fragmented; see:
+                     10.1371/journal.pone.0038320"
+                     /db_xref="GeneID:89910052"
+     gene            2959..3070
+                     /locus_tag="AAIN42_mgr05"
+                     /db_xref="GeneID:89910053"
+     rRNA            2959..3070
+                     /locus_tag="AAIN42_mgr05"
+                     /product="large subunit ribosomal RNA"
+                     /experiment="COORDINATES:expression confirmed via Illumina
+                     NovaSeq RNA sequencing"
+                     /inference="similar to DNA sequence:INSD:M76611.1"
+                     /note="LSUG; fragmented; see:
+                     10.1371/journal.pone.0038320"
+                     /db_xref="GeneID:89910053"
+     misc_feature    3071..3137
+                     /experiment="COORDINATES:expression confirmed via Illumina
+                     NovaSeq RNA sequencing"
+                     /experiment="EXISTENCE:expression in sporozoites confirmed
+                     via Illumina NovaSeq RNA sequencing"
+                     /note="RNA29"
+     misc_feature    3095..3137
+                     /experiment="COORDINATES:expression confirmed via Illumina
+                     NovaSeq RNA sequencing"
+                     /experiment="EXISTENCE:expression in sporozoites confirmed
+                     via Illumina NovaSeq RNA sequencing"
+                     /note="RNA29s; abundant shorter expressed RNA from RNA
+                     fragment RNA29"
+     gene            3138..3181
+                     /locus_tag="AAIN42_mgr06"
+                     /db_xref="GeneID:89910054"
+     rRNA            3138..3181
+                     /locus_tag="AAIN42_mgr06"
+                     /product="small subunit ribosomal RNA"
+                     /experiment="COORDINATES:expression confirmed via Illumina
+                     NovaSeq RNA sequencing"
+                     /inference="similar to DNA sequence:INSD:M76611.1"
+                     /note="RNA14; fragmented; identified as SSU by feagin et
+                     all (10.1371/journal.pone.0038320)"
+                     /db_xref="GeneID:89910054"
+     misc_feature    3184..3199
+                     /experiment="EXISTENCE:lack of expression in sporozoites
+                     confirmed via Illumina NovaSeq RNA sequencing"
+                     /inference="similar to DNA sequence:INSD:M76611.1"
+                     /note="LSUC (fragmented large subunit ribosomal RNA); not
+                     expressed in sporozoites; see:
+                     10.1371/journal.pone.0038320"
+     gene            3215..3322
+                     /locus_tag="AAIN42_mgr07"
+                     /db_xref="GeneID:89910055"
+     rRNA            3215..3322
+                     /locus_tag="AAIN42_mgr07"
+                     /product="large subunit ribosomal RNA"
+                     /experiment="COORDINATES:expression confirmed via Illumina
+                     NovaSeq RNA sequencing"
+                     /inference="DESCRIPTION: similar to DNA
+                     sequence:INSD:JN378734.1"
+                     /inference="EXISTENCE: similar to DNA
+                     sequence:INSD:M76611.1"
+                     /note="RNA22; fragmented; large subunit putatively
+                     assigned based on 67% homology with unnamed endosymbiont
+                     of Kryptoperidinium folaceum (JN378734.1), was not
+                     assigned previously; see: 10.1371/journal.pone.0038320"
+                     /db_xref="GeneID:89910055"
+     misc_feature    3215..3252
+                     /locus_tag="AAIN42_mgr07"
+                     /experiment="COORDINATES:expression confirmed via Illumina
+                     NovaSeq RNA sequencing"
+                     /experiment="EXISTENCE:expression in sporozoites confirmed
+                     via Illumina NovaSeq RNA sequencing"
+                     /inference="DESCRIPTION: similar to DNA
+                     sequence:INSD:JN378734.1"
+                     /inference="EXISTENCE: similar to DNA
+                     sequence:INSD:M76611.1"
+                     /note="RNA22s; fragmented; large subunit putatively
+                     assigned based on homology with unnamed endosymbiont of
+                     Kryptoperidinium folaceum (JN378734.1), was not assigned
+                     previously; abundant shorter expressed RNA from rRNA
+                     fragment RNA22"
+     gene            3337..3397
+                     /locus_tag="AAIN42_mgr08"
+                     /db_xref="GeneID:89910056"
+     rRNA            3337..3397
+                     /locus_tag="AAIN42_mgr08"
+                     /product="small subunit ribosomal RNA"
+                     /experiment="COORDINATES:expression confirmed via Illumina
+                     NovaSeq RNA sequencing"
+                     /inference="similar to DNA sequence:INSD:M76611.1"
+                     /note="SSUF; fragmented; see:
+                     10.1371/journal.pone.0038320"
+                     /db_xref="GeneID:89910056"
+     misc_feature    3337..3368
+                     /locus_tag="AAIN42_mgr08"
+                     /experiment="COORDINATES:expression confirmed via Illumina
+                     NovaSeq RNA sequencing"
+                     /experiment="EXISTENCE:expression in sporozoites confirmed
+                     via Illumina NovaSeq RNA sequencing"
+                     /inference="similar to DNA sequence:INSD:M76611.1"
+                     /note="SSUFs; small subunit ribosomal RNA; fragmented;
+                     abundant shorter expressed RNA from rRNA fragment SSUF"
+     gene            3398..3480
+                     /locus_tag="AAIN42_mgr09"
+                     /db_xref="GeneID:89910057"
+     rRNA            3398..3480
+                     /locus_tag="AAIN42_mgr09"
+                     /product="large subunit ribosomal RNA"
+                     /experiment="COORDINATES:expression confirmed via Illumina
+                     NovaSeq RNA sequencing"
+                     /inference="similar to DNA sequence:INSD:M76611.1"
+                     /note="RNA10; fragmented; see:
+                     10.1371/journal.pone.0038320"
+                     /db_xref="GeneID:89910057"
+     misc_feature    3447..3480
+                     /locus_tag="AAIN42_mgr09"
+                     /experiment="COORDINATES:expression confirmed via Illumina
+                     NovaSeq RNA sequencing"
+                     /experiment="EXISTENCE:expression in sporozoites confirmed
+                     via Illumina NovaSeq RNA sequencing"
+                     /inference="similar to DNA sequence:INSD:M76611.1"
+                     /note="RNA10s; large subunit ribosomal RNA; fragmented;
+                     abundant shorter expressed RNA from rRNA fragment RNA10"
+     gene            3481..3551
+                     /locus_tag="AAIN42_mgr10"
+                     /db_xref="GeneID:89910058"
+     rRNA            3481..3551
+                     /locus_tag="AAIN42_mgr10"
+                     /product="large subunit ribosomal RNA"
+                     /experiment="COORDINATES:expression confirmed via Illumina
+                     NovaSeq RNA sequencing"
+                     /inference="similar to DNA sequence:INSD:M76611.1"
+                     /note="RNA11; fragmented; see:
+                     10.1371/journal.pone.0038320"
+                     /db_xref="GeneID:89910058"
+     misc_feature    3552..3696
+                     /experiment="COORDINATES:expression confirmed via Illumina
+                     NovaSeq RNA sequencing"
+                     /experiment="EXISTENCE:expression confirmed via Illumina
+                     NovaSeq RNA sequencing"
+                     /note="polycistronic expression unit of SSU fragments
+                     SSUD/RNA17"
+     gene            3552..3629
+                     /locus_tag="AAIN42_mgr11"
+                     /db_xref="GeneID:89910059"
+     rRNA            3552..3629
+                     /locus_tag="AAIN42_mgr11"
+                     /product="small subunit ribosomal RNA"
+                     /experiment="COORDINATES:expression confirmed via Illumina
+                     NovaSeq RNA sequencing"
+                     /inference="similar to DNA sequence:INSD:M76611.1"
+                     /note="SSUD; fragmented; see:
+                     10.1371/journal.pone.0038320"
+                     /db_xref="GeneID:89910059"
+     gene            3630..3696
+                     /locus_tag="AAIN42_mgr12"
+                     /db_xref="GeneID:89910060"
+     rRNA            3630..3696
+                     /locus_tag="AAIN42_mgr12"
+                     /product="small subunit ribosomal RNA"
+                     /experiment="COORDINATES:expression confirmed via Illumina
+                     NovaSeq RNA sequencing"
+                     /inference="similar to DNA sequence:INSD:M76611.1"
+                     /note="RNA17; fragmented; see:
+                     10.1371/journal.pone.0038320"
+                     /db_xref="GeneID:89910060"
+     misc_feature    3650..3696
+                     /locus_tag="AAIN42_mgr12"
+                     /experiment="COORDINATES:expression confirmed via Illumina
+                     NovaSeq RNA sequencing"
+                     /experiment="EXISTENCE:expression in sporozoites confirmed
+                     via Illumina NovaSeq RNA sequencing"
+                     /inference="similar to DNA sequence:INSD:M76611.1"
+                     /note="RNA17s; small subunit ribosomal RNA; fragmented;
+                     abundant shorter expressed RNA from rRNA fragment RNA17"
+     misc_feature    3697..3729
+                     /experiment="COORDINATES:expression confirmed via Illumina
+                     NovaSeq RNA sequencing"
+                     /inference="EXISTENCE: similar to DNA
+                     sequence:INSD:M76611.1"
+                     /note="RNA15; putative ribosomal RNA; fragmented; see:
+                     10.1371/journal.pone.0038320"
+     gene            3730..3761
+                     /locus_tag="AAIN42_mgr13"
+                     /db_xref="GeneID:89910061"
+     rRNA            3730..3761
+                     /locus_tag="AAIN42_mgr13"
+                     /product="large subunit ribosomal RNA"
+                     /experiment="COORDINATES:expression confirmed via Illumina
+                     NovaSeq RNA sequencing"
+                     /inference="similar to DNA sequence:INSD:M76611.1"
+                     /note="RNA13; fragmented; see:
+                     10.1371/journal.pone.0038320"
+                     /db_xref="GeneID:89910061"
+     gene            3767..3828
+                     /locus_tag="AAIN42_mgr14"
+                     /db_xref="GeneID:89910062"
+     rRNA            3767..3828
+                     /locus_tag="AAIN42_mgr14"
+                     /product="large subunit ribosomal RNA"
+                     /experiment="COORDINATES:expression confirmed via Illumina
+                     NovaSeq RNA sequencing"
+                     /inference="similar to DNA sequence:INSD:M76611.1"
+                     /note="RNA6; fragmented; see:
+                     10.1371/journal.pone.0038320"
+                     /db_xref="GeneID:89910062"
+     gene            complement(3838..3921)
+                     /locus_tag="AAIN42_mgr15"
+                     /db_xref="GeneID:89910063"
+     rRNA            complement(3838..3921)
+                     /locus_tag="AAIN42_mgr15"
+                     /product="large subunit ribosomal RNA"
+                     /experiment="COORDINATES:expression confirmed via Illumina
+                     NovaSeq RNA sequencing"
+                     /inference="similar to DNA sequence:INSD:M76611.1"
+                     /note="LSUD; fragmented; see:
+                     10.1371/journal.pone.0038320"
+                     /db_xref="GeneID:89910063"
+     misc_feature    complement(3924..4058)
+                     /experiment="COORDINATES:expression confirmed via Illumina
+                     NovaSeq RNA sequencing"
+                     /experiment="EXISTENCE:expression confirmed via Illumina
+                     NovaSeq RNA sequencing"
+                     /note="polycistronic expression unit of SSU fragment RNA8
+                     and RNA16"
+     gene            complement(3924..3952)
+                     /locus_tag="AAIN42_mgr16"
+                     /db_xref="GeneID:89910064"
+     rRNA            complement(3924..3952)
+                     /locus_tag="AAIN42_mgr16"
+                     /product="large subunit ribosomal RNA"
+                     /experiment="COORDINATES:expression confirmed via Illumina
+                     NovaSeq RNA sequencing"
+                     /inference="DESCRIPTION: similar to DNA
+                     sequence:INSD:KX524144.1"
+                     /inference="EXISTENCE: similar to DNA
+                     sequence:INSD:M76611.1"
+                     /note="RNA16; fragmented; large subunit putatively
+                     assigned based on 69% homology with Stylonychia lemnae
+                     (KX524144.1), not previously assigned; see:
+                     10.1371/journal.pone.0038320"
+                     /db_xref="GeneID:89910064"
+     gene            complement(3953..4058)
+                     /locus_tag="AAIN42_mgr17"
+                     /db_xref="GeneID:89910065"
+     rRNA            complement(3953..4058)
+                     /locus_tag="AAIN42_mgr17"
+                     /product="small subunit ribosomal RNA"
+                     /experiment="COORDINATES:expression confirmed via Illumina
+                     NovaSeq RNA sequencing"
+                     /inference="similar to DNA sequence:INSD:M76611.1"
+                     /note="RNA8; fragmented; see:
+                     10.1371/journal.pone.0038320"
+                     /db_xref="GeneID:89910065"
+     gene            4074..4136
+                     /locus_tag="AAIN42_mgr18"
+                     /db_xref="GeneID:89910066"
+     rRNA            4074..4136
+                     /locus_tag="AAIN42_mgr18"
+                     /product="large subunit ribosomal RNA"
+                     /experiment="COORDINATES:expression confirmed via Illumina
+                     NovaSeq RNA sequencing"
+                     /inference="similar to DNA sequence:INSD:M76611.1"
+                     /note="RNA2; fragmented; see:
+                     10.1371/journal.pone.0038320"
+                     /db_xref="GeneID:89910066"
+     gene            complement(4170..4351)
+                     /locus_tag="AAIN42_mgr19"
+                     /db_xref="GeneID:89910067"
+     rRNA            complement(4170..4351)
+                     /locus_tag="AAIN42_mgr19"
+                     /product="large subunit ribosomal RNA"
+                     /experiment="COORDINATES:expression confirmed via Illumina
+                     NovaSeq RNA sequencing"
+                     /inference="similar to DNA sequence:INSD:M76611.1"
+                     /note="LSUA; fragmented; see:
+                     10.1371/journal.pone.0038320"
+                     /db_xref="GeneID:89910067"
+     gene            4366..5121
+                     /gene="cox3"
+                     /locus_tag="AAIN42_mgp01"
+                     /db_xref="GeneID:89910068"
+     CDS             4366..5121
+                     /gene="cox3"
+                     /locus_tag="AAIN42_mgp01"
+                     /inference="similar to DNA sequence:INSD:AB564272.1"
+                     /codon_start=1
+                     /transl_table=4
+                     /product="cytochrome c oxidase subunit 3"
+                     /protein_id="YP_011098842.1"
+                     /db_xref="GeneID:89910068"
+                     /translation="MVSNCSYLRIFTKISFLYATTLRYFTVGFLFSPFLFTVFLLFNF
+                     TFREVGTTSASMVSSICLGVISTELLLFVSFFWGAYSSILSPSYVTDTTLFSPTEGLV
+                     SISSRGLIVTITFLLSTASVILGYGALTSEKAINLNIQKGFLSLVIIALCFTSIQVCE
+                     YLGLAISINDGVLGTYLLWITGLHFSHVLVGAILLFFTFWRGSLQYNVNTQIRTYNSS
+                     SIMVLPMLESYTLVYWHFVEAIWLVIHFTFYTL"
+     gene            complement(5128..5158)
+                     /locus_tag="AAIN42_mgr20"
+                     /db_xref="GeneID:89910048"
+     rRNA            complement(5128..5158)
+                     /locus_tag="AAIN42_mgr20"
+                     /product="small subunit ribosomal RNA"
+                     /experiment="COORDINATES:expression confirmed via Illumina
+                     NovaSeq RNA sequencing"
+                     /inference="similar to DNA sequence:INSD:M76611.1"
+                     /note="RNA19; fragmented; >61% sequence identity with
+                     large ribosomal subunit of unnamed endosymbiont of
+                     Kryptoperidinium foliaceum (JN378734.1); named as SSU by
+                     Feagin et al., (see: 10.1371/journal.pone.0038320)"
+                     /db_xref="GeneID:89910048"
+     gene            5194..5286
+                     /locus_tag="AAIN42_mgr21"
+                     /db_xref="GeneID:89910069"
+     rRNA            5194..5286
+                     /locus_tag="AAIN42_mgr21"
+                     /product="large subunit ribosomal RNA"
+                     /experiment="COORDINATES:expression confirmed via Illumina
+                     NovaSeq RNA sequencing"
+                     /inference="similar to DNA sequence:INSD:M76611.1"
+                     /note="RNA1; fragmented; see:
+                     10.1371/journal.pone.0038320"
+                     /db_xref="GeneID:89910069"
+     misc_feature    5287..5349
+                     /experiment="COORDINATES:expression confirmed via Illumina
+                     NovaSeq RNA sequencing"
+                     /experiment="EXISTENCE:expression in sporozoites confirmed
+                     via Illumina NovaSeq RNA sequencing"
+                     /note="RNA28"
+     gene            complement(5353..5381)
+                     /locus_tag="AAIN42_mgr22"
+                     /db_xref="GeneID:89910070"
+     rRNA            complement(5353..5381)
+                     /locus_tag="AAIN42_mgr22"
+                     /product="large subunit ribosomal RNA"
+                     /experiment="COORDINATES:expression confirmed via Illumina
+                     NovaSeq RNA sequencing"
+                     /inference="similar to DNA sequence:INSD:M76611.1"
+                     /note="LSUB; fragmented; see:
+                     10.1371/journal.pone.0038320"
+                     /db_xref="GeneID:89910070"
+     gene            complement(5406..5491)
+                     /locus_tag="AAIN42_mgr23"
+                     /db_xref="GeneID:89910071"
+     rRNA            complement(5406..5491)
+                     /locus_tag="AAIN42_mgr23"
+                     /product="large subunit ribosomal RNA"
+                     /experiment="COORDINATES:expression confirmed via Illumina
+                     NovaSeq RNA sequencing"
+                     /inference="similar to DNA sequence:INSD:M76611.1"
+                     /note="RNA3; fragmented; see:
+                     10.1371/journal.pone.0038320"
+                     /db_xref="GeneID:89910071"
+     gene            complement(5492..5524)
+                     /locus_tag="AAIN42_mgr24"
+                     /db_xref="GeneID:89910072"
+     rRNA            complement(5492..5524)
+                     /locus_tag="AAIN42_mgr24"
+                     /product="large subunit ribosomal RNA"
+                     /experiment="COORDINATES:expression confirmed via Illumina
+                     NovaSeq RNA sequencing"
+                     /inference="similar to DNA sequence:INSD:M76611.1"
+                     /note="RNA18; fragmented; identified as LSU by feagin et
+                     al. (see: 10.1371/journal.pone.0038320) however had >63%
+                     seq identity with SSU of Pseudourostyla cristata
+                     (MH888186.1)"
+                     /db_xref="GeneID:89910072"
+     gene            complement(5546..5666)
+                     /locus_tag="AAIN42_mgr25"
+                     /db_xref="GeneID:89910073"
+     rRNA            complement(5546..5666)
+                     /locus_tag="AAIN42_mgr25"
+                     /product="small subunit ribosomal RNA"
+                     /experiment="COORDINATES:expression confirmed via Illumina
+                     NovaSeq RNA sequencing"
+                     /inference="similar to DNA sequence:INSD:M76611.1"
+                     /note="SSUB; fragmented; see:
+                     10.1371/journal.pone.0038320"
+                     /db_xref="GeneID:89910073"
+     gene            complement(5667..5750)
+                     /locus_tag="AAIN42_mgr26"
+                     /db_xref="GeneID:89910074"
+     rRNA            complement(5667..5750)
+                     /locus_tag="AAIN42_mgr26"
+                     /product="large subunit ribosomal RNA"
+                     /experiment="COORDINATES:expression confirmed via Illumina
+                     NovaSeq RNA sequencing"
+                     /inference="DESCRIPTION: similar to DNA
+                     sequence:INSD:JN378734.1"
+                     /inference="EXISTENCE: similar to DNA
+                     sequence:INSD:M76611.1"
+                     /note="RNA7; fragmented; large subunit putatively assigned
+                     based on >65% homology of RNA7s with unnamed endosymbiont
+                     of Kryptoperidinium folaceum (JN378734.1), was not
+                     assigned previously; see: 10.1371/journal.pone.0038320"
+                     /db_xref="GeneID:89910074"
+     misc_feature    complement(5712..5750)
+                     /locus_tag="AAIN42_mgr26"
+                     /experiment="COORDINATES:expression confirmed via Illumina
+                     NovaSeq RNA sequencing"
+                     /experiment="EXISTENCE:expression in sporozoites confirmed
+                     via Illumina NovaSeq RNA sequencing"
+                     /inference="similar to DNA sequence:INSD:M76611.1"
+                     /note="RNA7s; fragmented; large subunit putatively
+                     assigned based on >65% homology with unnamed endosymbiont
+                     of Kryptoperidinium folaceum (JN378734.1); abundant
+                     shorter expressed RNA from rRNA fragment RNA7"
+     gene            complement(5751..5954)
+                     /locus_tag="AAIN42_mgr27"
+                     /db_xref="GeneID:89910075"
+     rRNA            complement(5751..5954)
+                     /locus_tag="AAIN42_mgr27"
+                     /product="large subunit ribosomal RNA"
+                     /experiment="COORDINATES:expression confirmed via Illumina
+                     NovaSeq RNA sequencing"
+                     /inference="similar to DNA sequence:INSD:M76611.1"
+                     /note="LSUE; fragmented; identified as LSU by Feagin et al
+                     (see: 10.1371/journal.pone.0038320), however had >73%
+                     sequence identity with SSU from Paramecium caudatum
+                     (NC_014262.1)"
+                     /db_xref="GeneID:89910075"
+     misc_feature    complement(5955..6049)
+                     /experiment="COORDINATES:expression confirmed via Illumina
+                     NovaSeq RNA sequencing"
+                     /inference="similar to DNA sequence:INSD:M76611.1"
+                     /note="RNA26; fragmented; putative ribosomal RNA; see:
+                     10.1371/journal.pone.0038320"
+     gene            complement(6050..6104)
+                     /locus_tag="AAIN42_mgr28"
+                     /db_xref="GeneID:89910076"
+     rRNA            complement(6050..6104)
+                     /locus_tag="AAIN42_mgr28"
+                     /product="small subunit ribosomal RNA"
+                     /experiment="COORDINATES:expression confirmed via Illumina
+                     NovaSeq RNA sequencing"
+                     /inference="similar to DNA sequence:INSD:M76611.1"
+                     /note="SSUE; fragmented; see:
+                     10.1371/journal.pone.0038320"
+                     /db_xref="GeneID:89910076"
+     misc_feature    complement(6057..6104)
+                     /locus_tag="AAIN42_mgr28"
+                     /experiment="COORDINATES:expression confirmed via Illumina
+                     NovaSeq RNA sequencing"
+                     /experiment="EXISTENCE:expression in sporozoites confirmed
+                     via Illumina NovaSeq RNA sequencing"
+                     /inference="similar to DNA sequence:INSD:M76611.1"
+                     /note="SSUEs; small subunit ribosomal RNA; fragmented;
+                     abundant shorter expressed RNA from rRNA fragment SSUE"
+     gene            complement(6105..6204)
+                     /locus_tag="AAIN42_mgr29"
+                     /db_xref="GeneID:89910077"
+     rRNA            complement(6105..6204)
+                     /locus_tag="AAIN42_mgr29"
+                     /product="small subunit ribosomal RNA"
+                     /experiment="COORDINATES:expression confirmed via Illumina
+                     NovaSeq RNA sequencing"
+                     /inference="similar to DNA sequence:INSD:M76611.1"
+                     /note="RNA5; fragmented; see:
+                     10.1371/journal.pone.0038320"
+                     /db_xref="GeneID:89910077"
+ORIGIN      
+        1 tatttaaaat agagtttttt aaaaaaccag tacacctagc caacacgatc catttgcctg
+       61 ggttattttt gtgctacaaa aacaaggctt gatggttact atgaaggtca caagagacaa
+      121 agtcccagca gtagcggtca tactattgaa gagccgagtg ttatccatcc ataccaggcg
+      181 taaaaagcgt tcgttctgaa aagaaacaga tgccaggcca actgaactcg tttatgttta
+      241 ttatgtctca agtgagatct cacctacaat catatccatg tccaaccaat atgaacttcc
+      301 tttggaattt tggtttctta ttaggaattt cttttgttgt ccaaattgta acaggattat
+      361 tattagcatc tagatatact agtgaaatgt cacatgcctt tgctagtgta caacatatta
+      421 ttcgagaggt gtctttcggt tgggaattta gattcctaca tgcaactgga gcatcctgcg
+      481 tattcttctg tctatttctt catattcttc gagctctagt aatgagtagt tatacctatc
+      541 taagtctgac atggattact ggacttatta tctactttat ttctatcgca acaggattct
+      601 taggttatgt actaccatgg ggtcaaatga gtttctgggg tgctactgta atttgtaacc
+      661 tactctcacc aattccatac cttgtaactt ggttactagg aggtttctat gtggataatc
+      721 ctaccttaaa aagattcttt gtattacatt tcgtacttcc atttgtagct cttgtacttg
+      781 tagttctaca tattttctat ctacatctaa acggatctag taacccactg ggtacagaaa
+      841 ctgctttaaa aataccattc tatcctcata tgttaagtac agatggaaaa gggtttaact
+      901 acttaatctt attcctatta gctcaatcat tcttcggtct aattgaatta tcacatccag
+      961 ataacagtat tcctgtaaat agatttgtaa caccactaca aattgtacca gagtggtact
+     1021 tcttagcata ttatgctatc ttaaaagtta ttccaagtaa aactggaggt ctattacttt
+     1081 tcgcgggtag cattctatta ttattacttc taagtgaggt tcgatcactt actagtgtaa
+     1141 taaacttacg acaacaattc tcttcaagaa attgtgcaac atcttggagt attatctata
+     1201 tctactcatt tattgctctt attattgttg gagctcaatt acctcaagaa gtatttattt
+     1261 catatggtag attctttacc gtaatctatc ttttaagtac atttagttta ttcaaactgt
+     1321 aattagttct tacaaaaaat ttcaacaatt ctatatgaat tctagtattc taactgccgc
+     1381 aaaccataaa gaattaggta tttactatgt atggtttgct ttccttttct caattgtagg
+     1441 tacactacta tcagtcttaa ttagacttga actaagctcc tctgggttac gtgttgttgc
+     1501 attagagaat caaaatttct acaacctagc attcacactg catggtgcta ttatgatttt
+     1561 ctttgtagtt atgccaggtc tttttggtgg atatggtaat tatttcttac caatctatct
+     1621 aggagcttct gaggtagctt tccctagagt aaattgtgtc tcattattat tagttccaat
+     1681 ttcatgggtt attgtaagta cttcactaat ttctgagttt ggttcaggtg ttggttggac
+     1741 actttatcct cctttaagta catcattaat gtcattatct ccaacctcag tagatttaat
+     1801 tgtatttggt ttagctttat ctggtatttc tagcttctta tcatctatta atttcttaac
+     1861 tacaattgct gtactaggtg ttactaatgg ttcaaaacca tggtgtctat ttacttgggc
+     1921 tattgtattc acagctatta tgttacttgg aacacttcca attcttacag gtggattatt
+     1981 aatgctggta ctagacttac atctaaatac ccaattctac gatgccgctt ttaatggtga
+     2041 tccagtatta tatcaacatc tattctggtt cttcggacat ccagaagtat atattattat
+     2101 tttacctgcc tttggtgttg tttctcaaac attatctact tcagcaggta aattagtatt
+     2161 tggaggtcct tctatgatcc ttgctatggg atgtattact gtactaggat cattagtatg
+     2221 ggcacatcat atgatgacag ttggtctaga aacagatact agagcatact tctcagctat
+     2281 taccatgatg attgcaattc caacaggtac caaaattttt aactggttaa gtacttatat
+     2341 gggaaatcca tttagtacaa tatcactaga tatttggtat gctttaagct ttattttcct
+     2401 atttactcta ggaggtacca ctggagtagt actaggcaat actgctttag atgttgctct
+     2461 acatgataca tactatgtaa ttgcccactt ccatttcgta ttatctcttg gtgcggttat
+     2521 tggattaatc tgtggattct tctacttcca agagtctatg ttcggttata cagctaatgt
+     2581 ctttactcga aatacatcag attctccata cttaagagta tggtctattg tattcctatt
+     2641 cagtatttta ttaacattct taccaatgca cttattagga tttaatgtta tgccacgtag
+     2701 aatacctgat tatcctgact atgtaactta tctgaacaca atgtgttcta ttggttcaat
+     2761 tagtactgtc tttatcctat attccctaat cttataaaaa aagagttgac cgtgaaatcc
+     2821 atacaaagat aaaacgggag atagataaaa catgttactc tatcggtaaa aaggtacgcc
+     2881 ggggataaca ggtcgtagaa tttcaggagc tctgatcctt gaattctatt aacacctcca
+     2941 tgtcggctca tcacaccctt gtacttgaag aaggttcaat taggaacgag agttcaccgt
+     3001 gatatgtgat acgtgagctg ggttaagaac gtcttgaggc agtttgttcc ctatctgcca
+     3061 ttttaaaaaa ttaattggtt gtagaactta attacgaagt atcatgtgaa gtttcatgtt
+     3121 cgccttatta taaaaaaaag gatcaaatct tccttgagcg actcgttagg caaataaaaa
+     3181 attgagctat aacgctatct tttttagtaa aaagttaatg tcttcgattt taacggtttg
+     3241 ctcctgaaaa aagaaatttt ggtttctcta tagtttctgg tgacagacca ttaagagatt
+     3301 tggaataatc ctcaataaaa aagatacgtt aaaaaaacac agtcggtgcg aagtcgaaac
+     3361 aaggtagttg atggtgaacc agtggctgaa caaaaaatga gtcttgtttc aaatagaggt
+     3421 atttctatgg ctagagtacg taaggaaaag gaaaggttaa ccgctgtcaa aaataaaaac
+     3481 tacttacata cacccctgaa aatttggaac agatggatat aatttggtag tggaacattt
+     3541 gaaataaaaa atggcagctg gaagacggaa tcgttactaa gcgccaggta gtcctggaca
+     3601 ctgaatccat gcgcgtgcca tatttcaaat agaacggtcc ctggctgaat tttatgatcc
+     3661 caggctggtt caaaaagtca aatattagcc aaaaactggc gagaagggaa gtgtgtttct
+     3721 tagaaaaacc aagggaagtt tagccgggaa gttagcgtct aaaaaatatg atatcattat
+     3781 cgcacaagca ctcagcaagt taagagaatg tattgacgtg ttaaaaaatt tattttttag
+     3841 ggtgccgggc agatgtcata aactatacct cctcatcaaa gttagcagtg tcttacgttt
+     3901 gaatccaaca gacgctttcc gttttttaac tacactacga aatgccaaac tattcaaaca
+     3961 atattacttt cttattaatg gaagcgctgg tacctgggta tccaatccag tgctcctcat
+     4021 tcggcataga gactcagcct cagtccaact ttgtactggt ttttaataaa aagggactcc
+     4081 ataagttaaa ctgtagagtc gagatggaaa caaccggaaa ggttattgca tgtcctaaaa
+     4141 aattttagac tctttctaag tttttttttg taaaattctc ttctgaatag atttcataga
+     4201 aaacctaaaa tcatcatgta tgattgacat ttaaccgcta attacgaatc atccaagaat
+     4261 tgtttaacat tctcaggtcc ggtccgattt tacaatcttc cagtttgata aattagatca
+     4321 catgtcttct agtgctttga gatttgactc aatttttata aaaatttagt atcaaattgc
+     4381 tcatatttaa gaatttttac taaaatttct ttcttatatg ctactacatt aagatatttc
+     4441 actgttggtt tcttattttc tccattccta tttactgtat tcttactctt caacttcaca
+     4501 ttcagagaag ttggtacaac atcagcctct atggtatctt caatatgttt aggtgttatt
+     4561 agtactgagt tactattatt cgttagtttc ttctggggtg catattccag tattctatca
+     4621 cctagttatg taacagatac aactctgttc agtcctactg aaggtcttgt aagtatatca
+     4681 agtagaggtc ttattgtaac tattacattt ctactatcca ctgctagtgt tattctgggt
+     4741 tatggtgctc taacctcaga aaaagctata aacttaaata ttcaaaaagg ttttctttct
+     4801 ctagttatta ttgctctatg ctttactagt atccaagttt gtgaatattt aggactggca
+     4861 atatctatta atgatggagt tttaggtacc tatctactat ggattacagg attacacttc
+     4921 tcacatgtgc tagtaggtgc tatactacta ttcttcacat tctggagagg tagtttacaa
+     4981 tataatgtaa atacccaaat tcgaacatat aattcttcta gcattatggt attacctatg
+     5041 ttagaatcat acactctagt atactggcat tttgtagaag ctatctggtt agtaattcac
+     5101 tttactttct atactctata agaatgggat ctcgtaaaca tgcgaactca cttgaactct
+     5161 ataaaaacaa aatgtaactt tttatataaa aatccttcaa attgactatg ctgacttgag
+     5221 taacggaaat ctactagatt cagctatcca tggtgataag attcgtaaat accggtcatt
+     5281 aaaaaacaaa ctgtgatgta atagagcata ggataatgca aagtatccct gactggattc
+     5341 tgcaaaaact aattttttga gaacagcttc caagcataca tttgttgatg ttatagtaga
+     5401 attcatattt tattgcctgt caagttcctt taatgtagtt atctcacagc ttctcttggt
+     5461 ccagataagc gatctcatgt atggttaaaa agtttttatg acaccaggca tgcaatacca
+     5521 aaaagttttt agaaaatacg gttttttgca tggtaaggtt tagcgtttac tttcgaatga
+     5581 aactttgtgc tccaccgtta gtctcttacc tccaacattc ctcttacata ctactgtacg
+     5641 gaccattaca acctccaggc aaagaattgt ccacgattca tatagacaac tagtggcttc
+     5701 tctctcgatt tccatatggt gagttacaaa gatgattctc tccaccctta gtttttgttt
+     5761 aaaagggaag taaaggtgct cagggtctta ccgtcgggcc atagggttcc tcatattcaa
+     5821 ggagttttct attttaaaaa gtcttacatt agagacatta ggaaagtcgt tacaccattc
+     5881 atgcaggacg gaatttaccc gacaaggaat tttgctacct ttggaccgtc agattacagc
+     5941 cgccgtttac cctagttttt atatcatgtt gagttatctc tttcaagaat atctatttca
+     6001 tttctatcct cacgggaacc tttccacgct ctaccaatat tcgttataat tttttatctc
+     6061 gcgtgacgag cggtgtgttt aaggcaagta aagatgcgcc catatttttt ggcgtttaga
+     6121 gcatcctcgt agagatagtt tctttctgaa acaataacct atggttatac taccaaagca
+     6181 tccatctaca gctgcggaaa ctgtaatttt gtc
+//
+

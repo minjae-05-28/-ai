@@ -1,0 +1,265 @@
+LOCUS       NC_011005               5895 bp    DNA     linear   INV 03-APR-2023
+DEFINITION  Theileria parva mitochondrion, complete genome.
+ACCESSION   NC_011005
+VERSION     NC_011005.1
+DBLINK      BioProject: PRJNA927338
+KEYWORDS    RefSeq; cytochrome b; cytochrome oxidase; cytochrome oxidase
+            subunit I; cytochrome oxidase subunit III; large subunit ribosomal
+            RNA; ribosomal RNA.
+SOURCE      mitochondrion Theileria parva
+  ORGANISM  Theileria parva
+            Eukaryota; Sar; Alveolata; Apicomplexa; Aconoidasida; Piroplasmida;
+            Theileriidae; Theileria.
+REFERENCE   1  (bases 1 to 5895)
+  AUTHORS   Kairo,A., Fairlamb,A.H., Gobright,E. and Nene,V.
+  TITLE     A 7.1 kb linear DNA molecule of Theileria parva has scrambled rDNA
+            sequences and open reading frames for mitochondrially encoded
+            proteins
+  JOURNAL   EMBO J. 13 (4), 898-905 (1994)
+   PUBMED   8112303
+REFERENCE   2  (bases 1 to 5895)
+  CONSRTM   NCBI Genome Project
+  TITLE     Direct Submission
+  JOURNAL   Submitted (06-AUG-2008) National Center for Biotechnology
+            Information, NIH, Bethesda, MD 20894, USA
+REFERENCE   3  (bases 1 to 5895)
+  AUTHORS   Nene,M.
+  TITLE     Direct Submission
+  JOURNAL   Submitted (06-JUL-1993) Nene V. M., International Laboratory for
+            Research on Animal Diseases Nairobi Kenya
+COMMENT     PROVISIONAL REFSEQ: This record has not yet been subject to final
+            NCBI review. The reference sequence was derived from Z23263.
+            COMPLETENESS: full length.
+FEATURES             Location/Qualifiers
+     source          1..5895
+                     /organism="Theileria parva"
+                     /organelle="mitochondrion"
+                     /mol_type="genomic DNA"
+                     /isolate="Muguga"
+                     /db_xref="taxon:5875"
+                     /germline
+     repeat_region   1..60
+                     /rpt_type=inverted
+                     /rpt_type=terminal
+     gene            <38..1489
+                     /gene="coI"
+                     /locus_tag="Tpmp1"
+                     /db_xref="GeneID:6741532"
+     CDS             <38..1489
+                     /gene="coI"
+                     /locus_tag="Tpmp1"
+                     /note="start codon not determined"
+                     /citation=[1]
+                     /codon_start=1
+                     /transl_table=4
+                     /product="cytochrome oxidase subunit I"
+                     /protein_id="YP_001994285.1"
+                     /db_xref="GOA:Q36097"
+                     /db_xref="UniProtKB/Swiss-Prot:Q36097"
+                     /db_xref="GeneID:6741532"
+                     /translation="SFIKFEGLFLVFNSVSGNHKIIGISYLWLAYWFGMIGFYMSVLI
+                     RTELSMSGLKIITMDTLEIYNLLFTLHGLIMVFFNIMTGLFGGIGNYLYPVLLGYCDV
+                     VYPRVNLYSLLFQPIGFVLVVSSIYLEIGSGTGWTLYPPLSTSLSNVGIDFIIFGLLA
+                     AGIASTLSSVNFITTFTSVKTIGFVIDRISPAAWSIVLTSFLLLLSLPVVTAVFLMVF
+                     LDRHYNTMFFESSNSGDPVLYQHLFWFFGHPEVYIMILPGFGIISLLLSTYTTKEMFG
+                     NQTMILAMGFNSFVRLFGLGTSYVHIRFGSRYSRYFTTVTILIALPTGNKIFNWVTTL
+                     QCVESIKSLGLVLFTVLFIVNFVIGGTTGVVLGNAGIDLALHDTVYVVGHFHFVLSIG
+                     AIISMICFIIYIQRMLLFGIILSNRLSSLIAPIFMISVLLTFLPMHFTGFSPLPRRIP
+                     DYPDEMWGWNFICTLGATMMLVLKLAILFIISL"
+     gene            complement(2301..3068)
+                     /gene="coIII"
+                     /locus_tag="Tpmp2"
+                     /db_xref="GeneID:6741537"
+     CDS             complement(2301..3068)
+                     /gene="coIII"
+                     /locus_tag="Tpmp2"
+                     /citation=[1]
+                     /codon_start=1
+                     /transl_table=4
+                     /product="cytochrome oxidase subunit III"
+                     /protein_id="YP_001994286.1"
+                     /db_xref="GOA:Q36098"
+                     /db_xref="InterPro:IPR000298"
+                     /db_xref="InterPro:IPR013833"
+                     /db_xref="UniProtKB/Swiss-Prot:Q36098"
+                     /db_xref="GeneID:6741537"
+                     /translation="MRNSAQSYLKYINIINIFETLYLFYSTGLDTLEYIDSTYKNFII
+                     MYVNQYLLYGTTLKYLSVGEFFMNSLTIFINSIREIMTSTTMVMYAIFGMFIFSEILV
+                     FSTFIWGYFHLRLSNPILLAELNVEAYLQISDVLNTGSILVSIILHRVQESANFETDF
+                     FMEQLLLIGFIFLSLQNDEYSLILSYVNNYWMTLYFFILTGLHSLHVCAGGIFVLIQS
+                     YFYEGDGSQRDEEFNAGVYWHFVEMIWIALTMLLFLA"
+     gene            3093..3393
+                     /locus_tag="Tpmr1"
+                     /db_xref="GeneID:6741530"
+     rRNA            3093..3393
+                     /locus_tag="Tpmr1"
+                     /product="large subunit ribosomal RNA"
+                     /note="fragment LSU1; codes for part of domains IV and V
+                     of LSU rRNA"
+                     /citation=[1]
+                     /db_xref="GeneID:6741530"
+     gene            complement(3404..3514)
+                     /locus_tag="Tpmr2"
+                     /db_xref="GeneID:6741536"
+     rRNA            complement(3404..3514)
+                     /locus_tag="Tpmr2"
+                     /product="large subunit ribosomal RNA"
+                     /note="fragment LSU3; codes for part of domain V"
+                     /citation=[1]
+                     /db_xref="GeneID:6741536"
+     gene            complement(4365..4403)
+                     /locus_tag="Tpmr3"
+                     /db_xref="GeneID:6741534"
+     rRNA            complement(4365..4403)
+                     /locus_tag="Tpmr3"
+                     /product="large subunit ribosomal RNA"
+                     /note="fragment LSU2; codes for part of domain V"
+                     /citation=[1]
+                     /db_xref="GeneID:6741534"
+     gene            complement(4423..5583)
+                     /gene="cob"
+                     /locus_tag="Tpmp3"
+                     /db_xref="GeneID:6741533"
+     CDS             complement(4423..5583)
+                     /gene="cob"
+                     /locus_tag="Tpmp3"
+                     /function="electron transport"
+                     /citation=[1]
+                     /codon_start=1
+                     /transl_table=4
+                     /product="cytochrome b"
+                     /protein_id="YP_001994287.1"
+                     /db_xref="GOA:Q36099"
+                     /db_xref="UniProtKB/Swiss-Prot:Q36099"
+                     /db_xref="GeneID:6741533"
+                     /translation="MFYKKVIKIKLGNRALTYKLTFIMNMFNAHIPSYLVPKNLNSNW
+                     NVGFILGILLILQILSGLLLTFFYVPCKEGAFESLSRLVTETQFGWFVRLYHSVGVSF
+                     YFFFMFIHIIKGMWYSSKYMPWSWYSGIVILILSIVIAFTGYVLPDGQMSFWGATVIS
+                     NLLEWFGKAKVITFGGFTVGPETLKRFFILHFVLPAVVLVIVLLHLYFLHREGSSNPL
+                     TLAEAVALLKFYQLILFSDVKFLVIISMFIGPQVGYGIWTLFQADNDNSILSSSENTP
+                     AHIIPEWYLLLFYATLKVFPTKVSGLVAMVVVLKLLIILVESRSKSQAVSTAHHHRVW
+                     TTTSVPLVPALFLLGCIGRMVINLDLIIIGIYGVLLSTTFVQKLLDSSRVRA"
+     gene            complement(5552..5619)
+                     /locus_tag="Tpmr4"
+                     /db_xref="GeneID:6741531"
+     rRNA            complement(5552..5619)
+                     /locus_tag="Tpmr4"
+                     /product="large subunit ribosomal RNA"
+                     /note="fragment LSU5; codes for part of domain IV"
+                     /citation=[1]
+                     /db_xref="GeneID:6741531"
+     gene            5691..5770
+                     /locus_tag="Tpmr5"
+                     /db_xref="GeneID:6741535"
+     rRNA            5691..5770
+                     /locus_tag="Tpmr5"
+                     /product="large subunit ribosomal RNA"
+                     /note="fragment LSU4; codes for part of domain V"
+                     /citation=[1]
+                     /db_xref="GeneID:6741535"
+     repeat_region   complement(5783..5895)
+                     /citation=[1]
+                     /rpt_type=inverted
+                     /rpt_type=terminal
+ORIGIN      
+        1 gacatatatt tgtttgtcgt ttaaagaaag tttttaaagt tttattaaat ttgaaggttt
+       61 gtttttggtt tttaattctg tgtcaggaaa tcataaaatt attggtatat cttatctgtg
+      121 gctggcttat tggttcggta tgatagggtt ttatatgagt gtgctgatta gaactgaatt
+      181 aagtatgagc gggttgaaaa taataactat ggatacttta gaaatttata atctattgtt
+      241 tacattacat ggtcttatta tggtattttt taatattatg actggtcttt ttggaggaat
+      301 tggaaattat ttgtatcctg ttcttttggg atattgtgat gttgtatatc caagagttaa
+      361 tctttatagt ttgttgtttc agccaattgg ttttgtgtta gtggtttctt ctatttattt
+      421 agaaattggt agtggtacag gatggacatt gtatccgcct ctttcaactt ctctttcaaa
+      481 tgttggtata gattttataa tatttggttt gttagcagct ggaattgcaa gtacattaag
+      541 cagtgtaaac tttataacta cttttacttc tgtaaaaaca ataggttttg tcattgatag
+      601 aatttcacct gccgcatggt caattgtttt aacttctttt ttgttattat tatctttacc
+      661 tgttgttact gcagtttttc ttatggtatt tttggacaga cattataata ctatgttttt
+      721 tgaatcttct aattctggag atccagtgtt gtatcagcat ttattttggt tttttggaca
+      781 tcctgaggtt tatattatga tattgccagg atttggtatt ataagtttgt tgttatcaac
+      841 atatactact aaagaaatgt tcggtaatca aactatgata ttagctatgg gtttcaatag
+      901 ctttgttagg ttgtttggtt tggggacatc atatgtacac atcaggtttg gaagcagata
+      961 ctcgcggtat tttacaacag ttacaatatt aattgccctt cccacaggta ataaaatatt
+     1021 caattgggta acaacattac aatgtgtcga atcaataaaa tctctcggac tagtattatt
+     1081 tacagtgtta tttatcgtta actttgttat aggaggtaca actggtgtgg tgttaggaaa
+     1141 cgccggaata gacttggcat tacacgatac tgtttatgta gttggacatt ttcatttcgt
+     1201 cctttcaata ggcgctataa tatcaatgat atgttttata atttatattc aaagaatgtt
+     1261 gttgtttgga attatactct caaatagatt atcatcgtta attgctccta tttttatgat
+     1321 atctgttttg ctaacttttc tacctatgca ttttactgga ttttcacccc ttccaagaag
+     1381 aataccagat tatcctgatg aaatgtgggg atggaatttt atttgtacac ttggagcaac
+     1441 gatgatgttg gtactaaaac ttgcaatatt attcattata tcattataaa aaatacacta
+     1501 ggcatgcaat accgaacagg gccaatttaa tttcattttc ttgcatcact gccattttgt
+     1561 tagctaaaca gaacttttta aaccataact tcaacttatt aatatatttt tcttgttaac
+     1621 tatttgtgcg ataattacat caaataccta aagagtcatc aatgatttaa tcctttggat
+     1681 ttttaatggg accatgaata gatatgtacc attttagtaa ttcaaaagag aattcataag
+     1741 taacctttgt gaaagtgata gcgagatggg aattgtgcct tctatagttt aatgtaattt
+     1801 ttgaattcgt aaaatagaaa agagatagcg ttatagctct tacagtcagt acgaagtcga
+     1861 aacaaggtag ttgacagtga acttgtagct gaacaaagta aagaaacaga tcgcatagtc
+     1921 aattagcttt ttttataaca atattttaaa atattcgaat acaattatat cgtcctttgt
+     1981 tttttagcat agatgatatt cttttataga aattagagtt ctattagcat acgtatataa
+     2041 cattgaaggt tataaatacg tgtcgagcag tgtgttcaaa gtagttatta cgcgaggaaa
+     2101 tgttaaatta ttaaaattca agatgaatcc gatttgatga tattataaga aatggctaat
+     2161 gatattattt aatatcagca tgggattata aaacagtata ttatgtattt taatttactg
+     2221 tcagctaaaa cgtatcaaat tctctactct gttaccttaa aaaattttca tttatttcaa
+     2281 atctatacag tacacattcg ttaagctaga aataacaaca ttgttaaagc tatccaaatc
+     2341 atttctacaa aatgccagta cactccagca ttgaattctt catctctttg agatccatca
+     2401 ccttcataaa aatatgactg tattagtaca aaaatgcctc cggcacatac atgtaacgaa
+     2461 tgaagtcctg ttaaaatgaa aaaatataat gtcatccaat aattgttcac ataagataga
+     2521 attaatgaat attcatcatt ttgtaacgat aaaaatataa accctattaa tagcaattgt
+     2581 tccataaaaa agtctgtttc aaagttggca ctttcttgaa ctctatgaag aattattgat
+     2641 actaaaatac ttccagtatt taaaacgtca gagatttgaa gataggcttc tacatttaat
+     2701 tcagctagta aaattggatt cgataatctt aaatgaaaat atccccatat aaatgtcgaa
+     2761 aacactaata tttctgaaaa tataaacatt ccaaatatag cgtacattac catagttgta
+     2821 gaagtcatta tctctctaat actatttata aatattgtta aactgttcat aaaaaattca
+     2881 ccaacactta aatatttaag tgtagttccg tataataaat attgatttac atacattata
+     2941 ataaagttct tatatgtgga atcaatatat tccagggtat ctaatcctgt actataaaac
+     3001 agatatagag tttcaaatat gttaattata ttaatgtact ttaaatatga ttgtgcgctg
+     3061 tttcgcattt gactacatag gttaacttac atagtccatt ttttaacgat aaatgaggag
+     3121 cgtctgttga atacctacac aagataatgc taagatttat atcgatgtat attatctgat
+     3181 acctgttcag tggtttctag ccaaacaaca gggatctctt ttaaagtaag aattgactat
+     3241 ctaaataata gtcatgtgaa tggtataacg acttctctat tgtctccact aaatgttcta
+     3301 tgaaatagac ttagctttga ataggaagct tgatatactg ggacggtaag accctgtgca
+     3361 ccttcacttc cctccgaaaa aaacaagttt tgcaaaacaa aaaggtatgg tgagacgaca
+     3421 tggaggtgtc aatagattaa ttacatgagt actataatta atctttaacc tgttatccct
+     3481 ggcgtacctt attaccaata gtagttatta gctctatatt tatatttatg tagaatatga
+     3541 tgtattgcct aatcttctca aacatgaact cgtttttcgc ctaacatgaa tttactatac
+     3601 tcgaattata cagtattgcc gcggctgctg gcactgcatg attttacaat ataatatcca
+     3661 atccttatgt atgcttgaat gctgtaatca ctttttataa caagtttgaa atactttatg
+     3721 tagttatata taatactgct agaatattta acgtctagta ctctttgacg tttaatatca
+     3781 attcctacgg ccatcatctc tttatactct taaatatttt aataatataa taactataag
+     3841 tttccttctg gaattatgtt aattttagta atgaaaatat cagtatatac agtaacttat
+     3901 tataggtcat tactcttcat aaaagatttc acagagaaca atctataatt gttcaattgg
+     3961 aatttatcta ttaactttat ttcgtccaac accgtttaag ggtgtaaggt tcgtaccaat
+     4021 gtattaaata aagttagatt acaattttta ctgaaatatt taattacgtt aattatcagt
+     4081 aagatatagt gcgtgaaatc aaattaaaca acatgttcca ctgatttcac tacttataac
+     4141 atttcaacat gtatgttacg tactaactga catccaaggc aaagaattgt aacacattaa
+     4201 tgtactgata aattagatga ttctgactta gtgtaattat aaaaaatata caaattaatg
+     4261 tatttaaaaa ttttctaaca tccaaatttt aaagtcctga tagcggttaa tctttcctat
+     4321 tccttacgta ctctggctag aacactttta catataaaac aaaactcttt caagacgcaa
+     4381 acttcccggc taaacttccc tccaccaggt gtttttcaac acctaggcac ggactctcga
+     4441 cgagtccagc aatttttgaa caaatgtagt agataacagg acgccgtaga taccaataat
+     4501 tatgagatcc agattaatga ccattcttcc aatacagccc aatagaaaca aggctggtac
+     4561 cagtggtaca cttgttgtgg tccaaactct gtgatgatgt gctgttgaga cagcttgtga
+     4621 tttagatctt gactctacta gtattatcaa taattttaat acaactacca tagctacaag
+     4681 tccagatact tttgttggaa acacttttaa tgttgcataa aacaaaagca aataccattc
+     4741 tggaataata tgtgcaggtg tgttttcaga gcttgataat attgaattat cattatctgc
+     4801 ttgaaacaat gtccaaattc cataaccaac ttgtggtcca atgaacatac ttattataac
+     4861 taaaaattta acatcactga ataatatcaa ttgataaaat tttaacaaag cgactgcttc
+     4921 agcgagtgtt aatggatttg aacttccttc tctatgaaga aaataaagat gaagaagaac
+     4981 aattacaagc acaacagcag gtaacacaaa atgtaaaata aaaaatcttt ttagggtctc
+     5041 tggacctact gtaaatccac cgaaagttat aactttggct tttccaaacc attctaacaa
+     5101 attcgatata actgtagctc cccaaaaact catttgacca tctggcaaca cataaccagt
+     5161 aaaagcaata actatactca aaattaaaat aactatgcca gagtaccaag accaaggcat
+     5221 atatttacta gaataccaca tacctttaat tatgtggata aacataaaaa agaaataaaa
+     5281 tgagacacca acagaatgat ataaacggac aaaccaacca aactgtgttt ctgtaacaag
+     5341 tctagaaaga ctttcaaaag ctccttcttt acaaggaaca tagaaaaagg ttagaagaag
+     5401 tccggataga atctgtaaaa tcaacaagat tccaagtatg aatcctacat tccaattaga
+     5461 atttaaattt ttaggcacta aatacgaagg tatatgtgca ttaaacatat tcattataaa
+     5521 cgttaatttg taggttaaag ccctatttcc taattttatt tttataactt ttttataaaa
+     5581 catttgtacc tgtcaagttc cttcactaaa tttaactcac agtatagaaa tatatttcaa
+     5641 atatgattgc aaaatggtat taaaatttaa tgcttgaata aggtttaata ggtatgagag
+     5701 ttctcatatt aatatggtac gtgagttggg ttaagaacgc cgcaaggctg ttcgttccct
+     5761 atctagatat ttaaattttt ataaccttca aatttaataa aactttaaaa actttcttta
+     5821 aacgaccaaa caaatatatg tctgaatttt aacgacatat atttgagtat cattattctt
+     5881 actcaaatat atgtc
+//
+
