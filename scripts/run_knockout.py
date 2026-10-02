@@ -75,6 +75,9 @@ def symbionts_vs_ecoli(res):
     ds, _ = load_system("insect_endosymbiont", Path("data/raw"), cache)
     cache_path.write_text(json.dumps(cache))
     cols = keio["columns"]
+    if "gene" not in cols:
+        print("  Keio data has no gene names yet (re-collect with --orgs Keio)")
+        return
     i_ess, i_rich, i_min, i_gene = cols.index("likely_essential"), cols.index("rich_mean_fit"), cols.index("minimal_min_fit"), cols.index("gene")
     cls = {}
     for g, row in keio["genes"].items():

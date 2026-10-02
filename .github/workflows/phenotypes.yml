@@ -9,6 +9,9 @@ on:
       sources:
         description: 'JSON list of sources, e.g. ["deg"]'
         default: '["fitness", "deg", "yeast", "pombe", "paxdb"]'
+      orgs:
+        description: 'Fitness Browser org ids, comma-separated (empty = all)'
+        default: ''
 
 permissions:
   contents: write
@@ -45,7 +48,7 @@ jobs:
       - name: Collect ${{ matrix.source }}
         env:
           PYTHONPATH: src
-        run: python scripts/collect_phenotypes.py --source ${{ matrix.source }} --pfam pfam/Pfam-A.hmm --tmp /mnt/work
+        run: python scripts/collect_phenotypes.py --source ${{ matrix.source }} --pfam pfam/Pfam-A.hmm --tmp /mnt/work ${{ inputs.orgs && format('--orgs {0}', inputs.orgs) || '' }}
       - uses: actions/upload-artifact@v4
         if: always()
         with:

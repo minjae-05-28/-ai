@@ -4,59 +4,88 @@
   "model": "Knockout phenotype classes and family essential shares compared with observed retention; Spearman with and without ubiquity; held-out pair AUROC.",
   "feature_names": [],
   "data": {
-    "eukaryote_screens": 8094,
-    "bacterial_screens": 7088
+    "eukaryote_screens": 8143,
+    "bacterial_screens": 10572
   },
   "validation": {
     "families_with_knockout_data": {
-      "eukaryote_screens": 8094,
-      "bacterial_screens": 7088
+      "eukaryote_screens": 8143,
+      "bacterial_screens": 10572
     },
     "parasites (eukaryote screens)": {
-      "n_families": 7135,
-      "spearman_essential_vs_loss": -0.3086076397982405,
-      "partial_controlling_ubiquity": -0.15368480607329332,
+      "n_families": 7170,
+      "spearman_essential_vs_loss": -0.3050985924155244,
+      "partial_controlling_ubiquity": -0.1465180732348676,
       "groups": {
         "never essential": {
-          "n_families": 4675,
-          "mean_loss_rate": 0.4602008403698506
+          "n_families": 4587,
+          "mean_loss_rate": 0.46302498718096397
         },
         "sometimes essential (≤50%)": {
-          "n_families": 1991,
-          "mean_loss_rate": 0.26111330578246883
+          "n_families": 1609,
+          "mean_loss_rate": 0.2723673828691154
         },
         "mostly essential (>50%)": {
-          "n_families": 469,
-          "mean_loss_rate": 0.36960370779921564
+          "n_families": 974,
+          "mean_loss_rate": 0.31680024286085706
         }
       },
-      "heldout_auroc_knockout_only": 0.6401654152584246,
-      "heldout_auroc_memorisation_same_families": 0.8368537130618784,
+      "heldout_auroc_knockout_only": 0.6422242467778301,
+      "heldout_auroc_memorisation_same_families": 0.8371860608582141,
       "n_pairs": 90
     },
     "extremophiles (bacterial screens)": {
-      "n_families": 6540,
-      "spearman_essential_vs_loss": -0.5114396487988272,
-      "partial_controlling_ubiquity": -0.2694860718328426,
+      "n_families": 7715,
+      "spearman_essential_vs_loss": -0.46408106743994926,
+      "partial_controlling_ubiquity": -0.17445935487239606,
       "groups": {
         "never essential": {
-          "n_families": 4314,
-          "mean_loss_rate": 0.5174472787673916
+          "n_families": 3439,
+          "mean_loss_rate": 0.6020218682092239
         },
         "sometimes essential (≤50%)": {
-          "n_families": 1505,
-          "mean_loss_rate": 0.2171046304446063
+          "n_families": 3437,
+          "mean_loss_rate": 0.3665540293857348
         },
         "mostly essential (>50%)": {
-          "n_families": 721,
-          "mean_loss_rate": 0.11919397934795295
+          "n_families": 839,
+          "mean_loss_rate": 0.13542098088503715
         }
       },
-      "heldout_auroc_knockout_only": 0.7111345764950009,
-      "heldout_auroc_memorisation_same_families": 0.8484108504993273,
+      "heldout_auroc_knockout_only": 0.7203367946516054,
+      "heldout_auroc_memorisation_same_families": 0.8501844293103781,
       "n_pairs": 57
     },
-    "abundance_proxy_check": {}
+    "abundance_proxy_check": {
+      "Saccharomyces cerevisiae": {
+        "n_families": 4530,
+        "spearman_codon_proxy_vs_measured": 0.6864519944066301
+      },
+      "Caenorhabditis elegans": {
+        "n_families": 5054,
+        "spearman_codon_proxy_vs_measured": 0.7293645130181093
+      },
+      "Dictyostelium discoideum": {
+        "n_families": 4284,
+        "spearman_codon_proxy_vs_measured": 0.15639119738115423
+      },
+      "Synechocystis sp. PCC 6803": {
+        "n_families": 1474,
+        "spearman_codon_proxy_vs_measured": 0.3719643977802302
+      },
+      "Drosophila melanogaster": {
+        "n_families": 6290,
+        "spearman_codon_proxy_vs_measured": 0.40082179289036446
+      },
+      "Macrostomum lignano": {
+        "n_families": 2048,
+        "spearman_codon_proxy_vs_measured": 0.27713572178081364
+      },
+      "Chlamydomonas reinhardtii": {
+        "n_families": 4150,
+        "spearman_codon_proxy_vs_measured": 0.49417425063921355
+      }
+    }
   },
   "contexts": {},
   "caveats": [
