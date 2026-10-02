@@ -71,5 +71,10 @@ jobs:
           git add -f data/phenotypes
           if git diff --cached --quiet; then echo "Nothing new."; else
             git commit -m "Add knockout phenotypes and protein abundance"
-            for i in 1 2 3 4; do git pull --rebase origin main && git push origin HEAD:main && break; sleep $((i*5)); done
+            ok=0
+            for i in 1 2 3 4 5 6; do
+              git pull --rebase origin main && git push origin HEAD:main && { ok=1; break; }
+              echo "push attempt $i failed; retrying"; sleep $((i*10))
+            done
+            [ "$ok" = 1 ] || { echo "::error::could not push collected data after 6 attempts"; exit 1; }
           fi
