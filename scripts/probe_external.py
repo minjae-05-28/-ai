@@ -12,6 +12,17 @@ import urllib.request
 from pathlib import Path
 
 CANDIDATES = {
+    # round 2: directory listings and bulk files
+    "fb_cgi_data": "https://fit.genomics.lbl.gov/cgi_data/",
+    "fb_feba_db": "https://fit.genomics.lbl.gov/cgi_data/feba.db",
+    "fb_fitness_tab": "https://fit.genomics.lbl.gov/cgi_data/fit_genes.tab",
+    "pombase_latest_genome": "https://www.pombase.org/latest_release/genome_sequence_and_features/",
+    "pombase_latest_feature_seq": "https://www.pombase.org/latest_release/genome_sequence_and_features/feature_sequences/",
+    "paxdb_latest_datasets": "https://pax-db.org/downloads/latest/datasets/",
+    "paxdb_latest_seqs": "https://pax-db.org/downloads/latest/paxdb-protein-sequences-v6.1/",
+    "deg_download_links": "http://origin.tubic.org/deg/public/index.php/download",
+    "figshare_feba": "https://api.figshare.com/v2/articles/search?search_for=fitness%20browser%20Price",
+
     # Fitness Browser (genome-wide transposon knockout fitness, 40+ bacteria)
     "fb_orgs": "https://fit.genomics.lbl.gov/cgi-bin/orgAll.cgi",
     "fb_aaseqs": "https://fit.genomics.lbl.gov/cgi_data/aaseqs",
@@ -55,7 +66,10 @@ def probe(url):
 
             raw = zlib.decompressobj(16 + zlib.MAX_WBITS).decompress(raw)
     text = raw.decode("utf-8", "replace")
-    return {"ok": True, "status": status, "bytes_read": len(raw), "head": text[:3000]}
+    import re
+
+    links = sorted(set(re.findall(r'href="([^"?#][^"]*)"', text)))[:400]
+    return {"ok": True, "status": status, "bytes_read": len(raw), "head": text[:3000], "links": links}
 
 
 def main():
