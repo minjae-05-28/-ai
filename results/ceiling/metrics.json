@@ -1,0 +1,715 @@
+{
+  "parasites": {
+    "mean_auroc": {
+      "sibling_oracle": 0.9012184339461891,
+      "best_single_sibling": 0.8777288382532725,
+      "memorisation_other_clades": 0.8011751854877239,
+      "law_other_clades": 0.7813487552205394,
+      "n_with_law": 42
+    },
+    "targets": [
+      {
+        "pair": "Dictyostelium discoideum -> Entamoeba histolytica",
+        "n_siblings": 2,
+        "sibling_oracle": 0.9854853989293085,
+        "best_single_sibling": 0.9736511545407637,
+        "memorisation_other_clades": 0.8156521099393705
+      },
+      {
+        "pair": "Chromera velia -> Plasmodium falciparum",
+        "n_siblings": 15,
+        "sibling_oracle": 0.9808424634687213,
+        "best_single_sibling": 0.9702896590032226,
+        "memorisation_other_clades": 0.8374036581623864
+      },
+      {
+        "pair": "Chromera velia -> Babesia bovis",
+        "n_siblings": 15,
+        "sibling_oracle": 0.968071059765353,
+        "best_single_sibling": 0.9473606226889665,
+        "memorisation_other_clades": 0.8510476685415265
+      },
+      {
+        "pair": "Chromera velia -> Toxoplasma gondii",
+        "n_siblings": 15,
+        "sibling_oracle": 0.9733040116610685,
+        "best_single_sibling": 0.9783554090880284,
+        "memorisation_other_clades": 0.832798149439128
+      },
+      {
+        "pair": "Chromera velia -> Eimeria tenella",
+        "n_siblings": 15,
+        "sibling_oracle": 0.9203699365651277,
+        "best_single_sibling": 0.8888527620123587,
+        "memorisation_other_clades": 0.8212954101320225
+      },
+      {
+        "pair": "Chromera velia -> Cryptosporidium parvum",
+        "n_siblings": 1,
+        "sibling_oracle": 0.9349294112664497,
+        "best_single_sibling": 0.9349294112664497,
+        "memorisation_other_clades": 0.8674411200731371
+      },
+      {
+        "pair": "Bodo saltans -> Leishmania major",
+        "n_siblings": 5,
+        "sibling_oracle": 0.9952816779552084,
+        "best_single_sibling": 0.979206461210713,
+        "memorisation_other_clades": 0.7809060346881082
+      },
+      {
+        "pair": "Bodo saltans -> Trypanosoma cruzi",
+        "n_siblings": 5,
+        "sibling_oracle": 0.8825699742320334,
+        "best_single_sibling": 0.8645894625248549,
+        "memorisation_other_clades": 0.7824195131477498
+      },
+      {
+        "pair": "Bodo saltans -> Trypanosoma brucei",
+        "n_siblings": 6,
+        "sibling_oracle": 0.9577333164117161,
+        "best_single_sibling": 0.9347059072376723,
+        "memorisation_other_clades": 0.7885067057402191
+      },
+      {
+        "pair": "Spizellomyces punctatus -> Rozella allomycis",
+        "n_siblings": 2,
+        "sibling_oracle": 0.805261075490998,
+        "best_single_sibling": 0.7457203664291663,
+        "memorisation_other_clades": 0.7922455483162171
+      },
+      {
+        "pair": "Spizellomyces punctatus -> Encephalitozoon cuniculi",
+        "n_siblings": 9,
+        "sibling_oracle": 0.9902591692134303,
+        "best_single_sibling": 0.9785946531791907,
+        "memorisation_other_clades": 0.8717477986627762
+      },
+      {
+        "pair": "Spizellomyces punctatus -> Nosema ceranae",
+        "n_siblings": 9,
+        "sibling_oracle": 0.9873925548292974,
+        "best_single_sibling": 0.9433939142481795,
+        "memorisation_other_clades": 0.8693148824555209
+      },
+      {
+        "pair": "Schizosaccharomyces pombe -> Pneumocystis jirovecii",
+        "n_siblings": 1,
+        "sibling_oracle": 0.5891328958171651,
+        "best_single_sibling": 0.5891328958171651,
+        "memorisation_other_clades": 0.7620066185781111
+      },
+      {
+        "pair": "Schizosaccharomyces pombe -> Taphrina deformans",
+        "n_siblings": 1,
+        "sibling_oracle": 0.5834630779601162,
+        "best_single_sibling": 0.5834630779601162,
+        "memorisation_other_clades": 0.6598750310983571
+      },
+      {
+        "pair": "Coprinopsis cinerea -> Ustilago maydis",
+        "n_siblings": 1,
+        "sibling_oracle": 0.7730478305231075,
+        "best_single_sibling": 0.7730478305231075,
+        "memorisation_other_clades": 0.7189686972673879
+      },
+      {
+        "pair": "Spizellomyces punctatus -> Batrachochytrium dendrobatidis",
+        "n_siblings": 2,
+        "sibling_oracle": 0.7804170043954162,
+        "best_single_sibling": 0.7355524242504807,
+        "memorisation_other_clades": 0.7687736850393379
+      },
+      {
+        "pair": "Spizellomyces punctatus -> Enterocytozoon bieneusi",
+        "n_siblings": 9,
+        "sibling_oracle": 0.9462291346933204,
+        "best_single_sibling": 0.905864940747833,
+        "memorisation_other_clades": 0.8601696552922644
+      },
+      {
+        "pair": "Spizellomyces punctatus -> Nematocida parisii",
+        "n_siblings": 9,
+        "sibling_oracle": 0.9538265780633961,
+        "best_single_sibling": 0.8985850131847211,
+        "memorisation_other_clades": 0.8690853396114245
+      },
+      {
+        "pair": "Spizellomyces punctatus -> Vavraia culicis",
+        "n_siblings": 9,
+        "sibling_oracle": 0.9831182313904011,
+        "best_single_sibling": 0.9161272317383456,
+        "memorisation_other_clades": 0.8704183897776779
+      },
+      {
+        "pair": "Spizellomyces punctatus -> Encephalitozoon intestinalis",
+        "n_siblings": 9,
+        "sibling_oracle": 0.9892527349470238,
+        "best_single_sibling": 0.9769967266775778,
+        "memorisation_other_clades": 0.8722323197519166
+      },
+      {
+        "pair": "Chromera velia -> Plasmodium vivax",
+        "n_siblings": 15,
+        "sibling_oracle": 0.9816046171199111,
+        "best_single_sibling": 0.9798380324564903,
+        "memorisation_other_clades": 0.8328822836727021
+      },
+      {
+        "pair": "Chromera velia -> Plasmodium berghei",
+        "n_siblings": 15,
+        "sibling_oracle": 0.9828450963390815,
+        "best_single_sibling": 0.9893162566503481,
+        "memorisation_other_clades": 0.837794854566807
+      },
+      {
+        "pair": "Chromera velia -> Plasmodium knowlesi",
+        "n_siblings": 15,
+        "sibling_oracle": 0.9842116537723139,
+        "best_single_sibling": 0.979802319456796,
+        "memorisation_other_clades": 0.8361453057431079
+      },
+      {
+        "pair": "Chromera velia -> Theileria annulata",
+        "n_siblings": 15,
+        "sibling_oracle": 0.9644185330657374,
+        "best_single_sibling": 0.9689830946722977,
+        "memorisation_other_clades": 0.8486962089217774
+      },
+      {
+        "pair": "Chromera velia -> Theileria parva",
+        "n_siblings": 15,
+        "sibling_oracle": 0.9713486661208129,
+        "best_single_sibling": 0.9654755648975302,
+        "memorisation_other_clades": 0.8534239694973664
+      },
+      {
+        "pair": "Chromera velia -> Babesia microti",
+        "n_siblings": 15,
+        "sibling_oracle": 0.9651126913588912,
+        "best_single_sibling": 0.9355656648519651,
+        "memorisation_other_clades": 0.8473988546371889
+      },
+      {
+        "pair": "Chromera velia -> Neospora caninum",
+        "n_siblings": 15,
+        "sibling_oracle": 0.9658809621030549,
+        "best_single_sibling": 0.9496455600886684,
+        "memorisation_other_clades": 0.8292083553620072
+      },
+      {
+        "pair": "Chromera velia -> Hammondia hammondi",
+        "n_siblings": 15,
+        "sibling_oracle": 0.9731169910935261,
+        "best_single_sibling": 0.9800745377833138,
+        "memorisation_other_clades": 0.8318227589308975
+      },
+      {
+        "pair": "Chromera velia -> Cyclospora cayetanensis",
+        "n_siblings": 15,
+        "sibling_oracle": 0.9330411156350935,
+        "best_single_sibling": 0.8897695351392918,
+        "memorisation_other_clades": 0.8256072944194334
+      },
+      {
+        "pair": "Chromera velia -> Cryptosporidium hominis",
+        "n_siblings": 1,
+        "sibling_oracle": 0.9519610362543327,
+        "best_single_sibling": 0.9519610362543327,
+        "memorisation_other_clades": 0.8548498795029573
+      },
+      {
+        "pair": "Bodo saltans -> Leishmania infantum",
+        "n_siblings": 5,
+        "sibling_oracle": 0.996847888613658,
+        "best_single_sibling": 0.9893900998490051,
+        "memorisation_other_clades": 0.7788745086792773
+      },
+      {
+        "pair": "Bodo saltans -> Leishmania donovani",
+        "n_siblings": 5,
+        "sibling_oracle": 0.9838839403779408,
+        "best_single_sibling": 0.9773589947025032,
+        "memorisation_other_clades": 0.7737827072035597
+      },
+      {
+        "pair": "Bodo saltans -> Trypanosoma vivax",
+        "n_siblings": 6,
+        "sibling_oracle": 0.9430325034578146,
+        "best_single_sibling": 0.9145359193595708,
+        "memorisation_other_clades": 0.7885357726644033
+      },
+      {
+        "pair": "Bodo saltans -> Trypanosoma congolense",
+        "n_siblings": 6,
+        "sibling_oracle": 0.698124379313312,
+        "best_single_sibling": 0.650166126539505,
+        "memorisation_other_clades": 0.6710936968895426
+      },
+      {
+        "pair": "Bodo saltans -> Leptomonas pyrrhocoris",
+        "n_siblings": 6,
+        "sibling_oracle": 0.9498065827432468,
+        "best_single_sibling": 0.8669241589776602,
+        "memorisation_other_clades": 0.7715015020384808
+      },
+      {
+        "pair": "Dictyostelium discoideum -> Entamoeba dispar",
+        "n_siblings": 2,
+        "sibling_oracle": 0.9841075058193068,
+        "best_single_sibling": 0.975028477459093,
+        "memorisation_other_clades": 0.8101601105339814
+      },
+      {
+        "pair": "Dictyostelium discoideum -> Entamoeba invadens",
+        "n_siblings": 2,
+        "sibling_oracle": 0.9534169246514448,
+        "best_single_sibling": 0.9434055569283712,
+        "memorisation_other_clades": 0.8161507072294226
+      },
+      {
+        "pair": "Naegleria gruberi -> Giardia intestinalis",
+        "n_siblings": 3,
+        "sibling_oracle": 0.9055942845303574,
+        "best_single_sibling": 0.8796155751350488,
+        "memorisation_other_clades": 0.8451522325145799
+      },
+      {
+        "pair": "Naegleria gruberi -> Spironucleus salmonicida",
+        "n_siblings": 3,
+        "sibling_oracle": 0.9114155151047512,
+        "best_single_sibling": 0.8973521382809577,
+        "memorisation_other_clades": 0.8393996387485971
+      },
+      {
+        "pair": "Thalassiosira pseudonana -> Phytophthora infestans",
+        "n_siblings": 3,
+        "sibling_oracle": 0.9521178000894273,
+        "best_single_sibling": 0.9423041746270476,
+        "memorisation_other_clades": 0.8113913052314946
+      },
+      {
+        "pair": "Thalassiosira pseudonana -> Saprolegnia parasitica",
+        "n_siblings": 3,
+        "sibling_oracle": 0.9419658808085819,
+        "best_single_sibling": 0.927212020033389,
+        "memorisation_other_clades": 0.8125540341303397
+      },
+      {
+        "pair": "Caenorhabditis elegans -> Brugia malayi",
+        "n_siblings": 2,
+        "sibling_oracle": 0.7287387435203369,
+        "best_single_sibling": 0.6933431228585414,
+        "memorisation_other_clades": 0.7612754001812438
+      },
+      {
+        "pair": "Macrostomum lignano -> Schistosoma mansoni",
+        "n_siblings": 4,
+        "sibling_oracle": 0.9251416788312299,
+        "best_single_sibling": 0.8811404429926041,
+        "memorisation_other_clades": 0.7550262355348734
+      },
+      {
+        "pair": "Neurospora crassa -> Blumeria graminis",
+        "n_siblings": 1,
+        "sibling_oracle": 0.5772732953598643,
+        "best_single_sibling": 0.5772732953598643,
+        "memorisation_other_clades": 0.7352365514838436
+      },
+      {
+        "pair": "Neurospora crassa -> Pyricularia oryzae",
+        "n_siblings": 1,
+        "sibling_oracle": 0.7519174496561432,
+        "best_single_sibling": 0.7519174496561432,
+        "memorisation_other_clades": 0.7147475707777216
+      },
+      {
+        "pair": "Coprinopsis cinerea -> Puccinia graminis",
+        "n_siblings": 1,
+        "sibling_oracle": 0.7000522724332199,
+        "best_single_sibling": 0.7000522724332199,
+        "memorisation_other_clades": 0.7341844941354243
+      },
+      {
+        "pair": "Spizellomyces punctatus -> Mitosporidium daphniae",
+        "n_siblings": 2,
+        "sibling_oracle": 0.7782383139453758,
+        "best_single_sibling": 0.7480775513781864,
+        "memorisation_other_clades": 0.8435341722395282
+      },
+      {
+        "pair": "Spizellomyces punctatus -> Edhazardia aedis",
+        "n_siblings": 9,
+        "sibling_oracle": 0.9796656966645824,
+        "best_single_sibling": 0.9119649623489549,
+        "memorisation_other_clades": 0.8691803215169444
+      },
+      {
+        "pair": "Spizellomyces punctatus -> Anncaliia algerae",
+        "n_siblings": 9,
+        "sibling_oracle": 0.9778311637402983,
+        "best_single_sibling": 0.9178936142244182,
+        "memorisation_other_clades": 0.8686250627466648
+      },
+      {
+        "pair": "Spizellomyces punctatus -> Nosema bombycis",
+        "n_siblings": 9,
+        "sibling_oracle": 0.9640544076753205,
+        "best_single_sibling": 0.9190236669166255,
+        "memorisation_other_clades": 0.866386539613678
+      },
+      {
+        "pair": "Spizellomyces punctatus -> Pseudoloma neurophilia",
+        "n_siblings": 9,
+        "sibling_oracle": 0.9735270175702221,
+        "best_single_sibling": 0.93844305002669,
+        "memorisation_other_clades": 0.8744870455115991
+      },
+      {
+        "pair": "Thalassiosira pseudonana -> Phytophthora sojae",
+        "n_siblings": 3,
+        "sibling_oracle": 0.933651265072076,
+        "best_single_sibling": 0.9264789386554074,
+        "memorisation_other_clades": 0.8052857539700231
+      },
+      {
+        "pair": "Thalassiosira pseudonana -> Aphanomyces astaci",
+        "n_siblings": 3,
+        "sibling_oracle": 0.9546780196864779,
+        "best_single_sibling": 0.9249456495523053,
+        "memorisation_other_clades": 0.8136396475218912
+      },
+      {
+        "pair": "Bodo saltans -> Angomonas deanei",
+        "n_siblings": 6,
+        "sibling_oracle": 0.8870430663745538,
+        "best_single_sibling": 0.826081223628692,
+        "memorisation_other_clades": 0.7510794486368062
+      },
+      {
+        "pair": "Bodo saltans -> Strigomonas culicis",
+        "n_siblings": 6,
+        "sibling_oracle": 0.8454694163207094,
+        "best_single_sibling": 0.7837290660566523,
+        "memorisation_other_clades": 0.7565749526956423
+      },
+      {
+        "pair": "Bodo saltans -> Trypanosoma grayi",
+        "n_siblings": 6,
+        "sibling_oracle": 0.9240809812728957,
+        "best_single_sibling": 0.8724145519234716,
+        "memorisation_other_clades": 0.7711981315427902
+      },
+      {
+        "pair": "Bodo saltans -> Leishmania braziliensis",
+        "n_siblings": 5,
+        "sibling_oracle": 0.9636789012627939,
+        "best_single_sibling": 0.9473005493139721,
+        "memorisation_other_clades": 0.7876394795857883
+      },
+      {
+        "pair": "Bodo saltans -> Leishmania mexicana",
+        "n_siblings": 5,
+        "sibling_oracle": 0.9891625731425687,
+        "best_single_sibling": 0.9758346512552263,
+        "memorisation_other_clades": 0.7797924419764971
+      },
+      {
+        "pair": "Chromera velia -> Besnoitia besnoiti",
+        "n_siblings": 15,
+        "sibling_oracle": 0.9708472296024468,
+        "best_single_sibling": 0.9634648602904554,
+        "memorisation_other_clades": 0.8355852480285338
+      },
+      {
+        "pair": "Chromera velia -> Plasmodium yoelii",
+        "n_siblings": 15,
+        "sibling_oracle": 0.9830607473848686,
+        "best_single_sibling": 0.9892210069299491,
+        "memorisation_other_clades": 0.8383541072770428
+      },
+      {
+        "pair": "Chromera velia -> Plasmodium malariae",
+        "n_siblings": 15,
+        "sibling_oracle": 0.9831915984828606,
+        "best_single_sibling": 0.9741555544953603,
+        "memorisation_other_clades": 0.8381957730015982
+      },
+      {
+        "pair": "Caenorhabditis elegans -> Haemonchus contortus",
+        "n_siblings": 2,
+        "sibling_oracle": 0.7007147278112739,
+        "best_single_sibling": 0.6537188181430345,
+        "memorisation_other_clades": 0.68092825761361
+      },
+      {
+        "pair": "Caenorhabditis elegans -> Strongyloides ratti",
+        "n_siblings": 2,
+        "sibling_oracle": 0.6538582870304785,
+        "best_single_sibling": 0.6290118210007712,
+        "memorisation_other_clades": 0.7345290422523387
+      },
+      {
+        "pair": "Macrostomum lignano -> Echinococcus multilocularis",
+        "n_siblings": 4,
+        "sibling_oracle": 0.8682317380686946,
+        "best_single_sibling": 0.8201972845994585,
+        "memorisation_other_clades": 0.7609269655465307
+      },
+      {
+        "pair": "Macrostomum lignano -> Fasciola hepatica",
+        "n_siblings": 4,
+        "sibling_oracle": 0.6376716604244694,
+        "best_single_sibling": 0.6054404330652259,
+        "memorisation_other_clades": 0.6467612206053908
+      },
+      {
+        "pair": "Macrostomum lignano -> Clonorchis sinensis",
+        "n_siblings": 4,
+        "sibling_oracle": 0.9031045268571136,
+        "best_single_sibling": 0.848961264585546,
+        "memorisation_other_clades": 0.7347479077474479
+      },
+      {
+        "pair": "Macrostomum lignano -> Schistosoma japonicum",
+        "n_siblings": 4,
+        "sibling_oracle": 0.9169169273813099,
+        "best_single_sibling": 0.8794262883991805,
+        "memorisation_other_clades": 0.7428734445677413
+      },
+      {
+        "pair": "Naegleria gruberi -> Trichomonas vaginalis",
+        "n_siblings": 3,
+        "sibling_oracle": 0.9234830711487104,
+        "best_single_sibling": 0.9160298159884888,
+        "memorisation_other_clades": 0.7865601753404492
+      },
+      {
+        "pair": "Naegleria gruberi -> Tritrichomonas foetus",
+        "n_siblings": 3,
+        "sibling_oracle": 0.9149450596149009,
+        "best_single_sibling": 0.9156038649252695,
+        "memorisation_other_clades": 0.7849980901687421
+      }
+    ]
+  },
+  "extremophiles": {
+    "mean_auroc": {
+      "sibling_oracle": 0.8610936993696191,
+      "best_single_sibling": 0.8217701160217473,
+      "memorisation_other_clades": 0.8001853754982434
+    },
+    "targets": [
+      {
+        "pair": "Shewanella oneidensis -> Shewanella frigidimarina",
+        "n_siblings": 1,
+        "sibling_oracle": 0.8015911331040171,
+        "best_single_sibling": 0.8015911331040171,
+        "memorisation_other_clades": 0.8327684240875961
+      },
+      {
+        "pair": "Shewanella oneidensis -> Colwellia psychrerythraea",
+        "n_siblings": 1,
+        "sibling_oracle": 0.7182417634404168,
+        "best_single_sibling": 0.7182417634404168,
+        "memorisation_other_clades": 0.7927770098685268
+      },
+      {
+        "pair": "Bacillus subtilis -> Planococcus halocryophilus",
+        "n_siblings": 6,
+        "sibling_oracle": 0.8852310185819294,
+        "best_single_sibling": 0.7837711728986897,
+        "memorisation_other_clades": 0.8230651052367256
+      },
+      {
+        "pair": "Bacillus subtilis -> Geobacillus kaustophilus",
+        "n_siblings": 6,
+        "sibling_oracle": 0.8814349855739618,
+        "best_single_sibling": 0.7835283820144584,
+        "memorisation_other_clades": 0.8018055848218627
+      },
+      {
+        "pair": "Bacillus subtilis -> Lactiplantibacillus plantarum",
+        "n_siblings": 6,
+        "sibling_oracle": 0.8380660001301617,
+        "best_single_sibling": 0.7555863785753799,
+        "memorisation_other_clades": 0.8033667143926329
+      },
+      {
+        "pair": "Flavobacterium johnsoniae -> Psychroflexus torquis",
+        "n_siblings": 1,
+        "sibling_oracle": 0.7346750840443355,
+        "best_single_sibling": 0.7346750840443355,
+        "memorisation_other_clades": 0.8156083922290888
+      },
+      {
+        "pair": "Thermus thermophilus -> Deinococcus radiodurans",
+        "n_siblings": 3,
+        "sibling_oracle": 0.9426427474521848,
+        "best_single_sibling": 0.8771953092279771,
+        "memorisation_other_clades": 0.8025190213597655
+      },
+      {
+        "pair": "Micrococcus luteus -> Kineococcus radiotolerans",
+        "n_siblings": 1,
+        "sibling_oracle": 0.7330855594270228,
+        "best_single_sibling": 0.7330855594270228,
+        "memorisation_other_clades": 0.8139166344044393
+      },
+      {
+        "pair": "Synechococcus elongatus -> Prochlorococcus marinus",
+        "n_siblings": 1,
+        "sibling_oracle": 0.8040623008543685,
+        "best_single_sibling": 0.8040623008543685,
+        "memorisation_other_clades": 0.773273261109851
+      },
+      {
+        "pair": "Myxococcus xanthus -> Geobacter sulfurreducens",
+        "n_siblings": 2,
+        "sibling_oracle": 0.9443892432171853,
+        "best_single_sibling": 0.9177112270625896,
+        "memorisation_other_clades": 0.8157433611131342
+      },
+      {
+        "pair": "Methanosarcina acetivorans -> Methanococcoides burtonii",
+        "n_siblings": 4,
+        "sibling_oracle": 0.7557088497499457,
+        "best_single_sibling": 0.7211573168080018,
+        "memorisation_other_clades": 0.7641014350945858
+      },
+      {
+        "pair": "Methanosarcina acetivorans -> Halobacterium salinarum",
+        "n_siblings": 4,
+        "sibling_oracle": 0.938556521041469,
+        "best_single_sibling": 0.8919326791594575,
+        "memorisation_other_clades": 0.7703433715186694
+      },
+      {
+        "pair": "Methanosarcina acetivorans -> Haloferax volcanii",
+        "n_siblings": 4,
+        "sibling_oracle": 0.9663171211643741,
+        "best_single_sibling": 0.9178528372822479,
+        "memorisation_other_clades": 0.7582722002770225
+      },
+      {
+        "pair": "Bacillus subtilis -> Bacillus licheniformis",
+        "n_siblings": 6,
+        "sibling_oracle": 0.9052832761374571,
+        "best_single_sibling": 0.8235081666185992,
+        "memorisation_other_clades": 0.7485480537967566
+      },
+      {
+        "pair": "Pseudomonas aeruginosa -> Pseudomonas putida",
+        "n_siblings": 2,
+        "sibling_oracle": 0.8423929031071888,
+        "best_single_sibling": 0.8189648832505976,
+        "memorisation_other_clades": 0.8131525402953974
+      },
+      {
+        "pair": "Pseudomonas aeruginosa -> Halomonas elongata",
+        "n_siblings": 2,
+        "sibling_oracle": 0.9102881176341633,
+        "best_single_sibling": 0.8826195686151922,
+        "memorisation_other_clades": 0.8320124389521076
+      },
+      {
+        "pair": "Pseudomonas aeruginosa -> Chromohalobacter salexigens",
+        "n_siblings": 2,
+        "sibling_oracle": 0.8843224593561068,
+        "best_single_sibling": 0.8728627685559045,
+        "memorisation_other_clades": 0.8275812343780042
+      },
+      {
+        "pair": "Bacillus subtilis -> Halobacillus halophilus",
+        "n_siblings": 6,
+        "sibling_oracle": 0.9079062653713723,
+        "best_single_sibling": 0.8184661419904903,
+        "memorisation_other_clades": 0.8103264879488441
+      },
+      {
+        "pair": "Methanosarcina acetivorans -> Haloarcula marismortui",
+        "n_siblings": 4,
+        "sibling_oracle": 0.9617371457134614,
+        "best_single_sibling": 0.9175839877094294,
+        "memorisation_other_clades": 0.7656967566345743
+      },
+      {
+        "pair": "Methanosarcina acetivorans -> Natronomonas pharaonis",
+        "n_siblings": 4,
+        "sibling_oracle": 0.9606943413910259,
+        "best_single_sibling": 0.9048355918303589,
+        "memorisation_other_clades": 0.7703992516250883
+      },
+      {
+        "pair": "Bacillus subtilis -> Clostridium acetobutylicum",
+        "n_siblings": 6,
+        "sibling_oracle": 0.8318207786195018,
+        "best_single_sibling": 0.7668968842052504,
+        "memorisation_other_clades": 0.7953476518448198
+      },
+      {
+        "pair": "Myxococcus xanthus -> Geobacter metallireducens",
+        "n_siblings": 2,
+        "sibling_oracle": 0.9370936341631938,
+        "best_single_sibling": 0.9187135786267105,
+        "memorisation_other_clades": 0.8209150483010964
+      },
+      {
+        "pair": "Myxococcus xanthus -> Desulfuromonas acetoxidans",
+        "n_siblings": 2,
+        "sibling_oracle": 0.8602111573847243,
+        "best_single_sibling": 0.8358303221460068,
+        "memorisation_other_clades": 0.8223590866405357
+      },
+      {
+        "pair": "Thermus thermophilus -> Deinococcus geothermalis",
+        "n_siblings": 3,
+        "sibling_oracle": 0.952963099248021,
+        "best_single_sibling": 0.8971770122750904,
+        "memorisation_other_clades": 0.8197297781803429
+      },
+      {
+        "pair": "Thermus thermophilus -> Deinococcus deserti",
+        "n_siblings": 3,
+        "sibling_oracle": 0.952884138194312,
+        "best_single_sibling": 0.9125749188776484,
+        "memorisation_other_clades": 0.8187564420690971
+      },
+      {
+        "pair": "Thermus thermophilus -> Truepera radiovictrix",
+        "n_siblings": 3,
+        "sibling_oracle": 0.8184017346085646,
+        "best_single_sibling": 0.7784892000404252,
+        "memorisation_other_clades": 0.8085122607792876
+      },
+      {
+        "pair": "Micrococcus luteus -> Rubrobacter xylanophilus",
+        "n_siblings": 1,
+        "sibling_oracle": 0.6306935765371245,
+        "best_single_sibling": 0.6306935765371245,
+        "memorisation_other_clades": 0.8610755747484073
+      },
+      {
+        "pair": "Flavobacterium johnsoniae -> Hymenobacter swuensis",
+        "n_siblings": 1,
+        "sibling_oracle": 0.7668117313150425,
+        "best_single_sibling": 0.7668117313150425,
+        "memorisation_other_clades": 0.7840189214758752
+      },
+      {
+        "pair": "Synechococcus elongatus -> Synechococcus sp. WH 8102",
+        "n_siblings": 1,
+        "sibling_oracle": 0.873307577719921,
+        "best_single_sibling": 0.873307577719921,
+        "memorisation_other_clades": 0.7845661917791265
+      },
+      {
+        "pair": "Bacillus subtilis -> Bacillus pumilus",
+        "n_siblings": 6,
+        "sibling_oracle": 0.891996716806027,
+        "best_single_sibling": 0.7933764264396692,
+        "memorisation_other_clades": 0.7550030299840392
+      }
+    ]
+  }
+}
