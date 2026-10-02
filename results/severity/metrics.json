@@ -1,44 +1,44 @@
 {
   "coefficients": {
     "base": {
-      "weight": -2.2306803330227414,
+      "weight": -2.3182512805824067,
       "ci95": [
-        -2.449254243188232,
-        -1.9921410231916723
+        -2.656063704887176,
+        -2.0306440719220453
       ]
     },
     "parasite": {
-      "weight": 1.2059129298037163,
+      "weight": 0.9286313453495845,
       "ci95": [
-        0.7579854069479998,
-        1.6063694658741665
+        0.3758650072855674,
+        1.3761585663538252
       ]
     },
     "intracellular": {
-      "weight": 0.4466596074652834,
+      "weight": 0.7595963641727695,
       "ci95": [
-        -0.42721013099654975,
-        0.8988393795448916
+        -0.06470094033038123,
+        1.424912780946958
       ]
     },
     "reduced_mitochondria": {
-      "weight": 1.5330490287689527,
+      "weight": 1.7190805569498995,
       "ci95": [
-        0.7490897674326203,
-        2.304063596512112
+        0.9817859748393861,
+        2.4844345930535296
       ]
     }
   },
   "loco_rmse_logit": {
-    "mean_only": 1.3295061077461687,
-    "parasite_only": 1.0912253540186991,
-    "all_axes": 0.9465311777270958
+    "mean_only": 1.4373159872386505,
+    "parasite_only": 1.2642714162437565,
+    "all_axes": 1.040697811067861
   },
   "typical_share_lost": {
-    "free_living": 0.09702901768178142,
-    "extracellular_parasite": 0.26409980903259433,
-    "intracellular_parasite": 0.3593681059580343,
-    "intracellular_reduced_mito": 0.7221078133429718
+    "free_living": 0.0896226357292453,
+    "extracellular_parasite": 0.19946843895552296,
+    "intracellular_parasite": 0.34750519316016293,
+    "intracellular_reduced_mito": 0.7482041043116332
   },
   "severity": {
     "Entamoeba histolytica": 0.5737122557726465,
@@ -139,7 +139,20 @@
     "Laccaria bicolor": 0.11388823390709739,
     "Paramecium tetraurelia": 0.14706740589436826,
     "Caenorhabditis briggsae": 0.029781199351701784,
-    "Pristionchus pacificus": 0.0682739059967585
+    "Pristionchus pacificus": 0.0682739059967585,
+    "Varroa destructor": 0.04710759374411155,
+    "Ixodes scapularis": 0.029395138496325607,
+    "Sarcoptes scabiei": 0.166384021104202,
+    "Cimex lectularius": 0.03605408112168253,
+    "Lepeophtheirus salmonis": 0.1040136635354398,
+    "Cuscuta campestris": 0.04893529893529894,
+    "Cuscuta australis": 0.06715806715806716,
+    "Toxocara canis": 0.07374392220421394,
+    "Necator americanus": 0.0516612641815235,
+    "Opisthorchis viverrini": 0.245854876091995,
+    "Schistosoma haematobium": 0.26279194152255303,
+    "Tetranychus urticae": 0.14754098360655737,
+    "Ipomoea triloba": 0.009623259623259623
   },
   "more_lost_than_predicted": [
     [
@@ -165,20 +178,20 @@
   ],
   "less_lost_than_predicted": [
     [
-      "Caenorhabditis briggsae",
-      0.029781199351701784
+      "Varroa destructor",
+      0.04710759374411155
     ],
     [
-      "Brugia malayi",
-      0.0919773095623987
+      "Cimex lectularius",
+      0.03605408112168253
     ],
     [
-      "Ustilago maydis",
-      0.11530299457675076
+      "Ixodes scapularis",
+      0.029395138496325607
     ],
     [
-      "Haemonchus contortus",
-      0.07273095623987035
+      "Ipomoea triloba",
+      0.009623259623259623
     ],
     [
       "Pyricularia oryzae",

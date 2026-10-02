@@ -1,24 +1,44 @@
 {
-  "n_parasite_pairs": 79,
+  "n_parasite_pairs": 90,
   "clades": [
     "alveolata",
     "amoebozoa",
+    "chelicerata",
     "chlorophyta",
     "cnidaria",
+    "crustacea",
     "discoba",
     "fungi",
     "holozoa",
+    "insecta",
     "metamonada",
     "nematoda",
     "platyhelminthes",
-    "stramenopiles"
+    "stramenopiles",
+    "streptophyta"
   ],
   "expansion_rate": {
-    "parasites": 0.019538940578441324,
-    "controls": 0.03154251166722874
+    "parasites": 0.0192793108656964,
+    "controls": 0.029965292544625762
   },
-  "familywise_threshold_clades": 5.0,
+  "familywise_threshold_clades": 6.0,
   "convergent": [
+    {
+      "family": "zf-CCHC",
+      "description": "Zinc knuckle",
+      "n_clades": 8,
+      "p": 0.0,
+      "clades": [
+        "alveolata",
+        "amoebozoa",
+        "chelicerata",
+        "fungi",
+        "holozoa",
+        "nematoda",
+        "stramenopiles",
+        "streptophyta"
+      ]
+    },
     {
       "family": "PNP_UDP_1",
       "description": "Phosphorylase superfamily",
@@ -35,85 +55,31 @@
       ]
     },
     {
-      "family": "Aa_trans",
-      "description": "Transmembrane amino acid transporter protein",
-      "n_clades": 6,
+      "family": "Peptidase_C13",
+      "description": "Peptidase C13 family",
+      "n_clades": 7,
       "p": 0.0,
       "clades": [
         "alveolata",
-        "amoebozoa",
+        "chelicerata",
+        "cnidaria",
+        "metamonada",
+        "nematoda",
+        "platyhelminthes",
+        "stramenopiles"
+      ]
+    },
+    {
+      "family": "RNase_H",
+      "description": "RNase H",
+      "n_clades": 7,
+      "p": 0.0,
+      "clades": [
+        "alveolata",
+        "chelicerata",
+        "crustacea",
         "discoba",
         "fungi",
-        "metamonada",
-        "stramenopiles"
-      ]
-    },
-    {
-      "family": "Fer4",
-      "description": "4Fe-4S binding domain",
-      "n_clades": 6,
-      "p": 0.0,
-      "clades": [
-        "alveolata",
-        "amoebozoa",
-        "fungi",
-        "metamonada",
-        "nematoda",
-        "stramenopiles"
-      ]
-    },
-    {
-      "family": "Malic_M",
-      "description": "Malic enzyme, NAD binding domain",
-      "n_clades": 6,
-      "p": 0.0,
-      "clades": [
-        "alveolata",
-        "amoebozoa",
-        "discoba",
-        "metamonada",
-        "nematoda",
-        "stramenopiles"
-      ]
-    },
-    {
-      "family": "Suf",
-      "description": "Suppressor of forked protein (Suf)",
-      "n_clades": 6,
-      "p": 0.0,
-      "clades": [
-        "alveolata",
-        "amoebozoa",
-        "discoba",
-        "holozoa",
-        "nematoda",
-        "stramenopiles"
-      ]
-    },
-    {
-      "family": "malic",
-      "description": "Malic enzyme, N-terminal domain",
-      "n_clades": 6,
-      "p": 0.0,
-      "clades": [
-        "alveolata",
-        "amoebozoa",
-        "discoba",
-        "metamonada",
-        "nematoda",
-        "stramenopiles"
-      ]
-    },
-    {
-      "family": "zf-CCHC",
-      "description": "Zinc knuckle",
-      "n_clades": 6,
-      "p": 0.0,
-      "clades": [
-        "alveolata",
-        "amoebozoa",
-        "fungi",
-        "holozoa",
         "nematoda",
         "stramenopiles"
       ]
@@ -122,38 +88,38 @@
   "enriched_functions_multi_clade": [
     [
       "go:ribosome",
-      3.96,
-      0.048
+      3.18,
+      0.037
     ],
     [
       "go:structural molecule activity",
-      3.37,
-      0.049
+      2.7,
+      0.038
     ],
     [
       "go:hydrolase activity",
-      2.36,
-      0.068
+      2.37,
+      0.069
     ],
     [
       "go:catalytic activity",
-      2.28,
-      0.218
-    ],
-    [
-      "go:oxidoreductase activity",
-      2.21,
-      0.039
-    ],
-    [
-      "go:catalytic activity, acting on a protein",
-      2.13,
-      0.033
+      2.18,
+      0.209
     ],
     [
       "kw:protease",
-      2.08,
-      0.047
+      2.18,
+      0.049
+    ],
+    [
+      "go:oxidoreductase activity",
+      2.01,
+      0.035
+    ],
+    [
+      "go:transferase activity",
+      1.95,
+      0.062
     ]
   ]
 }

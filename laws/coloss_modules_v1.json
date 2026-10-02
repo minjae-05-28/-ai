@@ -83,20 +83,31 @@
       "Macrostomum lignano -> Schistosoma japonicum",
       "Naegleria gruberi -> Trichomonas vaginalis",
       "Naegleria gruberi -> Tritrichomonas foetus",
-      "Drosophila melanogaster -> Pediculus humanus"
+      "Drosophila melanogaster -> Pediculus humanus",
+      "Galendromus occidentalis -> Varroa destructor",
+      "Galendromus occidentalis -> Ixodes scapularis",
+      "Galendromus occidentalis -> Sarcoptes scabiei",
+      "Halyomorpha halys -> Cimex lectularius",
+      "Tigriopus californicus -> Lepeophtheirus salmonis",
+      "Ipomoea nil -> Cuscuta campestris",
+      "Ipomoea nil -> Cuscuta australis",
+      "Caenorhabditis elegans -> Toxocara canis",
+      "Caenorhabditis elegans -> Necator americanus",
+      "Macrostomum lignano -> Opisthorchis viverrini",
+      "Macrostomum lignano -> Schistosoma haematobium"
     ],
-    "n_families": 8416
+    "n_families": 8744
   },
   "validation": {
     "scheme": "leave-one-clade-out, half of each held-out parasite's families revealed",
     "mean_auroc_hidden": {
-      "k0": 0.8071302836576933,
-      "k2": 0.8077885990131175,
-      "k4": 0.805814520679523,
-      "k8": 0.7997572951905778
+      "k0": 0.8057457118932878,
+      "k2": 0.8064437192820331,
+      "k4": 0.8064259461138282,
+      "k8": 0.8014734417844294
     },
     "best_k": 2,
-    "gain_vs_additive": 0.0006583153554241564
+    "gain_vs_additive": 0.0006980073887451575
   },
   "caveats": [
     "Modules are statistical: co-loss can reflect shared pathways or shared host niche.",
@@ -105,104 +116,121 @@
   "contexts": {
     "modules": [
       {
-        "strength": 259.2604675292969,
+        "strength": 296.1355285644531,
         "lost_together": [
-          "SMP_MUG190-like: MUG190-like SMP domain",
-          "Helitron_like_N: Helitron helicase-like domain at N-terminus",
-          "Noggin: Noggin",
-          "OCD_Mu_crystall: Ornithine cyclodeaminase/mu-crystallin family",
-          "zf-Nse: Zinc-finger of the MIZ type in Nse subunit",
-          "Thioredoxin_4: Thioredoxin",
-          "Glyco_transf_15: Glycolipid 2-alpha-mannosyltransferase",
-          "MULE: MULE transposase domain"
-        ],
-        "lost_together_enriched": [],
-        "kept_together": [
-          "Topo_C_assoc: C-terminal topoisomerase domain",
-          "TMEM43: Transmembrane protein 43",
-          "ACBP: Acyl CoA binding protein",
-          "Glutaredoxin: Glutaredoxin",
-          "Thioredoxin_8: Thioredoxin-like",
-          "ACP_syn_III: 3-Oxoacyl-[acyl-carrier-protein (ACP)] synthase III",
-          "DBR1: Lariat debranching enzyme, C-terminal domain",
-          "EGF_MSP1_1: MSP1 EGF domain 1"
-        ],
-        "kept_together_enriched": [
-          [
-            "go:catalytic activity",
-            2.33
-          ]
-        ],
-        "most_affected": [
-          "Plasmodium malariae",
-          "Plasmodium knowlesi",
-          "Plasmodium vivax",
-          "Plasmodium yoelii",
-          "Plasmodium falciparum",
-          "Plasmodium berghei"
-        ],
-        "least_affected": [
-          "Edhazardia aedis",
-          "Nosema bombycis",
-          "Encephalitozoon intestinalis",
-          "Encephalitozoon cuniculi",
-          "Anncaliia algerae",
-          "Nosema ceranae"
-        ]
-      },
-      {
-        "strength": 241.06878662109375,
-        "lost_together": [
-          "DIOX_N: non-haem dioxygenase in morphine synthesis N-terminal",
-          "Cu-oxidase_2: Multicopper oxidase",
-          "AICARFT_IMPCHas: AICARFT/IMPCHase bienzyme",
-          "Pdase_M17_N2: M17 aminopeptidase N-terminal domain 2",
-          "ArgJ: ArgJ family",
-          "Cu-oxidase: Multicopper oxidase",
-          "GFA: Glutathione-dependent formaldehyde-activating enzyme",
-          "Semialdhyde_dhC_1: Semialdehyde dehydrogenase, dimerisation domain"
+          "VIT: Vault protein inter-alpha-trypsin domain",
+          "Beta_helix: Right handed beta helix region",
+          "SBF: Sodium Bile acid symporter family",
+          "LacAB_rpiB: Ribose/Galactose Isomerase",
+          "ASMase_C: Acid sphingomyelin phosphodiesterase C-terminal region",
+          "UNC80_C: Protein UNC80 C-terminal region",
+          "CNOT11: CCR4-NOT transcription complex subunit 11",
+          "ANKRD13_C: ANKRD13 C-terminal"
         ],
         "lost_together_enriched": [
           [
             "kw:methyl_glyco_transferase",
-            3.05
+            3.12
           ],
           [
-            "go:transferase activity",
-            2.41
+            "go:hydrolase activity",
+            2.7
           ]
         ],
         "kept_together": [
-          "Glutaredoxin: Glutaredoxin",
-          "Glycolytic: Fructose-bisphosphate aldolase class-I",
-          "Methyltrans_RNA: RNA methyltransferase domain",
-          "zf-AN1: AN1-like Zinc finger",
-          "TFIIA_gamma_C: Transcription initiation factor IIA, gamma subunit",
-          "Peptidase_M17: Cytosol aminopeptidase family, catalytic domain",
-          "DUF760: Protein of unknown function (DUF760)",
-          "DUF1967: Domain of unknown function (DUF1967)"
+          "Cytidylate_kin: Cytidylate kinase",
+          "MFS_3: Transmembrane secretion effector",
+          "Bromo_TP_like: Histone-fold protein",
+          "N6_Mtase: N-6 DNA Methylase",
+          "HTH_Tnp_Tc3_2: Transposase",
+          "Lipase_2: Lipase (class 2)",
+          "PEPCK_PPi_lobe_2: PPi-type phosphoenolpyruvate carboxykinase lobe 2 domain",
+          "PEPCK-like_mid: PEPCK-like middle domain"
         ],
         "kept_together_enriched": [
           [
-            "go:nucleus",
-            3.56
+            "go:DNA binding",
+            5.79
+          ],
+          [
+            "go:transferase activity",
+            3.59
           ]
         ],
         "most_affected": [
-          "Plasmodium knowlesi",
           "Plasmodium vivax",
           "Plasmodium malariae",
+          "Plasmodium knowlesi",
           "Plasmodium falciparum",
-          "Encephalitozoon cuniculi",
-          "Plasmodium yoelii"
+          "Plasmodium yoelii",
+          "Plasmodium berghei"
         ],
         "least_affected": [
-          "Leishmania braziliensis",
           "Leptomonas pyrrhocoris",
+          "Saprolegnia parasitica",
           "Leishmania mexicana",
           "Leishmania major",
+          "Leishmania infantum",
+          "Leishmania donovani"
+        ]
+      },
+      {
+        "strength": 280.2524108886719,
+        "lost_together": [
+          "CDC37_C: Cdc37 C terminal domain",
+          "SBP_bac_3: Bacterial extracellular solute-binding proteins, family 3",
+          "Lig_chan: Ligand-gated ion channel",
+          "Kinesin_assoc: Kinesin-associated",
+          "KIF1B: Kinesin protein 1B",
+          "DUF3694: Kinesin protein",
+          "TraB_PrgY_gumN: TraB/PrgY/gumN family",
+          "POPDC1-3: POPDC1-3"
+        ],
+        "lost_together_enriched": [
+          [
+            "kw:cell_adhesion_surface",
+            4.0
+          ],
+          [
+            "kw:transporter_channel",
+            3.81
+          ],
+          [
+            "kw:methyl_glyco_transferase",
+            3.12
+          ]
+        ],
+        "kept_together": [
+          "EF_SSP120: SSP120-like, EF-hand pair",
+          "DNA_alkylation: DNA alkylation repair enzyme",
+          "Fe-S_assembly: Iron-sulphur cluster assembly",
+          "BT1: BT1 family",
+          "tRNA-synt_1e: tRNA synthetases class I (C) catalytic domain",
+          "Inhibitor_I42: Chagasin family peptidase inhibitor I42",
+          "DUF2921: Transmembrane E3 ligase/DUF2921 transmembrane domain",
+          "TnsB_C: TnsB C-terminal domain"
+        ],
+        "kept_together_enriched": [
+          [
+            "kw:methyl_glyco_transferase",
+            3.12
+          ]
+        ],
+        "most_affected": [
+          "Leishmania major",
           "Leishmania donovani",
-          "Leishmania infantum"
+          "Leishmania mexicana",
+          "Leishmania infantum",
+          "Leishmania braziliensis",
+          "Leptomonas pyrrhocoris"
+        ],
+        "least_affected": [
+          "Haemonchus contortus",
+          "Ixodes scapularis",
+          "Cuscuta australis",
+          "Cuscuta campestris",
+          "Necator americanus",
+          "Pediculus humanus"
         ]
       }
     ]

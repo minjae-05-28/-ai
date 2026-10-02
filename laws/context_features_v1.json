@@ -4,55 +4,55 @@
   "model": "Linear birth-death law on enriched + context family features; memorisation and a shrunk combination reported side by side, never mixed into the law.",
   "feature_names": [],
   "data": {
-    "parasite_pairs": 79,
-    "extremophile_pairs": 40
+    "parasite_pairs": 90,
+    "extremophile_pairs": 54
   },
   "validation": {
     "extremophiles": {
       "mean_auroc": {
-        "copies_only": 0.6199392920234301,
-        "memorisation": 0.8439985034182216,
-        "law_base": 0.8191445774072861,
-        "law_context": 0.8232006566776416,
-        "combined_s1": 0.8580671753930625,
-        "combined_s3": 0.8604717595469014,
-        "combined_s10": 0.8599867802864807
+        "copies_only": 0.6172579176865324,
+        "memorisation": 0.849235234515775,
+        "law_base": 0.8132686604717007,
+        "law_context": 0.8178732595435612,
+        "combined_s1": 0.8596954810622316,
+        "combined_s3": 0.8615463752219165,
+        "combined_s10": 0.8606810305907693
       },
       "context_gain": {
-        "mean": 0.00405607927035582,
-        "n_better": 29,
-        "n": 40
+        "mean": 0.004604599071860593,
+        "n_better": 40,
+        "n": 54
       },
       "context_weights": {
-        "ctx:expression": -0.3082,
-        "ctx:multi_domain": -0.0083,
-        "ctx:partners": 0.0229,
-        "ctx:operon": -0.0918,
-        "ctx:neighbourhood": -0.1104,
-        "ctx:has_context": 0.0459
+        "ctx:expression": -0.3241,
+        "ctx:multi_domain": 0.0152,
+        "ctx:partners": 0.0052,
+        "ctx:operon": -0.0959,
+        "ctx:neighbourhood": -0.112,
+        "ctx:has_context": 0.0247
       }
     },
     "parasites": {
       "mean_auroc": {
-        "copies_only": 0.6438921622472106,
-        "memorisation": 0.797798715194633,
-        "law_base": 0.7606546179344121,
-        "law_context": 0.766020699300282,
-        "combined_s1": 0.8024944533929399,
-        "combined_s3": 0.8079091820274272,
-        "combined_s10": 0.8138726894330391
+        "copies_only": 0.6466693047031259,
+        "memorisation": 0.7882956723635105,
+        "law_base": 0.7597640843822151,
+        "law_context": 0.7653708430517742,
+        "combined_s1": 0.7930777139503002,
+        "combined_s3": 0.7983505889489837,
+        "combined_s10": 0.804083652911769
       },
       "context_gain": {
-        "mean": 0.0053660813658698535,
-        "n_better": 71,
-        "n": 79
+        "mean": 0.005606758669558888,
+        "n_better": 77,
+        "n": 90
       },
       "context_weights": {
-        "ctx:expression": -0.0386,
-        "ctx:multi_domain": 0.0034,
-        "ctx:partners": -0.0063,
-        "ctx:exons": -0.1457,
-        "ctx:has_context": 0.1102
+        "ctx:expression": -0.0447,
+        "ctx:multi_domain": 0.0078,
+        "ctx:partners": -0.0078,
+        "ctx:exons": -0.127,
+        "ctx:has_context": 0.075
       }
     }
   },
