@@ -1,0 +1,255 @@
+{
+  "bootstrap": {
+    "parasites_leave_one_clade_out": {
+      "n_rows": 51,
+      "n_units": 9,
+      "unit": "clade",
+      "stats": {
+        "law": {
+          "estimate": 0.7769,
+          "ci95": [
+            0.7449,
+            0.7949
+          ]
+        },
+        "memorisation": {
+          "estimate": 0.8022,
+          "ci95": [
+            0.7683,
+            0.8218
+          ]
+        },
+        "copies_only": {
+          "estimate": 0.6389,
+          "ci95": [
+            0.6302,
+            0.6521
+          ]
+        },
+        "memorisation - law": {
+          "estimate": 0.0253,
+          "ci95": [
+            0.0106,
+            0.0357
+          ]
+        }
+      }
+    },
+    "parasites_5fold": {
+      "n_rows": 51,
+      "n_units": 51,
+      "unit": "pair",
+      "stats": {
+        "enriched": {
+          "estimate": 0.7823,
+          "ci95": [
+            0.7668,
+            0.7958
+          ]
+        },
+        "base": {
+          "estimate": 0.6691,
+          "ci95": [
+            0.6605,
+            0.6778
+          ]
+        },
+        "memorisation": {
+          "estimate": 0.8652,
+          "ci95": [
+            0.8425,
+            0.8867
+          ]
+        },
+        "enriched - base": {
+          "estimate": 0.1132,
+          "ci95": [
+            0.0974,
+            0.1253
+          ]
+        },
+        "memorisation - enriched": {
+          "estimate": 0.083,
+          "ci95": [
+            0.0674,
+            0.0979
+          ]
+        }
+      }
+    },
+    "extremophiles_leave_one_pair_out": {
+      "n_rows": 40,
+      "n_units": 40,
+      "unit": "pair",
+      "stats": {
+        "no_environment": {
+          "estimate": 0.8191,
+          "ci95": [
+            0.8054,
+            0.8315
+          ]
+        },
+        "environment_law": {
+          "estimate": 0.8189,
+          "ci95": [
+            0.805,
+            0.8315
+          ]
+        },
+        "memorisation": {
+          "estimate": 0.844,
+          "ci95": [
+            0.8241,
+            0.8619
+          ]
+        },
+        "environment_law - no_environment": {
+          "estimate": -0.0003,
+          "ci95": [
+            -0.0039,
+            0.0026
+          ]
+        },
+        "memorisation - no_environment": {
+          "estimate": 0.0249,
+          "ci95": [
+            0.0085,
+            0.0409
+          ]
+        }
+      }
+    }
+  },
+  "fdr": {
+    "phylo:regulator_scaling": {
+      "p": 5.20497860454113e-94,
+      "q": 1.3532944371806938e-92,
+      "significant_q05": true
+    },
+    "phylo:ivywrel_vs_temperature": {
+      "p": 1.564169822278961e-22,
+      "q": 2.033420768962649e-21,
+      "significant_q05": true
+    },
+    "gc:species:ivywrel_vs_temperature": {
+      "p": 2.6978061697837382e-20,
+      "q": 2.33809868047924e-19,
+      "significant_q05": true
+    },
+    "phylo:pair_ivywrel_colder": {
+      "p": 2.04251375044595e-17,
+      "q": 1.3276339377898674e-16,
+      "significant_q05": true
+    },
+    "gc:pairs:ivywrel_colder": {
+      "p": 4.763090715554255e-17,
+      "q": 2.4768071720882127e-16,
+      "significant_q05": true
+    },
+    "gc:species:acidic_vs_salt": {
+      "p": 2.2312906808984254e-14,
+      "q": 9.668926283893176e-14,
+      "significant_q05": true
+    },
+    "phylo:acidic_vs_salt": {
+      "p": 3.502842017483026e-14,
+      "q": 1.3010556064936955e-13,
+      "significant_q05": true
+    },
+    "gc:pairs:acidic_excess_saltier": {
+      "p": 3.9931815916246205e-12,
+      "q": 1.2977840172780017e-11,
+      "significant_q05": true
+    },
+    "phylo:cvp_vs_temperature": {
+      "p": 7.26486650870933e-12,
+      "q": 2.0987392136271395e-11,
+      "significant_q05": true
+    },
+    "phylo:pair_cvp_colder": {
+      "p": 1.441275649135486e-09,
+      "q": 3.747316687752263e-09,
+      "significant_q05": true
+    },
+    "gc:species:cvp_vs_temperature": {
+      "p": 2.073080599068762e-09,
+      "q": 4.900008688707983e-09,
+      "significant_q05": true
+    },
+    "gc:pairs:cvp_colder": {
+      "p": 5.3602517429254275e-09,
+      "q": 1.1613878776338426e-08,
+      "significant_q05": true
+    },
+    "phylo:severity_reduced_mitochondria": {
+      "p": 1.4703021530158674e-07,
+      "q": 2.940604306031735e-07,
+      "significant_q05": true
+    },
+    "phylo:severity_parasite": {
+      "p": 2.3104198363058948e-07,
+      "q": 4.2907796959966615e-07,
+      "significant_q05": true
+    },
+    "phylo:pair_acidic_excess_saltier": {
+      "p": 3.103212360524004e-06,
+      "q": 5.378901424908273e-06,
+      "significant_q05": true
+    },
+    "phylo:symbiont_fymink_vs_size": {
+      "p": 0.000139932945956631,
+      "q": 0.00022739103717952537,
+      "significant_q05": true
+    },
+    "phylo:pair_fymink_anaerobic": {
+      "p": 0.00257047191253599,
+      "q": 0.003931309983878573,
+      "significant_q05": true
+    },
+    "phylo:nitrogen_vs_oligotrophy": {
+      "p": 0.002799713368396544,
+      "q": 0.004044030421017229,
+      "significant_q05": true
+    },
+    "phylo:fymink_vs_anoxia": {
+      "p": 0.009685417336776954,
+      "q": 0.013253728987168464,
+      "significant_q05": true
+    },
+    "gc:species:fymink_vs_anoxia": {
+      "p": 0.030955600463396446,
+      "q": 0.04024228060241538,
+      "significant_q05": true
+    },
+    "phylo:severity_intracellular": {
+      "p": 0.1021259091237331,
+      "q": 0.12644160177224098,
+      "significant_q05": false
+    },
+    "gc:symbionts:median_pi": {
+      "p": 0.19105450737658103,
+      "q": 0.2257916905359594,
+      "significant_q05": false
+    },
+    "gc:symbionts:fymink": {
+      "p": 0.3073463745224624,
+      "q": 0.3474350320688705,
+      "significant_q05": false
+    },
+    "gc:pairs:fymink_anaerobic": {
+      "p": 0.5044299365799794,
+      "q": 0.546465764628311,
+      "significant_q05": false
+    },
+    "gc:species:nitrogen_vs_oligotrophy": {
+      "p": 0.5618097345507198,
+      "q": 0.5842821239327486,
+      "significant_q05": false
+    },
+    "gc:pairs:n_side_oligotrophic": {
+      "p": 0.8529229048964442,
+      "q": 0.8529229048964442,
+      "significant_q05": false
+    }
+  }
+}
