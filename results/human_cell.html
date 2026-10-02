@@ -1,0 +1,362 @@
+<title>사람 몸의 세포</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=IBM+Plex+Sans+KR:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a dark anatomical stage on top, specimen notes below. Single dark theme by choice. */
+:root {
+  color-scheme: dark;
+  --bg: #130f11; --panel: #1c1619; --panel-2: #241c20; --line: #34292e;
+  --fg: #f2e9e6; --muted: #a2918e; --faint: #6d5f5d;
+  --soil: #7aa86f; --gut: #d98a3f; --skin: #cbab7e; --blood: #c2525a;
+  --display: "Gowun Batang", "Nanum Myeongjo", Georgia, serif;
+  --sans: "IBM Plex Sans KR", "Apple SD Gothic Neo", system-ui, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--fg); font-family: var(--sans); font-weight: 300;
+       font-size: 15px; line-height: 1.7; word-break: keep-all; }
+.wrap { max-width: 1040px; margin: 0 auto; padding-inline: 20px; padding-block: 0 72px; }
+h1, h2, h3 { font-family: var(--display); font-weight: 700; margin: 0; text-wrap: balance; line-height: 1.3; }
+h1 { font-size: clamp(30px, 6vw, 46px); letter-spacing: -0.01em; }
+h2 { font-size: clamp(21px, 3.4vw, 27px); }
+h3 { font-size: 17px; }
+p { margin: 0; }
+.eyebrow { font-family: var(--mono); font-size: 11.5px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--faint); }
+.lede { color: var(--muted); max-width: 60ch; }
+
+header { padding-block: 56px 28px; display: grid; gap: 14px; }
+
+/* stage */
+.stage { position: relative; background: radial-gradient(120% 90% at 50% 10%, #2a1f24 0%, #150f12 60%, #110c0f 100%);
+         border: 1px solid var(--line); border-radius: 14px; overflow: hidden; }
+#canvas { display: block; width: 100%; height: clamp(300px, 46vh, 400px); touch-action: none; }
+.picker { display: flex; flex-wrap: wrap; gap: 8px; padding: 14px; border-top: 1px solid var(--line); background: rgba(19,15,17,0.7); }
+.picker button { flex: 1 1 120px; min-width: 0; cursor: pointer; font-family: var(--sans); font-size: 13.5px; font-weight: 500;
+  color: var(--muted); background: var(--panel); border: 1px solid var(--line); border-radius: 9px; padding: 9px 10px;
+  display: grid; gap: 2px; justify-items: start; transition: border-color .2s, color .2s, background .2s; }
+.picker button .sub { font-family: var(--mono); font-size: 10.5px; color: var(--faint); letter-spacing: .04em; }
+.picker button:hover { border-color: var(--faint); }
+.picker button[aria-pressed="true"] { color: var(--fg); background: var(--panel-2); border-color: var(--site); }
+.picker button[aria-pressed="true"] .sub { color: var(--site); }
+button:focus-visible { outline: 2px solid var(--fg); outline-offset: 2px; }
+.caption { padding: 0 14px 14px; font-size: 12.5px; color: var(--faint); }
+
+/* read-out under the stage */
+.readout { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 22px; }
+@media (max-width: 680px) { .readout { grid-template-columns: 1fr; } }
+.card { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 18px 20px; display: grid; gap: 12px; min-width: 0; }
+.card h3 { color: var(--site, var(--fg)); }
+.bars { display: grid; gap: 9px; }
+.bar { display: grid; grid-template-columns: 1fr auto; gap: 4px 10px; align-items: baseline; font-size: 13.5px; }
+.bar .track { grid-column: 1 / -1; height: 6px; border-radius: 3px; background: #2b2226; overflow: hidden; }
+.bar .fill { height: 100%; border-radius: 3px; }
+.bar .num { font-family: var(--mono); font-size: 12.5px; color: var(--muted); font-variant-numeric: tabular-nums; }
+.keeps { display: flex; flex-wrap: wrap; gap: 6px; }
+.keeps span { font-family: var(--mono); font-size: 11.5px; color: var(--muted); border: 1px solid var(--line);
+  border-radius: 20px; padding: 3px 10px; }
+
+section { margin-top: 56px; display: grid; gap: 16px; }
+.grid3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 14px; }
+table { border-collapse: collapse; width: 100%; font-size: 13.5px; }
+.scroll { overflow-x: auto; border: 1px solid var(--line); border-radius: 12px; }
+th, td { text-align: left; padding: 10px 14px; border-bottom: 1px solid var(--line); white-space: nowrap; }
+th { font-family: var(--mono); font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--faint); font-weight: 400; }
+tr:last-child td { border-bottom: 0; }
+td.n { font-family: var(--mono); font-variant-numeric: tabular-nums; }
+.good { color: var(--soil); } .bad { color: var(--blood); }
+.note { border-left: 2px solid var(--line); padding-left: 16px; color: var(--muted); display: grid; gap: 8px; }
+footer { margin-top: 56px; padding-top: 20px; border-top: 1px solid var(--line); color: var(--faint); font-size: 12.5px; }
+</style>
+
+<div class="wrap">
+  <header>
+    <p class="eyebrow">organelle-evo · 되맞히기 실험</p>
+    <h1>사람 몸의 세포</h1>
+    <p class="lede">흙에 살던 세균이 사람 몸으로 들어가면 무엇을 버릴까. 다른 생물에서 배운 법칙으로 먼저 예측하고, 실제로 우리 몸에 사는 공생 세균과 맞춰 봤습니다. 설계도가 아니라 채점표입니다.</p>
+  </header>
+
+  <div class="stage">
+    <canvas id="canvas"></canvas>
+    <div class="picker" id="picker"></div>
+    <p class="caption">끌면 돌아갑니다. 세포 크기는 법칙이 남긴 유전자군 수에 비례하고, 표면 장치는 각 자리에서 버려지는 기능입니다.</p>
+  </div>
+
+  <div class="readout">
+    <div class="card" id="dropCard">
+      <h3>버리는 것</h3>
+      <div class="bars" id="drops"></div>
+      <p style="font-size:12.5px;color:var(--faint)">흙 세균 대비 몇 배로 더 많이 사라지는가</p>
+    </div>
+    <div class="card" id="keepCard">
+      <h3>남기는 것</h3>
+      <div class="keeps" id="keeps"></div>
+      <p id="keepNote" style="font-size:13px;color:var(--muted)"></p>
+    </div>
+  </div>
+
+  <section>
+    <p class="eyebrow">채점 1 — 단백질 조성</p>
+    <h2>아미노산 배합은 잘 맞혔습니다</h2>
+    <p class="lede">각 자리의 온도·염분·산소로 단백질 재료 비율을 예측하고, 그 자리에 실제로 사는 공생 세균의 측정값과 비교했습니다.</p>
+    <div class="scroll"><table>
+      <tr><th>자리</th><th>지표</th><th>예측</th><th>실측</th><th>오차</th></tr>
+      <tr><td>장 (6종)</td><td>IVYWREL</td><td class="n">0.3956</td><td class="n">0.3851</td><td class="n">+0.0105</td></tr>
+      <tr><td>장 (6종)</td><td>산성 과잉</td><td class="n">0.0024</td><td class="n">0.0123</td><td class="n">−0.0099</td></tr>
+      <tr><td>피부 (2종)</td><td>IVYWREL</td><td class="n">0.3892</td><td class="n">0.3924</td><td class="n good">−0.0032</td></tr>
+      <tr><td>혈액 (2종)</td><td>IVYWREL</td><td class="n">0.3962</td><td class="n">0.3933</td><td class="n good">+0.0029</td></tr>
+      <tr><td>혈액 (2종)</td><td>산성 과잉</td><td class="n">0.0136</td><td class="n">0.0111</td><td class="n good">+0.0025</td></tr>
+    </table></div>
+    <p class="lede">피부 세균의 IVYWREL은 오차 0.003으로 맞았습니다. 온도와 산소만으로 단백질 재료 배합이 상당 부분 정해진다는 뜻입니다.</p>
+  </section>
+
+  <section>
+    <p class="eyebrow">채점 2 — 유전체 크기</p>
+    <h2>작아진다는 방향은 맞혔습니다</h2>
+    <div class="grid3">
+      <div class="card"><h3 style="--site:var(--soil)">자유생활 세균</h3><p><span style="font-family:var(--mono);font-size:26px">3,215</span><br><span style="color:var(--muted);font-size:13px">유전자 중앙값</span></p></div>
+      <div class="card"><h3 style="--site:var(--gut)">사람 몸 공생 세균</h3><p><span style="font-family:var(--mono);font-size:26px">2,324</span><br><span style="color:var(--muted);font-size:13px">유전자 중앙값 · 10종</span></p></div>
+      <div class="card"><h3 style="--site:var(--blood)">편차</h3><p><span style="font-family:var(--mono);font-size:26px">1,860–5,098</span><br><span style="color:var(--muted);font-size:13px">락토바실루스 ↔ 대장균</span></p></div>
+    </div>
+    <p class="lede">숙주가 먹여 주면 유전체가 줄어든다는 방향은 맞지만, 폭이 큽니다. 식이섬유를 분해해 먹고사는 박테로이데스는 오히려 4,596개로 늘어났습니다.</p>
+  </section>
+
+  <section>
+    <p class="eyebrow">채점 3 — 유전자 구성</p>
+    <h2>여기서는 졌습니다</h2>
+    <p class="lede">흙 세균이 장으로 갈 때 사라질 유전자군의 순위를 매기고, 실제 장 세균이 가진 것과 못 가진 것을 얼마나 갈라내는지 쟀습니다.</p>
+    <div class="scroll"><table>
+      <tr><th>방법</th><th>점수 (AUROC)</th><th></th></tr>
+      <tr><td>환경 법칙</td><td class="n">0.86</td><td style="color:var(--muted)">온도·염분·산소·영양으로 예측</td></tr>
+      <tr><td>흔한 정도 기준선</td><td class="n bad">0.93</td><td style="color:var(--muted)">“흔한 유전자는 다들 갖고 있다”</td></tr>
+      <tr><td>암기</td><td class="n">0.92</td><td style="color:var(--muted)">다른 종에서의 소실 빈도</td></tr>
+    </table></div>
+    <div class="note">
+      <p>환경 법칙이 단순 기준선을 못 넘습니다. 이건 우리가 다른 데서 이미 얻은 결론이 사람 몸에서도 그대로 나온 것입니다. <b>무엇을 버릴지는 환경이 아니라 유전자 자체의 성향이 정합니다.</b></p>
+      <p>이상적인 세포와 실제 장 세균이 겹치는 비율은 39~50%에 그칩니다. 박테로이데스는 법칙이 버리라고 한 유전자군을 1,088개나 들고 있습니다. 대부분 식이섬유를 분해하는 장치입니다.</p>
+    </div>
+  </section>
+
+  <section>
+    <p class="eyebrow">한계</p>
+    <h2>우리 모델이 못 보는 것</h2>
+    <p class="lede">환경을 온도·염분·산소·영양 네 가지로만 적었습니다. 면역계, 점액층, 담즙산, 숙주가 내보내는 대사물질은 들어 있지 않습니다. 사람 몸이 특별한 이유는 그 네 가지가 아니라 숙주 자신인데, 모델이 그걸 못 봅니다. 입속은 이 네 축으로는 장과 구분되지 않아 아예 뺐습니다.</p>
+  </section>
+
+  <footer>
+    실제 유전체에서 학습한 법칙으로 예측하고, 사람 몸에 흔한 공생 세균 10종으로 채점했습니다. 이 10종은 법칙 학습에 전혀 쓰이지 않았습니다. · organelle-evo
+  </footer>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+<script>
+const CELLS = [
+  { id: "soil", name: "흙 세균", sub: "출발점", color: 0x7aa86f, cssVar: "--soil",
+    families: 3186, label: "흔한 세균 유전자군 전체",
+    scale: 1.0, flagella: 1, pili: 9, pumps: 22, atp: 9, ribo: 110,
+    drops: [], keeps: ["편모", "수송체 다수", "당 분해", "산화환원 효소", "조절 회로"],
+    note: "비교 기준입니다. 스스로 먹이를 찾고, 헤엄치고, 환경 변화에 맞춰 유전자를 켜고 끕니다." },
+  { id: "gut", name: "장 속", sub: "무산소 · 영양 풍부", color: 0xd98a3f, cssVar: "--gut",
+    families: 2726, label: "3,186개 중 남는 것",
+    scale: 0.86, flagella: 1, pili: 4, pumps: 13, atp: 16, ribo: 140,
+    drops: [["산화환원 효소", 2.06], ["반복 도메인", 2.00], ["지질 대사", 1.82], ["단백질 분해효소", 1.46], ["막 수송", 1.45]],
+    keeps: ["ATP 합성효소", "RNA 효소", "아미노산 대사", "헬리케이스"],
+    note: "산소가 없으니 산소를 쓰는 효소가 통째로 빠집니다. 그래도 에너지를 뽑는 ATP 합성효소는 가장 강하게 남습니다." },
+  { id: "skin", name: "피부", sub: "건조 · 영양 부족", color: 0xcbab7e, cssVar: "--skin",
+    families: 2659, label: "3,186개 중 남는 것",
+    scale: 0.83, flagella: 0, pili: 3, pumps: 9, atp: 10, ribo: 95,
+    drops: [["편모", 2.65], ["반복 도메인", 2.11], ["전사 조절", 1.93], ["막 수송", 1.78], ["당 대사", 1.77]],
+    keeps: ["ABC 수송체", "알코올 탈수소효소", "메틸전이효소", "아미노산 대사"],
+    note: "마른 표면에서는 헤엄칠 곳이 없어 편모가 가장 먼저 빠집니다. 먹을 것이 없으니 무엇을 먹을지 고르는 조절 회로도 함께 사라집니다." },
+  { id: "blood", name: "혈액·조직", sub: "산소 · 영양 풍부", color: 0xc2525a, cssVar: "--blood",
+    families: 2677, label: "3,186개 중 남는 것",
+    scale: 0.84, flagella: 1, pili: 1, pumps: 8, atp: 12, ribo: 130,
+    drops: [["반복 도메인", 3.51], ["수송 채널", 2.17], ["막 수송", 2.10], ["당 전이효소", 1.96], ["수송체", 1.66]],
+    keeps: ["RNA 중합효소", "AAA ATP가수분해효소", "ATP 합성효소", "아미노산 대사"],
+    note: "표면에 달라붙는 반복 도메인이 3.5배로 가장 심하게 빠집니다. 영양이 떠다니니 퍼 올리는 장치도 덜 필요합니다." },
+];
+
+const canvas = document.getElementById("canvas");
+const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(42, 1, 0.1, 100);
+camera.position.set(0, 1.1, 5.6);
+const controls = new THREE.OrbitControls(camera, canvas);
+controls.enableDamping = true; controls.enablePan = false;
+controls.minDistance = 3.6; controls.maxDistance = 9;
+controls.autoRotate = true; controls.autoRotateSpeed = 0.7;
+
+scene.add(new THREE.AmbientLight(0xffffff, 0.45));
+const key = new THREE.DirectionalLight(0xfff0e6, 1.0); key.position.set(4, 6, 5); scene.add(key);
+const rim = new THREE.DirectionalLight(0x8899ff, 0.35); rim.position.set(-5, -2, -4); scene.add(rim);
+
+const root = new THREE.Group(); scene.add(root);
+
+function capsule(r, h, seg, mat) {
+  const g = new THREE.Group();
+  const body = new THREE.Mesh(new THREE.CylinderGeometry(r, r, h, seg, 1, true), mat);
+  body.rotation.z = Math.PI / 2; g.add(body);
+  for (const s of [1, -1]) {
+    const cap = new THREE.Mesh(new THREE.SphereGeometry(r, seg, Math.max(8, seg / 2), 0, Math.PI * 2, 0, Math.PI / 2), mat);
+    cap.rotation.z = -s * Math.PI / 2; cap.position.x = s * h / 2; g.add(cap);
+  }
+  return g;
+}
+
+// a point on the capsule surface for a given direction, plus its outward normal
+function surfacePoint(r, h, dir) {
+  const d = dir.clone().normalize();
+  const axis = h / 2;
+  const cx = THREE.MathUtils.clamp(d.x * (axis + r), -axis, axis);
+  const radial = new THREE.Vector3(0, d.y, d.z);
+  if (radial.lengthSq() < 1e-6) radial.set(0, 1, 0);
+  radial.normalize();
+  const p = new THREE.Vector3(cx, radial.y * r, radial.z * r);
+  const centre = new THREE.Vector3(cx, 0, 0);
+  const n = p.clone().sub(centre).normalize();
+  if (Math.abs(cx) >= axis - 1e-6 && Math.abs(d.x) > 0.75) {
+    const tip = new THREE.Vector3(Math.sign(d.x) * axis, 0, 0);
+    p.copy(tip).add(d.clone().multiplyScalar(r)); n.copy(d);
+  }
+  return { p, n };
+}
+
+function buildCell(spec) {
+  const g = new THREE.Group();
+  const col = new THREE.Color(spec.color);
+  const R = 1.0, H = 1.5;
+
+  const cyto = capsule(R * 0.9, H, 40, new THREE.MeshStandardMaterial({
+    color: col.clone().multiplyScalar(0.5), roughness: 0.9, metalness: 0,
+    transparent: true, opacity: 0.55 }));
+  g.add(cyto);
+  const membrane = capsule(R, H, 56, new THREE.MeshStandardMaterial({
+    color: col, roughness: 0.25, metalness: 0.1, transparent: true, opacity: 0.3,
+    side: THREE.DoubleSide, depthWrite: false }));
+  membrane.renderOrder = 2; membrane.traverse(o => { o.renderOrder = 2; }); g.add(membrane);
+
+  // ribosomes: the machinery every cell keeps
+  const riboMat = new THREE.MeshStandardMaterial({ color: 0xf2e9e6, roughness: 0.6, emissive: col, emissiveIntensity: 0.12 });
+  const ribo = new THREE.InstancedMesh(new THREE.SphereGeometry(0.045, 8, 6), riboMat, spec.ribo);
+  const m = new THREE.Matrix4();
+  let placed = 0, tries = 0;
+  while (placed < spec.ribo && tries++ < spec.ribo * 40) {
+    const x = (Math.random() - 0.5) * (H + R * 1.1);
+    const rr = Math.sqrt(Math.random()) * R * 0.82;
+    const a = Math.random() * Math.PI * 2;
+    const y = Math.cos(a) * rr, z = Math.sin(a) * rr;
+    const edge = Math.max(0, Math.abs(x) - H / 2);
+    if (edge * edge + rr * rr > (R * 0.78) * (R * 0.78)) continue;
+    m.makeTranslation(x, y, z); ribo.setMatrixAt(placed++, m);
+  }
+  ribo.count = placed; g.add(ribo);
+
+  // nucleoid
+  const dna = new THREE.Mesh(new THREE.TorusKnotGeometry(0.46, 0.035, 110, 8, 2, 3),
+    new THREE.MeshStandardMaterial({ color: 0xf2e9e6, roughness: 0.5, transparent: true, opacity: 0.5 }));
+  dna.rotation.set(0.5, 0.8, 0); g.add(dna);
+
+  // ATP synthase: mushrooms on the membrane
+  const atpMat = new THREE.MeshStandardMaterial({ color: 0xffd9a8, roughness: 0.4, emissive: 0x3a2412, emissiveIntensity: 0.3 });
+  for (let i = 0; i < spec.atp; i++) {
+    const t = i / spec.atp;
+    const dir = new THREE.Vector3(Math.cos(t * Math.PI * 2) * 0.9, Math.sin(t * Math.PI * 7.3), Math.sin(t * Math.PI * 2) * 0.9).normalize();
+    const { p, n } = surfacePoint(R, H, dir);
+    const stalk = new THREE.Mesh(new THREE.CylinderGeometry(0.03, 0.03, 0.14, 6), atpMat);
+    const head = new THREE.Mesh(new THREE.SphereGeometry(0.075, 10, 8), atpMat);
+    const q = new THREE.Quaternion().setFromUnitVectors(new THREE.Vector3(0, 1, 0), n);
+    stalk.position.copy(p).addScaledVector(n, 0.05); stalk.quaternion.copy(q);
+    head.position.copy(p).addScaledVector(n, 0.15);
+    g.add(stalk, head);
+  }
+
+  // transporters: studs through the membrane
+  const pumpMat = new THREE.MeshStandardMaterial({ color: col.clone().lerp(new THREE.Color(0xffffff), 0.45), roughness: 0.5 });
+  for (let i = 0; i < spec.pumps; i++) {
+    const t = i / spec.pumps;
+    const dir = new THREE.Vector3(Math.sin(t * Math.PI * 4.7), Math.cos(t * Math.PI * 2.9), Math.sin(t * Math.PI * 2 + 1.1)).normalize();
+    const { p, n } = surfacePoint(R, H, dir);
+    const stud = new THREE.Mesh(new THREE.CylinderGeometry(0.055, 0.055, 0.17, 7), pumpMat);
+    stud.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), n);
+    stud.position.copy(p); g.add(stud);
+  }
+
+  // pili / adhesins: the repeat-domain surface structures
+  const piliMat = new THREE.MeshStandardMaterial({ color: col.clone().lerp(new THREE.Color(0xffffff), 0.2), roughness: 0.7 });
+  for (let i = 0; i < spec.pili; i++) {
+    const t = i / Math.max(spec.pili, 1);
+    const dir = new THREE.Vector3(Math.cos(t * 6.9) * 0.6, Math.sin(t * 5.1), Math.cos(t * 3.3)).normalize();
+    const { p, n } = surfacePoint(R, H, dir);
+    const len = 0.5 + (i % 3) * 0.12;
+    const pil = new THREE.Mesh(new THREE.CylinderGeometry(0.014, 0.022, len, 5), piliMat);
+    pil.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), n);
+    pil.position.copy(p).addScaledVector(n, len / 2); g.add(pil);
+  }
+
+  // flagellum
+  if (spec.flagella) {
+    const pts = [];
+    for (let i = 0; i <= 80; i++) {
+      const u = i / 80, x = -(H / 2 + R) - u * 1.9;
+      pts.push(new THREE.Vector3(x, Math.sin(u * 20) * 0.19 * Math.min(1, u * 4), Math.cos(u * 20) * 0.19 * Math.min(1, u * 4)));
+    }
+    const fl = new THREE.Mesh(new THREE.TubeGeometry(new THREE.CatmullRomCurve3(pts), 90, 0.028, 6, false),
+      new THREE.MeshStandardMaterial({ color: col.clone().lerp(new THREE.Color(0xffffff), 0.3), roughness: 0.6 }));
+    g.add(fl);
+  }
+
+  g.scale.setScalar(spec.scale * 1.22);
+  return g;
+}
+
+let current = null, currentIdx = -1;
+function show(i) {
+  if (currentIdx === i) return;
+  currentIdx = i;
+  if (current) root.remove(current);
+  current = buildCell(CELLS[i]);
+  root.add(current);
+  paint(CELLS[i]);
+  [...picker.children].forEach((b, k) => b.setAttribute("aria-pressed", String(k === i)));
+}
+
+const picker = document.getElementById("picker");
+CELLS.forEach((c, i) => {
+  const b = document.createElement("button");
+  b.type = "button";
+  b.style.setProperty("--site", `var(${c.cssVar})`);
+  b.innerHTML = `${c.name}<span class="sub">${c.sub}</span>`;
+  b.addEventListener("click", () => show(i));
+  picker.appendChild(b);
+});
+
+function paint(c) {
+  const site = `var(${c.cssVar})`;
+  document.getElementById("dropCard").style.setProperty("--site", site);
+  document.getElementById("keepCard").style.setProperty("--site", site);
+  const drops = document.getElementById("drops");
+  if (!c.drops.length) {
+    drops.innerHTML = `<p style="font-size:13.5px;color:var(--muted)">기준이 되는 세포입니다. 아래 세 자리는 모두 여기서 시작합니다.</p>`;
+  } else {
+    const max = Math.max(...c.drops.map(d => d[1]));
+    drops.innerHTML = c.drops.map(([k, v]) => `
+      <div class="bar"><span>${k}</span><span class="num">${v.toFixed(2)}배</span>
+        <span class="track"><span class="fill" style="width:${(v / max * 100).toFixed(1)}%;background:${site}"></span></span></div>`).join("");
+  }
+  document.getElementById("keeps").innerHTML = c.keeps.map(k => `<span>${k}</span>`).join("");
+  document.getElementById("keepNote").textContent = c.note;
+}
+
+function resize() {
+  const w = canvas.clientWidth, h = canvas.clientHeight;
+  if (!w || !h) return;
+  renderer.setSize(w, h, false);
+  camera.aspect = w / h; camera.updateProjectionMatrix();
+}
+addEventListener("resize", resize);
+const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+if (reduce) controls.autoRotate = false;
+function loop() { requestAnimationFrame(loop); resize(); controls.update(); renderer.render(scene, camera); }
+show(0); resize(); loop();
+</script>

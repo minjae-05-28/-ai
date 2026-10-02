@@ -102,6 +102,7 @@
 | [진화 법칙 지도](https://claude.ai/artifact/6P3rWZp3Y1sjwuh2JycjVj) | 모든 법칙 요약 도식 |
 | [조상 역추적기](https://claude.ai/artifact/6en5NX62SRcLPZhnut7YJg) | 브라우저에서 조상 유전자군 추정 |
 | [화성 소금물 세포](https://claude.ai/artifact/BqL7Xh35uPsdYF3t8utzrs) | 화성 실험 결과, 3D 세포 |
+| [사람 몸의 세포](https://claude.ai/artifact/XW5r3bLqC8MY1t5rzEWLmA) | 장·피부·혈액 세포 3D, 법칙 예측과 공생 세균 채점 |
 | [두 행성의 45억 년](https://claude.ai/artifact/N3rhy44F7hP3aqxMfFxFPK) | 지구·화성 환경 변화 |
 | `obsidian/organelle-evo/` | 법칙·주제·문헌 노트 볼트 (`scripts/build_obsidian.py`로 재생성) |
 | `docs/RESEARCH_LOG.md` | 단계별 연구 일지 |
