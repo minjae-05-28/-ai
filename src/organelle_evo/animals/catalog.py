@@ -140,6 +140,10 @@ SPECIES = {
     "Trichinella spiralis": Env("nematode", 37.0, 300, parasite=1),
     "Schistosoma mansoni": Env("flatworm", 37.0, 300, hypoxia=1, parasite=1),
     "Echinococcus granulosus": Env("flatworm", 37.0, 300, hypoxia=1, parasite=1),
+
+    # --- Free-living flatworm: proxy for the flatworm parasites (replaces an annelid proxy).
+    # Marine/brackish interstitial sand of the northern Adriatic.
+    "Macrostomum lignano": Env("flatworm", 20.0, 1000),
 }
 
 
@@ -178,8 +182,9 @@ def axes(species: str):
 # Each entry: (origin, proxies in order of preference, descendant, distant). Pairs sharing an
 # origin are one evolutionary event and are held out together. distant=True marks pairs whose
 # only available proxy is far away (hundreds of Myr), reported with and without them:
-#   - flatworm parasites: the free-living flatworm (Schmidtea) has no annotated assembly, so
-#     an annelid stands in;
+#   - flatworm parasites: Schmidtea has no annotated assembly; Macrostomum lignano (a free-living
+#     flatworm) is the proxy, and only if it cannot be profiled does an annelid stand in, which
+#     is then marked distant;
 #   - mammals: no living ectotherm synapsid exists, so a lizard stands in.
 # Controls change no axis (or very little) and measure drift between relatives.
 # The urea axis has no pair (no osmoregulating sister to the chondrichthyans within reach).
@@ -188,8 +193,10 @@ PAIR_SPECS = [
     # parasitism
     ("nematode parasitism, filarial", ("Caenorhabditis elegans",), "Brugia malayi", False),
     ("nematode parasitism, Trichinella", ("Caenorhabditis elegans",), "Trichinella spiralis", False),
-    ("flatworm parasitism", ("Helobdella robusta", "Capitella teleta"), "Schistosoma mansoni", True),
-    ("flatworm parasitism", ("Helobdella robusta", "Capitella teleta"), "Echinococcus granulosus", True),
+    ("flatworm parasitism", ("Macrostomum lignano", "Helobdella robusta", "Capitella teleta"),
+     "Schistosoma mansoni", False),
+    ("flatworm parasitism", ("Macrostomum lignano", "Helobdella robusta", "Capitella teleta"),
+     "Echinococcus granulosus", False),
     # endothermy
     ("bird endothermy", ("Crocodylus porosus",), "Gallus gallus", False),
     ("bird endothermy", ("Crocodylus porosus",), "Anas platyrhynchos", False),
@@ -223,6 +230,11 @@ PAIR_SPECS = [
     ("control: tick -> mite", ("Ixodes scapularis",), "Tetranychus urticae", False),
 ]
 
+# Fallback proxies hundreds of Myr away from the descendant: a pair that resolves to one of
+# them is reported as distant whatever its spec says.
+DISTANT_FALLBACKS = {"Helobdella robusta": ("Schistosoma mansoni", "Echinococcus granulosus"),
+                     "Capitella teleta": ("Schistosoma mansoni", "Echinococcus granulosus")}
+
 PAIR_AXES = ("colder", "freshwater", "hypoxia", "endothermy", "parasite")
 TCELL_SCALE = 20.0  # deg C per unit of the colder axis
 
@@ -242,5 +254,6 @@ def resolve_pairs(available) -> list[tuple[str, str, str, bool]]:
             continue
         proxy = next((p for p in proxies if p in available and p != desc), None)
         if proxy is not None:
+            distant = distant or desc in DISTANT_FALLBACKS.get(proxy, ())
             out.append((origin, proxy, desc, distant))
     return out
