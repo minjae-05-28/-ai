@@ -1,0 +1,7782 @@
+{
+  "id": "animal_content_v1",
+  "scope": "Gene-family (Pfam) loss, duplication and gain in animals when a lineage changes cell temperature, moves from sea to fresh water, into hypoxia, becomes endothermic or parasitic. Learned from designed within-clade pairs; animal registry only.",
+  "model": "Linear birth-death per family; log rate = a_pair + x @ (axis change @ W), design = (base, colder, freshwater, hypoxia, endothermy, parasite).",
+  "feature_names": [
+    "hydrophobicity_gravy",
+    "tm_helices",
+    "protein_length",
+    "redox_core",
+    "atp_synthase",
+    "translation",
+    "transcription",
+    "protein_targeting",
+    "ubiquity_free_living",
+    "copies_free_living",
+    "hmm_length",
+    "clan_size",
+    "in_clan",
+    "has_go_annotation",
+    "go:DNA binding",
+    "go:RNA binding",
+    "go:catalytic activity",
+    "go:structural molecule activity",
+    "go:transporter activity",
+    "go:extracellular region",
+    "go:nucleus",
+    "go:mitochondrion",
+    "go:ribosome",
+    "go:carbohydrate metabolic process",
+    "go:DNA-templated transcription",
+    "go:regulation of DNA-templated transcription",
+    "go:lipid metabolic process",
+    "go:oxidoreductase activity",
+    "go:transferase activity",
+    "go:hydrolase activity",
+    "go:signaling",
+    "go:organelle",
+    "go:receptor ligand activity",
+    "go:transmembrane transport",
+    "go:molecular function regulator activity",
+    "go:catalytic activity, acting on a protein",
+    "go:catalytic activity, acting on RNA",
+    "go:transcription regulator activity",
+    "go:ATP-dependent activity",
+    "go:carbohydrate derivative metabolic process",
+    "kw:kinase",
+    "kw:phosphatase",
+    "kw:transporter_channel",
+    "kw:zinc_finger",
+    "kw:repeat_domain",
+    "kw:ubiquitin_system",
+    "kw:protease",
+    "kw:helicase_nucleic",
+    "kw:gtpase_signalling",
+    "kw:methyl_glyco_transferase",
+    "kw:cytoskeleton_motor",
+    "kw:cilium_flagellum",
+    "kw:cell_adhesion_surface",
+    "kw:lipid_metabolism",
+    "kw:amino_acid_metabolism",
+    "kw:uncharacterised"
+  ],
+  "data": {
+    "pairs": [
+      {
+        "origin": "nematode parasitism, filarial",
+        "proxy": "Caenorhabditis elegans",
+        "descendant": "Brugia malayi",
+        "distant": false,
+        "design": [
+          1.0,
+          -0.85,
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "share_lost": 0.1333
+      },
+      {
+        "origin": "nematode parasitism, Trichinella",
+        "proxy": "Caenorhabditis elegans",
+        "descendant": "Trichinella spiralis",
+        "distant": false,
+        "design": [
+          1.0,
+          -0.85,
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "share_lost": 0.2856
+      },
+      {
+        "origin": "flatworm parasitism",
+        "proxy": "Macrostomum lignano",
+        "descendant": "Schistosoma mansoni",
+        "distant": false,
+        "design": [
+          1.0,
+          -0.85,
+          1.0,
+          1.0,
+          0.0,
+          1.0
+        ],
+        "share_lost": 0.2603
+      },
+      {
+        "origin": "flatworm parasitism",
+        "proxy": "Macrostomum lignano",
+        "descendant": "Echinococcus granulosus",
+        "distant": false,
+        "design": [
+          1.0,
+          -0.85,
+          1.0,
+          1.0,
+          0.0,
+          1.0
+        ],
+        "share_lost": 0.3039
+      },
+      {
+        "origin": "bird endothermy",
+        "proxy": "Crocodylus porosus",
+        "descendant": "Gallus gallus",
+        "distant": false,
+        "design": [
+          1.0,
+          -0.575,
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        "share_lost": 0.033
+      },
+      {
+        "origin": "bird endothermy",
+        "proxy": "Crocodylus porosus",
+        "descendant": "Anas platyrhynchos",
+        "distant": false,
+        "design": [
+          1.0,
+          -0.575,
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        "share_lost": 0.0283
+      },
+      {
+        "origin": "bird endothermy",
+        "proxy": "Crocodylus porosus",
+        "descendant": "Taeniopygia guttata",
+        "distant": false,
+        "design": [
+          1.0,
+          -0.55,
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        "share_lost": 0.0388
+      },
+      {
+        "origin": "bird endothermy",
+        "proxy": "Crocodylus porosus",
+        "descendant": "Aptenodytes forsteri",
+        "distant": false,
+        "design": [
+          1.0,
+          -0.4,
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        "share_lost": 0.0645
+      },
+      {
+        "origin": "mammal endothermy",
+        "proxy": "Anolis carolinensis",
+        "descendant": "Ornithorhynchus anatinus",
+        "distant": true,
+        "design": [
+          1.0,
+          -0.1,
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        "share_lost": 0.0333
+      },
+      {
+        "origin": "mammal endothermy",
+        "proxy": "Anolis carolinensis",
+        "descendant": "Mus musculus",
+        "distant": true,
+        "design": [
+          1.0,
+          -0.35,
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        "share_lost": 0.0205
+      },
+      {
+        "origin": "Antarctic notothenioids",
+        "proxy": "Takifugu rubripes",
+        "descendant": "Notothenia coriiceps",
+        "distant": false,
+        "design": [
+          1.0,
+          1.05,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "share_lost": 0.0945
+      },
+      {
+        "origin": "Antarctic notothenioids",
+        "proxy": "Takifugu rubripes",
+        "descendant": "Pseudochaenichthys georgianus",
+        "distant": false,
+        "design": [
+          1.0,
+          1.05,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "share_lost": 0.0367
+      },
+      {
+        "origin": "cod",
+        "proxy": "Oryzias latipes",
+        "descendant": "Gadus morhua",
+        "distant": false,
+        "design": [
+          1.0,
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "share_lost": 0.0311
+      },
+      {
+        "origin": "cold catshark",
+        "proxy": "Chiloscyllium punctatum",
+        "descendant": "Scyliorhinus canicula",
+        "distant": false,
+        "design": [
+          1.0,
+          0.7,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "share_lost": 0.0268
+      },
+      {
+        "origin": "cold skate",
+        "proxy": "Chiloscyllium punctatum",
+        "descendant": "Amblyraja radiata",
+        "distant": false,
+        "design": [
+          1.0,
+          1.1,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "share_lost": 0.0416
+      },
+      {
+        "origin": "cold sea urchin",
+        "proxy": "Lytechinus variegatus",
+        "descendant": "Strongylocentrotus purpuratus",
+        "distant": false,
+        "design": [
+          1.0,
+          0.6,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "share_lost": 0.0208
+      },
+      {
+        "origin": "intertidal mussel",
+        "proxy": "Pecten maximus",
+        "descendant": "Mytilus edulis",
+        "distant": false,
+        "design": [
+          1.0,
+          0.0,
+          0.0,
+          1.0,
+          0.0,
+          0.0
+        ],
+        "share_lost": 0.0323
+      },
+      {
+        "origin": "intertidal oyster",
+        "proxy": "Pecten maximus",
+        "descendant": "Crassostrea gigas",
+        "distant": false,
+        "design": [
+          1.0,
+          -0.4,
+          0.0,
+          1.0,
+          0.0,
+          0.0
+        ],
+        "share_lost": 0.0662
+      },
+      {
+        "origin": "mudskipper",
+        "proxy": "Oryzias latipes",
+        "descendant": "Periophthalmus magnuspinnatus",
+        "distant": false,
+        "design": [
+          1.0,
+          -0.1,
+          0.0,
+          1.0,
+          0.0,
+          0.0
+        ],
+        "share_lost": 0.0277
+      },
+      {
+        "origin": "anoxia-tolerant turtle",
+        "proxy": "Crocodylus porosus",
+        "descendant": "Chrysemys picta bellii",
+        "distant": false,
+        "design": [
+          1.0,
+          0.3,
+          0.0,
+          1.0,
+          0.0,
+          0.0
+        ],
+        "share_lost": 0.0152
+      },
+      {
+        "origin": "freshwater cnidarian",
+        "proxy": "Nematostella vectensis",
+        "descendant": "Hydra vulgaris",
+        "distant": false,
+        "design": [
+          1.0,
+          0.0,
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "share_lost": 0.1728
+      },
+      {
+        "origin": "freshwater crustacean",
+        "proxy": "Penaeus vannamei",
+        "descendant": "Daphnia pulex",
+        "distant": false,
+        "design": [
+          1.0,
+          0.35,
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "share_lost": 0.1183
+      },
+      {
+        "origin": "freshwater annelid",
+        "proxy": "Capitella teleta",
+        "descendant": "Helobdella robusta",
+        "distant": false,
+        "design": [
+          1.0,
+          -0.1,
+          1.0,
+          -1.0,
+          0.0,
+          0.0
+        ],
+        "share_lost": 0.2689
+      },
+      {
+        "origin": "control: primate -> rodent",
+        "proxy": "Homo sapiens",
+        "descendant": "Mus musculus",
+        "distant": false,
+        "design": [
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "share_lost": 0.0167
+      },
+      {
+        "origin": "control: cow -> dog",
+        "proxy": "Bos taurus",
+        "descendant": "Canis lupus familiaris",
+        "distant": false,
+        "design": [
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "share_lost": 0.018
+      },
+      {
+        "origin": "control: chicken -> duck",
+        "proxy": "Gallus gallus",
+        "descendant": "Anas platyrhynchos",
+        "distant": false,
+        "design": [
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "share_lost": 0.0212
+      },
+      {
+        "origin": "control: salmon -> trout",
+        "proxy": "Salmo salar",
+        "descendant": "Oncorhynchus mykiss",
+        "distant": false,
+        "design": [
+          1.0,
+          -0.1,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "share_lost": 0.0091
+      },
+      {
+        "origin": "control: zebrafish -> cavefish",
+        "proxy": "Danio rerio",
+        "descendant": "Astyanax mexicanus",
+        "distant": false,
+        "design": [
+          1.0,
+          0.2,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "share_lost": 0.0184
+      },
+      {
+        "origin": "control: fly -> mosquito",
+        "proxy": "Drosophila melanogaster",
+        "descendant": "Anopheles gambiae",
+        "distant": false,
+        "design": [
+          1.0,
+          -0.1,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "share_lost": 0.0658
+      },
+      {
+        "origin": "control: tick -> mite",
+        "proxy": "Ixodes scapularis",
+        "descendant": "Tetranychus urticae",
+        "distant": false,
+        "design": [
+          1.0,
+          -0.25,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "share_lost": 0.2305
+      }
+    ],
+    "n_families": 11883,
+    "pairs_per_axis": {
+      "colder": 18,
+      "freshwater": 5,
+      "hypoxia": 7,
+      "endothermy": 6,
+      "parasite": 4
+    }
+  },
+  "validation": {
+    "leave_one_origin_out_auroc": {
+      "all": {
+        "copies_only": {
+          "mean": 0.6755,
+          "ci95": [
+            0.6488,
+            0.6962
+          ],
+          "n_pairs": 23,
+          "n_origins": 17
+        },
+        "rarity": {
+          "mean": 0.8361,
+          "ci95": [
+            0.8077,
+            0.8588
+          ],
+          "n_pairs": 23,
+          "n_origins": 17
+        },
+        "memorisation": {
+          "mean": 0.7763,
+          "ci95": [
+            0.7484,
+            0.8074
+          ],
+          "n_pairs": 23,
+          "n_origins": 17
+        },
+        "no_axes": {
+          "mean": 0.8009,
+          "ci95": [
+            0.7717,
+            0.8237
+          ],
+          "n_pairs": 23,
+          "n_origins": 17
+        },
+        "axis_law": {
+          "mean": 0.7943,
+          "ci95": [
+            0.7558,
+            0.8219
+          ],
+          "n_pairs": 23,
+          "n_origins": 17
+        },
+        "axis_law - no_axes": {
+          "mean": -0.0066,
+          "ci95": [
+            -0.0175,
+            0.0008
+          ],
+          "n_pairs": 23,
+          "n_origins": 17
+        },
+        "axis_law - memorisation": {
+          "mean": 0.0181,
+          "ci95": [
+            -0.032,
+            0.0589
+          ],
+          "n_pairs": 23,
+          "n_origins": 17
+        },
+        "axis_law - rarity": {
+          "mean": -0.0418,
+          "ci95": [
+            -0.0842,
+            -0.0077
+          ],
+          "n_pairs": 23,
+          "n_origins": 17
+        },
+        "axes_better_in": 9
+      },
+      "close_proxies_only": {
+        "copies_only": {
+          "mean": 0.6776,
+          "ci95": [
+            0.6473,
+            0.6987
+          ],
+          "n_pairs": 21,
+          "n_origins": 16
+        },
+        "rarity": {
+          "mean": 0.8324,
+          "ci95": [
+            0.8037,
+            0.857
+          ],
+          "n_pairs": 21,
+          "n_origins": 16
+        },
+        "memorisation": {
+          "mean": 0.7681,
+          "ci95": [
+            0.7439,
+            0.7968
+          ],
+          "n_pairs": 21,
+          "n_origins": 16
+        },
+        "no_axes": {
+          "mean": 0.8007,
+          "ci95": [
+            0.7671,
+            0.8272
+          ],
+          "n_pairs": 21,
+          "n_origins": 16
+        },
+        "axis_law": {
+          "mean": 0.7924,
+          "ci95": [
+            0.7477,
+            0.8241
+          ],
+          "n_pairs": 21,
+          "n_origins": 16
+        },
+        "axis_law - no_axes": {
+          "mean": -0.0083,
+          "ci95": [
+            -0.0198,
+            -0.0013
+          ],
+          "n_pairs": 21,
+          "n_origins": 16
+        },
+        "axis_law - memorisation": {
+          "mean": 0.0242,
+          "ci95": [
+            -0.0299,
+            0.0643
+          ],
+          "n_pairs": 21,
+          "n_origins": 16
+        },
+        "axis_law - rarity": {
+          "mean": -0.0401,
+          "ci95": [
+            -0.088,
+            -0.0048
+          ],
+          "n_pairs": 21,
+          "n_origins": 16
+        },
+        "axes_better_in": 7
+      }
+    }
+  },
+  "caveats": [
+    "Ancestors are extant relatives that kept the ancestral condition; they have evolved too.",
+    "Few pairs per axis and several pairs share one origin; intervals resample origins.",
+    "Flatworm parasites use an annelid proxy and mammals a lizard proxy (hundreds of Myr): results are reported with and without these distant pairs.",
+    "Animal genome annotation quality varies; a family missing from an assembly reads as lost.",
+    "Axis values are literature approximations (see organelle_evo.animals.catalog).",
+    "The urea axis of animal_axes_v1 has no pair and is not in this law.",
+    "Noise floor: on random profiles (smoke test, no signal) the pipeline gave axis_law - rarity +0.005 [0.001, 0.010]; differences below about 0.01 should not be read as effects."
+  ],
+  "contexts": {
+    "loss_base": {
+      "hydrophobicity_gravy": {
+        "weight": 0.0251,
+        "ci95": [
+          -0.0144,
+          0.0647
+        ]
+      },
+      "tm_helices": {
+        "weight": -0.0156,
+        "ci95": [
+          -0.0517,
+          0.0206
+        ]
+      },
+      "protein_length": {
+        "weight": -0.3453,
+        "ci95": [
+          -0.4466,
+          -0.244
+        ]
+      },
+      "redox_core": {
+        "weight": 0.4356,
+        "ci95": [
+          0.0374,
+          0.8339
+        ]
+      },
+      "atp_synthase": {
+        "weight": 0.3678,
+        "ci95": [
+          0.0342,
+          0.7014
+        ]
+      },
+      "translation": {
+        "weight": -0.2217,
+        "ci95": [
+          -0.6652,
+          0.2218
+        ]
+      },
+      "transcription": {
+        "weight": -1.1536,
+        "ci95": [
+          -1.578,
+          -0.7293
+        ]
+      },
+      "protein_targeting": {
+        "weight": -0.4379,
+        "ci95": [
+          -0.8972,
+          0.0213
+        ]
+      },
+      "ubiquity_free_living": {
+        "weight": -0.9449,
+        "ci95": [
+          -1.0712,
+          -0.8186
+        ]
+      },
+      "copies_free_living": {
+        "weight": 0.4989,
+        "ci95": [
+          0.3674,
+          0.6303
+        ]
+      },
+      "hmm_length": {
+        "weight": 0.348,
+        "ci95": [
+          0.247,
+          0.449
+        ]
+      },
+      "clan_size": {
+        "weight": 0.0098,
+        "ci95": [
+          -0.0346,
+          0.0541
+        ]
+      },
+      "in_clan": {
+        "weight": 0.1658,
+        "ci95": [
+          0.1143,
+          0.2174
+        ]
+      },
+      "has_go_annotation": {
+        "weight": 0.0576,
+        "ci95": [
+          0.0104,
+          0.1047
+        ]
+      },
+      "go:DNA binding": {
+        "weight": 0.013,
+        "ci95": [
+          -0.1609,
+          0.1868
+        ]
+      },
+      "go:RNA binding": {
+        "weight": -0.2427,
+        "ci95": [
+          -0.4473,
+          -0.0381
+        ]
+      },
+      "go:catalytic activity": {
+        "weight": 0.0823,
+        "ci95": [
+          0.0191,
+          0.1455
+        ]
+      },
+      "go:structural molecule activity": {
+        "weight": -0.1647,
+        "ci95": [
+          -0.3806,
+          0.0513
+        ]
+      },
+      "go:transporter activity": {
+        "weight": -0.0344,
+        "ci95": [
+          -0.2154,
+          0.1466
+        ]
+      },
+      "go:extracellular region": {
+        "weight": 0.3252,
+        "ci95": [
+          0.1357,
+          0.5147
+        ]
+      },
+      "go:nucleus": {
+        "weight": -0.1902,
+        "ci95": [
+          -0.4034,
+          0.0229
+        ]
+      },
+      "go:mitochondrion": {
+        "weight": 0.0232,
+        "ci95": [
+          -0.2666,
+          0.3129
+        ]
+      },
+      "go:ribosome": {
+        "weight": 0.177,
+        "ci95": [
+          -0.0752,
+          0.4292
+        ]
+      },
+      "go:carbohydrate metabolic process": {
+        "weight": 0.003,
+        "ci95": [
+          -0.2264,
+          0.2325
+        ]
+      },
+      "go:DNA-templated transcription": {
+        "weight": -0.0236,
+        "ci95": [
+          -0.4567,
+          0.4096
+        ]
+      },
+      "go:regulation of DNA-templated transcription": {
+        "weight": -0.3582,
+        "ci95": [
+          -0.5837,
+          -0.1328
+        ]
+      },
+      "go:lipid metabolic process": {
+        "weight": -0.025,
+        "ci95": [
+          -0.2002,
+          0.1501
+        ]
+      },
+      "go:oxidoreductase activity": {
+        "weight": 0.3595,
+        "ci95": [
+          0.1935,
+          0.5255
+        ]
+      },
+      "go:transferase activity": {
+        "weight": 0.0967,
+        "ci95": [
+          -0.025,
+          0.2184
+        ]
+      },
+      "go:hydrolase activity": {
+        "weight": 0.1611,
+        "ci95": [
+          0.0754,
+          0.2468
+        ]
+      },
+      "go:signaling": {
+        "weight": -0.5772,
+        "ci95": [
+          -0.7413,
+          -0.4131
+        ]
+      },
+      "go:organelle": {
+        "weight": 0.0111,
+        "ci95": [
+          -0.1569,
+          0.179
+        ]
+      },
+      "go:receptor ligand activity": {
+        "weight": -0.8386,
+        "ci95": [
+          -1.212,
+          -0.4651
+        ]
+      },
+      "go:transmembrane transport": {
+        "weight": 0.0878,
+        "ci95": [
+          -0.0849,
+          0.2605
+        ]
+      },
+      "go:molecular function regulator activity": {
+        "weight": 0.3632,
+        "ci95": [
+          0.0807,
+          0.6457
+        ]
+      },
+      "go:catalytic activity, acting on a protein": {
+        "weight": -0.258,
+        "ci95": [
+          -0.4395,
+          -0.0765
+        ]
+      },
+      "go:catalytic activity, acting on RNA": {
+        "weight": -0.3487,
+        "ci95": [
+          -0.6502,
+          -0.0471
+        ]
+      },
+      "go:transcription regulator activity": {
+        "weight": 0.0937,
+        "ci95": [
+          -0.1261,
+          0.3136
+        ]
+      },
+      "go:ATP-dependent activity": {
+        "weight": -0.1704,
+        "ci95": [
+          -0.3547,
+          0.0139
+        ]
+      },
+      "go:carbohydrate derivative metabolic process": {
+        "weight": -0.0503,
+        "ci95": [
+          -0.2437,
+          0.1431
+        ]
+      },
+      "kw:kinase": {
+        "weight": -0.3639,
+        "ci95": [
+          -0.5429,
+          -0.1849
+        ]
+      },
+      "kw:phosphatase": {
+        "weight": -0.1627,
+        "ci95": [
+          -0.3947,
+          0.0693
+        ]
+      },
+      "kw:transporter_channel": {
+        "weight": -0.0446,
+        "ci95": [
+          -0.1584,
+          0.0692
+        ]
+      },
+      "kw:zinc_finger": {
+        "weight": 0.141,
+        "ci95": [
+          0.0165,
+          0.2655
+        ]
+      },
+      "kw:repeat_domain": {
+        "weight": -0.3323,
+        "ci95": [
+          -0.4366,
+          -0.228
+        ]
+      },
+      "kw:ubiquitin_system": {
+        "weight": -0.3503,
+        "ci95": [
+          -0.4598,
+          -0.2408
+        ]
+      },
+      "kw:protease": {
+        "weight": 0.3435,
+        "ci95": [
+          0.115,
+          0.572
+        ]
+      },
+      "kw:helicase_nucleic": {
+        "weight": 0.4363,
+        "ci95": [
+          0.3303,
+          0.5423
+        ]
+      },
+      "kw:gtpase_signalling": {
+        "weight": -0.0586,
+        "ci95": [
+          -0.4323,
+          0.3152
+        ]
+      },
+      "kw:methyl_glyco_transferase": {
+        "weight": 0.2667,
+        "ci95": [
+          0.0989,
+          0.4345
+        ]
+      },
+      "kw:cytoskeleton_motor": {
+        "weight": -0.32,
+        "ci95": [
+          -0.5346,
+          -0.1055
+        ]
+      },
+      "kw:cilium_flagellum": {
+        "weight": -0.1701,
+        "ci95": [
+          -0.4019,
+          0.0617
+        ]
+      },
+      "kw:cell_adhesion_surface": {
+        "weight": -0.2898,
+        "ci95": [
+          -0.48,
+          -0.0996
+        ]
+      },
+      "kw:lipid_metabolism": {
+        "weight": 0.1174,
+        "ci95": [
+          -0.0439,
+          0.2786
+        ]
+      },
+      "kw:amino_acid_metabolism": {
+        "weight": 0.0577,
+        "ci95": [
+          -0.2296,
+          0.3451
+        ]
+      },
+      "kw:uncharacterised": {
+        "weight": 0.0565,
+        "ci95": [
+          -0.0469,
+          0.1599
+        ]
+      }
+    },
+    "loss_colder": {
+      "hydrophobicity_gravy": {
+        "weight": 0.01,
+        "ci95": [
+          -0.0535,
+          0.0736
+        ]
+      },
+      "tm_helices": {
+        "weight": -0.0132,
+        "ci95": [
+          -0.0578,
+          0.0314
+        ]
+      },
+      "protein_length": {
+        "weight": -0.0864,
+        "ci95": [
+          -0.1845,
+          0.0116
+        ]
+      },
+      "redox_core": {
+        "weight": -0.0888,
+        "ci95": [
+          -0.7027,
+          0.525
+        ]
+      },
+      "atp_synthase": {
+        "weight": 0.0062,
+        "ci95": [
+          -0.5712,
+          0.5836
+        ]
+      },
+      "translation": {
+        "weight": 0.3578,
+        "ci95": [
+          -0.1823,
+          0.8979
+        ]
+      },
+      "transcription": {
+        "weight": 0.4951,
+        "ci95": [
+          -0.6398,
+          1.6301
+        ]
+      },
+      "protein_targeting": {
+        "weight": 0.4615,
+        "ci95": [
+          -0.0049,
+          0.9279
+        ]
+      },
+      "ubiquity_free_living": {
+        "weight": 0.026,
+        "ci95": [
+          -0.2066,
+          0.2587
+        ]
+      },
+      "copies_free_living": {
+        "weight": -0.0124,
+        "ci95": [
+          -0.1276,
+          0.1028
+        ]
+      },
+      "hmm_length": {
+        "weight": 0.0632,
+        "ci95": [
+          -0.0387,
+          0.1651
+        ]
+      },
+      "clan_size": {
+        "weight": 0.0653,
+        "ci95": [
+          0.0028,
+          0.1277
+        ]
+      },
+      "in_clan": {
+        "weight": -0.0059,
+        "ci95": [
+          -0.0964,
+          0.0845
+        ]
+      },
+      "has_go_annotation": {
+        "weight": -0.0534,
+        "ci95": [
+          -0.1102,
+          0.0034
+        ]
+      },
+      "go:DNA binding": {
+        "weight": 0.0119,
+        "ci95": [
+          -0.2023,
+          0.2261
+        ]
+      },
+      "go:RNA binding": {
+        "weight": 0.2368,
+        "ci95": [
+          -0.212,
+          0.6856
+        ]
+      },
+      "go:catalytic activity": {
+        "weight": -0.0273,
+        "ci95": [
+          -0.1106,
+          0.056
+        ]
+      },
+      "go:structural molecule activity": {
+        "weight": -0.0747,
+        "ci95": [
+          -0.747,
+          0.5976
+        ]
+      },
+      "go:transporter activity": {
+        "weight": -0.0411,
+        "ci95": [
+          -0.2673,
+          0.1851
+        ]
+      },
+      "go:extracellular region": {
+        "weight": 0.1902,
+        "ci95": [
+          -0.0782,
+          0.4587
+        ]
+      },
+      "go:nucleus": {
+        "weight": -0.057,
+        "ci95": [
+          -0.38,
+          0.2661
+        ]
+      },
+      "go:mitochondrion": {
+        "weight": -0.3061,
+        "ci95": [
+          -0.712,
+          0.0997
+        ]
+      },
+      "go:ribosome": {
+        "weight": 0.1091,
+        "ci95": [
+          -0.6654,
+          0.8836
+        ]
+      },
+      "go:carbohydrate metabolic process": {
+        "weight": -0.0539,
+        "ci95": [
+          -0.3341,
+          0.2263
+        ]
+      },
+      "go:DNA-templated transcription": {
+        "weight": 0.4966,
+        "ci95": [
+          -0.0419,
+          1.0352
+        ]
+      },
+      "go:regulation of DNA-templated transcription": {
+        "weight": -0.0924,
+        "ci95": [
+          -0.3933,
+          0.2085
+        ]
+      },
+      "go:lipid metabolic process": {
+        "weight": 0.0725,
+        "ci95": [
+          -0.2114,
+          0.3564
+        ]
+      },
+      "go:oxidoreductase activity": {
+        "weight": -0.29,
+        "ci95": [
+          -0.5735,
+          -0.0064
+        ]
+      },
+      "go:transferase activity": {
+        "weight": 0.1226,
+        "ci95": [
+          -0.183,
+          0.4282
+        ]
+      },
+      "go:hydrolase activity": {
+        "weight": -0.0621,
+        "ci95": [
+          -0.2456,
+          0.1214
+        ]
+      },
+      "go:signaling": {
+        "weight": -0.0723,
+        "ci95": [
+          -0.2813,
+          0.1367
+        ]
+      },
+      "go:organelle": {
+        "weight": 0.2285,
+        "ci95": [
+          -0.0371,
+          0.4941
+        ]
+      },
+      "go:receptor ligand activity": {
+        "weight": -0.5388,
+        "ci95": [
+          -1.058,
+          -0.0197
+        ]
+      },
+      "go:transmembrane transport": {
+        "weight": 0.034,
+        "ci95": [
+          -0.2372,
+          0.3052
+        ]
+      },
+      "go:molecular function regulator activity": {
+        "weight": 0.1761,
+        "ci95": [
+          -0.097,
+          0.4493
+        ]
+      },
+      "go:catalytic activity, acting on a protein": {
+        "weight": -0.0648,
+        "ci95": [
+          -0.318,
+          0.1884
+        ]
+      },
+      "go:catalytic activity, acting on RNA": {
+        "weight": 0.2215,
+        "ci95": [
+          -0.1188,
+          0.5619
+        ]
+      },
+      "go:transcription regulator activity": {
+        "weight": -0.0725,
+        "ci95": [
+          -0.3704,
+          0.2253
+        ]
+      },
+      "go:ATP-dependent activity": {
+        "weight": 0.254,
+        "ci95": [
+          -0.0501,
+          0.558
+        ]
+      },
+      "go:carbohydrate derivative metabolic process": {
+        "weight": -0.0127,
+        "ci95": [
+          -0.2819,
+          0.2565
+        ]
+      },
+      "kw:kinase": {
+        "weight": 0.193,
+        "ci95": [
+          -0.0979,
+          0.4839
+        ]
+      },
+      "kw:phosphatase": {
+        "weight": -0.2382,
+        "ci95": [
+          -0.4593,
+          -0.017
+        ]
+      },
+      "kw:transporter_channel": {
+        "weight": -0.1286,
+        "ci95": [
+          -0.2835,
+          0.0263
+        ]
+      },
+      "kw:zinc_finger": {
+        "weight": -0.2306,
+        "ci95": [
+          -0.4624,
+          0.0013
+        ]
+      },
+      "kw:repeat_domain": {
+        "weight": 0.0362,
+        "ci95": [
+          -0.1386,
+          0.2109
+        ]
+      },
+      "kw:ubiquitin_system": {
+        "weight": -0.0219,
+        "ci95": [
+          -0.1858,
+          0.1419
+        ]
+      },
+      "kw:protease": {
+        "weight": -0.1259,
+        "ci95": [
+          -0.502,
+          0.2502
+        ]
+      },
+      "kw:helicase_nucleic": {
+        "weight": 0.0633,
+        "ci95": [
+          -0.1395,
+          0.2662
+        ]
+      },
+      "kw:gtpase_signalling": {
+        "weight": 0.1282,
+        "ci95": [
+          -0.4844,
+          0.7408
+        ]
+      },
+      "kw:methyl_glyco_transferase": {
+        "weight": -0.1329,
+        "ci95": [
+          -0.3533,
+          0.0876
+        ]
+      },
+      "kw:cytoskeleton_motor": {
+        "weight": 0.0464,
+        "ci95": [
+          -0.3115,
+          0.4043
+        ]
+      },
+      "kw:cilium_flagellum": {
+        "weight": 0.4778,
+        "ci95": [
+          -0.1694,
+          1.1249
+        ]
+      },
+      "kw:cell_adhesion_surface": {
+        "weight": -0.1054,
+        "ci95": [
+          -0.3367,
+          0.1259
+        ]
+      },
+      "kw:lipid_metabolism": {
+        "weight": 0.0324,
+        "ci95": [
+          -0.1997,
+          0.2645
+        ]
+      },
+      "kw:amino_acid_metabolism": {
+        "weight": -0.1237,
+        "ci95": [
+          -0.4947,
+          0.2472
+        ]
+      },
+      "kw:uncharacterised": {
+        "weight": 0.0225,
+        "ci95": [
+          -0.1144,
+          0.1594
+        ]
+      }
+    },
+    "loss_freshwater": {
+      "hydrophobicity_gravy": {
+        "weight": -0.0054,
+        "ci95": [
+          -0.0802,
+          0.0693
+        ]
+      },
+      "tm_helices": {
+        "weight": 0.0084,
+        "ci95": [
+          -0.0295,
+          0.0464
+        ]
+      },
+      "protein_length": {
+        "weight": 0.022,
+        "ci95": [
+          -0.1479,
+          0.1919
+        ]
+      },
+      "redox_core": {
+        "weight": -0.3973,
+        "ci95": [
+          -0.8375,
+          0.0428
+        ]
+      },
+      "atp_synthase": {
+        "weight": -0.6312,
+        "ci95": [
+          -1.7155,
+          0.4531
+        ]
+      },
+      "translation": {
+        "weight": -0.2133,
+        "ci95": [
+          -1.2001,
+          0.7736
+        ]
+      },
+      "transcription": {
+        "weight": 0.4377,
+        "ci95": [
+          -0.1472,
+          1.0226
+        ]
+      },
+      "protein_targeting": {
+        "weight": 0.1129,
+        "ci95": [
+          -0.8244,
+          1.0501
+        ]
+      },
+      "ubiquity_free_living": {
+        "weight": 0.0213,
+        "ci95": [
+          -0.3336,
+          0.3762
+        ]
+      },
+      "copies_free_living": {
+        "weight": -0.0881,
+        "ci95": [
+          -0.4013,
+          0.2252
+        ]
+      },
+      "hmm_length": {
+        "weight": -0.0414,
+        "ci95": [
+          -0.1928,
+          0.1101
+        ]
+      },
+      "clan_size": {
+        "weight": -0.0737,
+        "ci95": [
+          -0.1661,
+          0.0187
+        ]
+      },
+      "in_clan": {
+        "weight": 0.0718,
+        "ci95": [
+          -0.0889,
+          0.2325
+        ]
+      },
+      "has_go_annotation": {
+        "weight": -0.1112,
+        "ci95": [
+          -0.1843,
+          -0.038
+        ]
+      },
+      "go:DNA binding": {
+        "weight": 0.1967,
+        "ci95": [
+          -0.0232,
+          0.4166
+        ]
+      },
+      "go:RNA binding": {
+        "weight": 0.1233,
+        "ci95": [
+          -0.206,
+          0.4527
+        ]
+      },
+      "go:catalytic activity": {
+        "weight": -0.0088,
+        "ci95": [
+          -0.2126,
+          0.1949
+        ]
+      },
+      "go:structural molecule activity": {
+        "weight": 0.3913,
+        "ci95": [
+          -0.0791,
+          0.8618
+        ]
+      },
+      "go:transporter activity": {
+        "weight": 0.0371,
+        "ci95": [
+          -0.3615,
+          0.4356
+        ]
+      },
+      "go:extracellular region": {
+        "weight": 0.3024,
+        "ci95": [
+          -0.1155,
+          0.7202
+        ]
+      },
+      "go:nucleus": {
+        "weight": 0.1159,
+        "ci95": [
+          -0.3164,
+          0.5483
+        ]
+      },
+      "go:mitochondrion": {
+        "weight": -0.1452,
+        "ci95": [
+          -0.8814,
+          0.5909
+        ]
+      },
+      "go:ribosome": {
+        "weight": -0.004,
+        "ci95": [
+          -0.5515,
+          0.5435
+        ]
+      },
+      "go:carbohydrate metabolic process": {
+        "weight": 0.038,
+        "ci95": [
+          -0.4097,
+          0.4856
+        ]
+      },
+      "go:DNA-templated transcription": {
+        "weight": -0.118,
+        "ci95": [
+          -0.8795,
+          0.6435
+        ]
+      },
+      "go:regulation of DNA-templated transcription": {
+        "weight": 0.0174,
+        "ci95": [
+          -0.4332,
+          0.468
+        ]
+      },
+      "go:lipid metabolic process": {
+        "weight": -0.0751,
+        "ci95": [
+          -0.2931,
+          0.1428
+        ]
+      },
+      "go:oxidoreductase activity": {
+        "weight": -0.0471,
+        "ci95": [
+          -0.4009,
+          0.3067
+        ]
+      },
+      "go:transferase activity": {
+        "weight": -0.0574,
+        "ci95": [
+          -0.2891,
+          0.1744
+        ]
+      },
+      "go:hydrolase activity": {
+        "weight": -0.0457,
+        "ci95": [
+          -0.3337,
+          0.2423
+        ]
+      },
+      "go:signaling": {
+        "weight": 0.2725,
+        "ci95": [
+          0.0845,
+          0.4605
+        ]
+      },
+      "go:organelle": {
+        "weight": -0.0572,
+        "ci95": [
+          -0.4398,
+          0.3255
+        ]
+      },
+      "go:receptor ligand activity": {
+        "weight": 0.354,
+        "ci95": [
+          -0.3806,
+          1.0887
+        ]
+      },
+      "go:transmembrane transport": {
+        "weight": -0.1322,
+        "ci95": [
+          -0.4428,
+          0.1784
+        ]
+      },
+      "go:molecular function regulator activity": {
+        "weight": 0.009,
+        "ci95": [
+          -0.2922,
+          0.3102
+        ]
+      },
+      "go:catalytic activity, acting on a protein": {
+        "weight": 0.2015,
+        "ci95": [
+          -0.0763,
+          0.4793
+        ]
+      },
+      "go:catalytic activity, acting on RNA": {
+        "weight": 0.1231,
+        "ci95": [
+          -0.232,
+          0.4781
+        ]
+      },
+      "go:transcription regulator activity": {
+        "weight": 0.3051,
+        "ci95": [
+          -0.0869,
+          0.697
+        ]
+      },
+      "go:ATP-dependent activity": {
+        "weight": 0.2395,
+        "ci95": [
+          -0.0518,
+          0.5309
+        ]
+      },
+      "go:carbohydrate derivative metabolic process": {
+        "weight": 0.2057,
+        "ci95": [
+          -0.2895,
+          0.7008
+        ]
+      },
+      "kw:kinase": {
+        "weight": 0.0597,
+        "ci95": [
+          -0.1097,
+          0.2292
+        ]
+      },
+      "kw:phosphatase": {
+        "weight": 0.0997,
+        "ci95": [
+          -0.2607,
+          0.4602
+        ]
+      },
+      "kw:transporter_channel": {
+        "weight": 0.2944,
+        "ci95": [
+          0.0539,
+          0.5349
+        ]
+      },
+      "kw:zinc_finger": {
+        "weight": -0.047,
+        "ci95": [
+          -0.1845,
+          0.0905
+        ]
+      },
+      "kw:repeat_domain": {
+        "weight": 0.1163,
+        "ci95": [
+          -0.1259,
+          0.3584
+        ]
+      },
+      "kw:ubiquitin_system": {
+        "weight": 0.0568,
+        "ci95": [
+          -0.1911,
+          0.3048
+        ]
+      },
+      "kw:protease": {
+        "weight": -0.3006,
+        "ci95": [
+          -0.6284,
+          0.0272
+        ]
+      },
+      "kw:helicase_nucleic": {
+        "weight": -0.1332,
+        "ci95": [
+          -0.396,
+          0.1295
+        ]
+      },
+      "kw:gtpase_signalling": {
+        "weight": -0.1022,
+        "ci95": [
+          -0.6456,
+          0.4413
+        ]
+      },
+      "kw:methyl_glyco_transferase": {
+        "weight": -0.2527,
+        "ci95": [
+          -0.4611,
+          -0.0444
+        ]
+      },
+      "kw:cytoskeleton_motor": {
+        "weight": 0.3496,
+        "ci95": [
+          -0.1842,
+          0.8835
+        ]
+      },
+      "kw:cilium_flagellum": {
+        "weight": 0.0067,
+        "ci95": [
+          -0.2252,
+          0.2386
+        ]
+      },
+      "kw:cell_adhesion_surface": {
+        "weight": 0.4112,
+        "ci95": [
+          0.1874,
+          0.635
+        ]
+      },
+      "kw:lipid_metabolism": {
+        "weight": 0.0295,
+        "ci95": [
+          -0.2517,
+          0.3107
+        ]
+      },
+      "kw:amino_acid_metabolism": {
+        "weight": 0.1108,
+        "ci95": [
+          -0.3092,
+          0.5308
+        ]
+      },
+      "kw:uncharacterised": {
+        "weight": -0.088,
+        "ci95": [
+          -0.293,
+          0.117
+        ]
+      }
+    },
+    "loss_hypoxia": {
+      "hydrophobicity_gravy": {
+        "weight": -0.0215,
+        "ci95": [
+          -0.0774,
+          0.0345
+        ]
+      },
+      "tm_helices": {
+        "weight": 0.0041,
+        "ci95": [
+          -0.0311,
+          0.0392
+        ]
+      },
+      "protein_length": {
+        "weight": 0.0365,
+        "ci95": [
+          -0.0885,
+          0.1616
+        ]
+      },
+      "redox_core": {
+        "weight": 0.2041,
+        "ci95": [
+          -0.3242,
+          0.7324
+        ]
+      },
+      "atp_synthase": {
+        "weight": 0.5193,
+        "ci95": [
+          -0.7633,
+          1.8019
+        ]
+      },
+      "translation": {
+        "weight": 0.2007,
+        "ci95": [
+          -0.4956,
+          0.8969
+        ]
+      },
+      "transcription": {
+        "weight": -0.1149,
+        "ci95": [
+          -0.8772,
+          0.6474
+        ]
+      },
+      "protein_targeting": {
+        "weight": -0.062,
+        "ci95": [
+          -0.6776,
+          0.5536
+        ]
+      },
+      "ubiquity_free_living": {
+        "weight": 0.1054,
+        "ci95": [
+          -0.1028,
+          0.3136
+        ]
+      },
+      "copies_free_living": {
+        "weight": -0.0839,
+        "ci95": [
+          -0.3809,
+          0.2131
+        ]
+      },
+      "hmm_length": {
+        "weight": -0.0376,
+        "ci95": [
+          -0.1995,
+          0.1244
+        ]
+      },
+      "clan_size": {
+        "weight": 0.064,
+        "ci95": [
+          -0.0568,
+          0.1847
+        ]
+      },
+      "in_clan": {
+        "weight": -0.0304,
+        "ci95": [
+          -0.2826,
+          0.2218
+        ]
+      },
+      "has_go_annotation": {
+        "weight": -0.0365,
+        "ci95": [
+          -0.1018,
+          0.0288
+        ]
+      },
+      "go:DNA binding": {
+        "weight": 0.0418,
+        "ci95": [
+          -0.1503,
+          0.2338
+        ]
+      },
+      "go:RNA binding": {
+        "weight": 0.056,
+        "ci95": [
+          -0.3038,
+          0.4157
+        ]
+      },
+      "go:catalytic activity": {
+        "weight": -0.0118,
+        "ci95": [
+          -0.0942,
+          0.0706
+        ]
+      },
+      "go:structural molecule activity": {
+        "weight": 0.0555,
+        "ci95": [
+          -0.2823,
+          0.3933
+        ]
+      },
+      "go:transporter activity": {
+        "weight": -0.2474,
+        "ci95": [
+          -0.6015,
+          0.1068
+        ]
+      },
+      "go:extracellular region": {
+        "weight": 0.1425,
+        "ci95": [
+          -0.2069,
+          0.4918
+        ]
+      },
+      "go:nucleus": {
+        "weight": -0.0993,
+        "ci95": [
+          -0.62,
+          0.4215
+        ]
+      },
+      "go:mitochondrion": {
+        "weight": -0.0109,
+        "ci95": [
+          -0.4588,
+          0.4371
+        ]
+      },
+      "go:ribosome": {
+        "weight": 0.1505,
+        "ci95": [
+          -0.3262,
+          0.6271
+        ]
+      },
+      "go:carbohydrate metabolic process": {
+        "weight": 0.066,
+        "ci95": [
+          -0.369,
+          0.501
+        ]
+      },
+      "go:DNA-templated transcription": {
+        "weight": 0.0603,
+        "ci95": [
+          -0.4693,
+          0.5899
+        ]
+      },
+      "go:regulation of DNA-templated transcription": {
+        "weight": -0.0158,
+        "ci95": [
+          -0.3158,
+          0.2843
+        ]
+      },
+      "go:lipid metabolic process": {
+        "weight": -0.093,
+        "ci95": [
+          -0.4242,
+          0.2381
+        ]
+      },
+      "go:oxidoreductase activity": {
+        "weight": 0.0345,
+        "ci95": [
+          -0.2053,
+          0.2744
+        ]
+      },
+      "go:transferase activity": {
+        "weight": 0.0915,
+        "ci95": [
+          -0.1795,
+          0.3625
+        ]
+      },
+      "go:hydrolase activity": {
+        "weight": -0.0705,
+        "ci95": [
+          -0.1913,
+          0.0503
+        ]
+      },
+      "go:signaling": {
+        "weight": -0.0626,
+        "ci95": [
+          -0.2565,
+          0.1313
+        ]
+      },
+      "go:organelle": {
+        "weight": 0.0821,
+        "ci95": [
+          -0.2861,
+          0.4503
+        ]
+      },
+      "go:receptor ligand activity": {
+        "weight": -0.5165,
+        "ci95": [
+          -1.225,
+          0.1919
+        ]
+      },
+      "go:transmembrane transport": {
+        "weight": 0.1776,
+        "ci95": [
+          -0.1082,
+          0.4635
+        ]
+      },
+      "go:molecular function regulator activity": {
+        "weight": 0.3639,
+        "ci95": [
+          0.0925,
+          0.6353
+        ]
+      },
+      "go:catalytic activity, acting on a protein": {
+        "weight": -0.0343,
+        "ci95": [
+          -0.337,
+          0.2684
+        ]
+      },
+      "go:catalytic activity, acting on RNA": {
+        "weight": 0.341,
+        "ci95": [
+          0.0066,
+          0.6753
+        ]
+      },
+      "go:transcription regulator activity": {
+        "weight": -0.2614,
+        "ci95": [
+          -0.5557,
+          0.0328
+        ]
+      },
+      "go:ATP-dependent activity": {
+        "weight": -0.1557,
+        "ci95": [
+          -0.6254,
+          0.314
+        ]
+      },
+      "go:carbohydrate derivative metabolic process": {
+        "weight": -0.2131,
+        "ci95": [
+          -0.4803,
+          0.0542
+        ]
+      },
+      "kw:kinase": {
+        "weight": -0.1081,
+        "ci95": [
+          -0.3666,
+          0.1504
+        ]
+      },
+      "kw:phosphatase": {
+        "weight": -0.0352,
+        "ci95": [
+          -0.2909,
+          0.2205
+        ]
+      },
+      "kw:transporter_channel": {
+        "weight": -0.1385,
+        "ci95": [
+          -0.315,
+          0.0381
+        ]
+      },
+      "kw:zinc_finger": {
+        "weight": -0.1132,
+        "ci95": [
+          -0.4751,
+          0.2488
+        ]
+      },
+      "kw:repeat_domain": {
+        "weight": 0.0709,
+        "ci95": [
+          -0.0951,
+          0.2369
+        ]
+      },
+      "kw:ubiquitin_system": {
+        "weight": 0.1097,
+        "ci95": [
+          -0.0932,
+          0.3125
+        ]
+      },
+      "kw:protease": {
+        "weight": -0.0221,
+        "ci95": [
+          -0.4348,
+          0.3906
+        ]
+      },
+      "kw:helicase_nucleic": {
+        "weight": 0.1808,
+        "ci95": [
+          -0.1277,
+          0.4894
+        ]
+      },
+      "kw:gtpase_signalling": {
+        "weight": 0.3713,
+        "ci95": [
+          -0.254,
+          0.9967
+        ]
+      },
+      "kw:methyl_glyco_transferase": {
+        "weight": -0.1632,
+        "ci95": [
+          -0.3375,
+          0.0111
+        ]
+      },
+      "kw:cytoskeleton_motor": {
+        "weight": 0.1951,
+        "ci95": [
+          -0.2526,
+          0.6428
+        ]
+      },
+      "kw:cilium_flagellum": {
+        "weight": -0.0416,
+        "ci95": [
+          -0.5227,
+          0.4395
+        ]
+      },
+      "kw:cell_adhesion_surface": {
+        "weight": 0.007,
+        "ci95": [
+          -0.2603,
+          0.2743
+        ]
+      },
+      "kw:lipid_metabolism": {
+        "weight": 0.0326,
+        "ci95": [
+          -0.2608,
+          0.3259
+        ]
+      },
+      "kw:amino_acid_metabolism": {
+        "weight": 0.0277,
+        "ci95": [
+          -0.2798,
+          0.3351
+        ]
+      },
+      "kw:uncharacterised": {
+        "weight": -0.0637,
+        "ci95": [
+          -0.2969,
+          0.1695
+        ]
+      }
+    },
+    "loss_endothermy": {
+      "hydrophobicity_gravy": {
+        "weight": 0.0403,
+        "ci95": [
+          -0.0266,
+          0.1072
+        ]
+      },
+      "tm_helices": {
+        "weight": -0.0013,
+        "ci95": [
+          -0.0543,
+          0.0516
+        ]
+      },
+      "protein_length": {
+        "weight": -0.2724,
+        "ci95": [
+          -0.4528,
+          -0.0919
+        ]
+      },
+      "redox_core": {
+        "weight": 0.1541,
+        "ci95": [
+          -0.6598,
+          0.9681
+        ]
+      },
+      "atp_synthase": {
+        "weight": 0.4673,
+        "ci95": [
+          -0.0417,
+          0.9764
+        ]
+      },
+      "translation": {
+        "weight": 0.7259,
+        "ci95": [
+          0.0547,
+          1.3972
+        ]
+      },
+      "transcription": {
+        "weight": 0.0175,
+        "ci95": [
+          -0.6089,
+          0.644
+        ]
+      },
+      "protein_targeting": {
+        "weight": 0.3944,
+        "ci95": [
+          -0.1742,
+          0.963
+        ]
+      },
+      "ubiquity_free_living": {
+        "weight": -0.0455,
+        "ci95": [
+          -0.2087,
+          0.1177
+        ]
+      },
+      "copies_free_living": {
+        "weight": 0.1036,
+        "ci95": [
+          -0.1104,
+          0.3177
+        ]
+      },
+      "hmm_length": {
+        "weight": 0.2157,
+        "ci95": [
+          0.0653,
+          0.3662
+        ]
+      },
+      "clan_size": {
+        "weight": 0.1059,
+        "ci95": [
+          0.0302,
+          0.1815
+        ]
+      },
+      "in_clan": {
+        "weight": -0.0392,
+        "ci95": [
+          -0.1597,
+          0.0813
+        ]
+      },
+      "has_go_annotation": {
+        "weight": -0.1078,
+        "ci95": [
+          -0.1855,
+          -0.0301
+        ]
+      },
+      "go:DNA binding": {
+        "weight": 0.0183,
+        "ci95": [
+          -0.3709,
+          0.4075
+        ]
+      },
+      "go:RNA binding": {
+        "weight": 0.0102,
+        "ci95": [
+          -0.315,
+          0.3354
+        ]
+      },
+      "go:catalytic activity": {
+        "weight": -0.0865,
+        "ci95": [
+          -0.4071,
+          0.234
+        ]
+      },
+      "go:structural molecule activity": {
+        "weight": 0.1297,
+        "ci95": [
+          -0.4832,
+          0.7426
+        ]
+      },
+      "go:transporter activity": {
+        "weight": -0.404,
+        "ci95": [
+          -0.96,
+          0.152
+        ]
+      },
+      "go:extracellular region": {
+        "weight": 0.0881,
+        "ci95": [
+          -0.1282,
+          0.3044
+        ]
+      },
+      "go:nucleus": {
+        "weight": -0.0505,
+        "ci95": [
+          -0.3422,
+          0.2413
+        ]
+      },
+      "go:mitochondrion": {
+        "weight": 0.2706,
+        "ci95": [
+          -0.2733,
+          0.8145
+        ]
+      },
+      "go:ribosome": {
+        "weight": 0.1096,
+        "ci95": [
+          -0.4203,
+          0.6394
+        ]
+      },
+      "go:carbohydrate metabolic process": {
+        "weight": 0.3969,
+        "ci95": [
+          -0.3518,
+          1.1456
+        ]
+      },
+      "go:DNA-templated transcription": {
+        "weight": 0.358,
+        "ci95": [
+          -0.1116,
+          0.8276
+        ]
+      },
+      "go:regulation of DNA-templated transcription": {
+        "weight": -0.1763,
+        "ci95": [
+          -0.7361,
+          0.3835
+        ]
+      },
+      "go:lipid metabolic process": {
+        "weight": -0.3311,
+        "ci95": [
+          -0.8521,
+          0.1899
+        ]
+      },
+      "go:oxidoreductase activity": {
+        "weight": -0.1143,
+        "ci95": [
+          -0.651,
+          0.4224
+        ]
+      },
+      "go:transferase activity": {
+        "weight": 0.2968,
+        "ci95": [
+          -0.1143,
+          0.7079
+        ]
+      },
+      "go:hydrolase activity": {
+        "weight": -0.0083,
+        "ci95": [
+          -0.2241,
+          0.2075
+        ]
+      },
+      "go:signaling": {
+        "weight": 0.1087,
+        "ci95": [
+          -0.11,
+          0.3273
+        ]
+      },
+      "go:organelle": {
+        "weight": -0.1447,
+        "ci95": [
+          -0.3714,
+          0.0819
+        ]
+      },
+      "go:receptor ligand activity": {
+        "weight": -0.234,
+        "ci95": [
+          -0.6277,
+          0.1596
+        ]
+      },
+      "go:transmembrane transport": {
+        "weight": -0.2492,
+        "ci95": [
+          -0.5592,
+          0.0608
+        ]
+      },
+      "go:molecular function regulator activity": {
+        "weight": 0.287,
+        "ci95": [
+          -0.065,
+          0.639
+        ]
+      },
+      "go:catalytic activity, acting on a protein": {
+        "weight": 0.0618,
+        "ci95": [
+          -0.1544,
+          0.2781
+        ]
+      },
+      "go:catalytic activity, acting on RNA": {
+        "weight": 0.6611,
+        "ci95": [
+          -0.2181,
+          1.5403
+        ]
+      },
+      "go:transcription regulator activity": {
+        "weight": 0.2549,
+        "ci95": [
+          -0.8844,
+          1.3942
+        ]
+      },
+      "go:ATP-dependent activity": {
+        "weight": -0.3854,
+        "ci95": [
+          -0.7257,
+          -0.045
+        ]
+      },
+      "go:carbohydrate derivative metabolic process": {
+        "weight": -0.2251,
+        "ci95": [
+          -0.5458,
+          0.0955
+        ]
+      },
+      "kw:kinase": {
+        "weight": 0.0436,
+        "ci95": [
+          -0.5264,
+          0.6137
+        ]
+      },
+      "kw:phosphatase": {
+        "weight": -0.0807,
+        "ci95": [
+          -0.3959,
+          0.2345
+        ]
+      },
+      "kw:transporter_channel": {
+        "weight": -0.234,
+        "ci95": [
+          -0.4824,
+          0.0144
+        ]
+      },
+      "kw:zinc_finger": {
+        "weight": -0.2567,
+        "ci95": [
+          -0.5416,
+          0.0282
+        ]
+      },
+      "kw:repeat_domain": {
+        "weight": 0.4481,
+        "ci95": [
+          -0.1919,
+          1.088
+        ]
+      },
+      "kw:ubiquitin_system": {
+        "weight": -0.299,
+        "ci95": [
+          -0.594,
+          -0.004
+        ]
+      },
+      "kw:protease": {
+        "weight": -0.3033,
+        "ci95": [
+          -0.674,
+          0.0673
+        ]
+      },
+      "kw:helicase_nucleic": {
+        "weight": 0.2171,
+        "ci95": [
+          -0.1113,
+          0.5456
+        ]
+      },
+      "kw:gtpase_signalling": {
+        "weight": 0.4344,
+        "ci95": [
+          -0.1985,
+          1.0674
+        ]
+      },
+      "kw:methyl_glyco_transferase": {
+        "weight": -0.4705,
+        "ci95": [
+          -0.9484,
+          0.0074
+        ]
+      },
+      "kw:cytoskeleton_motor": {
+        "weight": 0.5294,
+        "ci95": [
+          -1.2045,
+          2.2632
+        ]
+      },
+      "kw:cilium_flagellum": {
+        "weight": 0.6317,
+        "ci95": [
+          0.126,
+          1.1375
+        ]
+      },
+      "kw:cell_adhesion_surface": {
+        "weight": -0.0003,
+        "ci95": [
+          -0.2728,
+          0.2722
+        ]
+      },
+      "kw:lipid_metabolism": {
+        "weight": 0.2534,
+        "ci95": [
+          -0.3735,
+          0.8803
+        ]
+      },
+      "kw:amino_acid_metabolism": {
+        "weight": -0.0037,
+        "ci95": [
+          -0.6252,
+          0.6178
+        ]
+      },
+      "kw:uncharacterised": {
+        "weight": 0.3469,
+        "ci95": [
+          0.0466,
+          0.6471
+        ]
+      }
+    },
+    "loss_parasite": {
+      "hydrophobicity_gravy": {
+        "weight": 0.0426,
+        "ci95": [
+          -0.0272,
+          0.1124
+        ]
+      },
+      "tm_helices": {
+        "weight": -0.0168,
+        "ci95": [
+          -0.0715,
+          0.0378
+        ]
+      },
+      "protein_length": {
+        "weight": 0.0629,
+        "ci95": [
+          -0.0873,
+          0.2131
+        ]
+      },
+      "redox_core": {
+        "weight": -0.4766,
+        "ci95": [
+          -1.2762,
+          0.323
+        ]
+      },
+      "atp_synthase": {
+        "weight": -0.6427,
+        "ci95": [
+          -1.8265,
+          0.541
+        ]
+      },
+      "translation": {
+        "weight": 0.2539,
+        "ci95": [
+          -0.7555,
+          1.2632
+        ]
+      },
+      "transcription": {
+        "weight": 1.1481,
+        "ci95": [
+          0.1669,
+          2.1293
+        ]
+      },
+      "protein_targeting": {
+        "weight": 0.5088,
+        "ci95": [
+          -0.366,
+          1.3836
+        ]
+      },
+      "ubiquity_free_living": {
+        "weight": 0.2855,
+        "ci95": [
+          0.0486,
+          0.5225
+        ]
+      },
+      "copies_free_living": {
+        "weight": -0.1575,
+        "ci95": [
+          -0.5184,
+          0.2034
+        ]
+      },
+      "hmm_length": {
+        "weight": -0.0797,
+        "ci95": [
+          -0.2254,
+          0.0661
+        ]
+      },
+      "clan_size": {
+        "weight": -0.0354,
+        "ci95": [
+          -0.1467,
+          0.076
+        ]
+      },
+      "in_clan": {
+        "weight": 0.025,
+        "ci95": [
+          -0.1812,
+          0.2312
+        ]
+      },
+      "has_go_annotation": {
+        "weight": 0.0325,
+        "ci95": [
+          -0.0502,
+          0.1152
+        ]
+      },
+      "go:DNA binding": {
+        "weight": -0.3181,
+        "ci95": [
+          -0.6615,
+          0.0252
+        ]
+      },
+      "go:RNA binding": {
+        "weight": 0.2127,
+        "ci95": [
+          -0.2165,
+          0.642
+        ]
+      },
+      "go:catalytic activity": {
+        "weight": -0.0799,
+        "ci95": [
+          -0.2253,
+          0.0654
+        ]
+      },
+      "go:structural molecule activity": {
+        "weight": -0.5264,
+        "ci95": [
+          -1.3588,
+          0.306
+        ]
+      },
+      "go:transporter activity": {
+        "weight": 0.238,
+        "ci95": [
+          -0.2659,
+          0.7419
+        ]
+      },
+      "go:extracellular region": {
+        "weight": -0.2855,
+        "ci95": [
+          -0.8499,
+          0.2789
+        ]
+      },
+      "go:nucleus": {
+        "weight": 0.0305,
+        "ci95": [
+          -0.6179,
+          0.6789
+        ]
+      },
+      "go:mitochondrion": {
+        "weight": -0.2727,
+        "ci95": [
+          -0.8011,
+          0.2557
+        ]
+      },
+      "go:ribosome": {
+        "weight": 0.2391,
+        "ci95": [
+          -0.704,
+          1.1822
+        ]
+      },
+      "go:carbohydrate metabolic process": {
+        "weight": -0.1201,
+        "ci95": [
+          -0.6354,
+          0.3952
+        ]
+      },
+      "go:DNA-templated transcription": {
+        "weight": 0.3269,
+        "ci95": [
+          -0.5731,
+          1.2269
+        ]
+      },
+      "go:regulation of DNA-templated transcription": {
+        "weight": 0.0057,
+        "ci95": [
+          -0.4623,
+          0.4737
+        ]
+      },
+      "go:lipid metabolic process": {
+        "weight": 0.3828,
+        "ci95": [
+          -0.0472,
+          0.8128
+        ]
+      },
+      "go:oxidoreductase activity": {
+        "weight": -0.4755,
+        "ci95": [
+          -0.8045,
+          -0.1466
+        ]
+      },
+      "go:transferase activity": {
+        "weight": -0.0204,
+        "ci95": [
+          -0.3431,
+          0.3023
+        ]
+      },
+      "go:hydrolase activity": {
+        "weight": -0.071,
+        "ci95": [
+          -0.2609,
+          0.1188
+        ]
+      },
+      "go:signaling": {
+        "weight": 0.2037,
+        "ci95": [
+          -0.0987,
+          0.5061
+        ]
+      },
+      "go:organelle": {
+        "weight": 0.0852,
+        "ci95": [
+          -0.2622,
+          0.4326
+        ]
+      },
+      "go:receptor ligand activity": {
+        "weight": 0.4142,
+        "ci95": [
+          -0.41,
+          1.2383
+        ]
+      },
+      "go:transmembrane transport": {
+        "weight": -0.0788,
+        "ci95": [
+          -0.4125,
+          0.2549
+        ]
+      },
+      "go:molecular function regulator activity": {
+        "weight": -0.4734,
+        "ci95": [
+          -1.0745,
+          0.1277
+        ]
+      },
+      "go:catalytic activity, acting on a protein": {
+        "weight": -0.0715,
+        "ci95": [
+          -0.4019,
+          0.2589
+        ]
+      },
+      "go:catalytic activity, acting on RNA": {
+        "weight": -0.115,
+        "ci95": [
+          -0.8201,
+          0.59
+        ]
+      },
+      "go:transcription regulator activity": {
+        "weight": 0.1257,
+        "ci95": [
+          -0.2146,
+          0.466
+        ]
+      },
+      "go:ATP-dependent activity": {
+        "weight": 0.3888,
+        "ci95": [
+          0.1106,
+          0.667
+        ]
+      },
+      "go:carbohydrate derivative metabolic process": {
+        "weight": 0.0385,
+        "ci95": [
+          -0.3742,
+          0.4511
+        ]
+      },
+      "kw:kinase": {
+        "weight": 0.4647,
+        "ci95": [
+          0.0467,
+          0.8827
+        ]
+      },
+      "kw:phosphatase": {
+        "weight": -0.1117,
+        "ci95": [
+          -0.4971,
+          0.2737
+        ]
+      },
+      "kw:transporter_channel": {
+        "weight": -0.1095,
+        "ci95": [
+          -0.3013,
+          0.0823
+        ]
+      },
+      "kw:zinc_finger": {
+        "weight": -0.2783,
+        "ci95": [
+          -0.6239,
+          0.0672
+        ]
+      },
+      "kw:repeat_domain": {
+        "weight": -0.0148,
+        "ci95": [
+          -0.2383,
+          0.2087
+        ]
+      },
+      "kw:ubiquitin_system": {
+        "weight": 0.2066,
+        "ci95": [
+          -0.2086,
+          0.6218
+        ]
+      },
+      "kw:protease": {
+        "weight": -0.1148,
+        "ci95": [
+          -0.4927,
+          0.2631
+        ]
+      },
+      "kw:helicase_nucleic": {
+        "weight": -0.4243,
+        "ci95": [
+          -0.8506,
+          0.0019
+        ]
+      },
+      "kw:gtpase_signalling": {
+        "weight": -0.1225,
+        "ci95": [
+          -0.7512,
+          0.5062
+        ]
+      },
+      "kw:methyl_glyco_transferase": {
+        "weight": 0.0646,
+        "ci95": [
+          -0.178,
+          0.3072
+        ]
+      },
+      "kw:cytoskeleton_motor": {
+        "weight": -0.3468,
+        "ci95": [
+          -0.9766,
+          0.283
+        ]
+      },
+      "kw:cilium_flagellum": {
+        "weight": 0.4883,
+        "ci95": [
+          -0.3527,
+          1.3293
+        ]
+      },
+      "kw:cell_adhesion_surface": {
+        "weight": -0.1702,
+        "ci95": [
+          -0.5983,
+          0.2579
+        ]
+      },
+      "kw:lipid_metabolism": {
+        "weight": 0.0015,
+        "ci95": [
+          -0.2728,
+          0.2759
+        ]
+      },
+      "kw:amino_acid_metabolism": {
+        "weight": -0.1945,
+        "ci95": [
+          -0.6268,
+          0.2379
+        ]
+      },
+      "kw:uncharacterised": {
+        "weight": 0.1465,
+        "ci95": [
+          -0.0809,
+          0.3739
+        ]
+      }
+    },
+    "duplication_base": {
+      "hydrophobicity_gravy": {
+        "weight": 0.0244,
+        "ci95": [
+          -0.0137,
+          0.0624
+        ]
+      },
+      "tm_helices": {
+        "weight": -0.026,
+        "ci95": [
+          -0.0686,
+          0.0167
+        ]
+      },
+      "protein_length": {
+        "weight": -0.3376,
+        "ci95": [
+          -0.4585,
+          -0.2168
+        ]
+      },
+      "redox_core": {
+        "weight": 0.1755,
+        "ci95": [
+          -0.2946,
+          0.6457
+        ]
+      },
+      "atp_synthase": {
+        "weight": 0.5678,
+        "ci95": [
+          0.0499,
+          1.0857
+        ]
+      },
+      "translation": {
+        "weight": -0.0475,
+        "ci95": [
+          -0.554,
+          0.459
+        ]
+      },
+      "transcription": {
+        "weight": -1.2063,
+        "ci95": [
+          -1.6968,
+          -0.7159
+        ]
+      },
+      "protein_targeting": {
+        "weight": -0.175,
+        "ci95": [
+          -0.5275,
+          0.1775
+        ]
+      },
+      "ubiquity_free_living": {
+        "weight": -0.8366,
+        "ci95": [
+          -1.0112,
+          -0.6619
+        ]
+      },
+      "copies_free_living": {
+        "weight": 0.5092,
+        "ci95": [
+          0.3869,
+          0.6316
+        ]
+      },
+      "hmm_length": {
+        "weight": 0.3412,
+        "ci95": [
+          0.2169,
+          0.4655
+        ]
+      },
+      "clan_size": {
+        "weight": 0.0015,
+        "ci95": [
+          -0.057,
+          0.06
+        ]
+      },
+      "in_clan": {
+        "weight": 0.1739,
+        "ci95": [
+          0.0558,
+          0.2921
+        ]
+      },
+      "has_go_annotation": {
+        "weight": 0.0516,
+        "ci95": [
+          -0.0216,
+          0.1249
+        ]
+      },
+      "go:DNA binding": {
+        "weight": 0.042,
+        "ci95": [
+          -0.1611,
+          0.2452
+        ]
+      },
+      "go:RNA binding": {
+        "weight": -0.1607,
+        "ci95": [
+          -0.3797,
+          0.0583
+        ]
+      },
+      "go:catalytic activity": {
+        "weight": 0.0639,
+        "ci95": [
+          -0.0277,
+          0.1555
+        ]
+      },
+      "go:structural molecule activity": {
+        "weight": 0.0168,
+        "ci95": [
+          -0.358,
+          0.3915
+        ]
+      },
+      "go:transporter activity": {
+        "weight": -0.0055,
+        "ci95": [
+          -0.1611,
+          0.1502
+        ]
+      },
+      "go:extracellular region": {
+        "weight": 0.4803,
+        "ci95": [
+          0.2404,
+          0.7203
+        ]
+      },
+      "go:nucleus": {
+        "weight": -0.0868,
+        "ci95": [
+          -0.2939,
+          0.1203
+        ]
+      },
+      "go:mitochondrion": {
+        "weight": -0.1251,
+        "ci95": [
+          -0.5492,
+          0.2989
+        ]
+      },
+      "go:ribosome": {
+        "weight": 1.0362,
+        "ci95": [
+          0.5973,
+          1.4751
+        ]
+      },
+      "go:carbohydrate metabolic process": {
+        "weight": 0.0963,
+        "ci95": [
+          -0.1684,
+          0.361
+        ]
+      },
+      "go:DNA-templated transcription": {
+        "weight": 0.1152,
+        "ci95": [
+          -0.2763,
+          0.5067
+        ]
+      },
+      "go:regulation of DNA-templated transcription": {
+        "weight": -0.3306,
+        "ci95": [
+          -0.558,
+          -0.1032
+        ]
+      },
+      "go:lipid metabolic process": {
+        "weight": 0.0348,
+        "ci95": [
+          -0.1835,
+          0.2532
+        ]
+      },
+      "go:oxidoreductase activity": {
+        "weight": 0.3612,
+        "ci95": [
+          0.1527,
+          0.5697
+        ]
+      },
+      "go:transferase activity": {
+        "weight": 0.0363,
+        "ci95": [
+          -0.1002,
+          0.1728
+        ]
+      },
+      "go:hydrolase activity": {
+        "weight": 0.1099,
+        "ci95": [
+          0.0048,
+          0.2151
+        ]
+      },
+      "go:signaling": {
+        "weight": -0.5526,
+        "ci95": [
+          -0.8059,
+          -0.2994
+        ]
+      },
+      "go:organelle": {
+        "weight": 0.0024,
+        "ci95": [
+          -0.1146,
+          0.1194
+        ]
+      },
+      "go:receptor ligand activity": {
+        "weight": -0.9464,
+        "ci95": [
+          -1.3173,
+          -0.5755
+        ]
+      },
+      "go:transmembrane transport": {
+        "weight": 0.0854,
+        "ci95": [
+          -0.0276,
+          0.1983
+        ]
+      },
+      "go:molecular function regulator activity": {
+        "weight": 0.4281,
+        "ci95": [
+          0.1543,
+          0.7019
+        ]
+      },
+      "go:catalytic activity, acting on a protein": {
+        "weight": -0.1082,
+        "ci95": [
+          -0.3772,
+          0.1607
+        ]
+      },
+      "go:catalytic activity, acting on RNA": {
+        "weight": -0.022,
+        "ci95": [
+          -0.287,
+          0.2431
+        ]
+      },
+      "go:transcription regulator activity": {
+        "weight": 0.1005,
+        "ci95": [
+          -0.0807,
+          0.2816
+        ]
+      },
+      "go:ATP-dependent activity": {
+        "weight": -0.1263,
+        "ci95": [
+          -0.3521,
+          0.0996
+        ]
+      },
+      "go:carbohydrate derivative metabolic process": {
+        "weight": -0.1422,
+        "ci95": [
+          -0.3086,
+          0.0242
+        ]
+      },
+      "kw:kinase": {
+        "weight": -0.388,
+        "ci95": [
+          -0.5338,
+          -0.2422
+        ]
+      },
+      "kw:phosphatase": {
+        "weight": -0.1767,
+        "ci95": [
+          -0.3836,
+          0.0303
+        ]
+      },
+      "kw:transporter_channel": {
+        "weight": -0.0264,
+        "ci95": [
+          -0.1376,
+          0.0849
+        ]
+      },
+      "kw:zinc_finger": {
+        "weight": 0.1373,
+        "ci95": [
+          0.0398,
+          0.2348
+        ]
+      },
+      "kw:repeat_domain": {
+        "weight": -0.3405,
+        "ci95": [
+          -0.4457,
+          -0.2353
+        ]
+      },
+      "kw:ubiquitin_system": {
+        "weight": -0.4147,
+        "ci95": [
+          -0.5741,
+          -0.2553
+        ]
+      },
+      "kw:protease": {
+        "weight": 0.339,
+        "ci95": [
+          0.1198,
+          0.5582
+        ]
+      },
+      "kw:helicase_nucleic": {
+        "weight": 0.4967,
+        "ci95": [
+          0.3788,
+          0.6147
+        ]
+      },
+      "kw:gtpase_signalling": {
+        "weight": -0.0117,
+        "ci95": [
+          -0.4559,
+          0.4326
+        ]
+      },
+      "kw:methyl_glyco_transferase": {
+        "weight": 0.2437,
+        "ci95": [
+          -0.0208,
+          0.5082
+        ]
+      },
+      "kw:cytoskeleton_motor": {
+        "weight": -0.3108,
+        "ci95": [
+          -0.5263,
+          -0.0953
+        ]
+      },
+      "kw:cilium_flagellum": {
+        "weight": -0.1351,
+        "ci95": [
+          -0.4117,
+          0.1415
+        ]
+      },
+      "kw:cell_adhesion_surface": {
+        "weight": -0.2678,
+        "ci95": [
+          -0.4756,
+          -0.0601
+        ]
+      },
+      "kw:lipid_metabolism": {
+        "weight": 0.0996,
+        "ci95": [
+          -0.1366,
+          0.3358
+        ]
+      },
+      "kw:amino_acid_metabolism": {
+        "weight": 0.0428,
+        "ci95": [
+          -0.1889,
+          0.2745
+        ]
+      },
+      "kw:uncharacterised": {
+        "weight": 0.103,
+        "ci95": [
+          -0.0606,
+          0.2666
+        ]
+      }
+    },
+    "duplication_colder": {
+      "hydrophobicity_gravy": {
+        "weight": 0.0038,
+        "ci95": [
+          -0.0437,
+          0.0514
+        ]
+      },
+      "tm_helices": {
+        "weight": -0.0052,
+        "ci95": [
+          -0.0488,
+          0.0383
+        ]
+      },
+      "protein_length": {
+        "weight": -0.0918,
+        "ci95": [
+          -0.1816,
+          -0.0021
+        ]
+      },
+      "redox_core": {
+        "weight": 0.1376,
+        "ci95": [
+          -0.5634,
+          0.8385
+        ]
+      },
+      "atp_synthase": {
+        "weight": 0.0341,
+        "ci95": [
+          -0.9747,
+          1.0429
+        ]
+      },
+      "translation": {
+        "weight": 0.266,
+        "ci95": [
+          -0.3573,
+          0.8892
+        ]
+      },
+      "transcription": {
+        "weight": 0.3111,
+        "ci95": [
+          -0.3702,
+          0.9925
+        ]
+      },
+      "protein_targeting": {
+        "weight": 0.2596,
+        "ci95": [
+          -0.2501,
+          0.7693
+        ]
+      },
+      "ubiquity_free_living": {
+        "weight": -0.0378,
+        "ci95": [
+          -0.2572,
+          0.1816
+        ]
+      },
+      "copies_free_living": {
+        "weight": 0.0349,
+        "ci95": [
+          -0.1319,
+          0.2017
+        ]
+      },
+      "hmm_length": {
+        "weight": 0.1234,
+        "ci95": [
+          0.0139,
+          0.2329
+        ]
+      },
+      "clan_size": {
+        "weight": 0.0817,
+        "ci95": [
+          0.0051,
+          0.1583
+        ]
+      },
+      "in_clan": {
+        "weight": -0.0324,
+        "ci95": [
+          -0.15,
+          0.0852
+        ]
+      },
+      "has_go_annotation": {
+        "weight": -0.0445,
+        "ci95": [
+          -0.1078,
+          0.0187
+        ]
+      },
+      "go:DNA binding": {
+        "weight": 0.0581,
+        "ci95": [
+          -0.1982,
+          0.3145
+        ]
+      },
+      "go:RNA binding": {
+        "weight": 0.1102,
+        "ci95": [
+          -0.2615,
+          0.4818
+        ]
+      },
+      "go:catalytic activity": {
+        "weight": 0.0206,
+        "ci95": [
+          -0.0726,
+          0.1137
+        ]
+      },
+      "go:structural molecule activity": {
+        "weight": -0.5151,
+        "ci95": [
+          -1.0958,
+          0.0655
+        ]
+      },
+      "go:transporter activity": {
+        "weight": -0.0418,
+        "ci95": [
+          -0.2654,
+          0.1817
+        ]
+      },
+      "go:extracellular region": {
+        "weight": 0.1009,
+        "ci95": [
+          -0.2873,
+          0.4891
+        ]
+      },
+      "go:nucleus": {
+        "weight": -0.0932,
+        "ci95": [
+          -0.5938,
+          0.4074
+        ]
+      },
+      "go:mitochondrion": {
+        "weight": -0.3581,
+        "ci95": [
+          -0.8436,
+          0.1275
+        ]
+      },
+      "go:ribosome": {
+        "weight": 0.3137,
+        "ci95": [
+          -0.3247,
+          0.952
+        ]
+      },
+      "go:carbohydrate metabolic process": {
+        "weight": 0.093,
+        "ci95": [
+          -0.3287,
+          0.5147
+        ]
+      },
+      "go:DNA-templated transcription": {
+        "weight": -0.0798,
+        "ci95": [
+          -0.6702,
+          0.5107
+        ]
+      },
+      "go:regulation of DNA-templated transcription": {
+        "weight": -0.231,
+        "ci95": [
+          -0.5034,
+          0.0414
+        ]
+      },
+      "go:lipid metabolic process": {
+        "weight": 0.1542,
+        "ci95": [
+          -0.0825,
+          0.3908
+        ]
+      },
+      "go:oxidoreductase activity": {
+        "weight": -0.3562,
+        "ci95": [
+          -0.6468,
+          -0.0656
+        ]
+      },
+      "go:transferase activity": {
+        "weight": 0.1573,
+        "ci95": [
+          -0.1584,
+          0.473
+        ]
+      },
+      "go:hydrolase activity": {
+        "weight": -0.0725,
+        "ci95": [
+          -0.2012,
+          0.0562
+        ]
+      },
+      "go:signaling": {
+        "weight": -0.1423,
+        "ci95": [
+          -0.4596,
+          0.175
+        ]
+      },
+      "go:organelle": {
+        "weight": 0.093,
+        "ci95": [
+          -0.1723,
+          0.3584
+        ]
+      },
+      "go:receptor ligand activity": {
+        "weight": -0.2491,
+        "ci95": [
+          -0.8131,
+          0.3149
+        ]
+      },
+      "go:transmembrane transport": {
+        "weight": 0.033,
+        "ci95": [
+          -0.2134,
+          0.2795
+        ]
+      },
+      "go:molecular function regulator activity": {
+        "weight": -0.0034,
+        "ci95": [
+          -0.2731,
+          0.2663
+        ]
+      },
+      "go:catalytic activity, acting on a protein": {
+        "weight": -0.1369,
+        "ci95": [
+          -0.438,
+          0.1642
+        ]
+      },
+      "go:catalytic activity, acting on RNA": {
+        "weight": -0.0501,
+        "ci95": [
+          -0.5942,
+          0.494
+        ]
+      },
+      "go:transcription regulator activity": {
+        "weight": -0.1208,
+        "ci95": [
+          -0.5676,
+          0.326
+        ]
+      },
+      "go:ATP-dependent activity": {
+        "weight": 0.1878,
+        "ci95": [
+          -0.1976,
+          0.5733
+        ]
+      },
+      "go:carbohydrate derivative metabolic process": {
+        "weight": 0.1678,
+        "ci95": [
+          -0.1006,
+          0.4362
+        ]
+      },
+      "kw:kinase": {
+        "weight": 0.0387,
+        "ci95": [
+          -0.1814,
+          0.2588
+        ]
+      },
+      "kw:phosphatase": {
+        "weight": -0.3791,
+        "ci95": [
+          -0.6562,
+          -0.102
+        ]
+      },
+      "kw:transporter_channel": {
+        "weight": -0.1931,
+        "ci95": [
+          -0.347,
+          -0.0391
+        ]
+      },
+      "kw:zinc_finger": {
+        "weight": -0.2194,
+        "ci95": [
+          -0.4316,
+          -0.0073
+        ]
+      },
+      "kw:repeat_domain": {
+        "weight": 0.0592,
+        "ci95": [
+          -0.1231,
+          0.2415
+        ]
+      },
+      "kw:ubiquitin_system": {
+        "weight": -0.0577,
+        "ci95": [
+          -0.2938,
+          0.1784
+        ]
+      },
+      "kw:protease": {
+        "weight": -0.1044,
+        "ci95": [
+          -0.4321,
+          0.2232
+        ]
+      },
+      "kw:helicase_nucleic": {
+        "weight": 0.1446,
+        "ci95": [
+          -0.0156,
+          0.3047
+        ]
+      },
+      "kw:gtpase_signalling": {
+        "weight": 0.0701,
+        "ci95": [
+          -0.6296,
+          0.7698
+        ]
+      },
+      "kw:methyl_glyco_transferase": {
+        "weight": -0.1538,
+        "ci95": [
+          -0.4673,
+          0.1596
+        ]
+      },
+      "kw:cytoskeleton_motor": {
+        "weight": 0.0903,
+        "ci95": [
+          -0.2926,
+          0.4731
+        ]
+      },
+      "kw:cilium_flagellum": {
+        "weight": 0.1818,
+        "ci95": [
+          -0.2761,
+          0.6397
+        ]
+      },
+      "kw:cell_adhesion_surface": {
+        "weight": -0.1654,
+        "ci95": [
+          -0.437,
+          0.1062
+        ]
+      },
+      "kw:lipid_metabolism": {
+        "weight": 0.1474,
+        "ci95": [
+          -0.1907,
+          0.4854
+        ]
+      },
+      "kw:amino_acid_metabolism": {
+        "weight": -0.0897,
+        "ci95": [
+          -0.3686,
+          0.1893
+        ]
+      },
+      "kw:uncharacterised": {
+        "weight": -0.1294,
+        "ci95": [
+          -0.3048,
+          0.0459
+        ]
+      }
+    },
+    "duplication_freshwater": {
+      "hydrophobicity_gravy": {
+        "weight": 0.0379,
+        "ci95": [
+          -0.0176,
+          0.0934
+        ]
+      },
+      "tm_helices": {
+        "weight": 0.0033,
+        "ci95": [
+          -0.0347,
+          0.0412
+        ]
+      },
+      "protein_length": {
+        "weight": -0.0527,
+        "ci95": [
+          -0.2131,
+          0.1077
+        ]
+      },
+      "redox_core": {
+        "weight": -1.2314,
+        "ci95": [
+          -2.2176,
+          -0.2451
+        ]
+      },
+      "atp_synthase": {
+        "weight": -1.438,
+        "ci95": [
+          -2.7928,
+          -0.0833
+        ]
+      },
+      "translation": {
+        "weight": -0.5409,
+        "ci95": [
+          -1.6056,
+          0.5239
+        ]
+      },
+      "transcription": {
+        "weight": 1.2452,
+        "ci95": [
+          0.5241,
+          1.9663
+        ]
+      },
+      "protein_targeting": {
+        "weight": -0.4514,
+        "ci95": [
+          -1.6516,
+          0.7489
+        ]
+      },
+      "ubiquity_free_living": {
+        "weight": -0.1552,
+        "ci95": [
+          -0.5132,
+          0.2028
+        ]
+      },
+      "copies_free_living": {
+        "weight": 0.0323,
+        "ci95": [
+          -0.1453,
+          0.2098
+        ]
+      },
+      "hmm_length": {
+        "weight": 0.024,
+        "ci95": [
+          -0.0901,
+          0.138
+        ]
+      },
+      "clan_size": {
+        "weight": -0.1192,
+        "ci95": [
+          -0.1784,
+          -0.06
+        ]
+      },
+      "in_clan": {
+        "weight": 0.2192,
+        "ci95": [
+          0.0939,
+          0.3445
+        ]
+      },
+      "has_go_annotation": {
+        "weight": -0.0325,
+        "ci95": [
+          -0.1313,
+          0.0662
+        ]
+      },
+      "go:DNA binding": {
+        "weight": 0.2142,
+        "ci95": [
+          -0.057,
+          0.4853
+        ]
+      },
+      "go:RNA binding": {
+        "weight": 0.046,
+        "ci95": [
+          -0.3041,
+          0.396
+        ]
+      },
+      "go:catalytic activity": {
+        "weight": -0.0406,
+        "ci95": [
+          -0.2103,
+          0.1291
+        ]
+      },
+      "go:structural molecule activity": {
+        "weight": -0.0164,
+        "ci95": [
+          -0.8624,
+          0.8295
+        ]
+      },
+      "go:transporter activity": {
+        "weight": 0.0337,
+        "ci95": [
+          -0.3839,
+          0.4513
+        ]
+      },
+      "go:extracellular region": {
+        "weight": 0.0874,
+        "ci95": [
+          -0.4266,
+          0.6013
+        ]
+      },
+      "go:nucleus": {
+        "weight": 0.0254,
+        "ci95": [
+          -0.5416,
+          0.5923
+        ]
+      },
+      "go:mitochondrion": {
+        "weight": -0.7472,
+        "ci95": [
+          -1.4096,
+          -0.0848
+        ]
+      },
+      "go:ribosome": {
+        "weight": -1.3749,
+        "ci95": [
+          -2.7721,
+          0.0223
+        ]
+      },
+      "go:carbohydrate metabolic process": {
+        "weight": 0.1438,
+        "ci95": [
+          -0.3497,
+          0.6373
+        ]
+      },
+      "go:DNA-templated transcription": {
+        "weight": -0.1777,
+        "ci95": [
+          -0.5986,
+          0.2433
+        ]
+      },
+      "go:regulation of DNA-templated transcription": {
+        "weight": -0.1485,
+        "ci95": [
+          -0.6924,
+          0.3955
+        ]
+      },
+      "go:lipid metabolic process": {
+        "weight": -0.0479,
+        "ci95": [
+          -0.4454,
+          0.3497
+        ]
+      },
+      "go:oxidoreductase activity": {
+        "weight": -0.1031,
+        "ci95": [
+          -0.4983,
+          0.2921
+        ]
+      },
+      "go:transferase activity": {
+        "weight": -0.0809,
+        "ci95": [
+          -0.2893,
+          0.1275
+        ]
+      },
+      "go:hydrolase activity": {
+        "weight": -0.024,
+        "ci95": [
+          -0.2787,
+          0.2308
+        ]
+      },
+      "go:signaling": {
+        "weight": 0.0726,
+        "ci95": [
+          -0.1935,
+          0.3386
+        ]
+      },
+      "go:organelle": {
+        "weight": -0.3247,
+        "ci95": [
+          -0.844,
+          0.1947
+        ]
+      },
+      "go:receptor ligand activity": {
+        "weight": 0.2993,
+        "ci95": [
+          -0.6577,
+          1.2562
+        ]
+      },
+      "go:transmembrane transport": {
+        "weight": -0.2933,
+        "ci95": [
+          -0.5474,
+          -0.0392
+        ]
+      },
+      "go:molecular function regulator activity": {
+        "weight": 0.0269,
+        "ci95": [
+          -0.3032,
+          0.3569
+        ]
+      },
+      "go:catalytic activity, acting on a protein": {
+        "weight": 0.127,
+        "ci95": [
+          -0.1557,
+          0.4098
+        ]
+      },
+      "go:catalytic activity, acting on RNA": {
+        "weight": -0.0145,
+        "ci95": [
+          -0.4901,
+          0.4612
+        ]
+      },
+      "go:transcription regulator activity": {
+        "weight": 0.5508,
+        "ci95": [
+          0.1194,
+          0.9823
+        ]
+      },
+      "go:ATP-dependent activity": {
+        "weight": 0.4162,
+        "ci95": [
+          0.0383,
+          0.794
+        ]
+      },
+      "go:carbohydrate derivative metabolic process": {
+        "weight": 0.4505,
+        "ci95": [
+          0.0082,
+          0.8928
+        ]
+      },
+      "kw:kinase": {
+        "weight": -0.0551,
+        "ci95": [
+          -0.2398,
+          0.1295
+        ]
+      },
+      "kw:phosphatase": {
+        "weight": 0.0492,
+        "ci95": [
+          -0.4293,
+          0.5276
+        ]
+      },
+      "kw:transporter_channel": {
+        "weight": 0.3488,
+        "ci95": [
+          0.0741,
+          0.6235
+        ]
+      },
+      "kw:zinc_finger": {
+        "weight": -0.1006,
+        "ci95": [
+          -0.332,
+          0.1308
+        ]
+      },
+      "kw:repeat_domain": {
+        "weight": 0.0119,
+        "ci95": [
+          -0.1764,
+          0.2002
+        ]
+      },
+      "kw:ubiquitin_system": {
+        "weight": 0.1091,
+        "ci95": [
+          -0.1686,
+          0.3869
+        ]
+      },
+      "kw:protease": {
+        "weight": -0.253,
+        "ci95": [
+          -0.5679,
+          0.0618
+        ]
+      },
+      "kw:helicase_nucleic": {
+        "weight": -0.1199,
+        "ci95": [
+          -0.5253,
+          0.2855
+        ]
+      },
+      "kw:gtpase_signalling": {
+        "weight": -0.1316,
+        "ci95": [
+          -0.745,
+          0.4817
+        ]
+      },
+      "kw:methyl_glyco_transferase": {
+        "weight": -0.1533,
+        "ci95": [
+          -0.4502,
+          0.1437
+        ]
+      },
+      "kw:cytoskeleton_motor": {
+        "weight": 0.3782,
+        "ci95": [
+          0.0488,
+          0.7077
+        ]
+      },
+      "kw:cilium_flagellum": {
+        "weight": -0.9536,
+        "ci95": [
+          -2.4306,
+          0.5235
+        ]
+      },
+      "kw:cell_adhesion_surface": {
+        "weight": 0.3643,
+        "ci95": [
+          0.1065,
+          0.6221
+        ]
+      },
+      "kw:lipid_metabolism": {
+        "weight": 0.1146,
+        "ci95": [
+          -0.42,
+          0.6493
+        ]
+      },
+      "kw:amino_acid_metabolism": {
+        "weight": 0.2137,
+        "ci95": [
+          -0.2451,
+          0.6725
+        ]
+      },
+      "kw:uncharacterised": {
+        "weight": -0.0035,
+        "ci95": [
+          -0.3072,
+          0.3001
+        ]
+      }
+    },
+    "duplication_hypoxia": {
+      "hydrophobicity_gravy": {
+        "weight": 0.0206,
+        "ci95": [
+          -0.0215,
+          0.0627
+        ]
+      },
+      "tm_helices": {
+        "weight": 0.0012,
+        "ci95": [
+          -0.0425,
+          0.0449
+        ]
+      },
+      "protein_length": {
+        "weight": -0.0107,
+        "ci95": [
+          -0.0847,
+          0.0633
+        ]
+      },
+      "redox_core": {
+        "weight": -0.0754,
+        "ci95": [
+          -0.5998,
+          0.4491
+        ]
+      },
+      "atp_synthase": {
+        "weight": 0.1125,
+        "ci95": [
+          -1.4507,
+          1.6757
+        ]
+      },
+      "translation": {
+        "weight": -0.1714,
+        "ci95": [
+          -1.0262,
+          0.6834
+        ]
+      },
+      "transcription": {
+        "weight": -0.0911,
+        "ci95": [
+          -0.8589,
+          0.6767
+        ]
+      },
+      "protein_targeting": {
+        "weight": -0.5378,
+        "ci95": [
+          -1.5371,
+          0.4615
+        ]
+      },
+      "ubiquity_free_living": {
+        "weight": 0.0134,
+        "ci95": [
+          -0.1639,
+          0.1908
+        ]
+      },
+      "copies_free_living": {
+        "weight": -0.0769,
+        "ci95": [
+          -0.2122,
+          0.0583
+        ]
+      },
+      "hmm_length": {
+        "weight": 0.0243,
+        "ci95": [
+          -0.0972,
+          0.1458
+        ]
+      },
+      "clan_size": {
+        "weight": 0.027,
+        "ci95": [
+          -0.0681,
+          0.1221
+        ]
+      },
+      "in_clan": {
+        "weight": 0.0795,
+        "ci95": [
+          -0.056,
+          0.2149
+        ]
+      },
+      "has_go_annotation": {
+        "weight": 0.0026,
+        "ci95": [
+          -0.0596,
+          0.0648
+        ]
+      },
+      "go:DNA binding": {
+        "weight": 0.0124,
+        "ci95": [
+          -0.187,
+          0.2118
+        ]
+      },
+      "go:RNA binding": {
+        "weight": -0.0932,
+        "ci95": [
+          -0.5816,
+          0.3952
+        ]
+      },
+      "go:catalytic activity": {
+        "weight": -0.0294,
+        "ci95": [
+          -0.1427,
+          0.0839
+        ]
+      },
+      "go:structural molecule activity": {
+        "weight": 0.0111,
+        "ci95": [
+          -0.7599,
+          0.7821
+        ]
+      },
+      "go:transporter activity": {
+        "weight": -0.1766,
+        "ci95": [
+          -0.4343,
+          0.0811
+        ]
+      },
+      "go:extracellular region": {
+        "weight": 0.0634,
+        "ci95": [
+          -0.4623,
+          0.589
+        ]
+      },
+      "go:nucleus": {
+        "weight": -0.4046,
+        "ci95": [
+          -0.5971,
+          -0.2121
+        ]
+      },
+      "go:mitochondrion": {
+        "weight": -0.0344,
+        "ci95": [
+          -0.6251,
+          0.5563
+        ]
+      },
+      "go:ribosome": {
+        "weight": -0.7189,
+        "ci95": [
+          -1.4851,
+          0.0473
+        ]
+      },
+      "go:carbohydrate metabolic process": {
+        "weight": 0.1138,
+        "ci95": [
+          -0.3632,
+          0.5908
+        ]
+      },
+      "go:DNA-templated transcription": {
+        "weight": -0.6266,
+        "ci95": [
+          -1.1507,
+          -0.1024
+        ]
+      },
+      "go:regulation of DNA-templated transcription": {
+        "weight": -0.1292,
+        "ci95": [
+          -0.4589,
+          0.2004
+        ]
+      },
+      "go:lipid metabolic process": {
+        "weight": -0.0128,
+        "ci95": [
+          -0.3659,
+          0.3403
+        ]
+      },
+      "go:oxidoreductase activity": {
+        "weight": -0.0731,
+        "ci95": [
+          -0.2856,
+          0.1395
+        ]
+      },
+      "go:transferase activity": {
+        "weight": 0.1311,
+        "ci95": [
+          -0.1637,
+          0.4259
+        ]
+      },
+      "go:hydrolase activity": {
+        "weight": -0.0882,
+        "ci95": [
+          -0.209,
+          0.0326
+        ]
+      },
+      "go:signaling": {
+        "weight": -0.1551,
+        "ci95": [
+          -0.3501,
+          0.0399
+        ]
+      },
+      "go:organelle": {
+        "weight": -0.0389,
+        "ci95": [
+          -0.3452,
+          0.2673
+        ]
+      },
+      "go:receptor ligand activity": {
+        "weight": -0.4982,
+        "ci95": [
+          -1.3808,
+          0.3844
+        ]
+      },
+      "go:transmembrane transport": {
+        "weight": 0.0385,
+        "ci95": [
+          -0.1635,
+          0.2406
+        ]
+      },
+      "go:molecular function regulator activity": {
+        "weight": 0.3556,
+        "ci95": [
+          0.136,
+          0.5753
+        ]
+      },
+      "go:catalytic activity, acting on a protein": {
+        "weight": -0.0419,
+        "ci95": [
+          -0.3915,
+          0.3076
+        ]
+      },
+      "go:catalytic activity, acting on RNA": {
+        "weight": 0.3993,
+        "ci95": [
+          -0.0406,
+          0.8392
+        ]
+      },
+      "go:transcription regulator activity": {
+        "weight": -0.0933,
+        "ci95": [
+          -0.3689,
+          0.1822
+        ]
+      },
+      "go:ATP-dependent activity": {
+        "weight": -0.0828,
+        "ci95": [
+          -0.64,
+          0.4744
+        ]
+      },
+      "go:carbohydrate derivative metabolic process": {
+        "weight": -0.1009,
+        "ci95": [
+          -0.4544,
+          0.2526
+        ]
+      },
+      "kw:kinase": {
+        "weight": -0.2105,
+        "ci95": [
+          -0.4219,
+          0.0009
+        ]
+      },
+      "kw:phosphatase": {
+        "weight": -0.0876,
+        "ci95": [
+          -0.2826,
+          0.1075
+        ]
+      },
+      "kw:transporter_channel": {
+        "weight": -0.222,
+        "ci95": [
+          -0.4046,
+          -0.0394
+        ]
+      },
+      "kw:zinc_finger": {
+        "weight": -0.1416,
+        "ci95": [
+          -0.52,
+          0.2369
+        ]
+      },
+      "kw:repeat_domain": {
+        "weight": 0.0198,
+        "ci95": [
+          -0.1902,
+          0.2298
+        ]
+      },
+      "kw:ubiquitin_system": {
+        "weight": 0.081,
+        "ci95": [
+          -0.157,
+          0.319
+        ]
+      },
+      "kw:protease": {
+        "weight": -0.1366,
+        "ci95": [
+          -0.444,
+          0.1707
+        ]
+      },
+      "kw:helicase_nucleic": {
+        "weight": 0.0982,
+        "ci95": [
+          -0.1532,
+          0.3496
+        ]
+      },
+      "kw:gtpase_signalling": {
+        "weight": 0.383,
+        "ci95": [
+          -0.2321,
+          0.998
+        ]
+      },
+      "kw:methyl_glyco_transferase": {
+        "weight": -0.1679,
+        "ci95": [
+          -0.3939,
+          0.0581
+        ]
+      },
+      "kw:cytoskeleton_motor": {
+        "weight": 0.2733,
+        "ci95": [
+          -0.111,
+          0.6577
+        ]
+      },
+      "kw:cilium_flagellum": {
+        "weight": -0.6163,
+        "ci95": [
+          -1.4436,
+          0.2109
+        ]
+      },
+      "kw:cell_adhesion_surface": {
+        "weight": -0.0009,
+        "ci95": [
+          -0.2783,
+          0.2765
+        ]
+      },
+      "kw:lipid_metabolism": {
+        "weight": 0.0488,
+        "ci95": [
+          -0.3322,
+          0.4298
+        ]
+      },
+      "kw:amino_acid_metabolism": {
+        "weight": 0.052,
+        "ci95": [
+          -0.1448,
+          0.2488
+        ]
+      },
+      "kw:uncharacterised": {
+        "weight": -0.0953,
+        "ci95": [
+          -0.2942,
+          0.1035
+        ]
+      }
+    },
+    "duplication_endothermy": {
+      "hydrophobicity_gravy": {
+        "weight": 0.0281,
+        "ci95": [
+          -0.0327,
+          0.0889
+        ]
+      },
+      "tm_helices": {
+        "weight": 0.0144,
+        "ci95": [
+          -0.0837,
+          0.1125
+        ]
+      },
+      "protein_length": {
+        "weight": -0.2166,
+        "ci95": [
+          -0.3828,
+          -0.0503
+        ]
+      },
+      "redox_core": {
+        "weight": 0.096,
+        "ci95": [
+          -0.6856,
+          0.8777
+        ]
+      },
+      "atp_synthase": {
+        "weight": 0.6908,
+        "ci95": [
+          -0.2627,
+          1.6444
+        ]
+      },
+      "translation": {
+        "weight": 0.4936,
+        "ci95": [
+          -0.5415,
+          1.5288
+        ]
+      },
+      "transcription": {
+        "weight": -0.2746,
+        "ci95": [
+          -0.8379,
+          0.2888
+        ]
+      },
+      "protein_targeting": {
+        "weight": 0.0944,
+        "ci95": [
+          -1.0105,
+          1.1994
+        ]
+      },
+      "ubiquity_free_living": {
+        "weight": 0.0465,
+        "ci95": [
+          -0.4352,
+          0.5283
+        ]
+      },
+      "copies_free_living": {
+        "weight": 0.0883,
+        "ci95": [
+          -0.2128,
+          0.3895
+        ]
+      },
+      "hmm_length": {
+        "weight": 0.1864,
+        "ci95": [
+          0.0345,
+          0.3383
+        ]
+      },
+      "clan_size": {
+        "weight": 0.1388,
+        "ci95": [
+          0.0404,
+          0.2372
+        ]
+      },
+      "in_clan": {
+        "weight": -0.1441,
+        "ci95": [
+          -0.3317,
+          0.0436
+        ]
+      },
+      "has_go_annotation": {
+        "weight": -0.0466,
+        "ci95": [
+          -0.1341,
+          0.0409
+        ]
+      },
+      "go:DNA binding": {
+        "weight": 0.0267,
+        "ci95": [
+          -0.3996,
+          0.453
+        ]
+      },
+      "go:RNA binding": {
+        "weight": -0.0755,
+        "ci95": [
+          -0.4346,
+          0.2837
+        ]
+      },
+      "go:catalytic activity": {
+        "weight": -0.0272,
+        "ci95": [
+          -0.0998,
+          0.0454
+        ]
+      },
+      "go:structural molecule activity": {
+        "weight": 0.0796,
+        "ci95": [
+          -1.5993,
+          1.7585
+        ]
+      },
+      "go:transporter activity": {
+        "weight": -0.5771,
+        "ci95": [
+          -1.0245,
+          -0.1296
+        ]
+      },
+      "go:extracellular region": {
+        "weight": 0.0798,
+        "ci95": [
+          -0.4258,
+          0.5854
+        ]
+      },
+      "go:nucleus": {
+        "weight": -0.2537,
+        "ci95": [
+          -1.4156,
+          0.9083
+        ]
+      },
+      "go:mitochondrion": {
+        "weight": 0.1508,
+        "ci95": [
+          -0.2656,
+          0.5672
+        ]
+      },
+      "go:ribosome": {
+        "weight": -0.6201,
+        "ci95": [
+          -3.1795,
+          1.9393
+        ]
+      },
+      "go:carbohydrate metabolic process": {
+        "weight": 0.6085,
+        "ci95": [
+          -0.0059,
+          1.2229
+        ]
+      },
+      "go:DNA-templated transcription": {
+        "weight": 0.2344,
+        "ci95": [
+          -0.2634,
+          0.7322
+        ]
+      },
+      "go:regulation of DNA-templated transcription": {
+        "weight": 0.035,
+        "ci95": [
+          -0.7829,
+          0.8529
+        ]
+      },
+      "go:lipid metabolic process": {
+        "weight": -0.3435,
+        "ci95": [
+          -0.7541,
+          0.0672
+        ]
+      },
+      "go:oxidoreductase activity": {
+        "weight": -0.3234,
+        "ci95": [
+          -0.6889,
+          0.0421
+        ]
+      },
+      "go:transferase activity": {
+        "weight": 0.2979,
+        "ci95": [
+          0.0565,
+          0.5393
+        ]
+      },
+      "go:hydrolase activity": {
+        "weight": -0.0852,
+        "ci95": [
+          -0.3138,
+          0.1435
+        ]
+      },
+      "go:signaling": {
+        "weight": 0.0548,
+        "ci95": [
+          -0.2438,
+          0.3533
+        ]
+      },
+      "go:organelle": {
+        "weight": 0.1011,
+        "ci95": [
+          -0.0795,
+          0.2818
+        ]
+      },
+      "go:receptor ligand activity": {
+        "weight": 0.1844,
+        "ci95": [
+          -0.3181,
+          0.6869
+        ]
+      },
+      "go:transmembrane transport": {
+        "weight": -0.099,
+        "ci95": [
+          -0.3141,
+          0.1161
+        ]
+      },
+      "go:molecular function regulator activity": {
+        "weight": -0.0195,
+        "ci95": [
+          -0.3638,
+          0.3248
+        ]
+      },
+      "go:catalytic activity, acting on a protein": {
+        "weight": -0.1317,
+        "ci95": [
+          -0.4685,
+          0.2052
+        ]
+      },
+      "go:catalytic activity, acting on RNA": {
+        "weight": 0.3035,
+        "ci95": [
+          -0.7841,
+          1.391
+        ]
+      },
+      "go:transcription regulator activity": {
+        "weight": -0.1188,
+        "ci95": [
+          -0.8735,
+          0.636
+        ]
+      },
+      "go:ATP-dependent activity": {
+        "weight": -0.3404,
+        "ci95": [
+          -0.6908,
+          0.0099
+        ]
+      },
+      "go:carbohydrate derivative metabolic process": {
+        "weight": -0.0987,
+        "ci95": [
+          -0.3497,
+          0.1524
+        ]
+      },
+      "kw:kinase": {
+        "weight": 0.0384,
+        "ci95": [
+          -0.4684,
+          0.5451
+        ]
+      },
+      "kw:phosphatase": {
+        "weight": -0.1706,
+        "ci95": [
+          -0.4729,
+          0.1317
+        ]
+      },
+      "kw:transporter_channel": {
+        "weight": -0.3941,
+        "ci95": [
+          -0.7043,
+          -0.084
+        ]
+      },
+      "kw:zinc_finger": {
+        "weight": -0.2416,
+        "ci95": [
+          -0.4154,
+          -0.0677
+        ]
+      },
+      "kw:repeat_domain": {
+        "weight": 0.4887,
+        "ci95": [
+          -0.1265,
+          1.1039
+        ]
+      },
+      "kw:ubiquitin_system": {
+        "weight": -0.1657,
+        "ci95": [
+          -0.436,
+          0.1046
+        ]
+      },
+      "kw:protease": {
+        "weight": -0.2954,
+        "ci95": [
+          -0.6515,
+          0.0606
+        ]
+      },
+      "kw:helicase_nucleic": {
+        "weight": 0.0257,
+        "ci95": [
+          -0.1512,
+          0.2026
+        ]
+      },
+      "kw:gtpase_signalling": {
+        "weight": 0.4317,
+        "ci95": [
+          -0.2753,
+          1.1387
+        ]
+      },
+      "kw:methyl_glyco_transferase": {
+        "weight": -0.4403,
+        "ci95": [
+          -0.9169,
+          0.0362
+        ]
+      },
+      "kw:cytoskeleton_motor": {
+        "weight": 0.3143,
+        "ci95": [
+          -1.1656,
+          1.7941
+        ]
+      },
+      "kw:cilium_flagellum": {
+        "weight": -0.0261,
+        "ci95": [
+          -0.592,
+          0.5399
+        ]
+      },
+      "kw:cell_adhesion_surface": {
+        "weight": 0.0083,
+        "ci95": [
+          -0.343,
+          0.3596
+        ]
+      },
+      "kw:lipid_metabolism": {
+        "weight": -0.022,
+        "ci95": [
+          -0.4118,
+          0.3677
+        ]
+      },
+      "kw:amino_acid_metabolism": {
+        "weight": -0.1464,
+        "ci95": [
+          -0.8169,
+          0.5242
+        ]
+      },
+      "kw:uncharacterised": {
+        "weight": -0.3062,
+        "ci95": [
+          -0.7317,
+          0.1192
+        ]
+      }
+    },
+    "duplication_parasite": {
+      "hydrophobicity_gravy": {
+        "weight": -0.0107,
+        "ci95": [
+          -0.064,
+          0.0427
+        ]
+      },
+      "tm_helices": {
+        "weight": -0.0291,
+        "ci95": [
+          -0.091,
+          0.0328
+        ]
+      },
+      "protein_length": {
+        "weight": 0.0055,
+        "ci95": [
+          -0.1083,
+          0.1193
+        ]
+      },
+      "redox_core": {
+        "weight": -0.3221,
+        "ci95": [
+          -1.2577,
+          0.6136
+        ]
+      },
+      "atp_synthase": {
+        "weight": -0.6718,
+        "ci95": [
+          -1.9754,
+          0.6318
+        ]
+      },
+      "translation": {
+        "weight": 0.3951,
+        "ci95": [
+          -0.7782,
+          1.5683
+        ]
+      },
+      "transcription": {
+        "weight": -0.1106,
+        "ci95": [
+          -0.9047,
+          0.6836
+        ]
+      },
+      "protein_targeting": {
+        "weight": 0.4574,
+        "ci95": [
+          -0.4516,
+          1.3665
+        ]
+      },
+      "ubiquity_free_living": {
+        "weight": 0.1555,
+        "ci95": [
+          -0.0502,
+          0.3613
+        ]
+      },
+      "copies_free_living": {
+        "weight": 0.076,
+        "ci95": [
+          -0.0866,
+          0.2386
+        ]
+      },
+      "hmm_length": {
+        "weight": -0.0332,
+        "ci95": [
+          -0.177,
+          0.1106
+        ]
+      },
+      "clan_size": {
+        "weight": -0.0381,
+        "ci95": [
+          -0.1615,
+          0.0853
+        ]
+      },
+      "in_clan": {
+        "weight": 0.2313,
+        "ci95": [
+          0.1013,
+          0.3614
+        ]
+      },
+      "has_go_annotation": {
+        "weight": -0.0144,
+        "ci95": [
+          -0.1014,
+          0.0725
+        ]
+      },
+      "go:DNA binding": {
+        "weight": -0.2356,
+        "ci95": [
+          -0.6002,
+          0.1291
+        ]
+      },
+      "go:RNA binding": {
+        "weight": 0.1314,
+        "ci95": [
+          -0.2625,
+          0.5254
+        ]
+      },
+      "go:catalytic activity": {
+        "weight": -0.0425,
+        "ci95": [
+          -0.1511,
+          0.0661
+        ]
+      },
+      "go:structural molecule activity": {
+        "weight": -0.7629,
+        "ci95": [
+          -1.4825,
+          -0.0433
+        ]
+      },
+      "go:transporter activity": {
+        "weight": 0.1089,
+        "ci95": [
+          -0.3501,
+          0.5678
+        ]
+      },
+      "go:extracellular region": {
+        "weight": -0.0788,
+        "ci95": [
+          -0.7776,
+          0.62
+        ]
+      },
+      "go:nucleus": {
+        "weight": 0.0365,
+        "ci95": [
+          -0.5393,
+          0.6123
+        ]
+      },
+      "go:mitochondrion": {
+        "weight": -0.8368,
+        "ci95": [
+          -1.675,
+          0.0014
+        ]
+      },
+      "go:ribosome": {
+        "weight": -0.5816,
+        "ci95": [
+          -1.5228,
+          0.3597
+        ]
+      },
+      "go:carbohydrate metabolic process": {
+        "weight": -0.0616,
+        "ci95": [
+          -0.9515,
+          0.8283
+        ]
+      },
+      "go:DNA-templated transcription": {
+        "weight": -0.092,
+        "ci95": [
+          -0.7506,
+          0.5666
+        ]
+      },
+      "go:regulation of DNA-templated transcription": {
+        "weight": -0.2051,
+        "ci95": [
+          -0.5324,
+          0.1222
+        ]
+      },
+      "go:lipid metabolic process": {
+        "weight": 0.1706,
+        "ci95": [
+          -0.4561,
+          0.7972
+        ]
+      },
+      "go:oxidoreductase activity": {
+        "weight": -0.5454,
+        "ci95": [
+          -1.0218,
+          -0.0691
+        ]
+      },
+      "go:transferase activity": {
+        "weight": -0.0176,
+        "ci95": [
+          -0.3034,
+          0.2683
+        ]
+      },
+      "go:hydrolase activity": {
+        "weight": 0.1197,
+        "ci95": [
+          -0.05,
+          0.2894
+        ]
+      },
+      "go:signaling": {
+        "weight": 0.1321,
+        "ci95": [
+          -0.2971,
+          0.5613
+        ]
+      },
+      "go:organelle": {
+        "weight": 0.0881,
+        "ci95": [
+          -0.2836,
+          0.4599
+        ]
+      },
+      "go:receptor ligand activity": {
+        "weight": -0.0477,
+        "ci95": [
+          -1.1373,
+          1.0419
+        ]
+      },
+      "go:transmembrane transport": {
+        "weight": 0.2305,
+        "ci95": [
+          -0.0111,
+          0.4721
+        ]
+      },
+      "go:molecular function regulator activity": {
+        "weight": -0.4225,
+        "ci95": [
+          -1.0248,
+          0.1799
+        ]
+      },
+      "go:catalytic activity, acting on a protein": {
+        "weight": -0.2738,
+        "ci95": [
+          -0.6777,
+          0.1301
+        ]
+      },
+      "go:catalytic activity, acting on RNA": {
+        "weight": -0.3747,
+        "ci95": [
+          -0.9674,
+          0.2181
+        ]
+      },
+      "go:transcription regulator activity": {
+        "weight": 0.1545,
+        "ci95": [
+          -0.3245,
+          0.6335
+        ]
+      },
+      "go:ATP-dependent activity": {
+        "weight": 0.1942,
+        "ci95": [
+          -0.1231,
+          0.5115
+        ]
+      },
+      "go:carbohydrate derivative metabolic process": {
+        "weight": 0.2731,
+        "ci95": [
+          -0.1757,
+          0.7219
+        ]
+      },
+      "kw:kinase": {
+        "weight": 0.2802,
+        "ci95": [
+          -0.0715,
+          0.6318
+        ]
+      },
+      "kw:phosphatase": {
+        "weight": -0.0535,
+        "ci95": [
+          -0.469,
+          0.3621
+        ]
+      },
+      "kw:transporter_channel": {
+        "weight": 0.0094,
+        "ci95": [
+          -0.1828,
+          0.2016
+        ]
+      },
+      "kw:zinc_finger": {
+        "weight": -0.4855,
+        "ci95": [
+          -0.7966,
+          -0.1743
+        ]
+      },
+      "kw:repeat_domain": {
+        "weight": -0.0777,
+        "ci95": [
+          -0.3025,
+          0.1472
+        ]
+      },
+      "kw:ubiquitin_system": {
+        "weight": 0.3924,
+        "ci95": [
+          -0.1389,
+          0.9236
+        ]
+      },
+      "kw:protease": {
+        "weight": -0.0694,
+        "ci95": [
+          -0.4105,
+          0.2717
+        ]
+      },
+      "kw:helicase_nucleic": {
+        "weight": -0.2487,
+        "ci95": [
+          -0.7104,
+          0.2131
+        ]
+      },
+      "kw:gtpase_signalling": {
+        "weight": -0.1928,
+        "ci95": [
+          -0.9463,
+          0.5606
+        ]
+      },
+      "kw:methyl_glyco_transferase": {
+        "weight": 0.1611,
+        "ci95": [
+          -0.2335,
+          0.5556
+        ]
+      },
+      "kw:cytoskeleton_motor": {
+        "weight": -0.0375,
+        "ci95": [
+          -0.816,
+          0.741
+        ]
+      },
+      "kw:cilium_flagellum": {
+        "weight": 0.6845,
+        "ci95": [
+          -0.1668,
+          1.5357
+        ]
+      },
+      "kw:cell_adhesion_surface": {
+        "weight": -0.2955,
+        "ci95": [
+          -0.7744,
+          0.1834
+        ]
+      },
+      "kw:lipid_metabolism": {
+        "weight": 0.099,
+        "ci95": [
+          -0.314,
+          0.5119
+        ]
+      },
+      "kw:amino_acid_metabolism": {
+        "weight": -0.0856,
+        "ci95": [
+          -0.3131,
+          0.1419
+        ]
+      },
+      "kw:uncharacterised": {
+        "weight": 0.0367,
+        "ci95": [
+          -0.3431,
+          0.4164
+        ]
+      }
+    },
+    "gain_base": {
+      "hydrophobicity_gravy": {
+        "weight": 0.0438,
+        "ci95": [
+          -0.0194,
+          0.1071
+        ]
+      },
+      "tm_helices": {
+        "weight": -0.008,
+        "ci95": [
+          -0.0784,
+          0.0624
+        ]
+      },
+      "protein_length": {
+        "weight": -0.4215,
+        "ci95": [
+          -0.5699,
+          -0.2731
+        ]
+      },
+      "redox_core": {
+        "weight": 0.6507,
+        "ci95": [
+          -0.357,
+          1.6583
+        ]
+      },
+      "atp_synthase": {
+        "weight": -0.0698,
+        "ci95": [
+          -0.7906,
+          0.651
+        ]
+      },
+      "translation": {
+        "weight": 0.3882,
+        "ci95": [
+          0.001,
+          0.7754
+        ]
+      },
+      "transcription": {
+        "weight": 0.18,
+        "ci95": [
+          -0.6379,
+          0.9979
+        ]
+      },
+      "protein_targeting": {
+        "weight": 0.0685,
+        "ci95": [
+          -0.761,
+          0.8981
+        ]
+      },
+      "ubiquity_free_living": {
+        "weight": 1.6317,
+        "ci95": [
+          1.4385,
+          1.8249
+        ]
+      },
+      "copies_free_living": {
+        "weight": 0.0107,
+        "ci95": [
+          -0.1273,
+          0.1487
+        ]
+      },
+      "hmm_length": {
+        "weight": 0.4002,
+        "ci95": [
+          0.245,
+          0.5554
+        ]
+      },
+      "clan_size": {
+        "weight": 0.1652,
+        "ci95": [
+          0.0407,
+          0.2896
+        ]
+      },
+      "in_clan": {
+        "weight": 0.02,
+        "ci95": [
+          -0.1129,
+          0.1529
+        ]
+      },
+      "has_go_annotation": {
+        "weight": -0.106,
+        "ci95": [
+          -0.2305,
+          0.0185
+        ]
+      },
+      "go:DNA binding": {
+        "weight": -0.0596,
+        "ci95": [
+          -0.3582,
+          0.239
+        ]
+      },
+      "go:RNA binding": {
+        "weight": 0.5415,
+        "ci95": [
+          -0.0816,
+          1.1646
+        ]
+      },
+      "go:catalytic activity": {
+        "weight": -0.0218,
+        "ci95": [
+          -0.3322,
+          0.2886
+        ]
+      },
+      "go:structural molecule activity": {
+        "weight": -0.1272,
+        "ci95": [
+          -0.6742,
+          0.4198
+        ]
+      },
+      "go:transporter activity": {
+        "weight": 0.2795,
+        "ci95": [
+          -0.1569,
+          0.716
+        ]
+      },
+      "go:extracellular region": {
+        "weight": -0.3878,
+        "ci95": [
+          -0.7279,
+          -0.0478
+        ]
+      },
+      "go:nucleus": {
+        "weight": 0.2126,
+        "ci95": [
+          -0.0567,
+          0.4819
+        ]
+      },
+      "go:mitochondrion": {
+        "weight": 0.0878,
+        "ci95": [
+          -0.194,
+          0.3695
+        ]
+      },
+      "go:ribosome": {
+        "weight": -0.1599,
+        "ci95": [
+          -0.8118,
+          0.492
+        ]
+      },
+      "go:carbohydrate metabolic process": {
+        "weight": -0.6959,
+        "ci95": [
+          -1.3698,
+          -0.022
+        ]
+      },
+      "go:DNA-templated transcription": {
+        "weight": -0.3548,
+        "ci95": [
+          -0.8454,
+          0.1358
+        ]
+      },
+      "go:regulation of DNA-templated transcription": {
+        "weight": -0.4073,
+        "ci95": [
+          -0.8347,
+          0.02
+        ]
+      },
+      "go:lipid metabolic process": {
+        "weight": 0.1663,
+        "ci95": [
+          -0.3989,
+          0.7316
+        ]
+      },
+      "go:oxidoreductase activity": {
+        "weight": 0.3422,
+        "ci95": [
+          -0.1418,
+          0.8263
+        ]
+      },
+      "go:transferase activity": {
+        "weight": 0.1762,
+        "ci95": [
+          -0.2216,
+          0.574
+        ]
+      },
+      "go:hydrolase activity": {
+        "weight": -0.0011,
+        "ci95": [
+          -0.3282,
+          0.326
+        ]
+      },
+      "go:signaling": {
+        "weight": -0.0612,
+        "ci95": [
+          -0.6872,
+          0.5647
+        ]
+      },
+      "go:organelle": {
+        "weight": -0.0738,
+        "ci95": [
+          -0.2692,
+          0.1216
+        ]
+      },
+      "go:receptor ligand activity": {
+        "weight": -0.2185,
+        "ci95": [
+          -0.7944,
+          0.3575
+        ]
+      },
+      "go:transmembrane transport": {
+        "weight": -0.1627,
+        "ci95": [
+          -0.7784,
+          0.453
+        ]
+      },
+      "go:molecular function regulator activity": {
+        "weight": 0.29,
+        "ci95": [
+          -0.1293,
+          0.7093
+        ]
+      },
+      "go:catalytic activity, acting on a protein": {
+        "weight": -0.1863,
+        "ci95": [
+          -0.7234,
+          0.3509
+        ]
+      },
+      "go:catalytic activity, acting on RNA": {
+        "weight": 0.4729,
+        "ci95": [
+          -0.2564,
+          1.2022
+        ]
+      },
+      "go:transcription regulator activity": {
+        "weight": -0.0098,
+        "ci95": [
+          -0.5117,
+          0.4921
+        ]
+      },
+      "go:ATP-dependent activity": {
+        "weight": -0.0692,
+        "ci95": [
+          -0.6951,
+          0.5567
+        ]
+      },
+      "go:carbohydrate derivative metabolic process": {
+        "weight": 0.01,
+        "ci95": [
+          -0.3522,
+          0.3722
+        ]
+      },
+      "kw:kinase": {
+        "weight": 0.03,
+        "ci95": [
+          -0.3645,
+          0.4245
+        ]
+      },
+      "kw:phosphatase": {
+        "weight": -0.0455,
+        "ci95": [
+          -0.395,
+          0.304
+        ]
+      },
+      "kw:transporter_channel": {
+        "weight": -0.1786,
+        "ci95": [
+          -0.4655,
+          0.1084
+        ]
+      },
+      "kw:zinc_finger": {
+        "weight": -0.1921,
+        "ci95": [
+          -0.4339,
+          0.0496
+        ]
+      },
+      "kw:repeat_domain": {
+        "weight": 0.3409,
+        "ci95": [
+          0.1246,
+          0.5573
+        ]
+      },
+      "kw:ubiquitin_system": {
+        "weight": -0.0433,
+        "ci95": [
+          -0.3496,
+          0.2631
+        ]
+      },
+      "kw:protease": {
+        "weight": 0.3731,
+        "ci95": [
+          0.045,
+          0.7012
+        ]
+      },
+      "kw:helicase_nucleic": {
+        "weight": 0.2832,
+        "ci95": [
+          -0.0673,
+          0.6337
+        ]
+      },
+      "kw:gtpase_signalling": {
+        "weight": 0.5204,
+        "ci95": [
+          -0.3198,
+          1.3607
+        ]
+      },
+      "kw:methyl_glyco_transferase": {
+        "weight": -0.1273,
+        "ci95": [
+          -0.4979,
+          0.2432
+        ]
+      },
+      "kw:cytoskeleton_motor": {
+        "weight": -0.0455,
+        "ci95": [
+          -0.6613,
+          0.5702
+        ]
+      },
+      "kw:cilium_flagellum": {
+        "weight": -0.133,
+        "ci95": [
+          -0.7085,
+          0.4425
+        ]
+      },
+      "kw:cell_adhesion_surface": {
+        "weight": -0.4419,
+        "ci95": [
+          -0.7731,
+          -0.1106
+        ]
+      },
+      "kw:lipid_metabolism": {
+        "weight": -0.1863,
+        "ci95": [
+          -0.8166,
+          0.4439
+        ]
+      },
+      "kw:amino_acid_metabolism": {
+        "weight": 0.4984,
+        "ci95": [
+          -0.0341,
+          1.031
+        ]
+      },
+      "kw:uncharacterised": {
+        "weight": -0.168,
+        "ci95": [
+          -0.311,
+          -0.0249
+        ]
+      }
+    },
+    "gain_colder": {
+      "hydrophobicity_gravy": {
+        "weight": -0.0579,
+        "ci95": [
+          -0.2049,
+          0.0892
+        ]
+      },
+      "tm_helices": {
+        "weight": 0.1446,
+        "ci95": [
+          0.0145,
+          0.2747
+        ]
+      },
+      "protein_length": {
+        "weight": -0.1458,
+        "ci95": [
+          -0.6257,
+          0.334
+        ]
+      },
+      "redox_core": {
+        "weight": 0.4174,
+        "ci95": [
+          -0.7759,
+          1.6108
+        ]
+      },
+      "atp_synthase": {
+        "weight": -0.2036,
+        "ci95": [
+          -1.48,
+          1.0728
+        ]
+      },
+      "translation": {
+        "weight": -0.8757,
+        "ci95": [
+          -1.4708,
+          -0.2807
+        ]
+      },
+      "transcription": {
+        "weight": -0.6011,
+        "ci95": [
+          -1.4688,
+          0.2667
+        ]
+      },
+      "protein_targeting": {
+        "weight": -0.3096,
+        "ci95": [
+          -1.2235,
+          0.6043
+        ]
+      },
+      "ubiquity_free_living": {
+        "weight": 0.5731,
+        "ci95": [
+          0.1723,
+          0.9739
+        ]
+      },
+      "copies_free_living": {
+        "weight": 0.047,
+        "ci95": [
+          -0.1716,
+          0.2655
+        ]
+      },
+      "hmm_length": {
+        "weight": 0.0834,
+        "ci95": [
+          -0.3113,
+          0.478
+        ]
+      },
+      "clan_size": {
+        "weight": -0.1399,
+        "ci95": [
+          -0.2985,
+          0.0187
+        ]
+      },
+      "in_clan": {
+        "weight": -0.1342,
+        "ci95": [
+          -0.3401,
+          0.0718
+        ]
+      },
+      "has_go_annotation": {
+        "weight": 0.1465,
+        "ci95": [
+          -0.1503,
+          0.4434
+        ]
+      },
+      "go:DNA binding": {
+        "weight": -0.1681,
+        "ci95": [
+          -0.8004,
+          0.4643
+        ]
+      },
+      "go:RNA binding": {
+        "weight": -0.2672,
+        "ci95": [
+          -1.5975,
+          1.0631
+        ]
+      },
+      "go:catalytic activity": {
+        "weight": -0.3283,
+        "ci95": [
+          -0.7589,
+          0.1023
+        ]
+      },
+      "go:structural molecule activity": {
+        "weight": -0.0881,
+        "ci95": [
+          -0.7715,
+          0.5953
+        ]
+      },
+      "go:transporter activity": {
+        "weight": -0.0913,
+        "ci95": [
+          -0.6964,
+          0.5138
+        ]
+      },
+      "go:extracellular region": {
+        "weight": 0.5281,
+        "ci95": [
+          0.1149,
+          0.9414
+        ]
+      },
+      "go:nucleus": {
+        "weight": 0.2202,
+        "ci95": [
+          -0.4627,
+          0.9031
+        ]
+      },
+      "go:mitochondrion": {
+        "weight": -0.4117,
+        "ci95": [
+          -1.0548,
+          0.2314
+        ]
+      },
+      "go:ribosome": {
+        "weight": 0.8126,
+        "ci95": [
+          -0.1935,
+          1.8187
+        ]
+      },
+      "go:carbohydrate metabolic process": {
+        "weight": 0.0333,
+        "ci95": [
+          -1.1796,
+          1.2462
+        ]
+      },
+      "go:DNA-templated transcription": {
+        "weight": 0.1657,
+        "ci95": [
+          -0.8308,
+          1.1621
+        ]
+      },
+      "go:regulation of DNA-templated transcription": {
+        "weight": 0.2027,
+        "ci95": [
+          -1.0685,
+          1.4739
+        ]
+      },
+      "go:lipid metabolic process": {
+        "weight": 0.064,
+        "ci95": [
+          -1.2689,
+          1.3968
+        ]
+      },
+      "go:oxidoreductase activity": {
+        "weight": -0.0489,
+        "ci95": [
+          -0.6667,
+          0.5689
+        ]
+      },
+      "go:transferase activity": {
+        "weight": -0.5415,
+        "ci95": [
+          -1.1569,
+          0.0739
+        ]
+      },
+      "go:hydrolase activity": {
+        "weight": 0.2181,
+        "ci95": [
+          -0.1706,
+          0.6067
+        ]
+      },
+      "go:signaling": {
+        "weight": 0.25,
+        "ci95": [
+          -0.432,
+          0.9319
+        ]
+      },
+      "go:organelle": {
+        "weight": 0.0652,
+        "ci95": [
+          -0.504,
+          0.6344
+        ]
+      },
+      "go:receptor ligand activity": {
+        "weight": -0.3638,
+        "ci95": [
+          -1.2805,
+          0.5528
+        ]
+      },
+      "go:transmembrane transport": {
+        "weight": -0.2807,
+        "ci95": [
+          -0.9852,
+          0.4239
+        ]
+      },
+      "go:molecular function regulator activity": {
+        "weight": 0.2575,
+        "ci95": [
+          -0.365,
+          0.8799
+        ]
+      },
+      "go:catalytic activity, acting on a protein": {
+        "weight": 0.0666,
+        "ci95": [
+          -0.8364,
+          0.9696
+        ]
+      },
+      "go:catalytic activity, acting on RNA": {
+        "weight": 0.627,
+        "ci95": [
+          -0.3369,
+          1.5909
+        ]
+      },
+      "go:transcription regulator activity": {
+        "weight": -0.7465,
+        "ci95": [
+          -2.2292,
+          0.7363
+        ]
+      },
+      "go:ATP-dependent activity": {
+        "weight": 0.0441,
+        "ci95": [
+          -0.9337,
+          1.022
+        ]
+      },
+      "go:carbohydrate derivative metabolic process": {
+        "weight": 0.9246,
+        "ci95": [
+          0.1107,
+          1.7386
+        ]
+      },
+      "kw:kinase": {
+        "weight": 0.2852,
+        "ci95": [
+          -0.2855,
+          0.8558
+        ]
+      },
+      "kw:phosphatase": {
+        "weight": 0.3149,
+        "ci95": [
+          -0.6266,
+          1.2564
+        ]
+      },
+      "kw:transporter_channel": {
+        "weight": -0.1089,
+        "ci95": [
+          -0.386,
+          0.1683
+        ]
+      },
+      "kw:zinc_finger": {
+        "weight": 0.036,
+        "ci95": [
+          -0.4085,
+          0.4805
+        ]
+      },
+      "kw:repeat_domain": {
+        "weight": 0.2887,
+        "ci95": [
+          -0.3269,
+          0.9043
+        ]
+      },
+      "kw:ubiquitin_system": {
+        "weight": 0.5881,
+        "ci95": [
+          0.0893,
+          1.087
+        ]
+      },
+      "kw:protease": {
+        "weight": -0.4578,
+        "ci95": [
+          -1.123,
+          0.2073
+        ]
+      },
+      "kw:helicase_nucleic": {
+        "weight": -0.0159,
+        "ci95": [
+          -0.5567,
+          0.525
+        ]
+      },
+      "kw:gtpase_signalling": {
+        "weight": -0.3111,
+        "ci95": [
+          -1.4808,
+          0.8585
+        ]
+      },
+      "kw:methyl_glyco_transferase": {
+        "weight": -0.73,
+        "ci95": [
+          -1.1863,
+          -0.2737
+        ]
+      },
+      "kw:cytoskeleton_motor": {
+        "weight": -0.4585,
+        "ci95": [
+          -1.2565,
+          0.3395
+        ]
+      },
+      "kw:cilium_flagellum": {
+        "weight": 0.2719,
+        "ci95": [
+          -0.4282,
+          0.9721
+        ]
+      },
+      "kw:cell_adhesion_surface": {
+        "weight": 0.7894,
+        "ci95": [
+          0.334,
+          1.2448
+        ]
+      },
+      "kw:lipid_metabolism": {
+        "weight": -0.0895,
+        "ci95": [
+          -1.2835,
+          1.1045
+        ]
+      },
+      "kw:amino_acid_metabolism": {
+        "weight": 0.1685,
+        "ci95": [
+          -0.8571,
+          1.1941
+        ]
+      },
+      "kw:uncharacterised": {
+        "weight": 0.1694,
+        "ci95": [
+          -0.1506,
+          0.4894
+        ]
+      }
+    },
+    "gain_freshwater": {
+      "hydrophobicity_gravy": {
+        "weight": 0.0412,
+        "ci95": [
+          -0.103,
+          0.1855
+        ]
+      },
+      "tm_helices": {
+        "weight": -0.0115,
+        "ci95": [
+          -0.2284,
+          0.2055
+        ]
+      },
+      "protein_length": {
+        "weight": -0.0236,
+        "ci95": [
+          -0.3999,
+          0.3528
+        ]
+      },
+      "redox_core": {
+        "weight": 0.4327,
+        "ci95": [
+          -1.3032,
+          2.1686
+        ]
+      },
+      "atp_synthase": {
+        "weight": -0.1416,
+        "ci95": [
+          -1.4272,
+          1.1439
+        ]
+      },
+      "translation": {
+        "weight": 0.805,
+        "ci95": [
+          0.2284,
+          1.3815
+        ]
+      },
+      "transcription": {
+        "weight": -0.1081,
+        "ci95": [
+          -2.2579,
+          2.0417
+        ]
+      },
+      "protein_targeting": {
+        "weight": 1.0115,
+        "ci95": [
+          -1.0282,
+          3.0513
+        ]
+      },
+      "ubiquity_free_living": {
+        "weight": -0.1798,
+        "ci95": [
+          -0.7471,
+          0.3874
+        ]
+      },
+      "copies_free_living": {
+        "weight": -0.1962,
+        "ci95": [
+          -0.3605,
+          -0.0318
+        ]
+      },
+      "hmm_length": {
+        "weight": 0.0328,
+        "ci95": [
+          -0.2971,
+          0.3627
+        ]
+      },
+      "clan_size": {
+        "weight": -0.2015,
+        "ci95": [
+          -0.3601,
+          -0.043
+        ]
+      },
+      "in_clan": {
+        "weight": 0.6683,
+        "ci95": [
+          0.4031,
+          0.9336
+        ]
+      },
+      "has_go_annotation": {
+        "weight": 0.003,
+        "ci95": [
+          -0.1968,
+          0.2028
+        ]
+      },
+      "go:DNA binding": {
+        "weight": 0.3219,
+        "ci95": [
+          -0.5487,
+          1.1924
+        ]
+      },
+      "go:RNA binding": {
+        "weight": -0.1219,
+        "ci95": [
+          -1.1854,
+          0.9417
+        ]
+      },
+      "go:catalytic activity": {
+        "weight": 0.8091,
+        "ci95": [
+          0.3601,
+          1.2581
+        ]
+      },
+      "go:structural molecule activity": {
+        "weight": 0.1465,
+        "ci95": [
+          -0.7913,
+          1.0844
+        ]
+      },
+      "go:transporter activity": {
+        "weight": -0.255,
+        "ci95": [
+          -1.4266,
+          0.9165
+        ]
+      },
+      "go:extracellular region": {
+        "weight": -0.5305,
+        "ci95": [
+          -1.4291,
+          0.3681
+        ]
+      },
+      "go:nucleus": {
+        "weight": -0.0505,
+        "ci95": [
+          -0.5669,
+          0.4658
+        ]
+      },
+      "go:mitochondrion": {
+        "weight": -0.835,
+        "ci95": [
+          -1.5365,
+          -0.1335
+        ]
+      },
+      "go:ribosome": {
+        "weight": -0.5484,
+        "ci95": [
+          -1.1816,
+          0.0848
+        ]
+      },
+      "go:carbohydrate metabolic process": {
+        "weight": 1.3987,
+        "ci95": [
+          -0.0996,
+          2.897
+        ]
+      },
+      "go:DNA-templated transcription": {
+        "weight": 0.0657,
+        "ci95": [
+          -1.4448,
+          1.5762
+        ]
+      },
+      "go:regulation of DNA-templated transcription": {
+        "weight": 0.0065,
+        "ci95": [
+          -0.5623,
+          0.5753
+        ]
+      },
+      "go:lipid metabolic process": {
+        "weight": -0.6172,
+        "ci95": [
+          -1.8789,
+          0.6444
+        ]
+      },
+      "go:oxidoreductase activity": {
+        "weight": 0.0735,
+        "ci95": [
+          -0.7342,
+          0.8811
+        ]
+      },
+      "go:transferase activity": {
+        "weight": -0.4081,
+        "ci95": [
+          -1.118,
+          0.3019
+        ]
+      },
+      "go:hydrolase activity": {
+        "weight": -0.9453,
+        "ci95": [
+          -1.546,
+          -0.3447
+        ]
+      },
+      "go:signaling": {
+        "weight": -0.317,
+        "ci95": [
+          -1.0942,
+          0.4603
+        ]
+      },
+      "go:organelle": {
+        "weight": -0.028,
+        "ci95": [
+          -0.4906,
+          0.4347
+        ]
+      },
+      "go:receptor ligand activity": {
+        "weight": -0.2306,
+        "ci95": [
+          -1.3879,
+          0.9266
+        ]
+      },
+      "go:transmembrane transport": {
+        "weight": -0.0067,
+        "ci95": [
+          -0.8799,
+          0.8666
+        ]
+      },
+      "go:molecular function regulator activity": {
+        "weight": -0.4768,
+        "ci95": [
+          -1.0638,
+          0.1101
+        ]
+      },
+      "go:catalytic activity, acting on a protein": {
+        "weight": 0.0221,
+        "ci95": [
+          -1.1872,
+          1.2315
+        ]
+      },
+      "go:catalytic activity, acting on RNA": {
+        "weight": -1.1118,
+        "ci95": [
+          -3.3325,
+          1.1088
+        ]
+      },
+      "go:transcription regulator activity": {
+        "weight": 0.8798,
+        "ci95": [
+          0.2088,
+          1.5508
+        ]
+      },
+      "go:ATP-dependent activity": {
+        "weight": 0.5904,
+        "ci95": [
+          -0.4491,
+          1.63
+        ]
+      },
+      "go:carbohydrate derivative metabolic process": {
+        "weight": 1.0971,
+        "ci95": [
+          -0.0253,
+          2.2195
+        ]
+      },
+      "kw:kinase": {
+        "weight": -0.5386,
+        "ci95": [
+          -1.1738,
+          0.0966
+        ]
+      },
+      "kw:phosphatase": {
+        "weight": 0.0831,
+        "ci95": [
+          -0.4296,
+          0.5958
+        ]
+      },
+      "kw:transporter_channel": {
+        "weight": 0.3067,
+        "ci95": [
+          -0.5343,
+          1.1477
+        ]
+      },
+      "kw:zinc_finger": {
+        "weight": 0.183,
+        "ci95": [
+          -0.2669,
+          0.6329
+        ]
+      },
+      "kw:repeat_domain": {
+        "weight": -0.1813,
+        "ci95": [
+          -0.4379,
+          0.0752
+        ]
+      },
+      "kw:ubiquitin_system": {
+        "weight": -0.6018,
+        "ci95": [
+          -0.9469,
+          -0.2568
+        ]
+      },
+      "kw:protease": {
+        "weight": 0.1986,
+        "ci95": [
+          -1.5691,
+          1.9663
+        ]
+      },
+      "kw:helicase_nucleic": {
+        "weight": 0.2709,
+        "ci95": [
+          -0.5381,
+          1.0799
+        ]
+      },
+      "kw:gtpase_signalling": {
+        "weight": -0.3399,
+        "ci95": [
+          -2.3661,
+          1.6863
+        ]
+      },
+      "kw:methyl_glyco_transferase": {
+        "weight": 0.1301,
+        "ci95": [
+          -0.9667,
+          1.2269
+        ]
+      },
+      "kw:cytoskeleton_motor": {
+        "weight": 0.5367,
+        "ci95": [
+          -1.1481,
+          2.2215
+        ]
+      },
+      "kw:cilium_flagellum": {
+        "weight": -0.6034,
+        "ci95": [
+          -2.0916,
+          0.8847
+        ]
+      },
+      "kw:cell_adhesion_surface": {
+        "weight": -0.4912,
+        "ci95": [
+          -1.1104,
+          0.1281
+        ]
+      },
+      "kw:lipid_metabolism": {
+        "weight": -0.1998,
+        "ci95": [
+          -1.1545,
+          0.755
+        ]
+      },
+      "kw:amino_acid_metabolism": {
+        "weight": -0.5575,
+        "ci95": [
+          -1.2742,
+          0.1592
+        ]
+      },
+      "kw:uncharacterised": {
+        "weight": 0.491,
+        "ci95": [
+          0.2265,
+          0.7555
+        ]
+      }
+    },
+    "gain_hypoxia": {
+      "hydrophobicity_gravy": {
+        "weight": -0.0481,
+        "ci95": [
+          -0.121,
+          0.0249
+        ]
+      },
+      "tm_helices": {
+        "weight": 0.0343,
+        "ci95": [
+          -0.1238,
+          0.1925
+        ]
+      },
+      "protein_length": {
+        "weight": 0.3315,
+        "ci95": [
+          0.1132,
+          0.5498
+        ]
+      },
+      "redox_core": {
+        "weight": -0.7329,
+        "ci95": [
+          -1.9381,
+          0.4722
+        ]
+      },
+      "atp_synthase": {
+        "weight": 0.5128,
+        "ci95": [
+          -0.6112,
+          1.6368
+        ]
+      },
+      "translation": {
+        "weight": -0.0243,
+        "ci95": [
+          -0.8276,
+          0.7791
+        ]
+      },
+      "transcription": {
+        "weight": -0.1993,
+        "ci95": [
+          -1.3403,
+          0.9417
+        ]
+      },
+      "protein_targeting": {
+        "weight": -0.2544,
+        "ci95": [
+          -1.2524,
+          0.7436
+        ]
+      },
+      "ubiquity_free_living": {
+        "weight": 0.0729,
+        "ci95": [
+          -0.2347,
+          0.3805
+        ]
+      },
+      "copies_free_living": {
+        "weight": -0.1859,
+        "ci95": [
+          -0.3539,
+          -0.0179
+        ]
+      },
+      "hmm_length": {
+        "weight": -0.2941,
+        "ci95": [
+          -0.6087,
+          0.0205
+        ]
+      },
+      "clan_size": {
+        "weight": -0.054,
+        "ci95": [
+          -0.2266,
+          0.1186
+        ]
+      },
+      "in_clan": {
+        "weight": 0.0781,
+        "ci95": [
+          -0.3844,
+          0.5405
+        ]
+      },
+      "has_go_annotation": {
+        "weight": 0.147,
+        "ci95": [
+          -0.1137,
+          0.4077
+        ]
+      },
+      "go:DNA binding": {
+        "weight": 0.1214,
+        "ci95": [
+          -0.2007,
+          0.4435
+        ]
+      },
+      "go:RNA binding": {
+        "weight": -0.2122,
+        "ci95": [
+          -0.9068,
+          0.4823
+        ]
+      },
+      "go:catalytic activity": {
+        "weight": -0.1155,
+        "ci95": [
+          -0.6092,
+          0.3782
+        ]
+      },
+      "go:structural molecule activity": {
+        "weight": -0.2062,
+        "ci95": [
+          -1.3094,
+          0.8971
+        ]
+      },
+      "go:transporter activity": {
+        "weight": -0.5465,
+        "ci95": [
+          -1.2836,
+          0.1905
+        ]
+      },
+      "go:extracellular region": {
+        "weight": 0.4602,
+        "ci95": [
+          -0.0333,
+          0.9538
+        ]
+      },
+      "go:nucleus": {
+        "weight": -0.0788,
+        "ci95": [
+          -0.5426,
+          0.3851
+        ]
+      },
+      "go:mitochondrion": {
+        "weight": 0.2689,
+        "ci95": [
+          -0.2285,
+          0.7662
+        ]
+      },
+      "go:ribosome": {
+        "weight": 0.1677,
+        "ci95": [
+          -1.4545,
+          1.7898
+        ]
+      },
+      "go:carbohydrate metabolic process": {
+        "weight": -0.0776,
+        "ci95": [
+          -1.1444,
+          0.9892
+        ]
+      },
+      "go:DNA-templated transcription": {
+        "weight": 0.046,
+        "ci95": [
+          -0.8873,
+          0.9794
+        ]
+      },
+      "go:regulation of DNA-templated transcription": {
+        "weight": 0.097,
+        "ci95": [
+          -0.5107,
+          0.7048
+        ]
+      },
+      "go:lipid metabolic process": {
+        "weight": -0.2199,
+        "ci95": [
+          -1.2212,
+          0.7814
+        ]
+      },
+      "go:oxidoreductase activity": {
+        "weight": 0.1013,
+        "ci95": [
+          -0.716,
+          0.9186
+        ]
+      },
+      "go:transferase activity": {
+        "weight": 0.1833,
+        "ci95": [
+          -0.2088,
+          0.5754
+        ]
+      },
+      "go:hydrolase activity": {
+        "weight": 0.1692,
+        "ci95": [
+          -0.3688,
+          0.7073
+        ]
+      },
+      "go:signaling": {
+        "weight": -0.0667,
+        "ci95": [
+          -0.5788,
+          0.4454
+        ]
+      },
+      "go:organelle": {
+        "weight": -0.3289,
+        "ci95": [
+          -0.646,
+          -0.0119
+        ]
+      },
+      "go:receptor ligand activity": {
+        "weight": -0.5134,
+        "ci95": [
+          -1.5558,
+          0.529
+        ]
+      },
+      "go:transmembrane transport": {
+        "weight": -0.3061,
+        "ci95": [
+          -1.3225,
+          0.7103
+        ]
+      },
+      "go:molecular function regulator activity": {
+        "weight": -0.0642,
+        "ci95": [
+          -0.6065,
+          0.478
+        ]
+      },
+      "go:catalytic activity, acting on a protein": {
+        "weight": -0.301,
+        "ci95": [
+          -1.1356,
+          0.5336
+        ]
+      },
+      "go:catalytic activity, acting on RNA": {
+        "weight": 0.1732,
+        "ci95": [
+          -1.0781,
+          1.4246
+        ]
+      },
+      "go:transcription regulator activity": {
+        "weight": 0.1183,
+        "ci95": [
+          -0.4918,
+          0.7285
+        ]
+      },
+      "go:ATP-dependent activity": {
+        "weight": 0.5314,
+        "ci95": [
+          -0.12,
+          1.1829
+        ]
+      },
+      "go:carbohydrate derivative metabolic process": {
+        "weight": -0.371,
+        "ci95": [
+          -1.1587,
+          0.4167
+        ]
+      },
+      "kw:kinase": {
+        "weight": -0.3776,
+        "ci95": [
+          -0.9434,
+          0.1882
+        ]
+      },
+      "kw:phosphatase": {
+        "weight": 0.3603,
+        "ci95": [
+          -0.0711,
+          0.7918
+        ]
+      },
+      "kw:transporter_channel": {
+        "weight": -0.1074,
+        "ci95": [
+          -0.7231,
+          0.5082
+        ]
+      },
+      "kw:zinc_finger": {
+        "weight": 0.0301,
+        "ci95": [
+          -0.3125,
+          0.3727
+        ]
+      },
+      "kw:repeat_domain": {
+        "weight": 0.0353,
+        "ci95": [
+          -0.2185,
+          0.2891
+        ]
+      },
+      "kw:ubiquitin_system": {
+        "weight": -0.1007,
+        "ci95": [
+          -0.5511,
+          0.3497
+        ]
+      },
+      "kw:protease": {
+        "weight": -0.1158,
+        "ci95": [
+          -0.637,
+          0.4054
+        ]
+      },
+      "kw:helicase_nucleic": {
+        "weight": -0.1852,
+        "ci95": [
+          -0.7113,
+          0.341
+        ]
+      },
+      "kw:gtpase_signalling": {
+        "weight": -0.4304,
+        "ci95": [
+          -2.321,
+          1.4602
+        ]
+      },
+      "kw:methyl_glyco_transferase": {
+        "weight": 0.049,
+        "ci95": [
+          -0.3926,
+          0.4905
+        ]
+      },
+      "kw:cytoskeleton_motor": {
+        "weight": 0.15,
+        "ci95": [
+          -1.2921,
+          1.5922
+        ]
+      },
+      "kw:cilium_flagellum": {
+        "weight": 0.4215,
+        "ci95": [
+          -0.4455,
+          1.2885
+        ]
+      },
+      "kw:cell_adhesion_surface": {
+        "weight": 0.2844,
+        "ci95": [
+          -0.5669,
+          1.1357
+        ]
+      },
+      "kw:lipid_metabolism": {
+        "weight": 0.0885,
+        "ci95": [
+          -0.7309,
+          0.9078
+        ]
+      },
+      "kw:amino_acid_metabolism": {
+        "weight": -0.3906,
+        "ci95": [
+          -0.8876,
+          0.1063
+        ]
+      },
+      "kw:uncharacterised": {
+        "weight": 0.2224,
+        "ci95": [
+          0.0319,
+          0.4128
+        ]
+      }
+    },
+    "gain_endothermy": {
+      "hydrophobicity_gravy": {
+        "weight": -0.0899,
+        "ci95": [
+          -0.2259,
+          0.0461
+        ]
+      },
+      "tm_helices": {
+        "weight": 0.1496,
+        "ci95": [
+          0.0154,
+          0.2838
+        ]
+      },
+      "protein_length": {
+        "weight": 0.2552,
+        "ci95": [
+          -0.3107,
+          0.8211
+        ]
+      },
+      "redox_core": {
+        "weight": -0.1178,
+        "ci95": [
+          -1.8434,
+          1.6077
+        ]
+      },
+      "atp_synthase": {
+        "weight": 0.076,
+        "ci95": [
+          -1.6319,
+          1.784
+        ]
+      },
+      "translation": {
+        "weight": -0.8469,
+        "ci95": [
+          -1.9955,
+          0.3017
+        ]
+      },
+      "transcription": {
+        "weight": -0.0198,
+        "ci95": [
+          -1.2482,
+          1.2085
+        ]
+      },
+      "protein_targeting": {
+        "weight": -1.3324,
+        "ci95": [
+          -2.5473,
+          -0.1176
+        ]
+      },
+      "ubiquity_free_living": {
+        "weight": 0.5043,
+        "ci95": [
+          0.0591,
+          0.9494
+        ]
+      },
+      "copies_free_living": {
+        "weight": -0.1721,
+        "ci95": [
+          -0.4733,
+          0.1291
+        ]
+      },
+      "hmm_length": {
+        "weight": -0.3825,
+        "ci95": [
+          -0.9469,
+          0.1819
+        ]
+      },
+      "clan_size": {
+        "weight": -0.2002,
+        "ci95": [
+          -0.4142,
+          0.0138
+        ]
+      },
+      "in_clan": {
+        "weight": -0.522,
+        "ci95": [
+          -1.4803,
+          0.4363
+        ]
+      },
+      "has_go_annotation": {
+        "weight": 0.1775,
+        "ci95": [
+          -0.1907,
+          0.5456
+        ]
+      },
+      "go:DNA binding": {
+        "weight": 0.3515,
+        "ci95": [
+          -0.6597,
+          1.3627
+        ]
+      },
+      "go:RNA binding": {
+        "weight": -1.1772,
+        "ci95": [
+          -2.5953,
+          0.241
+        ]
+      },
+      "go:catalytic activity": {
+        "weight": -0.6429,
+        "ci95": [
+          -1.8239,
+          0.5381
+        ]
+      },
+      "go:structural molecule activity": {
+        "weight": -0.0421,
+        "ci95": [
+          -0.8833,
+          0.7991
+        ]
+      },
+      "go:transporter activity": {
+        "weight": 0.6529,
+        "ci95": [
+          -0.1089,
+          1.4147
+        ]
+      },
+      "go:extracellular region": {
+        "weight": 1.253,
+        "ci95": [
+          0.5654,
+          1.9406
+        ]
+      },
+      "go:nucleus": {
+        "weight": -0.3005,
+        "ci95": [
+          -0.9886,
+          0.3876
+        ]
+      },
+      "go:mitochondrion": {
+        "weight": -0.672,
+        "ci95": [
+          -1.1535,
+          -0.1904
+        ]
+      },
+      "go:ribosome": {
+        "weight": 0.1598,
+        "ci95": [
+          -1.4445,
+          1.764
+        ]
+      },
+      "go:carbohydrate metabolic process": {
+        "weight": 0.9284,
+        "ci95": [
+          0.0257,
+          1.8312
+        ]
+      },
+      "go:DNA-templated transcription": {
+        "weight": -0.1162,
+        "ci95": [
+          -0.8766,
+          0.6442
+        ]
+      },
+      "go:regulation of DNA-templated transcription": {
+        "weight": 0.1562,
+        "ci95": [
+          -0.3756,
+          0.6881
+        ]
+      },
+      "go:lipid metabolic process": {
+        "weight": -0.0865,
+        "ci95": [
+          -1.7627,
+          1.5898
+        ]
+      },
+      "go:oxidoreductase activity": {
+        "weight": -0.0649,
+        "ci95": [
+          -0.8005,
+          0.6707
+        ]
+      },
+      "go:transferase activity": {
+        "weight": 0.0129,
+        "ci95": [
+          -0.5848,
+          0.6106
+        ]
+      },
+      "go:hydrolase activity": {
+        "weight": 0.5132,
+        "ci95": [
+          -0.038,
+          1.0644
+        ]
+      },
+      "go:signaling": {
+        "weight": 1.0391,
+        "ci95": [
+          -0.2712,
+          2.3495
+        ]
+      },
+      "go:organelle": {
+        "weight": 0.2607,
+        "ci95": [
+          -0.4967,
+          1.0182
+        ]
+      },
+      "go:receptor ligand activity": {
+        "weight": 0.8878,
+        "ci95": [
+          0.09,
+          1.6855
+        ]
+      },
+      "go:transmembrane transport": {
+        "weight": -1.5525,
+        "ci95": [
+          -3.1464,
+          0.0414
+        ]
+      },
+      "go:molecular function regulator activity": {
+        "weight": -0.2393,
+        "ci95": [
+          -1.1166,
+          0.6379
+        ]
+      },
+      "go:catalytic activity, acting on a protein": {
+        "weight": 0.2211,
+        "ci95": [
+          -0.448,
+          0.8903
+        ]
+      },
+      "go:catalytic activity, acting on RNA": {
+        "weight": -0.9304,
+        "ci95": [
+          -1.9023,
+          0.0415
+        ]
+      },
+      "go:transcription regulator activity": {
+        "weight": -0.4917,
+        "ci95": [
+          -1.1933,
+          0.21
+        ]
+      },
+      "go:ATP-dependent activity": {
+        "weight": -0.5235,
+        "ci95": [
+          -1.3778,
+          0.3309
+        ]
+      },
+      "go:carbohydrate derivative metabolic process": {
+        "weight": 0.077,
+        "ci95": [
+          -0.4468,
+          0.6007
+        ]
+      },
+      "kw:kinase": {
+        "weight": 0.299,
+        "ci95": [
+          -0.3349,
+          0.9329
+        ]
+      },
+      "kw:phosphatase": {
+        "weight": -0.7804,
+        "ci95": [
+          -3.0247,
+          1.4639
+        ]
+      },
+      "kw:transporter_channel": {
+        "weight": -0.2225,
+        "ci95": [
+          -0.4951,
+          0.05
+        ]
+      },
+      "kw:zinc_finger": {
+        "weight": 0.3655,
+        "ci95": [
+          -0.4649,
+          1.196
+        ]
+      },
+      "kw:repeat_domain": {
+        "weight": -0.4313,
+        "ci95": [
+          -1.1936,
+          0.3309
+        ]
+      },
+      "kw:ubiquitin_system": {
+        "weight": 0.2898,
+        "ci95": [
+          -0.1602,
+          0.7399
+        ]
+      },
+      "kw:protease": {
+        "weight": -0.7139,
+        "ci95": [
+          -1.5923,
+          0.1646
+        ]
+      },
+      "kw:helicase_nucleic": {
+        "weight": -0.5451,
+        "ci95": [
+          -1.0897,
+          -0.0004
+        ]
+      },
+      "kw:gtpase_signalling": {
+        "weight": -0.3816,
+        "ci95": [
+          -1.9012,
+          1.138
+        ]
+      },
+      "kw:methyl_glyco_transferase": {
+        "weight": 0.0838,
+        "ci95": [
+          -0.4086,
+          0.5762
+        ]
+      },
+      "kw:cytoskeleton_motor": {
+        "weight": -0.2341,
+        "ci95": [
+          -1.4277,
+          0.9596
+        ]
+      },
+      "kw:cilium_flagellum": {
+        "weight": 0.6053,
+        "ci95": [
+          -0.6176,
+          1.8281
+        ]
+      },
+      "kw:cell_adhesion_surface": {
+        "weight": 1.5935,
+        "ci95": [
+          0.5648,
+          2.6223
+        ]
+      },
+      "kw:lipid_metabolism": {
+        "weight": -0.1379,
+        "ci95": [
+          -1.6912,
+          1.4154
+        ]
+      },
+      "kw:amino_acid_metabolism": {
+        "weight": 0.271,
+        "ci95": [
+          -0.3741,
+          0.9161
+        ]
+      },
+      "kw:uncharacterised": {
+        "weight": -0.2321,
+        "ci95": [
+          -0.4882,
+          0.024
+        ]
+      }
+    },
+    "gain_parasite": {
+      "hydrophobicity_gravy": {
+        "weight": -0.0256,
+        "ci95": [
+          -0.1903,
+          0.1391
+        ]
+      },
+      "tm_helices": {
+        "weight": 0.1561,
+        "ci95": [
+          -0.0573,
+          0.3696
+        ]
+      },
+      "protein_length": {
+        "weight": -0.3416,
+        "ci95": [
+          -0.7914,
+          0.1082
+        ]
+      },
+      "redox_core": {
+        "weight": 0.2331,
+        "ci95": [
+          -1.8309,
+          2.2971
+        ]
+      },
+      "atp_synthase": {
+        "weight": 0.4494,
+        "ci95": [
+          -0.8233,
+          1.722
+        ]
+      },
+      "translation": {
+        "weight": -1.0049,
+        "ci95": [
+          -2.0573,
+          0.0475
+        ]
+      },
+      "transcription": {
+        "weight": -0.2874,
+        "ci95": [
+          -1.5957,
+          1.0208
+        ]
+      },
+      "protein_targeting": {
+        "weight": 0.2827,
+        "ci95": [
+          -1.5177,
+          2.083
+        ]
+      },
+      "ubiquity_free_living": {
+        "weight": 0.6953,
+        "ci95": [
+          0.0791,
+          1.3114
+        ]
+      },
+      "copies_free_living": {
+        "weight": 0.0693,
+        "ci95": [
+          -0.194,
+          0.3326
+        ]
+      },
+      "hmm_length": {
+        "weight": 0.1631,
+        "ci95": [
+          -0.1971,
+          0.5234
+        ]
+      },
+      "clan_size": {
+        "weight": -0.1708,
+        "ci95": [
+          -0.394,
+          0.0525
+        ]
+      },
+      "in_clan": {
+        "weight": -0.1473,
+        "ci95": [
+          -0.3688,
+          0.0741
+        ]
+      },
+      "has_go_annotation": {
+        "weight": -0.0288,
+        "ci95": [
+          -0.2735,
+          0.2158
+        ]
+      },
+      "go:DNA binding": {
+        "weight": 0.5141,
+        "ci95": [
+          -0.2223,
+          1.2505
+        ]
+      },
+      "go:RNA binding": {
+        "weight": -0.8898,
+        "ci95": [
+          -2.296,
+          0.5164
+        ]
+      },
+      "go:catalytic activity": {
+        "weight": -0.2359,
+        "ci95": [
+          -0.6595,
+          0.1878
+        ]
+      },
+      "go:structural molecule activity": {
+        "weight": 0.2717,
+        "ci95": [
+          -0.9162,
+          1.4596
+        ]
+      },
+      "go:transporter activity": {
+        "weight": -0.1303,
+        "ci95": [
+          -1.0607,
+          0.8002
+        ]
+      },
+      "go:extracellular region": {
+        "weight": 0.1618,
+        "ci95": [
+          -0.343,
+          0.6667
+        ]
+      },
+      "go:nucleus": {
+        "weight": 0.0521,
+        "ci95": [
+          -0.6122,
+          0.7164
+        ]
+      },
+      "go:mitochondrion": {
+        "weight": -0.6121,
+        "ci95": [
+          -1.3209,
+          0.0967
+        ]
+      },
+      "go:ribosome": {
+        "weight": 0.8973,
+        "ci95": [
+          -0.2401,
+          2.0347
+        ]
+      },
+      "go:carbohydrate metabolic process": {
+        "weight": -0.4149,
+        "ci95": [
+          -1.3216,
+          0.4918
+        ]
+      },
+      "go:DNA-templated transcription": {
+        "weight": 0.5063,
+        "ci95": [
+          -0.3618,
+          1.3744
+        ]
+      },
+      "go:regulation of DNA-templated transcription": {
+        "weight": 0.8652,
+        "ci95": [
+          0.039,
+          1.6914
+        ]
+      },
+      "go:lipid metabolic process": {
+        "weight": 0.8514,
+        "ci95": [
+          -0.3235,
+          2.0263
+        ]
+      },
+      "go:oxidoreductase activity": {
+        "weight": -0.3462,
+        "ci95": [
+          -1.8064,
+          1.1139
+        ]
+      },
+      "go:transferase activity": {
+        "weight": -0.4896,
+        "ci95": [
+          -1.3364,
+          0.3572
+        ]
+      },
+      "go:hydrolase activity": {
+        "weight": 0.3754,
+        "ci95": [
+          -0.4284,
+          1.1792
+        ]
+      },
+      "go:signaling": {
+        "weight": 0.5024,
+        "ci95": [
+          -0.5147,
+          1.5196
+        ]
+      },
+      "go:organelle": {
+        "weight": 0.5091,
+        "ci95": [
+          -0.1631,
+          1.1814
+        ]
+      },
+      "go:receptor ligand activity": {
+        "weight": -1.4223,
+        "ci95": [
+          -2.3291,
+          -0.5154
+        ]
+      },
+      "go:transmembrane transport": {
+        "weight": -0.2569,
+        "ci95": [
+          -1.4283,
+          0.9145
+        ]
+      },
+      "go:molecular function regulator activity": {
+        "weight": -0.1617,
+        "ci95": [
+          -0.7865,
+          0.463
+        ]
+      },
+      "go:catalytic activity, acting on a protein": {
+        "weight": 0.4488,
+        "ci95": [
+          -0.4994,
+          1.3969
+        ]
+      },
+      "go:catalytic activity, acting on RNA": {
+        "weight": 0.3959,
+        "ci95": [
+          -1.0969,
+          1.8887
+        ]
+      },
+      "go:transcription regulator activity": {
+        "weight": -1.5206,
+        "ci95": [
+          -2.7315,
+          -0.3096
+        ]
+      },
+      "go:ATP-dependent activity": {
+        "weight": 0.1236,
+        "ci95": [
+          -0.9682,
+          1.2154
+        ]
+      },
+      "go:carbohydrate derivative metabolic process": {
+        "weight": 0.2597,
+        "ci95": [
+          -0.7297,
+          1.2492
+        ]
+      },
+      "kw:kinase": {
+        "weight": 0.4355,
+        "ci95": [
+          -0.6013,
+          1.4723
+        ]
+      },
+      "kw:phosphatase": {
+        "weight": 0.4667,
+        "ci95": [
+          -0.4471,
+          1.3804
+        ]
+      },
+      "kw:transporter_channel": {
+        "weight": 0.0867,
+        "ci95": [
+          -0.3895,
+          0.5629
+        ]
+      },
+      "kw:zinc_finger": {
+        "weight": -0.0055,
+        "ci95": [
+          -0.5739,
+          0.5628
+        ]
+      },
+      "kw:repeat_domain": {
+        "weight": 0.3105,
+        "ci95": [
+          -0.3536,
+          0.9745
+        ]
+      },
+      "kw:ubiquitin_system": {
+        "weight": 0.0845,
+        "ci95": [
+          -0.4506,
+          0.6197
+        ]
+      },
+      "kw:protease": {
+        "weight": 0.0096,
+        "ci95": [
+          -0.6276,
+          0.6468
+        ]
+      },
+      "kw:helicase_nucleic": {
+        "weight": 0.1,
+        "ci95": [
+          -0.7442,
+          0.9441
+        ]
+      },
+      "kw:gtpase_signalling": {
+        "weight": -0.7625,
+        "ci95": [
+          -2.5961,
+          1.071
+        ]
+      },
+      "kw:methyl_glyco_transferase": {
+        "weight": -1.2012,
+        "ci95": [
+          -2.3946,
+          -0.0078
+        ]
+      },
+      "kw:cytoskeleton_motor": {
+        "weight": -1.3979,
+        "ci95": [
+          -3.1771,
+          0.3813
+        ]
+      },
+      "kw:cilium_flagellum": {
+        "weight": -0.5994,
+        "ci95": [
+          -1.5398,
+          0.3409
+        ]
+      },
+      "kw:cell_adhesion_surface": {
+        "weight": 0.5993,
+        "ci95": [
+          -0.0961,
+          1.2947
+        ]
+      },
+      "kw:lipid_metabolism": {
+        "weight": -0.4095,
+        "ci95": [
+          -1.5234,
+          0.7045
+        ]
+      },
+      "kw:amino_acid_metabolism": {
+        "weight": 0.0622,
+        "ci95": [
+          -0.8882,
+          1.0126
+        ]
+      },
+      "kw:uncharacterised": {
+        "weight": 0.4643,
+        "ci95": [
+          -0.024,
+          0.9527
+        ]
+      }
+    }
+  }
+}
