@@ -102,6 +102,7 @@ def main():
             M[i, [col[f] for f in tips[tip_of[v]][2] if f in col]] = True
         return M
 
+    power = json.loads(Path("results/node_power/summary.json").read_text())["aggregate"]
     summ = json.loads((MITO / "summary.json").read_text())
     targets = []
     META = {
@@ -120,12 +121,11 @@ def main():
             blurb="발진티푸스균과 볼바키아가 속한 무리로, 미토콘드리아의 가장 가까운 친척 후보입니다. "
                   "오늘날은 숙주 세포 안에서만 살며 유전체가 크게 줄었습니다.",
             confidence="중간", quote_size=True,
-            extra_caveat="이 목은 모형이 '축소된 계통'으로 지정해 가지의 손실 속도를 올려 잡는 "
-                         "대상입니다. 손실이 싸지면 '조상에 있었다가 잃었다'는 설명이 쉬워집니다. "
-                         "그런데 이 마디는 위에 적힌 대로 계통수가 기준선을 거의 못 넘습니다 — 즉 "
-                         "크게 줄었다는 그림의 근거는 복원이 찾아낸 증거보다 이 손실 가속 가정과 "
-                         "'지금 흔한 유전자군' 쪽에 더 많이 기대고 있습니다. 네 마디 중 가장 약한 "
-                         "결과로 읽어야 합니다.",
+            extra_caveat="알려진 정답으로 채점하면 이 마디는 계통수 효과가 가장 큰 곳입니다"
+                         "(AUROC 0.975 vs 기준선 0.908). 대신 크기가 가장 많이 어긋납니다 — 모든 "
+                         "후손이 다 잃어버린 유전자군은 보이지 않고, 이 마디에서 그 몫이 −37%로 "
+                         "다른 마디(−1% 안팎)와 비교가 안 됩니다. 즉 적힌 조상 크기는 크게 낮은 값이고, "
+                         "실제 소실 폭은 적힌 것보다 큽니다.",
             size_note="40종으로 세운 마디입니다. 모의실험에서 이 규모의 크기 오차는 −10~12%이고, "
                       "도달 마디가 목의 뿌리보다 젊을 수 있습니다. 품질 보정 이전 판이므로 적힌 수는 "
                       "하한으로 읽어야 합니다."),
@@ -149,6 +149,9 @@ def main():
         n = summ["nodes"][node]
         m = META[keyname]
         pnv = summ["per_node_validation"][node]
+        # Hiding tips cannot grade a tight clade (its baseline already scores 0.99), so each node
+        # also carries the known-truth simulation that grades the ANCESTOR directly.
+        pw = power.get(keyname)
         comp = []
         for fn in FUNCS:
             ix = func_idx[fn]
@@ -168,6 +171,7 @@ def main():
                            "n_hidden": pnv["n_hidden"],
                            "extra": {"분류군 전체 기준 복원": summ["leave_tips_out_auroc"]["reconstruction"],
                                      "가장 가까운 친척": summ["leave_tips_out_auroc"]["nearest_tip"]}},
+            "power": pw,
             "expected_families": round(n["expected_families"]),
             "tips_with_profile": int(M.shape[0]), "today_median_families": int(np.median(M.sum(1))),
             "today_min_families": int(M.sum(1).min()), "today_max_families": int(M.sum(1).max()),
@@ -227,6 +231,7 @@ def main():
 
     # Measured, not assumed: the transfer level of each clade (hgt_rate.py) and, where the
     # reconstruction used it, the per-tip completeness (genome_quality.py).
+    power = json.loads(Path("results/node_power/summary.json").read_text())["aggregate"]
     hgt_rate = json.loads(Path("results/hgt_rate/summary.json").read_text())
     qc = json.loads(Path("results/quality_correction/summary.json").read_text())["aggregate"]
     for t in targets:
