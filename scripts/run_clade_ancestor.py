@@ -47,12 +47,15 @@ ENSEMBLE = [
 
 
 def load_profiles():
+    """organism -> profile. Collections were re-run, so an organism can appear in several shards;
+    the richest profile wins rather than whichever file sorted last."""
     out = {}
     for f in sorted(Path("data/uniprot/shards").glob("*.json.gz")):
-        for p in json.loads(gzip.open(f, "rt").read()).items():
-            upid, v = p
+        for v in json.loads(gzip.open(f, "rt").read()).values():
             if v["n_proteins"] > 0 and v["pfam"]:
-                out[v["organism"]] = v
+                old = out.get(v["organism"])
+                if old is None or len(v["pfam"]) > len(old["pfam"]):
+                    out[v["organism"]] = v
     return out
 
 
@@ -75,7 +78,15 @@ def build(tree_path, clade_genera, min_families):
             depth[v] = depth[parent[v]] + d["length"][v]
     d["depth"] = depth
     names = {v: label2[v] for v in d["tips"]}
-    in_clade = {v: names[v].split()[0] in clade_genera for v in d["tips"]}
+    # Genus match alone is not enough: UniProt carries "Acanthamoeba polyphaga mimivirus", a virus
+    # whose first word is an amoeba genus. Require the kingdom the matched tips mostly belong to.
+    byname = {v: names[v].split()[0] in clade_genera for v in d["tips"]}
+    kings = Counter(prof[names[v]].get("kingdom") for v, hit in byname.items() if hit)
+    king = kings.most_common(1)[0][0] if kings else None
+    in_clade = {v: bool(hit and prof[names[v]].get("kingdom") == king) for v, hit in byname.items()}
+    wrong_kingdom = [names[v] for v, hit in byname.items() if hit and not in_clade[v]]
+    if wrong_kingdom:
+        print(f"  dropped from the clade (kingdom is not {king}): {wrong_kingdom}")
     counts = Counter(f for v in d["tips"] for f in prof[names[v]]["pfam"])
     fams = sorted(f for f, c in counts.items() if c >= 3)
     col = {f: j for j, f in enumerate(fams)}
@@ -93,7 +104,7 @@ def build(tree_path, clade_genera, min_families):
     # directly, instead of accelerating loss on that tip's branch.
     from genome_quality import completeness_for
     comp = np.ones(len(parent))
-    markers, unscored = [], []
+    markers, unscored = {}, []
     # Scored separately inside and outside the clade: a marker set is only meaningful among
     # relatives, because across distant lineages "missing" and "never had it" look the same.
     for group in (True, False):
@@ -103,19 +114,27 @@ def build(tree_path, clade_genera, min_families):
         if not mk:
             unscored.append(name)   # left at 1.0: too few proteomes, or nothing near-universal
             continue
-        if group:
-            markers = mk
+        markers[name] = len(mk)
         for v, c in scores.items():
             comp[v] = max(c, 0.05)
     d["completeness_vec"] = comp
-    d["n_markers"] = len(markers)
+    d["n_markers"] = markers
     d["unscored_groups"] = unscored
-    # Loss acceleration applies inside the clade's reduced lineages: tips whose family count is
-    # far below the clade median (here the Entamoeba parasites) and the branches under them.
+    # Loss acceleration applies inside the clade's reduced lineages: tips whose family count is far
+    # below the clade median (here the Entamoeba parasites), AND the internal branches they span.
+    # Only the tip branches were marked before, which did not match what this comment claimed.
     med = np.median([len(prof[names[v]]["pfam"]) for v in d["tips"] if in_clade[v]])
     reduced_tips = [v for v in d["tips"] if in_clade[v] and len(prof[names[v]]["pfam"]) < 0.6 * med]
     inside = np.zeros(len(parent), dtype=bool)
     inside[reduced_tips] = True
+    if len(reduced_tips) > 1:
+        anc = mrca(reduced_tips, parent, depth)
+        stack = [anc]
+        while stack:                      # every branch strictly below their common ancestor
+            v = stack.pop()
+            if v != anc:
+                inside[v] = True
+            stack.extend(children[v])
     d["reduced_branch"] = inside
     return d, fams, names, in_clade, dropped, [names[v] for v in reduced_tips]
 
@@ -150,7 +169,10 @@ def main():
     ap.add_argument("--tree", required=True)
     ap.add_argument("--clade-genera", required=True)
     ap.add_argument("--name", required=True)
-    ap.add_argument("--min-families", type=int, default=500)
+    ap.add_argument("--min-families", type=int, default=100,
+                    help="drop a tip with fewer families than this. Low by default: an incomplete "
+                         "proteome is handled by --completeness, not by throwing the species away "
+                         "(at 500 this filter would have removed the most reduced genomes)")
     ap.add_argument("--mask", type=int, default=3)
     ap.add_argument("--bootstrap-trees", default="")
     ap.add_argument("--out", default="results/clade_ancestor")
@@ -233,7 +255,7 @@ def main():
         "reduced_branch_multiplier": not args.no_reduced_mult,
         "tip_completeness": ({names[v]: round(float(d["completeness_vec"][v]), 3)
                               for v in clade_tips} if args.completeness else None),
-        "n_completeness_markers": d.get("n_markers") if args.completeness else None,
+        "completeness_markers_per_group": d.get("n_markers") if args.completeness else None,
         "groups_without_a_completeness_score": d.get("unscored_groups") if args.completeness else None,
         "n_confident_families": len(confident), "n_uncertain_families": len(uncertain),
         "size_not_reported": "the simulation showed a 16-17% underestimate of ancestor size at this "

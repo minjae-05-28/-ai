@@ -74,3 +74,16 @@ def test_dropout_raises_the_ancestor_for_a_family_only_missing_from_an_incomplet
 
     assert corrected[1] > plain[1], "the absence is explained as a miss, so the ancestor keeps the family"
     assert corrected[0] == pytest.approx(plain[0], abs=0.02), "a family present everywhere is unaffected"
+
+
+def test_marker_set_is_reproducible_when_counts_tie():
+    """Ties used to be broken by set iteration order, which depends on Python's hash seed, so two
+    identical runs produced different marker sets and different completeness scores."""
+    from genome_quality import markers_for
+
+    base = [f"fam{i:03d}" for i in range(400)]
+    profiles = {f"p{i}": set(base) for i in range(10)}   # every family tied at 10/10
+    first = markers_for(profiles, max_markers=50)
+    assert first == sorted(base)[:50], "ties must fall in a fixed order, not the set's"
+    for _ in range(3):
+        assert markers_for({k: set(v) for k, v in profiles.items()}, max_markers=50) == first

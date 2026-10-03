@@ -61,7 +61,11 @@ def markers_for(profiles, share=0.95, max_markers=MAX_MARKERS, top_quartile=True
     for f in pool:
         for fam in f:
             counts[fam] += 1
-    return sorted((f for f, c in counts.items() if c >= share * len(pool)), key=lambda f: -counts[f])[:max_markers]
+    # Ties are broken by name. Without that the cut at max_markers falls differently every run:
+    # the families are counted by iterating sets of strings, whose order depends on Python's
+    # per-process hash seed, so the completeness scores moved by about 0.02 between identical runs.
+    return sorted((f for f, c in counts.items() if c >= share * len(pool)),
+                  key=lambda f: (-counts[f], f))[:max_markers]
 
 
 def completeness_for(profiles, markers=None):
@@ -93,7 +97,7 @@ def marker_set(rows, kingdom):
         for f in r["pfam"]:
             counts[f] += 1
     fams = sorted((f for f, c in counts.items() if c >= UNIVERSAL * len(ref)),
-                  key=lambda f: -counts[f])[:MAX_MARKERS]
+                  key=lambda f: (-counts[f], f))[:MAX_MARKERS]
     return fams, len(ref), basis
 
 

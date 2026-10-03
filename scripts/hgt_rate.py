@@ -57,15 +57,25 @@ def calibrate(d, levels, n_fam, reps, vis, label):
 
 
 def read_off(curve, value, key="share_q_ge_0.3"):
-    """Where on the calibration curve the observed statistic falls (monotone interpolation)."""
-    xs = [c["hgt"] for c in curve]
-    ys = [c[key] for c in curve]
-    if value <= min(ys):
-        return float(xs[int(np.argmin(ys))]), "아래로 벗어남"
-    if value >= max(ys):
-        return float(xs[int(np.argmax(ys))]), "위로 벗어남 (측정 범위 밖)"
-    order = np.argsort(ys)
-    return float(np.interp(value, np.array(ys)[order], np.array(xs)[order])), "보간"
+    """Where on the calibration curve the observed statistic falls.
+
+    The curve saturates: past a transfer level of about 0.1 the statistic sits at 1.0 and several
+    levels share it. Interpolating over the tied points is meaningless (and undefined for
+    np.interp), so only the strictly increasing part is used and anything above it is reported as
+    off the top of the scale rather than as a number.
+    """
+    rows = sorted(curve, key=lambda c: c["hgt"])
+    xs, ys, last = [], [], -np.inf
+    for c in rows:
+        if c[key] > last + 1e-9:
+            xs.append(c["hgt"])
+            ys.append(c[key])
+            last = c[key]
+    if value <= ys[0]:
+        return float(xs[0]), "아래로 벗어남 (전달 신호가 모의 0 수준 이하)"
+    if value >= ys[-1]:
+        return float(xs[-1]), f"위로 벗어남 — 곡선이 {xs[-1]}에서 포화해 그 위는 구분 불가"
+    return float(np.interp(value, ys, xs)), "보간"
 
 
 def amoeba_tree():
@@ -73,8 +83,10 @@ def amoeba_tree():
     genera = {"Acanthamoeba", "Balamuthia", "Cavenderia", "Dictyostelium", "Entamoeba", "Heterostelium",
               "Pelomyxa", "Planoprotostelium", "Polysphondylium", "Physarum", "Vermamoeba",
               "Mastigamoeba", "Tieghemostelium"}
-    d, fams, names, in_clade, _, _ = build("results/phylo_tree/amoeba.nwk", genera, 500)
-    d["busco"] = np.where(np.isfinite(d["busco"]), d["busco"], 90.0)
+    d, fams, names, in_clade, _, _ = build("results/phylo_tree/amoeba.nwk", genera, 100)
+    # simulate() drops a tip's genes at busco/100, so feed it the completeness this data really has
+    # (Entamoeba near 0.45) instead of a flat 90%.
+    d["busco"] = np.clip(d["completeness_vec"] * 100, 5, 100)
     vis = np.zeros(len(d["parent"]), dtype=bool)
     vis[d["tips"]] = True
     return d, d["X"], vis, len(fams)
