@@ -1,0 +1,71 @@
+{
+ "search (proteome_type:1) AND (taxonomy_id:2)": {
+  "status": 200,
+  "total": "0",
+  "head": "Proteome Id\tOrganism\tOrganism Id\tProtein count\n"
+ },
+ "search (taxonomy_id:2) AND (proteome_type:1)": {
+  "status": 200,
+  "total": "0",
+  "head": "Proteome Id\tOrganism\tOrganism Id\tProtein count\n"
+ },
+ "search taxonomy_id:2": {
+  "status": 200,
+  "total": "1049711",
+  "head": "Proteome Id\tOrganism\tOrganism Id\tProtein count\nUP000000625\tEscherichia coli (strain K12)\t83333\t4403\nUP000001570\tBacillus subtilis (strain 168)\t224308\t4288\nUP000000416\tBuchnera aphidicola subsp. Schizaphis graminum (strain Sg)\t198804\t562\n"
+ },
+ "search (organism_id:2)": {
+  "status": 200,
+  "total": "0",
+  "head": "Proteome Id\tOrganism\tOrganism Id\tProtein count\n"
+ },
+ "search (taxonomy_id:2157)": {
+  "status": 200,
+  "total": "14780",
+  "head": "Proteome Id\tOrganism\tOrganism Id\tProtein count\nUP000000242\tMetallosphaera sedula (strain ATCC 51363 / DSM 5348 / JCM 9185 / NBRC 15509 / TH2)\t399549\t2256\nUP000000254\tStaphylothermus marinus (strain ATCC 43588 / DSM 3639 / JCM 9404 / F1)\t399550\t1570\nUP000000262\tIgnicoccus hospitalis (strain KIN4/I / DSM 18386 / JCM 14125)\t453591\t1434\n"
+ },
+ "search reference:true AND taxonomy_id:2157": {
+  "status": 200,
+  "total": "641",
+  "head": "Proteome Id\tOrganism\tOrganism Id\tProtein count\nUP000000242\tMetallosphaera sedula (strain ATCC 51363 / DSM 5348 / JCM 9185 / NBRC 15509 / TH2)\t399549\t2256\nUP000000254\tStaphylothermus marinus (strain ATCC 43588 / DSM 3639 / JCM 9404 / F1)\t399550\t1570\nUP000000262\tIgnicoccus hospitalis (strain KIN4/I / DSM 18386 / JCM 14125)\t453591\t1434\n"
+ },
+ "search (proteome_type:1) AND (taxonomy_id:2157)": {
+  "status": 200,
+  "total": "0",
+  "head": "Proteome Id\tOrganism\tOrganism Id\tProtein count\n"
+ },
+ "search (taxonomy_id:4751) AND (proteome_type:1)": {
+  "status": 200,
+  "total": "0",
+  "head": "Proteome Id\tOrganism\tOrganism Id\tProtein count\n"
+ },
+ "search proteome_type:1": {
+  "status": 200,
+  "total": "0",
+  "head": "Proteome Id\tOrganism\tOrganism Id\tProtein count\n"
+ },
+ "search upid:UP000000625": {
+  "status": 200,
+  "total": "1",
+  "head": "Proteome Id\tOrganism\tOrganism Id\tProtein count\nUP000000625\tEscherichia coli (strain K12)\t83333\t4403\n"
+ },
+ "fields upid,organism,organism_id,protein_count,proteome_type": {
+  "status": 400,
+  "error": "Error messages\nInvalid fields parameter value 'proteome_type'"
+ },
+ "fields upid,organism,organism_id,protein_count,busco": {
+  "status": 200,
+  "total": "14780",
+  "head": "Proteome Id\tOrganism\tOrganism Id\tProtein count\tBUSCO\nUP000000242\tMetallosphaera sedula (strain ATCC 51363 / DSM 5348 / JCM 9185 / NBRC 15509 / TH2)\t399549\t2256\tC:98.5%[S:98.3%,D:0.2%],F:0.3%,M:1.2%,n:1244\nUP000000254\tStaphylothermus marinus (strain ATCC 43588 / DSM 3639 / JCM 9404 / F1)\t399550\t1570\tC:98.6%[S:98.4%,D:0.2%],F:0.0%,M:1.4%,n:491\nUP000000262\tIgnicoccus hospitalis (strain KIN4/I / DSM 1"
+ },
+ "json": {
+  "status": 200,
+  "total": "14780",
+  "head": "{\"results\":[{\"id\":\"UP000000242\",\"description\":\"Metallosphaera sedula (strain ATCC 51363 / DSM 5348) is a thermophilic aerobic archaeon phylogenetically associated with the kingdom Crenarchaeota. Metallosphaera sedula (strain ATCC 51363 / DSM 5348) was isolated from a thermal pond in the Pisciarelli Solfatara in Italy. This organism is able to leach metals from sulfidic ores making it a potential b"
+ },
+ "uniprotkb pfam": {
+  "status": 200,
+  "total": "4403",
+  "head": "Entry\tPfam\tSequence\nP00393\tPF07992;\tMTTPLKKIVIVGGGAGGLEMATQLGHKLGRKKKAKITLVDRNHSHLWKPLLHEVATGSLDEGVDALSYLAHARNHGFQFQLGSVIDIDREAKTITIAELRDEKGELLVPERKIAYDTLVMALGSTSNDFNTPGVKENCIFLDNPHQARRFHQEMLNLFLKYSANLGANGKVNIAIVGGGATGVELSAELHNAVKQLHSYGYKGLTNEALNVTLVEAGERILPALPPRISAAAHNELTKLGVRVLTQTMVTSADEGGLHTKDGEYIEADLMVWAAGIKAPDFLKDIGGLETNRINQLVVEPTLQTTRDPDIYAIGDCASCPRPEGGFVPPRAQAAHQMATCAMNNILAQMNGKPLKNYQYKDHGS"
+ }
+}
