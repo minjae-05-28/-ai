@@ -282,6 +282,10 @@ def findings_for(law):
         return {k: val.get(k) for k in ("containment_over_random_median", "share_above_random")}
     if lid == "coloss_modules_v1":
         return {"gain_vs_additive": val.get("gain_vs_additive")}
+    if lid.startswith("forward_evolution"):
+        return {t: {"법칙-진화 안 함 (운명 정확도)": v["family_level"]["fate_accuracy.law - no_change"],
+                    "기능 순위 상관 법칙/암기": [v["function_level"]["law.spearman"]["mean"],
+                                         v["function_level"]["memorisation.spearman"]["mean"]]} for t, v in val.items()}
     if lid.startswith("mito_ancestor"):
         return {v: {n: {"expected_families": d["expected_families"],
                         "positive_control_ok": sum(1 for x in d["positive_control"].values() if x is not None and x >= 0.9)}
@@ -380,6 +384,11 @@ def card_for(law):
         card = genome_traits_envelope()
         card["catalogue"] = "UniProt reference proteomes + Madin 2020 (envelope shown for the GTDB-matched set)"
         card["species_from"] = "UniProt x trait table"
+    elif lid.startswith("forward_evolution"):
+        pro_present, euk_present = present("data/prokaryotes"), present("data/eukaryotes")
+        pp, ep = pro_cat.resolve_pairs(pro_present), euk_cat.resolve_pairs(euk_present)
+        card = {"extremophiles": prokaryote_envelope(sp(pp), pp), "parasites": eukaryote_envelope(sp(ep), ep),
+                "species_from": "catalogue"}
     elif lid.startswith("mito_ancestor"):
         card = {"catalogue": "GTDB tree + UniProt", "envelope": {
             "대상": "알파프로테오박테리아 2,323종(+감마 300 외군), 고품질만 2,226종",

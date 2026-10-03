@@ -1,0 +1,654 @@
+{
+  "id": "forward_evolution_v1",
+  "scope": "Evolving an ancestor proxy forward with the birth-death law alone (its lineage held out, the amount of loss predicted from the lifestyle/environment design) and comparing the result with the real descendant, for extremophile bacteria/archaea and eukaryote parasites, with the proxy as ancestor or a consensus ancestor (families shared with a close free-living relative).",
+  "model": "run_forward_evolution.py (200 stochastic replicates per pair) and run_function_level.py (GO-slim and keyword functions).",
+  "feature_names": [],
+  "data": {
+    "extremophiles": {
+      "pairs": 54,
+      "lineages": 26
+    },
+    "extremophiles_consensus": {
+      "pairs": 54,
+      "lineages": 26
+    },
+    "parasites": {
+      "pairs": 90,
+      "lineages": 15
+    },
+    "parasites_consensus": {
+      "pairs": 90,
+      "lineages": 15
+    }
+  },
+  "validation": {
+    "extremophiles": {
+      "n_pairs": 54,
+      "n_lineages": 26,
+      "family_level": {
+        "law.fate_accuracy": {
+          "mean": 0.6799,
+          "ci95": [
+            0.6626,
+            0.6984
+          ]
+        },
+        "no_change.fate_accuracy": {
+          "mean": 0.7202,
+          "ci95": [
+            0.6822,
+            0.7635
+          ]
+        },
+        "random_same_amount.fate_accuracy": {
+          "mean": 0.5965,
+          "ci95": [
+            0.5727,
+            0.6227
+          ]
+        },
+        "memorisation.fate_accuracy": {
+          "mean": 0.7199,
+          "ci95": [
+            0.704,
+            0.7373
+          ]
+        },
+        "law.loss_auroc": {
+          "mean": 0.793,
+          "ci95": [
+            0.7708,
+            0.8134
+          ]
+        },
+        "memorisation.loss_auroc": {
+          "mean": 0.8131,
+          "ci95": [
+            0.799,
+            0.8248
+          ]
+        },
+        "law.jaccard": {
+          "mean": 0.48,
+          "ci95": [
+            0.4619,
+            0.4996
+          ]
+        },
+        "no_change.jaccard": {
+          "mean": 0.6054,
+          "ci95": [
+            0.5716,
+            0.6455
+          ]
+        },
+        "fate_accuracy.law - no_change": {
+          "mean": -0.0403,
+          "ci95": [
+            -0.0754,
+            -0.0107
+          ]
+        },
+        "fate_accuracy.law - random_same_amount": {
+          "mean": 0.0834,
+          "ci95": [
+            0.0699,
+            0.0979
+          ]
+        },
+        "fate_accuracy.law - no_axes_law": {
+          "mean": 0.0023,
+          "ci95": [
+            -0.0098,
+            0.0136
+          ]
+        },
+        "amount_error.law": {
+          "mean": 0.1035,
+          "ci95": [
+            0.0736,
+            0.1374
+          ]
+        },
+        "amount_error.mean_share": {
+          "mean": 0.0903,
+          "ci95": [
+            0.0748,
+            0.1082
+          ]
+        },
+        "gain_precision.law": {
+          "mean": 0.1515,
+          "ci95": [
+            0.1229,
+            0.1788
+          ]
+        }
+      },
+      "function_level": {
+        "law.spearman": {
+          "mean": 0.6623,
+          "ci95": [
+            0.6102,
+            0.7098
+          ]
+        },
+        "memorisation.spearman": {
+          "mean": 0.7234,
+          "ci95": [
+            0.6875,
+            0.752
+          ]
+        },
+        "law.top_hit": {
+          "mean": 0.7074,
+          "ci95": [
+            0.6464,
+            0.7721
+          ]
+        },
+        "uniform.top_hit": {
+          "mean": 0.2059,
+          "ci95": [
+            0.1956,
+            0.2155
+          ]
+        },
+        "memorisation.top_hit": {
+          "mean": 0.737,
+          "ci95": [
+            0.6625,
+            0.8
+          ]
+        },
+        "spearman.law - memorisation": {
+          "mean": -0.0611,
+          "ci95": [
+            -0.1054,
+            -0.0196
+          ]
+        },
+        "mae.law - uniform": {
+          "mean": -0.0608,
+          "ci95": [
+            -0.0761,
+            -0.0466
+          ]
+        }
+      }
+    },
+    "extremophiles_consensus": {
+      "n_pairs": 54,
+      "n_lineages": 26,
+      "family_level": {
+        "law.fate_accuracy": {
+          "mean": 0.7058,
+          "ci95": [
+            0.6856,
+            0.7263
+          ]
+        },
+        "no_change.fate_accuracy": {
+          "mean": 0.7772,
+          "ci95": [
+            0.7416,
+            0.8152
+          ]
+        },
+        "random_same_amount.fate_accuracy": {
+          "mean": 0.6502,
+          "ci95": [
+            0.6206,
+            0.6775
+          ]
+        },
+        "memorisation.fate_accuracy": {
+          "mean": 0.7419,
+          "ci95": [
+            0.7258,
+            0.7596
+          ]
+        },
+        "law.loss_auroc": {
+          "mean": 0.7642,
+          "ci95": [
+            0.7376,
+            0.7872
+          ]
+        },
+        "memorisation.loss_auroc": {
+          "mean": 0.7878,
+          "ci95": [
+            0.772,
+            0.8003
+          ]
+        },
+        "law.jaccard": {
+          "mean": 0.4895,
+          "ci95": [
+            0.4703,
+            0.5109
+          ]
+        },
+        "no_change.jaccard": {
+          "mean": 0.6236,
+          "ci95": [
+            0.5921,
+            0.6615
+          ]
+        },
+        "fate_accuracy.law - no_change": {
+          "mean": -0.0713,
+          "ci95": [
+            -0.1011,
+            -0.0464
+          ]
+        },
+        "fate_accuracy.law - random_same_amount": {
+          "mean": 0.0557,
+          "ci95": [
+            0.0442,
+            0.069
+          ]
+        },
+        "fate_accuracy.law - no_axes_law": {
+          "mean": 0.0044,
+          "ci95": [
+            -0.0101,
+            0.0163
+          ]
+        },
+        "amount_error.law": {
+          "mean": 0.1015,
+          "ci95": [
+            0.0741,
+            0.133
+          ]
+        },
+        "amount_error.mean_share": {
+          "mean": 0.0819,
+          "ci95": [
+            0.0647,
+            0.1022
+          ]
+        },
+        "gain_precision.law": {
+          "mean": 0.1707,
+          "ci95": [
+            0.1433,
+            0.197
+          ]
+        }
+      },
+      "function_level": {
+        "law.spearman": {
+          "mean": 0.6055,
+          "ci95": [
+            0.5602,
+            0.6502
+          ]
+        },
+        "memorisation.spearman": {
+          "mean": 0.6811,
+          "ci95": [
+            0.6378,
+            0.7121
+          ]
+        },
+        "law.top_hit": {
+          "mean": 0.6296,
+          "ci95": [
+            0.5559,
+            0.7167
+          ]
+        },
+        "uniform.top_hit": {
+          "mean": 0.2106,
+          "ci95": [
+            0.1995,
+            0.2215
+          ]
+        },
+        "memorisation.top_hit": {
+          "mean": 0.6889,
+          "ci95": [
+            0.63,
+            0.7391
+          ]
+        },
+        "spearman.law - memorisation": {
+          "mean": -0.0756,
+          "ci95": [
+            -0.1164,
+            -0.0342
+          ]
+        },
+        "mae.law - uniform": {
+          "mean": -0.0453,
+          "ci95": [
+            -0.0579,
+            -0.034
+          ]
+        }
+      }
+    },
+    "parasites": {
+      "n_pairs": 90,
+      "n_lineages": 15,
+      "family_level": {
+        "law.fate_accuracy": {
+          "mean": 0.6464,
+          "ci95": [
+            0.6324,
+            0.6626
+          ]
+        },
+        "no_change.fate_accuracy": {
+          "mean": 0.6161,
+          "ci95": [
+            0.5387,
+            0.7491
+          ]
+        },
+        "random_same_amount.fate_accuracy": {
+          "mean": 0.5681,
+          "ci95": [
+            0.542,
+            0.6012
+          ]
+        },
+        "memorisation.fate_accuracy": {
+          "mean": 0.6563,
+          "ci95": [
+            0.6422,
+            0.6738
+          ]
+        },
+        "law.loss_auroc": {
+          "mean": 0.7739,
+          "ci95": [
+            0.7593,
+            0.7844
+          ]
+        },
+        "memorisation.loss_auroc": {
+          "mean": 0.7883,
+          "ci95": [
+            0.7534,
+            0.8101
+          ]
+        },
+        "law.jaccard": {
+          "mean": 0.457,
+          "ci95": [
+            0.4128,
+            0.5228
+          ]
+        },
+        "no_change.jaccard": {
+          "mean": 0.5689,
+          "ci95": [
+            0.502,
+            0.6845
+          ]
+        },
+        "fate_accuracy.law - no_change": {
+          "mean": 0.0303,
+          "ci95": [
+            -0.0998,
+            0.1098
+          ]
+        },
+        "fate_accuracy.law - random_same_amount": {
+          "mean": 0.0783,
+          "ci95": [
+            0.0551,
+            0.093
+          ]
+        },
+        "fate_accuracy.law - no_axes_law": {
+          "mean": 0.0346,
+          "ci95": [
+            0.0067,
+            0.0671
+          ]
+        },
+        "amount_error.law": {
+          "mean": 0.1748,
+          "ci95": [
+            0.1478,
+            0.2103
+          ]
+        },
+        "amount_error.mean_share": {
+          "mean": 0.2186,
+          "ci95": [
+            0.1716,
+            0.2686
+          ]
+        },
+        "gain_precision.law": {
+          "mean": 0.1417,
+          "ci95": [
+            0.1053,
+            0.2037
+          ]
+        }
+      },
+      "function_level": {
+        "law.spearman": {
+          "mean": 0.5399,
+          "ci95": [
+            0.4148,
+            0.6066
+          ]
+        },
+        "memorisation.spearman": {
+          "mean": 0.5962,
+          "ci95": [
+            0.4661,
+            0.6695
+          ]
+        },
+        "law.top_hit": {
+          "mean": 0.5956,
+          "ci95": [
+            0.5024,
+            0.7
+          ]
+        },
+        "uniform.top_hit": {
+          "mean": 0.1395,
+          "ci95": [
+            0.1332,
+            0.1459
+          ]
+        },
+        "memorisation.top_hit": {
+          "mean": 0.64,
+          "ci95": [
+            0.4702,
+            0.7651
+          ]
+        },
+        "spearman.law - memorisation": {
+          "mean": -0.0563,
+          "ci95": [
+            -0.0785,
+            -0.0319
+          ]
+        },
+        "mae.law - uniform": {
+          "mean": -0.0312,
+          "ci95": [
+            -0.0427,
+            -0.0199
+          ]
+        }
+      }
+    },
+    "parasites_consensus": {
+      "n_pairs": 90,
+      "n_lineages": 15,
+      "family_level": {
+        "law.fate_accuracy": {
+          "mean": 0.6398,
+          "ci95": [
+            0.6287,
+            0.6581
+          ]
+        },
+        "no_change.fate_accuracy": {
+          "mean": 0.6574,
+          "ci95": [
+            0.5936,
+            0.7699
+          ]
+        },
+        "random_same_amount.fate_accuracy": {
+          "mean": 0.5742,
+          "ci95": [
+            0.5544,
+            0.6094
+          ]
+        },
+        "memorisation.fate_accuracy": {
+          "mean": 0.6531,
+          "ci95": [
+            0.6426,
+            0.6687
+          ]
+        },
+        "law.loss_auroc": {
+          "mean": 0.7482,
+          "ci95": [
+            0.7401,
+            0.7569
+          ]
+        },
+        "memorisation.loss_auroc": {
+          "mean": 0.7607,
+          "ci95": [
+            0.7256,
+            0.7811
+          ]
+        },
+        "law.jaccard": {
+          "mean": 0.4618,
+          "ci95": [
+            0.4183,
+            0.5244
+          ]
+        },
+        "no_change.jaccard": {
+          "mean": 0.5919,
+          "ci95": [
+            0.5369,
+            0.6904
+          ]
+        },
+        "fate_accuracy.law - no_change": {
+          "mean": -0.0176,
+          "ci95": [
+            -0.1182,
+            0.0413
+          ]
+        },
+        "fate_accuracy.law - random_same_amount": {
+          "mean": 0.0655,
+          "ci95": [
+            0.0465,
+            0.0758
+          ]
+        },
+        "fate_accuracy.law - no_axes_law": {
+          "mean": 0.0217,
+          "ci95": [
+            -0.0033,
+            0.0469
+          ]
+        },
+        "amount_error.law": {
+          "mean": 0.1743,
+          "ci95": [
+            0.1515,
+            0.2117
+          ]
+        },
+        "amount_error.mean_share": {
+          "mean": 0.1912,
+          "ci95": [
+            0.1425,
+            0.2444
+          ]
+        },
+        "gain_precision.law": {
+          "mean": 0.1556,
+          "ci95": [
+            0.1196,
+            0.2215
+          ]
+        }
+      },
+      "function_level": {
+        "law.spearman": {
+          "mean": 0.4916,
+          "ci95": [
+            0.3613,
+            0.5534
+          ]
+        },
+        "memorisation.spearman": {
+          "mean": 0.5576,
+          "ci95": [
+            0.4287,
+            0.6358
+          ]
+        },
+        "law.top_hit": {
+          "mean": 0.5978,
+          "ci95": [
+            0.5059,
+            0.6879
+          ]
+        },
+        "uniform.top_hit": {
+          "mean": 0.1431,
+          "ci95": [
+            0.1374,
+            0.148
+          ]
+        },
+        "memorisation.top_hit": {
+          "mean": 0.5667,
+          "ci95": [
+            0.4063,
+            0.652
+          ]
+        },
+        "spearman.law - memorisation": {
+          "mean": -0.0661,
+          "ci95": [
+            -0.1045,
+            -0.0314
+          ]
+        },
+        "mae.law - uniform": {
+          "mean": -0.0282,
+          "ci95": [
+            -0.0378,
+            -0.0181
+          ]
+        }
+      }
+    }
+  },
+  "caveats": [
+    "Family level: the law beats random choice of the same number of families (fate accuracy +0.06 to +0.08) but does not beat leaving the ancestor unchanged (extremophiles -0.04 [-0.075, -0.011]; consensus -0.07; parasites +0.03 and -0.02, intervals include 0).",
+    "Function level: the law ranks which functions a lineage loses (Spearman 0.49-0.66, top-5 hits 0.60-0.71 against 0.14-0.21 for a uniform split), slightly below memorisation (0.56-0.72).",
+    "With a consensus ancestor the law's AUROC falls (extremophiles 0.793 -> 0.764, parasites 0.774 -> 0.748): part of the score came from families only the proxy carried.",
+    "The predicted amount of loss is no better than the mean share for extremophiles (0.10 vs 0.08-0.09) and better for parasites (0.17 vs 0.19-0.22).",
+    "Predicted gains are mostly wrong (precision about 0.1-0.15)."
+  ],
+  "contexts": {}
+}
