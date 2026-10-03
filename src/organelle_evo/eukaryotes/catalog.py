@@ -397,40 +397,38 @@ def slug(name: str) -> str:
 # oomycetes, a sea anemone for the myxozoans. PAIR_SPECS is unchanged, so earlier laws
 # reproduce exactly; CO_PROXIES is read only by analyses that ask for a consensus ancestor.
 SPECIES.update({
-    "Polysphondylium pallidum": _free("amoebozoa"),  # dictyostelid
     "Oxytricha trifallax": _free("alveolata"),  # free-living ciliate
     "Kipferlia bialata": _free("metamonada"),  # free-living fornicate, closest to Giardia
     "Monocercomonoides exilis": _free("metamonada", REDUCED),  # oxymonad gut endobiont, no mitochondrion
     "Allomyces macrogynus": _free("fungi"),  # free-living blastocladian
-    "Homoloaphlyctis polyrhiza": _free("fungi"),  # free-living chytrid
     "Schizosaccharomyces japonicus": _free("fungi_tapho"),
     "Saitoella complicata": _free("fungi_tapho"),  # free-living Taphrinomycotina yeast
-    "Aurantiochytrium limacinum": _free("stramenopiles"),  # labyrinthulid, heterotroph
     "Ectocarpus siliculosus": _free("stramenopiles"),  # brown alga
     "Exaiptasia diaphana": _free("cnidaria"),  # sea anemone
     "Caenorhabditis remanei": _free("nematoda"),
-    "Oncopeltus fasciatus": _free("insecta"),  # milkweed bug, a free-living true bug
-    "Liposcelis bostrychophila": _free("insecta"),  # booklouse, free-living relative of lice
 })
 
 # proxy -> close free-living relatives (same lifestyle) used for a consensus ancestor.
 CO_PROXIES = {
-    "Dictyostelium discoideum": ("Dictyostelium purpureum", "Polysphondylium pallidum"),
+    "Dictyostelium discoideum": ("Dictyostelium purpureum",),
     "Tetrahymena thermophila": ("Paramecium tetraurelia", "Oxytricha trifallax"),
     "Chromera velia": ("Vitrella brassicaformis",),
     "Naegleria gruberi": ("Kipferlia bialata", "Monocercomonoides exilis"),
-    "Spizellomyces punctatus": ("Homoloaphlyctis polyrhiza", "Allomyces macrogynus"),
+    "Spizellomyces punctatus": ("Allomyces macrogynus",),
     "Schizosaccharomyces pombe": ("Schizosaccharomyces japonicus", "Saitoella complicata"),
     "Coprinopsis cinerea": ("Schizophyllum commune", "Laccaria bicolor"),
     "Neurospora crassa": ("Aspergillus nidulans",),
-    "Thalassiosira pseudonana": ("Aurantiochytrium limacinum", "Ectocarpus siliculosus"),
+    "Thalassiosira pseudonana": ("Ectocarpus siliculosus",),
     "Nematostella vectensis": ("Exaiptasia diaphana", "Hydra vulgaris"),
     "Caenorhabditis elegans": ("Caenorhabditis remanei", "Caenorhabditis briggsae", "Pristionchus pacificus"),
-    "Halyomorpha halys": ("Oncopeltus fasciatus",),
-    "Drosophila melanogaster": ("Anopheles gambiae", "Liposcelis bostrychophila"),
+    "Drosophila melanogaster": ("Anopheles gambiae",),
     "Galendromus occidentalis": ("Tetranychus urticae",),
     "Ipomoea nil": ("Ipomoea triloba",),
     "Auxenochlorella protothecoides": ("Chlorella variabilis",),
 }
+# Removed after Pfam profiling found no annotated NCBI assembly (October 2026, round 5):
+# Polysphondylium pallidum, Aurantiochytrium limacinum, Homoloaphlyctis polyrhiza,
+# Oncopeltus fasciatus, Liposcelis bostrychophila. The bed bug and the louse therefore keep a
+# single proxy.
 # Metamonads: Kipferlia is far closer to Giardia/Trichomonas than Naegleria is, but it is a
 # co-proxy, not the proxy, so the original metamonad pairs keep reproducing.

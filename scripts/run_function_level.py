@@ -67,7 +67,7 @@ def boot(vals, units, n=2000, seed=0):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--system", choices=("parasites", "extremophiles"), required=True)
+    ap.add_argument("--system", choices=("parasites", "extremophiles", "parasites_consensus", "extremophiles_consensus"), required=True)
     ap.add_argument("--dir", default="results/forward_evolution")
     args = ap.parse_args()
     z = np.load(Path(args.dir) / f"{args.system}_scores.npz")

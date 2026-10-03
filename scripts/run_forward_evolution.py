@@ -41,18 +41,18 @@ ANN = Path("data/eukaryotes")
 METHODS = ("law", "law_losses_only", "no_axes_law", "random_same_amount", "random_true_amount", "no_change", "memorisation")
 
 
-def load_system(system):
+def load_system(system, ancestor="proxy"):
     meta = json.loads((ANN / "pfam_meta.json").read_text())
     ann = json.loads((ANN / "family_annotations.json").read_text())
     if system == "parasites":
-        from organelle_evo.eukaryotes.catalog import AXES, SPECIES, design, resolve_pairs
+        from organelle_evo.eukaryotes.catalog import AXES, CO_PROXIES, SPECIES, design, resolve_pairs
         data_dir = ANN
         labels = ("base", *AXES)
         unit = lambda a, d: SPECIES[d].group.split("_")[0]  # noqa: E731  (clade, as run_transfer.py)
         dsg = lambda a, d: design(d)  # noqa: E731
         evaluate = lambda z: z[1] > 0  # noqa: E731  parasites only
     else:
-        from organelle_evo.prokaryotes.catalog import AXES, design, resolve_pairs
+        from organelle_evo.prokaryotes.catalog import AXES, CO_PROXIES, design, resolve_pairs
         data_dir = Path("data/prokaryotes")
         labels = ("base", *AXES)
         unit = lambda a, d: a  # noqa: E731  pairs sharing a proxy are held out together
@@ -69,7 +69,22 @@ def load_system(system):
     # Ubiquity from ancestor proxies only, so a descendant never informs its own features.
     proxies = sorted({a for a, _ in pairs})
     fams, names, x = enriched_features(profiles, meta, ann, c, free=proxies)
-    return dict(fams=fams, names=names, x=x, c=c, pairs=pairs, labels=labels, unit=unit, design=dsg,
+    # Ancestor counts. "consensus": a family counts as ancestral only if the proxy shares it
+    # with at least one close free-living relative (CO_PROXIES), so the proxy's own gains are
+    # not scored as the descendant's losses. Proxies without a profiled relative keep their counts.
+    anc, removed = {}, {}
+    for a in proxies:
+        co = [s for s in CO_PROXIES.get(a, ()) if s in c] if ancestor == "consensus" else []
+        if co:
+            shared = np.any([c[s] > 0 for s in co], axis=0)
+            anc[a] = np.where(shared, c[a], 0)
+            removed[a] = int(((c[a] > 0) & ~shared).sum())
+        else:
+            anc[a] = c[a]
+    if ancestor == "consensus":
+        print(f"consensus ancestor: {len(removed)}/{len(proxies)} proxies have a relative; families dropped "
+              + ", ".join(f"{k} {v}" for k, v in removed.items()))
+    return dict(fams=fams, names=names, x=x, c=c, anc=anc, pairs=pairs, labels=labels, unit=unit, design=dsg,
                 evaluate=evaluate, meta=meta)
 
 
@@ -145,11 +160,14 @@ def main():
     ap.add_argument("--threads", type=int, default=4)
     ap.add_argument("--max-units", type=int, default=0, help="only the first N held-out lineages (testing)")
     ap.add_argument("--out", default="results/forward_evolution")
+    ap.add_argument("--ancestor", choices=("proxy", "consensus"), default="proxy")
     args = ap.parse_args()
     torch.set_num_threads(args.threads)
     out = Path(args.out)
     out.mkdir(parents=True, exist_ok=True)
-    S = load_system(args.system)
+    S = load_system(args.system, args.ancestor)
+    anc = S["anc"]
+    tag = args.system + ("_consensus" if args.ancestor == "consensus" else "")
     fams, names, x, c, pairs, labels = S["fams"], S["names"], S["x"], S["c"], S["pairs"], S["labels"]
     designs = [S["design"](a, d) for a, d in pairs]
     units = [S["unit"](a, d) for a, d in pairs]
@@ -162,7 +180,7 @@ def main():
     saved = {}  # per pair: ancestral family indices and each method's per-family loss score
     for u in test_units:
         tr = [i for i in range(len(pairs)) if units[i] != u]
-        train = [(c[pairs[i][0]], c[pairs[i][1]], designs[i]) for i in tr]
+        train = [(anc[pairs[i][0]], c[pairs[i][1]], designs[i]) for i in tr]
         law = fit_bd(x, train, labels, epochs=args.epochs)
         base = fit_bd(x, [(n, m, (1.0,)) for n, m, _ in train], ("base",), epochs=args.epochs)
         train_species = {s for i in tr for s in pairs[i]}
@@ -172,7 +190,7 @@ def main():
             if units[i] != u or not S["evaluate"](designs[i]):
                 continue
             (a, d), z = pairs[i], designs[i]
-            n, m = c[a], c[d]
+            n, m = anc[a], c[d]
             had, real = n > 0, m > 0
             pool_i = pool & ~had
             res = {}
@@ -262,11 +280,11 @@ def main():
     for k, v in summary.items():
         if isinstance(v, dict):
             print(f"  {k:45s} {v['mean']:+.4f} {v['ci95']}")
-    (out / f"{args.system}.json").write_text(json.dumps({"summary": summary, "pairs": rows}, indent=1))
-    np.savez_compressed(out / f"{args.system}_scores.npz", fams=np.array(fams), pairs=np.array(list(saved)),
+    (out / f"{tag}.json").write_text(json.dumps({"summary": summary, "pairs": rows}, indent=1))
+    np.savez_compressed(out / f"{tag}_scores.npz", fams=np.array(fams), pairs=np.array(list(saved)),
                         units=np.array([r["unit"] for r in rows]),
                         **{f"{i}|{k}": v for i, rec in enumerate(saved.values()) for k, v in rec.items()})
-    print(f"Done -> {out}/{args.system}.json")
+    print(f"Done -> {out}/{tag}.json")
 
 
 if __name__ == "__main__":
