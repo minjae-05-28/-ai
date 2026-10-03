@@ -148,6 +148,23 @@ def endosymbiont_envelope(systems=("mitochondrion", "plastid", "insect_endosymbi
     return card
 
 
+def genome_traits_envelope():
+    import sys
+
+    sys.path.insert(0, str(Path(__file__).resolve().parent))
+    from run_genome_laws import load
+
+    rows = load()
+    temps = [r["temperature"] for r in rows if r["temperature"] is not None]
+    return {"catalogue": "GTDB + Madin 2020", "n_species": len(rows),
+            "envelope": {"서식 온도 °C": numeric(temps),
+                         "산소": counts(["호기" if r["oxygen"] == 1 else "혐기" for r in rows if r["oxygen"] is not None]),
+                         "숙주": counts(["숙주 관련" if r["host"] == 1 else "환경" for r in rows if r["host"] is not None]),
+                         "GC": numeric([round(r["x"][0], 3) for r in rows]),
+                         "유전체 크기 Mb": numeric([round(10 ** r["x"][1] / 1e6, 2) for r in rows])},
+            "groups": dict(list(counts([r["phylum"] for r in rows]).items())[:12])}
+
+
 # ---- findings --------------------------------------------------------------------------------
 
 def significant(ctx, top=6):
@@ -265,6 +282,14 @@ def findings_for(law):
         return {k: val.get(k) for k in ("containment_over_random_median", "share_above_random")}
     if lid == "coloss_modules_v1":
         return {"gain_vs_additive": val.get("gain_vs_additive")}
+    if lid.startswith("genome_traits"):
+        out = {}
+        for t in ("temperature", "oxygen", "host"):
+            lo = val[t]["leave_order_out"]
+            out[t] = {"처음 보는 목": lo["scores"], "metric": lo["metric"],
+                      "법칙 - 분류 암기": lo.get("law_linear - taxonomy"),
+                      "계수(표준화, 전체/문 안)": val[t]["coefficients"]}
+        return out
     if lid == "knockout_v1":
         return {"note": "실험실 배지(풍부·최소)의 필수성. 숙주 안 조건 아님"}
     return {}
@@ -330,6 +355,9 @@ def card_for(law):
         card = {"catalogue": "laboratory", "envelope": {
             "조건": "실험실 배지(풍부 배지, 최소 배지)에서의 결실 생존·적합도. DEG + Fitness Browser + 분열효모 결실 목록"},
             "species_from": "law"}
+    elif lid.startswith("genome_traits"):
+        card = genome_traits_envelope()
+        card["species_from"] = "GTDB x trait table (rebuilt with scripts/run_genome_laws.py load())"
     else:
         card = {"species_from": "unknown"}
     card = {"law_id": lid, **card, "findings": findings_for(law),
@@ -397,6 +425,9 @@ def short_findings(card):
         elif k == "body_sites" and isinstance(v, dict):
             out += [f"{a.split(' (')[0]} 조성 오차 " + ", ".join(f"{m} {x:+.3f}" for m, x in b["errors"].items())
                     for a, b in v.items()]
+        elif isinstance(v, dict) and "처음 보는 목" in v:
+            sc = v["처음 보는 목"]
+            out.append(f"{k}: 법칙 {sc['law_linear']:.3f} / 암기 {sc['taxonomy']:.3f} / 평균 {sc['mean']:.3f} ({v['metric']})")
         elif k == "note" and isinstance(v, str):
             out.append(v)
     return "<br>".join(out[:7]) or "-"

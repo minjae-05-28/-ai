@@ -1,0 +1,327 @@
+{
+  "id": "genome_traits_v1",
+  "scope": "Bacterial and archaeal growth temperature, oxygen use and host association predicted from genome-level traits (GC, genome size, coding density, proteins per Mb), across GTDB species with a trait record. Says nothing about gene content or protein sequence.",
+  "model": "Ridge (temperature) / logistic (oxygen, host) on standardized genome features; gradient boosting on the same features reported next to it; taxonomy memorisation as the baseline.",
+  "feature_names": [
+    "gc",
+    "log10_genome_size",
+    "coding_density",
+    "proteins_per_mb"
+  ],
+  "data": {
+    "species": 11549,
+    "genomes": "GTDB species representatives, CheckM2 >= 90% complete, <= 5% contamination, one per NCBI species",
+    "traits": "Madin et al. 2020 condensed species table"
+  },
+  "validation": {
+    "temperature": {
+      "random_5fold": {
+        "n": 9113,
+        "n_orders": 274,
+        "metric": "MAE (deg C)",
+        "scores": {
+          "mean": 5.9711,
+          "taxonomy": 2.5908,
+          "law_linear": 5.3367,
+          "law_nonlinear": 4.2011,
+          "law+taxonomy": 2.5966
+        },
+        "r2": {
+          "mean": -0.0002,
+          "taxonomy": 0.7527,
+          "law_linear": 0.2169,
+          "law_nonlinear": 0.4548,
+          "law+taxonomy": 0.7537
+        }
+      },
+      "leave_order_out": {
+        "n": 9113,
+        "n_orders": 274,
+        "metric": "MAE (deg C)",
+        "scores": {
+          "mean": 5.9939,
+          "taxonomy": 4.7026,
+          "law_linear": 5.552,
+          "law_nonlinear": 5.1771,
+          "law+taxonomy": 4.6625
+        },
+        "r2": {
+          "mean": -0.0061,
+          "taxonomy": 0.2738,
+          "law_linear": 0.1748,
+          "law_nonlinear": 0.2123,
+          "law+taxonomy": 0.2811
+        },
+        "law_linear - taxonomy": {
+          "mean": 0.8494,
+          "ci95": [
+            0.256,
+            1.4403
+          ]
+        },
+        "law_nonlinear - law_linear": {
+          "mean": -0.3749,
+          "ci95": [
+            -0.8099,
+            0.0097
+          ]
+        },
+        "law_linear - mean": {
+          "mean": -0.4419,
+          "ci95": [
+            -0.9567,
+            0.0771
+          ]
+        }
+      },
+      "coefficients": {
+        "gc": {
+          "overall": 0.0549,
+          "within_phylum": 1.2669,
+          "same_sign": true
+        },
+        "log10_genome_size": {
+          "overall": -3.3506,
+          "within_phylum": -2.6421,
+          "same_sign": true
+        },
+        "coding_density": {
+          "overall": 0.2061,
+          "within_phylum": 0.1644,
+          "same_sign": true
+        },
+        "proteins_per_mb": {
+          "overall": 2.2393,
+          "within_phylum": 0.3077,
+          "same_sign": true
+        }
+      }
+    },
+    "oxygen": {
+      "random_5fold": {
+        "n": 6781,
+        "n_orders": 280,
+        "metric": "AUROC",
+        "scores": {
+          "mean": 0.5,
+          "taxonomy": 0.9681,
+          "law_linear": 0.8378,
+          "law_nonlinear": 0.8807,
+          "law+taxonomy": 0.9782
+        },
+        "note": "mean = 0.5 by definition (pooled per-fold constants are not a meaningful AUROC)"
+      },
+      "leave_order_out": {
+        "n": 6781,
+        "n_orders": 280,
+        "metric": "AUROC",
+        "scores": {
+          "mean": 0.5,
+          "taxonomy": 0.7552,
+          "law_linear": 0.7883,
+          "law_nonlinear": 0.7803,
+          "law+taxonomy": 0.8505
+        },
+        "note": "mean = 0.5 by definition (pooled per-fold constants are not a meaningful AUROC)",
+        "law_linear - taxonomy": {
+          "mean": 0.0331,
+          "ci95": [
+            -0.1108,
+            0.179
+          ]
+        },
+        "law_nonlinear - law_linear": {
+          "mean": -0.008,
+          "ci95": [
+            -0.0411,
+            0.0191
+          ]
+        }
+      },
+      "coefficients": {
+        "gc": {
+          "overall": 0.533,
+          "within_phylum": 0.0889,
+          "same_sign": true
+        },
+        "log10_genome_size": {
+          "overall": 1.1848,
+          "within_phylum": 1.1845,
+          "same_sign": true
+        },
+        "coding_density": {
+          "overall": 0.1597,
+          "within_phylum": -0.1487,
+          "same_sign": false
+        },
+        "proteins_per_mb": {
+          "overall": 0.2866,
+          "within_phylum": 0.9559,
+          "same_sign": true
+        }
+      }
+    },
+    "host": {
+      "random_5fold": {
+        "n": 7445,
+        "n_orders": 277,
+        "metric": "AUROC",
+        "scores": {
+          "mean": 0.5,
+          "taxonomy": 0.8434,
+          "law_linear": 0.6731,
+          "law_nonlinear": 0.7631,
+          "law+taxonomy": 0.8439
+        },
+        "note": "mean = 0.5 by definition (pooled per-fold constants are not a meaningful AUROC)"
+      },
+      "leave_order_out": {
+        "n": 7445,
+        "n_orders": 277,
+        "metric": "AUROC",
+        "scores": {
+          "mean": 0.5,
+          "taxonomy": 0.5021,
+          "law_linear": 0.6518,
+          "law_nonlinear": 0.6797,
+          "law+taxonomy": 0.6434
+        },
+        "note": "mean = 0.5 by definition (pooled per-fold constants are not a meaningful AUROC)",
+        "law_linear - taxonomy": {
+          "mean": 0.1497,
+          "ci95": [
+            0.046,
+            0.2443
+          ]
+        },
+        "law_nonlinear - law_linear": {
+          "mean": 0.0279,
+          "ci95": [
+            -0.0199,
+            0.0699
+          ]
+        }
+      },
+      "coefficients": {
+        "gc": {
+          "overall": -0.0965,
+          "within_phylum": -0.3332,
+          "same_sign": true
+        },
+        "log10_genome_size": {
+          "overall": -0.6659,
+          "within_phylum": -0.634,
+          "same_sign": true
+        },
+        "coding_density": {
+          "overall": -0.3123,
+          "within_phylum": -0.3762,
+          "same_sign": true
+        },
+        "proteins_per_mb": {
+          "overall": -0.3099,
+          "within_phylum": -0.2775,
+          "same_sign": true
+        }
+      }
+    }
+  },
+  "caveats": [
+    "Traits are literature compilations (Madin et al. 2020), not measurements made here.",
+    "Leave-order-out is the honest test for an unseen lineage; random folds let taxonomy memorise.",
+    "Coefficients are associations; within-phylum signs are reported to show what survives the coarsest phylogenetic control.",
+    "Isolation source is where a strain was isolated, not necessarily its lifestyle."
+  ],
+  "contexts": {
+    "temperature": {
+      "gc": {
+        "weight": 0.0549,
+        "ci95": [
+          0.0549,
+          0.0549
+        ]
+      },
+      "log10_genome_size": {
+        "weight": -3.3506,
+        "ci95": [
+          -3.3506,
+          -3.3506
+        ]
+      },
+      "coding_density": {
+        "weight": 0.2061,
+        "ci95": [
+          0.2061,
+          0.2061
+        ]
+      },
+      "proteins_per_mb": {
+        "weight": 2.2393,
+        "ci95": [
+          2.2393,
+          2.2393
+        ]
+      }
+    },
+    "oxygen": {
+      "gc": {
+        "weight": 0.533,
+        "ci95": [
+          0.533,
+          0.533
+        ]
+      },
+      "log10_genome_size": {
+        "weight": 1.1848,
+        "ci95": [
+          1.1848,
+          1.1848
+        ]
+      },
+      "coding_density": {
+        "weight": 0.1597,
+        "ci95": [
+          0.1597,
+          0.1597
+        ]
+      },
+      "proteins_per_mb": {
+        "weight": 0.2866,
+        "ci95": [
+          0.2866,
+          0.2866
+        ]
+      }
+    },
+    "host": {
+      "gc": {
+        "weight": -0.0965,
+        "ci95": [
+          -0.0965,
+          -0.0965
+        ]
+      },
+      "log10_genome_size": {
+        "weight": -0.6659,
+        "ci95": [
+          -0.6659,
+          -0.6659
+        ]
+      },
+      "coding_density": {
+        "weight": -0.3123,
+        "ci95": [
+          -0.3123,
+          -0.3123
+        ]
+      },
+      "proteins_per_mb": {
+        "weight": -0.3099,
+        "ci95": [
+          -0.3099,
+          -0.3099
+        ]
+      }
+    }
+  }
+}
