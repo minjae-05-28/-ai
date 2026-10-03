@@ -57,7 +57,11 @@ GROUPS = {"patescibacteria": (1783273, "bacteria"), "asgard": (1935183, "archaea
           # Large DNA viruses: hundreds to thousands of genes, so gene-family statistics are
           # meaningful (small RNA viruses carry ~10 genes and are not analysable this way).
           "giant_viruses": (2732007, "viruses"),      # Nucleocytoviricota
-          "caudoviricetes": (2731619, "viruses")}     # tailed phages
+          "caudoviricetes": (2731619, "viruses"),     # tailed phages
+          # Amoebozoa: the project's own HMMER profiles cover only 6 species, too few for an
+          # ancestral reconstruction, so all UniProt proteomes of the group are listed.
+          "amoebozoa": (554915, "eukaryotes"),
+          "discoba": (2611352, "eukaryotes")}         # Naegleria, trypanosomes: the amoeba outgroup
 
 
 def list_group_proteomes(groups, limit):
