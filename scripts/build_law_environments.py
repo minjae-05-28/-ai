@@ -286,6 +286,11 @@ def findings_for(law):
         return {t: {"법칙-진화 안 함 (운명 정확도)": v["family_level"]["fate_accuracy.law - no_change"],
                     "기능 순위 상관 법칙/암기": [v["function_level"]["law.spearman"]["mean"],
                                          v["function_level"]["memorisation.spearman"]["mean"]]} for t, v in val.items()}
+    if lid.startswith("amoeba_ancestor"):
+        out = {"잎 숨기기 (복원 / 현생 빈도)": val["leave_tips_out_auroc"]}
+        for g, fams in (val.get("marker_panel") or {}).items():
+            out[g] = {f: v["posterior"] for f, v in fams.items()}
+        return out
     if lid.startswith("mito_ancestor"):
         return {v: {n: {"expected_families": d["expected_families"],
                         "positive_control_ok": sum(1 for x in d["positive_control"].values() if x is not None and x >= 0.9)}
@@ -389,6 +394,11 @@ def card_for(law):
         pp, ep = pro_cat.resolve_pairs(pro_present), euk_cat.resolve_pairs(euk_present)
         card = {"extremophiles": prokaryote_envelope(sp(pp), pp), "parasites": eukaryote_envelope(sp(ep), ep),
                 "species_from": "catalogue"}
+    elif lid.startswith("amoeba_ancestor"):
+        card = {"catalogue": "ribosomal marker tree + UniProt", "envelope": {
+            "대상": "아메보조아 12종(세포성 점균 8, 엔타모에바 3, 아칸타모에바 1) + 외군 28종",
+            "환경": "토양·담수 자유생활 아메바와 장 기생 아메바. 투불리네아·미조성균 등 주요 계통 미포함"},
+            "species_from": "law"}
     elif lid.startswith("mito_ancestor"):
         card = {"catalogue": "GTDB tree + UniProt", "envelope": {
             "대상": "알파프로테오박테리아 2,323종(+감마 300 외군), 고품질만 2,226종",
