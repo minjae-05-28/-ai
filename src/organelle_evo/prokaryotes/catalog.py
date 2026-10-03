@@ -280,3 +280,55 @@ def slug(name: str) -> str:
     import re
 
     return re.sub(r"[^A-Za-z0-9]+", "_", name).strip("_")
+
+
+# Round 4 (October 2026): close relatives of the ancestor proxies, same ordinary habitat.
+# See organelle_evo.eukaryotes.catalog CO_PROXIES: a consensus ancestor (families the proxy
+# shares with a co-proxy) removes losses that are really the proxy's own gains. PAIR_SPECS
+# is unchanged, so earlier laws reproduce.
+SPECIES.update({
+    "Shewanella putrefaciens": Env("gamma", 30, 1, 1),
+    "Acinetobacter calcoaceticus": Env("gamma", 30, 0.5, 1),
+    "Pedobacter heparinus": Env("bacteroidetes", 30, 0.5, 1),
+    "Thermus aquaticus": Env("deinococcus", 70, 0.5, 1),
+    "Meiothermus ruber": Env("deinococcus", 60, 0.5, 1),
+    "Kocuria rhizophila": Env("actino", 30, 1, 1),
+    "Synechocystis sp. PCC 6714": Env("cyano", 30, 0.5, 1),
+    "Rhodobacter capsulatus": Env("alpha", 30, 0.5, 1),
+    "Desulfovibrio desulfuricans": Env("delta", 30, 0.5, 0),
+    "Corallococcus coralloides": Env("delta", 30, 0.5, 1),
+    "Methanosarcina mazei": Env("archaea", 37, 0.5, 0),
+    "Methanococcus vannielii": Env("archaea", 37, 2, 0),
+    "Vibrio alginolyticus": Env("gamma", 30, 3, 1),
+    "Alteromonas mediterranea": Env("gamma", 25, 3.5, 1),
+    "Thermococcus onnurineus": Env("archaea", 80, 3, 0),
+    "Novosphingobium aromaticivorans": Env("alpha", 30, 0.5, 1),
+    "Cupriavidus metallidurans": Env("beta", 30, 0.5, 1),
+    "Clostridium beijerinckii": Env("firmicutes", 35, 0.5, 0),
+    "Haloferax mediterranei": Env("archaea", 40, 20, 1),
+    "Methylotenera mobilis": Env("beta", 25, 0.5, 1),
+})
+
+CO_PROXIES = {
+    "Shewanella oneidensis": ("Shewanella putrefaciens",),
+    "Acinetobacter baylyi": ("Acinetobacter calcoaceticus",),
+    "Bacillus subtilis": ("Bacillus licheniformis", "Bacillus pumilus"),
+    "Flavobacterium johnsoniae": ("Pedobacter heparinus",),
+    "Thermus thermophilus": ("Thermus aquaticus", "Meiothermus ruber"),
+    "Micrococcus luteus": ("Kocuria rhizophila",),
+    "Synechocystis sp. PCC 6803": ("Synechocystis sp. PCC 6714",),
+    "Cereibacter sphaeroides": ("Rhodobacter capsulatus",),
+    "Nitratidesulfovibrio vulgaris": ("Desulfovibrio desulfuricans",),
+    "Myxococcus xanthus": ("Corallococcus coralloides",),
+    "Methanosarcina acetivorans": ("Methanosarcina mazei",),
+    "Methanococcus maripaludis": ("Methanococcus vannielii",),
+    "Pseudomonas aeruginosa": ("Pseudomonas putida",),
+    "Vibrio natriegens": ("Vibrio alginolyticus",),
+    "Alteromonas macleodii": ("Alteromonas mediterranea",),
+    "Thermococcus kodakarensis": ("Thermococcus onnurineus",),
+    "Sphingobium japonicum": ("Novosphingobium aromaticivorans",),
+    "Cupriavidus necator": ("Cupriavidus metallidurans",),
+    "Clostridium acetobutylicum": ("Clostridium beijerinckii",),
+    "Haloferax volcanii": ("Haloferax mediterranei",),
+    "Methylobacillus flagellatus": ("Methylotenera mobilis",),
+}

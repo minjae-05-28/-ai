@@ -385,3 +385,52 @@ def slug(name: str) -> str:
     import re
 
     return re.sub(r"[^A-Za-z0-9]+", "_", name).strip("_")
+
+
+# Round 5 (October 2026): close free-living relatives of the ancestor proxies.
+#
+# One extant relative stands in for each ancestor, and it has evolved too: a family it gained
+# on its own branch and the parasite never had is scored as a loss. With a second relative,
+# the ancestor can be taken as the families the proxy shares with at least one co-proxy
+# (a consensus ancestor), which removes most of that label noise. The weakest proxies come
+# first: Naegleria for the metamonads, one chytrid for the microsporidia, a diatom for the
+# oomycetes, a sea anemone for the myxozoans. PAIR_SPECS is unchanged, so earlier laws
+# reproduce exactly; CO_PROXIES is read only by analyses that ask for a consensus ancestor.
+SPECIES.update({
+    "Polysphondylium pallidum": _free("amoebozoa"),  # dictyostelid
+    "Oxytricha trifallax": _free("alveolata"),  # free-living ciliate
+    "Kipferlia bialata": _free("metamonada"),  # free-living fornicate, closest to Giardia
+    "Monocercomonoides exilis": _free("metamonada", REDUCED),  # oxymonad gut endobiont, no mitochondrion
+    "Allomyces macrogynus": _free("fungi"),  # free-living blastocladian
+    "Homoloaphlyctis polyrhiza": _free("fungi"),  # free-living chytrid
+    "Schizosaccharomyces japonicus": _free("fungi_tapho"),
+    "Saitoella complicata": _free("fungi_tapho"),  # free-living Taphrinomycotina yeast
+    "Aurantiochytrium limacinum": _free("stramenopiles"),  # labyrinthulid, heterotroph
+    "Ectocarpus siliculosus": _free("stramenopiles"),  # brown alga
+    "Exaiptasia diaphana": _free("cnidaria"),  # sea anemone
+    "Caenorhabditis remanei": _free("nematoda"),
+    "Oncopeltus fasciatus": _free("insecta"),  # milkweed bug, a free-living true bug
+    "Liposcelis bostrychophila": _free("insecta"),  # booklouse, free-living relative of lice
+})
+
+# proxy -> close free-living relatives (same lifestyle) used for a consensus ancestor.
+CO_PROXIES = {
+    "Dictyostelium discoideum": ("Dictyostelium purpureum", "Polysphondylium pallidum"),
+    "Tetrahymena thermophila": ("Paramecium tetraurelia", "Oxytricha trifallax"),
+    "Chromera velia": ("Vitrella brassicaformis",),
+    "Naegleria gruberi": ("Kipferlia bialata", "Monocercomonoides exilis"),
+    "Spizellomyces punctatus": ("Homoloaphlyctis polyrhiza", "Allomyces macrogynus"),
+    "Schizosaccharomyces pombe": ("Schizosaccharomyces japonicus", "Saitoella complicata"),
+    "Coprinopsis cinerea": ("Schizophyllum commune", "Laccaria bicolor"),
+    "Neurospora crassa": ("Aspergillus nidulans",),
+    "Thalassiosira pseudonana": ("Aurantiochytrium limacinum", "Ectocarpus siliculosus"),
+    "Nematostella vectensis": ("Exaiptasia diaphana", "Hydra vulgaris"),
+    "Caenorhabditis elegans": ("Caenorhabditis remanei", "Caenorhabditis briggsae", "Pristionchus pacificus"),
+    "Halyomorpha halys": ("Oncopeltus fasciatus",),
+    "Drosophila melanogaster": ("Anopheles gambiae", "Liposcelis bostrychophila"),
+    "Galendromus occidentalis": ("Tetranychus urticae",),
+    "Ipomoea nil": ("Ipomoea triloba",),
+    "Auxenochlorella protothecoides": ("Chlorella variabilis",),
+}
+# Metamonads: Kipferlia is far closer to Giardia/Trichomonas than Naegleria is, but it is a
+# co-proxy, not the proxy, so the original metamonad pairs keep reproducing.
