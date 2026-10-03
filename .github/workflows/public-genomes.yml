@@ -1,0 +1,138 @@
+name: Public genome catalogues (GTDB, UniProt reference proteomes)
+
+# Large-scale layer built from annotations others have already computed:
+#   gtdb   - every GTDB species representative (taxonomy, GC, genome size, assembly quality)
+#   plan   - list UniProt reference proteomes of the chosen kingdoms, minus those already stored
+#   fetch  - per shard: Pfam counts (UniProt's own Pfam cross-references) + amino-acid composition
+#   collect- commit data/gtdb/ and data/uniprot/ (push retried; the job fails if it cannot push)
+# Manual only. Use `limit` (per kingdom) for a test run first.
+
+on:
+  workflow_dispatch:
+    inputs:
+      kingdoms:
+        description: "comma-separated: bacteria,archaea,fungi"
+        default: "bacteria,archaea,fungi"
+      limit:
+        description: "proteomes per kingdom (0 = all)"
+        default: "0"
+      n_shards:
+        description: "parallel shards"
+        default: "40"
+      gtdb:
+        description: "also fetch GTDB species representatives (true/false)"
+        default: "true"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: public-genomes
+  cancel-in-progress: false
+
+jobs:
+  gtdb:
+    if: inputs.gtdb == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: python scripts/fetch_gtdb.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: gtdb
+          path: data/gtdb/
+
+  plan:
+    runs-on: ubuntu-latest
+    outputs:
+      shards: ${{ steps.list.outputs.shards }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install numpy
+      - id: list
+        env:
+          PYTHONPATH: src
+        run: |
+          python scripts/uniprot_proteomes.py --list "${{ inputs.kingdoms }}" --limit "${{ inputs.limit }}" \
+            --n-shards "${{ inputs.n_shards }}" | tee plan.log
+          echo "shards=$(tail -n 1 plan.log)" >> "$GITHUB_OUTPUT"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: uniprot-plan
+          path: |
+            data/uniprot/proteomes.tsv
+            data/uniprot/todo.json
+
+  fetch:
+    needs: plan
+    if: needs.plan.outputs.shards != '[]'
+    runs-on: ubuntu-latest
+    timeout-minutes: 330
+    strategy:
+      fail-fast: false
+      max-parallel: 8
+      matrix:
+        shard: ${{ fromJSON(needs.plan.outputs.shards) }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install numpy
+      - uses: actions/download-artifact@v4
+        with:
+          name: uniprot-plan
+          path: data/uniprot
+      - name: Shard ${{ matrix.shard }}
+        env:
+          PYTHONPATH: src
+        run: python scripts/uniprot_proteomes.py --shard ${{ matrix.shard }} --n-shards ${{ strategy.job-total }}
+      - uses: actions/upload-artifact@v4
+        with:
+          name: uniprot-shard-${{ matrix.shard }}
+          path: data/uniprot/shards/
+
+  collect:
+    needs: [gtdb, plan, fetch]
+    if: always() && needs.plan.result == 'success'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: uniprot-shard-*
+          path: data/uniprot/shards
+          merge-multiple: true
+      - uses: actions/download-artifact@v4
+        with:
+          name: uniprot-plan
+          path: data/uniprot
+      - uses: actions/download-artifact@v4
+        if: needs.gtdb.result == 'success'
+        with:
+          name: gtdb
+          path: data/gtdb
+      - name: Commit
+        run: |
+          rm -f data/uniprot/todo.json
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -f data/uniprot data/gtdb 2>/dev/null || git add -f data/uniprot
+          if git diff --cached --quiet; then
+            echo "Nothing new."
+          else
+            git commit -m "Add public genome catalogues (UniProt reference proteomes, GTDB)"
+            ok=0
+            for i in 1 2 3 4 5 6; do
+              git pull --rebase origin main && git push origin HEAD:main && { ok=1; break; }
+              echo "push attempt $i failed; retrying"; sleep $((i*10))
+            done
+            [ "$ok" = 1 ] || { echo "::error::could not push"; exit 1; }
+          fi
