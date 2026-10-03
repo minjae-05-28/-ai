@@ -102,6 +102,16 @@ def build(n_boot=0, only=None):
         if only and cat_dir.name not in only:
             continue  # so a new set does not rebuild (and overwrite) the existing trees
         data = {json.loads(f.read_text())["species"]: json.loads(f.read_text())["markers"] for f in cat_dir.glob("*.json")}
+        # Species with (almost) no markers must not count toward the coverage denominator: with 20 of
+        # 60 amoeba proteomes empty (UniProt keeps the proteome record but not the sequences for
+        # redundant ones), no family could reach MIN_COVERAGE and the alignment came out empty.
+        counts = {s: len(m) for s, m in data.items()}
+        floor = max(5, 0.25 * (sorted(counts.values())[len(counts) // 2] if counts else 0))
+        dropped = sorted(s for s, n in counts.items() if n < floor)
+        if dropped:
+            print(f"{cat_dir.name}: dropping {len(dropped)} species with < {floor:.0f} markers "
+                  f"(e.g. {dropped[:3]})")
+            data = {s: m for s, m in data.items() if s not in set(dropped)}
         if len(data) < 4:
             continue
         species = sorted(data)
