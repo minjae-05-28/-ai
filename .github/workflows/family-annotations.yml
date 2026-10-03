@@ -30,6 +30,10 @@ jobs:
           git add -f data/eukaryotes/family_annotations.json
           if git diff --cached --quiet; then echo "No change."; else
             git commit -m "Add Pfam family annotations (clans, GO slim)"
-            git pull --rebase origin main
-            git push origin HEAD:main
+            ok=0
+            for i in 1 2 3 4 5 6; do
+              git pull --rebase origin main && git push origin HEAD:main && { ok=1; break; }
+              echo "push attempt $i failed; retrying"; sleep $((i*10))
+            done
+            [ "$ok" = 1 ] || { echo "::error::could not push"; exit 1; }
           fi
