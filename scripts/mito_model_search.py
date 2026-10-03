@@ -382,6 +382,17 @@ def rank(round_no):
               "alpha_root_expected_share": round(r["real"]["alpha_root_expected_share"], 3),
               "positive_control_ge_0.9": sum(v >= 0.9 for v in r["real"]["positive_control"].values()),
               "positive_control_n": len(r["real"]["positive_control"])} for r in rows]
+    # Paired comparison of the top two over the evaluation units (simulation generators, hidden orders).
+    if len(rows) > 1:
+        a_, b_ = rows[0], rows[1]
+        diffs = [a_["sim"][k]["logloss"] - b_["sim"][k]["logloss"] for k in a_["sim"]]
+        diffs += [a_["hide"][k]["logloss"] - b_["hide"][k]["logloss"] for k in a_["hide"] if k in b_["hide"]]
+        rng = np.random.default_rng(0)
+        boots = [np.mean(rng.choice(diffs, len(diffs))) for _ in range(5000)]
+        table[0]["vs_second"] = {"second": model_id(b_["spec"]), "mean_logloss_diff": round(float(np.mean(diffs)), 4),
+                                 "ci95": [round(float(np.percentile(boots, 2.5)), 4), round(float(np.percentile(boots, 97.5)), 4)],
+                                 "units": len(diffs), "note": "negative = top model better"}
+        print("top vs second:", table[0]["vs_second"])
     (OUT / f"round{round_no}_ranking.json").write_text(json.dumps(table, indent=1))
     print(f"{'model':38s} rank  simLL  sizeBias hideLL  stab  rootShare  posCtrl")
     for t in table[:25]:

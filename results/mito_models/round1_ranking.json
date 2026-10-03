@@ -8,7 +8,17 @@
   "stability": 0.0078,
   "alpha_root_expected_share": 0.256,
   "positive_control_ge_0.9": 3,
-  "positive_control_n": 3
+  "positive_control_n": 3,
+  "vs_second": {
+   "second": "q0.3_stationary_b90_m5",
+   "mean_logloss_diff": 0.0026,
+   "ci95": [
+    -0.0056,
+    0.0126
+   ],
+   "units": 10,
+   "note": "negative = top model better"
+  }
  },
  {
   "model": "q0.3_stationary_b90_m5",
