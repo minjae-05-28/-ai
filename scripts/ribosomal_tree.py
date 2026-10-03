@@ -3,6 +3,7 @@
     python scripts/ribosomal_tree.py --list-missing
     python scripts/ribosomal_tree.py --entry "prokaryotes/Thermus thermophilus" --pfam pfam/Pfam-A.hmm
     python scripts/ribosomal_tree.py --build            # needs mafft and FastTree on PATH
+    python scripts/ribosomal_tree.py --build --only amoeba   # one set, leaving the others alone
 
 Markers: for every species, the best hit of each ribosomal-protein Pfam family
 (data/markers/<set>/<slug>.json). Three trees, one per analysis set:
@@ -93,11 +94,13 @@ def collect(entry, pfam):
     print(f"{entry}: {len(best)} ribosomal markers")
 
 
-def build(n_boot=0):
+def build(n_boot=0, only=None):
     import tempfile
 
     TREES.mkdir(parents=True, exist_ok=True)
     for cat_dir in sorted(OUT.iterdir()):
+        if only and cat_dir.name not in only:
+            continue  # so a new set does not rebuild (and overwrite) the existing trees
         data = {json.loads(f.read_text())["species"]: json.loads(f.read_text())["markers"] for f in cat_dir.glob("*.json")}
         if len(data) < 4:
             continue
@@ -159,11 +162,12 @@ def main():
     ap.add_argument("--list-missing", action="store_true")
     ap.add_argument("--build", action="store_true")
     ap.add_argument("--bootstrap", type=int, default=0, help="bootstrap replicate trees per set")
+    ap.add_argument("--only", help="comma-separated marker sets to build (default: all)")
     args = ap.parse_args()
     if args.list_missing:
         print(json.dumps([e for e in entries() if not path(e).exists()]))
     elif args.build:
-        build(args.bootstrap)
+        build(args.bootstrap, args.only.split(",") if args.only else None)
     else:
         collect(args.entry, args.pfam)
 

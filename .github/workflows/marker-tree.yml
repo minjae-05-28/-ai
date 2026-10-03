@@ -1,0 +1,103 @@
+name: Markers and tree for a UniProt-collected clade
+
+# Ribosomal markers from UniProt proteomes (scripts/uniprot_markers.py), then one concatenated
+# FastTree phylogeny for that set only, so the existing trees in results/phylo_tree are untouched.
+
+on:
+  workflow_dispatch:
+    inputs:
+      group:
+        description: "comma-separated uniprot_proteomes.GROUPS keys, e.g. amoebozoa,discoba"
+        required: true
+      set:
+        description: "marker set name, e.g. amoeba"
+        required: true
+      n_shards:
+        default: "6"
+      bootstrap:
+        description: "bootstrap replicate trees"
+        default: "20"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: marker-tree-${{ inputs.set }}
+  cancel-in-progress: false
+
+jobs:
+  plan:
+    runs-on: ubuntu-latest
+    outputs:
+      shards: ${{ steps.s.outputs.shards }}
+    steps:
+      - id: s
+        run: echo "shards=$(python3 -c "import json;print(json.dumps(list(range(int('${{ inputs.n_shards }}')))))")" >> "$GITHUB_OUTPUT"
+
+  markers:
+    needs: plan
+    runs-on: ubuntu-latest
+    timeout-minutes: 300
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: ${{ fromJSON(needs.plan.outputs.shards) }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install numpy
+      - name: Markers shard ${{ matrix.shard }}
+        env:
+          PYTHONPATH: src
+        run: |
+          python scripts/uniprot_markers.py --group "${{ inputs.group }}" --set "${{ inputs.set }}" \
+            --shard ${{ matrix.shard }} --n-shards ${{ strategy.job-total }}
+      - uses: actions/upload-artifact@v4
+        with:
+          name: markers-${{ inputs.set }}-${{ matrix.shard }}
+          path: data/markers/${{ inputs.set }}/
+
+  tree:
+    needs: markers
+    if: always()
+    runs-on: ubuntu-latest
+    timeout-minutes: 300
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install numpy && sudo apt-get update -q && sudo apt-get install -y -q mafft fasttree
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: markers-${{ inputs.set }}-*
+          path: data/markers/${{ inputs.set }}
+          merge-multiple: true
+      - name: Build the tree for this set only
+        env:
+          PYTHONPATH: src
+        run: python scripts/ribosomal_tree.py --build --only "${{ inputs.set }}" --bootstrap ${{ inputs.bootstrap }}
+      - uses: actions/upload-artifact@v4
+        with:
+          name: tree-${{ inputs.set }}
+          path: |
+            results/phylo_tree/${{ inputs.set }}.nwk
+            results/phylo_tree/${{ inputs.set }}.boot.nwk
+            results/phylo_tree/${{ inputs.set }}.json
+      - name: Commit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -f data/markers/${{ inputs.set }} results/phylo_tree
+          if git diff --cached --quiet; then echo "Nothing new."; else
+            git commit -m "Markers and tree for ${{ inputs.set }}"
+            ok=0
+            for i in 1 2 3 4 5 6; do
+              git pull --rebase origin main && git push origin HEAD:main && { ok=1; break; }
+              git rebase --abort 2>/dev/null || true
+              echo "push attempt $i failed; retrying"; sleep $((i*10))
+            done
+            [ "$ok" = 1 ] || { echo "::error::could not push"; exit 1; }
+          fi
