@@ -1,0 +1,173 @@
+{
+ "estimator": "유전자군별 적합된 획득/손실 비 (상한 없는 격자)",
+ "gates": [
+  [
+   0.35,
+   "크기(유전자군 수) 부풀기 시작"
+  ],
+  [
+   0.5,
+   "확률 보정이 깨짐"
+  ],
+  [
+   0.8,
+   "순위도 무너짐"
+  ]
+ ],
+ "sets": {
+  "alphaproteobacteria": {
+   "label": "알파프로테오박테리아 (GTDB 종 대표 2,526종, 유전자군 1,500개 표본)",
+   "families": 1500,
+   "observed": {
+    "median_q": 0.1,
+    "mean_log10_q": -0.908597310421692,
+    "share_q_ge_1": 0.222,
+    "share_q_ge_0.3": 0.3566666666666667
+   },
+   "calibration": [
+    {
+     "hgt": 0.0,
+     "median_q": 0.1,
+     "mean_log10_q": -0.9678,
+     "share_q_ge_1": 0.2,
+     "share_q_ge_0.3": 0.272
+    },
+    {
+     "hgt": 0.02,
+     "median_q": 0.3,
+     "mean_log10_q": -0.3339,
+     "share_q_ge_1": 0.294,
+     "share_q_ge_0.3": 0.58
+    },
+    {
+     "hgt": 0.05,
+     "median_q": 0.5,
+     "mean_log10_q": -0.0732,
+     "share_q_ge_1": 0.411,
+     "share_q_ge_0.3": 0.855
+    },
+    {
+     "hgt": 0.1,
+     "median_q": 1.0,
+     "mean_log10_q": 0.1909,
+     "share_q_ge_1": 0.741,
+     "share_q_ge_0.3": 0.999
+    },
+    {
+     "hgt": 0.2,
+     "median_q": 3.0,
+     "mean_log10_q": 0.512,
+     "share_q_ge_1": 0.995,
+     "share_q_ge_0.3": 1.0
+    },
+    {
+     "hgt": 0.35,
+     "median_q": 3.0,
+     "mean_log10_q": 0.6509,
+     "share_q_ge_1": 1.0,
+     "share_q_ge_0.3": 1.0
+    },
+    {
+     "hgt": 0.5,
+     "median_q": 10.0,
+     "mean_log10_q": 0.8541,
+     "share_q_ge_1": 1.0,
+     "share_q_ge_0.3": 1.0
+    },
+    {
+     "hgt": 0.8,
+     "median_q": 10.0,
+     "mean_log10_q": 0.8965,
+     "share_q_ge_1": 1.0,
+     "share_q_ge_0.3": 1.0
+    }
+   ],
+   "estimated_hgt": 0.005,
+   "estimated_hgt_by_median_q": 0.0,
+   "how": "보간",
+   "gates_passed": [
+    "0.35 (크기(유전자군 수) 부풀기 시작)",
+    "0.5 (확률 보정이 깨짐)",
+    "0.8 (순위도 무너짐)"
+   ],
+   "gates_broken": []
+  },
+  "amoebozoa": {
+   "label": "아메보조아 + 외군 (40종)",
+   "families": 5771,
+   "observed": {
+    "median_q": 1.0,
+    "mean_log10_q": 0.12165015176125972,
+    "share_q_ge_1": 0.616704210708716,
+    "share_q_ge_0.3": 0.8972448449142263
+   },
+   "calibration": [
+    {
+     "hgt": 0.0,
+     "median_q": 0.1,
+     "mean_log10_q": -1.0235,
+     "share_q_ge_1": 0.202,
+     "share_q_ge_0.3": 0.332
+    },
+    {
+     "hgt": 0.02,
+     "median_q": 0.3,
+     "mean_log10_q": -0.4336,
+     "share_q_ge_1": 0.307,
+     "share_q_ge_0.3": 0.594
+    },
+    {
+     "hgt": 0.05,
+     "median_q": 1.0,
+     "mean_log10_q": -0.0829,
+     "share_q_ge_1": 0.518,
+     "share_q_ge_0.3": 0.884
+    },
+    {
+     "hgt": 0.1,
+     "median_q": 1.0,
+     "mean_log10_q": 0.2028,
+     "share_q_ge_1": 0.822,
+     "share_q_ge_0.3": 0.992
+    },
+    {
+     "hgt": 0.2,
+     "median_q": 3.0,
+     "mean_log10_q": 0.4317,
+     "share_q_ge_1": 0.988,
+     "share_q_ge_0.3": 1.0
+    },
+    {
+     "hgt": 0.35,
+     "median_q": 3.0,
+     "mean_log10_q": 0.5715,
+     "share_q_ge_1": 1.0,
+     "share_q_ge_0.3": 1.0
+    },
+    {
+     "hgt": 0.5,
+     "median_q": 3.0,
+     "mean_log10_q": 0.6358,
+     "share_q_ge_1": 1.0,
+     "share_q_ge_0.3": 1.0
+    },
+    {
+     "hgt": 0.8,
+     "median_q": 3.0,
+     "mean_log10_q": 0.7015,
+     "share_q_ge_1": 1.0,
+     "share_q_ge_0.3": 1.0
+    }
+   ],
+   "estimated_hgt": 0.056,
+   "estimated_hgt_by_median_q": 0.1,
+   "how": "보간",
+   "gates_passed": [
+    "0.35 (크기(유전자군 수) 부풀기 시작)",
+    "0.5 (확률 보정이 깨짐)",
+    "0.8 (순위도 무너짐)"
+   ],
+   "gates_broken": []
+  }
+ }
+}

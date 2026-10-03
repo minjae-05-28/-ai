@@ -155,6 +155,22 @@ def branch_probs(t, g, lo):
     return 1 - p01, p01, p10, 1 - p10
 
 
+def tip_message(d, X, v):
+    """Likelihood of what was OBSERVED at a tip, given the tip's true state (absent, present).
+
+    An incomplete proteome misses a share of the genes it really has, so an observed absence is
+    not proof of absence. With the tip's completeness c, P(observe present | present) = c and
+    P(observe absent | present) = 1 - c, while an observed presence is never a false positive.
+    c = 1 gives back the plain indicator, so runs without a completeness vector are unchanged.
+    """
+    x = X[v].astype(np.float32)
+    comp = d.get("completeness")
+    if comp is None:
+        return 1 - x, x
+    c = np.float32(comp[v])
+    return 1 - x, x * c + (1 - x) * (1 - c)
+
+
 def loglik(d, X, visible, g, lo, mult, root):
     """Log-likelihood per (grid, family). g, lo: (G, 1) or (F,); root: P(present) at the root."""
     msg, logs = {}, 0.0
@@ -163,8 +179,8 @@ def loglik(d, X, visible, g, lo, mult, root):
     for v in d["order"]:
         if not children[v]:
             if visible[v]:
-                x = X[v].astype(np.float32)
-                msg[v] = (np.broadcast_to(1 - x, shape), np.broadcast_to(x, shape))
+                m0, m1 = tip_message(d, X, v)
+                msg[v] = (np.broadcast_to(m0, shape), np.broadcast_to(m1, shape))
             else:
                 msg[v] = (np.ones(shape, np.float32), np.ones(shape, np.float32))
             continue
@@ -190,8 +206,7 @@ def posterior(d, X, visible, g, lo, mult, root):
     for v in order:
         if not children[v]:
             if visible[v]:
-                x = X[v].astype(np.float32)
-                down[v, 0], down[v, 1] = 1 - x, x
+                down[v, 0], down[v, 1] = tip_message(d, X, v)
             continue
         L0 = np.ones(F, np.float32)
         L1 = np.ones(F, np.float32)

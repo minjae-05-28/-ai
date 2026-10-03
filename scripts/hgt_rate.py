@@ -1,0 +1,126 @@
+"""How much horizontal transfer is in OUR data? (not where the method breaks — that is hgt_limit.py)
+
+    PYTHONPATH=src python scripts/hgt_rate.py [--levels 0,0.02,0.05,0.1,0.2,0.35,0.5,0.8]
+
+results/hgt_limit/ measured where ancestral reconstruction fails: calibration breaks above a
+transfer level of 0.5, ranking above 0.8, size starts inflating around 0.35. What was never
+measured is where our own clades sit on that scale, so the thresholds could not be applied.
+
+The estimator: fit each family its own gain and loss rate on an uncapped grid and look at the
+distribution of the fitted gain/loss ratio. Transfer makes a family appear in tips that are not
+each other's relatives, which the model can only explain by raising that family's gain rate.
+
+The statistic has no meaning on its own, so it is CALIBRATED: the same estimator is run on data
+simulated on the same tree at known transfer levels, giving a curve from statistic to level, and
+the real data is read off that curve. Calibration is per tree, because branch lengths set how much
+transfer a given level produces.
+"""
+
+import argparse
+import json
+import sys
+from pathlib import Path
+
+import numpy as np
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from mito_model_search import GENERATORS, fit, load_cache, simulate, visible_mask  # noqa: E402
+
+OUT = Path("results/hgt_rate")
+SPEC = {"ratio": None, "root": "stationary", "min_busco": 0, "drop_mag": False, "mult": 14.0, "tip_mult": 1.0}
+# The thresholds hgt_limit.py measured, for reading the answer.
+GATES = [(0.35, "크기(유전자군 수) 부풀기 시작"), (0.5, "확률 보정이 깨짐"), (0.8, "순위도 무너짐")]
+
+
+def statistic(d, X, vis, spec=SPEC):
+    """Median fitted gain/loss ratio over families, plus the share the model has to call gain-heavy."""
+    g, lo, root, mult, _ = fit(d, X, vis, spec)
+    q = np.asarray(g, dtype=float) / np.maximum(np.asarray(lo, dtype=float), 1e-9)
+    return {"median_q": float(np.median(q)), "mean_log10_q": float(np.mean(np.log10(np.clip(q, 1e-3, 1e3)))),
+            "share_q_ge_1": float((q >= 1).mean()), "share_q_ge_0.3": float((q >= 0.3).mean())}
+
+
+def calibrate(d, levels, n_fam, reps, vis, label):
+    curve = []
+    for lv in levels:
+        gen = dict(GENERATORS["reduced_x5"])
+        gen["hgt"] = lv
+        vals = []
+        for rep in range(reps):
+            _, obs = simulate(d, gen, n_fam, seed=7000 + rep)
+            vals.append(statistic(d, obs, vis))
+        row = {"hgt": lv, **{k: round(float(np.mean([v[k] for v in vals])), 4) for k in vals[0]}}
+        curve.append(row)
+        print(f"  [{label}] hgt {lv:<5} -> median q {row['median_q']:.3f}  "
+              f"q>=0.3 {row['share_q_ge_0.3']:.3f}  q>=1 {row['share_q_ge_1']:.3f}", flush=True)
+    return curve
+
+
+def read_off(curve, value, key="share_q_ge_0.3"):
+    """Where on the calibration curve the observed statistic falls (monotone interpolation)."""
+    xs = [c["hgt"] for c in curve]
+    ys = [c[key] for c in curve]
+    if value <= min(ys):
+        return float(xs[int(np.argmin(ys))]), "아래로 벗어남"
+    if value >= max(ys):
+        return float(xs[int(np.argmax(ys))]), "위로 벗어남 (측정 범위 밖)"
+    order = np.argsort(ys)
+    return float(np.interp(value, np.array(ys)[order], np.array(xs)[order])), "보간"
+
+
+def amoeba_tree():
+    from run_clade_ancestor import build
+    genera = {"Acanthamoeba", "Balamuthia", "Cavenderia", "Dictyostelium", "Entamoeba", "Heterostelium",
+              "Pelomyxa", "Planoprotostelium", "Polysphondylium", "Physarum", "Vermamoeba",
+              "Mastigamoeba", "Tieghemostelium"}
+    d, fams, names, in_clade, _, _ = build("results/phylo_tree/amoeba.nwk", genera, 500)
+    d["busco"] = np.where(np.isfinite(d["busco"]), d["busco"], 90.0)
+    vis = np.zeros(len(d["parent"]), dtype=bool)
+    vis[d["tips"]] = True
+    return d, d["X"], vis, len(fams)
+
+
+def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--levels", default="0,0.02,0.05,0.1,0.2,0.35,0.5,0.8")
+    ap.add_argument("--families", type=int, default=600)
+    ap.add_argument("--reps", type=int, default=2)
+    ap.add_argument("--out", default=str(OUT))
+    args = ap.parse_args()
+    out = Path(args.out)
+    out.mkdir(parents=True, exist_ok=True)
+    levels = [float(x) for x in args.levels.split(",")]
+
+    sets = {}
+    d = load_cache()
+    sets["alphaproteobacteria"] = (d, d["X"], visible_mask(d, SPEC), d["X"].shape[1],
+                                   "알파프로테오박테리아 (GTDB 종 대표 2,526종, 유전자군 1,500개 표본)")
+    try:
+        ad, aX, avis, nf = amoeba_tree()
+        sets["amoebozoa"] = (ad, aX, avis, nf, "아메보조아 + 외군 (40종)")
+    except Exception as e:
+        print(f"amoeba tree unavailable: {e}")
+
+    result = {"estimator": "유전자군별 적합된 획득/손실 비 (상한 없는 격자)", "gates": GATES, "sets": {}}
+    for name, (dd, X, vis, nf, label) in sets.items():
+        print(f"\n=== {label} ===", flush=True)
+        obsstat = statistic(dd, X, vis)
+        print(f"  실제 자료: median q {obsstat['median_q']:.3f}  q>=0.3 {obsstat['share_q_ge_0.3']:.3f}  "
+              f"q>=1 {obsstat['share_q_ge_1']:.3f}", flush=True)
+        curve = calibrate(dd, levels, args.families, args.reps, vis, name)
+        est, how = read_off(curve, obsstat["share_q_ge_0.3"])
+        est2, _ = read_off(curve, obsstat["median_q"], "median_q")
+        verdict = [g for g, _ in GATES if est >= g]
+        result["sets"][name] = {"label": label, "families": int(nf), "observed": obsstat,
+                                "calibration": curve, "estimated_hgt": round(est, 3),
+                                "estimated_hgt_by_median_q": round(est2, 3), "how": how,
+                                "gates_passed": [f"{g} ({w})" for g, w in GATES if est < g],
+                                "gates_broken": [f"{g} ({w})" for g, w in GATES if est >= g]}
+        print(f"  => 추정 전달 수준 {est:.3f} ({how}); 중앙 q로 읽으면 {est2:.3f}")
+        print(f"     깨진 기준: {verdict or '없음'}")
+    (out / "summary.json").write_text(json.dumps(result, ensure_ascii=False, indent=1))
+    print(f"\nDone -> {out}/summary.json")
+
+
+if __name__ == "__main__":
+    main()

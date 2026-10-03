@@ -88,6 +88,17 @@ def build(tree_path, clade_genera, min_families):
         m = re.search(r"C:([\d.]+)%", prof[names[v]].get("busco") or "")
         d["busco"][v] = float(m.group(1)) if m else np.nan
     d["mag"] = np.zeros(len(parent), dtype=bool)
+    # Completeness per tip, from the families almost every in-clade tip carries (genome_quality.py).
+    # An incomplete proteome misses genes it really has; with this vector the likelihood says so
+    # directly, instead of accelerating loss on that tip's branch.
+    from genome_quality import completeness_for
+    inprof = {v: set(prof[names[v]]["pfam"]) for v in d["tips"] if in_clade[v]}
+    comp_in, markers = completeness_for({v: f for v, f in inprof.items()})
+    comp = np.ones(len(parent))
+    for v, c in comp_in.items():
+        comp[v] = max(c, 0.05)
+    d["completeness_vec"] = comp
+    d["n_markers"] = len(markers)
     # Loss acceleration applies inside the clade's reduced lineages: tips whose family count is
     # far below the clade median (here the Entamoeba parasites) and the branches under them.
     med = np.median([len(prof[names[v]]["pfam"]) for v in d["tips"] if in_clade[v]])
@@ -109,10 +120,12 @@ def mrca(nodes, parent, depth):
     return max(common, key=lambda x: depth[x])
 
 
-def reconstruct(d, specs):
+def reconstruct(d, specs, use_completeness=False):
     """Ensemble mean posterior at every node, plus the spread across models."""
     vis = np.zeros(len(d["parent"]), dtype=bool)
     vis[d["tips"]] = True
+    d = dict(d)
+    d["completeness"] = d.get("completeness_vec") if use_completeness else None
     posts = []
     for spec in specs:
         g, lo, root, mult, _ = fit(d, d["X"], vis, spec)
@@ -130,6 +143,9 @@ def main():
     ap.add_argument("--mask", type=int, default=3)
     ap.add_argument("--bootstrap-trees", default="")
     ap.add_argument("--out", default="results/clade_ancestor")
+    ap.add_argument("--completeness", action="store_true",
+                    help="model incomplete proteomes as dropout in the likelihood instead of "
+                         "accelerating loss on their branch (validated in results/quality_correction)")
     args = ap.parse_args()
     genera = set(args.clade_genera.split(","))
     out = Path(args.out) / args.name
@@ -141,7 +157,8 @@ def main():
           f"{len(dropped)} dropped, {len(fams)} families in >= 3 tips")
     print(f"  reduced lineages (loss accelerated): {reduced}")
     node = mrca(clade_tips, d["parent"], d["depth"])
-    mean, spread, vis = reconstruct(d, ENSEMBLE)
+    specs = [{**sp, 'tip_mult': 1.0} for sp in ENSEMBLE] if args.completeness else ENSEMBLE
+    mean, spread, vis = reconstruct(d, specs, args.completeness)
     p, sd = mean[node], spread[node]
 
     # Leave-tips-out on the clade: hide `mask` clade tips, predict them, against family frequency.
@@ -151,8 +168,10 @@ def main():
         hid = list(rng.choice(clade_tips, min(args.mask, len(clade_tips) // 3), replace=False))
         v2 = vis.copy()
         v2[hid] = False
-        g, lo, root, mult, _ = fit(d, d["X"], v2, ENSEMBLE[0])
-        ph = posterior(d, d["X"], v2, g, lo, mult, root)
+        dq = dict(d)
+        dq["completeness"] = d.get("completeness_vec") if args.completeness else None
+        g, lo, root, mult, _ = fit(dq, d["X"], v2, specs[0])
+        ph = posterior(dq, d["X"], v2, g, lo, mult, root)
         freq = d["X"][[v for v in clade_tips if v not in set(hid)]].mean(0).astype(float)
         for v in hid:
             y = d["X"][v]
@@ -172,7 +191,7 @@ def main():
                 db, fb, nb, icb, _, _ = build(tmp, genera, args.min_families)
                 ct = [v for v in db["tips"] if icb[v]]
                 nb_node = mrca(ct, db["parent"], db["depth"])
-                mb, _, _ = reconstruct(db, ENSEMBLE[:2])
+                mb, _, _ = reconstruct(db, specs[:2], args.completeness)
                 idx = {f: j for j, f in enumerate(fb)}
                 boot.append(np.array([mb[nb_node][idx[f]] if f in idx else np.nan for f in fams]))
             except Exception as e:
@@ -194,6 +213,10 @@ def main():
         "node_reconstructed": "most recent common ancestor of the sampled clade tips, which at this "
                               "sample size is not the clade's root (see results/sample_size/summary.json)",
         "leave_tips_out_auroc": val, "n_models": len(ENSEMBLE), "n_bootstrap_trees": len(boot),
+        "completeness_model": bool(args.completeness),
+        "tip_completeness": ({names[v]: round(float(d["completeness_vec"][v]), 3)
+                              for v in clade_tips} if args.completeness else None),
+        "n_completeness_markers": d.get("n_markers") if args.completeness else None,
         "n_confident_families": len(confident), "n_uncertain_families": len(uncertain),
         "size_not_reported": "the simulation showed a 16-17% underestimate of ancestor size at this "
                              "sample size, so no family count is quoted",
