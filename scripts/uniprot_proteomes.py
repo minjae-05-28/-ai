@@ -51,9 +51,23 @@ def get(url, tries=6):
 def list_proteomes(kingdoms, limit):
     rows = []
     for k in kingdoms:
-        q = urllib.parse.quote(f"(proteome_type:1) AND (taxonomy_id:{TAXA[k]})")
-        text = get(f"{REST}/proteomes/stream?query={q}&format=tsv&fields=upid,organism,organism_id,protein_count")
-        lines = text.strip().split("\n")[1:]
+        lines = []
+        # UniProt's proteome query syntax has changed over releases; try the known forms and
+        # print the raw reply when none returns rows, so a failure is visible in the log.
+        for query in (f"(proteome_type:1) AND (taxonomy_id:{TAXA[k]})", f"(taxonomy_id:{TAXA[k]}) AND (reference:true)",
+                      f"taxonomy_id:{TAXA[k]} AND proteome_type:reference", f"(taxonomy_id:{TAXA[k]})"):
+            q = urllib.parse.quote(query)
+            text = get(f"{REST}/proteomes/stream?query={q}&format=tsv&fields=upid,organism,organism_id,protein_count,"
+                       "proteome_type")
+            body = text.strip().split("\n")
+            print(f"  query {query!r}: {len(body) - 1} rows; header {body[0][:120]!r}", flush=True)
+            if len(body) > 1:
+                rows_all = [ln.split("\t") for ln in body[1:]]
+                ref = [r for r in rows_all if len(r) > 4 and "reference" in r[4].lower()]
+                lines = ["\t".join(r[:4]) for r in (ref if ref else rows_all)]
+                print(f"    {len(rows_all)} proteomes, {len(ref)} labelled reference; first {body[1][:150]!r}")
+                break
+            print(f"    raw reply: {text[:300]!r}")
         for ln in lines[: limit or None]:
             upid, org, taxid, n = (ln.split("\t") + ["", "", "", ""])[:4]
             rows.append({"upid": upid, "organism": org, "taxid": taxid, "protein_count": n, "kingdom": k})
