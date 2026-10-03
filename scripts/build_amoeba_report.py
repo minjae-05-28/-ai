@@ -11,6 +11,7 @@ carries, and the Korean glosses name what each family does. No ancestor size is 
 because the subsampling experiment showed a 16-17% underestimate at this sample size.
 """
 
+import argparse
 import json
 from collections import Counter
 from pathlib import Path
@@ -55,7 +56,20 @@ GROUPS = [
 SAMPLE = [("세포성 점균 (딕티오스텔리움류)", 8), ("엔타모에바 (장 기생)", 3), ("아칸타모에바 (토양)", 1)]
 
 
+def bacteria_reference():
+    """The bacterial run this report compares itself with, read from that run rather than quoted."""
+    m = json.loads(Path("results/mito_ancestor/loss_biased_busco90/summary.json").read_text())
+    return {"bacteria_reconstruction": m["leave_tips_out_auroc"]["reconstruction"],
+            "bacteria_frequency": m["leave_tips_out_auroc"]["alpha_frequency"],
+            "bacteria_tips": m["alphaproteobacteria"]}
+
+
 def main():
+    global R
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--dir", default=str(R))
+    args = ap.parse_args()
+    R = Path(args.dir)
     s = json.loads((R / "summary.json").read_text())
     z = np.load(R / "posterior.npz", allow_pickle=False)
     fams, p, msd, tsd, cf = (z["families"], z["posterior"], z["model_sd"], z["tree_sd"],
@@ -93,9 +107,13 @@ def main():
                  "gap": round(float(gap[i]), 2), "desc": desc(str(fams[i]))} for i in idx]
 
     out = {
+        "model": {"completeness": bool(s.get("completeness_model")),
+                  "reduced_multiplier": s.get("reduced_branch_multiplier", True),
+                  "tip_completeness": s.get("tip_completeness"),
+                  "hgt": json.loads(Path("results/hgt_rate/summary.json").read_text())["sets"]["amoebozoa"]["estimated_hgt"]},
         "validation": {"reconstruction": s["leave_tips_out_auroc"]["reconstruction"],
                        "clade_frequency": s["leave_tips_out_auroc"]["clade_frequency"],
-                       "bacteria_reconstruction": 0.985, "bacteria_frequency": 0.962},
+                       **bacteria_reference()},
         "counts": {"clade_tips": s["clade_tips"], "outgroup_tips": s["tips"] - s["clade_tips"],
                    "families": s["families_considered"], "confident": s["n_confident_families"],
                    "uncertain": s["n_uncertain_families"], "bootstrap_trees": s["n_bootstrap_trees"],

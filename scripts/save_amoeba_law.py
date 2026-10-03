@@ -23,6 +23,47 @@ PANEL = {
 }
 
 
+def caveats(s):
+    """Written from the run, so the card cannot describe a model the run did not use."""
+    v = s["leave_tips_out_auroc"]
+    comp, mult = s.get("completeness_model"), s.get("reduced_branch_multiplier", True)
+    hgt = json.loads(Path("results/hgt_rate/summary.json").read_text())["sets"]["amoebozoa"]
+    out = [
+        "Twelve amoebozoan species, eight of them social amoebae. The subsampling experiment "
+        "(results/sample_size/summary.json) showed that at this size the node reached is NOT the clade's root "
+        "(Jaccard about 0.91 to it) and the ancestor's size is underestimated by 16-17%, so no family count is "
+        "quoted and the node is named as the ancestor of the sampled species, not of Amoebozoa.",
+        "Mitochondrion-encoded families (COX2, COX3, cytochrome b, complex I 49 kDa) come out low only because "
+        "UniProt eukaryote proteomes hold nuclear proteins; the nuclear-encoded respiratory families are high, "
+        "so the ancestor respired aerobically.",
+        "Flagellar families are low (radial spoke, IFT) but only 1 of the 12 sampled species has them: nearly "
+        "every sampled lineage is non-flagellate, so this sample cannot resolve whether the true Amoebozoa root "
+        "was flagellate. The published view is that it was.",
+        f"Leave-tips-out AUROC {v['reconstruction']:.3f} against {v['clade_frequency']:.3f} for the clade's "
+        "present-day family frequency: the margin over the no-tree baseline is small, much smaller than in the "
+        "2,623-tip bacterial case."
+        + (" This test scores predicting a hidden tip's OBSERVED content, dropout included, which the "
+           "completeness model deliberately stops reproducing, so it is not the test that speaks to the "
+           "ancestor; the known-truth simulation (results/quality_correction/summary.json) is." if comp else ""),
+        f"Horizontal transfer is not modelled. It was measured for this clade at about {hgt['estimated_hgt']} "
+        f"(results/hgt_rate/summary.json), below the 0.35 at which ancestor size starts to inflate; the "
+        "estimator cannot separate transfer from an intrinsically high gain rate, so read it as an upper bound.",
+    ]
+    if comp:
+        out.append(
+            "Entamoeba proteomes are incomplete (BUSCO 37-53%, completeness score 0.43-0.51). That is modelled "
+            "as dropout in the likelihood, not as loss."
+            + (" The reduced-lineage loss multiplier is ALSO applied on those branches, so the two corrections "
+               "overlap; results/clade_ancestor/amoebozoa_v3_nomult holds the run without it."
+               if mult else " The reduced-lineage loss multiplier is switched off here, so incompleteness is "
+                            "corrected once."))
+    else:
+        out.append("Entamoeba proteomes are incomplete (BUSCO 37-53%), which is why loss is accelerated on their "
+                   "branches; that is a modelling assumption, not a measurement. amoeba_ancestor_v2 replaces it "
+                   "with a dropout term fitted from the data.")
+    return out
+
+
 def main():
     global R
     ap = argparse.ArgumentParser()
@@ -63,22 +104,7 @@ def main():
                     "n_confident_families": s["n_confident_families"],
                     "n_uncertain_families": s["n_uncertain_families"],
                     "marker_panel": panel},
-        caveats=[
-            "Twelve amoebozoan species, eight of them social amoebae. The subsampling experiment "
-            "(results/sample_size/summary.json) showed that at this size the node reached is NOT the clade's root "
-            "(Jaccard about 0.91 to it) and the ancestor's size is underestimated by 16-17%, so no family count is "
-            "quoted and the node is named as the ancestor of the sampled species, not of Amoebozoa.",
-            "Mitochondrion-encoded families (COX2, COX3, cytochrome b, complex I 49 kDa) come out low only because "
-            "UniProt eukaryote proteomes hold nuclear proteins; the nuclear-encoded respiratory families are high "
-            "(complex I 51 kDa 0.99, ATP synthase D 0.98), so the ancestor respired aerobically.",
-            "Flagellar families are low (radial spoke 0.30, IFT 0.30-0.38) but only 1 of the 12 sampled species has "
-            "them: nearly every sampled lineage is non-flagellate, so this sample cannot resolve whether the true "
-            "Amoebozoa root was flagellate. The published view is that it was.",
-            "Leave-tips-out AUROC 0.931 against 0.912 for the clade's present-day family frequency: the margin over "
-            "the no-tree baseline is small, much smaller than in the 2,623-tip bacterial case.",
-            "Entamoeba proteomes are incomplete (BUSCO 37-53%), which is why loss is accelerated on their branches.",
-            "Horizontal transfer is not modelled.",
-        ],
+        caveats=caveats(s),
         contexts={},
     )
     print("law -> laws/amoeba_ancestor_v1.json")

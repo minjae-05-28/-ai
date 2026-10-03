@@ -1,0 +1,262 @@
+{
+  "id": "amoeba_ancestor_v3",
+  "scope": "Gene-family (Pfam) content of the common ancestor of the sampled Amoebozoa (social amoebae, Entamoeba, Acanthamoeba, Planoprotostelium), reconstructed on a ribosomal-marker tree from UniProt proteomes. Family presence only; no sequences, no cell size or shape.",
+  "model": "Two-state gain/loss Markov chain per family, ensemble of the five leading models of the mitochondrial model search (their differences were inside the interval), with loss accelerated on the reduced Entamoeba branches; 20 bootstrap trees for phylogenetic spread. Incomplete proteomes are handled as dropout in the likelihood (completeness estimated from in-clade marker families) rather than as accelerated loss on their branch.",
+  "feature_names": [],
+  "data": {
+    "clade_tips": 12,
+    "clade_species": [
+      "Acanthamoeba castellanii (strain ATCC 30010 / Neff)",
+      "Planoprotostelium fungivorum",
+      "Heterostelium pallidum (strain ATCC 26659 / Pp 5 / PN500) (Cellular slime mold) (Polysphondylium pallidum)",
+      "Cavenderia fasciculata (Slime mold) (Dictyostelium fasciculatum)",
+      "Polysphondylium violaceum",
+      "Tieghemostelium lacteum (Slime mold) (Dictyostelium lacteum)",
+      "Dictyostelium purpureum (Slime mold)",
+      "Dictyostelium discoideum (Social amoeba)",
+      "Dictyostelium firmibasis",
+      "Entamoeba invadens IP1",
+      "Entamoeba dispar (strain ATCC PRA-260 / SAW760)",
+      "Entamoeba nuttalli"
+    ],
+    "outgroup_tips": 28,
+    "families_considered": 5771,
+    "tree": "results/phylo_tree/amoeba.nwk (40 species, 34 ribosomal families, 23,907 columns)"
+  },
+  "validation": {
+    "leave_tips_out_auroc": {
+      "reconstruction": 0.936,
+      "clade_frequency": 0.912
+    },
+    "tip_completeness": {
+      "Acanthamoeba castellanii (strain ATCC 30010 / Neff)": 1.0,
+      "Planoprotostelium fungivorum": 1.0,
+      "Heterostelium pallidum (strain ATCC 26659 / Pp 5 / PN500) (Cellular slime mold) (Polysphondylium pallidum)": 0.967,
+      "Cavenderia fasciculata (Slime mold) (Dictyostelium fasciculatum)": 0.953,
+      "Polysphondylium violaceum": 0.987,
+      "Tieghemostelium lacteum (Slime mold) (Dictyostelium lacteum)": 0.967,
+      "Dictyostelium purpureum (Slime mold)": 0.98,
+      "Dictyostelium discoideum (Social amoeba)": 1.0,
+      "Dictyostelium firmibasis": 0.987,
+      "Entamoeba invadens IP1": 0.413,
+      "Entamoeba dispar (strain ATCC PRA-260 / SAW760)": 0.46,
+      "Entamoeba nuttalli": 0.46
+    },
+    "measured_hgt_level": 0.056,
+    "n_confident_families": 2706,
+    "n_uncertain_families": 1082,
+    "marker_panel": {
+      "pseudopodia and phagocytosis": {
+        "Actin": {
+          "posterior": 1.0,
+          "model_sd": 0.0,
+          "tree_sd": 0.0,
+          "share_of_clade_tips_today": 1.0
+        },
+        "ARPC4": {
+          "posterior": 0.909,
+          "model_sd": 0.0,
+          "tree_sd": 0.0,
+          "share_of_clade_tips_today": 0.917
+        },
+        "FH2": {
+          "posterior": 1.0,
+          "model_sd": 0.0,
+          "tree_sd": 0.0,
+          "share_of_clade_tips_today": 1.0
+        },
+        "Cofilin_ADF": {
+          "posterior": 1.0,
+          "model_sd": 0.0,
+          "tree_sd": 0.0,
+          "share_of_clade_tips_today": 1.0
+        },
+        "Gelsolin": {
+          "posterior": 1.0,
+          "model_sd": 0.0,
+          "tree_sd": 0.0,
+          "share_of_clade_tips_today": 1.0
+        },
+        "Myosin_head": {
+          "posterior": 1.0,
+          "model_sd": 0.0,
+          "tree_sd": 0.0,
+          "share_of_clade_tips_today": 1.0
+        },
+        "PX": {
+          "posterior": 1.0,
+          "model_sd": 0.0,
+          "tree_sd": 0.0,
+          "share_of_clade_tips_today": 1.0
+        },
+        "SNARE": {
+          "posterior": 1.0,
+          "model_sd": 0.0,
+          "tree_sd": 0.0,
+          "share_of_clade_tips_today": 1.0
+        }
+      },
+      "aerobic respiration (nuclear-encoded)": {
+        "Complex1_51K": {
+          "posterior": 0.999,
+          "model_sd": 0.0,
+          "tree_sd": 0.001,
+          "share_of_clade_tips_today": 0.75
+        },
+        "ATP-synt_D": {
+          "posterior": 1.0,
+          "model_sd": 0.0,
+          "tree_sd": 0.0,
+          "share_of_clade_tips_today": 0.917
+        },
+        "NDUFA12": {
+          "posterior": 0.909,
+          "model_sd": 0.0,
+          "tree_sd": 0.0,
+          "share_of_clade_tips_today": 0.75
+        },
+        "ATP-synt_ab": {
+          "posterior": 1.0,
+          "model_sd": 0.0,
+          "tree_sd": 0.0,
+          "share_of_clade_tips_today": 1.0
+        }
+      },
+      "sex and genome upkeep": {
+        "TP6A_N": {
+          "posterior": 1.0,
+          "model_sd": 0.0,
+          "tree_sd": 0.004,
+          "share_of_clade_tips_today": 0.417
+        },
+        "Histone": {
+          "posterior": 1.0,
+          "model_sd": 0.0,
+          "tree_sd": 0.0,
+          "share_of_clade_tips_today": 1.0
+        },
+        "Telomerase_RBD": {
+          "posterior": 0.909,
+          "model_sd": 0.0,
+          "tree_sd": 0.0,
+          "share_of_clade_tips_today": 0.667
+        },
+        "Proteasome": {
+          "posterior": 1.0,
+          "model_sd": 0.0,
+          "tree_sd": 0.0,
+          "share_of_clade_tips_today": 1.0
+        },
+        "Cyclin_N": {
+          "posterior": 1.0,
+          "model_sd": 0.0,
+          "tree_sd": 0.0,
+          "share_of_clade_tips_today": 1.0
+        }
+      },
+      "organelles": {
+        "Pex2_Pex12": {
+          "posterior": 0.999,
+          "model_sd": 0.0,
+          "tree_sd": 0.002,
+          "share_of_clade_tips_today": 0.75
+        },
+        "Thioredoxin": {
+          "posterior": 1.0,
+          "model_sd": 0.0,
+          "tree_sd": 0.0,
+          "share_of_clade_tips_today": 1.0
+        }
+      },
+      "signalling": {
+        "PDEase_I": {
+          "posterior": 0.999,
+          "model_sd": 0.0,
+          "tree_sd": 0.002,
+          "share_of_clade_tips_today": 0.75
+        }
+      },
+      "flagellum (not supported by this sample)": {
+        "Radial_spoke_3": {
+          "posterior": 0.353,
+          "model_sd": 0.0,
+          "tree_sd": 0.039,
+          "share_of_clade_tips_today": 0.083
+        },
+        "IFT57": {
+          "posterior": 0.353,
+          "model_sd": 0.0,
+          "tree_sd": 0.039,
+          "share_of_clade_tips_today": 0.083
+        },
+        "IFT52_GIFT": {
+          "posterior": 0.468,
+          "model_sd": 0.0,
+          "tree_sd": 0.07,
+          "share_of_clade_tips_today": 0.083
+        },
+        "BBS2_Mid": {
+          "posterior": 0.468,
+          "model_sd": 0.0,
+          "tree_sd": 0.07,
+          "share_of_clade_tips_today": 0.083
+        }
+      },
+      "mitochondrion-encoded (absent from most UniProt proteomes: an artifact, not loss)": {
+        "Complex1_49kDa": {
+          "posterior": 0.176,
+          "model_sd": 0.0,
+          "tree_sd": 0.019,
+          "share_of_clade_tips_today": 0.25
+        },
+        "COX2": {
+          "posterior": 0.199,
+          "model_sd": 0.0,
+          "tree_sd": 0.021,
+          "share_of_clade_tips_today": 0.333
+        },
+        "COX3": {
+          "posterior": 0.078,
+          "model_sd": 0.0,
+          "tree_sd": 0.007,
+          "share_of_clade_tips_today": 0.167
+        },
+        "Cytochrome_B": {
+          "posterior": 0.12,
+          "model_sd": 0.0,
+          "tree_sd": 0.01,
+          "share_of_clade_tips_today": 0.25
+        },
+        "NADHdh": {
+          "posterior": 0.091,
+          "model_sd": 0.0,
+          "tree_sd": 0.0,
+          "share_of_clade_tips_today": 0.167
+        }
+      },
+      "multicellular fruiting body (not supported)": {
+        "Chitin_bind_1": {
+          "posterior": 0.334,
+          "model_sd": 0.0,
+          "tree_sd": 0.061,
+          "share_of_clade_tips_today": 0.333
+        },
+        "Lectin_C": {
+          "posterior": 0.329,
+          "model_sd": 0.0,
+          "tree_sd": 0.003,
+          "share_of_clade_tips_today": 0.25
+        }
+      }
+    }
+  },
+  "caveats": [
+    "Twelve amoebozoan species, eight of them social amoebae. The subsampling experiment (results/sample_size/summary.json) showed that at this size the node reached is NOT the clade's root (Jaccard about 0.91 to it) and the ancestor's size is underestimated by 16-17%, so no family count is quoted and the node is named as the ancestor of the sampled species, not of Amoebozoa.",
+    "Mitochondrion-encoded families (COX2, COX3, cytochrome b, complex I 49 kDa) come out low only because UniProt eukaryote proteomes hold nuclear proteins; the nuclear-encoded respiratory families are high, so the ancestor respired aerobically.",
+    "Flagellar families are low (radial spoke, IFT) but only 1 of the 12 sampled species has them: nearly every sampled lineage is non-flagellate, so this sample cannot resolve whether the true Amoebozoa root was flagellate. The published view is that it was.",
+    "Leave-tips-out AUROC 0.936 against 0.912 for the clade's present-day family frequency: the margin over the no-tree baseline is small, much smaller than in the 2,623-tip bacterial case. This test scores predicting a hidden tip's OBSERVED content, dropout included, which the completeness model deliberately stops reproducing, so it is not the test that speaks to the ancestor; the known-truth simulation (results/quality_correction/summary.json) is.",
+    "Horizontal transfer is not modelled. It was measured for this clade at about 0.056 (results/hgt_rate/summary.json), below the 0.35 at which ancestor size starts to inflate; the estimator cannot separate transfer from an intrinsically high gain rate, so read it as an upper bound.",
+    "Entamoeba proteomes are incomplete (BUSCO 37-53%, completeness score 0.43-0.51). That is modelled as dropout in the likelihood, not as loss. The reduced-lineage loss multiplier is switched off here, so incompleteness is corrected once."
+  ],
+  "contexts": {}
+}

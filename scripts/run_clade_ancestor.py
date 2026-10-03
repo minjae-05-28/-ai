@@ -92,13 +92,23 @@ def build(tree_path, clade_genera, min_families):
     # An incomplete proteome misses genes it really has; with this vector the likelihood says so
     # directly, instead of accelerating loss on that tip's branch.
     from genome_quality import completeness_for
-    inprof = {v: set(prof[names[v]]["pfam"]) for v in d["tips"] if in_clade[v]}
-    comp_in, markers = completeness_for({v: f for v, f in inprof.items()})
     comp = np.ones(len(parent))
-    for v, c in comp_in.items():
-        comp[v] = max(c, 0.05)
+    markers, unscored = [], []
+    # Scored separately inside and outside the clade: a marker set is only meaningful among
+    # relatives, because across distant lineages "missing" and "never had it" look the same.
+    for group in (True, False):
+        gp = {v: set(prof[names[v]]["pfam"]) for v in d["tips"] if in_clade[v] is group}
+        if len(gp) < 8:
+            unscored.append("clade" if group else "outgroup")
+            continue
+        scores, mk = completeness_for(gp)
+        if group:
+            markers = mk
+        for v, c in scores.items():
+            comp[v] = max(c, 0.05)
     d["completeness_vec"] = comp
     d["n_markers"] = len(markers)
+    d["unscored_groups"] = unscored
     # Loss acceleration applies inside the clade's reduced lineages: tips whose family count is
     # far below the clade median (here the Entamoeba parasites) and the branches under them.
     med = np.median([len(prof[names[v]]["pfam"]) for v in d["tips"] if in_clade[v]])
@@ -143,6 +153,9 @@ def main():
     ap.add_argument("--mask", type=int, default=3)
     ap.add_argument("--bootstrap-trees", default="")
     ap.add_argument("--out", default="results/clade_ancestor")
+    ap.add_argument("--no-reduced-mult", action="store_true",
+                    help="drop the loss acceleration on reduced lineages; with --completeness it is "
+                         "partly a correction for the same thing (those genomes are also incomplete)")
     ap.add_argument("--completeness", action="store_true",
                     help="model incomplete proteomes as dropout in the likelihood instead of "
                          "accelerating loss on their branch (validated in results/quality_correction)")
@@ -157,7 +170,9 @@ def main():
           f"{len(dropped)} dropped, {len(fams)} families in >= 3 tips")
     print(f"  reduced lineages (loss accelerated): {reduced}")
     node = mrca(clade_tips, d["parent"], d["depth"])
-    specs = [{**sp, 'tip_mult': 1.0} for sp in ENSEMBLE] if args.completeness else ENSEMBLE
+    specs = [{**sp, 'tip_mult': 1.0} for sp in ENSEMBLE] if args.completeness else list(ENSEMBLE)
+    if args.no_reduced_mult:
+        specs = [{**sp, 'mult': 1.0} for sp in specs]
     mean, spread, vis = reconstruct(d, specs, args.completeness)
     p, sd = mean[node], spread[node]
 
@@ -214,9 +229,11 @@ def main():
                               "sample size is not the clade's root (see results/sample_size/summary.json)",
         "leave_tips_out_auroc": val, "n_models": len(ENSEMBLE), "n_bootstrap_trees": len(boot),
         "completeness_model": bool(args.completeness),
+        "reduced_branch_multiplier": not args.no_reduced_mult,
         "tip_completeness": ({names[v]: round(float(d["completeness_vec"][v]), 3)
                               for v in clade_tips} if args.completeness else None),
         "n_completeness_markers": d.get("n_markers") if args.completeness else None,
+        "groups_without_a_completeness_score": d.get("unscored_groups") if args.completeness else None,
         "n_confident_families": len(confident), "n_uncertain_families": len(uncertain),
         "size_not_reported": "the simulation showed a 16-17% underestimate of ancestor size at this "
                              "sample size, so no family count is quoted",
