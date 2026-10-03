@@ -1,0 +1,83 @@
+{
+ "spec": {
+  "ratio": null,
+  "root": "empirical",
+  "min_busco": 97,
+  "drop_mag": false,
+  "mult": 7.0,
+  "tip_mult": 1.0
+ },
+ "real": {
+  "loglik": -489368.125,
+  "visible_tips": 2182,
+  "alpha_root_expected_share": 0.25405919551849365,
+  "alpha_root_p_ge_0.9_share": 0.13266666666666665,
+  "positive_control": {
+   "cox3": 0.9233280420303345,
+   "tatC": 0.9986112713813782,
+   "rpl14": 0.9999931454658508
+  }
+ },
+ "hide": {
+  "o__Rhizobiales": {
+   "n_tips": 651,
+   "logloss": 0.23729912090993927,
+   "auroc": 0.9501593527164978
+  },
+  "o__Rhodobacterales": {
+   "n_tips": 540,
+   "logloss": 0.23251524852049893,
+   "auroc": 0.9497605094317519
+  },
+  "o__Sphingomonadales": {
+   "n_tips": 336,
+   "logloss": 0.23905417869172738,
+   "auroc": 0.9450498697889856
+  },
+  "o__Acetobacterales": {
+   "n_tips": 141,
+   "logloss": 0.21884018223933496,
+   "auroc": 0.9561905343914359
+  },
+  "o__Caulobacterales": {
+   "n_tips": 111,
+   "logloss": 0.2218372187006636,
+   "auroc": 0.9529669854139347
+  },
+  "o__Rickettsiales": {
+   "n_tips": 28,
+   "logloss": 0.17248624675352317,
+   "auroc": 0.9376902374670185
+  }
+ },
+ "hide_logloss": 0.22033869930261454,
+ "stability_mean_abs_change": 0.010960069873059789,
+ "sim": {
+  "neutral": {
+   "logloss": 0.11228906855712315,
+   "brier": 0.034228897086232286,
+   "auroc": 0.9946555555555555,
+   "size_bias": -0.05006937662760417
+  },
+  "reduced_x5": {
+   "logloss": 0.16240719770611273,
+   "brier": 0.04462260057142706,
+   "auroc": 0.9865791263055812,
+   "size_bias": -0.026732967093639575
+  },
+  "reduced_x20_hgt": {
+   "logloss": 0.18723567947655587,
+   "brier": 0.053644542177133304,
+   "auroc": 0.979650677383086,
+   "size_bias": 0.02231738791648519
+  },
+  "gain_heavy": {
+   "logloss": 0.21428801104936915,
+   "brier": 0.0686055588792055,
+   "auroc": 0.9727444444444444,
+   "size_bias": 0.020242411295572915
+  }
+ },
+ "sim_logloss": 0.1690549891972902,
+ "sim_size_bias": -0.00856063612729641
+}
