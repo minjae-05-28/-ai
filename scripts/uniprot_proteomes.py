@@ -3,6 +3,7 @@ kingdom, from UniProt's own precomputed Pfam cross-references (no HMMER run here
 Run by .github/workflows/uniprot-proteomes.yml (UniProt is not reachable from the sandbox).
 
     python scripts/uniprot_proteomes.py --list bacteria,archaea,fungi [--limit N]
+    python scripts/uniprot_proteomes.py --list patescibacteria,asgard,omnitrophota   # all proteomes, 1/species
         -> data/uniprot/proteomes.tsv and prints the shard matrix as JSON
     python scripts/uniprot_proteomes.py --shard 3 --n-shards 40
         -> data/uniprot/shards/shard_003.json.gz
@@ -31,7 +32,7 @@ from pathlib import Path
 OUT = Path("data/uniprot")
 TAXA = {"bacteria": 2, "archaea": 2157, "fungi": 4751}
 REST = "https://rest.uniprot.org"
-COLS = ("upid", "organism", "taxid", "protein_count", "busco", "kingdom")
+COLS = ("upid", "organism", "taxid", "protein_count", "busco", "kingdom", "assembly")
 
 
 def get(url, tries=6):
@@ -47,6 +48,46 @@ def get(url, tries=6):
             print(f"  retry {i + 1}/{tries} {url[:90]}: {e}", flush=True)
             time.sleep(10 * (i + 1))
     raise RuntimeError(f"failed: {url}")
+
+
+# Lineages known mostly from metagenome-assembled genomes: few or no *reference* proteomes, so all
+# proteomes are listed and one per species is kept (highest BUSCO completeness).
+GROUPS = {"patescibacteria": (1783273, "bacteria"), "asgard": (1935183, "archaea"),
+          "omnitrophota": (1817898, "bacteria")}
+
+
+def list_group_proteomes(groups, limit):
+    import re as _re
+
+    rows = []
+    for gname in groups:
+        taxid, kingdom = GROUPS[gname]
+        q = urllib.parse.quote(f"taxonomy_id:{taxid}")
+        base = f"{REST}/proteomes/stream?query={q}&format=tsv&fields=upid,organism,organism_id,protein_count,busco"
+        try:  # the assembly accession links a proteome to its GTDB tip exactly; older field sets lack it
+            text = get(base + ",genome_assembly", tries=2)
+        except RuntimeError:
+            text = get(base)
+        lines = [ln for ln in text.strip().split("\n")[1:] if ln]
+        if not lines:
+            print(f"::warning::{gname} (taxid {taxid}): UniProt listed no proteomes; reply starts {text[:200]!r}")
+            continue
+        best = {}
+        for ln in lines:
+            upid, org, tid, n, busco, asm = (ln.split("\t") + [""] * 6)[:6]
+            words = org.replace("Candidatus ", "").split()
+            # Unnamed MAGs ("X bacterium <strain>") are distinct species: keep the full name as the key.
+            unnamed = len(words) > 1 and words[1].lower() in ("bacterium", "archaeon", "sp.", "sp")
+            sp = org.lower() if unnamed else " ".join(words[:2]).lower()
+            m = _re.search(r"C:([\d.]+)%", busco)
+            c = float(m.group(1)) if m else 0.0
+            if sp not in best or c > best[sp][0]:
+                best[sp] = (c, {"upid": upid, "organism": org, "taxid": tid, "protein_count": n, "busco": busco,
+                                "kingdom": kingdom, "assembly": asm.split(";")[0].strip() if asm else ""})
+        kept = [r for _, r in best.values()][: limit or None]
+        rows += kept
+        print(f"{gname}: {len(lines)} proteomes, {len(best)} species, keeping {len(kept)}", flush=True)
+    return rows
 
 
 def list_proteomes(kingdoms, limit):
@@ -96,11 +137,13 @@ def main():
     OUT.mkdir(parents=True, exist_ok=True)
     table = OUT / "proteomes.tsv"
     if args.list:
-        rows = list_proteomes(args.list.split(","), args.limit)
+        names = args.list.split(",")
+        rows = list_proteomes([n for n in names if n in TAXA], args.limit)
+        rows += list_group_proteomes([n for n in names if n in GROUPS], args.limit)
         with table.open("w") as f:
-            f.write("upid\torganism\ttaxid\tprotein_count\tbusco\tkingdom\n")
+            f.write("\t".join(COLS) + "\n")
             for r in rows:
-                f.write("\t".join(r[k] for k in COLS) + "\n")
+                f.write("\t".join(r.get(k, "") for k in COLS) + "\n")
         done = set()
         for p in (OUT / "shards").glob("*.json.gz"):
             done |= set(json.loads(gzip.open(p, "rt").read()))
@@ -112,7 +155,7 @@ def main():
 
     meta = json.loads(Path("data/eukaryotes/pfam_meta.json").read_text())
     name_of = {v["accession"].split(".")[0]: k for k, v in meta.items()}
-    rows = {r["upid"]: r for r in (dict(zip(COLS, ln.split("\t")))
+    rows = {r["upid"]: r for r in (dict(zip(COLS, ln.split("\t") + [""] * len(COLS)))
                                    for ln in table.read_text().strip().split("\n")[1:])}
     todo = json.loads((OUT / "todo.json").read_text())
     mine = todo[args.shard :: args.n_shards]
@@ -125,7 +168,8 @@ def main():
             print(f"  skip {upid}: {e}", flush=True)
             continue
         r = rows[upid]
-        out[upid] = {"organism": r["organism"], "taxid": r["taxid"], "kingdom": r["kingdom"], "busco": r["busco"], **p}
+        out[upid] = {"organism": r["organism"], "taxid": r["taxid"], "kingdom": r["kingdom"], "busco": r["busco"],
+                      "assembly": r.get("assembly", ""), **p}
         if i % 25 == 0:
             print(f"  {i + 1}/{len(mine)} {r['organism']}: {p['n_proteins']} proteins, {len(p['pfam'])} families "
                   f"({time.time() - t0:.0f}s)", flush=True)
