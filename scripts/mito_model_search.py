@@ -41,7 +41,7 @@ REDUCED_ORDERS = ("o__Rickettsiales", "o__Holosporales", "o__Pelagibacterales", 
 HIDE_ORDERS = ("o__Rhizobiales", "o__Rhodobacterales", "o__Sphingomonadales", "o__Acetobacterales",
                "o__Caulobacterales", "o__Rickettsiales")
 L_GRID = np.array([0.03, 0.1, 0.3, 1.0, 3.0, 10.0], dtype=np.float32)
-Q_GRID = np.array([0.01, 0.03, 0.1, 0.3, 1.0, 3.0, 10.0], dtype=np.float32)  # gain / loss
+Q_GRID = np.array([0.01, 0.03, 0.1, 0.2, 0.3, 0.5, 1.0, 3.0, 10.0], dtype=np.float32)  # gain / loss
 
 
 # ---- data ----------------------------------------------------------------------------------------
@@ -229,6 +229,11 @@ def fit(d, X, visible, spec):
     lo = np.array([a for a, _ in grid], np.float32)[:, None]
     g = np.array([b for _, b in grid], np.float32)[:, None]
     mult = np.where(d["reduced_branch"], spec["mult"], 1.0).astype(np.float32)
+    # Incomplete genomes read as extra loss on their own terminal branch.
+    if spec.get("tip_mult", 1.0) != 1.0:
+        low = np.zeros(len(mult), dtype=bool)
+        low[d["tips"]] = ~(d["busco"][d["tips"]] >= 97) | d["mag"][d["tips"]]
+        mult = np.where(low, mult * spec["tip_mult"], mult).astype(np.float32)
     vis_tips = [v for v in d["tips"] if visible[v]]
     emp = X[vis_tips].mean(0).astype(np.float32)
     if spec["root"] == "stationary":
@@ -362,7 +367,8 @@ def round1_models():
 
 def model_id(spec):
     r = "free" if spec["ratio"] is None else f"q{spec['ratio']}"
-    return f"{r}_{spec['root']}_b{spec['min_busco']}{'_nomag' if spec['drop_mag'] else ''}_m{spec['mult']:g}"
+    tip = f"_t{spec['tip_mult']:g}" if spec.get("tip_mult", 1.0) != 1.0 else ""
+    return f"{r}_{spec['root']}_b{spec['min_busco']}{'_nomag' if spec['drop_mag'] else ''}_m{spec['mult']:g}{tip}"
 
 
 def rank(round_no):
