@@ -30,7 +30,7 @@ import urllib.request
 from pathlib import Path
 
 OUT = Path("data/uniprot")
-TAXA = {"bacteria": 2, "archaea": 2157, "fungi": 4751}
+TAXA = {"bacteria": 2, "archaea": 2157, "fungi": 4751, "viruses": 10239}
 REST = "https://rest.uniprot.org"
 COLS = ("upid", "organism", "taxid", "protein_count", "busco", "kingdom", "assembly")
 
@@ -53,7 +53,11 @@ def get(url, tries=6):
 # Lineages known mostly from metagenome-assembled genomes: few or no *reference* proteomes, so all
 # proteomes are listed and one per species is kept (highest BUSCO completeness).
 GROUPS = {"patescibacteria": (1783273, "bacteria"), "asgard": (1935183, "archaea"),
-          "omnitrophota": (1817898, "bacteria")}
+          "omnitrophota": (1817898, "bacteria"),
+          # Large DNA viruses: hundreds to thousands of genes, so gene-family statistics are
+          # meaningful (small RNA viruses carry ~10 genes and are not analysable this way).
+          "giant_viruses": (2732007, "viruses"),      # Nucleocytoviricota
+          "caudoviricetes": (2731619, "viruses")}     # tailed phages
 
 
 def list_group_proteomes(groups, limit):
