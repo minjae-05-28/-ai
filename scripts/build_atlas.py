@@ -206,7 +206,21 @@ def main():
         "report_url": "",
     })
 
+    # Measured, not assumed: the transfer level of each clade (hgt_rate.py) and, where the
+    # reconstruction used it, the per-tip completeness (genome_quality.py).
+    hgt_rate = json.loads(Path("results/hgt_rate/summary.json").read_text())
+    qc = json.loads(Path("results/quality_correction/summary.json").read_text())["aggregate"]
+    for t in targets:
+        key = "amoebozoa" if t["id"] == "amoebozoa" else "alphaproteobacteria"
+        m = hgt_rate["sets"].get(key)
+        if m:
+            t["hgt"] = {"estimated": m["estimated_hgt"], "by_median_q": m["estimated_hgt_by_median_q"],
+                        "gates_broken": m["gates_broken"], "set": m["label"]}
     out = {"targets": targets, "blocked": BLOCKED,
+           "hgt_rate": {k: {"estimated": v["estimated_hgt"], "by_median_q": v["estimated_hgt_by_median_q"],
+                            "label": v["label"], "gates_broken": v["gates_broken"]}
+                        for k, v in hgt_rate["sets"].items()},
+           "quality_correction": qc,
            "limits": {k: json.loads(Path("results/sample_size/summary.json").read_text())["aggregate"][k]
                       for k in ("spread_12", "spread_50", "spread_300", "spread_2323")},
            "hgt": json.loads(Path("results/hgt_limit/summary.json").read_text()).get("summary",

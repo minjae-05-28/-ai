@@ -1,5 +1,6 @@
 """Law card for the amoebozoan ancestral reconstruction (scripts/run_clade_ancestor.py)."""
 
+import argparse
 import json
 from pathlib import Path
 
@@ -23,6 +24,12 @@ PANEL = {
 
 
 def main():
+    global R
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--dir", default="results/clade_ancestor/amoebozoa")
+    ap.add_argument("--id", default="amoeba_ancestor_v1")
+    args = ap.parse_args()
+    R = Path(args.dir)
     s = json.loads((R / "summary.json").read_text())
     z = np.load(R / "posterior.npz", allow_pickle=False)
     col = {f: i for i, f in enumerate(z["families"])}
@@ -34,19 +41,25 @@ def main():
                             "share_of_clade_tips_today": round(float(z["clade_frequency"][col[f]]), 3)}
                         for f in fams if f in col}
     save_law(
-        LAWS_DIR / "amoeba_ancestor_v1.json",
-        id="amoeba_ancestor_v1",
+        LAWS_DIR / f"{args.id}.json",
+        id=args.id,
         scope=("Gene-family (Pfam) content of the common ancestor of the sampled Amoebozoa (social amoebae, "
                "Entamoeba, Acanthamoeba, Planoprotostelium), reconstructed on a ribosomal-marker tree from "
                "UniProt proteomes. Family presence only; no sequences, no cell size or shape."),
         model=("Two-state gain/loss Markov chain per family, ensemble of the five leading models of the "
                "mitochondrial model search (their differences were inside the interval), with loss accelerated on "
-               "the reduced Entamoeba branches; 20 bootstrap trees for phylogenetic spread."),
+               "the reduced Entamoeba branches; 20 bootstrap trees for phylogenetic spread."
+               + (" Incomplete proteomes are handled as dropout in the likelihood (completeness estimated from "
+                  "in-clade marker families) rather than as accelerated loss on their branch."
+                  if s.get("completeness_model") else "")),
         feature_names=[],
         data={"clade_tips": s["clade_tips"], "clade_species": s["clade_species"], "outgroup_tips":
               s["tips"] - s["clade_tips"], "families_considered": s["families_considered"],
               "tree": "results/phylo_tree/amoeba.nwk (40 species, 34 ribosomal families, 23,907 columns)"},
         validation={"leave_tips_out_auroc": s["leave_tips_out_auroc"],
+                    "tip_completeness": s.get("tip_completeness"),
+                    "measured_hgt_level": json.loads(
+                        Path("results/hgt_rate/summary.json").read_text())["sets"]["amoebozoa"]["estimated_hgt"],
                     "n_confident_families": s["n_confident_families"],
                     "n_uncertain_families": s["n_uncertain_families"],
                     "marker_panel": panel},
