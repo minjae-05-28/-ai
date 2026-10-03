@@ -31,6 +31,7 @@ from pathlib import Path
 OUT = Path("data/uniprot")
 TAXA = {"bacteria": 2, "archaea": 2157, "fungi": 4751}
 REST = "https://rest.uniprot.org"
+COLS = ("upid", "organism", "taxid", "protein_count", "busco", "kingdom")
 
 
 def get(url, tries=6):
@@ -49,28 +50,19 @@ def get(url, tries=6):
 
 
 def list_proteomes(kingdoms, limit):
+    """Reference proteomes per kingdom. `reference:true` is the working filter: the
+    `proteome_type:1` form returns an empty table without error (results/external/uniprot_probe.json)."""
     rows = []
     for k in kingdoms:
-        lines = []
-        # UniProt's proteome query syntax has changed over releases; try the known forms and
-        # print the raw reply when none returns rows, so a failure is visible in the log.
-        for query in (f"(proteome_type:1) AND (taxonomy_id:{TAXA[k]})", f"(taxonomy_id:{TAXA[k]}) AND (reference:true)",
-                      f"taxonomy_id:{TAXA[k]} AND proteome_type:reference", f"(taxonomy_id:{TAXA[k]})"):
-            q = urllib.parse.quote(query)
-            text = get(f"{REST}/proteomes/stream?query={q}&format=tsv&fields=upid,organism,organism_id,protein_count,"
-                       "proteome_type")
-            body = text.strip().split("\n")
-            print(f"  query {query!r}: {len(body) - 1} rows; header {body[0][:120]!r}", flush=True)
-            if len(body) > 1:
-                rows_all = [ln.split("\t") for ln in body[1:]]
-                ref = [r for r in rows_all if len(r) > 4 and "reference" in r[4].lower()]
-                lines = ["\t".join(r[:4]) for r in (ref if ref else rows_all)]
-                print(f"    {len(rows_all)} proteomes, {len(ref)} labelled reference; first {body[1][:150]!r}")
-                break
-            print(f"    raw reply: {text[:300]!r}")
+        q = urllib.parse.quote(f"reference:true AND taxonomy_id:{TAXA[k]}")
+        text = get(f"{REST}/proteomes/stream?query={q}&format=tsv&fields=upid,organism,organism_id,protein_count,busco")
+        lines = [ln for ln in text.strip().split("\n")[1:] if ln]
+        if not lines:
+            raise SystemExit(f"{k}: UniProt listed no reference proteomes; reply starts {text[:300]!r}")
         for ln in lines[: limit or None]:
-            upid, org, taxid, n = (ln.split("\t") + ["", "", "", ""])[:4]
-            rows.append({"upid": upid, "organism": org, "taxid": taxid, "protein_count": n, "kingdom": k})
+            upid, org, taxid, n, busco = (ln.split("\t") + [""] * 5)[:5]
+            rows.append({"upid": upid, "organism": org, "taxid": taxid, "protein_count": n, "busco": busco,
+                         "kingdom": k})
         print(f"{k}: {len(lines)} reference proteomes (keeping {min(len(lines), limit or len(lines))})", flush=True)
     return rows
 
@@ -106,9 +98,9 @@ def main():
     if args.list:
         rows = list_proteomes(args.list.split(","), args.limit)
         with table.open("w") as f:
-            f.write("upid\torganism\ttaxid\tprotein_count\tkingdom\n")
+            f.write("upid\torganism\ttaxid\tprotein_count\tbusco\tkingdom\n")
             for r in rows:
-                f.write("\t".join(r[k] for k in ("upid", "organism", "taxid", "protein_count", "kingdom")) + "\n")
+                f.write("\t".join(r[k] for k in COLS) + "\n")
         done = set()
         for p in (OUT / "shards").glob("*.json.gz"):
             done |= set(json.loads(gzip.open(p, "rt").read()))
@@ -120,7 +112,7 @@ def main():
 
     meta = json.loads(Path("data/eukaryotes/pfam_meta.json").read_text())
     name_of = {v["accession"].split(".")[0]: k for k, v in meta.items()}
-    rows = {r["upid"]: r for r in (dict(zip(("upid", "organism", "taxid", "protein_count", "kingdom"), ln.split("\t")))
+    rows = {r["upid"]: r for r in (dict(zip(COLS, ln.split("\t")))
                                    for ln in table.read_text().strip().split("\n")[1:])}
     todo = json.loads((OUT / "todo.json").read_text())
     mine = todo[args.shard :: args.n_shards]
@@ -133,7 +125,7 @@ def main():
             print(f"  skip {upid}: {e}", flush=True)
             continue
         r = rows[upid]
-        out[upid] = {"organism": r["organism"], "taxid": r["taxid"], "kingdom": r["kingdom"], **p}
+        out[upid] = {"organism": r["organism"], "taxid": r["taxid"], "kingdom": r["kingdom"], "busco": r["busco"], **p}
         if i % 25 == 0:
             print(f"  {i + 1}/{len(mine)} {r['organism']}: {p['n_proteins']} proteins, {len(p['pfam'])} families "
                   f"({time.time() - t0:.0f}s)", flush=True)
