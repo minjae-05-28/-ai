@@ -25,7 +25,7 @@
  "families_considered": 5771,
  "node_reconstructed": "most recent common ancestor of the sampled clade tips, which at this sample size is not the clade's root (see results/sample_size/summary.json)",
  "leave_tips_out_auroc": {
-  "reconstruction": 0.9359,
+  "reconstruction": 0.9345,
   "clade_frequency": 0.912
  },
  "n_models": 5,
@@ -35,24 +35,24 @@
  "tip_completeness": {
   "Acanthamoeba castellanii (strain ATCC 30010 / Neff)": 1.0,
   "Planoprotostelium fungivorum": 1.0,
-  "Heterostelium pallidum (strain ATCC 26659 / Pp 5 / PN500) (Cellular slime mold) (Polysphondylium pallidum)": 0.947,
-  "Cavenderia fasciculata (Slime mold) (Dictyostelium fasciculatum)": 0.967,
-  "Polysphondylium violaceum": 0.953,
-  "Tieghemostelium lacteum (Slime mold) (Dictyostelium lacteum)": 0.96,
-  "Dictyostelium purpureum (Slime mold)": 0.967,
+  "Heterostelium pallidum (strain ATCC 26659 / Pp 5 / PN500) (Cellular slime mold) (Polysphondylium pallidum)": 0.967,
+  "Cavenderia fasciculata (Slime mold) (Dictyostelium fasciculatum)": 0.973,
+  "Polysphondylium violaceum": 0.987,
+  "Tieghemostelium lacteum (Slime mold) (Dictyostelium lacteum)": 0.973,
+  "Dictyostelium purpureum (Slime mold)": 0.993,
   "Dictyostelium discoideum (Social amoeba)": 1.0,
-  "Dictyostelium firmibasis": 0.967,
-  "Entamoeba invadens IP1": 0.427,
-  "Entamoeba dispar (strain ATCC PRA-260 / SAW760)": 0.48,
-  "Entamoeba nuttalli": 0.44
+  "Dictyostelium firmibasis": 0.993,
+  "Entamoeba invadens IP1": 0.32,
+  "Entamoeba dispar (strain ATCC PRA-260 / SAW760)": 0.393,
+  "Entamoeba nuttalli": 0.38
  },
  "completeness_markers_per_group": {
   "clade": 150,
   "outgroup": 150
  },
  "groups_without_a_completeness_score": [],
- "n_confident_families": 2704,
- "n_uncertain_families": 1079,
+ "n_confident_families": 2697,
+ "n_uncertain_families": 1087,
  "size_not_reported": "the simulation showed a 16-17% underestimate of ancestor size at this sample size, so no family count is quoted",
  "functions_of_confident_families": [
   [
@@ -65,19 +65,19 @@
   ],
   [
    "transferase activity",
-   149
+   151
   ],
   [
    "hydrolase activity",
-   113
+   111
   ],
   [
    "helicase_nucleic",
-   112
+   111
   ],
   [
    "repeat_domain",
-   92
+   91
   ],
   [
    "protease",
@@ -88,11 +88,11 @@
    73
   ],
   [
-   "structural molecule activity",
-   68
+   "methyl_glyco_transferase",
+   69
   ],
   [
-   "methyl_glyco_transferase",
+   "structural molecule activity",
    68
   ],
   [
@@ -104,11 +104,11 @@
    63
   ],
   [
-   "zinc_finger",
+   "oxidoreductase activity",
    62
   ],
   [
-   "oxidoreductase activity",
+   "zinc_finger",
    61
   ],
   [
@@ -117,7 +117,7 @@
   ],
   [
    "catalytic activity, acting on RNA",
-   59
+   58
   ],
   [
    "uncharacterised",
@@ -129,113 +129,57 @@
   ],
   [
    "catalytic activity, acting on a protein",
-   54
+   53
   ],
   [
    "transporter_channel",
-   47
+   48
   ]
  ],
  "top_families": [
   {
-   "family": "Beach",
-   "description": "Beige/BEACH domain",
+   "family": "zf-RING_UBOX",
+   "description": "RING-type zinc-finger",
    "posterior": 1.0,
    "model_sd": 0.0,
    "tree_sd": 0.0,
    "share_of_clade_tips_today": 1.0
   },
   {
-   "family": "EF-hand_5",
-   "description": "EF hand",
+   "family": "AAA_2",
+   "description": "AAA domain (Cdc48 subfamily)",
    "posterior": 1.0,
    "model_sd": 0.0,
    "tree_sd": 0.0,
    "share_of_clade_tips_today": 1.0
   },
   {
-   "family": "EF-hand_7",
-   "description": "EF-hand domain pair",
+   "family": "Peptidase_S9",
+   "description": "Prolyl oligopeptidase family",
    "posterior": 1.0,
    "model_sd": 0.0,
    "tree_sd": 0.0,
    "share_of_clade_tips_today": 1.0
   },
   {
-   "family": "LIDHydrolase",
-   "description": "Lipid-droplet associated hydrolase",
+   "family": "PseudoU_synth_2",
+   "description": "RNA pseudouridylate synthase",
    "posterior": 1.0,
    "model_sd": 0.0,
    "tree_sd": 0.0,
    "share_of_clade_tips_today": 1.0
   },
   {
-   "family": "LRR_1",
-   "description": "Leucine Rich Repeat",
+   "family": "ADH_zinc_N",
+   "description": "Zinc-binding dehydrogenase",
    "posterior": 1.0,
    "model_sd": 0.0,
    "tree_sd": 0.0,
    "share_of_clade_tips_today": 1.0
   },
   {
-   "family": "LRR_6",
-   "description": "Leucine Rich repeat",
-   "posterior": 1.0,
-   "model_sd": 0.0,
-   "tree_sd": 0.0,
-   "share_of_clade_tips_today": 1.0
-  },
-  {
-   "family": "TTL",
-   "description": "Tubulin-tyrosine ligase family",
-   "posterior": 1.0,
-   "model_sd": 0.0,
-   "tree_sd": 0.0,
-   "share_of_clade_tips_today": 1.0
-  },
-  {
-   "family": "TatD_DNase",
-   "description": "TatD related DNase",
-   "posterior": 1.0,
-   "model_sd": 0.0,
-   "tree_sd": 0.0,
-   "share_of_clade_tips_today": 1.0
-  },
-  {
-   "family": "Topoisom_bac",
-   "description": "DNA topoisomerase",
-   "posterior": 1.0,
-   "model_sd": 0.0,
-   "tree_sd": 0.0,
-   "share_of_clade_tips_today": 1.0
-  },
-  {
-   "family": "Toprim",
-   "description": "Toprim domain",
-   "posterior": 1.0,
-   "model_sd": 0.0,
-   "tree_sd": 0.0,
-   "share_of_clade_tips_today": 1.0
-  },
-  {
-   "family": "GTP_EFTU",
-   "description": "Elongation factor Tu GTP binding domain",
-   "posterior": 1.0,
-   "model_sd": 0.0,
-   "tree_sd": 0.0,
-   "share_of_clade_tips_today": 1.0
-  },
-  {
-   "family": "NIF",
-   "description": "NLI interacting factor-like phosphatase",
-   "posterior": 1.0,
-   "model_sd": 0.0,
-   "tree_sd": 0.0,
-   "share_of_clade_tips_today": 1.0
-  },
-  {
-   "family": "BPL_LplA_LipB",
-   "description": "Biotin/lipoate A/B protein ligase family",
+   "family": "ADK",
+   "description": "Adenylate kinase",
    "posterior": 1.0,
    "model_sd": 0.0,
    "tree_sd": 0.0,
@@ -250,176 +194,40 @@
    "share_of_clade_tips_today": 1.0
   },
   {
-   "family": "Biotin_lipoyl",
-   "description": "Biotin-requiring enzyme",
+   "family": "Sod_Fe_C",
+   "description": "Iron/manganese superoxide dismutases, C-terminal domain",
    "posterior": 1.0,
    "model_sd": 0.0,
    "tree_sd": 0.0,
    "share_of_clade_tips_today": 1.0
   },
   {
-   "family": "E1-E2_ATPase",
-   "description": "P-type ATPase actuator domain",
+   "family": "tRNA-synt_1c",
+   "description": "tRNA synthetases class I (E and Q), catalytic domain",
    "posterior": 1.0,
    "model_sd": 0.0,
    "tree_sd": 0.0,
    "share_of_clade_tips_today": 1.0
   },
   {
-   "family": "Thioredoxin",
-   "description": "Thioredoxin",
+   "family": "tRNA-synt_1g",
+   "description": "tRNA synthetases class I (M)",
    "posterior": 1.0,
    "model_sd": 0.0,
    "tree_sd": 0.0,
    "share_of_clade_tips_today": 1.0
   },
   {
-   "family": "NUDIX",
-   "description": "NUDIX domain",
+   "family": "ADH_N",
+   "description": "Alcohol dehydrogenase GroES-like domain",
    "posterior": 1.0,
    "model_sd": 0.0,
    "tree_sd": 0.0,
    "share_of_clade_tips_today": 1.0
   },
   {
-   "family": "Ldh_1_C",
-   "description": "lactate/malate dehydrogenase, alpha/beta C-terminal domain",
-   "posterior": 1.0,
-   "model_sd": 0.0,
-   "tree_sd": 0.0,
-   "share_of_clade_tips_today": 1.0
-  },
-  {
-   "family": "TOPRIM_C",
-   "description": "C-terminal associated domain of TOPRIM",
-   "posterior": 1.0,
-   "model_sd": 0.0,
-   "tree_sd": 0.0,
-   "share_of_clade_tips_today": 1.0
-  },
-  {
-   "family": "TPR_16",
-   "description": "Tetratricopeptide repeat",
-   "posterior": 1.0,
-   "model_sd": 0.0,
-   "tree_sd": 0.0,
-   "share_of_clade_tips_today": 1.0
-  },
-  {
-   "family": "Bromodomain",
-   "description": "Bromodomain",
-   "posterior": 1.0,
-   "model_sd": 0.0,
-   "tree_sd": 0.0,
-   "share_of_clade_tips_today": 1.0
-  },
-  {
-   "family": "TPR_8",
-   "description": "Tetratricopeptide repeat",
-   "posterior": 1.0,
-   "model_sd": 0.0,
-   "tree_sd": 0.0,
-   "share_of_clade_tips_today": 1.0
-  },
-  {
-   "family": "TAP42",
-   "description": "TAP42-like family",
-   "posterior": 1.0,
-   "model_sd": 0.0,
-   "tree_sd": 0.0,
-   "share_of_clade_tips_today": 1.0
-  },
-  {
-   "family": "CDP-OH_P_transf",
-   "description": "CDP-alcohol phosphatidyltransferase",
-   "posterior": 1.0,
-   "model_sd": 0.0,
-   "tree_sd": 0.0,
-   "share_of_clade_tips_today": 1.0
-  },
-  {
-   "family": "TGT",
-   "description": "Queuine tRNA-ribosyltransferase",
-   "posterior": 1.0,
-   "model_sd": 0.0,
-   "tree_sd": 0.0,
-   "share_of_clade_tips_today": 1.0
-  },
-  {
-   "family": "PALP",
-   "description": "Pyridoxal-phosphate dependent enzyme",
-   "posterior": 1.0,
-   "model_sd": 0.0,
-   "tree_sd": 0.0,
-   "share_of_clade_tips_today": 1.0
-  },
-  {
-   "family": "PAP2",
-   "description": "PAP2 superfamily",
-   "posterior": 1.0,
-   "model_sd": 0.0,
-   "tree_sd": 0.0,
-   "share_of_clade_tips_today": 1.0
-  },
-  {
-   "family": "HhH-GPD",
-   "description": "HhH-GPD superfamily base excision DNA repair protein",
-   "posterior": 1.0,
-   "model_sd": 0.0,
-   "tree_sd": 0.0,
-   "share_of_clade_tips_today": 1.0
-  },
-  {
-   "family": "Lactamase_B",
-   "description": "Metallo-beta-lactamase superfamily",
-   "posterior": 1.0,
-   "model_sd": 0.0,
-   "tree_sd": 0.0,
-   "share_of_clade_tips_today": 1.0
-  },
-  {
-   "family": "Epimerase",
-   "description": "NAD dependent epimerase/dehydratase family",
-   "posterior": 1.0,
-   "model_sd": 0.0,
-   "tree_sd": 0.0,
-   "share_of_clade_tips_today": 1.0
-  },
-  {
-   "family": "Ribosomal_S17_N",
-   "description": "Ribosomal_S17 N-terminal",
-   "posterior": 1.0,
-   "model_sd": 0.0,
-   "tree_sd": 0.0,
-   "share_of_clade_tips_today": 1.0
-  },
-  {
-   "family": "Ribosomal_S19",
-   "description": "Ribosomal protein S19",
-   "posterior": 1.0,
-   "model_sd": 0.0,
-   "tree_sd": 0.0,
-   "share_of_clade_tips_today": 1.0
-  },
-  {
-   "family": "Ribosomal_S26e",
-   "description": "Ribosomal protein S26e",
-   "posterior": 1.0,
-   "model_sd": 0.0,
-   "tree_sd": 0.0,
-   "share_of_clade_tips_today": 1.0
-  },
-  {
-   "family": "Ribosomal_S27",
-   "description": "Ribosomal protein S27a",
-   "posterior": 1.0,
-   "model_sd": 0.0,
-   "tree_sd": 0.0,
-   "share_of_clade_tips_today": 1.0
-  },
-  {
-   "family": "PfkB",
-   "description": "pfkB family carbohydrate kinase",
+   "family": "RCC1",
+   "description": "Regulator of chromosome condensation (RCC1) repeat",
    "posterior": 1.0,
    "model_sd": 0.0,
    "tree_sd": 0.0,
@@ -434,184 +242,376 @@
    "share_of_clade_tips_today": 1.0
   },
   {
-   "family": "CTP_transf_1",
-   "description": "Cytidylyltransferase family",
+   "family": "tRNA-synt_His",
+   "description": "Histidyl-tRNA synthetase",
    "posterior": 1.0,
    "model_sd": 0.0,
    "tree_sd": 0.0,
    "share_of_clade_tips_today": 1.0
   },
   {
-   "family": "Sod_Fe_C",
-   "description": "Iron/manganese superoxide dismutases, C-terminal domain",
+   "family": "tRNA-synt_2d",
+   "description": "tRNA synthetases class II core domain (F)",
    "posterior": 1.0,
    "model_sd": 0.0,
    "tree_sd": 0.0,
    "share_of_clade_tips_today": 1.0
   },
   {
-   "family": "AAA_lid_3",
-   "description": "AAA+ lid domain",
+   "family": "KOW",
+   "description": "KOW motif",
    "posterior": 1.0,
    "model_sd": 0.0,
    "tree_sd": 0.0,
    "share_of_clade_tips_today": 1.0
   },
   {
-   "family": "PK",
-   "description": "Pyruvate kinase, barrel domain",
+   "family": "IPPT",
+   "description": "IPP transferase",
    "posterior": 1.0,
    "model_sd": 0.0,
    "tree_sd": 0.0,
    "share_of_clade_tips_today": 1.0
   },
   {
-   "family": "PH_BEACH",
-   "description": "PH domain associated with Beige/BEACH",
+   "family": "malic",
+   "description": "Malic enzyme, N-terminal domain",
    "posterior": 1.0,
    "model_sd": 0.0,
    "tree_sd": 0.0,
    "share_of_clade_tips_today": 1.0
   },
   {
-   "family": "PH",
-   "description": "PH domain",
+   "family": "polyprenyl_synt",
+   "description": "Polyprenyl synthetase",
    "posterior": 1.0,
    "model_sd": 0.0,
    "tree_sd": 0.0,
    "share_of_clade_tips_today": 1.0
   },
   {
-   "family": "ClpB_D2-small",
-   "description": "C-terminal, D2-small domain, of ClpB protein",
+   "family": "tRNA-synt_1",
+   "description": "tRNA synthetases class I (I, L, M and V)",
    "posterior": 1.0,
    "model_sd": 0.0,
    "tree_sd": 0.0,
    "share_of_clade_tips_today": 1.0
   },
   {
-   "family": "SNase",
-   "description": "Staphylococcal nuclease homologue",
+   "family": "tRNA-synt_1b",
+   "description": "tRNA synthetases class I (W and Y)",
    "posterior": 1.0,
    "model_sd": 0.0,
    "tree_sd": 0.0,
    "share_of_clade_tips_today": 1.0
   },
   {
-   "family": "Lactamase_B_2",
-   "description": "Beta-lactamase superfamily domain",
+   "family": "AAA_lid_9",
+   "description": "AAA lid domain",
    "posterior": 1.0,
    "model_sd": 0.0,
    "tree_sd": 0.0,
    "share_of_clade_tips_today": 1.0
   },
   {
-   "family": "Cation_ATPase",
-   "description": "P-type ATPase, cytoplasmic domain N",
+   "family": "40S_S4_C",
+   "description": "40S ribosomal protein S4 C-terminus",
    "posterior": 1.0,
    "model_sd": 0.0,
    "tree_sd": 0.0,
    "share_of_clade_tips_today": 1.0
   },
   {
-   "family": "Sel1",
-   "description": "Sel1 repeat",
+   "family": "AAA_28",
+   "description": "AAA domain",
    "posterior": 1.0,
    "model_sd": 0.0,
    "tree_sd": 0.0,
    "share_of_clade_tips_today": 1.0
   },
   {
-   "family": "Exo_endo_phos",
-   "description": "Endonuclease/Exonuclease/phosphatase family",
+   "family": "AAA_23",
+   "description": "AAA domain",
    "posterior": 1.0,
    "model_sd": 0.0,
    "tree_sd": 0.0,
    "share_of_clade_tips_today": 1.0
   },
   {
-   "family": "PP-binding",
-   "description": "Phosphopantetheine attachment site",
+   "family": "tRNA_anti-codon",
+   "description": "OB-fold nucleic acid binding domain",
    "posterior": 1.0,
    "model_sd": 0.0,
    "tree_sd": 0.0,
    "share_of_clade_tips_today": 1.0
   },
   {
-   "family": "PP2C",
-   "description": "Protein phosphatase 2C",
+   "family": "tRNA_U5-meth_tr",
+   "description": "tRNA (Uracil-5-)-methyltransferase",
    "posterior": 1.0,
    "model_sd": 0.0,
    "tree_sd": 0.0,
    "share_of_clade_tips_today": 1.0
   },
   {
-   "family": "Cpn60_TCP1",
-   "description": "TCP-1/cpn60 chaperonin family",
+   "family": "tRNA_SAD",
+   "description": "Threonyl and Alanyl tRNA synthetase second additional domain",
    "posterior": 1.0,
    "model_sd": 0.0,
    "tree_sd": 0.0,
    "share_of_clade_tips_today": 1.0
   },
   {
-   "family": "EFG_C",
-   "description": "Elongation factor G C-terminus",
+   "family": "adh_short",
+   "description": "short chain dehydrogenase",
    "posterior": 1.0,
    "model_sd": 0.0,
    "tree_sd": 0.0,
    "share_of_clade_tips_today": 1.0
   },
   {
-   "family": "EFG_III",
-   "description": "Elongation Factor G, domain III",
+   "family": "Ribosomal_L22",
+   "description": "Ribosomal protein L22p/L17e",
    "posterior": 1.0,
    "model_sd": 0.0,
    "tree_sd": 0.0,
    "share_of_clade_tips_today": 1.0
   },
   {
-   "family": "EFG_IV",
-   "description": "Elongation factor G, domain IV",
+   "family": "Ribosomal_L23",
+   "description": "Ribosomal protein L23",
    "posterior": 1.0,
    "model_sd": 0.0,
    "tree_sd": 0.0,
    "share_of_clade_tips_today": 1.0
   },
   {
-   "family": "ParA",
-   "description": "NUBPL iron-transfer P-loop NTPase",
+   "family": "Ribosomal_L24e",
+   "description": "Ribosomal protein L24e",
    "posterior": 1.0,
    "model_sd": 0.0,
    "tree_sd": 0.0,
    "share_of_clade_tips_today": 1.0
   },
   {
-   "family": "PTH2",
-   "description": "Peptidyl-tRNA hydrolase PTH2",
+   "family": "Ribosomal_L27A",
+   "description": "Ribosomal proteins 50S-L15, 50S-L18e, 60S-L27A",
    "posterior": 1.0,
    "model_sd": 0.0,
    "tree_sd": 0.0,
    "share_of_clade_tips_today": 1.0
   },
   {
-   "family": "ELFV_dehydrog",
-   "description": "Glutamate/Leucine/Phenylalanine/Valine dehydrogenase",
+   "family": "M16C_assoc",
+   "description": "Peptidase M16C associated",
    "posterior": 1.0,
    "model_sd": 0.0,
    "tree_sd": 0.0,
    "share_of_clade_tips_today": 1.0
   },
   {
-   "family": "Dynamin_M",
-   "description": "Dynamin central region",
+   "family": "HSP20",
+   "description": "Hsp20/alpha crystallin family",
    "posterior": 1.0,
    "model_sd": 0.0,
    "tree_sd": 0.0,
    "share_of_clade_tips_today": 1.0
   },
   {
-   "family": "Dynamin_N",
-   "description": "Dynamin family",
+   "family": "Ribosom_S12_S23",
+   "description": "Ribosomal protein S12/S23",
+   "posterior": 1.0,
+   "model_sd": 0.0,
+   "tree_sd": 0.0,
+   "share_of_clade_tips_today": 1.0
+  },
+  {
+   "family": "Ribosomal_60s",
+   "description": "60s Acidic ribosomal protein",
+   "posterior": 1.0,
+   "model_sd": 0.0,
+   "tree_sd": 0.0,
+   "share_of_clade_tips_today": 1.0
+  },
+  {
+   "family": "Ribosomal_L1",
+   "description": "Ribosomal protein L1p/L10e family",
+   "posterior": 1.0,
+   "model_sd": 0.0,
+   "tree_sd": 0.0,
+   "share_of_clade_tips_today": 1.0
+  },
+  {
+   "family": "Ribosomal_L10",
+   "description": "Ribosomal protein L10",
+   "posterior": 1.0,
+   "model_sd": 0.0,
+   "tree_sd": 0.0,
+   "share_of_clade_tips_today": 1.0
+  },
+  {
+   "family": "Ribosomal_L18",
+   "description": "Ribosomal protein 60S L18 and 50S L18e",
+   "posterior": 1.0,
+   "model_sd": 0.0,
+   "tree_sd": 0.0,
+   "share_of_clade_tips_today": 1.0
+  },
+  {
+   "family": "HGTP_anticodon",
+   "description": "Anticodon binding domain",
+   "posterior": 1.0,
+   "model_sd": 0.0,
+   "tree_sd": 0.0,
+   "share_of_clade_tips_today": 1.0
+  },
+  {
+   "family": "MMR_HSR1",
+   "description": "50S ribosome-binding GTPase",
+   "posterior": 1.0,
+   "model_sd": 0.0,
+   "tree_sd": 0.0,
+   "share_of_clade_tips_today": 1.0
+  },
+  {
+   "family": "Acetyltransf_1",
+   "description": "Acetyltransferase (GNAT) family",
+   "posterior": 1.0,
+   "model_sd": 0.0,
+   "tree_sd": 0.0,
+   "share_of_clade_tips_today": 1.0
+  },
+  {
+   "family": "Lyase_1",
+   "description": "Lyase",
+   "posterior": 1.0,
+   "model_sd": 0.0,
+   "tree_sd": 0.0,
+   "share_of_clade_tips_today": 1.0
+  },
+  {
+   "family": "Ras",
+   "description": "Ras family",
+   "posterior": 1.0,
+   "model_sd": 0.0,
+   "tree_sd": 0.0,
+   "share_of_clade_tips_today": 1.0
+  },
+  {
+   "family": "RabGAP-TBC",
+   "description": "Rab-GTPase-TBC domain",
+   "posterior": 1.0,
+   "model_sd": 0.0,
+   "tree_sd": 0.0,
+   "share_of_clade_tips_today": 1.0
+  },
+  {
+   "family": "RRM_1",
+   "description": "RNA recognition motif",
+   "posterior": 1.0,
+   "model_sd": 0.0,
+   "tree_sd": 0.0,
+   "share_of_clade_tips_today": 1.0
+  },
+  {
+   "family": "Dus",
+   "description": "Dihydrouridine synthase (Dus)",
+   "posterior": 1.0,
+   "model_sd": 0.0,
+   "tree_sd": 0.0,
+   "share_of_clade_tips_today": 1.0
+  },
+  {
+   "family": "Rhodanese",
+   "description": "Rhodanese-like domain",
+   "posterior": 1.0,
+   "model_sd": 0.0,
+   "tree_sd": 0.0,
+   "share_of_clade_tips_today": 1.0
+  },
+  {
+   "family": "Ribos_L4_asso_C",
+   "description": "60S ribosomal protein L4 C-terminal domain",
+   "posterior": 1.0,
+   "model_sd": 0.0,
+   "tree_sd": 0.0,
+   "share_of_clade_tips_today": 1.0
+  },
+  {
+   "family": "Aminotran_1_2",
+   "description": "Aminotransferase class I and II",
+   "posterior": 1.0,
+   "model_sd": 0.0,
+   "tree_sd": 0.0,
+   "share_of_clade_tips_today": 1.0
+  },
+  {
+   "family": "Aminotran_4",
+   "description": "Amino-transferase class IV",
+   "posterior": 1.0,
+   "model_sd": 0.0,
+   "tree_sd": 0.0,
+   "share_of_clade_tips_today": 1.0
+  },
+  {
+   "family": "Aminotran_5",
+   "description": "Aminotransferase class-V",
+   "posterior": 1.0,
+   "model_sd": 0.0,
+   "tree_sd": 0.0,
+   "share_of_clade_tips_today": 1.0
+  },
+  {
+   "family": "Ank_2",
+   "description": "Ankyrin repeats (3 copies)",
+   "posterior": 1.0,
+   "model_sd": 0.0,
+   "tree_sd": 0.0,
+   "share_of_clade_tips_today": 1.0
+  },
+  {
+   "family": "Anticodon_1",
+   "description": "Anticodon-binding domain of tRNA ligase",
+   "posterior": 1.0,
+   "model_sd": 0.0,
+   "tree_sd": 0.0,
+   "share_of_clade_tips_today": 1.0
+  },
+  {
+   "family": "TPR_16",
+   "description": "Tetratricopeptide repeat",
+   "posterior": 1.0,
+   "model_sd": 0.0,
+   "tree_sd": 0.0,
+   "share_of_clade_tips_today": 1.0
+  },
+  {
+   "family": "TGT",
+   "description": "Queuine tRNA-ribosyltransferase",
+   "posterior": 1.0,
+   "model_sd": 0.0,
+   "tree_sd": 0.0,
+   "share_of_clade_tips_today": 1.0
+  },
+  {
+   "family": "DnaJ",
+   "description": "DnaJ domain",
+   "posterior": 1.0,
+   "model_sd": 0.0,
+   "tree_sd": 0.0,
+   "share_of_clade_tips_today": 1.0
+  },
+  {
+   "family": "DnaJ_C",
+   "description": "DnaJ C terminal domain",
+   "posterior": 1.0,
+   "model_sd": 0.0,
+   "tree_sd": 0.0,
+   "share_of_clade_tips_today": 1.0
+  },
+  {
+   "family": "DnaJ_CXXCXGXG",
+   "description": "DnaJ central domain",
    "posterior": 1.0,
    "model_sd": 0.0,
    "tree_sd": 0.0,
@@ -620,179 +620,186 @@
  ],
  "uncertain_families": [
   {
-   "family": "Zn_ribbon_RPB9",
-   "description": "RNA polymerases M/15 Kd subunit",
+   "family": "Big_2",
+   "description": "Bacterial Ig-like domain (group 2)",
    "posterior": 0.9,
    "model_sd": 0.0,
-   "tree_sd": 0.022
-  },
-  {
-   "family": "Nop25",
-   "description": "Nucleolar protein 12 (25kDa)",
-   "posterior": 0.899,
-   "model_sd": 0.0,
-   "tree_sd": 0.021
-  },
-  {
-   "family": "Golgin_A5",
-   "description": "Golgin subfamily A member 5",
-   "posterior": 0.897,
-   "model_sd": 0.0,
-   "tree_sd": 0.025
+   "tree_sd": 0.031
   },
   {
    "family": "EDR1_CTR1_ARMC3_pept",
    "description": "EDR1/CTR1/ARMC3, peptidase-like",
-   "posterior": 0.897,
-   "model_sd": 0.0,
-   "tree_sd": 0.025
-  },
-  {
-   "family": "DeoC",
-   "description": "DeoC/LacD family aldolase",
-   "posterior": 0.897,
-   "model_sd": 0.0,
-   "tree_sd": 0.018
-  },
-  {
-   "family": "DUF4187",
-   "description": "Domain of unknown function (DUF4187)",
-   "posterior": 0.897,
-   "model_sd": 0.0,
-   "tree_sd": 0.11
-  },
-  {
-   "family": "Rsm22",
-   "description": "Mitochondrial small ribosomal subunit Rsm22",
-   "posterior": 0.896,
-   "model_sd": 0.0,
-   "tree_sd": 0.023
-  },
-  {
-   "family": "Glyco_hydro_3_C",
-   "description": "Glycosyl hydrolase family 3 C-terminal domain",
-   "posterior": 0.895,
-   "model_sd": 0.0,
-   "tree_sd": 0.024
-  },
-  {
-   "family": "tRNA_edit",
-   "description": "Aminoacyl-tRNA editing domain",
-   "posterior": 0.895,
-   "model_sd": 0.0,
-   "tree_sd": 0.018
-  },
-  {
-   "family": "Glyco_transf_49",
-   "description": "Glycosyl-transferase for dystroglycan",
-   "posterior": 0.895,
-   "model_sd": 0.0,
-   "tree_sd": 0.047
-  },
-  {
-   "family": "SGL_GH162",
-   "description": "Endo-beta-1,2-glucanase SGL",
-   "posterior": 0.895,
-   "model_sd": 0.0,
-   "tree_sd": 0.047
-  },
-  {
-   "family": "Chal_sti_synt_C",
-   "description": "Chalcone and stilbene synthases, C-terminal domain",
-   "posterior": 0.895,
-   "model_sd": 0.0,
-   "tree_sd": 0.047
-  },
-  {
-   "family": "Glyco_hydro_39",
-   "description": "Glycosyl hydrolases family 39",
-   "posterior": 0.895,
-   "model_sd": 0.0,
-   "tree_sd": 0.047
-  },
-  {
-   "family": "GKRP_SIS_N",
-   "description": "Glucokinase regulatory protein N-terminal SIS domain",
-   "posterior": 0.895,
-   "model_sd": 0.0,
-   "tree_sd": 0.047
-  },
-  {
-   "family": "Chal_sti_synt_N",
-   "description": "Chalcone and stilbene synthases, N-terminal domain",
-   "posterior": 0.895,
-   "model_sd": 0.0,
-   "tree_sd": 0.047
-  },
-  {
-   "family": "NAD_kinase",
-   "description": "ATP-NAD kinase N-terminal domain",
-   "posterior": 0.895,
-   "model_sd": 0.0,
-   "tree_sd": 0.025
-  },
-  {
-   "family": "U-box_ZFPL1",
-   "description": "ZFPL1-like, U-box domain",
-   "posterior": 0.894,
-   "model_sd": 0.0,
-   "tree_sd": 0.065
-  },
-  {
-   "family": "DUF4291",
-   "description": "Domain of unknown function (DUF4291)",
-   "posterior": 0.894,
-   "model_sd": 0.0,
-   "tree_sd": 0.047
-  },
-  {
-   "family": "DUF4832",
-   "description": "Domain of unknown function (DUF4832)",
-   "posterior": 0.894,
-   "model_sd": 0.0,
-   "tree_sd": 0.023
-  },
-  {
-   "family": "DHH",
-   "description": "DHH family, N-terminal domain",
-   "posterior": 0.892,
-   "model_sd": 0.0,
-   "tree_sd": 0.018
-  },
-  {
-   "family": "OsmC",
-   "description": "OsmC-like protein",
-   "posterior": 0.891,
-   "model_sd": 0.0,
-   "tree_sd": 0.05
-  },
-  {
-   "family": "SLBP_RNA_bind",
-   "description": "Histone RNA hairpin-binding protein RNA-binding domain",
-   "posterior": 0.89,
-   "model_sd": 0.0,
-   "tree_sd": 0.136
-  },
-  {
-   "family": "Arginase",
-   "description": "Arginase family",
-   "posterior": 0.89,
-   "model_sd": 0.0,
-   "tree_sd": 0.009
-  },
-  {
-   "family": "Slo-like_RCK",
-   "description": "Calcium-activated potassium channel slowpoke-like RCK domain",
-   "posterior": 0.89,
+   "posterior": 0.9,
    "model_sd": 0.0,
    "tree_sd": 0.019
   },
   {
+   "family": "Golgin_A5",
+   "description": "Golgin subfamily A member 5",
+   "posterior": 0.9,
+   "model_sd": 0.0,
+   "tree_sd": 0.019
+  },
+  {
+   "family": "HAT_Syf1_M",
+   "description": "Pre-mRNA-splicing factor SYF1 middle HAT repeat",
+   "posterior": 0.9,
+   "model_sd": 0.0,
+   "tree_sd": 0.008
+  },
+  {
+   "family": "AP_endonuc_2",
+   "description": "Xylose isomerase-like TIM barrel",
+   "posterior": 0.898,
+   "model_sd": 0.0,
+   "tree_sd": 0.09
+  },
+  {
+   "family": "C1_1",
+   "description": "Phorbol esters/diacylglycerol binding domain (C1 domain)",
+   "posterior": 0.898,
+   "model_sd": 0.0,
+   "tree_sd": 0.036
+  },
+  {
+   "family": "GKRP_SIS_N",
+   "description": "Glucokinase regulatory protein N-terminal SIS domain",
+   "posterior": 0.896,
+   "model_sd": 0.0,
+   "tree_sd": 0.046
+  },
+  {
+   "family": "Chal_sti_synt_N",
+   "description": "Chalcone and stilbene synthases, N-terminal domain",
+   "posterior": 0.896,
+   "model_sd": 0.0,
+   "tree_sd": 0.046
+  },
+  {
+   "family": "Glyco_hydro_39",
+   "description": "Glycosyl hydrolases family 39",
+   "posterior": 0.896,
+   "model_sd": 0.0,
+   "tree_sd": 0.046
+  },
+  {
+   "family": "Glyco_transf_49",
+   "description": "Glycosyl-transferase for dystroglycan",
+   "posterior": 0.896,
+   "model_sd": 0.0,
+   "tree_sd": 0.046
+  },
+  {
+   "family": "SGL_GH162",
+   "description": "Endo-beta-1,2-glucanase SGL",
+   "posterior": 0.896,
+   "model_sd": 0.0,
+   "tree_sd": 0.046
+  },
+  {
+   "family": "Chal_sti_synt_C",
+   "description": "Chalcone and stilbene synthases, C-terminal domain",
+   "posterior": 0.896,
+   "model_sd": 0.0,
+   "tree_sd": 0.046
+  },
+  {
+   "family": "DUF4291",
+   "description": "Domain of unknown function (DUF4291)",
+   "posterior": 0.895,
+   "model_sd": 0.0,
+   "tree_sd": 0.046
+  },
+  {
+   "family": "Succ_DH_flav_C",
+   "description": "Fumarate reductase flavoprotein C-term",
+   "posterior": 0.895,
+   "model_sd": 0.0,
+   "tree_sd": 0.014
+  },
+  {
+   "family": "RRF",
+   "description": "Ribosome recycling factor",
+   "posterior": 0.895,
+   "model_sd": 0.0,
+   "tree_sd": 0.014
+  },
+  {
+   "family": "Peptidase_M76",
+   "description": "Peptidase M76 family",
+   "posterior": 0.895,
+   "model_sd": 0.0,
+   "tree_sd": 0.014
+  },
+  {
+   "family": "Alba",
+   "description": "Alba",
+   "posterior": 0.895,
+   "model_sd": 0.0,
+   "tree_sd": 0.014
+  },
+  {
+   "family": "RsfS",
+   "description": "Ribosomal silencing factor during starvation",
+   "posterior": 0.895,
+   "model_sd": 0.0,
+   "tree_sd": 0.014
+  },
+  {
+   "family": "BAG",
+   "description": "BAG domain",
+   "posterior": 0.895,
+   "model_sd": 0.0,
+   "tree_sd": 0.026
+  },
+  {
+   "family": "OsmC",
+   "description": "OsmC-like protein",
+   "posterior": 0.893,
+   "model_sd": 0.0,
+   "tree_sd": 0.049
+  },
+  {
+   "family": "Zn_ribbon_RPB9",
+   "description": "RNA polymerases M/15 Kd subunit",
+   "posterior": 0.892,
+   "model_sd": 0.0,
+   "tree_sd": 0.023
+  },
+  {
+   "family": "RNase_H",
+   "description": "RNase H",
+   "posterior": 0.892,
+   "model_sd": 0.0,
+   "tree_sd": 0.006
+  },
+  {
+   "family": "Rep_fac-A_C",
+   "description": "Replication factor-A C terminal domain",
+   "posterior": 0.892,
+   "model_sd": 0.0,
+   "tree_sd": 0.02
+  },
+  {
+   "family": "U-box_ZFPL1",
+   "description": "ZFPL1-like, U-box domain",
+   "posterior": 0.892,
+   "model_sd": 0.0,
+   "tree_sd": 0.071
+  },
+  {
    "family": "RRM_5",
    "description": "RNA recognition motif. (a.k.a. RRM, RBD, or RNP domain)",
-   "posterior": 0.89,
+   "posterior": 0.889,
    "model_sd": 0.0,
-   "tree_sd": 0.047
+   "tree_sd": 0.064
+  },
+  {
+   "family": "DeoC",
+   "description": "DeoC/LacD family aldolase",
+   "posterior": 0.889,
+   "model_sd": 0.0,
+   "tree_sd": 0.019
   },
   {
    "family": "Nop16",
@@ -802,102 +809,95 @@
    "tree_sd": 0.006
   },
   {
-   "family": "BRCT_3",
-   "description": "BRCA1 C Terminus (BRCT) domain",
-   "posterior": 0.889,
+   "family": "CNOT10_TPR",
+   "description": "CNOT10 tetratricopeptide repeat domain",
+   "posterior": 0.888,
    "model_sd": 0.0,
-   "tree_sd": 0.051
+   "tree_sd": 0.092
   },
   {
    "family": "TPR_DOCK",
    "description": "Dedicator of cytokinesis (DOCK) TPR region",
-   "posterior": 0.887,
+   "posterior": 0.888,
    "model_sd": 0.0,
-   "tree_sd": 0.094
-  },
-  {
-   "family": "Clathrin_propel",
-   "description": "Clathrin propeller repeat",
-   "posterior": 0.887,
-   "model_sd": 0.0,
-   "tree_sd": 0.094
-  },
-  {
-   "family": "XLF",
-   "description": "XLF N-terminal domain",
-   "posterior": 0.887,
-   "model_sd": 0.0,
-   "tree_sd": 0.094
+   "tree_sd": 0.092
   },
   {
    "family": "DCC1-like",
    "description": "DCC1-like thiol-disulfide oxidoreductase",
-   "posterior": 0.887,
+   "posterior": 0.888,
    "model_sd": 0.0,
-   "tree_sd": 0.094
+   "tree_sd": 0.092
   },
   {
    "family": "PAS_3",
    "description": "PAS fold",
-   "posterior": 0.887,
+   "posterior": 0.888,
    "model_sd": 0.0,
-   "tree_sd": 0.094
+   "tree_sd": 0.092
   },
   {
-   "family": "CNOT10_TPR",
-   "description": "CNOT10 tetratricopeptide repeat domain",
-   "posterior": 0.887,
+   "family": "XLF",
+   "description": "XLF N-terminal domain",
+   "posterior": 0.888,
    "model_sd": 0.0,
-   "tree_sd": 0.094
+   "tree_sd": 0.092
   },
   {
-   "family": "THUMP",
-   "description": "THUMP domain",
+   "family": "Clathrin_propel",
+   "description": "Clathrin propeller repeat",
+   "posterior": 0.888,
+   "model_sd": 0.0,
+   "tree_sd": 0.092
+  },
+  {
+   "family": "PhosphMutase",
+   "description": "2,3-bisphosphoglycerate-independent phosphoglycerate mutase",
+   "posterior": 0.888,
+   "model_sd": 0.0,
+   "tree_sd": 0.007
+  },
+  {
+   "family": "Glyco_hydro_3_C",
+   "description": "Glycosyl hydrolase family 3 C-terminal domain",
+   "posterior": 0.888,
+   "model_sd": 0.0,
+   "tree_sd": 0.026
+  },
+  {
+   "family": "NAD_kinase",
+   "description": "ATP-NAD kinase N-terminal domain",
    "posterior": 0.887,
    "model_sd": 0.0,
-   "tree_sd": 0.05
+   "tree_sd": 0.026
+  },
+  {
+   "family": "Vault",
+   "description": "Major Vault Protein repeat domain",
+   "posterior": 0.887,
+   "model_sd": 0.0,
+   "tree_sd": 0.016
+  },
+  {
+   "family": "tRNA_edit",
+   "description": "Aminoacyl-tRNA editing domain",
+   "posterior": 0.886,
+   "model_sd": 0.0,
+   "tree_sd": 0.019
   },
   {
    "family": "Rep_fac-A_3",
    "description": "Replication factor A protein 3",
-   "posterior": 0.883,
+   "posterior": 0.886,
    "model_sd": 0.0,
    "tree_sd": 0.021
   },
   {
-   "family": "HD_4",
-   "description": "HD domain",
-   "posterior": 0.883,
+   "family": "DHH",
+   "description": "DHH family, N-terminal domain",
+   "posterior": 0.885,
    "model_sd": 0.0,
-   "tree_sd": 0.029
-  },
-  {
-   "family": "Nodulin-like",
-   "description": "Nodulin-like",
-   "posterior": 0.882,
-   "model_sd": 0.0,
-   "tree_sd": 0.009
-  },
-  {
-   "family": "RPN13_C",
-   "description": "UCH-binding domain",
-   "posterior": 0.881,
-   "model_sd": 0.0,
-   "tree_sd": 0.056
-  },
-  {
-   "family": "DHFR_1",
-   "description": "Dihydrofolate reductase",
-   "posterior": 0.881,
-   "model_sd": 0.0,
-   "tree_sd": 0.021
-  },
-  {
-   "family": "Zn_ribbon_PADR1",
-   "description": "PADR1 domain, zinc ribbon fold",
-   "posterior": 0.879,
-   "model_sd": 0.0,
-   "tree_sd": 0.042
+   "tree_sd": 0.019
   }
  ]
 }

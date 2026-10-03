@@ -26,8 +26,8 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 from run_mito_ancestor import functions_of, load_tips, parse_newick, postorder, prune  # noqa: E402
 
 OUT = Path("results/atlas")
-MITO = Path("results/mito_ancestor/loss_biased_busco90")
-AMOEBA = Path("results/clade_ancestor/amoebozoa_v3_nomult")  # the current best model (v3)
+MITO = Path("results/mito_ancestor/completeness")  # the quality-corrected run
+AMOEBA = Path("results/clade_ancestor/amoebozoa_v4")  # the current best model
 # The function classes worth a comparison bar: broad enough to hold families, specific enough to read.
 FUNCS = ["catalytic activity", "transferase activity", "oxidoreductase activity", "hydrolase activity",
          "protease", "DNA binding", "ribosome", "transporter_channel", "organelle", "kinase",
@@ -57,7 +57,7 @@ BLOCKED = [
 
 def tip_matrix():
     """Rebuild which species sit on the tree and which families each carries (the saved run's inputs)."""
-    tips = load_tips(300, min_busco=90.0)
+    tips = load_tips(300, min_busco=0.0)
     parent, length, label = parse_newick(gzip.open("results/phylo_tree/gtdb_bac120.tree.gz", "rt").read())
     acc_node = {lab: i for i, lab in enumerate(label) if lab in tips}
     parent, length, label, _ = prune(parent, length, label, list(acc_node.values()))
@@ -121,9 +121,11 @@ def main():
                   "오늘날은 숙주 세포 안에서만 살며 유전체가 크게 줄었습니다.",
             confidence="중간", quote_size=True,
             extra_caveat="이 목은 모형이 '축소된 계통'으로 지정해 가지의 손실 속도를 올려 잡는 "
-                         "대상입니다. 손실이 싸지면 '조상에 있었다가 잃었다'는 설명이 쉬워지므로, "
-                         "네 마디 중 이 조상의 크기가 가정에 가장 민감합니다. 54% 소실이라는 수치는 "
-                         "그 가정 위에 있습니다.",
+                         "대상입니다. 손실이 싸지면 '조상에 있었다가 잃었다'는 설명이 쉬워집니다. "
+                         "그런데 이 마디는 위에 적힌 대로 계통수가 기준선을 거의 못 넘습니다 — 즉 "
+                         "크게 줄었다는 그림의 근거는 복원이 찾아낸 증거보다 이 손실 가속 가정과 "
+                         "'지금 흔한 유전자군' 쪽에 더 많이 기대고 있습니다. 네 마디 중 가장 약한 "
+                         "결과로 읽어야 합니다.",
             size_note="40종으로 세운 마디입니다. 모의실험에서 이 규모의 크기 오차는 −10~12%이고, "
                       "도달 마디가 목의 뿌리보다 젊을 수 있습니다. 품질 보정 이전 판이므로 적힌 수는 "
                       "하한으로 읽어야 합니다."),
@@ -146,6 +148,7 @@ def main():
         today = M.mean(0)
         n = summ["nodes"][node]
         m = META[keyname]
+        pnv = summ["per_node_validation"][node]
         comp = []
         for fn in FUNCS:
             ix = func_idx[fn]
@@ -158,14 +161,13 @@ def main():
         top = np.argsort(-gap)[:14]
         targets.append({**m, "tips": len(vs), "families_considered": len(fams),
             "reduced_lineage": keyname in ("Rickettsiales",),
-            # One leave-tips-out test was run, over the whole class. The orders inherit it, so it is
-            # flagged as shared: it is NOT that order's own score.
-            "validation": {"reconstruction": summ["leave_tips_out_auroc"]["reconstruction"],
-                           "baseline": summ["leave_tips_out_auroc"]["alpha_frequency"],
-                           "baseline_label": "현생 빈도(계통수 없음)",
-                           "shared": keyname != "Alphaproteobacteria",
-                           "shared_with": "알파프로테오박테리아 전체",
-                           "extra": {"가장 가까운 친척": summ["leave_tips_out_auroc"]["nearest_tip"]}},
+            # Each node is now scored on its own tips (summary["per_node_validation"]).
+            "validation": {"reconstruction": pnv["reconstruction"], "baseline": pnv["clade_frequency"],
+                           "baseline_label": "현생 빈도(계통수 없음)", "shared": False,
+                           "margin": round(pnv["reconstruction"] - pnv["clade_frequency"], 4),
+                           "n_hidden": pnv["n_hidden"],
+                           "extra": {"분류군 전체 기준 복원": summ["leave_tips_out_auroc"]["reconstruction"],
+                                     "가장 가까운 친척": summ["leave_tips_out_auroc"]["nearest_tip"]}},
             "expected_families": round(n["expected_families"]),
             "tips_with_profile": int(M.shape[0]), "today_median_families": int(np.median(M.sum(1))),
             "today_min_families": int(M.sum(1).min()), "today_max_families": int(M.sum(1).max()),
@@ -207,7 +209,9 @@ def main():
         "tips": a["clade_tips"], "families_considered": a["families_considered"],
         "validation": {"reconstruction": a["leave_tips_out_auroc"]["reconstruction"],
                        "baseline": a["leave_tips_out_auroc"]["clade_frequency"],
-                       "baseline_label": "현생 빈도(계통수 없음)", "shared": False, "extra": {}},
+                       "baseline_label": "현생 빈도(계통수 없음)", "shared": False,
+                       "margin": round(a["leave_tips_out_auroc"]["reconstruction"]
+                                       - a["leave_tips_out_auroc"]["clade_frequency"], 4), "extra": {}},
         "expected_families": None,
         "today_median_families": None, "today_min_families": None, "today_max_families": None,
         "confident": a["n_confident_families"], "uncertain": a["n_uncertain_families"],
