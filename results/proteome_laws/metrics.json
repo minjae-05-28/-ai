@@ -1,0 +1,569 @@
+{
+ "temperature": {
+  "random_5fold": {
+   "n": 7253,
+   "n_orders": 180,
+   "metric": "MAE (deg C)",
+   "scores": {
+    "mean": 6.1513,
+    "taxonomy": 2.5764,
+    "composition": 4.3874,
+    "pfam": 2.6846,
+    "composition+pfam": 2.6047
+   }
+  },
+  "leave_order_out": {
+   "n": 7253,
+   "n_orders": 180,
+   "metric": "MAE (deg C)",
+   "scores": {
+    "mean": 6.1993,
+    "taxonomy": 5.5922,
+    "composition": 5.0001,
+    "pfam": 3.6522,
+    "composition+pfam": 3.4673
+   },
+   "composition - taxonomy": {
+    "mean": -0.5921,
+    "ci95": [
+     -2.181,
+     0.6987
+    ]
+   },
+   "pfam - taxonomy": {
+    "mean": -1.94,
+    "ci95": [
+     -3.7571,
+     -0.683
+    ]
+   },
+   "composition+pfam - taxonomy": {
+    "mean": -2.1249,
+    "ci95": [
+     -4.0506,
+     -0.8447
+    ]
+   },
+   "composition+pfam - composition": {
+    "mean": -1.5329,
+    "ci95": [
+     -2.2396,
+     -0.91
+    ]
+   }
+  },
+  "composition_coefficients": {
+   "ivywrel": 5.645,
+   "cvp": 1.6434,
+   "acidic_excess": 0.5287,
+   "n_side": -1.7241,
+   "gravy": 0.3352,
+   "fymink": 0.4681,
+   "median_pi": 3.2292
+  },
+  "pfam_top": {
+   "positive": [
+    [
+     "zf_Rg",
+     "Reverse gyrase zinc finger",
+     0.604
+    ],
+    [
+     "SDH_protease",
+     "ClpP-like SDH-type serine proteinase",
+     0.573
+    ],
+    [
+     "Endonuclease_5",
+     "Endonuclease V",
+     0.5
+    ],
+    [
+     "Methyltr_RsmF_N",
+     "N-terminal domain of 16S rRNA methyltransferase RsmF",
+     0.472
+    ],
+    [
+     "HSP20",
+     "Hsp20/alpha crystallin family",
+     0.47
+    ],
+    [
+     "YjbQ",
+     "UPF0047 protein YjbQ-like",
+     0.44
+    ],
+    [
+     "Methyltranf_PUA",
+     "Methyltransferase RsmF PUA domain",
+     0.421
+    ],
+    [
+     "Carb_kinase",
+     "NAD(P)H-hydrate dehydratase",
+     0.407
+    ],
+    [
+     "ATPase",
+     "KaiC",
+     0.401
+    ],
+    [
+     "HerA_C",
+     "Helicase HerA-like C-terminal",
+     0.388
+    ],
+    [
+     "SAM_HAT_N",
+     "SAM hydroxide adenosyltransferase N-terminal domain",
+     0.382
+    ],
+    [
+     "Archease",
+     "Archease protein family (MTH1598/TM1083)",
+     0.382
+    ]
+   ],
+   "negative": [
+    [
+     "DUF2196",
+     "Uncharacterized conserved protein (DUF2196)",
+     -1.01
+    ],
+    [
+     "Pro_isomerase",
+     "Cyclophilin type peptidyl-prolyl cis-trans isomerase/CLD",
+     -0.788
+    ],
+    [
+     "OpuAC",
+     "Substrate binding domain of ABC-type glycine betaine transport system",
+     -0.623
+    ],
+    [
+     "HRDC",
+     "HRDC domain",
+     -0.536
+    ],
+    [
+     "Exo_endo_phos",
+     "Endonuclease/Exonuclease/phosphatase family",
+     -0.459
+    ],
+    [
+     "PMSR",
+     "Peptide methionine sulfoxide reductase",
+     -0.44
+    ],
+    [
+     "Sulfate_transp",
+     "Sulfate permease family",
+     -0.434
+    ],
+    [
+     "Pro_CA",
+     "Carbonic anhydrase",
+     -0.424
+    ],
+    [
+     "SelR",
+     "SelR domain",
+     -0.423
+    ],
+    [
+     "Ice_binding",
+     "Ice-binding-like",
+     -0.418
+    ],
+    [
+     "HI0933_like",
+     "HI0933-like protein Rossmann domain",
+     -0.398
+    ],
+    [
+     "RF3_C",
+     "Class II release factor RF3, C-terminal domain",
+     -0.387
+    ]
+   ]
+  }
+ },
+ "oxygen": {
+  "random_5fold": {
+   "n": 5363,
+   "n_orders": 177,
+   "metric": "AUROC",
+   "scores": {
+    "mean": 0.5,
+    "taxonomy": 0.9698,
+    "composition": 0.949,
+    "pfam": 0.9831,
+    "composition+pfam": 0.9845
+   }
+  },
+  "leave_order_out": {
+   "n": 5363,
+   "n_orders": 177,
+   "metric": "AUROC",
+   "scores": {
+    "mean": 0.5,
+    "taxonomy": 0.8297,
+    "composition": 0.9232,
+    "pfam": 0.9776,
+    "composition+pfam": 0.9773
+   },
+   "composition - taxonomy": {
+    "mean": 0.0936,
+    "ci95": [
+     0.0386,
+     0.1837
+    ]
+   },
+   "pfam - taxonomy": {
+    "mean": 0.1479,
+    "ci95": [
+     0.0729,
+     0.2804
+    ]
+   },
+   "composition+pfam - taxonomy": {
+    "mean": 0.1477,
+    "ci95": [
+     0.0715,
+     0.2792
+    ]
+   },
+   "composition+pfam - composition": {
+    "mean": 0.0541,
+    "ci95": [
+     0.0239,
+     0.1101
+    ]
+   }
+  },
+  "composition_coefficients": {
+   "ivywrel": -0.0498,
+   "cvp": -1.5399,
+   "acidic_excess": 0.8501,
+   "n_side": 0.2958,
+   "gravy": -0.1422,
+   "fymink": -1.5993,
+   "median_pi": 0.6366
+  },
+  "pfam_top": {
+   "positive": [
+    [
+     "Ribonuc_red_sm",
+     "Ribonucleotide reductase, small chain",
+     0.225
+    ],
+    [
+     "Cu-oxidase_3",
+     "Multicopper oxidase",
+     0.206
+    ],
+    [
+     "Cu-oxidase_2",
+     "Multicopper oxidase",
+     0.181
+    ],
+    [
+     "GSHPx",
+     "Glutathione peroxidase",
+     0.177
+    ],
+    [
+     "GmrSD_N",
+     "GmrSD restriction endonuclease, N-terminal domain",
+     0.172
+    ],
+    [
+     "Thioredox_DsbH",
+     "Protein of unknown function, DUF255",
+     0.166
+    ],
+    [
+     "ParD_antitoxin",
+     "Bacterial antitoxin of ParD toxin-antitoxin type II system and RHH",
+     0.166
+    ],
+    [
+     "SCO1-SenC",
+     "SCO1/SenC",
+     0.157
+    ],
+    [
+     "Catalase-rel",
+     "Catalase-related immune-responsive",
+     0.157
+    ],
+    [
+     "RecR_ZnF",
+     "RecR, Cys4-zinc finger domain",
+     0.155
+    ],
+    [
+     "TENA_THI-4",
+     "TENA/THI-4/PQQC family",
+     0.154
+    ],
+    [
+     "OsmC",
+     "OsmC-like protein",
+     0.154
+    ]
+   ],
+   "negative": [
+    [
+     "HTH_24",
+     "Winged helix-turn-helix DNA-binding",
+     -0.18
+    ],
+    [
+     "ApbE",
+     "ApbE family",
+     -0.179
+    ],
+    [
+     "LytTR",
+     "LytTr DNA-binding domain",
+     -0.178
+    ],
+    [
+     "DUF3800",
+     "Protein of unknown function (DUF3800)",
+     -0.172
+    ],
+    [
+     "Cyt_bd_oxida_I",
+     "Cytochrome bd terminal oxidase subunit I",
+     -0.159
+    ],
+    [
+     "GyrI-like",
+     "GyrI-like small molecule binding domain",
+     -0.159
+    ],
+    [
+     "Thioredoxin_3",
+     "Thioredoxin domain",
+     -0.158
+    ],
+    [
+     "RUBY_RBDX",
+     "Rubrerythrin, rubredoxin-like domain",
+     -0.147
+    ],
+    [
+     "Y1_Tnp",
+     "Transposase IS200 like",
+     -0.146
+    ],
+    [
+     "AAA_30",
+     "AAA domain",
+     -0.145
+    ],
+    [
+     "HepT-like",
+     "Ribonuclease HepT-like",
+     -0.144
+    ],
+    [
+     "Cadherin_4",
+     "Bacterial cadherin-like domain",
+     -0.141
+    ]
+   ]
+  }
+ },
+ "host": {
+  "random_5fold": {
+   "n": 5851,
+   "n_orders": 180,
+   "metric": "AUROC",
+   "scores": {
+    "mean": 0.5,
+    "taxonomy": 0.8476,
+    "composition": 0.755,
+    "pfam": 0.8922,
+    "composition+pfam": 0.8925
+   }
+  },
+  "leave_order_out": {
+   "n": 5851,
+   "n_orders": 180,
+   "metric": "AUROC",
+   "scores": {
+    "mean": 0.5,
+    "taxonomy": 0.4849,
+    "composition": 0.6739,
+    "pfam": 0.8405,
+    "composition+pfam": 0.8431
+   },
+   "composition - taxonomy": {
+    "mean": 0.1891,
+    "ci95": [
+     0.0986,
+     0.2571
+    ]
+   },
+   "pfam - taxonomy": {
+    "mean": 0.3556,
+    "ci95": [
+     0.2569,
+     0.4335
+    ]
+   },
+   "composition+pfam - taxonomy": {
+    "mean": 0.3582,
+    "ci95": [
+     0.2592,
+     0.4363
+    ]
+   },
+   "composition+pfam - composition": {
+    "mean": 0.1691,
+    "ci95": [
+     0.0958,
+     0.237
+    ]
+   }
+  },
+  "composition_coefficients": {
+   "ivywrel": -0.5374,
+   "cvp": -0.0257,
+   "acidic_excess": -0.6257,
+   "n_side": 0.4517,
+   "gravy": 0.2499,
+   "fymink": 1.1267,
+   "median_pi": -0.7037
+  },
+  "pfam_top": {
+   "positive": [
+    [
+     "PDZ",
+     "PDZ domain",
+     0.161
+    ],
+    [
+     "Acetyltransf_4",
+     "Acetyltransferase (GNAT) domain",
+     0.147
+    ],
+    [
+     "YadA_head",
+     "YadA head domain repeat (2 copies)",
+     0.142
+    ],
+    [
+     "NUDIX-like",
+     "NADH pyrophosphatase-like rudimentary NUDIX domain",
+     0.117
+    ],
+    [
+     "TetR_C_13_2",
+     "Transcriptional regulator LmrA/YxaF-like, C-terminal domain",
+     0.113
+    ],
+    [
+     "NMN_transporter",
+     "Nicotinamide mononucleotide transporter",
+     0.112
+    ],
+    [
+     "3-dmu-9_3-mt",
+     "3-demethylubiquinone-9 3-methyltransferase",
+     0.106
+    ],
+    [
+     "MRJP",
+     "Major royal jelly protein",
+     0.105
+    ],
+    [
+     "LrgA",
+     "LrgA family",
+     0.103
+    ],
+    [
+     "BCCT",
+     "BCCT, betaine/carnitine/choline family transporter",
+     0.103
+    ],
+    [
+     "QueH",
+     "Epoxyqueuosine reductase QueH",
+     0.101
+    ],
+    [
+     "Peptidase_S78",
+     "Caudovirus prohead serine protease",
+     0.098
+    ]
+   ],
+   "negative": [
+    [
+     "Polyketide_cyc2",
+     "Polyketide cyclase / dehydrase and lipid transport",
+     -0.153
+    ],
+    [
+     "GSDH",
+     "Glucose / Sorbosone dehydrogenase",
+     -0.127
+    ],
+    [
+     "YceI",
+     "YceI-like domain",
+     -0.124
+    ],
+    [
+     "CheB_methylest",
+     "CheB methylesterase",
+     -0.115
+    ],
+    [
+     "DUF3224",
+     "Protein of unknown function (DUF3224)",
+     -0.115
+    ],
+    [
+     "p450",
+     "Cytochrome P450",
+     -0.114
+    ],
+    [
+     "Cadherin_4",
+     "Bacterial cadherin-like domain",
+     -0.11
+    ],
+    [
+     "PRC",
+     "PRC-barrel domain",
+     -0.109
+    ],
+    [
+     "Glyco_hydro_94",
+     "Glycosyl hydrolase 94 superfamily, catalytic domain",
+     -0.108
+    ],
+    [
+     "ACAS_N",
+     "Acetyl-coenzyme A synthetase N-terminus",
+     -0.106
+    ],
+    [
+     "MR_MLE_N",
+     "Mandelate racemase / muconate lactonizing enzyme, N-terminal domain",
+     -0.106
+    ],
+    [
+     "Methyltransf_31",
+     "Methyltransferase domain",
+     -0.106
+    ]
+   ]
+  }
+ }
+}
