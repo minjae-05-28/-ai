@@ -290,3 +290,23 @@
 | insect_endosymbiont | *Serratia symbiotica* | NZ_CP050855.1 |
 | insect_endosymbiont | *Sodalis glossinidius str. 'morsitans'* | AP008232.1 |
 | insect_endosymbiont | *Wigglesworthia glossinidia endosymbiont of Glossina morsitans morsitans (Yale colony)* | CP003315.1 |
+
+## Large-scale public layer (October 2026)
+
+| 데이터 | 출처 | 규모 | 위치 |
+|---|---|---|---|
+| 세균·고세균 형질 | Madin 외 2020 (CC BY 4.0) | 14,893종 | `data/traits/` |
+| GTDB 대표 유전체 형질(분류, GC, 크기, 코딩 밀도, CheckM2) | GTDB 2026년 4월판 | 199,923종 (세균 189,801, 고세균 10,122; 고품질 90,959) | `data/gtdb/species_reps.tsv.gz` |
+| UniProt 참조 단백질체 Pfam + 아미노산 조성 | UniProt(InterPro가 미리 계산한 Pfam) | 세균·고세균·균류 참조 단백질체 전체 | `data/uniprot/shards/` |
+
+**UniProt Pfam과 이 프로젝트의 HMMER 프로필 비교** (같은 종 4개):
+
+| 종 | UniProt | HMMER | 공통 | Jaccard | 복제 수 상관 |
+|---|---|---|---|---|---|
+| Bacillus subtilis | 2,890 | 3,136 | 2,884 | 0.92 | 0.89 |
+| Saccharomyces cerevisiae | 4,214 | 4,413 | 4,210 | 0.95 | 0.94 |
+| Schizosaccharomyces pombe | 3,815 | 3,910 | 3,706 | 0.92 | 0.91 |
+| Escherichia coli | 3,294 | 3,625 | 3,049 | 0.79 | 0.84 |
+
+HMMER가 유전자군을 200–600개 더 찾고(UniProt은 약한 도메인을 덜 붙임), 복제 수 중앙 비율은 1.00입니다.
+대장균은 균주가 달라 일치가 낮습니다(UniProt은 K-12). **두 데이터셋은 섞지 않고** 대규모 분석에만 UniProt을 씁니다.
