@@ -153,13 +153,26 @@ def trans(t, r, pi):
     return 1 - p01, p01, p10, 1 - p10  # P00, P01, P10, P11
 
 
-def loglik_grid(order, children, length, tipX, r, pi, root=None):
+def tip_pair(x, c):
+    """What a tip's observation says about its true state.
+
+    An incomplete proteome misses a share of the genes it really has, so an observed absence is
+    only evidence of absence in proportion to how complete the proteome is: with completeness c,
+    P(observed absent | present) = 1 - c. An observed presence is never a false positive.
+    c = 1 returns the plain indicator, so runs without completeness are unchanged.
+    """
+    return 1 - x, x if c is None else x * np.float32(c) + (1 - x) * np.float32(1 - c)
+
+
+def loglik_grid(order, children, length, tipX, r, pi, root=None, comp=None):
     """Log-likelihood per (grid point, family). tipX: node -> (F,) presence (bool) or None (internal)."""
     msg, logs = {}, 0.0
     for v in order:
         if tipX.get(v) is not None:
             x = tipX[v][None, :].astype(np.float32)
-            L0, L1 = np.broadcast_to(1 - x, r.shape[:1] + x.shape[1:]).copy(), np.broadcast_to(x, r.shape[:1] + x.shape[1:]).copy()
+            m0, m1 = tip_pair(x, None if comp is None else comp.get(v))
+            L0, L1 = (np.broadcast_to(m0, r.shape[:1] + x.shape[1:]).copy(),
+                      np.broadcast_to(m1, r.shape[:1] + x.shape[1:]).copy())
         else:
             L0 = np.ones(r.shape[:1] + (pi.shape[-1],), dtype=np.float32)
             L1 = L0.copy()
@@ -177,7 +190,7 @@ def loglik_grid(order, children, length, tipX, r, pi, root=None):
     return logs + np.log((1 - rho) * L0 + rho * L1)
 
 
-def marginals(order, children, parent, length, tipX, r, pi, root=None):
+def marginals(order, children, parent, length, tipX, r, pi, root=None, comp=None):
     """Posterior P(present) at every node, per family (r, pi: (F,))."""
     n = len(parent)
     F = pi.shape[-1]
@@ -185,7 +198,7 @@ def marginals(order, children, parent, length, tipX, r, pi, root=None):
     for v in order:
         if tipX.get(v) is not None:
             x = tipX[v].astype(np.float32)
-            down[v, 0], down[v, 1] = 1 - x, x
+            down[v, 0], down[v, 1] = tip_pair(x, None if comp is None else comp.get(v))
         elif not children[v]:
             down[v] = 1.0  # masked tip: no data
         else:
@@ -249,6 +262,8 @@ def load_tips(n_outgroup, seed=0, min_busco=0.0):
                 b = re.search(r"C:([\d.]+)%", p.get("busco") or "")
                 if min_busco and (not b or float(b.group(1)) < min_busco):
                     continue  # incomplete proteomes read as gene loss
+                if len(p["pfam"]) < 100:
+                    continue  # UniProt keeps the record but not the sequences for some proteomes
                 pfam[k] = set(p["pfam"])
     alpha = [k for k in pfam if "c__Alphaproteobacteria" in reps[k][1]]
     gamma = sorted(k for k in pfam if "c__Gammaproteobacteria" in reps[k][1])
@@ -283,6 +298,9 @@ def main():
     ap.add_argument("--min-busco", type=float, default=0.0, help="drop proteomes below this BUSCO completeness")
     ap.add_argument("--tag", default="")
     ap.add_argument("--save-law", action="store_true")
+    ap.add_argument("--completeness", action="store_true",
+                    help="model incomplete proteomes as dropout in the likelihood "
+                         "(validated in results/quality_correction/summary.json)")
     args = ap.parse_args()
     if args.save_law:
         save()
@@ -313,6 +331,27 @@ def main():
         X[v] = x
     print(f"{len(fams)} Pfam families in >= {args.min_tips} tips", flush=True)
 
+    # Genome quality as an observation model: an incomplete proteome misses genes it really has.
+    # Scored within the clade and within the outgroup separately, because a marker set only means
+    # something among relatives (across distant lineages "missing" and "never had it" look alike).
+    comp = None
+    if args.completeness:
+        from genome_quality import completeness_for
+
+        comp, unscored = {}, []
+        groups = {"alpha": [v for v in tip_of if "c__Alphaproteobacteria" in tips[tip_of[v]][1]]}
+        groups["outgroup"] = [v for v in tip_of if v not in set(groups["alpha"])]
+        for gname, vs in groups.items():
+            scores, mk = completeness_for({v: tips[tip_of[v]][2] for v in vs}) if len(vs) >= 8 else ({}, [])
+            if not mk:
+                unscored.append(gname)
+                continue
+            comp.update({v: max(float(c), 0.05) for v, c in scores.items()})
+            print(f"  completeness ({gname}): {len(mk)} markers, median "
+                  f"{np.median([scores[v] for v in vs]):.3f}, lowest {min(scores.values()):.3f}", flush=True)
+        if unscored:
+            print(f"  ::warning:: no completeness score for {unscored}; those tips stay at 1.0", flush=True)
+
     # Per-family rate and stationary frequency by grid maximum likelihood.
     R = np.array([0.03, 0.1, 0.3, 1.0, 3.0, 10.0], dtype=np.float32)
     # pi = gain / (gain + loss); loss_biased keeps gain <= 0.1 x loss, i.e. pi <= 1/11.
@@ -328,7 +367,7 @@ def main():
         sl = slice(lo, lo + 1500)
         Xs = {v: x[sl] for v, x in X.items()}
         ll = loglik_grid(order, children, length, Xs, gr, np.broadcast_to(gp, (gp.shape[0], len(range(*sl.indices(len(fams)))))),
-                         root=root_prior)
+                         root=root_prior, comp=comp)
         k = np.argmax(ll, axis=0)
         best_ll[sl], best_r[sl], best_pi[sl] = ll[k, np.arange(ll.shape[1])], gr[k, 0], gp[k, 0]
         print(f"  rates fitted for families {lo}-{min(lo + 1500, len(fams))}", flush=True)
@@ -338,7 +377,7 @@ def main():
     alpha_tips = [v for v, a in tip_of.items() if "c__Alphaproteobacteria" in tips[a][1]]
     masked = set(rng.choice(alpha_tips, min(args.mask, len(alpha_tips) // 5), replace=False).tolist())
     Xm = {v: (None if v in masked else x) for v, x in X.items()}
-    post_m = marginals(order, children, parent, length, Xm, best_r, best_pi, root=root_prior)
+    post_m = marginals(order, children, parent, length, Xm, best_r, best_pi, root=root_prior, comp=comp)
     alpha_freq = np.mean([X[v] for v in alpha_tips if v not in masked], axis=0)
     # nearest unmasked tip by path length
     depth = np.zeros(len(parent))
@@ -374,7 +413,7 @@ def main():
     print("leave-tips-out AUROC (presence of each family in a hidden species):", val, flush=True)
 
     # Full reconstruction.
-    post = marginals(order, children, parent, length, X, best_r, best_pi, root=root_prior)
+    post = marginals(order, children, parent, length, X, best_r, best_pi, root=root_prior, comp=comp)
 
     def mrca(nodes):
         nodes = list(nodes)
@@ -400,10 +439,34 @@ def main():
     for o in ("o__Rickettsiales", "o__Holosporales", "o__Pelagibacterales", "o__Rhodospirillales", "o__Caulobacterales"):
         if len(by_order.get(o, [])) >= 2:
             targets[f"{o[3:]} (common ancestor)"] = mrca(by_order[o])
+    # Each target node gets its OWN leave-tips-out score. Before this the orders inherited the
+    # class-wide number, which says nothing about how well a 40-tip order is reconstructed.
+    per_node = {}
+    for name, members in [("Alphaproteobacteria (common ancestor)", alpha_tips)] + [
+            (f"{o[3:]} (common ancestor)", by_order[o]) for o in by_order if f"{o[3:]} (common ancestor)" in targets]:
+        pool = list(members)
+        if len(pool) < 6:
+            continue
+        rng2 = np.random.default_rng(7)
+        scores = []
+        for rep in range(3):
+            hid = set(rng2.choice(pool, max(2, len(pool) // 5), replace=False).tolist())
+            Xh = {v: (None if v in hid else x) for v, x in X.items()}
+            ph = marginals(order, children, parent, length, Xh, best_r, best_pi, root=root_prior, comp=comp)
+            freq_h = np.mean([X[v] for v in pool if v not in hid], axis=0)
+            for v in hid:
+                scores.append((auroc(ph[v], X[v]), auroc(freq_h, X[v])))
+        per_node[name] = {"reconstruction": round(float(np.nanmean([a for a, _ in scores])), 4),
+                          "clade_frequency": round(float(np.nanmean([b for _, b in scores])), 4),
+                          "n_hidden": len(scores), "n_tips": len(pool)}
+        print(f"  per-node validation {name}: {per_node[name]}", flush=True)
+
     func, meta = functions_of(fams)
     summary = {"tips": len(tip_of), "alphaproteobacteria": len(alpha_tips),
                "alpha_orders": {o: len(v) for o, v in sorted(by_order.items(), key=lambda t: -len(t[1]))},
-               "families": len(fams), "leave_tips_out_auroc": val, "n_masked": len(rows), "nodes": {}}
+               "families": len(fams), "leave_tips_out_auroc": val, "n_masked": len(rows),
+               "completeness_model": bool(args.completeness),
+               "per_node_validation": per_node, "nodes": {}}
     for name, node in targets.items():
         p = post[node]
         present = np.flatnonzero(p >= 0.9)
@@ -420,6 +483,7 @@ def main():
                                                round(float(p[j]), 3), round(float(alpha_share[j]), 3))
                                               for j in lost_since), key=lambda t: -t[2])[:40],
             "positive_control": {g: (round(float(p[col[f]]), 3) if f in col else None) for g, f in RECLINOMONAS_CORE.items()},
+            "validation": per_node.get(name),
         }
         pc = [x for x in summary["nodes"][name]["positive_control"].values() if x is not None]
         print(f"\n{name}: ~{p.sum():.0f} families expected, {len(present)} with P>=0.9, {len(uncertain)} uncertain; "
