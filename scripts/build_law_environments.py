@@ -282,6 +282,20 @@ def findings_for(law):
         return {k: val.get(k) for k in ("containment_over_random_median", "share_above_random")}
     if lid == "coloss_modules_v1":
         return {"gain_vs_additive": val.get("gain_vs_additive")}
+    if lid.startswith("loss_prediction"):
+        out = {}
+        for tag, sm in val.items():
+            out[tag] = {k: sm[k]["mean"] for k in ("law.auroc", "memorisation.auroc", "propensity20k.auroc",
+                                                   "relatives.auroc", "relatives_other_genera.auroc",
+                                                   "no_change.fate", "relatives_other_genera.fate") if k in sm}
+        return out
+    if lid.startswith("proteome_traits"):
+        out = {}
+        for t in ("temperature", "oxygen", "host"):
+            lo = val.get(t, {}).get("leave_order_out", {})
+            if "scores" in lo:
+                out[t] = {"처음 보는 목": lo["scores"], "metric": lo["metric"]}
+        return out
     if lid.startswith("genome_traits"):
         out = {}
         for t in ("temperature", "oxygen", "host"):
@@ -355,6 +369,13 @@ def card_for(law):
         card = {"catalogue": "laboratory", "envelope": {
             "조건": "실험실 배지(풍부 배지, 최소 배지)에서의 결실 생존·적합도. DEG + Fitness Browser + 분열효모 결실 목록"},
             "species_from": "law"}
+    elif lid.startswith("loss_prediction"):
+        card = prokaryote_envelope(sp(pro_pairs_now), pro_pairs_now)
+        card["species_from"] = "catalogue (extremophile pairs) + UniProt reference proteomes as relatives"
+    elif lid.startswith("proteome_traits"):
+        card = genome_traits_envelope()
+        card["catalogue"] = "UniProt reference proteomes + Madin 2020 (envelope shown for the GTDB-matched set)"
+        card["species_from"] = "UniProt x trait table"
     elif lid.startswith("genome_traits"):
         card = genome_traits_envelope()
         card["species_from"] = "GTDB x trait table (rebuilt with scripts/run_genome_laws.py load())"
@@ -427,7 +448,12 @@ def short_findings(card):
                     for a, b in v.items()]
         elif isinstance(v, dict) and "처음 보는 목" in v:
             sc = v["처음 보는 목"]
-            out.append(f"{k}: 법칙 {sc['law_linear']:.3f} / 암기 {sc['taxonomy']:.3f} / 평균 {sc['mean']:.3f} ({v['metric']})")
+            best = "law_linear" if "law_linear" in sc else "composition+pfam"
+            out.append(f"{k}: 법칙 {sc[best]:.3f} / 암기 {sc['taxonomy']:.3f} / 평균 {sc['mean']:.3f} ({v['metric']})")
+        elif isinstance(v, dict) and "relatives.auroc" in v:
+            out.append(f"{k}: 법칙 {v['law.auroc']:.3f} / 2만 종 성향 {v['propensity20k.auroc']:.3f} / "
+                       f"친척 {v['relatives.auroc']:.3f} (다른 속만 {v['relatives_other_genera.auroc']:.3f}) / "
+                       f"암기 {v['memorisation.auroc']:.3f} AUROC")
         elif k == "note" and isinstance(v, str):
             out.append(v)
     return "<br>".join(out[:7]) or "-"

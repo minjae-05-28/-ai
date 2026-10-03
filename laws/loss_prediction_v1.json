@@ -1,0 +1,683 @@
+{
+  "id": "loss_prediction_v1",
+  "scope": "Which ancestral gene families a bacterial/archaeal lineage loses when it moves to an extreme environment, scored on held-out lineages: the birth-death law against a per-family propensity estimated from ~18,000 UniProt reference proteomes, and against close relatives of the descendant.",
+  "model": "propensity20k = rank average of rarity across ~18,000 proteomes and within-genus absence rate, with the evaluated pair's genera removed (a law: properties of the family). relatives = share of the descendant's genus (or family) lacking the family, without its own and the proxy's species (a predictor, not a law: it reads the lineage's relatives). Combinations are rank averages.",
+  "feature_names": [
+    "rarity20k",
+    "turnover20k",
+    "relatives",
+    "relatives_other_genera"
+  ],
+  "data": {
+    "held_out_pairs": 54,
+    "lineages": 26,
+    "proteomes": "UniProt reference proteomes, bacteria + archaea"
+  },
+  "validation": {
+    "extremophiles": {
+      "n_pairs": 54,
+      "n_lineages": 26,
+      "pairs_with_relatives": 48,
+      "pairs_with_other_genera": 39,
+      "copies.auroc": {
+        "mean": 0.6173,
+        "ci95": [
+          0.6078,
+          0.6271
+        ]
+      },
+      "copies.fate": {
+        "mean": 0.6361,
+        "ci95": [
+          0.6115,
+          0.6606
+        ]
+      },
+      "memorisation.auroc": {
+        "mean": 0.8131,
+        "ci95": [
+          0.799,
+          0.8248
+        ]
+      },
+      "memorisation.fate": {
+        "mean": 0.764,
+        "ci95": [
+          0.745,
+          0.7825
+        ]
+      },
+      "law.auroc": {
+        "mean": 0.793,
+        "ci95": [
+          0.7708,
+          0.8134
+        ]
+      },
+      "law.fate": {
+        "mean": 0.7453,
+        "ci95": [
+          0.7204,
+          0.7692
+        ]
+      },
+      "no_axes_law.auroc": {
+        "mean": 0.7979,
+        "ci95": [
+          0.7801,
+          0.8141
+        ]
+      },
+      "no_axes_law.fate": {
+        "mean": 0.7469,
+        "ci95": [
+          0.7249,
+          0.7689
+        ]
+      },
+      "rarity20k.auroc": {
+        "mean": 0.7878,
+        "ci95": [
+          0.7495,
+          0.8223
+        ]
+      },
+      "rarity20k.fate": {
+        "mean": 0.7289,
+        "ci95": [
+          0.6983,
+          0.7583
+        ]
+      },
+      "turnover20k.auroc": {
+        "mean": 0.8192,
+        "ci95": [
+          0.8033,
+          0.8337
+        ]
+      },
+      "turnover20k.fate": {
+        "mean": 0.7548,
+        "ci95": [
+          0.7381,
+          0.7718
+        ]
+      },
+      "propensity20k.auroc": {
+        "mean": 0.825,
+        "ci95": [
+          0.7996,
+          0.8458
+        ]
+      },
+      "propensity20k.fate": {
+        "mean": 0.7598,
+        "ci95": [
+          0.7399,
+          0.7788
+        ]
+      },
+      "relatives.auroc": {
+        "mean": 0.9238,
+        "ci95": [
+          0.9081,
+          0.9356
+        ]
+      },
+      "relatives.fate": {
+        "mean": 0.8351,
+        "ci95": [
+          0.8096,
+          0.8583
+        ]
+      },
+      "relatives_other_genera.auroc": {
+        "mean": 0.8955,
+        "ci95": [
+          0.873,
+          0.9106
+        ]
+      },
+      "relatives_other_genera.fate": {
+        "mean": 0.8112,
+        "ci95": [
+          0.7869,
+          0.8319
+        ]
+      },
+      "law+propensity20k.auroc": {
+        "mean": 0.8366,
+        "ci95": [
+          0.8131,
+          0.8564
+        ]
+      },
+      "law+propensity20k.fate": {
+        "mean": 0.7668,
+        "ci95": [
+          0.7448,
+          0.788
+        ]
+      },
+      "law+relatives.auroc": {
+        "mean": 0.9246,
+        "ci95": [
+          0.9131,
+          0.9345
+        ]
+      },
+      "law+relatives.fate": {
+        "mean": 0.8358,
+        "ci95": [
+          0.8149,
+          0.8555
+        ]
+      },
+      "law+relatives_other_genera.auroc": {
+        "mean": 0.905,
+        "ci95": [
+          0.8944,
+          0.9137
+        ]
+      },
+      "law+relatives_other_genera.fate": {
+        "mean": 0.8174,
+        "ci95": [
+          0.7967,
+          0.8351
+        ]
+      },
+      "law+propensity20k+relatives.auroc": {
+        "mean": 0.9093,
+        "ci95": [
+          0.8936,
+          0.9218
+        ]
+      },
+      "law+propensity20k+relatives.fate": {
+        "mean": 0.8204,
+        "ci95": [
+          0.7982,
+          0.8415
+        ]
+      },
+      "no_change.fate": {
+        "mean": 0.7202,
+        "ci95": [
+          0.6822,
+          0.7635
+        ]
+      },
+      "no_change.fate (pairs with relatives)": {
+        "mean": 0.7184,
+        "ci95": [
+          0.68,
+          0.7621
+        ]
+      },
+      "propensity20k - law (auroc)": {
+        "mean": 0.032,
+        "ci95": [
+          0.0175,
+          0.0444
+        ]
+      },
+      "law+propensity20k - law (auroc)": {
+        "mean": 0.0436,
+        "ci95": [
+          0.0343,
+          0.0515
+        ]
+      },
+      "law+propensity20k - memorisation (auroc)": {
+        "mean": 0.0234,
+        "ci95": [
+          0.0108,
+          0.0361
+        ]
+      },
+      "relatives - law (auroc)": {
+        "mean": 0.1317,
+        "ci95": [
+          0.1115,
+          0.1547
+        ]
+      },
+      "law+relatives - law (auroc)": {
+        "mean": 0.1325,
+        "ci95": [
+          0.1157,
+          0.1513
+        ]
+      },
+      "law+relatives - memorisation (auroc)": {
+        "mean": 0.1138,
+        "ci95": [
+          0.1046,
+          0.1229
+        ]
+      },
+      "relatives_other_genera - law (auroc)": {
+        "mean": 0.104,
+        "ci95": [
+          0.0704,
+          0.1366
+        ]
+      },
+      "law+relatives_other_genera - law (auroc)": {
+        "mean": 0.1136,
+        "ci95": [
+          0.0925,
+          0.1362
+        ]
+      },
+      "law+relatives_other_genera - memorisation (auroc)": {
+        "mean": 0.0938,
+        "ci95": [
+          0.0826,
+          0.1026
+        ]
+      },
+      "law+propensity20k+relatives - memorisation (auroc)": {
+        "mean": 0.0985,
+        "ci95": [
+          0.0912,
+          0.1047
+        ]
+      },
+      "no_change.fate (pairs with other genera)": {
+        "mean": 0.7067,
+        "ci95": [
+          0.6742,
+          0.7509
+        ]
+      },
+      "law - no_change (fate)": {
+        "mean": 0.0251,
+        "ci95": [
+          -0.0176,
+          0.0621
+        ]
+      },
+      "law+propensity20k - no_change (fate)": {
+        "mean": 0.0466,
+        "ci95": [
+          0.0032,
+          0.0833
+        ]
+      },
+      "relatives - no_change (fate)": {
+        "mean": 0.1166,
+        "ci95": [
+          0.0774,
+          0.1517
+        ]
+      },
+      "law+relatives - no_change (fate)": {
+        "mean": 0.1174,
+        "ci95": [
+          0.0747,
+          0.1552
+        ]
+      },
+      "relatives_other_genera - no_change (fate)": {
+        "mean": 0.1044,
+        "ci95": [
+          0.0608,
+          0.1365
+        ]
+      },
+      "law+relatives_other_genera - no_change (fate)": {
+        "mean": 0.1107,
+        "ci95": [
+          0.0677,
+          0.1419
+        ]
+      },
+      "law+propensity20k+relatives - no_change (fate)": {
+        "mean": 0.102,
+        "ci95": [
+          0.0581,
+          0.14
+        ]
+      }
+    },
+    "extremophiles_consensus": {
+      "n_pairs": 54,
+      "n_lineages": 26,
+      "pairs_with_relatives": 48,
+      "pairs_with_other_genera": 39,
+      "copies.auroc": {
+        "mean": 0.6054,
+        "ci95": [
+          0.5916,
+          0.6175
+        ]
+      },
+      "copies.fate": {
+        "mean": 0.676,
+        "ci95": [
+          0.65,
+          0.7009
+        ]
+      },
+      "memorisation.auroc": {
+        "mean": 0.7878,
+        "ci95": [
+          0.772,
+          0.8003
+        ]
+      },
+      "memorisation.fate": {
+        "mean": 0.7756,
+        "ci95": [
+          0.7564,
+          0.7937
+        ]
+      },
+      "law.auroc": {
+        "mean": 0.7642,
+        "ci95": [
+          0.7376,
+          0.7872
+        ]
+      },
+      "law.fate": {
+        "mean": 0.7555,
+        "ci95": [
+          0.732,
+          0.7776
+        ]
+      },
+      "no_axes_law.auroc": {
+        "mean": 0.7701,
+        "ci95": [
+          0.7498,
+          0.7882
+        ]
+      },
+      "no_axes_law.fate": {
+        "mean": 0.7559,
+        "ci95": [
+          0.7345,
+          0.7764
+        ]
+      },
+      "rarity20k.auroc": {
+        "mean": 0.7723,
+        "ci95": [
+          0.7325,
+          0.8071
+        ]
+      },
+      "rarity20k.fate": {
+        "mean": 0.7471,
+        "ci95": [
+          0.7226,
+          0.7716
+        ]
+      },
+      "turnover20k.auroc": {
+        "mean": 0.7995,
+        "ci95": [
+          0.7802,
+          0.8158
+        ]
+      },
+      "turnover20k.fate": {
+        "mean": 0.7651,
+        "ci95": [
+          0.7471,
+          0.7821
+        ]
+      },
+      "propensity20k.auroc": {
+        "mean": 0.8076,
+        "ci95": [
+          0.7782,
+          0.83
+        ]
+      },
+      "propensity20k.fate": {
+        "mean": 0.7708,
+        "ci95": [
+          0.7509,
+          0.7886
+        ]
+      },
+      "relatives.auroc": {
+        "mean": 0.919,
+        "ci95": [
+          0.9007,
+          0.9325
+        ]
+      },
+      "relatives.fate": {
+        "mean": 0.8427,
+        "ci95": [
+          0.8211,
+          0.8637
+        ]
+      },
+      "relatives_other_genera.auroc": {
+        "mean": 0.8835,
+        "ci95": [
+          0.8552,
+          0.9032
+        ]
+      },
+      "relatives_other_genera.fate": {
+        "mean": 0.8203,
+        "ci95": [
+          0.7997,
+          0.8391
+        ]
+      },
+      "law+propensity20k.auroc": {
+        "mean": 0.818,
+        "ci95": [
+          0.7922,
+          0.8401
+        ]
+      },
+      "law+propensity20k.fate": {
+        "mean": 0.7769,
+        "ci95": [
+          0.7551,
+          0.7971
+        ]
+      },
+      "law+relatives.auroc": {
+        "mean": 0.9134,
+        "ci95": [
+          0.9006,
+          0.9253
+        ]
+      },
+      "law+relatives.fate": {
+        "mean": 0.8428,
+        "ci95": [
+          0.8242,
+          0.8611
+        ]
+      },
+      "law+relatives_other_genera.auroc": {
+        "mean": 0.8897,
+        "ci95": [
+          0.8752,
+          0.9013
+        ]
+      },
+      "law+relatives_other_genera.fate": {
+        "mean": 0.8251,
+        "ci95": [
+          0.8067,
+          0.8418
+        ]
+      },
+      "law+propensity20k+relatives.auroc": {
+        "mean": 0.8998,
+        "ci95": [
+          0.8819,
+          0.9138
+        ]
+      },
+      "law+propensity20k+relatives.fate": {
+        "mean": 0.8295,
+        "ci95": [
+          0.8101,
+          0.8491
+        ]
+      },
+      "no_change.fate": {
+        "mean": 0.7772,
+        "ci95": [
+          0.7416,
+          0.8152
+        ]
+      },
+      "no_change.fate (pairs with relatives)": {
+        "mean": 0.7772,
+        "ci95": [
+          0.741,
+          0.8182
+        ]
+      },
+      "propensity20k - law (auroc)": {
+        "mean": 0.0434,
+        "ci95": [
+          0.0223,
+          0.0622
+        ]
+      },
+      "law+propensity20k - law (auroc)": {
+        "mean": 0.0538,
+        "ci95": [
+          0.0407,
+          0.065
+        ]
+      },
+      "law+propensity20k - memorisation (auroc)": {
+        "mean": 0.0302,
+        "ci95": [
+          0.0174,
+          0.0436
+        ]
+      },
+      "relatives - law (auroc)": {
+        "mean": 0.1561,
+        "ci95": [
+          0.131,
+          0.1863
+        ]
+      },
+      "law+relatives - law (auroc)": {
+        "mean": 0.1504,
+        "ci95": [
+          0.1322,
+          0.173
+        ]
+      },
+      "law+relatives - memorisation (auroc)": {
+        "mean": 0.1279,
+        "ci95": [
+          0.1187,
+          0.1383
+        ]
+      },
+      "relatives_other_genera - law (auroc)": {
+        "mean": 0.1223,
+        "ci95": [
+          0.0813,
+          0.1641
+        ]
+      },
+      "law+relatives_other_genera - law (auroc)": {
+        "mean": 0.1285,
+        "ci95": [
+          0.1042,
+          0.1556
+        ]
+      },
+      "law+relatives_other_genera - memorisation (auroc)": {
+        "mean": 0.1049,
+        "ci95": [
+          0.0932,
+          0.115
+        ]
+      },
+      "law+propensity20k+relatives - memorisation (auroc)": {
+        "mean": 0.1143,
+        "ci95": [
+          0.106,
+          0.1217
+        ]
+      },
+      "no_change.fate (pairs with other genera)": {
+        "mean": 0.7718,
+        "ci95": [
+          0.7388,
+          0.8161
+        ]
+      },
+      "law - no_change (fate)": {
+        "mean": -0.0217,
+        "ci95": [
+          -0.0581,
+          0.0103
+        ]
+      },
+      "law+propensity20k - no_change (fate)": {
+        "mean": -0.0003,
+        "ci95": [
+          -0.0381,
+          0.0314
+        ]
+      },
+      "relatives - no_change (fate)": {
+        "mean": 0.0655,
+        "ci95": [
+          0.0285,
+          0.0966
+        ]
+      },
+      "law+relatives - no_change (fate)": {
+        "mean": 0.0656,
+        "ci95": [
+          0.027,
+          0.0979
+        ]
+      },
+      "relatives_other_genera - no_change (fate)": {
+        "mean": 0.0485,
+        "ci95": [
+          0.0065,
+          0.0786
+        ]
+      },
+      "law+relatives_other_genera - no_change (fate)": {
+        "mean": 0.0533,
+        "ci95": [
+          0.0122,
+          0.0841
+        ]
+      },
+      "law+propensity20k+relatives - no_change (fate)": {
+        "mean": 0.0523,
+        "ci95": [
+          0.0133,
+          0.0841
+        ]
+      }
+    }
+  },
+  "caveats": [
+    "relatives is not a law: it uses the descendant lineage's close relatives, the information the sibling ceiling showed cross-lineage laws cannot reach. Reported apart from the laws.",
+    "Some genus relatives are near-identical sister species split from the same species (e.g. Lactiplantibacillus argentoratensis, Bacteroides hominis agree with the truth almost as well as the descendant's own UniProt proteome, 0.94 vs 0.93 median). relatives_other_genera removes the descendant's and the proxy's genera and is the stricter number.",
+    "UniProt Pfam misses weak domains HMMER finds; families UniProt never annotates take the median score.",
+    "Fate accuracy removes the top-k families with k = the law's own predicted amount; this deterministic rule beats the stochastic forward simulation of run_forward_evolution.py.",
+    "With a consensus ancestor (proxy's own gains removed) the law falls from 0.793 to 0.764 AUROC while relatives stay at 0.919: part of the law's score came from families only the proxy carried.",
+    "Extremophiles only: the eukaryote parasites are mostly protists, which the UniProt layer (bacteria, archaea, fungi) does not cover."
+  ],
+  "contexts": {}
+}
