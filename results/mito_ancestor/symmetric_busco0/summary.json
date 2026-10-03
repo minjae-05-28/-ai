@@ -1,0 +1,1347 @@
+{
+ "tips": 2623,
+ "alphaproteobacteria": 2323,
+ "alpha_orders": {
+  "o__Rhizobiales": 767,
+  "o__Rhodobacterales": 589,
+  "o__Sphingomonadales": 416,
+  "o__Acetobacterales": 200,
+  "o__Caulobacterales": 124,
+  "o__Rickettsiales": 53,
+  "o__Rhodospirillales": 46,
+  "o__Azospirillales": 34,
+  "o__Kiloniellales": 16,
+  "o__Sneathiellales": 7,
+  "o__Dongiales": 6,
+  "o__Reyranellales": 5,
+  "o__Holosporales": 4,
+  "o__Thalassobaculales": 4,
+  "o__UBA8366": 4,
+  "o__CAJXXZ01": 3,
+  "o__Caedimonadales": 3,
+  "o__Elsterales": 3,
+  "o__Geminicoccales": 3,
+  "o__Zavarziniales": 3,
+  "o__Parvibaculales": 3,
+  "o__Pelagibacterales": 3,
+  "o__Paracaedibacterales": 2,
+  "o__Oceanibaculales": 2,
+  "o__DSM-16000": 2,
+  "o__Tistrellales": 2,
+  "o__Ferrovibrionales": 2,
+  "o__CGMCC-115125": 2,
+  "o__Micropepsales": 2,
+  "o__UBA2136": 1,
+  "o__CASFRQ01": 1,
+  "o__Rs-D84": 1,
+  "o__RF32": 1,
+  "o__UBA9655": 1,
+  "o__UBA6184": 1,
+  "o__Puniceispirillales": 1,
+  "o__Micavibrionales": 1,
+  "o__BOG-932": 1,
+  "o__ATCC43930": 1,
+  "o__Minwuiales": 1,
+  "o__RS24": 1,
+  "o__Futianiales": 1
+ },
+ "families": 9961,
+ "leave_tips_out_auroc": {
+  "reconstruction": 0.9847,
+  "alpha_frequency": 0.9624,
+  "nearest_tip": 0.9777
+ },
+ "n_masked": 300,
+ "nodes": {
+  "Alphaproteobacteria (common ancestor)": {
+   "n_tips_below": 2323,
+   "families_p_ge_0.9": 772,
+   "families_p_0.5_0.9": 683,
+   "expected_families": 1938.5,
+   "functions_top": [
+    [
+     "catalytic activity",
+     212
+    ],
+    [
+     "transferase activity",
+     71
+    ],
+    [
+     "helicase_nucleic",
+     60
+    ],
+    [
+     "DNA binding",
+     53
+    ],
+    [
+     "hydrolase activity",
+     48
+    ],
+    [
+     "structural molecule activity",
+     43
+    ],
+    [
+     "catalytic activity, acting on RNA",
+     42
+    ],
+    [
+     "organelle",
+     41
+    ],
+    [
+     "ribosome",
+     40
+    ],
+    [
+     "ligase activity",
+     31
+    ],
+    [
+     "RNA binding",
+     29
+    ],
+    [
+     "kinase",
+     27
+    ],
+    [
+     "amino acid metabolic process",
+     27
+    ],
+    [
+     "oxidoreductase activity",
+     26
+    ],
+    [
+     "catalytic activity, acting on DNA",
+     24
+    ]
+   ],
+   "present_but_rare_today": [
+    [
+     "CheZ",
+     "Chemotaxis phosphatase, CheZ",
+     0.999,
+     0.216
+    ],
+    [
+     "Fe-S_assembly",
+     "Iron-sulphur cluster assembly",
+     0.986,
+     0.036
+    ],
+    [
+     "Frataxin_Cyay",
+     "Frataxin-like domain",
+     0.975,
+     0.041
+    ],
+    [
+     "DjlA_TM",
+     "Co-chaperone DjlA transmembrane domain",
+     0.971,
+     0.197
+    ],
+    [
+     "HSCB_C",
+     "HSCB C-terminal oligomerisation domain",
+     0.966,
+     0.038
+    ],
+    [
+     "Glucosaminidase",
+     "Mannosyl-glycoprotein endo-beta-N-acetylglucosaminidase",
+     0.936,
+     0.074
+    ]
+   ],
+   "positive_control": {
+    "nad1": 0.654,
+    "nad2/4/5": 0.913,
+    "nad3": 0.652,
+    "nad6": 0.651,
+    "nad7": 0.654,
+    "nad9": 0.654,
+    "nad4L": 0.841,
+    "nad8": 0.965,
+    "cox1": 0.997,
+    "cox2": 0.177,
+    "cox3": 0.06,
+    "cob": 0.684,
+    "atp1/3": 1.0,
+    "atp6": 0.989,
+    "atp9": 0.983,
+    "rpoB": 0.967,
+    "rpoC": 0.967,
+    "rpoA": 0.983,
+    "secY": 0.989,
+    "tatC": 0.812,
+    "ccmB": 0.027,
+    "ccmC": 0.949,
+    "tufA": 1.0,
+    "rps12": null,
+    "rpl2": 0.989,
+    "rpl14": 0.989
+   }
+  },
+  "Rickettsiales (common ancestor)": {
+   "n_tips_below": 53,
+   "families_p_ge_0.9": 629,
+   "families_p_0.5_0.9": 307,
+   "expected_families": 1264.8,
+   "functions_top": [
+    [
+     "catalytic activity",
+     167
+    ],
+    [
+     "transferase activity",
+     55
+    ],
+    [
+     "helicase_nucleic",
+     44
+    ],
+    [
+     "DNA binding",
+     39
+    ],
+    [
+     "catalytic activity, acting on RNA",
+     33
+    ],
+    [
+     "structural molecule activity",
+     33
+    ],
+    [
+     "hydrolase activity",
+     32
+    ],
+    [
+     "organelle",
+     31
+    ],
+    [
+     "ribosome",
+     30
+    ],
+    [
+     "oxidoreductase activity",
+     28
+    ],
+    [
+     "ligase activity",
+     24
+    ],
+    [
+     "RNA binding",
+     23
+    ],
+    [
+     "transporter_channel",
+     19
+    ],
+    [
+     "amino acid metabolic process",
+     19
+    ],
+    [
+     "protease",
+     19
+    ]
+   ],
+   "present_but_rare_today": [
+    [
+     "Fe-S_assembly",
+     "Iron-sulphur cluster assembly",
+     1.0,
+     0.036
+    ],
+    [
+     "Frataxin_Cyay",
+     "Frataxin-like domain",
+     1.0,
+     0.041
+    ],
+    [
+     "PDDEXK_2",
+     "PD-(D/E)XK nuclease family transposase",
+     1.0,
+     0.014
+    ],
+    [
+     "Trp_repressor",
+     "Trp repressor protein",
+     1.0,
+     0.05
+    ],
+    [
+     "HTH_Rpn_C",
+     "Rpn/YhgA-like nuclease family, C-terminal HTH domain",
+     0.999,
+     0.01
+    ],
+    [
+     "TLC",
+     "TLC ATP/ADP transporter",
+     0.999,
+     0.021
+    ],
+    [
+     "HSCB_C",
+     "HSCB C-terminal oligomerisation domain",
+     0.998,
+     0.038
+    ],
+    [
+     "DUF2610",
+     "Domain of unknown function (DUF2610)",
+     0.997,
+     0.026
+    ],
+    [
+     "FliW",
+     "FliW protein",
+     0.995,
+     0.018
+    ],
+    [
+     "RP005_N",
+     "RP005 N-terminal alpha-helical domain",
+     0.994,
+     0.043
+    ],
+    [
+     "YMF19",
+     "Plant ATP synthase F0",
+     0.994,
+     0.016
+    ],
+    [
+     "DUF5915",
+     "Domain of unknown function (DUF5915)",
+     0.991,
+     0.037
+    ],
+    [
+     "Transposase_31",
+     "Putative transposase, YhgA-like",
+     0.991,
+     0.012
+    ],
+    [
+     "DUF2608",
+     "Protein of unknown function (DUF2608)",
+     0.984,
+     0.013
+    ],
+    [
+     "DUF2671",
+     "Protein of unknown function (DUF2671)",
+     0.983,
+     0.008
+    ],
+    [
+     "ABC_sub_bind",
+     "ABC transporter substrate binding protein",
+     0.946,
+     0.246
+    ],
+    [
+     "CheZ",
+     "Chemotaxis phosphatase, CheZ",
+     0.945,
+     0.216
+    ],
+    [
+     "DUF2748",
+     "Protein of unknown function (DUF2748)",
+     0.931,
+     0.006
+    ],
+    [
+     "LRR_6",
+     "Leucine Rich repeat",
+     0.91,
+     0.018
+    ]
+   ],
+   "positive_control": {
+    "nad1": 0.995,
+    "nad2/4/5": 0.97,
+    "nad3": 0.995,
+    "nad6": 0.995,
+    "nad7": 0.995,
+    "nad9": 0.995,
+    "nad4L": 0.95,
+    "nad8": 0.981,
+    "cox1": 1.0,
+    "cox2": 0.015,
+    "cox3": 0.002,
+    "cob": 0.707,
+    "atp1/3": 0.996,
+    "atp6": 0.994,
+    "atp9": 0.92,
+    "rpoB": 0.903,
+    "rpoC": 0.911,
+    "rpoA": 0.92,
+    "secY": 0.994,
+    "tatC": 0.963,
+    "ccmB": 0.008,
+    "ccmC": 1.0,
+    "tufA": 1.0,
+    "rps12": null,
+    "rpl2": 0.994,
+    "rpl14": 0.994
+   }
+  },
+  "Holosporales (common ancestor)": {
+   "n_tips_below": 4,
+   "families_p_ge_0.9": 534,
+   "families_p_0.5_0.9": 386,
+   "expected_families": 1537.8,
+   "functions_top": [
+    [
+     "catalytic activity",
+     152
+    ],
+    [
+     "helicase_nucleic",
+     55
+    ],
+    [
+     "transferase activity",
+     50
+    ],
+    [
+     "DNA binding",
+     48
+    ],
+    [
+     "catalytic activity, acting on RNA",
+     41
+    ],
+    [
+     "structural molecule activity",
+     40
+    ],
+    [
+     "organelle",
+     38
+    ],
+    [
+     "ribosome",
+     37
+    ],
+    [
+     "hydrolase activity",
+     36
+    ],
+    [
+     "ligase activity",
+     30
+    ],
+    [
+     "RNA binding",
+     27
+    ],
+    [
+     "catalytic activity, acting on DNA",
+     25
+    ],
+    [
+     "amino acid metabolic process",
+     23
+    ],
+    [
+     "tRNA metabolic process",
+     22
+    ],
+    [
+     "DNA-templated transcription",
+     22
+    ]
+   ],
+   "present_but_rare_today": [
+    [
+     "TLC",
+     "TLC ATP/ADP transporter",
+     0.998,
+     0.021
+    ],
+    [
+     "Glucosaminidase",
+     "Mannosyl-glycoprotein endo-beta-N-acetylglucosaminidase",
+     0.954,
+     0.074
+    ],
+    [
+     "YMF19",
+     "Plant ATP synthase F0",
+     0.954,
+     0.016
+    ]
+   ],
+   "positive_control": {
+    "nad1": 0.112,
+    "nad2/4/5": 0.846,
+    "nad3": 0.112,
+    "nad6": 0.112,
+    "nad7": 0.112,
+    "nad9": 0.112,
+    "nad4L": 0.646,
+    "nad8": 0.792,
+    "cox1": 0.025,
+    "cox2": 0.051,
+    "cox3": 0.003,
+    "cob": 0.188,
+    "atp1/3": 1.0,
+    "atp6": 0.985,
+    "atp9": 0.983,
+    "rpoB": 0.96,
+    "rpoC": 0.96,
+    "rpoA": 0.983,
+    "secY": 0.985,
+    "tatC": 0.033,
+    "ccmB": 0.011,
+    "ccmC": 0.082,
+    "tufA": 1.0,
+    "rps12": null,
+    "rpl2": 0.985,
+    "rpl14": 0.985
+   }
+  },
+  "Pelagibacterales (common ancestor)": {
+   "n_tips_below": 3,
+   "families_p_ge_0.9": 1097,
+   "families_p_0.5_0.9": 487,
+   "expected_families": 1848.2,
+   "functions_top": [
+    [
+     "catalytic activity",
+     307
+    ],
+    [
+     "transferase activity",
+     94
+    ],
+    [
+     "oxidoreductase activity",
+     62
+    ],
+    [
+     "helicase_nucleic",
+     59
+    ],
+    [
+     "hydrolase activity",
+     57
+    ],
+    [
+     "DNA binding",
+     48
+    ],
+    [
+     "catalytic activity, acting on RNA",
+     45
+    ],
+    [
+     "structural molecule activity",
+     43
+    ],
+    [
+     "organelle",
+     41
+    ],
+    [
+     "ribosome",
+     40
+    ],
+    [
+     "ligase activity",
+     39
+    ],
+    [
+     "amino acid metabolic process",
+     39
+    ],
+    [
+     "uncharacterised",
+     38
+    ],
+    [
+     "protease",
+     34
+    ],
+    [
+     "kinase",
+     31
+    ]
+   ],
+   "present_but_rare_today": [
+    [
+     "DUF6134",
+     "Domain of unknown function (DUF6134)",
+     0.994,
+     0.12
+    ],
+    [
+     "Csd3_N2",
+     "Csd3 second domain",
+     0.973,
+     0.172
+    ],
+    [
+     "DjlA_TM",
+     "Co-chaperone DjlA transmembrane domain",
+     0.97,
+     0.197
+    ],
+    [
+     "DUF6111",
+     "Family of unknown function (DUF6111)",
+     0.967,
+     0.18
+    ],
+    [
+     "Glyco_transf_9",
+     "Glycosyltransferase family 9 (heptosyltransferase)",
+     0.921,
+     0.297
+    ],
+    [
+     "MMPL",
+     "MMPL family",
+     0.921,
+     0.292
+    ],
+    [
+     "A24_N_bact",
+     "Bacterial Peptidase A24 N-terminal domain",
+     0.918,
+     0.183
+    ],
+    [
+     "Thioredox_DsbH",
+     "Protein of unknown function, DUF255",
+     0.918,
+     0.21
+    ],
+    [
+     "DUF3501",
+     "Protein of unknown function (DUF3501)",
+     0.917,
+     0.049
+    ]
+   ],
+   "positive_control": {
+    "nad1": 0.993,
+    "nad2/4/5": 0.991,
+    "nad3": 0.993,
+    "nad6": 0.993,
+    "nad7": 0.993,
+    "nad9": 0.993,
+    "nad4L": 0.99,
+    "nad8": 0.978,
+    "cox1": 1.0,
+    "cox2": 0.986,
+    "cox3": 0.999,
+    "cob": 0.988,
+    "atp1/3": 1.0,
+    "atp6": 0.991,
+    "atp9": 0.991,
+    "rpoB": 0.978,
+    "rpoC": 0.978,
+    "rpoA": 0.991,
+    "secY": 0.991,
+    "tatC": 0.999,
+    "ccmB": 0.629,
+    "ccmC": 1.0,
+    "tufA": 1.0,
+    "rps12": null,
+    "rpl2": 0.991,
+    "rpl14": 0.991
+   }
+  },
+  "Rhodospirillales (common ancestor)": {
+   "n_tips_below": 46,
+   "families_p_ge_0.9": 2033,
+   "families_p_0.5_0.9": 368,
+   "expected_families": 2418.1,
+   "functions_top": [
+    [
+     "catalytic activity",
+     455
+    ],
+    [
+     "uncharacterised",
+     144
+    ],
+    [
+     "transferase activity",
+     135
+    ],
+    [
+     "hydrolase activity",
+     89
+    ],
+    [
+     "oxidoreductase activity",
+     87
+    ],
+    [
+     "helicase_nucleic",
+     80
+    ],
+    [
+     "DNA binding",
+     77
+    ],
+    [
+     "transporter_channel",
+     63
+    ],
+    [
+     "kinase",
+     56
+    ],
+    [
+     "methyl_glyco_transferase",
+     53
+    ],
+    [
+     "catalytic activity, acting on RNA",
+     52
+    ],
+    [
+     "protease",
+     52
+    ],
+    [
+     "organelle",
+     51
+    ],
+    [
+     "transporter activity",
+     48
+    ],
+    [
+     "structural molecule activity",
+     48
+    ]
+   ],
+   "present_but_rare_today": [
+    [
+     "ABC_sub_bind",
+     "ABC transporter substrate binding protein",
+     1.0,
+     0.246
+    ],
+    [
+     "ApeI-like",
+     "ApeI dehydratase",
+     1.0,
+     0.055
+    ],
+    [
+     "ApeP-like",
+     "ApeP dehydratase",
+     1.0,
+     0.056
+    ],
+    [
+     "AphA_like",
+     "Putative AphA-like transcriptional regulator",
+     1.0,
+     0.043
+    ],
+    [
+     "BT_MCC_alpha",
+     "Methylcrotonyl-CoA carboxylase, alpha-subunit, BT domain",
+     1.0,
+     0.193
+    ],
+    [
+     "BtgE-BtgC_glyc-hydro",
+     "BtgE/BtgC glycoside hydrolase domain",
+     1.0,
+     0.101
+    ],
+    [
+     "CREG_beta-barrel",
+     "CREG, beta-barrel",
+     1.0,
+     0.276
+    ],
+    [
+     "CbiD",
+     "CbiD",
+     1.0,
+     0.269
+    ],
+    [
+     "CbiD_C",
+     "CbiD, C-terminal domain",
+     1.0,
+     0.254
+    ],
+    [
+     "CbiG_N",
+     "Cobalamin synthesis G N-terminal",
+     1.0,
+     0.17
+    ],
+    [
+     "CbiX",
+     "CbiX",
+     1.0,
+     0.281
+    ],
+    [
+     "CheZ",
+     "Chemotaxis phosphatase, CheZ",
+     1.0,
+     0.216
+    ],
+    [
+     "Cofac_haem_bdg",
+     "Haem-binding uptake, Tiki superfamily, ChaN",
+     1.0,
+     0.259
+    ],
+    [
+     "Csd3_N2",
+     "Csd3 second domain",
+     1.0,
+     0.172
+    ],
+    [
+     "DUF1848",
+     "Domain of unknown function (DUF1848)",
+     1.0,
+     0.029
+    ],
+    [
+     "DUF2232",
+     "Predicted membrane protein (DUF2232)",
+     1.0,
+     0.174
+    ],
+    [
+     "DUF2325",
+     "Uncharacterized protein conserved in bacteria (DUF2325)",
+     1.0,
+     0.091
+    ],
+    [
+     "DUF2333",
+     "Uncharacterized protein conserved in bacteria (DUF2333)",
+     1.0,
+     0.17
+    ],
+    [
+     "DUF2889",
+     "Protein of unknown function (DUF2889)",
+     1.0,
+     0.124
+    ],
+    [
+     "DUF3335",
+     "Peptidase_C39 like family",
+     1.0,
+     0.081
+    ],
+    [
+     "DUF3362",
+     "Domain of unknown function (DUF3362)",
+     1.0,
+     0.098
+    ],
+    [
+     "DUF4197",
+     "Protein of unknown function (DUF4197)",
+     1.0,
+     0.126
+    ],
+    [
+     "DUF4743",
+     "Domain of unknown function (DUF4743)",
+     1.0,
+     0.08
+    ],
+    [
+     "DUF6134",
+     "Domain of unknown function (DUF6134)",
+     1.0,
+     0.12
+    ],
+    [
+     "DUF6468",
+     "Domain of unknown function (DUF6468)",
+     1.0,
+     0.294
+    ],
+    [
+     "DUF6867",
+     "Domain of unknown function (DUF6867)",
+     1.0,
+     0.268
+    ],
+    [
+     "DUF6898",
+     "Domain of unknown function (DUF6898)",
+     1.0,
+     0.129
+    ],
+    [
+     "DUF6969",
+     "Domain of unknown function (DUF6969)",
+     1.0,
+     0.083
+    ],
+    [
+     "DUF8393",
+     "Domain of unknown function (DUF8393)",
+     1.0,
+     0.146
+    ],
+    [
+     "DjlA_TM",
+     "Co-chaperone DjlA transmembrane domain",
+     1.0,
+     0.197
+    ],
+    [
+     "DsbD_2",
+     "Cytochrome C biogenesis protein transmembrane region",
+     1.0,
+     0.126
+    ],
+    [
+     "EncFtn-like",
+     "EncFtn-like",
+     1.0,
+     0.04
+    ],
+    [
+     "Fe-S_assembly",
+     "Iron-sulphur cluster assembly",
+     1.0,
+     0.036
+    ],
+    [
+     "FliJ",
+     "Flagellar FliJ protein",
+     1.0,
+     0.23
+    ],
+    [
+     "FliX",
+     "Class II flagellar assembly regulator",
+     1.0,
+     0.263
+    ],
+    [
+     "Frataxin_Cyay",
+     "Frataxin-like domain",
+     1.0,
+     0.041
+    ],
+    [
+     "GDT1",
+     "Divalent cation/proton antiporter GDT1",
+     1.0,
+     0.18
+    ],
+    [
+     "Glucosaminidase",
+     "Mannosyl-glycoprotein endo-beta-N-acetylglucosaminidase",
+     1.0,
+     0.074
+    ],
+    [
+     "GlutR_dimer",
+     "Glutamyl-tRNAGlu reductase, dimerisation domain",
+     1.0,
+     0.046
+    ],
+    [
+     "Glyco_transf_9",
+     "Glycosyltransferase family 9 (heptosyltransferase)",
+     1.0,
+     0.297
+    ]
+   ],
+   "positive_control": {
+    "nad1": 1.0,
+    "nad2/4/5": 1.0,
+    "nad3": 1.0,
+    "nad6": 1.0,
+    "nad7": 1.0,
+    "nad9": 1.0,
+    "nad4L": 0.998,
+    "nad8": 0.998,
+    "cox1": 1.0,
+    "cox2": 1.0,
+    "cox3": 1.0,
+    "cob": 1.0,
+    "atp1/3": 1.0,
+    "atp6": 1.0,
+    "atp9": 1.0,
+    "rpoB": 0.999,
+    "rpoC": 0.999,
+    "rpoA": 1.0,
+    "secY": 1.0,
+    "tatC": 1.0,
+    "ccmB": 1.0,
+    "ccmC": 1.0,
+    "tufA": 1.0,
+    "rps12": null,
+    "rpl2": 1.0,
+    "rpl14": 0.999
+   }
+  },
+  "Caulobacterales (common ancestor)": {
+   "n_tips_below": 124,
+   "families_p_ge_0.9": 1666,
+   "families_p_0.5_0.9": 480,
+   "expected_families": 2275.1,
+   "functions_top": [
+    [
+     "catalytic activity",
+     398
+    ],
+    [
+     "transferase activity",
+     115
+    ],
+    [
+     "uncharacterised",
+     112
+    ],
+    [
+     "hydrolase activity",
+     89
+    ],
+    [
+     "oxidoreductase activity",
+     76
+    ],
+    [
+     "helicase_nucleic",
+     73
+    ],
+    [
+     "DNA binding",
+     69
+    ],
+    [
+     "protease",
+     56
+    ],
+    [
+     "catalytic activity, acting on RNA",
+     49
+    ],
+    [
+     "structural molecule activity",
+     48
+    ],
+    [
+     "organelle",
+     48
+    ],
+    [
+     "amino acid metabolic process",
+     47
+    ],
+    [
+     "transporter_channel",
+     46
+    ],
+    [
+     "methyl_glyco_transferase",
+     45
+    ],
+    [
+     "kinase",
+     42
+    ]
+   ],
+   "present_but_rare_today": [
+    [
+     "DUF4908",
+     "Domain of unknown function (DUF4908)",
+     1.0,
+     0.042
+    ],
+    [
+     "DUF6249",
+     "Domain of unknown function (DUF6249)",
+     1.0,
+     0.043
+    ],
+    [
+     "Exop_C",
+     "Galactose-binding domain-like",
+     1.0,
+     0.13
+    ],
+    [
+     "LpxR",
+     "Outer membrane protein LpxR",
+     0.999,
+     0.238
+    ],
+    [
+     "DUF547",
+     "Protein of unknown function, DUF547",
+     0.998,
+     0.071
+    ],
+    [
+     "DUF6134",
+     "Domain of unknown function (DUF6134)",
+     0.998,
+     0.12
+    ],
+    [
+     "CheZ",
+     "Chemotaxis phosphatase, CheZ",
+     0.997,
+     0.216
+    ],
+    [
+     "Arylesterase",
+     "Arylesterase",
+     0.996,
+     0.03
+    ],
+    [
+     "DUF6898",
+     "Domain of unknown function (DUF6898)",
+     0.996,
+     0.129
+    ],
+    [
+     "GH97_C",
+     "Glycosyl-hydrolase 97 C-terminal, oligomerisation",
+     0.995,
+     0.119
+    ],
+    [
+     "GH97_N",
+     "Glycosyl-hydrolase 97 N-terminal",
+     0.995,
+     0.117
+    ],
+    [
+     "Glyco_hydro_97",
+     "Glycoside hydrolase 97",
+     0.995,
+     0.117
+    ],
+    [
+     "Beta_helix_4",
+     "Pectate-lyase like beta helix domain",
+     0.994,
+     0.172
+    ],
+    [
+     "Coq4",
+     "Coenzyme Q (ubiquinone) biosynthesis protein Coq4",
+     0.993,
+     0.131
+    ],
+    [
+     "DUF3450",
+     "Protein of unknown function (DUF3450)",
+     0.993,
+     0.032
+    ],
+    [
+     "GDT1",
+     "Divalent cation/proton antiporter GDT1",
+     0.992,
+     0.18
+    ],
+    [
+     "DUF4197",
+     "Protein of unknown function (DUF4197)",
+     0.989,
+     0.126
+    ],
+    [
+     "Trp_repressor",
+     "Trp repressor protein",
+     0.989,
+     0.05
+    ],
+    [
+     "DUF1318",
+     "Protein of unknown function (DUF1318)",
+     0.988,
+     0.24
+    ],
+    [
+     "YdbH-like",
+     "Intermembrane phospholipid transport protein YdbH",
+     0.988,
+     0.242
+    ],
+    [
+     "DS",
+     "Deoxyhypusine synthase",
+     0.987,
+     0.122
+    ],
+    [
+     "HisG_C",
+     "HisG, C-terminal domain",
+     0.987,
+     0.049
+    ],
+    [
+     "DUF2064",
+     "Uncharacterized protein conserved in bacteria (DUF2064)",
+     0.985,
+     0.231
+    ],
+    [
+     "DUF6111",
+     "Family of unknown function (DUF6111)",
+     0.984,
+     0.18
+    ],
+    [
+     "RLAN",
+     "RimK-like ATPgrasp N-terminal domain",
+     0.983,
+     0.107
+    ],
+    [
+     "DUF3667",
+     "Protein of unknown function (DUF3667)",
+     0.982,
+     0.196
+    ],
+    [
+     "DUF2799",
+     "Protein of unknown function (DUF2799)",
+     0.981,
+     0.066
+    ],
+    [
+     "DUF6491",
+     "Family of unknown function (DUF6491)",
+     0.981,
+     0.107
+    ],
+    [
+     "DUF1761",
+     "Protein of unknown function (DUF1761)",
+     0.98,
+     0.281
+    ],
+    [
+     "DUF885",
+     "Bacterial protein of unknown function (DUF885)",
+     0.98,
+     0.261
+    ],
+    [
+     "GCE_fung",
+     "Glucuronyl esterase, fungi",
+     0.98,
+     0.038
+    ],
+    [
+     "PTR2",
+     "POT family",
+     0.98,
+     0.294
+    ],
+    [
+     "Peptidase_M13",
+     "Peptidase family M13",
+     0.98,
+     0.279
+    ],
+    [
+     "Peptidase_M13_N",
+     "Peptidase family M13",
+     0.98,
+     0.278
+    ],
+    [
+     "DUF3089",
+     "Protein of unknown function (DUF3089)",
+     0.976,
+     0.227
+    ],
+    [
+     "DUF6445",
+     "Family of unknown function (DUF6445)",
+     0.975,
+     0.084
+    ],
+    [
+     "OMP_b-brl_4",
+     "Outer membrane beta barrel domain",
+     0.971,
+     0.166
+    ],
+    [
+     "T2SSL",
+     "Type II secretion system (T2SS), protein L",
+     0.971,
+     0.112
+    ],
+    [
+     "DUF7218",
+     "Family of unknown function (DUF7218)",
+     0.967,
+     0.123
+    ],
+    [
+     "CopB",
+     "Copper resistance protein B precursor (CopB)",
+     0.966,
+     0.285
+    ]
+   ],
+   "positive_control": {
+    "nad1": 1.0,
+    "nad2/4/5": 0.997,
+    "nad3": 1.0,
+    "nad6": 1.0,
+    "nad7": 1.0,
+    "nad9": 1.0,
+    "nad4L": 0.997,
+    "nad8": 0.993,
+    "cox1": 1.0,
+    "cox2": 0.999,
+    "cox3": 1.0,
+    "cob": 0.999,
+    "atp1/3": 1.0,
+    "atp6": 0.997,
+    "atp9": 0.997,
+    "rpoB": 0.993,
+    "rpoC": 0.993,
+    "rpoA": 0.997,
+    "secY": 0.997,
+    "tatC": 1.0,
+    "ccmB": 1.0,
+    "ccmC": 1.0,
+    "tufA": 1.0,
+    "rps12": null,
+    "rpl2": 0.997,
+    "rpl14": 0.997
+   }
+  }
+ }
+}

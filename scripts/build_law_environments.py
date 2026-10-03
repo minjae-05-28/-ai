@@ -282,6 +282,10 @@ def findings_for(law):
         return {k: val.get(k) for k in ("containment_over_random_median", "share_above_random")}
     if lid == "coloss_modules_v1":
         return {"gain_vs_additive": val.get("gain_vs_additive")}
+    if lid.startswith("mito_ancestor"):
+        return {v: {n: {"expected_families": d["expected_families"],
+                        "positive_control_ok": sum(1 for x in d["positive_control"].values() if x is not None and x >= 0.9)}
+                    for n, d in s["nodes"].items()} for v, s in val.items()}
     if lid.startswith("loss_prediction"):
         out = {}
         for tag, sm in val.items():
@@ -376,6 +380,11 @@ def card_for(law):
         card = genome_traits_envelope()
         card["catalogue"] = "UniProt reference proteomes + Madin 2020 (envelope shown for the GTDB-matched set)"
         card["species_from"] = "UniProt x trait table"
+    elif lid.startswith("mito_ancestor"):
+        card = {"catalogue": "GTDB tree + UniProt", "envelope": {
+            "대상": "알파프로테오박테리아 2,323종(+감마 300 외군), 고품질만 2,226종",
+            "환경": "자유생활·공생 모두 포함. 미토콘드리아 근처의 깊은 계통(리케차목·홀로스포라목·펠라기박터목)은 표본 적음"},
+            "species_from": "law"}
     elif lid.startswith("genome_traits"):
         card = genome_traits_envelope()
         card["species_from"] = "GTDB x trait table (rebuilt with scripts/run_genome_laws.py load())"
