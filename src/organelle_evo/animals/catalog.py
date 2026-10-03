@@ -166,3 +166,81 @@ def axes(species: str):
     return {"tcell": e.tcell, "osmol_high": 1.0 if e.osmol > 600 else 0.0,
             "hypoxia": float(e.hypoxia), "endo": float(e.endo),
             "parasite": float(e.parasite), "urea": float(e.urea)}
+
+
+# --- Comparison pairs for gene-content laws -------------------------------------------------
+#
+# Animals have no ancestor -> descendant pairs of their own, so they are designed here: within
+# one clade, a relative that keeps the ancestral condition stands in for the ancestor of a
+# lineage that changed one axis (warm -> cold, sea -> fresh water, oxic -> hypoxic, ectotherm
+# -> endotherm, free-living -> parasite). Same idea as the microbial and eukaryote pairs.
+#
+# Each entry: (origin, proxies in order of preference, descendant, distant). Pairs sharing an
+# origin are one evolutionary event and are held out together. distant=True marks pairs whose
+# only available proxy is far away (hundreds of Myr), reported with and without them:
+#   - flatworm parasites: the free-living flatworm (Schmidtea) has no annotated assembly, so
+#     an annelid stands in;
+#   - mammals: no living ectotherm synapsid exists, so a lizard stands in.
+# Controls change no axis (or very little) and measure drift between relatives.
+# The urea axis has no pair (no osmoregulating sister to the chondrichthyans within reach).
+
+PAIR_SPECS = [
+    # parasitism
+    ("nematode parasitism, filarial", ("Caenorhabditis elegans",), "Brugia malayi", False),
+    ("nematode parasitism, Trichinella", ("Caenorhabditis elegans",), "Trichinella spiralis", False),
+    ("flatworm parasitism", ("Helobdella robusta", "Capitella teleta"), "Schistosoma mansoni", True),
+    ("flatworm parasitism", ("Helobdella robusta", "Capitella teleta"), "Echinococcus granulosus", True),
+    # endothermy
+    ("bird endothermy", ("Crocodylus porosus",), "Gallus gallus", False),
+    ("bird endothermy", ("Crocodylus porosus",), "Anas platyrhynchos", False),
+    ("bird endothermy", ("Crocodylus porosus",), "Taeniopygia guttata", False),
+    ("bird endothermy", ("Crocodylus porosus",), "Aptenodytes forsteri", False),
+    ("mammal endothermy", ("Anolis carolinensis", "Pogona vitticeps"), "Ornithorhynchus anatinus", True),
+    ("mammal endothermy", ("Anolis carolinensis", "Pogona vitticeps"), "Mus musculus", True),
+    # cold
+    ("Antarctic notothenioids", ("Takifugu rubripes",), "Notothenia coriiceps", False),
+    ("Antarctic notothenioids", ("Takifugu rubripes",), "Pseudochaenichthys georgianus", False),
+    ("cod", ("Oryzias latipes",), "Gadus morhua", False),
+    ("cold catshark", ("Chiloscyllium punctatum",), "Scyliorhinus canicula", False),
+    ("cold skate", ("Chiloscyllium punctatum",), "Amblyraja radiata", False),
+    ("cold sea urchin", ("Lytechinus variegatus",), "Strongylocentrotus purpuratus", False),
+    # hypoxia
+    ("intertidal mussel", ("Pecten maximus",), "Mytilus edulis", False),
+    ("intertidal oyster", ("Pecten maximus",), "Crassostrea gigas", False),
+    ("mudskipper", ("Oryzias latipes", "Oreochromis niloticus"), "Periophthalmus magnuspinnatus", False),
+    ("anoxia-tolerant turtle", ("Crocodylus porosus",), "Chrysemys picta bellii", False),
+    # sea -> fresh water
+    ("freshwater cnidarian", ("Nematostella vectensis", "Acropora millepora"), "Hydra vulgaris", False),
+    ("freshwater crustacean", ("Penaeus vannamei",), "Daphnia pulex", False),
+    ("freshwater annelid", ("Capitella teleta",), "Helobdella robusta", False),
+    # controls
+    ("control: primate -> rodent", ("Homo sapiens",), "Mus musculus", False),
+    ("control: cow -> dog", ("Bos taurus",), "Canis lupus familiaris", False),
+    ("control: chicken -> duck", ("Gallus gallus",), "Anas platyrhynchos", False),
+    ("control: salmon -> trout", ("Salmo salar",), "Oncorhynchus mykiss", False),
+    ("control: zebrafish -> cavefish", ("Danio rerio",), "Astyanax mexicanus", False),
+    ("control: fly -> mosquito", ("Drosophila melanogaster",), "Anopheles gambiae", False),
+    ("control: tick -> mite", ("Ixodes scapularis",), "Tetranychus urticae", False),
+]
+
+PAIR_AXES = ("colder", "freshwater", "hypoxia", "endothermy", "parasite")
+TCELL_SCALE = 20.0  # deg C per unit of the colder axis
+
+
+def design(proxy: str, desc: str) -> tuple[float, ...]:
+    """(1, colder, freshwater, hypoxia, endothermy, parasite) for a move from proxy to desc."""
+    a, d = axes(proxy), axes(desc)
+    return (1.0, (a["tcell"] - d["tcell"]) / TCELL_SCALE, a["osmol_high"] - d["osmol_high"],
+            d["hypoxia"] - a["hypoxia"], d["endo"] - a["endo"], d["parasite"] - a["parasite"])
+
+
+def resolve_pairs(available) -> list[tuple[str, str, str, bool]]:
+    """(origin, proxy, descendant, distant) for the pairs whose species are available."""
+    out = []
+    for origin, proxies, desc, distant in PAIR_SPECS:
+        if desc not in available:
+            continue
+        proxy = next((p for p in proxies if p in available and p != desc), None)
+        if proxy is not None:
+            out.append((origin, proxy, desc, distant))
+    return out
