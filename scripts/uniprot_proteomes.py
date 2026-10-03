@@ -40,7 +40,7 @@ def get(url, tries=6):
             req = urllib.request.Request(url, headers={"Accept-Encoding": "gzip", "User-Agent": "organelle-evo"})
             with urllib.request.urlopen(req, timeout=300) as r:
                 data = r.read()
-                if r.headers.get("Content-Encoding") == "gzip" or data[:2] == b"\x1f\x8b":
+                while data[:2] == b"\x1f\x8b":  # UniProt can gzip twice (transfer + compressed=true)
                     data = gzip.decompress(data)
                 return data.decode()
         except Exception as e:  # network hiccups and 429/5xx: back off and retry
