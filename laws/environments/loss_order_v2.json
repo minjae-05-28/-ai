@@ -1,0 +1,122 @@
+{
+ "law_id": "loss_order_v2",
+ "endosymbiosis": {
+  "catalogue": "realdata",
+  "envelope": {
+   "mitochondrion": {
+    "lineages_in_catalogue": 75,
+    "gc": {
+     "min": 0.14014993208651133,
+     "median": 0.322,
+     "max": 0.6811623469771458,
+     "n": 75
+    }
+   },
+   "plastid": {
+    "lineages_in_catalogue": 54,
+    "gc": {
+     "min": 0.14216058394160583,
+     "median": 0.329,
+     "max": 0.5100431214355265,
+     "n": 54
+    }
+   },
+   "insect_endosymbiont": {
+    "lineages_in_catalogue": 26,
+    "gc": {
+     "min": 0.17822396305953433,
+     "median": 0.268,
+     "max": 0.5469899639091991,
+     "n": 26
+    }
+   },
+   "환경": "의무적 세포 내 공생(숙주 세포질). 자유생활 생물과 유전자 획득에는 적용 범위 밖."
+  }
+ },
+ "parasites": {
+  "catalogue": "eukaryotes",
+  "n_species": 136,
+  "envelope": {
+   "생활 방식": {
+    "parasite": 90,
+    "free_living": 46
+   },
+   "위치": {
+    "extracellular": 47,
+    "free": 46,
+    "intracellular": 43
+   },
+   "에너지(미토콘드리아)": {
+    "aerobic": 115,
+    "reduced": 21
+   },
+   "세포 온도 °C (동물 카탈로그에 있는 종만)": {
+    "min": 20.0,
+    "median": 25.0,
+    "max": 37.0,
+    "n": 11
+   }
+  },
+  "groups": {
+   "fungi": 29,
+   "alveolata": 25,
+   "discoba": 16,
+   "nematoda": 9,
+   "platyhelminthes": 8,
+   "stramenopiles": 7,
+   "chlorophyta": 7,
+   "amoebozoa": 6,
+   "holozoa": 6,
+   "chelicerata": 5,
+   "streptophyta": 4,
+   "metamonada": 4,
+   "cnidaria": 4,
+   "insecta": 2,
+   "rhodophyta": 2,
+   "crustacea": 2
+  },
+  "gc": {
+   "min": 0.16,
+   "median": 0.425,
+   "max": 0.67,
+   "n": 135
+  },
+  "contrasts": {
+   "parasite": {
+    "pairs_with_axis": 90
+   },
+   "intracellular": {
+    "pairs_with_axis": 43
+   },
+   "reduced_mitochondria": {
+    "pairs_with_axis": 21
+   },
+   "control_pairs": 22,
+   "independent_parasite_clades": 15
+  }
+ },
+ "species_from": "catalogue",
+ "findings": {
+  "mitochondrion": {
+   "fixed_null_p": 1.0,
+   "row_null_z": 185.1,
+   "판정": "유전자별 성향 이상의 순서 없음"
+  },
+  "plastid": {
+   "fixed_null_p": 1.0,
+   "row_null_z": 211.1,
+   "판정": "유전자별 성향 이상의 순서 없음"
+  },
+  "insect_endosymbiont": {
+   "fixed_null_p": 1.0,
+   "row_null_z": 264.0,
+   "판정": "유전자별 성향 이상의 순서 없음"
+  },
+  "eukaryote_parasites": {
+   "fixed_null_p": 1.0,
+   "row_null_z": 164.8,
+   "판정": "유전자별 성향 이상의 순서 없음"
+  }
+ },
+ "note": "envelope 밖의 환경에 이 법칙을 쓰면 외삽이다. 값은 문헌 근사치(카탈로그 주석 참조)."
+}

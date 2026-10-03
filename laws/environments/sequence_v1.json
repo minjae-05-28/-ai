@@ -1,0 +1,317 @@
+{
+ "law_id": "sequence_v1",
+ "prokaryotes": {
+  "catalogue": "prokaryotes",
+  "n_species": 96,
+  "envelope": {
+   "최적 온도 °C": {
+    "min": 5,
+    "median": 36.0,
+    "max": 100,
+    "n": 96
+   },
+   "최적 NaCl %": {
+    "min": 0,
+    "median": 0.95,
+    "max": 25,
+    "n": 96
+   },
+   "산소 호흡(1)": {
+    "1": 67,
+    "0": 29
+   },
+   "방사선 내성(1)": {
+    "0": 84,
+    "1": 12
+   },
+   "빈영양(1)": {
+    "0": 89,
+    "1": 7
+   }
+  },
+  "groups": {
+   "gamma": 19,
+   "archaea": 16,
+   "firmicutes": 15,
+   "bacteroidetes": 7,
+   "cyano": 7,
+   "actino": 6,
+   "alpha": 6,
+   "deinococcus": 6,
+   "delta": 6,
+   "beta": 5,
+   "thermotogae": 2,
+   "verrucomicrobia": 1
+  },
+  "gc": {
+   "min": 0.295,
+   "median": 0.475,
+   "max": 0.74,
+   "n": 96
+  },
+  "contrasts": {
+   "colder": {
+    "pairs_changed": 31,
+    "change_range": [
+     -1.6,
+     1.33
+    ]
+   },
+   "saltier": {
+    "pairs_changed": 20,
+    "change_range": [
+     -0.05,
+     2.3
+    ]
+   },
+   "anaerobic": {
+    "pairs_changed": 10,
+    "change_range": [
+     -1.0,
+     1.0
+    ]
+   },
+   "radiation_resistant": {
+    "pairs_changed": 12,
+    "change_range": [
+     0.0,
+     1.0
+    ]
+   },
+   "oligotrophic": {
+    "pairs_changed": 7,
+    "change_range": [
+     0.0,
+     1.0
+    ]
+   },
+   "scale": "colder: (relative - descendant temperature)/30.0 C; saltier: change in NaCl/10.0%; others -1/0/1",
+   "control_pairs": 3
+  }
+ },
+ "eukaryotes": {
+  "catalogue": "eukaryotes",
+  "n_species": 142,
+  "envelope": {
+   "생활 방식": {
+    "parasite": 96,
+    "free_living": 46
+   },
+   "위치": {
+    "extracellular": 52,
+    "free": 46,
+    "intracellular": 44
+   },
+   "에너지(미토콘드리아)": {
+    "aerobic": 121,
+    "reduced": 21
+   },
+   "세포 온도 °C (동물 카탈로그에 있는 종만)": {
+    "min": 20.0,
+    "median": 25.0,
+    "max": 37.0,
+    "n": 11
+   }
+  },
+  "groups": {
+   "fungi": 34,
+   "alveolata": 25,
+   "discoba": 16,
+   "nematoda": 9,
+   "platyhelminthes": 8,
+   "stramenopiles": 7,
+   "chlorophyta": 7,
+   "amoebozoa": 6,
+   "holozoa": 6,
+   "chelicerata": 5,
+   "streptophyta": 4,
+   "metamonada": 4,
+   "cnidaria": 4,
+   "insecta": 2,
+   "rhodophyta": 2,
+   "crustacea": 2,
+   "rhizaria": 1
+  },
+  "gc": {
+   "min": 0.16,
+   "median": 0.43,
+   "max": 0.67,
+   "n": 141
+  }
+ },
+ "insect_endosymbionts": {
+  "catalogue": "realdata",
+  "envelope": {
+   "insect_endosymbiont": {
+    "lineages_in_catalogue": 26,
+    "gc": {
+     "min": 0.17822396305953433,
+     "median": 0.268,
+     "max": 0.5469899639091991,
+     "n": 26
+    }
+   },
+   "환경": "의무적 세포 내 공생(숙주 세포질). 자유생활 생물과 유전자 획득에는 적용 범위 밖."
+  }
+ },
+ "species_from": "catalogue",
+ "findings": {
+  "temperature": {
+   "pearson_ivywrel": 0.8497887914025964,
+   "spearman_ivywrel": 0.6503418536324437,
+   "rmse_ivywrel_loo_group": 10.320447078832231,
+   "rmse_mean_only": 17.961589930118638
+  },
+  "salt": {
+   "spearman_acidic_excess": 0.5629008502955345,
+   "spearman_median_pi": -0.510548714340798
+  },
+  "pairs_coef_per_axis": {
+   "ivywrel": {
+    "coef": {
+     "base": 0.003998825936436327,
+     "colder": -0.02658101206765905,
+     "saltier": -0.0062457141524740085,
+     "anaerobic": -0.0006571969824258252,
+     "radiation_resistant": -0.015625741623805128,
+     "oligotrophic": -0.002747757602957949
+    },
+    "loo_r2": 0.5686674176506967
+   },
+   "cvp": {
+    "coef": {
+     "base": 0.0019542583997788415,
+     "colder": -0.04144075488029967,
+     "saltier": 0.00325518265976435,
+     "anaerobic": -0.01579191112084569,
+     "radiation_resistant": -0.02558616057644775,
+     "oligotrophic": 0.01089178265507703
+    },
+    "loo_r2": 0.6065368100307953
+   },
+   "acidic_excess": {
+    "coef": {
+     "base": -0.0004035415366262374,
+     "colder": 0.004966627807735196,
+     "saltier": 0.018446693075596297,
+     "anaerobic": -0.011164886580372577,
+     "radiation_resistant": -0.0014734955945175548,
+     "oligotrophic": -0.011740134445712928
+    },
+    "loo_r2": 0.5388751409066659
+   },
+   "median_pi": {
+    "coef": {
+     "base": 0.03798152087893734,
+     "colder": -0.43671067458760443,
+     "saltier": -0.7303652929219004,
+     "anaerobic": 0.15423237767649042,
+     "radiation_resistant": 0.0807346614108509,
+     "oligotrophic": 0.8540274985986673
+    },
+    "loo_r2": 0.23598902879022743
+   },
+   "share_pi_below_5": {
+    "coef": {
+     "base": -0.003562643117780746,
+     "colder": 0.07195906316938326,
+     "saltier": 0.18052287782014406,
+     "anaerobic": -0.061019453458169774,
+     "radiation_resistant": -0.024517765230706128,
+     "oligotrophic": -0.08217642493548678
+    },
+    "loo_r2": 0.6439767829584997
+   },
+   "n_side": {
+    "coef": {
+     "base": 0.00018034519043403933,
+     "colder": -0.01815792783732561,
+     "saltier": -0.006008656019902381,
+     "anaerobic": -0.008038508962693708,
+     "radiation_resistant": 0.009483076208114862,
+     "oligotrophic": -0.014288098303329638
+    },
+    "loo_r2": 0.38908236724305967
+   },
+   "c_side": {
+    "coef": {
+     "base": 0.020187629500891202,
+     "colder": -0.051138179302767525,
+     "saltier": -0.06773124992203088,
+     "anaerobic": 0.06888580490784714,
+     "radiation_resistant": -0.08404610548136475,
+     "oligotrophic": 0.11238232776714795
+    },
+    "loo_r2": 0.4898465978329676
+   },
+   "gravy": {
+    "coef": {
+     "base": 0.01290055194850071,
+     "colder": -0.006194869782846502,
+     "saltier": -0.03225309476148692,
+     "anaerobic": 0.0005926354830897163,
+     "radiation_resistant": -0.0005786320516110825,
+     "oligotrophic": -0.0797013797675021
+    },
+    "loo_r2": 0.1061955894525789
+   },
+   "fymink": {
+    "coef": {
+     "base": 0.007311506492245107,
+     "colder": 0.012861623307422607,
+     "saltier": -0.023618253281103962,
+     "anaerobic": 0.051498109181310904,
+     "radiation_resistant": -0.026966073255421975,
+     "oligotrophic": 0.0727892959017813
+    },
+    "loo_r2": 0.38974130854747235
+   },
+   "garp": {
+    "coef": {
+     "base": -0.006566997778052101,
+     "colder": -0.018160048776351592,
+     "saltier": 0.010481012786625282,
+     "anaerobic": -0.038890336618082895,
+     "radiation_resistant": 0.021106463973912262,
+     "oligotrophic": -0.058473387392211425
+    },
+    "loo_r2": 0.3503746387057395
+   },
+   "aromatic": {
+    "coef": {
+     "base": -0.00027070586492152176,
+     "colder": -0.00253735357072973,
+     "saltier": -0.004586029318861033,
+     "anaerobic": 0.0076017251014893735,
+     "radiation_resistant": -0.004343801516489771,
+     "oligotrophic": 0.009162326138578121
+    },
+    "loo_r2": 0.37270799127631393
+   },
+   "cysteine": {
+    "coef": {
+     "base": -0.00034153118086970084,
+     "colder": 0.0004230320520278017,
+     "saltier": -0.0006612790271108277,
+     "anaerobic": 0.0033438259459494064,
+     "radiation_resistant": 0.001355336675305469,
+     "oligotrophic": 0.0009151433441911943
+    },
+    "loo_r2": 0.5313656007272635
+   },
+   "mean_length": {
+    "coef": {
+     "base": -0.8335299776104422,
+     "colder": 0.8308708870112138,
+     "saltier": -6.973488569003225,
+     "anaerobic": -8.115995585953637,
+     "radiation_resistant": 1.4732412176234029,
+     "oligotrophic": -5.119949855266174
+    },
+    "loo_r2": -0.18785623369853677
+   }
+  },
+  "note": "계수에 신뢰구간이 저장돼 있지 않음. GC로 설명되는 항목은 gc_confound_v1 / gc3_confound_v1 참조"
+ },
+ "note": "envelope 밖의 환경에 이 법칙을 쓰면 외삽이다. 값은 문헌 근사치(카탈로그 주석 참조)."
+}

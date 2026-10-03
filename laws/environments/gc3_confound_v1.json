@@ -1,0 +1,221 @@
+{
+ "law_id": "gc3_confound_v1",
+ "prokaryotes": {
+  "catalogue": "prokaryotes",
+  "n_species": 96,
+  "envelope": {
+   "최적 온도 °C": {
+    "min": 5,
+    "median": 36.0,
+    "max": 100,
+    "n": 96
+   },
+   "최적 NaCl %": {
+    "min": 0,
+    "median": 0.95,
+    "max": 25,
+    "n": 96
+   },
+   "산소 호흡(1)": {
+    "1": 67,
+    "0": 29
+   },
+   "방사선 내성(1)": {
+    "0": 84,
+    "1": 12
+   },
+   "빈영양(1)": {
+    "0": 89,
+    "1": 7
+   }
+  },
+  "groups": {
+   "gamma": 19,
+   "archaea": 16,
+   "firmicutes": 15,
+   "bacteroidetes": 7,
+   "cyano": 7,
+   "actino": 6,
+   "alpha": 6,
+   "deinococcus": 6,
+   "delta": 6,
+   "beta": 5,
+   "thermotogae": 2,
+   "verrucomicrobia": 1
+  },
+  "gc": {
+   "min": 0.295,
+   "median": 0.475,
+   "max": 0.74,
+   "n": 96
+  },
+  "contrasts": {
+   "colder": {
+    "pairs_changed": 31,
+    "change_range": [
+     -1.6,
+     1.33
+    ]
+   },
+   "saltier": {
+    "pairs_changed": 20,
+    "change_range": [
+     -0.05,
+     2.3
+    ]
+   },
+   "anaerobic": {
+    "pairs_changed": 10,
+    "change_range": [
+     -1.0,
+     1.0
+    ]
+   },
+   "radiation_resistant": {
+    "pairs_changed": 12,
+    "change_range": [
+     0.0,
+     1.0
+    ]
+   },
+   "oligotrophic": {
+    "pairs_changed": 7,
+    "change_range": [
+     0.0,
+     1.0
+    ]
+   },
+   "scale": "colder: (relative - descendant temperature)/30.0 C; saltier: change in NaCl/10.0%; others -1/0/1",
+   "control_pairs": 3
+  }
+ },
+ "eukaryotes": {
+  "catalogue": "eukaryotes",
+  "n_species": 142,
+  "envelope": {
+   "생활 방식": {
+    "parasite": 96,
+    "free_living": 46
+   },
+   "위치": {
+    "extracellular": 52,
+    "free": 46,
+    "intracellular": 44
+   },
+   "에너지(미토콘드리아)": {
+    "aerobic": 121,
+    "reduced": 21
+   },
+   "세포 온도 °C (동물 카탈로그에 있는 종만)": {
+    "min": 20.0,
+    "median": 25.0,
+    "max": 37.0,
+    "n": 11
+   }
+  },
+  "groups": {
+   "fungi": 34,
+   "alveolata": 25,
+   "discoba": 16,
+   "nematoda": 9,
+   "platyhelminthes": 8,
+   "stramenopiles": 7,
+   "chlorophyta": 7,
+   "amoebozoa": 6,
+   "holozoa": 6,
+   "chelicerata": 5,
+   "streptophyta": 4,
+   "metamonada": 4,
+   "cnidaria": 4,
+   "insecta": 2,
+   "rhodophyta": 2,
+   "crustacea": 2,
+   "rhizaria": 1
+  },
+  "gc": {
+   "min": 0.16,
+   "median": 0.43,
+   "max": 0.67,
+   "n": 141
+  }
+ },
+ "insect_endosymbionts": {
+  "catalogue": "realdata",
+  "envelope": {
+   "insect_endosymbiont": {
+    "lineages_in_catalogue": 26,
+    "gc": {
+     "min": 0.17822396305953433,
+     "median": 0.268,
+     "max": 0.5469899639091991,
+     "n": 26
+    }
+   },
+   "환경": "의무적 세포 내 공생(숙주 세포질). 자유생활 생물과 유전자 획득에는 적용 범위 밖."
+  }
+ },
+ "species_from": "catalogue",
+ "findings": {
+  "species:ivywrel_vs_temperature": {
+   "survives": true,
+   "survives_tree": true,
+   "retained_share_of_effect": 0.9749905457336001
+  },
+  "species:cvp_vs_temperature": {
+   "survives": true,
+   "survives_tree": true,
+   "retained_share_of_effect": 0.9049107838617658
+  },
+  "species:acidic_vs_salt": {
+   "survives": true,
+   "survives_tree": true,
+   "retained_share_of_effect": 0.9799009953687471
+  },
+  "species:nitrogen_vs_oligotrophy": {
+   "survives": false,
+   "survives_tree": false,
+   "retained_share_of_effect": -0.2084918535964828
+  },
+  "species:fymink_vs_anoxia": {
+   "survives": true,
+   "survives_tree": true,
+   "retained_share_of_effect": 0.40711428801890687
+  },
+  "pairs:ivywrel_colder": {
+   "survives": true,
+   "survives_tree": true,
+   "retained_share_of_effect": 1.010304747647395
+  },
+  "pairs:cvp_colder": {
+   "survives": true,
+   "survives_tree": true,
+   "retained_share_of_effect": 0.5527621385964656
+  },
+  "pairs:acidic_excess_saltier": {
+   "survives": true,
+   "survives_tree": true,
+   "retained_share_of_effect": 0.6857668194946719
+  },
+  "pairs:n_side_oligotrophic": {
+   "survives": false,
+   "survives_tree": false,
+   "retained_share_of_effect": 0.5300614243409018
+  },
+  "pairs:fymink_anaerobic": {
+   "survives": false,
+   "survives_tree": true,
+   "retained_share_of_effect": 0.2917202615423376
+  },
+  "symbionts:fymink": {
+   "survives": true,
+   "survives_tree": false,
+   "retained_share_of_effect": 0.45360893838682803
+  },
+  "symbionts:median_pi": {
+   "survives": true,
+   "survives_tree": false,
+   "retained_share_of_effect": 0.4343718863217802
+  }
+ },
+ "note": "envelope 밖의 환경에 이 법칙을 쓰면 외삽이다. 값은 문헌 근사치(카탈로그 주석 참조)."
+}

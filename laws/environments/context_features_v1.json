@@ -1,0 +1,194 @@
+{
+ "law_id": "context_features_v1",
+ "parasites": {
+  "catalogue": "eukaryotes",
+  "n_species": 136,
+  "envelope": {
+   "생활 방식": {
+    "parasite": 90,
+    "free_living": 46
+   },
+   "위치": {
+    "extracellular": 47,
+    "free": 46,
+    "intracellular": 43
+   },
+   "에너지(미토콘드리아)": {
+    "aerobic": 115,
+    "reduced": 21
+   },
+   "세포 온도 °C (동물 카탈로그에 있는 종만)": {
+    "min": 20.0,
+    "median": 25.0,
+    "max": 37.0,
+    "n": 11
+   }
+  },
+  "groups": {
+   "fungi": 29,
+   "alveolata": 25,
+   "discoba": 16,
+   "nematoda": 9,
+   "platyhelminthes": 8,
+   "stramenopiles": 7,
+   "chlorophyta": 7,
+   "amoebozoa": 6,
+   "holozoa": 6,
+   "chelicerata": 5,
+   "streptophyta": 4,
+   "metamonada": 4,
+   "cnidaria": 4,
+   "insecta": 2,
+   "rhodophyta": 2,
+   "crustacea": 2
+  },
+  "gc": {
+   "min": 0.16,
+   "median": 0.425,
+   "max": 0.67,
+   "n": 135
+  },
+  "contrasts": {
+   "parasite": {
+    "pairs_with_axis": 90
+   },
+   "intracellular": {
+    "pairs_with_axis": 43
+   },
+   "reduced_mitochondria": {
+    "pairs_with_axis": 21
+   },
+   "control_pairs": 22,
+   "independent_parasite_clades": 15
+  }
+ },
+ "extremophiles": {
+  "catalogue": "prokaryotes",
+  "n_species": 81,
+  "envelope": {
+   "최적 온도 °C": {
+    "min": 5,
+    "median": 30,
+    "max": 100,
+    "n": 81
+   },
+   "최적 NaCl %": {
+    "min": 0,
+    "median": 1,
+    "max": 25,
+    "n": 81
+   },
+   "산소 호흡(1)": {
+    "1": 59,
+    "0": 22
+   },
+   "방사선 내성(1)": {
+    "0": 69,
+    "1": 12
+   },
+   "빈영양(1)": {
+    "0": 74,
+    "1": 7
+   }
+  },
+  "groups": {
+   "archaea": 16,
+   "gamma": 14,
+   "firmicutes": 11,
+   "cyano": 7,
+   "bacteroidetes": 6,
+   "alpha": 6,
+   "deinococcus": 6,
+   "delta": 6,
+   "beta": 4,
+   "actino": 3,
+   "thermotogae": 2
+  },
+  "gc": {
+   "min": 0.295,
+   "median": 0.475,
+   "max": 0.74,
+   "n": 81
+  },
+  "contrasts": {
+   "colder": {
+    "pairs_changed": 31,
+    "change_range": [
+     -1.6,
+     1.33
+    ]
+   },
+   "saltier": {
+    "pairs_changed": 20,
+    "change_range": [
+     -0.05,
+     2.3
+    ]
+   },
+   "anaerobic": {
+    "pairs_changed": 10,
+    "change_range": [
+     -1.0,
+     1.0
+    ]
+   },
+   "radiation_resistant": {
+    "pairs_changed": 12,
+    "change_range": [
+     0.0,
+     1.0
+    ]
+   },
+   "oligotrophic": {
+    "pairs_changed": 7,
+    "change_range": [
+     0.0,
+     1.0
+    ]
+   },
+   "scale": "colder: (relative - descendant temperature)/30.0 C; saltier: change in NaCl/10.0%; others -1/0/1",
+   "control_pairs": 3
+  }
+ },
+ "species_from": "catalogue",
+ "findings": {
+  "extremophiles": {
+   "mean_auroc": {
+    "copies_only": 0.6172579176865324,
+    "memorisation": 0.849235234515775,
+    "law_base": 0.8132686604717007,
+    "law_context": 0.8178732595435612,
+    "combined_s1": 0.8596954810622316,
+    "combined_s3": 0.8615463752219165,
+    "combined_s10": 0.8606810305907693
+   },
+   "context_weights": {
+    "ctx:expression": -0.3241,
+    "ctx:multi_domain": 0.0152,
+    "ctx:partners": 0.0052,
+    "ctx:operon": -0.0959,
+    "ctx:neighbourhood": -0.112,
+    "ctx:has_context": 0.0247
+   }
+  },
+  "parasites": {
+   "mean_auroc": {
+    "copies_only": 0.6466693047031259,
+    "memorisation": 0.7882956723635105,
+    "law_base": 0.7597640843822151,
+    "law_context": 0.7653708430517742,
+    "combined_s1": 0.7930777139503002,
+    "combined_s3": 0.7983505889489837,
+    "combined_s10": 0.804083652911769
+   },
+   "context_weights": {
+    "ctx:expression": -0.0447,
+    "ctx:multi_domain": 0.0078,
+    "ctx:partners": -0.0078,
+    "ctx:exons": -0.127,
+    "ctx:has_context": 0.075
+   }
+  }
+ },
+ "note": "envelope 밖의 환경에 이 법칙을 쓰면 외삽이다. 값은 문헌 근사치(카탈로그 주석 참조)."
+}

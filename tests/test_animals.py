@@ -28,3 +28,15 @@ def test_controls_change_little():
 
 def test_animal_laws_go_to_animal_registry():
     assert registry_for("animals").name == "animals"
+
+
+def test_every_law_has_an_environment_card():
+    import json
+
+    from organelle_evo.laws import ANIMAL_LAWS_DIR, LAWS_DIR
+
+    cards = LAWS_DIR / "environments"
+    for path in [*LAWS_DIR.glob("*.json"), *ANIMAL_LAWS_DIR.glob("*.json")]:
+        law_id = json.loads(path.read_text())["id"]
+        card = json.loads((cards / f"{law_id}.json").read_text())
+        assert card["law_id"] == law_id and "findings" in card
