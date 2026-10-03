@@ -244,6 +244,8 @@ def fit(d, X, visible, spec):
     lo = np.array([a for a, _ in grid], np.float32)[:, None]
     g = np.array([b for _, b in grid], np.float32)[:, None]
     mult = np.where(d["reduced_branch"], spec["mult"], 1.0).astype(np.float32)
+    if spec.get("tip_mult", 1.0) != 1.0 and d.get("completeness") is not None:
+        raise ValueError("tip_mult and a completeness vector correct the same thing; pick one")
     # Incomplete genomes read as extra loss on their own terminal branch.
     if spec.get("tip_mult", 1.0) != 1.0:
         low = np.zeros(len(mult), dtype=bool)

@@ -36,18 +36,19 @@ def logloss(p, y):
     return float(-np.mean(y * np.log(p) + (1 - y) * np.log(1 - p)))
 
 
-def estimate_completeness(obs, tips, share=0.95):
-    """Completeness per tip from the data alone: the share of the set's marker families it carries.
+def estimate_completeness(obs, tips):
+    """Completeness per tip from the data alone — the SAME function the reconstruction uses.
 
-    Markers are the families almost every top-quartile tip has — scripts/genome_quality.py, applied
-    to whatever set is in hand.
+    It has to be the same one: an estimator validated here and a different one used in
+    run_clade_ancestor would make this measurement say nothing about that run.
     """
-    counts = obs[tips].sum(1)
-    ref = [v for v in tips if counts[tips.index(v)] >= np.percentile(counts, 75)]
-    hits = obs[ref].mean(0)
-    markers = np.argsort(-hits)[: min(150, int((hits >= share).sum()) or 150)]
-    c = obs[np.array(tips)][:, markers].mean(1)
-    return dict(zip(tips, np.clip(c, 0.05, 1.0)))
+    from genome_quality import completeness_for
+
+    profiles = {v: {j for j in np.flatnonzero(obs[v])} for v in tips}
+    scores, markers = completeness_for(profiles)
+    if not markers:
+        raise SystemExit("no marker families in the simulated set; the estimator would be undefined")
+    return {v: max(float(c), 0.05) for v, c in scores.items()}
 
 
 def main():

@@ -16,7 +16,6 @@ carries a size, the orders carry it with a warning, and the amoeba node carries 
 
 import gzip
 import json
-import re
 import sys
 from collections import Counter, defaultdict
 from pathlib import Path

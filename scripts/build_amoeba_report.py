@@ -13,7 +13,7 @@ because the subsampling experiment showed a 16-17% underestimate at this sample 
 
 import argparse
 import json
-from collections import Counter
+
 from pathlib import Path
 
 import numpy as np

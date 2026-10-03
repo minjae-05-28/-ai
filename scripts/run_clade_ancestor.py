@@ -97,11 +97,12 @@ def build(tree_path, clade_genera, min_families):
     # Scored separately inside and outside the clade: a marker set is only meaningful among
     # relatives, because across distant lineages "missing" and "never had it" look the same.
     for group in (True, False):
-        gp = {v: set(prof[names[v]]["pfam"]) for v in d["tips"] if in_clade[v] is group}
-        if len(gp) < 8:
-            unscored.append("clade" if group else "outgroup")
+        name = "clade" if group else "outgroup"
+        gp = {v: set(prof[names[v]]["pfam"]) for v in d["tips"] if in_clade[v] == group}
+        scores, mk = completeness_for(gp) if len(gp) >= 8 else ({}, [])
+        if not mk:
+            unscored.append(name)   # left at 1.0: too few proteomes, or nothing near-universal
             continue
-        scores, mk = completeness_for(gp)
         if group:
             markers = mk
         for v, c in scores.items():
