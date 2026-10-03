@@ -37,7 +37,6 @@ from pathlib import Path
 
 import numpy as np
 
-from organelle_evo.eukaryotes.features import KEYWORD_CLASSES
 from organelle_evo.predict import auroc
 
 OUT = Path("results/mito_ancestor")
@@ -260,6 +259,8 @@ def load_tips(n_outgroup, seed=0, min_busco=0.0):
 
 
 def functions_of(fams):
+    from organelle_evo.eukaryotes.features import KEYWORD_CLASSES  # pulls in torch; only needed here
+
     meta = json.loads(Path("data/eukaryotes/pfam_meta.json").read_text())
     ann = json.loads(Path("data/eukaryotes/family_annotations.json").read_text())
     slims = ann["slims"]
