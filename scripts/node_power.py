@@ -33,6 +33,9 @@ from organelle_evo.predict import auroc  # noqa: E402
 
 OUT = Path("results/node_power")
 SPEC = {"ratio": None, "root": "stationary", "min_busco": 0, "drop_mag": False, "mult": 14.0, "tip_mult": 1.0}
+AMOEBA_GENERA = {"Acanthamoeba", "Balamuthia", "Cavenderia", "Dictyostelium", "Entamoeba",
+                 "Heterostelium", "Pelomyxa", "Planoprotostelium", "Polysphondylium", "Physarum",
+                 "Vermamoeba", "Mastigamoeba", "Tieghemostelium"}
 ORDERS = ("o__Rickettsiales", "o__Rhodospirillales", "o__Caulobacterales", "o__Rhizobiales",
           "o__Rhodobacterales", "o__Sphingomonadales")
 
@@ -46,18 +49,29 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--families", type=int, default=800)
     ap.add_argument("--reps", type=int, default=3)
+    ap.add_argument("--clade", default="bacteria", choices=("bacteria", "amoebozoa"),
+                    help="which tree to grade on: the alphaproteobacterial one, or the amoeba tree")
     ap.add_argument("--out", default=str(OUT))
     args = ap.parse_args()
-    out = Path(args.out)
+    out = Path(args.out) / ("" if args.clade == "bacteria" else args.clade)
     out.mkdir(parents=True, exist_ok=True)
-    d = load_cache()
-    vis = visible_mask(d, SPEC)
-    alpha = [v for v in d["tips"] if d["is_alpha"][v]]
-    nodes = {"Alphaproteobacteria": (d["alpha_root"], alpha)}
-    for o in ORDERS:
-        members = [v for v in d["tips"] if d["order_of"][v] == o]
-        if len(members) >= 5:
-            nodes[o[3:]] = (mrca(members, d["parent"], d["depth"]), members)
+    if args.clade == "bacteria":
+        d = load_cache()
+        vis = visible_mask(d, SPEC)
+        alpha = [v for v in d["tips"] if d["is_alpha"][v]]
+        nodes = {"Alphaproteobacteria": (d["alpha_root"], alpha)}
+        for o in ORDERS:
+            members = [v for v in d["tips"] if d["order_of"][v] == o]
+            if len(members) >= 5:
+                nodes[o[3:]] = (mrca(members, d["parent"], d["depth"]), members)
+    else:
+        from hgt_rate import amoeba_tree
+        from run_clade_ancestor import build
+
+        d, _, vis, _ = amoeba_tree()
+        _, _, names, in_clade, _, _ = build("results/phylo_tree/amoeba.nwk", AMOEBA_GENERA, 100)
+        members = [v for v in d["tips"] if in_clade.get(v)]
+        nodes = {"Amoebozoa (표본이 도달한 마디)": (mrca(members, d["parent"], d["depth"]), members)}
     print({k: len(v[1]) for k, v in nodes.items()})
 
     rows = []

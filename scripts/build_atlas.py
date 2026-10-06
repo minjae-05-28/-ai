@@ -186,6 +186,9 @@ def main():
         })
 
     # The amoeba node, from the other pipeline. Its sample cannot carry a size.
+    ap_file = Path("results/node_power/amoebozoa/summary.json")
+    amoeba_power = (list(json.loads(ap_file.read_text())["aggregate"].values())[0]
+                    if ap_file.exists() else None)
     a = json.loads((AMOEBA / "summary.json").read_text())
     az = np.load(AMOEBA / "posterior.npz", allow_pickle=False)
     afams = [str(x) for x in az["families"]]
@@ -205,6 +208,7 @@ def main():
         "blurb": "세포성 점균·엔타모에바·아칸타모에바가 갈라지기 전의 유전자 구성입니다. 아메보조아 전체의 "
                  "뿌리는 아닙니다.",
         "confidence": "낮음", "quote_size": False,
+        "power": amoeba_power,
         "extra_caveat": "불완전한 유전체는 손실이 아니라 누락으로 다룹니다 — 완전도를 자료에서 추정해 "
                         "가능도에 넣었고(엔타모에바 0.43~0.51), 축소 계통 손실 가속은 껐습니다. 첫 판"
                         "(laws/amoeba_ancestor_v1.json)은 그 반대였고 검증이 0.931이었습니다.",
