@@ -1,0 +1,75 @@
+---
+유형: 환경
+법칙: plastid_ancestor_v1
+클러스터: 조상 복원
+tags:
+  - 법칙/plastid_ancestor_v1
+  - 클러스터/조상 복원
+  - 판정/무승부
+  - 유형/환경
+---
+
+# plastid_ancestor_v1 · 환경
+
+← [[plastid_ancestor_v1]]
+
+**카탈로그** GTDB bac120 tree + UniProt · **종 수** —
+
+## 환경 범위
+
+```json
+{
+ "대상": "남세균(Cyanobacteriia) 162종 + 다른 세균 외군 150종",
+ "환경": "담수·해양·토양·공생 남세균. 해양 피코시아노박테리아 다수와 비광합성 자매군(밤피로비브리오니아·세리시토크로마티아)은 미포함"
+}
+```
+
+## 요약 수치
+
+```json
+{
+ "잎 숨기기 (복원 / 현생 빈도)": {
+  "reconstruction": 0.9863,
+  "clade_frequency": 0.9797
+ },
+ "알려진 정답 (복원 / 현생 빈도 AUROC, 크기 편향)": [
+  0.9954,
+  0.9756,
+  -0.034
+ ],
+ "oxygenic photosynthesis (expected present: every Cyanobacteriia lineage has it)": {
+  "Photo_RC": 0.988,
+  "PsaA_PsaB": 0.996,
+  "PSII": 0.996,
+  "PsbP": 0.994,
+  "PSI_PsaF": 0.999,
+  "Ycf4": 0.999
+ },
+ "carbon fixation and carboxysome (expected present)": {
+  "RuBisCO_large": 0.977,
+  "RuBisCO_small": 0.988,
+  "BMC": 0.988
+ },
+ "phycobilisome (expected present)": {
+  "Phycobilisome": 0.999,
+  "CpcD": 0.999
+ },
+ "plastid-encoded core (still in plastid genomes)": {
+  "ATP-synt_ab": 1.0,
+  "Cytochrome_B": 1.0,
+  "RNA_pol_Rpb2_6": 1.0,
+  "SecY": 1.0,
+  "Peptidase_M41": 1.0
+ },
+ "circadian clock (KaiA/KaiB absent from Gloeobacter: expected low at the root, high after it)": {
+  "KaiA": 0.104,
+  "KaiB": 0.041
+ },
+ "nitrogen fixation": {
+  "Oxidored_nitro": 0.988
+ }
+}
+```
+
+> [!note]
+> envelope 밖의 환경에 이 법칙을 쓰면 외삽이다. 값은 문헌 근사치(카탈로그 주석 참조).
