@@ -31,7 +31,7 @@ def main():
     args = ap.parse_args()
     p = PRESETS[args.clade]
     tree = args.tree or p["tree"]
-    name = args.clade + (f"_{args.root_split.lower()}" if args.root_split else "")
+    name = args.clade + (f"_{args.root_split.split('+')[0].lower()}" if args.root_split else "")
     py = sys.executable
     root = (["--root-split", args.root_split, "--lineage", p["pick"]] if args.root_split
             else ["--root-outgroup"])

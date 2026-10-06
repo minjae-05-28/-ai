@@ -28,8 +28,19 @@ PANELS = {
         "mitochondrion-encoded (absent from most UniProt proteomes: an artifact, not loss)":
             ["COX2", "COX3", "Cytochrome_B"],
     },
+    "leca": {
+        "mitochondrion, nuclear-encoded (expected present: LECA had a mitochondrion)":
+            ["Complex1_51K", "ATP-synt_ab", "Mito_carr", "Tom20", "Tim17"],
+        "meiosis and sex (expected present)": ["TP6A_N", "Rad51", "Spo11", "HORMA", "Mnd1"],
+        "cilium (expected present)": ["Radial_spoke_3", "IFT57", "IFT52_GIFT", "Dynein_heavy", "Tubulin"],
+        "endomembrane and nucleus (expected present)": ["Clathrin", "Sec23_trunk", "Snf7", "Nup153", "Ran_BP1"],
+        "peroxisome and autophagy (expected present)": ["Pex2_Pex12", "ATG7_N", "APG12"],
+        "spliceosome (expected present)": ["PRP8_U5-snRNA_bdg", "Sm", "DEAD"],
+        "photosynthesis (expected ABSENT: the plastid came after LECA)":
+            ["Photo_RC", "PSII", "PsbP", "Chloroa_b-bind", "PsaA_PsaB"],
+    },
 }
-NAMES = {"fungi": "Fungi"}
+NAMES = {"fungi": "Fungi", "leca": "eukaryotes (LECA)"}
 
 
 def caveats(s, power, hgt, clade):
@@ -100,6 +111,8 @@ def main():
     ap.add_argument("--dir", default="")
     ap.add_argument("--tree", default="")
     args = ap.parse_args()
+    if args.clade.startswith("leca"):
+        raise SystemExit("LECA has no outgroup and several root positions: use save_leca_law.py")
     R = Path(args.dir or f"results/clade_ancestor/{args.clade}")
     dest = LAWS_DIR / f"{args.id}.json"
     if dest.exists():
@@ -111,6 +124,7 @@ def main():
     agg = json.loads(pf.read_text())["aggregate"] if pf.exists() else {}
     power = next((v for k, v in agg.items() if "표본이 도달한 마디" in k), None)
     hf = Path("results/hgt_rate") / args.clade / "summary.json"
+    panel_key = args.clade.split("_")[0]
     hgt = json.loads(hf.read_text())["sets"].get(args.clade) if hf.exists() else None
     core = None
     if "child_posteriors" in z.files and len(z["child_n_tips"]):
@@ -119,7 +133,7 @@ def main():
             core = z["child_posteriors"][j]
     core_power = next((v for k, v in agg.items() if "뿌리 아래 큰 쪽" in k), None)
     panel = {}
-    for group, fams in PANELS.get(args.clade, {}).items():
+    for group, fams in PANELS.get(panel_key, {}).items():
         panel[group] = {f: {"posterior": round(float(z["posterior"][col[f]]), 3),
                             **({"core_node_posterior": round(float(core[col[f]]), 3)} if core is not None else {}),
                             "model_sd": round(float(z["model_sd"][col[f]]), 3),

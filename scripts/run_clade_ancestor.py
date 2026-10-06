@@ -130,7 +130,11 @@ def build(tree_path, clade_genera, min_families, clade_kingdom=None, root_outgro
         # No outgroup (LECA): root on the branch that separates one named group from the rest.
         # Which branch that is, is the open question, so the caller runs several.
         tips2 = [v for v in range(len(parent)) if v not in set(parent.tolist())]
-        grp = {v: root_split in (lineage or {}).get(label2[v], []) for v in tips2}
+        split_names = root_split.split("+")   # "Opisthokonta+Amoebozoa+Apusozoa": any of these
+
+        def in_split(lbl):
+            return any(n in (lineage or {}).get(lbl, []) for n in split_names)
+        grp = {v: in_split(label2[v]) for v in tips2}
         if not any(grp.values()) or all(grp.values()):
             raise SystemExit(f"root split {root_split!r}: {sum(grp.values())} of {len(tips2)} tips in the group")
         t = farthest_outgroup_tip(parent, np.maximum(length, 1e-6), set(tips2), grp)
@@ -141,12 +145,12 @@ def build(tree_path, clade_genera, min_families, clade_kingdom=None, root_outgro
             if v:
                 dep[v] = dep[parent[v]] + length[v]
         tips2 = [v for v in range(len(parent)) if not ch[v]]
-        gt = [v for v in tips2 if root_split in (lineage or {}).get(label2[v], [])]
+        gt = [v for v in tips2 if in_split(label2[v])]
         node = mrca(gt, parent, dep)
         below, stack = [], [node]
         while stack:
             v = stack.pop()
-            if not ch[v] and root_split not in (lineage or {}).get(label2[v], []):
+            if not ch[v] and not in_split(label2[v]):
                 below.append(label2[v])
             stack.extend(ch[v])
         split_intruders = sorted(below)
