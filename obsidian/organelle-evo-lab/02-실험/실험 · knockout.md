@@ -43,93 +43,8 @@ tags:
    "Candidatus Riesia pediculischaeffi": 0.5596590909090909,
    "Serratia symbiotica": 0.8721590909090909,
    "Sodalis glossinidius str. 'morsitans'": 0.8664772727272727,
-   "Wigglesworthia glossinidia endosymbiont of Glossina morsitans morsitans (Yale colony)": 0.7159090909090909
-  }
- },
- "costly in rich medium": {
-  "n_genes": 50,
-  "share_kept_mean": 0.3512,
-  "by_symbiont": {
-   "Arsenophonus nasoniae": 0.82,
-   "Candidatus Palibaumannia cicadellinicola": 0.5,
-   "Candidatus Blochmanniella floridana": 0.34,
-   "Candidatus Blochmanniella pennsylvanica": 0.26,
-   "Candidatus Blochmanniella vafra str. BVAF": 0.34,
-   "Buchnera aphidicola str. Bp (Baizongia pistaciae)": 0.28,
-   "Buchnera aphidicola (Cinara tujafilina)": 0.2,
-   "Buchnera aphidicola BCc": 0.22,
-   "Buchnera aphidicola (Myzus persicae)": 0.32,
-   "Buchnera aphidicola (Schizaphis graminum)": 0.3,
-   "Buchnera aphidicola (Uroleucon sonchi)": 0.32,
-   "Buchnera aphidicola str. APS (Acyrthosiphon pisum)": 0.32,
-   "Candidatus Annandia pinicola": 0.18,
-   "Candidatus Carsonella ruddii": 0.04,
-   "Candidatus Ishikawaella capsulata Mpkobe": 0.28,
-   "Candidatus Portiera aleyrodidarum": 0.08,
-   "Candidatus Purcelliella pentastirinorum": 0.24,
-   "Candidatus Westeberhardia cardiocondylae": 0.24,
-   "Candidatus Hamiltonella defensa (Bemisia tabaci)": 0.7,
-   "Candidatus Moranella endobia PCIT": 0.36,
-   "Candidatus Riesia pediculicola": 0.2,
-   "Candidatus Riesia pediculischaeffi": 0.2,
-   "Serratia symbiotica": 0.84,
-   "Sodalis glossinidius str. 'morsitans'": 0.84,
-   "Wigglesworthia glossinidia endosymbiont of Glossina morsitans morsitans (Yale colony)": 0.36
-  }
- },
- "needed only in minimal medium": {
-  "n_genes": 676,
-  "share_kept_mean": 0.20142011834319526,
-  "by_symbiont": {
-   "Arsenophonus nasoniae": 0.5340236686390533,
-   "Candidatus Palibaumannia cicadellinicola": 0.22781065088757396,
-   "Candidatus Blochmanniella floridana": 0.19674556213017752,
-   "Candidatus Blochmanniella pennsylvanica": 0.17899408284023668,
-   "Candidatus Blochmanniella vafra str. BVAF": 0.19230769230769232,
-   "Buchnera aphidicola str. Bp (Baizongia pistaciae)": 0.17307692307692307,
-   "Buchnera aphidicola (Cinara tujafilina)": 0.10502958579881656,
-   "Buchnera aphidicola BCc": 0.10207100591715976,
-   "Buchnera aphidicola (Myzus persicae)": 0.20118343195266272,
-   "Buchnera aphidicola (Schizaphis graminum)": 0.1849112426035503,
-   "Buchnera aphidicola (Uroleucon sonchi)": 0.16715976331360946,
-   "Buchnera aphidicola str. APS (Acyrthosiphon pisum)": 0.1937869822485207,
-   "Candidatus Annandia pinicola": 0.10650887573964497,
-   "Candidatus Carsonella ruddii": 0.047337278106508875,
-   "Candidatus Ishikawaella capsulata Mpkobe": 0.22337278106508876,
-   "Candidatus Portiera aleyrodidarum": 0.07840236686390532,
-   "Candidatus Purcelliella pentastirinorum": 0.10650887573964497,
-   "Candidatus Westeberhardia cardiocondylae": 0.09023668639053255,
-   "Candidatus Hamiltonella defensa (Bemisia tabaci)": 0.2677514792899408,
-   "Candidatus Moranella endobia PCIT": 0.10502958579881656,
-   "Candidatus Riesia pediculicola": 0.10650887573964497,
-   "Candidatus Riesia pediculischaeffi": 0.09763313609467456,
-   "Serratia symbiotica": 0.5931952662721893,
-   "Sodalis glossinidius str. 'morsitans'": 0.5857988165680473,
-   "Wigglesworthia glossinidia endosymbiont of Glossina morsitans morsitans (Yale colony)": 0.17011834319526628
-  }
- },
- "dispensable": {
-  "n_genes": 2249,
-  "share_kept_mean": 0.076016007114273,
-  "by_symbiont": {
-   "Arsenophonus nasoniae": 0.2810137839039573,
-   "Candidatus Palibaumannia cicadellinicola": 0.057803468208092484,
-   "Candidatus Blochmanniella floridana": 0.05113383726100489,
-   "Candidatus Blochmanniella pennsylvanica": 0.04802134281903068,
-   "Candidatus Blochmanniella vafra str. BVAF": 0.05024455313472655,
-   "Buchnera aphidicola str. Bp (Baizongia pistaciae)": 0.05469097376611828,
-   "Buchnera aphidicola (Cinara tujafilina)": 0.041796353935082256,
-   "Buchnera aphidicola BCc": 0.037349933303690526,
-   "Buchnera aphidicola (Myzus persicae)": 0.05869275233437083,
-   "Buchnera aphidicola (Schizaphis graminum)": 0.05869275233437083,
-   "Buchnera aphidicola (Uroleucon sonchi)": 0.05691418408181414,
-   "Buchnera aphidicola str. APS (Acyrthosiphon pisum)": 0.05824811027123166,
-   "Candidatus Annandia pinicola": 0.024899955535793685,
-   "Candidatus Carsonella ruddii": 0.008003557136505114,
-   "Candidatus Ishikawaella capsulata Mpkobe": 0.0609159626500667,
-   "Candidatus Portiera aleyrodidarum": 0.020453534904401955,
-   "Candidatus Purcelliella pentastirinorum": 0.0422409959982
-… (잘림, 원본 파일 참조)
+   "Wigglesworthia glossinidia endosy
+… (잘림 — 원본 파일 참조)
 ```
 
 ## families_with_knockout_data
@@ -297,10 +212,8 @@ tags:
  "extremophiles": {
   "n_pairs": 36,
   "auroc_low_rna_predicts_loss": 0.636585209599741,
-  "auroc_low_codon_proxy_predicts_loss": 0.623053513913076,
-  "partial_spearman_rna_vs_loss_controlling_ubiquity": -0.15294412680589295
- }
-}
+  "auroc_low_codon_proxy_predicts_loss": 0.623053513913076
+… (잘림 — 원본 파일 참조)
 ```
 
 ## 연결

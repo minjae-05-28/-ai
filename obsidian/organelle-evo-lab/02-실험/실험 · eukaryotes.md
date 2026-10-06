@@ -343,42 +343,8 @@ tags:
   "n_lost": 1754,
   "copies_only": 0.5945160953939455,
   "learned_law": 0.6243013152074568,
-  "loss_frequency_elsewhere": 0.8760130546114048,
-  "reference_mitochondrion": 0.5923507774220789,
-  "reference_plastid": 0.6246472072032775,
-  "reference_insect_endosymbiont": 0.6225636765013587
- },
- {
-  "pair": "Bodo saltans -> Leishmania major",
-  "n_lost": 716,
-  "copies_only": 0.6183900794168011,
-  "learned_law": 0.634380463556812,
-  "loss_frequency_elsewhere": 0.8633756859643051,
-  "reference_mitochondrion": 0.6074986404311069,
-  "reference_plastid": 0.6312214321990859,
-  "reference_insect_endosymbiont": 0.6450648772792442
- },
- {
-  "pair": "Bodo saltans -> Trypanosoma brucei",
-  "n_lost": 739,
-  "copies_only": 0.6070646653008505,
-  "learned_law": 0.6231753634439227,
-  "loss_frequency_elsewhere": 0.8644611426376956,
-  "reference_mitochondrion": 0.5909144101305547,
-  "reference_plastid": 0.6219386569400331,
-  "reference_insect_endosymbiont": 0.6339623450065022
- },
- {
-  "pair": "Spizellomyces punctatus -> Encephalitozoon cuniculi",
-  "n_lost": 3806,
-  "copies_only": 0.6851860894847471,
-  "learned_law": 0.7092126006029261,
-  "loss_frequency_elsewhere": 0.8191473340224577,
-  "reference_mitochondrion": 0.6270345299665349,
-  "reference_plastid": 0.7061394145670271,
-  "reference_insect_endosymbiont": 0.6901892268440413
- }
-]
+  "loss_freq
+… (잘림 — 원본 파일 참조)
 ```
 
 ## comparison_with_endosymbiosis_v1

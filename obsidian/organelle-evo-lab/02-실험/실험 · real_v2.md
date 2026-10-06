@@ -71,69 +71,8 @@ tags:
   "Phytophthora infestans": 0,
   "Plasmodium falciparum": 0,
   "Podospora anserina": 3,
-  "Heterostelium pallidum": 1,
-  "Porphyra purpurea": 0,
-  "Prototheca wickerhamii": 3,
-  "Pycnococcus provasolii": 0,
-  "Reclinomonas americana": 0,
-  "Rhizopus arrhizus": 2,
-  "Rhodomonas salina": 2,
-  "Saccharomyces cerevisiae S288C": 1,
-  "Saprolegnia ferax": 0,
-  "Schistosoma mansoni": 0,
-  "Schizosaccharomyces pombe": 1,
-  "Seculamonas ecuadoriensis": 0,
-  "Selaginella moellendorffii": 0,
-  "Strongylocentrotus purpuratus": 0,
-  "Tetrahymena thermophila": 1,
-  "Thalassiosira pseudonana": 1,
-  "Theileria parva": 0,
-  "Trichoplax adhaerens": 1,
-  "Xenopus laevis": 0,
-  "Yarrowia lipolytica": 4,
-  "Zea mays subsp. parviglumis": 1
- },
- "n_genes": 80,
- "law": {
-  "hydrophobicity_gravy": {
-   "weight": -0.2477779597271006,
-   "se": 0.06801712764837119
-  },
-  "tm_helices": {
-   "weight": -0.3384846191873112,
-   "se": 0.08603023805355747
-  },
-  "protein_length": {
-   "weight": -0.15799380537329447,
-   "se": 0.03583796795836201
-  },
-  "redox_core": {
-   "weight": -2.2397787446234947,
-   "se": 0.1800555549397924
-  },
-  "atp_synthase": {
-   "weight": -1.9254760193801765,
-   "se": 0.18730236333538397
-  },
-  "translation": {
-   "weight": -1.5548625696171203,
-   "se": 0.19439706286464947
-  },
-  "transcription": {
-   "weight": 0.3275547222356097,
-   "se": 0.22120481447892812
-  },
-  "protein_targeting": {
-   "weight": 0.11976287608774241,
-   "se": 0.17784842991142907
-  }
- },
- "lolo_auroc": {
-  "law_features_only": 0.872667089552455,
-  "gene_prevalence": 0.9457380734312791,
-  "law_plus_prevalence": 0.9320868751225928
- }
-}
+  "Heterostelium p
+… (잘림 — 원본 파일 참조)
 ```
 
 ## plastid
@@ -195,49 +134,8 @@ tags:
   "Toxoplasma gondii RH": 0,
   "Vaucheria litorea": 4,
   "Zea mays": 0,
-  "Zygnema circumcarinatum": 0
- },
- "n_genes": 276,
- "law": {
-  "hydrophobicity_gravy": {
-   "weight": -0.014197318726414105,
-   "se": 0.025076364712515543
-  },
-  "tm_helices": {
-   "weight": -0.0057634363274628,
-   "se": 0.02817873257321653
-  },
-  "protein_length": {
-   "weight": -0.11164828908536151,
-   "se": 0.02321204510414229
-  },
-  "redox_core": {
-   "weight": -1.355772890591134,
-   "se": 0.09310342654931084
-  },
-  "atp_synthase": {
-   "weight": -1.6735981564377227,
-   "se": 0.144829317780884
-  },
-  "translation": {
-   "weight": -1.4786618321896716,
-   "se": 0.04764838038741482
-  },
-  "transcription": {
-   "weight": -1.8083128812622042,
-   "se": 0.13251352999118984
-  },
-  "protein_targeting": {
-   "weight": -0.6935638848137268,
-   "se": 0.11417363983653203
-  }
- },
- "lolo_auroc": {
-  "law_features_only": 0.7840077523372281,
-  "gene_prevalence": 0.9130412888363468,
-  "law_plus_prevalence": 0.8916008537692987
- }
-}
+  "Zy
+… (잘림 — 원본 파일 참조)
 ```
 
 ## insect_endosymbiont
@@ -287,32 +185,8 @@ tags:
    "se": 0.005787381852711644
   },
   "redox_core": {
-   "weight": -2.0510965853413547,
-   "se": 0.20821117628604466
-  },
-  "atp_synthase": {
-   "weight": -1.8285855140498166,
-   "se": 0.24671664989983136
-  },
-  "translation": {
-   "weight": -2.7682091252021364,
-   "se": 0.22077501950024878
-  },
-  "transcription": {
-   "weight": -1.2944304473039303,
-   "se": 0.06266022417633235
-  },
-  "protein_targeting": {
-   "weight": -0.7730734668897684,
-   "se": 0.03550674945311249
-  }
- },
- "lolo_auroc": {
-  "law_features_only": 0.6596591636146854,
-  "gene_prevalence": 0.9652449872298233,
-  "law_plus_prevalence": 0.9566041654845664
- }
-}
+   "weight":
+… (잘림 — 원본 파일 참조)
 ```
 
 ## universality

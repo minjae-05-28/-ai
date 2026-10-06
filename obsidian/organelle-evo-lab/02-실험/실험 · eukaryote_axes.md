@@ -133,70 +133,8 @@ tags:
    "weight": 0.03863818982340858,
    "se": 0.04028870913458348
   },
-  "tm_helices": {
-   "weight": -0.08304640335435418,
-   "se": 0.012818906364904972
-  },
-  "protein_length": {
-   "weight": 0.0654936998856426,
-   "se": 0.023566110193420003
-  },
-  "redox_core": {
-   "weight": 0.7071732128299012,
-   "se": 0.16308134355878987
-  },
-  "atp_synthase": {
-   "weight": 0.08103236510351297,
-   "se": 0.11184160371455
-  },
-  "translation": {
-   "weight": -0.0008811739720352715,
-   "se": 0.06191072606023642
-  },
-  "transcription": {
-   "weight": -0.03417155078542426,
-   "se": 0.23278307971953793
-  },
-  "protein_targeting": {
-   "weight": -0.259537414725286,
-   "se": 0.5494908684278687
-  }
- },
- "reduced_mitochondria": {
-  "hydrophobicity_gravy": {
-   "weight": -0.05989671508231578,
-   "se": 0.043286986164952995
-  },
-  "tm_helices": {
-   "weight": -0.05281828448537089,
-   "se": 0.025429548062423316
-  },
-  "protein_length": {
-   "weight": 0.015848502931887883,
-   "se": 0.009515688034557606
-  },
-  "redox_core": {
-   "weight": 1.5424051404698986,
-   "se": 0.17675379815956005
-  },
-  "atp_synthase": {
-   "weight": 0.7277226845363076,
-   "se": 0.2608356813504689
-  },
-  "translation": {
-   "weight": 0.17924920348491846,
-   "se": 0.06546789252871997
-  },
-  "transcription": {
-   "weight": -0.477787139505708,
-   "se": 0.18780033532937027
-  },
-  "protein_targeting": {
-   "weight": -0.184552490765397,
-   "se": 0.10727622216315981
-  }
- }
-}
+  "tm_he
+… (잘림 — 원본 파일 참조)
 ```
 
 ## duplication_effects
@@ -277,69 +215,8 @@ tags:
    "se": 0.046873777075505926
   },
   "tm_helices": {
-   "weight": -0.21390233595535513,
-   "se": 0.03221600189737739
-  },
-  "protein_length": {
-   "weight": 0.10450273471360962,
-   "se": 0.03144294554071721
-  },
-  "redox_core": {
-   "weight": 0.8404144787220803,
-   "se": 0.28655625476991375
-  },
-  "atp_synthase": {
-   "weight": 0.205758042837728,
-   "se": 0.44228154843733797
-  },
-  "translation": {
-   "weight": -0.35551316203156785,
-   "se": 0.19286930968173313
-  },
-  "transcription": {
-   "weight": 0.3173138171124994,
-   "se": 0.19914527428957995
-  },
-  "protein_targeting": {
-   "weight": -0.2597382202759888,
-   "se": 0.1492079405510531
-  }
- },
- "reduced_mitochondria": {
-  "hydrophobicity_gravy": {
-   "weight": 0.021003316333704267,
-   "se": 0.059998882348462707
-  },
-  "tm_helices": {
-   "weight": -0.17022422328240758,
-   "se": 0.03151213365938212
-  },
-  "protein_length": {
-   "weight": 0.03148718733558487,
-   "se": 0.013399281833649085
-  },
-  "redox_core": {
-   "weight": -0.17586484866667634,
-   "se": 0.044533788621124455
-  },
-  "atp_synthase": {
-   "weight": -0.7746682187138783,
-   "se": 0.46070207394210566
-  },
-  "translation": {
-   "weight": -0.5417144585541188,
-   "se": 0.14200601124693982
-  },
-  "transcription": {
-   "weight": -1.7210668658890393,
-   "se": 0.0841903958101666
-  },
-  "protein_targeting": {
-   "weight": -0.6479060956342213,
-   "se": 0.5219133366308979
-  }
- }
-}
+
+… (잘림 — 원본 파일 참조)
 ```
 
 ## heldout_parasites
@@ -410,97 +287,8 @@ tags:
   },
   "copies_only": 0.6233197287534065,
   "lumped_parasite_law": 0.6637140503200456,
-  "split_law": 0.6636788136130299
- },
- {
-  "pair": "Chromera velia -> Eimeria tenella",
-  "design": {
-   "parasite": 1,
-   "intracellular": 1,
-   "reduced_mitochondria": 0
-  },
-  "copies_only": 0.6630382613043462,
-  "lumped_parasite_law": 0.703248031496063,
-  "split_law": 0.7040958336036885
- },
- {
-  "pair": "Chromera velia -> Cryptosporidium parvum",
-  "design": {
-   "parasite": 1,
-   "intracellular": 1,
-   "reduced_mitochondria": 1
-  },
-  "copies_only": 0.6330129445537315,
-  "lumped_parasite_law": 0.6765025024060192,
-  "split_law": 0.6704547169416368
- },
- {
-  "pair": "Bodo saltans -> Leishmania major",
-  "design": {
-   "parasite": 1,
-   "intracellular": 1,
-   "reduced_mitochondria": 0
-  },
-  "copies_only": 0.6183900794168011,
-  "lumped_parasite_law": 0.6326944857683474,
-  "split_law": 0.6338383214155696
- },
- {
-  "pair": "Bodo saltans -> Trypanosoma cruzi",
-  "design": {
-   "parasite": 1,
-   "intracellular": 1,
-   "reduced_mitochondria": 0
-  },
-  "copies_only": 0.6282412855577649,
-  "lumped_parasite_law": 0.6436950908980238,
-  "split_law": 0.644403963600211
- },
- {
-  "pair": "Bodo saltans -> Trypanosoma brucei",
-  "design": {
-   "parasite": 1,
-   "intracellular": 0,
-   "reduced_mitochondria": 0
-  },
-  "copies_only": 0.6070646653008505,
-  "lumped_parasite_law": 0.6222798362998356,
-  "split_law": 0.6249713623604997
- },
- {
-  "pair": "Spizellomyces punctatus -> Rozella allomycis",
-  "design": {
-   "parasite": 1,
-   "intracellular": 1,
-   "reduced_mitochondria": 0
-  },
-  "copies_only": 0.6630970516017967,
-  "lumped_parasite_law": 0.6925989187958266,
-  "split_law": 0.6887377392182287
- },
- {
-  "pair": "Spizellomyces punctatus -> Encephalitozoon cuniculi",
-  "design": {
-   "parasite": 1,
-   "intracellular": 1,
-   "reduced_mitochondria": 1
-  },
-  "copies_only": 0.6851860894847471,
-  "lumped_parasite_law": 0.7074935351384241,
-  "split_law": 0.7114245253339603
- },
- {
-  "pair": "Spizellomyces punctatus -> Nosema ceranae",
-  "design": {
-   "parasite": 1,
-   "intracellular": 1,
-   "reduced_mitochondria": 1
-  },
-  "copies_only": 0.6890765047252576,
-  "lumped_parasite_law": 0.7079794393494863,
-  "split_law": 0.7116743793002712
- }
-]
+  "split_law": 0.663678813613
+… (잘림 — 원본 파일 참조)
 ```
 
 ## plasmodium_ancestor
@@ -558,70 +346,7 @@ tags:
    "projected_families_kept": 1302.02,
    "matches_plasmodium_biology": false
   },
-  "parasite, intracellular, aerobic": {
-   "auroc": 0.6424769930998488,
-   "fraction_lost_by_class": {
-    "redox_core": 0.42059349176782523,
-    "atp_synthase": 0.08875797833606905,
-    "translation": 0.12094390510186889,
-    "transcription": 0.07206979088247036,
-    "protein_targeting": 0.16446300697765792
-   },
-   "projected_families_kept": 1299.86,
-   "matches_plasmodium_biology": true
-  },
-  "parasite, intracellular, reduced mito": {
-   "auroc": 0.629631505829438,
-   "fraction_lost_by_class": {
-    "redox_core": 0.9459262736845833,
-    "atp_synthase": 0.17675970662162588,
-    "translation": 0.15232677519718235,
-    "transcription": 0.05222541753477004,
-    "protein_targeting": 0.13548150617523988
-   },
-   "projected_families_kept": 1295.79,
-   "matches_plasmodium_biology": false
-  },
-  "reference: endosymbiosis (mitochondrion)": {
-   "auroc": 0.6053259342835433,
-   "fraction_lost_by_class": {
-    "redox_core": 0.10419723412284113,
-    "atp_synthase": 0.09222125474231921,
-    "translation": 0.1502583882296496,
-    "transcription": 0.6084185706657823,
-    "protein_targeting": 0.47891035075014443
-   }
-  },
-  "reference: endosymbiosis (plastid)": {
-   "auroc": 0.6340486771512123,
-   "fraction_lost_by_class": {
-    "redox_core": 0.12258481843660235,
-    "atp_synthase": 0.06192505855208084,
-    "translation": 0.09823107507156378,
-    "transcription": 0.02041935637105477,
-    "protein_targeting": 0.15303885031348383
-   }
-  },
-  "reference: endosymbiosis (insect_endosymbiont)": {
-   "auroc": 0.6261561015296998,
-   "fraction_lost_by_class": {
-    "redox_core": 0.07139494332424981,
-    "atp_synthase": 0.06941326055558918,
-    "translation": 0.017467959281268874,
-    "transcription": 0.06222865891433481,
-    "protein_targeting": 0.16186032742968706
-   }
-  }
- },
- "actual_fraction_lost_by_class": {
-  "redox_core": 0.23076923076923078,
-  "atp_synthase": 0.0,
-  "translation": 0.05,
-  "transcription": 0.058823529411764705,
-  "protein_targeting": 0.2
- },
- "actual_families_kept": 1902
-}
+… (잘림 — 원본 파일 참조)
 ```
 
 ## 연결

@@ -90,67 +90,8 @@ tags:
   "recon_size_bias": 0.04438260479430488,
   "freq_size_bias": 0.07695424437215567,
   "hgt": 0.1,
-  "recon_beats_freq_auroc": true,
-  "recon_beats_freq_logloss": true,
-  "recon_beats_prior_logloss": true
- },
- {
-  "true_share": 0.574,
-  "recon_auroc": 0.915501745894034,
-  "freq_auroc": 0.8037007693233129,
-  "recon_logloss": 0.4013004969681497,
-  "freq_logloss": 0.5816307471969161,
-  "prior_logloss": 0.682122126970236,
-  "recon_size_bias": 0.1675937142896354,
-  "freq_size_bias": 0.21990968695100482,
-  "hgt": 0.2,
-  "recon_beats_freq_auroc": true,
-  "recon_beats_freq_logloss": true,
-  "recon_beats_prior_logloss": true
- },
- {
-  "true_share": 0.626,
-  "recon_auroc": 0.8371205553824332,
-  "freq_auroc": 0.7298268528087399,
-  "recon_logloss": 0.6203726438345329,
-  "freq_logloss": 0.7003966535724,
-  "prior_logloss": 0.6609733935996324,
-  "recon_size_bias": 0.28765608856462854,
-  "freq_size_bias": 0.27665991169444193,
-  "hgt": 0.35,
-  "recon_beats_freq_auroc": true,
-  "recon_beats_freq_logloss": true,
-  "recon_beats_prior_logloss": true
- },
- {
-  "true_share": 0.695,
-  "recon_auroc": 0.7420260402057036,
-  "freq_auroc": 0.6484957323181727,
-  "recon_logloss": 0.7013464822474926,
-  "freq_logloss": 0.7339917660386996,
-  "prior_logloss": 0.6149824832402402,
-  "recon_size_bias": 0.2502764715664629,
-  "freq_size_bias": 0.23067506969312251,
-  "hgt": 0.5,
-  "recon_beats_freq_auroc": true,
-  "recon_beats_freq_logloss": true,
-  "recon_beats_prior_logloss": false
- },
- {
-  "true_share": 0.849,
-  "recon_auroc": 0.6033944237753919,
-  "freq_auroc": 0.5436849520349771,
-  "recon_logloss": 0.5048695658489305,
-  "freq_logloss": 0.5028984294524568,
-  "prior_logloss": 0.423310577326395,
-  "recon_size_bias": 0.08968062027243193,
-  "freq_size_bias": 0.0739729622353079,
-  "hgt": 0.8,
-  "recon_beats_freq_auroc": true,
-  "recon_beats_freq_logloss": false,
-  "recon_beats_prior_logloss": false
- }
-]
+  "recon_b
+… (잘림 — 원본 파일 참조)
 ```
 
 ## 연결

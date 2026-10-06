@@ -134,80 +134,8 @@ tags:
   "label": "아메보조아 + 외군 (40종)",
   "families": 5771,
   "observed": {
-   "median_q": 1.0,
-   "mean_log10_q": 0.15123577286917572,
-   "share_q_ge_1": 0.6258880609946283,
-   "share_q_ge_0.3": 0.909894299081615
-  },
-  "calibration": [
-   {
-    "hgt": 0.0,
-    "median_q": 0.1,
-    "mean_log10_q": -0.9769,
-    "share_q_ge_1": 0.209,
-    "share_q_ge_0.3": 0.33
-   },
-   {
-    "hgt": 0.02,
-    "median_q": 0.5,
-    "mean_log10_q": -0.3326,
-    "share_q_ge_1": 0.352,
-    "share_q_ge_0.3": 0.653
-   },
-   {
-    "hgt": 0.05,
-    "median_q": 1.0,
-    "mean_log10_q": 0.057,
-    "share_q_ge_1": 0.607,
-    "share_q_ge_0.3": 0.923
-   },
-   {
-    "hgt": 0.1,
-    "median_q": 3.0,
-    "mean_log10_q": 0.376,
-    "share_q_ge_1": 0.902,
-    "share_q_ge_0.3": 0.994
-   },
-   {
-    "hgt": 0.2,
-    "median_q": 3.0,
-    "mean_log10_q": 0.6501,
-    "share_q_ge_1": 0.997,
-    "share_q_ge_0.3": 1.0
-   },
-   {
-    "hgt": 0.35,
-    "median_q": 10.0,
-    "mean_log10_q": 0.7975,
-    "share_q_ge_1": 1.0,
-    "share_q_ge_0.3": 1.0
-   },
-   {
-    "hgt": 0.5,
-    "median_q": 10.0,
-    "mean_log10_q": 0.8662,
-    "share_q_ge_1": 1.0,
-    "share_q_ge_0.3": 1.0
-   },
-   {
-    "hgt": 0.8,
-    "median_q": 10.0,
-    "mean_log10_q": 0.9273,
-    "share_q_ge_1": 1.0,
-    "share_q_ge_0.3": 1.0
-   }
-  ],
-  "estimated_hgt": 0.049,
-  "estimated_hgt_by_median_q": 0.05,
-  "how": "보간",
-  "gates_passed": [
-   "0.35 (크기(유전자군 수) 부풀기 시작)",
-   "0.5 (확률 보정이 깨짐)",
-   "0.8 (순위도 무너짐)"
-  ],
-  "gates_broken": []
- }
-}
+   
+… (잘림 — 원본 파일 참조)
 ```
 
 ## 연결

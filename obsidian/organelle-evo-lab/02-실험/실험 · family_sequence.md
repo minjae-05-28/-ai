@@ -110,65 +110,8 @@ tags:
    -0.0581
   ],
   [
-   "sCache_2: Single Cache domain 2",
-   -0.0604
-  ],
-  [
-   "PolyA_pol_RNAbd: Probable RNA and SrmB- binding site of polymerase A",
-   -0.0829
-  ],
-  [
-   "DUF493: Protein of unknown function (DUF493)",
-   -0.0944
-  ],
-  [
-   "Copper-bind: Copper binding proteins, plastocyanin/azurin family",
-   -0.0956
-  ]
- ],
- "feature_correlations": [
-  [
-   "hydrophobicity_gravy",
-   -0.16312864689105405
-  ],
-  [
-   "tm_helices",
-   -0.12985374798727495
-  ],
-  [
-   "kw:transporter_channel",
-   -0.11448278597817009
-  ],
-  [
-   "go:transporter activity",
-   -0.08431938069382701
-  ],
-  [
-   "hmm_length",
-   -0.06542390544939804
-  ],
-  [
-   "go:transmembrane transport",
-   -0.06148036647724844
-  ],
-  [
-   "protein_length",
-   -0.05839410702202965
-  ],
-  [
-   "ubiquity_free_living",
-   0.05646643136721691
-  ],
-  [
-   "kw:repeat_domain",
-   0.04730885024798392
-  ],
-  [
-   "kw:cilium_flagellum",
-   0.044886511743429856
-  ]
- ]
-}
+   "sCache_2: Sin
+… (잘림 — 원본 파일 참조)
 ```
 
 ## acidic_excess
@@ -256,73 +199,8 @@ tags:
    -0.0637
   ],
   [
-   "SbcD_C: Type 5 capsule protein repressor C-terminal domain",
-   -0.0661
-  ],
-  [
-   "DUF402: Protein of unknown function (DUF402)",
-   -0.0664
-  ],
-  [
-   "PSP1: PSP1 C-terminal conserved region",
-   -0.0691
-  ],
-  [
-   "MotA_N: Motility protein A N-terminal",
-   -0.0701
-  ],
-  [
-   "HD_assoc: Phosphohydrolase-associated domain",
-   -0.132
-  ],
-  [
-   "HRDC: HRDC domain",
-   -0.1437
-  ]
- ],
- "feature_correlations": [
-  [
-   "tm_helices",
-   -0.184424926806161
-  ],
-  [
-   "hydrophobicity_gravy",
-   -0.1711561564727651
-  ],
-  [
-   "translation",
-   0.13298573931332688
-  ],
-  [
-   "ubiquity_free_living",
-   0.1301399696336436
-  ],
-  [
-   "kw:transporter_channel",
-   -0.12751654971276252
-  ],
-  [
-   "protein_length",
-   -0.07381031172266964
-  ],
-  [
-   "redox_core",
-   -0.07252579007083933
-  ],
-  [
-   "kw:protease",
-   -0.06795946091260197
-  ],
-  [
-   "hmm_length",
-   -0.06597327796061334
-  ],
-  [
-   "go:transporter activity",
-   -0.06457652596765283
-  ]
- ]
-}
+   "SbcD_C: Type 5 capsule protein repressor C-termi
+… (잘림 — 원본 파일 참조)
 ```
 
 ## 연결

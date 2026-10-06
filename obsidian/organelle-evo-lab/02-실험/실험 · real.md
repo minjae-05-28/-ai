@@ -78,17 +78,8 @@ tags:
    "weight": 1.0168733663072134,
    "se": 0.2681975563217674
   },
-  "protein_targeting": {
-   "weight": 0.9043493497199327,
-   "se": 0.34310091762599876
-  }
- },
- "lolo_auroc": {
-  "law_features_only": 0.852371101721746,
-  "gene_prevalence": 0.9238715260006425,
-  "law_plus_prevalence": 0.9099172749702327
- }
-}
+  "protein_ta
+… (잘림 — 원본 파일 참조)
 ```
 
 ## plastid
@@ -220,9 +211,8 @@ tags:
  "lolo_auroc": {
   "law_features_only": 0.6447232455484303,
   "gene_prevalence": 0.9533839192735963,
-  "law_plus_prevalence": 0.9447103083621958
- }
-}
+  "law_plus
+… (잘림 — 원본 파일 참조)
 ```
 
 ## universality

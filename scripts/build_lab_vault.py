@@ -321,8 +321,8 @@ def experiment_notes(out):
             if k in scalars:
                 continue
             txt = json.dumps(v, ensure_ascii=False, indent=1)
-            if len(txt) > 6000:
-                txt = txt[:6000] + "\n… (잘림, 원본 파일 참조)"
+            if len(txt) > 1600:
+                txt = txt[:1600] + "\n… (잘림 — 원본 파일 참조)"
             body += f"## {k}\n\n```json\n{txt}\n```\n\n"
         body += "## 연결\n- [[실험 목록]]\n"
         write(out / "02-실험" / f"{name}.md", body)

@@ -108,9 +108,8 @@ tags:
   "atp_synthase": 0.0,
   "translation": 0.02054794520547945,
   "transcription": 0.08823529411764706,
-  "protein_targeting": 0.2
- }
-}
+  "protein_ta
+… (잘림 — 원본 파일 참조)
 ```
 
 ## 연결
