@@ -64,7 +64,7 @@ CLADES = [
               "뿌리의 한쪽은 로젤라·미포자충 계열 3종뿐이라, 그 3종에 없는 유전자군은 여기서 '판단 불가'(약 0.1)로 "
               "나옵니다 — 옆의 '핵심 균류의 조상'과 같이 보세요."},
     {"id": "fungi_core", "dir": "results/clade_ancestor/fungi", "child": True, "power_key": "뿌리 아래 큰 쪽",
-     "hgt_id": "fungi", "name": "핵심 균류의 조상", "group": "진핵생물", "sub": "로젤라 계열이 갈라진 뒤의 마디",
+     "hgt_id": "fungi", "shared_with": "균류 뿌리 복원(같은 실행)", "name": "핵심 균류의 조상", "group": "진핵생물", "sub": "로젤라 계열이 갈라진 뒤의 마디",
      "blurb": "균류 뿌리에서 로젤라·미포자충 계열(세포 안 기생체, 유전체가 크게 줄어듦)을 뺀 나머지 286종의 공통 "
               "조상입니다. 키틴 합성효소 1군·균류 전사인자 같은 '균류다운' 유전자군이 여기서 확실해집니다."},
 ]
@@ -130,7 +130,12 @@ def clade_entry(c):
                          and "뿌리 아래 큰 쪽" not in k},
         "extra_caveat": (f"뿌리는 균류에서 가장 먼 외군 잎({a.get('rooted_on')})에 잡았습니다. "
                          + (f"균류 마디 안으로 외군 {len(intruders)}종이 들어왔습니다: {', '.join(intruders[:5])}."
-                            if intruders else "균류는 계통수에서 한 덩어리(단계통)로 나왔습니다.")
+                            if intruders else "균류는 계통수에서 한 덩어리(단계통)로 나왔습니다")
+                         + (f" — 단, 계통수가 균류 밖에 붙인 {len(a['misplaced_clade_tips_left_out'])}종"
+                            f"({', '.join(a['misplaced_clade_tips_left_out'])}, 진화가 빨라 엉뚱한 곳에 붙는 "
+                            "'긴 가지 끌림')을 뺀 뒤입니다." if a.get("misplaced_clade_tips_left_out") else ".")
+                         + (" 부트스트랩 계통수 없이 돌려서 계통수 불확실성은 아직 반영되지 않았습니다."
+                            if not a.get("n_bootstrap_trees") else "")
                          + " 불완전한 프로테옴은 손실이 아니라 누락으로 다룹니다(완전도 모형, 축소 계통 가속 끔)."),
         "size_note": (f"알려진 정답 모의에서 조상 크기 편향 {bias:+.1%}. 10% 안쪽이라 개수를 함께 보입니다 "
                       "(모든 유전자군의 사후확률 합)." if quote else
@@ -139,6 +144,7 @@ def clade_entry(c):
         "tips": n_tips, "families_considered": a["families_considered"],
         "validation": {"reconstruction": v["reconstruction"], "baseline": v["clade_frequency"],
                        "baseline_label": "현생 빈도(계통수 없음)", "shared": bool(c.get("child")),
+                       "shared_with": c.get("shared_with", ""),
                        "margin": round(v["reconstruction"] - v["clade_frequency"], 4), "extra": {}},
         "expected_families": expected,
         "today_median_families": int(np.median(counts)) if counts else None,
