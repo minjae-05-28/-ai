@@ -78,9 +78,16 @@ def read_off(curve, value, key="share_q_ge_0.3"):
     return float(np.interp(value, ys, xs)), "보간"
 
 
-def clade_tree(tree, genera=(), kingdom=None, root_outgroup=False):
+def load_lineage(path):
+    if not path:
+        return None
+    return {r["organism"].replace("'", ""): r["lineage"]
+            for r in json.loads(Path(path).read_text())["lineage"].values()}
+
+
+def clade_tree(tree, genera=(), kingdom=None, root_outgroup=False, root_split=None, lineage=None):
     from run_clade_ancestor import build
-    d, fams, names, in_clade, _, _ = build(tree, set(genera), 100, kingdom, root_outgroup)
+    d, fams, names, in_clade, _, _ = build(tree, set(genera), 100, kingdom, root_outgroup, root_split, lineage)
     # simulate() drops a tip's genes at busco/100, so feed it the completeness this data really has
     # (Entamoeba near 0.45) instead of a flat 90%.
     d["busco"] = np.clip(d["completeness_vec"] * 100, 5, 100)
@@ -106,6 +113,8 @@ def main():
     ap.add_argument("--name", default="")
     ap.add_argument("--clade-kingdom", default="")
     ap.add_argument("--label", default="")
+    ap.add_argument("--root-split", default="")
+    ap.add_argument("--lineage", default="")
     args = ap.parse_args()
     out = Path(args.out) / args.name if args.tree else Path(args.out)
     out.mkdir(parents=True, exist_ok=True)
@@ -113,7 +122,8 @@ def main():
 
     sets = {}
     if args.tree:
-        cd, cX, cvis, nf = clade_tree(args.tree, (), args.clade_kingdom or None, True)[:4]
+        cd, cX, cvis, nf = clade_tree(args.tree, (), args.clade_kingdom or None, not args.root_split,
+                                      args.root_split or None, load_lineage(args.lineage))[:4]
         sets[args.name] = (cd, cX, cvis, nf, args.label or f"{args.name} ({len(cd['tips'])}종)")
     else:
         d = load_cache()

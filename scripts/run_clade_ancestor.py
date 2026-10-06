@@ -113,7 +113,8 @@ def farthest_outgroup_tip(parent, length, tips, is_clade):
     return max(out, key=lambda v: (allsum[v], -v)) if out and total else None
 
 
-def build(tree_path, clade_genera, min_families, clade_kingdom=None, root_outgroup=False):
+def build(tree_path, clade_genera, min_families, clade_kingdom=None, root_outgroup=False,
+          root_split=None, lineage=None):
     txt = Path(tree_path).read_text()
     parent, length, label = parse_newick(txt)
     label = [lab.strip("'") for lab in label]
@@ -124,7 +125,35 @@ def build(tree_path, clade_genera, min_families, clade_kingdom=None, root_outgro
     dropped = [label[v] for v in tips if v not in set(keep)]
     parent, length, label2, old = prune(parent, length, label, keep)
     rooted_on, misplaced = None, []
-    if root_outgroup:
+    split_intruders = None
+    if root_split:
+        # No outgroup (LECA): root on the branch that separates one named group from the rest.
+        # Which branch that is, is the open question, so the caller runs several.
+        tips2 = [v for v in range(len(parent)) if v not in set(parent.tolist())]
+        grp = {v: root_split in (lineage or {}).get(label2[v], []) for v in tips2}
+        if not any(grp.values()) or all(grp.values()):
+            raise SystemExit(f"root split {root_split!r}: {sum(grp.values())} of {len(tips2)} tips in the group")
+        t = farthest_outgroup_tip(parent, np.maximum(length, 1e-6), set(tips2), grp)
+        parent, length, label2 = reroot(parent, length, label2, t)
+        ordr, ch = postorder(parent)
+        dep = np.zeros(len(parent))
+        for v in reversed(ordr):
+            if v:
+                dep[v] = dep[parent[v]] + length[v]
+        tips2 = [v for v in range(len(parent)) if not ch[v]]
+        gt = [v for v in tips2 if root_split in (lineage or {}).get(label2[v], [])]
+        node = mrca(gt, parent, dep)
+        below, stack = [], [node]
+        while stack:
+            v = stack.pop()
+            if not ch[v] and root_split not in (lineage or {}).get(label2[v], []):
+                below.append(label2[v])
+            stack.extend(ch[v])
+        split_intruders = sorted(below)
+        if node != 0:
+            parent, length, label2 = reroot(parent, length, label2, node)
+        rooted_on = f"split: {root_split} | rest"
+    elif root_outgroup:
         tips2 = [v for v in range(len(parent)) if v not in set(parent.tolist())]
         hit = {v: (prof[label2[v]].get("kingdom") == clade_kingdom if clade_kingdom
                    else label2[v].split()[0] in clade_genera) for v in tips2}
@@ -171,7 +200,7 @@ def build(tree_path, clade_genera, min_families, clade_kingdom=None, root_outgro
     byname = {v: (names[v].split()[0] in clade_genera) if not clade_kingdom else True for v in d["tips"]}
     kings = Counter(prof[names[v]].get("kingdom") for v, hit in byname.items() if hit)
     king = clade_kingdom or (kings.most_common(1)[0][0] if kings else None)
-    in_clade = {v: bool(hit and prof[names[v]].get("kingdom") == king) for v, hit in byname.items()}
+    in_clade = {v: bool(hit and (king == "*" or prof[names[v]].get("kingdom") == king)) for v, hit in byname.items()}
     wrong_kingdom = [names[v] for v, hit in byname.items() if hit and not in_clade[v]]
     if wrong_kingdom and not clade_kingdom:
         print(f"  dropped from the clade (kingdom is not {king}): {wrong_kingdom}")
@@ -234,6 +263,7 @@ def build(tree_path, clade_genera, min_families, clade_kingdom=None, root_outgro
         stack.extend(children[v])
     d["rooted_on"] = rooted_on
     d["misplaced_clade_tips_left_out"] = misplaced
+    d["root_split_intruders"] = split_intruders
     d["non_clade_tips_inside_clade_node"] = sorted(below)
     return d, fams, names, in_clade, dropped, [names[v] for v in reduced_tips]
 
@@ -276,6 +306,9 @@ def main():
                          "(at 500 this filter would have removed the most reduced genomes)")
     ap.add_argument("--root-outgroup", action="store_true",
                     help="root the (unrooted) FastTree tree on the outgroup tip farthest from the clade")
+    ap.add_argument("--root-split", default="",
+                    help="no outgroup: root between this lineage name (from --lineage) and the rest")
+    ap.add_argument("--lineage", default="", help="a pick_eukaryotes.py file, for --root-split")
     ap.add_argument("--mask", type=int, default=3)
     ap.add_argument("--bootstrap-trees", default="")
     ap.add_argument("--out", default="results/clade_ancestor")
@@ -288,12 +321,17 @@ def main():
     args = ap.parse_args()
     genera = set(g for g in args.clade_genera.split(",") if g)
     kingdom = args.clade_kingdom or None
+    lineage = None
+    if args.lineage:
+        lineage = {r["organism"].replace("'", ""): r["lineage"]
+                   for r in json.loads(Path(args.lineage).read_text())["lineage"].values()}
     if not genera and not kingdom:
         raise SystemExit("give --clade-genera or --clade-kingdom")
     out = Path(args.out) / args.name
     out.mkdir(parents=True, exist_ok=True)
 
-    d, fams, names, in_clade, dropped, reduced = build(args.tree, genera, args.min_families, kingdom, args.root_outgroup)
+    d, fams, names, in_clade, dropped, reduced = build(args.tree, genera, args.min_families, kingdom, args.root_outgroup,
+                                                       args.root_split or None, lineage)
     clade_tips = [v for v in d["tips"] if in_clade[v]]
     print(f"{len(d['tips'])} tips with a usable proteome ({len(clade_tips)} in the clade), "
           f"{len(dropped)} dropped, {len(fams)} families in >= 3 tips")
@@ -332,7 +370,8 @@ def main():
             tmp = out / "_boot.nwk"
             tmp.write_text(line)
             try:
-                db, fb, nb, icb, _, _ = build(tmp, genera, args.min_families, kingdom, args.root_outgroup)
+                db, fb, nb, icb, _, _ = build(tmp, genera, args.min_families, kingdom, args.root_outgroup,
+                                              args.root_split or None, lineage)
                 ct = [v for v in db["tips"] if icb[v]]
                 nb_node = mrca(ct, db["parent"], db["depth"])
                 mb, _, _ = reconstruct(db, specs[:2], args.completeness)
@@ -356,6 +395,7 @@ def main():
         "reduced_lineages": reduced, "families_considered": len(fams),
         "rooted_on": d.get("rooted_on"),
         "misplaced_clade_tips_left_out": d.get("misplaced_clade_tips_left_out"),
+        "root_split_intruders": d.get("root_split_intruders"),
         "non_clade_tips_inside_clade_node": d.get("non_clade_tips_inside_clade_node"),
         "node_reconstructed": "most recent common ancestor of the sampled clade tips, which at this "
                               "sample size is not the clade's root (see results/sample_size/summary.json)",

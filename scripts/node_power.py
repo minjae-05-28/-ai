@@ -53,6 +53,8 @@ def main():
                     help="bacteria (alphaproteobacterial tree), amoebozoa, or a name used with --tree")
     ap.add_argument("--tree", default="", help="a marker tree whose clade is --clade-kingdom (rooted on the outgroup)")
     ap.add_argument("--clade-kingdom", default="")
+    ap.add_argument("--root-split", default="", help="root between this lineage name and the rest (LECA)")
+    ap.add_argument("--lineage", default="")
     ap.add_argument("--pick", default="", help="<set>_pick.json: also grade each phylum with >= 5 sampled tips")
     ap.add_argument("--out", default=str(OUT))
     args = ap.parse_args()
@@ -68,14 +70,15 @@ def main():
             if len(members) >= 5:
                 nodes[o[3:]] = (mrca(members, d["parent"], d["depth"]), members)
     elif args.tree:
-        from hgt_rate import clade_tree
+        from hgt_rate import clade_tree, load_lineage
 
-        d, _, vis, _, names, in_clade = clade_tree(args.tree, (), args.clade_kingdom, True)
+        d, _, vis, _, names, in_clade = clade_tree(args.tree, (), args.clade_kingdom, not args.root_split,
+                                                   args.root_split or None, load_lineage(args.lineage))
         members = [v for v in d["tips"] if in_clade.get(v)]
         nodes = {f"{args.clade} (표본이 도달한 마디)": (mrca(members, d["parent"], d["depth"]), members)}
         if args.pick:
             lin = json.loads(Path(args.pick).read_text())["lineage"]
-            phylum = {r["organism"]: r.get("phylum", "?") for r in lin.values()}
+            phylum = {r["organism"].replace("'", ""): r.get("phylum") or r.get("supergroup") or "?" for r in lin.values()}
             groups = {}
             for v in members:
                 groups.setdefault(phylum.get(names[v], "?"), []).append(v)
