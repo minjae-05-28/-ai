@@ -286,7 +286,7 @@ def findings_for(law):
         return {t: {"법칙-진화 안 함 (운명 정확도)": v["family_level"]["fate_accuracy.law - no_change"],
                     "기능 순위 상관 법칙/암기": [v["function_level"]["law.spearman"]["mean"],
                                          v["function_level"]["memorisation.spearman"]["mean"]]} for t, v in val.items()}
-    if lid.startswith("fungal_ancestor"):
+    if lid.startswith("fungal_ancestor") or lid.startswith("plastid_ancestor"):
         out = {"잎 숨기기 (복원 / 현생 빈도)": val["leave_tips_out_auroc"],
                "알려진 정답 (복원 / 현생 빈도 AUROC, 크기 편향)": (
                    [val["known_truth"]["recon_auroc"], val["known_truth"]["freq_auroc"],
@@ -408,6 +408,13 @@ def card_for(law):
             "대상": f"균류 {d['clade_tips']}종(16개 문, 목마다 고르게) + 외군 {d['outgroup_tips']}종",
             "환경": "자유생활·공생·기생 균류 모두. 레퍼런스 프로테옴이 없는 계통(아펠리다 등)과 "
                     "누클레아리아는 미포함"},
+            "species_from": "law"}
+    elif lid.startswith("plastid_ancestor"):
+        d = law["data"]
+        card = {"catalogue": "GTDB bac120 tree + UniProt", "envelope": {
+            "대상": f"남세균(Cyanobacteriia) {d['clade_tips']}종 + 다른 세균 외군 {d['outgroup_tips']}종",
+            "환경": "담수·해양·토양·공생 남세균. 해양 피코시아노박테리아 다수와 비광합성 자매군"
+                    "(밤피로비브리오니아·세리시토크로마티아)은 미포함"},
             "species_from": "law"}
     elif lid.startswith("amoeba_ancestor"):
         card = {"catalogue": "ribosomal marker tree + UniProt", "envelope": {

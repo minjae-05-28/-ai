@@ -119,6 +119,17 @@ def build(tree_path, clade_genera, min_families, clade_kingdom=None, root_outgro
     parent, length, label = parse_newick(txt)
     label = [lab.strip("'") for lab in label]
     prof = load_profiles()
+
+    def member(lbl):
+        """Clade membership: 'lineage:<name>' (GTDB/NCBI lineage), '*' (every tip), a UniProt
+        kingdom, or else the genus list."""
+        if clade_kingdom and clade_kingdom.startswith("lineage:"):
+            return clade_kingdom[8:] in (lineage or {}).get(lbl, [])
+        if clade_kingdom == "*":
+            return True
+        if clade_kingdom:
+            return prof[lbl].get("kingdom") == clade_kingdom
+        return lbl.split()[0] in clade_genera
     order, children = postorder(parent)
     tips = [v for v in range(len(parent)) if not children[v]]
     keep = [v for v in tips if label[v] in prof and len(prof[label[v]]["pfam"]) >= min_families]
@@ -159,8 +170,7 @@ def build(tree_path, clade_genera, min_families, clade_kingdom=None, root_outgro
         rooted_on = f"split: {root_split} | rest"
     elif root_outgroup:
         tips2 = [v for v in range(len(parent)) if v not in set(parent.tolist())]
-        hit = {v: (prof[label2[v]].get("kingdom") == clade_kingdom if clade_kingdom
-                   else label2[v].split()[0] in clade_genera) for v in tips2}
+        hit = {v: member(label2[v]) for v in tips2}
         t = farthest_outgroup_tip(parent, np.maximum(length, 1e-6), set(tips2), hit)
         if t is not None:
             rooted_on = label2[t]
@@ -171,8 +181,7 @@ def build(tree_path, clade_genera, min_families, clade_kingdom=None, root_outgro
         # a node that contains the outgroup.
         ordr, ch = postorder(parent)
         tips2 = [v for v in range(len(parent)) if not ch[v]]
-        hit = {v: (prof[label2[v]].get("kingdom") == clade_kingdom if clade_kingdom
-                   else label2[v].split()[0] in clade_genera) for v in tips2}
+        hit = {v: member(label2[v]) for v in tips2}
         size, pure = {}, {}
         for v in ordr:
             size[v] = 1 if not ch[v] else sum(size[c] for c in ch[v])
@@ -205,6 +214,8 @@ def build(tree_path, clade_genera, min_families, clade_kingdom=None, root_outgro
     kings = Counter(prof[names[v]].get("kingdom") for v, hit in byname.items() if hit)
     king = clade_kingdom or (kings.most_common(1)[0][0] if kings else None)
     in_clade = {v: bool(hit and (king == "*" or prof[names[v]].get("kingdom") == king)) for v, hit in byname.items()}
+    if clade_kingdom and clade_kingdom.startswith("lineage:"):
+        in_clade = {v: member(names[v]) for v in d["tips"]}
     wrong_kingdom = [names[v] for v, hit in byname.items() if hit and not in_clade[v]]
     if wrong_kingdom and not clade_kingdom:
         print(f"  dropped from the clade (kingdom is not {king}): {wrong_kingdom}")
@@ -313,6 +324,10 @@ def main():
     ap.add_argument("--root-split", default="",
                     help="no outgroup: root between this lineage name (from --lineage) and the rest")
     ap.add_argument("--lineage", default="", help="a pick_eukaryotes.py file, for --root-split")
+    ap.add_argument("--extra-nodes", default="",
+                    help="comma-separated lineage names (from --lineage): also store the posterior at the "
+                         "common ancestor of those tips, and with a leading ^ at that node's parent "
+                         "(the branch point where the lineage split off)")
     ap.add_argument("--mask", type=int, default=3)
     ap.add_argument("--bootstrap-trees", default="")
     ap.add_argument("--out", default="results/clade_ancestor")
@@ -441,11 +456,37 @@ def main():
                                  "n_confident": int(((pc >= 0.9) & (spread[c] < 0.1)).sum()),
                                  "sum_of_posteriors": round(float(pc.sum()), 1), "posterior": pc})
     summary["clade_node_children"] = [{k: v for k, v in ch.items() if k != "posterior"} for ch in children_out]
+    extra, extra_names = [], []
+    for nm in [x for x in args.extra_nodes.split(",") if x]:
+        up = nm.startswith("^")
+        base = nm.lstrip("^")
+        vs = [v for v in d["tips"] if base in (lineage or {}).get(names[v], [])]
+        if not vs:
+            print(f"  extra node {nm}: no tips")
+            continue
+        en = mrca(vs, d["parent"], d["depth"])
+        if up and d["parent"][en] != -1:
+            en = d["parent"][en]
+        stack, under = [en], []
+        while stack:
+            w = stack.pop()
+            if not d["children"][w]:
+                under.append(names[w])
+            stack.extend(d["children"][w])
+        extra.append(mean[en])
+        extra_names.append(nm)
+        summary.setdefault("extra_nodes", {})[nm] = {
+            "n_tips_below": len(under), "examples": sorted(under)[:8],
+            "n_confident": int(((mean[en] >= 0.9) & (spread[en] < 0.1)).sum()),
+            "sum_of_posteriors": round(float(mean[en].sum()), 1)}
+        print(f"  extra node {nm}: {len(under)} tips below, {summary['extra_nodes'][nm]['n_confident']} confident")
     np.savez_compressed(out / "posterior.npz", families=np.array(fams), posterior=p, model_sd=sd, tree_sd=boot_sd,
                         clade_frequency=clade_freq,
                         child_posteriors=np.stack([ch["posterior"] for ch in children_out]) if children_out
                         else np.zeros((0, len(fams))),
-                        child_n_tips=np.array([ch["n_clade_tips"] for ch in children_out]))
+                        child_n_tips=np.array([ch["n_clade_tips"] for ch in children_out]),
+                        extra_posteriors=np.stack(extra) if extra else np.zeros((0, len(fams))),
+                        extra_names=np.array(extra_names))
     (out / "summary.json").write_text(json.dumps(summary, indent=1, ensure_ascii=False))
     print(f"\nconfident families {len(confident)}, uncertain {len(uncertain)}")
     print("functions:", fcount.most_common(10))

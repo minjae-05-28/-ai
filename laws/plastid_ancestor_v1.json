@@ -1,0 +1,263 @@
+{
+  "id": "plastid_ancestor_v1",
+  "scope": "Gene-family (Pfam) content of the common ancestor of the sampled Cyanobacteriia, reconstructed on the GTDB bac120 tree (rooted, pruned to the sampled species; scripts/make_gtdb_subtree.py) from UniProt proteomes. Family presence only; no sequences, no cell shape.",
+  "model": "Two-state gain/loss Markov chain per family, ensemble of the five leading models of the mitochondrial model search, incomplete proteomes handled as dropout in the likelihood (completeness from in-group marker families, clade and outgroup scored separately), no reduced-lineage loss multiplier, tree rooted on the outgroup; bootstrap trees for phylogenetic spread.",
+  "feature_names": [],
+  "data": {
+    "clade_tips": 162,
+    "outgroup_tips": 150,
+    "families_considered": 10002,
+    "rooted_on": "Prevotella jejuni",
+    "non_clade_tips_inside_clade_node": [],
+    "tree": "results/phylo_tree/cyano.nwk",
+    "n_bootstrap_trees": 0
+  },
+  "validation": {
+    "leave_tips_out_auroc": {
+      "reconstruction": 0.9863,
+      "clade_frequency": 0.9797
+    },
+    "known_truth": {
+      "recon_auroc": 0.9954,
+      "freq_auroc": 0.9756,
+      "recon_logloss": 0.0733,
+      "freq_logloss": 0.1787,
+      "prior_logloss": 0.6611,
+      "recon_size_bias": -0.034,
+      "freq_size_bias": -0.0627,
+      "n_tips": 162,
+      "auroc_margin": 0.0198,
+      "logloss_margin": 0.1054,
+      "auroc_headroom": 0.0244,
+      "verdict": "계통수가 도움이 됨"
+    },
+    "known_truth_subclades": {
+      "cyano 뿌리 아래 큰 쪽 (159종)": {
+        "recon_auroc": 0.9986,
+        "freq_auroc": 0.9885,
+        "recon_logloss": 0.0335,
+        "freq_logloss": 0.1146,
+        "prior_logloss": 0.6573,
+        "recon_size_bias": -0.0168,
+        "freq_size_bias": -0.0434,
+        "n_tips": 159,
+        "auroc_margin": 0.0101,
+        "logloss_margin": 0.0811,
+        "auroc_headroom": 0.0115,
+        "verdict": "계통수가 도움이 됨"
+      }
+    },
+    "core_node": {
+      "n_clade_tips": 159,
+      "n_confident": 1910,
+      "known_truth": {
+        "recon_auroc": 0.9986,
+        "freq_auroc": 0.9885,
+        "recon_logloss": 0.0335,
+        "freq_logloss": 0.1146,
+        "prior_logloss": 0.6573,
+        "recon_size_bias": -0.0168,
+        "freq_size_bias": -0.0434,
+        "n_tips": 159,
+        "auroc_margin": 0.0101,
+        "logloss_margin": 0.0811,
+        "auroc_headroom": 0.0115,
+        "verdict": "계통수가 도움이 됨"
+      },
+      "size_quoted": true,
+      "sum_of_posteriors": 2498
+    },
+    "extra_nodes": {
+      "g__Gloeomargarita": {
+        "n_tips_below": 1,
+        "examples": [
+          "Gloeomargarita lithophora Alchichica-D10"
+        ],
+        "n_confident": 1979,
+        "sum_of_posteriors": 2177.8
+      },
+      "^g__Gloeomargarita": {
+        "n_tips_below": 159,
+        "examples": [
+          "Acaryochloris thomasi RCC1774",
+          "Adonisia turfae CCMR0081",
+          "Aerosakkonema funiforme FACHB-1375",
+          "Aetokthonos hydrillicola (strain Thurmond2011)",
+          "Aliterella atlantica CENA595",
+          "Allocoleopsis franciscana PCC 7113",
+          "Almyronema epifaneia S6",
+          "Amazonocrinis nigriterrae CENA67"
+        ],
+        "n_confident": 1910,
+        "sum_of_posteriors": 2498.5
+      }
+    },
+    "measured_hgt_level": 0.004,
+    "ancestor_size": {
+      "sum_of_posteriors": 2417,
+      "known_truth_size_bias": -0.034
+    },
+    "n_confident_families": 1716,
+    "n_uncertain_families": 445,
+    "marker_panel": {
+      "oxygenic photosynthesis (expected present: every Cyanobacteriia lineage has it)": {
+        "Photo_RC": {
+          "posterior": 0.988,
+          "core_node_posterior": 1.0,
+          "model_sd": 0.0,
+          "tree_sd": 0.0,
+          "share_of_clade_tips_today": 0.981
+        },
+        "PsaA_PsaB": {
+          "posterior": 0.996,
+          "core_node_posterior": 1.0,
+          "model_sd": 0.0,
+          "tree_sd": 0.0,
+          "share_of_clade_tips_today": 0.994
+        },
+        "PSII": {
+          "posterior": 0.996,
+          "core_node_posterior": 1.0,
+          "model_sd": 0.0,
+          "tree_sd": 0.0,
+          "share_of_clade_tips_today": 1.0
+        },
+        "PsbP": {
+          "posterior": 0.994,
+          "core_node_posterior": 1.0,
+          "model_sd": 0.0,
+          "tree_sd": 0.0,
+          "share_of_clade_tips_today": 0.969
+        },
+        "PSI_PsaF": {
+          "posterior": 0.999,
+          "core_node_posterior": 1.0,
+          "model_sd": 0.0,
+          "tree_sd": 0.0,
+          "share_of_clade_tips_today": 1.0
+        },
+        "Ycf4": {
+          "posterior": 0.999,
+          "core_node_posterior": 1.0,
+          "model_sd": 0.0,
+          "tree_sd": 0.0,
+          "share_of_clade_tips_today": 0.981
+        }
+      },
+      "carbon fixation and carboxysome (expected present)": {
+        "RuBisCO_large": {
+          "posterior": 0.977,
+          "core_node_posterior": 1.0,
+          "model_sd": 0.0,
+          "tree_sd": 0.0,
+          "share_of_clade_tips_today": 0.988
+        },
+        "RuBisCO_small": {
+          "posterior": 0.988,
+          "core_node_posterior": 1.0,
+          "model_sd": 0.0,
+          "tree_sd": 0.0,
+          "share_of_clade_tips_today": 0.994
+        },
+        "BMC": {
+          "posterior": 0.988,
+          "core_node_posterior": 1.0,
+          "model_sd": 0.0,
+          "tree_sd": 0.0,
+          "share_of_clade_tips_today": 0.994
+        }
+      },
+      "phycobilisome (expected present)": {
+        "Phycobilisome": {
+          "posterior": 0.999,
+          "core_node_posterior": 1.0,
+          "model_sd": 0.0,
+          "tree_sd": 0.0,
+          "share_of_clade_tips_today": 0.994
+        },
+        "CpcD": {
+          "posterior": 0.999,
+          "core_node_posterior": 1.0,
+          "model_sd": 0.0,
+          "tree_sd": 0.0,
+          "share_of_clade_tips_today": 0.988
+        }
+      },
+      "plastid-encoded core (still in plastid genomes)": {
+        "ATP-synt_ab": {
+          "posterior": 1.0,
+          "core_node_posterior": 1.0,
+          "model_sd": 0.0,
+          "tree_sd": 0.0,
+          "share_of_clade_tips_today": 1.0
+        },
+        "Cytochrome_B": {
+          "posterior": 1.0,
+          "core_node_posterior": 1.0,
+          "model_sd": 0.0,
+          "tree_sd": 0.0,
+          "share_of_clade_tips_today": 0.988
+        },
+        "RNA_pol_Rpb2_6": {
+          "posterior": 1.0,
+          "core_node_posterior": 1.0,
+          "model_sd": 0.0,
+          "tree_sd": 0.0,
+          "share_of_clade_tips_today": 0.975
+        },
+        "SecY": {
+          "posterior": 1.0,
+          "core_node_posterior": 1.0,
+          "model_sd": 0.0,
+          "tree_sd": 0.0,
+          "share_of_clade_tips_today": 0.994
+        },
+        "Peptidase_M41": {
+          "posterior": 1.0,
+          "core_node_posterior": 1.0,
+          "model_sd": 0.0,
+          "tree_sd": 0.0,
+          "share_of_clade_tips_today": 1.0
+        }
+      },
+      "circadian clock (KaiA/KaiB absent from Gloeobacter: expected low at the root, high after it)": {
+        "KaiA": {
+          "posterior": 0.104,
+          "core_node_posterior": 0.999,
+          "model_sd": 0.0,
+          "tree_sd": 0.0,
+          "share_of_clade_tips_today": 0.932
+        },
+        "KaiB": {
+          "posterior": 0.041,
+          "core_node_posterior": 0.99,
+          "model_sd": 0.0,
+          "tree_sd": 0.0,
+          "share_of_clade_tips_today": 0.981
+        }
+      },
+      "nitrogen fixation": {
+        "Oxidored_nitro": {
+          "posterior": 0.988,
+          "core_node_posterior": 1.0,
+          "model_sd": 0.0,
+          "tree_sd": 0.0,
+          "share_of_clade_tips_today": 1.0
+        }
+      }
+    }
+  },
+  "caveats": [
+    "162 Cyanobacteriia proteomes: GTDB species representatives matched to UniProt by species name, ambiguous names ('Synechococcus sp.') skipped, so many marine picocyanobacteria and most uncultured lineages are missing. The non-photosynthetic sister classes (Vampirovibrionia, Sericytochromatia) did not match and are absent; the outgroup is 150 random other bacteria.",
+    "The tree is the GTDB bac120 tree (rooted, pruned to the sampled species; scripts/make_gtdb_subtree.py); it was rooted again on the outgroup tip farthest from the clade (Prevotella jejuni). The clade is monophyletic, so the node reconstructed is the common ancestor of every sampled member.",
+    "No bootstrap trees were used (n_bootstrap_trees = 0), so the tree_sd column is zero and phylogenetic uncertainty is NOT in the reported spread.",
+    "Leave-tips-out AUROC 0.986 against 0.980 for present-day frequency. That test scores a hidden tip's observed content, dropout included, which the completeness model deliberately does not reproduce; the known-truth grade below is the test that speaks to the ancestor.",
+    "Completeness is estimated from families nearly every top-quartile proteome carries. Reduced genomes (Microsporidia; Atelocyanobacterium among cyanobacteria) really lack many of those, so they are scored as incomplete: their absences count as weak evidence. That keeps them from dragging the ancestor down, but it is a choice, not a measurement of their assembly quality.",
+    "The clade node splits into 3 tips (Gloeobacter kilaueensis (strain ATCC BAA-2537 / CCAP 1431/1 / ULC 316 / JS1), Gloeobacter morelensis MG652769, Gloeobacter violaceus (strain ATCC 29082 / PCC 7421)) and everything else. Families those few lack, and the outgroup mostly lacks too, come out low at the clade node: never there and lost on that one short side look alike from this sample, so read low values there as 'not shown to be present', not as proven absence. The larger child node (validation.core_node) is reported beside it.",
+    "Extra node g__Gloeomargarita (that lineage): 1 sampled tips below, 1979 families at P>=0.9. A single sampled tip: this is its own proteome (with dropout), listed only for comparison.",
+    "Extra node ^g__Gloeomargarita (the node where that lineage split off): 159 sampled tips below, 1910 families at P>=0.9. On this tree it is the same node as validation.core_node, so the known-truth grade there applies to it.",
+    "Known-truth grade at this node (simulated families on the same tree, results/node_power/cyano): AUROC 0.9954 against 0.9756 for present-day frequency, log loss 0.073 against 0.179, ancestor-size bias -3.4% (frequency -6.3%). Verdict: 계통수가 도움이 됨.",
+    "Horizontal transfer is not modelled; measured for this tree at about 0.004. That is far below the 0.35 at which ancestor size starts to inflate. The estimator cannot separate transfer from an intrinsically high gain rate (gene duplication, domain shuffling), so it is an upper bound."
+  ],
+  "contexts": {}
+}

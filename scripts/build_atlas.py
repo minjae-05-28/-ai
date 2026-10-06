@@ -46,9 +46,6 @@ BLOCKED = [
     {"id": "cpr", "name": "CPR(패테스세균)의 조상", "group": "세균",
      "why": "UniProt이 중복 프로테옴의 서열을 버려서, 목록에 있는 2,202종 가운데 실제로 쓸 수 있는 것이 15종뿐입니다.",
      "blocker": "서열 없음 — NCBI에서 받아 HMMER를 직접 돌려야 함(수십 시간)"},
-    {"id": "plastid", "name": "엽록체의 조상(남세균)", "group": "소기관",
-     "why": "엽록체 54종의 유전자 목록은 있지만, 남세균 쪽 종 대표 계통수와 프로테옴을 아직 모으지 않았습니다.",
-     "blocker": "남세균 계통수·프로테옴 미수집"},
     {"id": "common_cold", "name": "감기 바이러스의 조상", "group": "바이러스",
      "why": "RNA 바이러스는 유전자가 10개 안팎이고 서열이 너무 빨리 바뀌어, 유전자군 보유/소실 모형이 성립하지 않습니다.",
      "blocker": "방법이 성립하지 않음 — 하지 않기로 함"},
@@ -67,6 +64,16 @@ CLADES = [
      "hgt_id": "fungi", "shared_with": "균류 뿌리 복원(같은 실행)", "name": "핵심 균류의 조상", "group": "진핵생물", "sub": "로젤라 계열이 갈라진 뒤의 마디",
      "blurb": "균류 뿌리에서 로젤라·미포자충 계열(세포 안 기생체, 유전체가 크게 줄어듦)을 뺀 나머지 286종의 공통 "
               "조상입니다. 키틴 합성효소 1군·균류 전사인자 같은 '균류다운' 유전자군이 여기서 확실해집니다."},
+    {"id": "cyano", "dir": "results/clade_ancestor/cyano", "name": "남세균의 조상", "group": "소기관",
+     "ko_clade": "남세균", "sub": "산소 광합성 남세균(Cyanobacteriia) 공통 조상",
+     "blurb": "엽록체를 낳은 남세균 무리 전체의 공통 조상입니다. GTDB 세균 계통수 위에서 복원했고, 뿌리의 한쪽은 "
+              "가장 먼저 갈라진 글로에오박터 3종입니다."},
+    {"id": "plastid", "dir": "results/clade_ancestor/cyano", "child": True, "power_key": "뿌리 아래 큰 쪽",
+     "hgt_id": "cyano", "shared_with": "남세균 뿌리 복원(같은 실행)", "ko_clade": "남세균",
+     "name": "엽록체 분기점의 조상", "group": "소기관", "sub": "글로에오마르가리타 계통이 갈라진 마디",
+     "blurb": "엽록체에 가장 가까운 현생 남세균인 글로에오마르가리타가 갈라져 나간 마디입니다. 이 계통수에서는 "
+              "글로에오박터 다음 마디와 같아서 알려진 정답 채점도 그 마디에서 받았습니다. 엽록체가 된 세균이 "
+              "삼켜지기 직전 가졌던 유전자 구성에 가장 가까운 추정입니다."},
 ]
 
 
@@ -120,6 +127,7 @@ def clade_entry(c):
     quote = bias is not None and abs(bias) <= 0.10
     expected = int(round(float(z["posterior"].sum()))) if quote else None
     v = a["leave_tips_out_auroc"]
+    kc = c.get("ko_clade", "균류")
     counts = family_counts(a["clade_species"])
     intruders = a.get("non_clade_tips_inside_clade_node") or []
     return {
@@ -128,10 +136,10 @@ def clade_entry(c):
         "quote_size": quote, "power": power, "_hgt": hg,
         "phylum_power": {k: val for k, val in agg.items() if "표본이 도달한 마디" not in k
                          and "뿌리 아래 큰 쪽" not in k},
-        "extra_caveat": (f"뿌리는 균류에서 가장 먼 외군 잎({a.get('rooted_on')})에 잡았습니다. "
-                         + (f"균류 마디 안으로 외군 {len(intruders)}종이 들어왔습니다: {', '.join(intruders[:5])}."
-                            if intruders else "균류는 계통수에서 한 덩어리(단계통)로 나왔습니다")
-                         + (f" — 단, 계통수가 균류 밖에 붙인 {len(a['misplaced_clade_tips_left_out'])}종"
+        "extra_caveat": (f"뿌리는 {kc}에서 가장 먼 외군 잎({a.get('rooted_on')})에 잡았습니다. "
+                         + (f"{kc} 마디 안으로 외군 {len(intruders)}종이 들어왔습니다: {', '.join(intruders[:5])}."
+                            if intruders else f"{kc}는 계통수에서 한 덩어리(단계통)로 나왔습니다")
+                         + (f" — 단, 계통수가 {kc} 밖에 붙인 {len(a['misplaced_clade_tips_left_out'])}종"
                             f"({', '.join(a['misplaced_clade_tips_left_out'])}, 진화가 빨라 엉뚱한 곳에 붙는 "
                             "'긴 가지 끌림')을 뺀 뒤입니다." if a.get("misplaced_clade_tips_left_out") else ".")
                          + (" 부트스트랩 계통수 없이 돌려서 계통수 불확실성은 아직 반영되지 않았습니다."

@@ -14,6 +14,11 @@ PRESETS = {
               "pick": "data/markers/fungi_nb_pick.json", "label": "균류 + 외군"},
     "leca": {"tree": "results/phylo_tree/leca.nwk", "kingdom": "*",
              "pick": "data/markers/leca_pick.json", "label": "진핵생물 전체"},
+    # The GTDB tree, pruned to Cyanobacteriota + 150 other bacteria (make_gtdb_subtree.py).
+    # Gloeomargarita is the closest living relative of the plastid; ^ = the node where it split off.
+    "cyano": {"tree": "results/phylo_tree/cyano.nwk", "kingdom": "lineage:c__Cyanobacteriia",
+              "pick": "data/markers/cyano_lineage.json", "label": "남세균 + 외군",
+              "lineage_for_clade": True, "extra": "g__Gloeomargarita,^g__Gloeomargarita"},
 }
 
 
@@ -34,12 +39,14 @@ def main():
     name = args.clade + (f"_{args.root_split.split('+')[0].lower()}" if args.root_split else "")
     py = sys.executable
     root = (["--root-split", args.root_split, "--lineage", p["pick"]] if args.root_split
-            else ["--root-outgroup"])
+            else ["--root-outgroup"] + (["--lineage", p["pick"]] if p.get("lineage_for_clade") else []))
+    extra = ["--extra-nodes", p["extra"]] if p.get("extra") else []
     steps = args.steps.split(",")
     if "ancestor" in steps:
         run([py, "scripts/run_clade_ancestor.py", "--tree", tree, "--clade-kingdom", p["kingdom"], "--name", name,
-             "--completeness", "--no-reduced-mult"] + root)
-    split = ["--root-split", args.root_split, "--lineage", p["pick"]] if args.root_split else []
+             "--completeness", "--no-reduced-mult"] + root + extra)
+    split = (["--root-split", args.root_split, "--lineage", p["pick"]] if args.root_split
+             else ["--lineage", p["pick"]] if p.get("lineage_for_clade") else [])
     if "power" in steps:
         run([py, "scripts/node_power.py", "--clade", name, "--tree", tree, "--clade-kingdom", p["kingdom"],
              "--pick", p["pick"]] + split)

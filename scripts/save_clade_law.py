@@ -40,23 +40,45 @@ PANELS = {
             ["Photo_RC", "PSII", "PsbP", "Chloroa_b-bind", "PsaA_PsaB"],
     },
 }
-NAMES = {"fungi": "Fungi", "leca": "eukaryotes (LECA)"}
+PANELS["cyano"] = {
+    "oxygenic photosynthesis (expected present: every Cyanobacteriia lineage has it)":
+        ["Photo_RC", "PsaA_PsaB", "PSII", "PsbP", "PSI_PsaF", "Ycf4"],
+    "carbon fixation and carboxysome (expected present)": ["RuBisCO_large", "RuBisCO_small", "BMC"],
+    "phycobilisome (expected present)": ["Phycobilisome", "CpcD"],
+    "plastid-encoded core (still in plastid genomes)": ["ATP-synt_ab", "Cytochrome_B", "RNA_pol_Rpb2_6",
+                                                       "SecY", "Peptidase_M41"],
+    "circadian clock (KaiA/KaiB absent from Gloeobacter: expected low at the root, high after it)":
+        ["KaiA", "KaiB"],
+    "nitrogen fixation": ["Oxidored_nitro"],
+}
+NAMES = {"fungi": "Fungi", "leca": "eukaryotes (LECA)", "cyano": "Cyanobacteriia"}
+TREES = {"cyano": "the GTDB bac120 tree (rooted, pruned to the sampled species; scripts/make_gtdb_subtree.py)"}
+SAMPLES = {
+    "fungi": "proteomes, chosen round-robin over orders (data/markers/<set>_pick.json) so early-diverging lineages "
+             "are not swamped. UniProt reference proteomes still over-represent Dikarya, and lineages without a "
+             "reference proteome (for example Aphelida, most Nucleariida) are absent.",
+    "cyano": "proteomes: GTDB species representatives matched to UniProt by species name, ambiguous names "
+             "('Synechococcus sp.') skipped, so many marine picocyanobacteria and most uncultured lineages are "
+             "missing. The non-photosynthetic sister classes (Vampirovibrionia, Sericytochromatia) did not match "
+             "and are absent; the outgroup is 150 random other bacteria.",
+}
 
 
 def caveats(s, power, hgt, clade):
     v = s["leave_tips_out_auroc"]
     intr = s.get("non_clade_tips_inside_clade_node") or []
     out = [
-        f"{s['clade_tips']} {NAMES.get(clade, clade)} proteomes, chosen round-robin over orders "
-        "(data/markers/<set>_pick.json) so early-diverging lineages are not swamped. UniProt reference "
-        "proteomes still over-represent Dikarya, and lineages without a reference proteome (for example "
-        "Aphelida, most Nucleariida) are absent.",
-        f"The tree is a FastTree marker tree, unrooted as written; it was rooted on the outgroup tip "
-        f"farthest from the clade ({s.get('rooted_on')}). "
+        f"{s['clade_tips']} {NAMES.get(clade, clade)} {SAMPLES.get(clade, 'proteomes.')}",
+        (f"The tree is {TREES[clade]}; it was rooted again on the outgroup tip farthest from the clade "
+         f"({s.get('rooted_on')}). " if clade in TREES else
+         f"The tree is a FastTree marker tree, unrooted as written; it was rooted on the outgroup tip "
+         f"farthest from the clade ({s.get('rooted_on')}). ")
         + (f"{len(intr)} non-clade tips fall inside the clade node ({', '.join(intr[:6])}), so the node "
            "reconstructed is not exactly the clade's ancestor." if intr else
-           "With the tips listed next left out, the clade is monophyletic and the node reconstructed is the "
-           "common ancestor of every remaining member.")
+           ("With the tips listed next left out, the clade is monophyletic and the node reconstructed is the "
+            "common ancestor of every remaining member." if s.get("misplaced_clade_tips_left_out") else
+            "The clade is monophyletic, so the node reconstructed is the common ancestor of every sampled "
+            "member."))
         + (f" Left out because the tree placed them outside the clade (long-branch attraction): "
            f"{', '.join(s['misplaced_clade_tips_left_out'])}." if s.get("misplaced_clade_tips_left_out") else ""),
         (f"No bootstrap trees were used (n_bootstrap_trees = {s.get('n_bootstrap_trees')}), so the tree_sd column "
@@ -66,23 +88,33 @@ def caveats(s, power, hgt, clade):
         "frequency. That test scores a hidden tip's observed content, dropout included, which the completeness "
         "model deliberately does not reproduce; the known-truth grade below is the test that speaks to the "
         "ancestor.",
-        "Mitochondrion-encoded families come out low only because UniProt eukaryote proteomes hold nuclear "
-        "proteins.",
-        "Completeness is estimated from families nearly every top-quartile proteome carries. Microsporidia "
-        "and other reduced genomes really lack many of those, so they are scored as incomplete: their "
-        "absences count as weak evidence. That keeps them from dragging the ancestor down, but it is a choice, "
-        "not a measurement of their assembly quality.",
     ]
+    if clade != "cyano":
+        out.append("Mitochondrion-encoded families come out low only because UniProt eukaryote proteomes hold "
+                   "nuclear proteins.")
+    out.append("Completeness is estimated from families nearly every top-quartile proteome carries. Reduced "
+               "genomes (Microsporidia; Atelocyanobacterium among cyanobacteria) really lack many of those, so they "
+               "are scored as incomplete: their absences count as weak evidence. That keeps them from dragging the "
+               "ancestor down, but it is a choice, not a measurement of their assembly quality.")
     kids = s.get("clade_node_children") or []
     small = [k for k in kids if k["n_clade_tips"] < 0.05 * s["clade_tips"]]
     if small:
         k = small[0]
         out.append(
-            f"The clade node splits into {k['n_clade_tips']} reduced lineages ({', '.join(k['examples'][:3])}) and "
-            "everything else. Families those few lineages lack, and the outgroup mostly lacks too, sit near the "
-            "prior (about 0.1) at the clade node: absent from the start and lost in the parasites look the same "
-            "from this sample, so read ~0.1 there as undecided, not absent. The larger child node "
-            "(validation.core_node) is reported beside it.")
+            f"The clade node splits into {k['n_clade_tips']} tips ({', '.join(k['examples'][:3])}) and everything "
+            "else. Families those few lack, and the outgroup mostly lacks too, come out low at the clade node: "
+            "never there and lost on that one short side look alike from this sample, so read low values there as "
+            "'not shown to be present', not as proven absence. The larger child node (validation.core_node) is "
+            "reported beside it.")
+    core_n = max((k["n_clade_tips"] for k in kids), default=None)
+    for nm, e in (s.get("extra_nodes") or {}).items():
+        same = e["n_tips_below"] == core_n and core_n is not None and core_n < s["clade_tips"]
+        out.append(f"Extra node {nm} ({'the node where that lineage split off' if nm.startswith('^') else 'that lineage'}"
+                   f"): {e['n_tips_below']} sampled tips below, {e['n_confident']} families at P>=0.9. "
+                   + ("On this tree it is the same node as validation.core_node, so the known-truth grade there "
+                      "applies to it." if same else
+                      "A single sampled tip: this is its own proteome (with dropout), listed only for comparison."
+                      if e["n_tips_below"] == 1 else "It is not graded separately by the known-truth test."))
     if power:
         out.append(
             f"Known-truth grade at this node (simulated families on the same tree, results/node_power/{clade}): "
@@ -95,9 +127,11 @@ def caveats(s, power, hgt, clade):
     if hgt:
         cal = [c for c in hgt["calibration"] if c["hgt"] > 0]
         sat = next((c["hgt"] for c in cal if c["share_q_ge_0.3"] >= 0.99), None)
+        first = cal[0]["hgt"] if cal else None
         out.append(f"Horizontal transfer is not modelled; measured for this tree at about {hgt['estimated_hgt']}"
-                   + (f", which only says 'below {sat}': the calibration curve saturates at {sat} on this tree"
-                      if sat is not None and hgt["estimated_hgt"] < sat else "")
+                   + (f", which only says 'below {sat}': the calibration curve already saturates at its first "
+                      f"non-zero level ({sat}) on this tree"
+                      if sat is not None and sat == first and hgt["estimated_hgt"] < sat else "")
                    + ". That is far below the 0.35 at which ancestor size starts to inflate. The estimator "
                    "cannot separate transfer from an intrinsically high gain rate (gene duplication, domain "
                    "shuffling), so it is an upper bound.")
@@ -147,8 +181,8 @@ def main():
     save_law(
         dest, id=args.id,
         scope=(f"Gene-family (Pfam) content of the common ancestor of the sampled {NAMES.get(args.clade, args.clade)}, "
-               "reconstructed on a ribosomal-marker tree from UniProt proteomes. Family presence only; no "
-               "sequences, no cell shape."),
+               f"reconstructed on {TREES.get(args.clade, 'a ribosomal-marker tree')} from UniProt proteomes. "
+               "Family presence only; no sequences, no cell shape."),
         model=("Two-state gain/loss Markov chain per family, ensemble of the five leading models of the "
                "mitochondrial model search, incomplete proteomes handled as dropout in the likelihood "
                "(completeness from in-group marker families, clade and outgroup scored separately), no "
@@ -171,6 +205,7 @@ def main():
                                                          if core_power and abs(core_power["recon_size_bias"]) <= 0.10
                                                          else None)}
                                   if core is not None else None),
+                    "extra_nodes": s.get("extra_nodes"),
                     "measured_hgt_level": hgt["estimated_hgt"] if hgt else None,
                     "ancestor_size": size,
                     "n_confident_families": s["n_confident_families"],
