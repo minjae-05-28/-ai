@@ -61,7 +61,10 @@ GROUPS = {"patescibacteria": (1783273, "bacteria"), "asgard": (1935183, "archaea
           # Amoebozoa: the project's own HMMER profiles cover only 6 species, too few for an
           # ancestral reconstruction, so all UniProt proteomes of the group are listed.
           "amoebozoa": (554915, "eukaryotes"),
-          "discoba": (2611352, "eukaryotes")}         # Naegleria, trypanosomes: the amoeba outgroup
+          "discoba": (2611352, "eukaryotes"),         # Naegleria, trypanosomes: the amoeba outgroup
+          # The fungal outgroup: Opisthokonta that are neither fungi nor animals (choanoflagellates,
+          # ichthyosporeans, filastereans, nucleariids, Fonticula). A string is a UniProt query.
+          "opisthokonta_protists": ("taxonomy_id:33154 NOT taxonomy_id:4751 NOT taxonomy_id:33208", "eukaryotes")}
 
 
 def list_group_proteomes(groups, limit):
@@ -70,7 +73,7 @@ def list_group_proteomes(groups, limit):
     rows = []
     for gname in groups:
         taxid, kingdom = GROUPS[gname]
-        q = urllib.parse.quote(f"taxonomy_id:{taxid}")
+        q = urllib.parse.quote(taxid if isinstance(taxid, str) else f"taxonomy_id:{taxid}")
         base = f"{REST}/proteomes/stream?query={q}&format=tsv&fields=upid,organism,organism_id,protein_count,busco"
         try:  # the assembly accession links a proteome to its GTDB tip exactly; older field sets lack it
             text = get(base + ",genome_assembly", tries=2)

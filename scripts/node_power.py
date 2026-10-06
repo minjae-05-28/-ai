@@ -49,8 +49,11 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--families", type=int, default=800)
     ap.add_argument("--reps", type=int, default=3)
-    ap.add_argument("--clade", default="bacteria", choices=("bacteria", "amoebozoa"),
-                    help="which tree to grade on: the alphaproteobacterial one, or the amoeba tree")
+    ap.add_argument("--clade", default="bacteria",
+                    help="bacteria (alphaproteobacterial tree), amoebozoa, or a name used with --tree")
+    ap.add_argument("--tree", default="", help="a marker tree whose clade is --clade-kingdom (rooted on the outgroup)")
+    ap.add_argument("--clade-kingdom", default="")
+    ap.add_argument("--pick", default="", help="<set>_pick.json: also grade each phylum with >= 5 sampled tips")
     ap.add_argument("--out", default=str(OUT))
     args = ap.parse_args()
     out = Path(args.out) / ("" if args.clade == "bacteria" else args.clade)
@@ -64,6 +67,21 @@ def main():
             members = [v for v in d["tips"] if d["order_of"][v] == o]
             if len(members) >= 5:
                 nodes[o[3:]] = (mrca(members, d["parent"], d["depth"]), members)
+    elif args.tree:
+        from hgt_rate import clade_tree
+
+        d, _, vis, _, names, in_clade = clade_tree(args.tree, (), args.clade_kingdom, True)
+        members = [v for v in d["tips"] if in_clade.get(v)]
+        nodes = {f"{args.clade} (표본이 도달한 마디)": (mrca(members, d["parent"], d["depth"]), members)}
+        if args.pick:
+            lin = json.loads(Path(args.pick).read_text())["lineage"]
+            phylum = {r["organism"]: r.get("phylum", "?") for r in lin.values()}
+            groups = {}
+            for v in members:
+                groups.setdefault(phylum.get(names[v], "?"), []).append(v)
+            for ph, vs in sorted(groups.items()):
+                if ph != "?" and len(vs) >= 5:
+                    nodes[ph] = (mrca(vs, d["parent"], d["depth"]), vs)
     else:
         from hgt_rate import amoeba_tree
         from run_clade_ancestor import build

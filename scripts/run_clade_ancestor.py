@@ -59,7 +59,61 @@ def load_profiles():
     return out
 
 
-def build(tree_path, clade_genera, min_families):
+def reroot(parent, length, label, tip):
+    """The same unrooted tree, rooted at the midpoint of the branch above `tip` (root = node 0).
+
+    FastTree trees are unrooted: the root it writes is an arbitrary trifurcation, which can sit
+    inside the clade. Then the "common ancestor of the clade tips" is the whole tree's root and the
+    outgroup is reconstructed as part of the clade."""
+    n = len(parent)
+    adj = [[] for _ in range(n)]
+    for v in range(n):
+        if parent[v] != -1:
+            adj[v].append((parent[v], length[v]))
+            adj[parent[v]].append((v, length[v]))
+    up, half = parent[tip], length[tip] / 2
+    new_parent, new_len, new_label, old = [-1], [0.0], [""], [-1]
+    idx = {}
+    stack = []
+    for start in (tip, up):
+        new_parent.append(0), new_len.append(half), new_label.append(label[start]), old.append(start)
+        idx[start] = len(new_parent) - 1
+        stack.append((start, tip if start == up else up))
+    while stack:
+        v, came = stack.pop()
+        for w, bl in adj[v]:
+            if w == came:
+                continue
+            new_parent.append(idx[v]), new_len.append(bl), new_label.append(label[w]), old.append(w)
+            idx[w] = len(new_parent) - 1
+            stack.append((w, v))
+    # an old degree-2 root becomes a unary node: collapse it through prune's own rule
+    P, L = np.array(new_parent), np.array(new_len)
+    tips = [v for v in range(len(P)) if v not in set(P.tolist())]
+    return prune(P, L, new_label, tips)[:3]
+
+
+def farthest_outgroup_tip(parent, length, tips, is_clade):
+    """The non-clade tip with the largest mean path length to the clade tips (two-pass tree sums)."""
+    order, children = postorder(parent)
+    n = len(parent)
+    cnt, down = np.zeros(n), np.zeros(n)
+    for v in order:
+        if v in tips and is_clade[v]:
+            cnt[v] = 1
+        for c in children[v]:
+            cnt[v] += cnt[c]
+            down[v] += down[c] + cnt[c] * length[c]
+    total = cnt[0]
+    allsum = down.copy()
+    for v in reversed(order):
+        for c in children[v]:
+            allsum[c] = allsum[v] + (total - 2 * cnt[c]) * length[c]
+    out = [v for v in tips if not is_clade[v]]
+    return max(out, key=lambda v: (allsum[v], -v)) if out and total else None
+
+
+def build(tree_path, clade_genera, min_families, clade_kingdom=None, root_outgroup=False):
     txt = Path(tree_path).read_text()
     parent, length, label = parse_newick(txt)
     label = [lab.strip("'") for lab in label]
@@ -69,6 +123,15 @@ def build(tree_path, clade_genera, min_families):
     keep = [v for v in tips if label[v] in prof and len(prof[label[v]]["pfam"]) >= min_families]
     dropped = [label[v] for v in tips if v not in set(keep)]
     parent, length, label2, old = prune(parent, length, label, keep)
+    rooted_on = None
+    if root_outgroup:
+        tips2 = [v for v in range(len(parent)) if v not in set(parent.tolist())]
+        hit = {v: (prof[label2[v]].get("kingdom") == clade_kingdom if clade_kingdom
+                   else label2[v].split()[0] in clade_genera) for v in tips2}
+        t = farthest_outgroup_tip(parent, np.maximum(length, 1e-6), set(tips2), hit)
+        if t is not None:
+            rooted_on = label2[t]
+            parent, length, label2 = reroot(parent, length, label2, t)
     order, children = postorder(parent)
     d = {"parent": parent, "length": np.maximum(length, 1e-6), "order": order, "children": children}
     d["tips"] = [v for v in range(len(parent)) if not children[v]]
@@ -80,12 +143,13 @@ def build(tree_path, clade_genera, min_families):
     names = {v: label2[v] for v in d["tips"]}
     # Genus match alone is not enough: UniProt carries "Acanthamoeba polyphaga mimivirus", a virus
     # whose first word is an amoeba genus. Require the kingdom the matched tips mostly belong to.
-    byname = {v: names[v].split()[0] in clade_genera for v in d["tips"]}
+    # With clade_kingdom the clade is that whole kingdom (fungi: hundreds of genera).
+    byname = {v: (names[v].split()[0] in clade_genera) if not clade_kingdom else True for v in d["tips"]}
     kings = Counter(prof[names[v]].get("kingdom") for v, hit in byname.items() if hit)
-    king = kings.most_common(1)[0][0] if kings else None
+    king = clade_kingdom or (kings.most_common(1)[0][0] if kings else None)
     in_clade = {v: bool(hit and prof[names[v]].get("kingdom") == king) for v, hit in byname.items()}
     wrong_kingdom = [names[v] for v, hit in byname.items() if hit and not in_clade[v]]
-    if wrong_kingdom:
+    if wrong_kingdom and not clade_kingdom:
         print(f"  dropped from the clade (kingdom is not {king}): {wrong_kingdom}")
     counts = Counter(f for v in d["tips"] for f in prof[names[v]]["pfam"])
     fams = sorted(f for f, c in counts.items() if c >= 3)
@@ -136,6 +200,16 @@ def build(tree_path, clade_genera, min_families):
                 inside[v] = True
             stack.extend(children[v])
     d["reduced_branch"] = inside
+    clade = [v for v in d["tips"] if in_clade[v]]
+    top = mrca(clade, parent, depth) if clade else 0
+    below, stack = [], [top]
+    while stack:
+        v = stack.pop()
+        if not children[v] and not in_clade[v]:
+            below.append(names[v])
+        stack.extend(children[v])
+    d["rooted_on"] = rooted_on
+    d["non_clade_tips_inside_clade_node"] = sorted(below)
     return d, fams, names, in_clade, dropped, [names[v] for v in reduced_tips]
 
 
@@ -167,12 +241,16 @@ def reconstruct(d, specs, use_completeness=False):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--tree", required=True)
-    ap.add_argument("--clade-genera", required=True)
+    ap.add_argument("--clade-genera", default="")
+    ap.add_argument("--clade-kingdom", default="",
+                    help="the clade is every tip of this UniProt kingdom (e.g. fungi), instead of a genus list")
     ap.add_argument("--name", required=True)
     ap.add_argument("--min-families", type=int, default=100,
                     help="drop a tip with fewer families than this. Low by default: an incomplete "
                          "proteome is handled by --completeness, not by throwing the species away "
                          "(at 500 this filter would have removed the most reduced genomes)")
+    ap.add_argument("--root-outgroup", action="store_true",
+                    help="root the (unrooted) FastTree tree on the outgroup tip farthest from the clade")
     ap.add_argument("--mask", type=int, default=3)
     ap.add_argument("--bootstrap-trees", default="")
     ap.add_argument("--out", default="results/clade_ancestor")
@@ -183,11 +261,14 @@ def main():
                     help="model incomplete proteomes as dropout in the likelihood instead of "
                          "accelerating loss on their branch (validated in results/quality_correction)")
     args = ap.parse_args()
-    genera = set(args.clade_genera.split(","))
+    genera = set(g for g in args.clade_genera.split(",") if g)
+    kingdom = args.clade_kingdom or None
+    if not genera and not kingdom:
+        raise SystemExit("give --clade-genera or --clade-kingdom")
     out = Path(args.out) / args.name
     out.mkdir(parents=True, exist_ok=True)
 
-    d, fams, names, in_clade, dropped, reduced = build(args.tree, genera, args.min_families)
+    d, fams, names, in_clade, dropped, reduced = build(args.tree, genera, args.min_families, kingdom, args.root_outgroup)
     clade_tips = [v for v in d["tips"] if in_clade[v]]
     print(f"{len(d['tips'])} tips with a usable proteome ({len(clade_tips)} in the clade), "
           f"{len(dropped)} dropped, {len(fams)} families in >= 3 tips")
@@ -226,7 +307,7 @@ def main():
             tmp = out / "_boot.nwk"
             tmp.write_text(line)
             try:
-                db, fb, nb, icb, _, _ = build(tmp, genera, args.min_families)
+                db, fb, nb, icb, _, _ = build(tmp, genera, args.min_families, kingdom, args.root_outgroup)
                 ct = [v for v in db["tips"] if icb[v]]
                 nb_node = mrca(ct, db["parent"], db["depth"])
                 mb, _, _ = reconstruct(db, specs[:2], args.completeness)
@@ -248,6 +329,8 @@ def main():
         "clade": args.name, "tips": len(d["tips"]), "clade_tips": len(clade_tips),
         "clade_species": [names[v] for v in clade_tips], "dropped_tips": dropped,
         "reduced_lineages": reduced, "families_considered": len(fams),
+        "rooted_on": d.get("rooted_on"),
+        "non_clade_tips_inside_clade_node": d.get("non_clade_tips_inside_clade_node"),
         "node_reconstructed": "most recent common ancestor of the sampled clade tips, which at this "
                               "sample size is not the clade's root (see results/sample_size/summary.json)",
         "leave_tips_out_auroc": val, "n_models": len(ENSEMBLE), "n_bootstrap_trees": len(boot),

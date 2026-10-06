@@ -78,18 +78,22 @@ def read_off(curve, value, key="share_q_ge_0.3"):
     return float(np.interp(value, ys, xs)), "보간"
 
 
-def amoeba_tree():
+def clade_tree(tree, genera=(), kingdom=None, root_outgroup=False):
     from run_clade_ancestor import build
-    genera = {"Acanthamoeba", "Balamuthia", "Cavenderia", "Dictyostelium", "Entamoeba", "Heterostelium",
-              "Pelomyxa", "Planoprotostelium", "Polysphondylium", "Physarum", "Vermamoeba",
-              "Mastigamoeba", "Tieghemostelium"}
-    d, fams, names, in_clade, _, _ = build("results/phylo_tree/amoeba.nwk", genera, 100)
+    d, fams, names, in_clade, _, _ = build(tree, set(genera), 100, kingdom, root_outgroup)
     # simulate() drops a tip's genes at busco/100, so feed it the completeness this data really has
     # (Entamoeba near 0.45) instead of a flat 90%.
     d["busco"] = np.clip(d["completeness_vec"] * 100, 5, 100)
     vis = np.zeros(len(d["parent"]), dtype=bool)
     vis[d["tips"]] = True
-    return d, d["X"], vis, len(fams)
+    return d, d["X"], vis, len(fams), names, in_clade
+
+
+def amoeba_tree():
+    genera = {"Acanthamoeba", "Balamuthia", "Cavenderia", "Dictyostelium", "Entamoeba", "Heterostelium",
+              "Pelomyxa", "Planoprotostelium", "Polysphondylium", "Physarum", "Vermamoeba",
+              "Mastigamoeba", "Tieghemostelium"}
+    return clade_tree("results/phylo_tree/amoeba.nwk", genera)[:4]
 
 
 def main():
@@ -98,20 +102,28 @@ def main():
     ap.add_argument("--families", type=int, default=600)
     ap.add_argument("--reps", type=int, default=2)
     ap.add_argument("--out", default=str(OUT))
+    ap.add_argument("--tree", default="", help="measure only this clade tree (written to <out>/<name>/)")
+    ap.add_argument("--name", default="")
+    ap.add_argument("--clade-kingdom", default="")
+    ap.add_argument("--label", default="")
     args = ap.parse_args()
-    out = Path(args.out)
+    out = Path(args.out) / args.name if args.tree else Path(args.out)
     out.mkdir(parents=True, exist_ok=True)
     levels = [float(x) for x in args.levels.split(",")]
 
     sets = {}
-    d = load_cache()
-    sets["alphaproteobacteria"] = (d, d["X"], visible_mask(d, SPEC), d["X"].shape[1],
-                                   "알파프로테오박테리아 (GTDB 종 대표 2,526종, 유전자군 1,500개 표본)")
-    try:
-        ad, aX, avis, nf = amoeba_tree()
-        sets["amoebozoa"] = (ad, aX, avis, nf, "아메보조아 + 외군 (40종)")
-    except Exception as e:
-        print(f"amoeba tree unavailable: {e}")
+    if args.tree:
+        cd, cX, cvis, nf = clade_tree(args.tree, (), args.clade_kingdom or None, True)[:4]
+        sets[args.name] = (cd, cX, cvis, nf, args.label or f"{args.name} ({len(cd['tips'])}종)")
+    else:
+        d = load_cache()
+        sets["alphaproteobacteria"] = (d, d["X"], visible_mask(d, SPEC), d["X"].shape[1],
+                                       "알파프로테오박테리아 (GTDB 종 대표 2,526종, 유전자군 1,500개 표본)")
+        try:
+            ad, aX, avis, nf = amoeba_tree()
+            sets["amoebozoa"] = (ad, aX, avis, nf, "아메보조아 + 외군 (40종)")
+        except Exception as e:
+            print(f"amoeba tree unavailable: {e}")
 
     result = {
         "estimator": "유전자군별 적합된 획득/손실 비 (상한 없는 격자)", "gates": GATES,

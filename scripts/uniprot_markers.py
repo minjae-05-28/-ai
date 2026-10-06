@@ -57,31 +57,39 @@ def markers_for(upid, acc_to_name):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--group", required=True, help="comma-separated keys of uniprot_proteomes.GROUPS")
+    ap.add_argument("--group", default="", help="comma-separated keys of uniprot_proteomes.GROUPS")
+    ap.add_argument("--upids", default="", help="a <set>_pick.json from pick_clade_sample.py: these "
+                                                "proteomes too, whatever their kingdom")
     ap.add_argument("--set", required=True, help="output set name under data/markers/")
     ap.add_argument("--shard", type=int, default=0)
     ap.add_argument("--n-shards", type=int, default=1)
     args = ap.parse_args()
-    groups = args.group.split(",")
+    groups = [g for g in args.group.split(",") if g]
     unknown = [g for g in groups if g not in GROUPS]
     if unknown:
         raise SystemExit(f"unknown groups: {unknown}; known: {sorted(GROUPS)}")
-    cat = "eukaryotes" if any(GROUPS[g][1] == "eukaryotes" for g in groups) else "prokaryotes"
-    meta = json.loads(Path("data/eukaryotes/pfam_meta.json").read_text())
-    acc_to_name = families(meta, cat)
-    print(f"{len(acc_to_name)} ribosomal Pfam families wanted for set '{args.set}' (filter: {cat})")
+    picked = set(json.loads(Path(args.upids).read_text())["upids"]) if args.upids else set()
+    if not groups and not picked:
+        raise SystemExit("give --group and/or --upids")
 
     # Proteomes of these groups, from the collected shards (kingdom + organism are stored there).
     import gzip
 
     kingdoms = {GROUPS[g][1] for g in groups}
-    rows = {}
+    rows, row_kingdoms = {}, set()
     for f in sorted(Path("data/uniprot/shards").glob("*.json.gz")):
         for upid, p in json.loads(gzip.open(f, "rt").read()).items():
-            if p.get("kingdom") in kingdoms:
+            if p.get("kingdom") in kingdoms or upid in picked:
                 rows[upid] = p["organism"]
+                row_kingdoms.add(p.get("kingdom"))
     if not rows:
         raise SystemExit(f"no collected proteomes with kingdom in {sorted(kingdoms)}; run public-genomes first")
+    if picked - set(rows):
+        print(f"  {len(picked - set(rows))} picked proteomes are not in the shards")
+    cat = "eukaryotes" if row_kingdoms & {"eukaryotes", "fungi"} else "prokaryotes"
+    meta = json.loads(Path("data/eukaryotes/pfam_meta.json").read_text())
+    acc_to_name = families(meta, cat)
+    print(f"{len(acc_to_name)} ribosomal Pfam families wanted for set '{args.set}' (filter: {cat})")
     mine = sorted(rows)[args.shard :: args.n_shards]
     out = OUT / args.set
     out.mkdir(parents=True, exist_ok=True)

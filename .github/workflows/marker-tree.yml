@@ -8,7 +8,10 @@ on:
     inputs:
       group:
         description: "comma-separated uniprot_proteomes.GROUPS keys, e.g. amoebozoa,discoba"
-        required: true
+        default: ""
+      pick:
+        description: "optional kingdom:N, a lineage-spread sample of that kingdom (pick_clade_sample.py), e.g. fungi:300"
+        default: ""
       set:
         description: "marker set name, e.g. amoeba"
         required: true
@@ -33,6 +36,25 @@ jobs:
     steps:
       - id: s
         run: echo "shards=$(python3 -c "import json;print(json.dumps(list(range(int('${{ inputs.n_shards }}')))))")" >> "$GITHUB_OUTPUT"
+      - uses: actions/checkout@v4
+        if: inputs.pick != ''
+      - uses: actions/setup-python@v5
+        if: inputs.pick != ''
+        with:
+          python-version: "3.11"
+      - name: Lineage-spread sample
+        if: inputs.pick != ''
+        env:
+          PYTHONPATH: src
+        run: |
+          pip install numpy
+          k="${{ inputs.pick }}"
+          python scripts/pick_clade_sample.py --kingdom "${k%%:*}" --n "${k##*:}" --set "${{ inputs.set }}"
+      - uses: actions/upload-artifact@v4
+        if: inputs.pick != ''
+        with:
+          name: pick-${{ inputs.set }}
+          path: data/markers/${{ inputs.set }}_pick.json
 
   markers:
     needs: plan
@@ -48,11 +70,18 @@ jobs:
         with:
           python-version: "3.11"
       - run: pip install numpy
+      - uses: actions/download-artifact@v4
+        if: inputs.pick != ''
+        with:
+          name: pick-${{ inputs.set }}
+          path: data/markers
       - name: Markers shard ${{ matrix.shard }}
         env:
           PYTHONPATH: src
         run: |
-          python scripts/uniprot_markers.py --group "${{ inputs.group }}" --set "${{ inputs.set }}" \
+          extra=""
+          [ -n "${{ inputs.pick }}" ] && extra="--upids data/markers/${{ inputs.set }}_pick.json"
+          python scripts/uniprot_markers.py --group "${{ inputs.group }}" --set "${{ inputs.set }}" $extra \
             --shard ${{ matrix.shard }} --n-shards ${{ strategy.job-total }}
       - uses: actions/upload-artifact@v4
         with:
@@ -75,6 +104,11 @@ jobs:
           pattern: markers-${{ inputs.set }}-*
           path: data/markers/${{ inputs.set }}
           merge-multiple: true
+      - uses: actions/download-artifact@v4
+        if: inputs.pick != ''
+        with:
+          name: pick-${{ inputs.set }}
+          path: data/markers
       - name: Build the tree for this set only
         env:
           PYTHONPATH: src
@@ -91,6 +125,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -f data/markers/${{ inputs.set }} results/phylo_tree
+          [ -f data/markers/${{ inputs.set }}_pick.json ] && git add -f data/markers/${{ inputs.set }}_pick.json
           if git diff --cached --quiet; then echo "Nothing new."; else
             git commit -m "Markers and tree for ${{ inputs.set }}"
             ok=0
