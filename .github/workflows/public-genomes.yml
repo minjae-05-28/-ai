@@ -22,6 +22,9 @@ on:
       gtdb:
         description: "also fetch GTDB species representatives (true/false)"
         default: "true"
+      pick:
+        description: "optional set:N — a supergroup-balanced eukaryote sample picked before fetching (pick_eukaryotes.py), e.g. leca:300; replaces kingdoms"
+        default: ""
 
 permissions:
   contents: write
@@ -60,8 +63,13 @@ jobs:
         env:
           PYTHONPATH: src
         run: |
-          python scripts/uniprot_proteomes.py --list "${{ inputs.kingdoms }}" --limit "${{ inputs.limit }}" \
-            --n-shards "${{ inputs.n_shards }}" | tee plan.log
+          if [ -n "${{ inputs.pick }}" ]; then
+            k="${{ inputs.pick }}"
+            python scripts/pick_eukaryotes.py --set "${k%%:*}" --n "${k##*:}" --n-shards "${{ inputs.n_shards }}" | tee plan.log
+          else
+            python scripts/uniprot_proteomes.py --list "${{ inputs.kingdoms }}" --limit "${{ inputs.limit }}" \
+              --n-shards "${{ inputs.n_shards }}" | tee plan.log
+          fi
           echo "shards=$(tail -n 1 plan.log)" >> "$GITHUB_OUTPUT"
       - uses: actions/upload-artifact@v4
         with:
@@ -69,6 +77,11 @@ jobs:
           path: |
             data/uniprot/proteomes.tsv
             data/uniprot/todo.json
+      - uses: actions/upload-artifact@v4
+        if: inputs.pick != ''
+        with:
+          name: uniprot-pick
+          path: data/markers/*_pick.json
 
   fetch:
     needs: plan
@@ -115,6 +128,11 @@ jobs:
           name: uniprot-plan
           path: data/uniprot
       - uses: actions/download-artifact@v4
+        if: inputs.pick != ''
+        with:
+          name: uniprot-pick
+          path: data/markers
+      - uses: actions/download-artifact@v4
         if: needs.gtdb.result == 'success'
         with:
           name: gtdb
@@ -128,6 +146,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -f data/uniprot data/gtdb 2>/dev/null || git add -f data/uniprot
+          git add -f data/markers/*_pick.json 2>/dev/null || true
           if git diff --cached --quiet; then
             echo "Nothing new."
           else
