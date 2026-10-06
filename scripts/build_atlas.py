@@ -55,6 +55,75 @@ BLOCKED = [
 ]
 
 
+# Each clade: results dir, display text. Only drawn when its run exists.
+CLADES = [
+    {"id": "fungi", "dir": "results/clade_ancestor/fungi", "name": "균류의 조상", "group": "진핵생물",
+     "sub": "표본 균류 전체의 공통 조상",
+     "blurb": "효모·곰팡이·버섯·키트리드·미포자충이 갈라지기 전의 유전자 구성입니다. 목(order)마다 고르게 "
+              "뽑은 균류와 외군(깃편모충·어류포자충·폰티쿨라 등)의 리보솜 마커 계통수 위에서 복원했습니다."},
+]
+
+
+def clade_entry(c):
+    R = Path(c["dir"])
+    if not (R / "summary.json").exists():
+        return None
+    a = json.loads((R / "summary.json").read_text())
+    z = np.load(R / "posterior.npz", allow_pickle=False)
+    fams = [str(x) for x in z["families"]]
+    func, meta = functions_of(fams)
+    comp = []
+    for fn in FUNCS:
+        ix = np.array([i for i, tags in enumerate(func) if fn in tags])
+        if len(ix) < 15:
+            continue
+        comp.append({"func": fn, "ko": FUNC_KO[fn], "n_families": int(len(ix)),
+                     "ancestor": round(float(z["posterior"][ix].mean()), 3),
+                     "today": round(float(z["clade_frequency"][ix].mean()), 3)})
+    gap = z["posterior"] - z["clade_frequency"]
+    top = np.argsort(-gap)[:14]
+    pw_file = Path("results/node_power") / c["id"] / "summary.json"
+    agg = json.loads(pw_file.read_text())["aggregate"] if pw_file.exists() else {}
+    power = next((v for k, v in agg.items() if "표본이 도달한 마디" in k), None)
+    hg_file = Path("results/hgt_rate") / c["id"] / "summary.json"
+    hg = json.loads(hg_file.read_text())["sets"].get(c["id"]) if hg_file.exists() else None
+    # A size is quoted only when the known-truth test says the reconstruction gets it within 10%.
+    bias = power["recon_size_bias"] if power else None
+    quote = bias is not None and abs(bias) <= 0.10
+    expected = int(round(float(z["posterior"].sum()))) if quote else None
+    v = a["leave_tips_out_auroc"]
+    intruders = a.get("non_clade_tips_inside_clade_node") or []
+    return {
+        "id": c["id"], "name": c["name"], "sub": c["sub"], "group": c["group"], "blurb": c["blurb"],
+        "confidence": "중간" if power and power["verdict"] == "계통수가 도움이 됨" else "낮음",
+        "quote_size": quote, "power": power, "_hgt": hg,
+        "phylum_power": {k: val for k, val in agg.items() if "표본이 도달한 마디" not in k},
+        "extra_caveat": (f"뿌리는 균류에서 가장 먼 외군 잎({a.get('rooted_on')})에 잡았습니다. "
+                         + (f"균류 마디 안으로 외군 {len(intruders)}종이 들어왔습니다: {', '.join(intruders[:5])}."
+                            if intruders else "균류는 계통수에서 한 덩어리(단계통)로 나왔습니다.")
+                         + " 불완전한 프로테옴은 손실이 아니라 누락으로 다룹니다(완전도 모형, 축소 계통 가속 끔)."),
+        "size_note": (f"알려진 정답 모의에서 조상 크기 편향 {bias:+.1%}. 10% 안쪽이라 개수를 함께 보입니다 "
+                      "(모든 유전자군의 사후확률 합)." if quote else
+                      (f"알려진 정답 모의에서 조상 크기 편향 {bias:+.1%}로 10%를 넘어 개수를 말하지 않습니다."
+                       if bias is not None else "알려진 정답 채점 전이라 개수를 말하지 않습니다.")),
+        "tips": a["clade_tips"], "families_considered": a["families_considered"],
+        "validation": {"reconstruction": v["reconstruction"], "baseline": v["clade_frequency"],
+                       "baseline_label": "현생 빈도(계통수 없음)", "shared": False,
+                       "margin": round(v["reconstruction"] - v["clade_frequency"], 4), "extra": {}},
+        "expected_families": expected,
+        "today_median_families": None, "today_min_families": None, "today_max_families": None,
+        "confident": a["n_confident_families"], "uncertain": a["n_uncertain_families"],
+        "functions": [[k, n] for k, n in a["functions_of_confident_families"][:12]],
+        "comparison": comp,
+        "lost": [{"family": fams[i], "desc": meta.get(fams[i], {}).get("description", ""),
+                  "p": round(float(z["posterior"][i]), 2), "today": round(float(z["clade_frequency"][i]), 2)}
+                 for i in top],
+        "positive_control": None,
+        "species_examples": [s.split(" (")[0] for s in a["clade_species"][:8]],
+        "report_url": "",
+    }
+
+
 def tip_matrix():
     """Rebuild which species sit on the tree and which families each carries (the saved run's inputs)."""
     tips = load_tips(300, min_busco=0.0)
@@ -233,6 +302,12 @@ def main():
         "report_url": "",
     })
 
+    # Clades reconstructed with run_clade_ancestor.py --clade-kingdom (fungi, then the rest in turn).
+    for c in CLADES:
+        e = clade_entry(c)
+        if e:
+            targets.append(e)
+
     # Measured, not assumed: the transfer level of each clade (hgt_rate.py) and, where the
     # reconstruction used it, the per-tip completeness (genome_quality.py).
     power = json.loads(Path("results/node_power/summary.json").read_text())["aggregate"]
@@ -240,7 +315,7 @@ def main():
     qc = json.loads(Path("results/quality_correction/summary.json").read_text())["aggregate"]
     for t in targets:
         key = "amoebozoa" if t["id"] == "amoebozoa" else "alphaproteobacteria"
-        m = hgt_rate["sets"].get(key)
+        m = t.pop("_hgt", None) or hgt_rate["sets"].get(key)
         if m:
             t["hgt"] = {"estimated": m["estimated_hgt"], "by_median_q": m["estimated_hgt_by_median_q"],
                         "gates_broken": m["gates_broken"], "set": m["label"]}
