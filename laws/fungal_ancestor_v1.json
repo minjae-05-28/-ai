@@ -1,0 +1,344 @@
+{
+  "id": "fungal_ancestor_v1",
+  "scope": "Gene-family (Pfam) content of the common ancestor of the sampled Fungi, reconstructed on a ribosomal-marker tree from UniProt proteomes. Family presence only; no sequences, no cell shape.",
+  "model": "Two-state gain/loss Markov chain per family, ensemble of the five leading models of the mitochondrial model search, incomplete proteomes handled as dropout in the likelihood (completeness from in-group marker families, clade and outgroup scored separately), no reduced-lineage loss multiplier, tree rooted on the outgroup; bootstrap trees for phylogenetic spread.",
+  "feature_names": [],
+  "data": {
+    "clade_tips": 289,
+    "outgroup_tips": 45,
+    "families_considered": 9457,
+    "rooted_on": "Leishmania enriettii",
+    "non_clade_tips_inside_clade_node": [],
+    "tree": "results/phylo_tree/fungi_nb.nwk",
+    "n_bootstrap_trees": 0
+  },
+  "validation": {
+    "leave_tips_out_auroc": {
+      "reconstruction": 0.9721,
+      "clade_frequency": 0.95
+    },
+    "known_truth": {
+      "recon_auroc": 0.8499,
+      "freq_auroc": 0.7453,
+      "recon_logloss": 0.4524,
+      "freq_logloss": 0.7242,
+      "prior_logloss": 0.6668,
+      "recon_size_bias": -0.0567,
+      "freq_size_bias": -0.5506,
+      "n_tips": 289,
+      "auroc_margin": 0.1046,
+      "logloss_margin": 0.2718,
+      "auroc_headroom": 0.2547,
+      "verdict": "계통수가 도움이 됨"
+    },
+    "known_truth_subclades": {
+      "fungi 뿌리 아래 큰 쪽 (286종)": {
+        "recon_auroc": 0.8904,
+        "freq_auroc": 0.8098,
+        "recon_logloss": 0.3382,
+        "freq_logloss": 0.5427,
+        "prior_logloss": 0.6162,
+        "recon_size_bias": -0.1231,
+        "freq_size_bias": -0.4342,
+        "n_tips": 286,
+        "auroc_margin": 0.0806,
+        "logloss_margin": 0.2045,
+        "auroc_headroom": 0.1902,
+        "verdict": "계통수가 도움이 됨"
+      },
+      "Ascomycota": {
+        "recon_auroc": 0.8317,
+        "freq_auroc": 0.7678,
+        "recon_logloss": 0.3282,
+        "freq_logloss": 0.4425,
+        "prior_logloss": 0.5311,
+        "recon_size_bias": -0.1054,
+        "freq_size_bias": -0.2496,
+        "n_tips": 153,
+        "auroc_margin": 0.0639,
+        "logloss_margin": 0.1143,
+        "auroc_headroom": 0.2322,
+        "verdict": "계통수가 도움이 됨"
+      },
+      "Basidiomycota": {
+        "recon_auroc": 0.8475,
+        "freq_auroc": 0.8143,
+        "recon_logloss": 0.3105,
+        "freq_logloss": 0.3956,
+        "prior_logloss": 0.5362,
+        "recon_size_bias": -0.0824,
+        "freq_size_bias": -0.2404,
+        "n_tips": 77,
+        "auroc_margin": 0.0332,
+        "logloss_margin": 0.0851,
+        "auroc_headroom": 0.1857,
+        "verdict": "계통수가 도움이 됨"
+      },
+      "Chytridiomycota": {
+        "recon_auroc": 0.8862,
+        "freq_auroc": 0.7933,
+        "recon_logloss": 0.31,
+        "freq_logloss": 0.5653,
+        "prior_logloss": 0.5692,
+        "recon_size_bias": -0.0854,
+        "freq_size_bias": -0.2818,
+        "n_tips": 15,
+        "auroc_margin": 0.0929,
+        "logloss_margin": 0.2553,
+        "auroc_headroom": 0.2067,
+        "verdict": "계통수가 도움이 됨"
+      },
+      "Glomeromycota": {
+        "recon_auroc": 0.8737,
+        "freq_auroc": 0.8448,
+        "recon_logloss": 0.2948,
+        "freq_logloss": 0.5214,
+        "prior_logloss": 0.5345,
+        "recon_size_bias": -0.1355,
+        "freq_size_bias": -0.1947,
+        "n_tips": 9,
+        "auroc_margin": 0.0289,
+        "logloss_margin": 0.2266,
+        "auroc_headroom": 0.1552,
+        "verdict": "계통수가 도움이 됨"
+      },
+      "Kickxellomycota": {
+        "recon_auroc": 0.8893,
+        "freq_auroc": 0.8441,
+        "recon_logloss": 0.2659,
+        "freq_logloss": 0.4496,
+        "prior_logloss": 0.5199,
+        "recon_size_bias": 0.0038,
+        "freq_size_bias": -0.0811,
+        "n_tips": 9,
+        "auroc_margin": 0.0452,
+        "logloss_margin": 0.1837,
+        "auroc_headroom": 0.1559,
+        "verdict": "계통수가 도움이 됨"
+      },
+      "Mucoromycota": {
+        "recon_auroc": 0.8904,
+        "freq_auroc": 0.7936,
+        "recon_logloss": 0.2753,
+        "freq_logloss": 0.5107,
+        "prior_logloss": 0.5088,
+        "recon_size_bias": -0.0078,
+        "freq_size_bias": -0.0008,
+        "n_tips": 8,
+        "auroc_margin": 0.0968,
+        "logloss_margin": 0.2354,
+        "auroc_headroom": 0.2064,
+        "verdict": "계통수가 도움이 됨"
+      }
+    },
+    "core_node": {
+      "n_clade_tips": 286,
+      "n_confident": 3885,
+      "known_truth": {
+        "recon_auroc": 0.8904,
+        "freq_auroc": 0.8098,
+        "recon_logloss": 0.3382,
+        "freq_logloss": 0.5427,
+        "prior_logloss": 0.6162,
+        "recon_size_bias": -0.1231,
+        "freq_size_bias": -0.4342,
+        "n_tips": 286,
+        "auroc_margin": 0.0806,
+        "logloss_margin": 0.2045,
+        "auroc_headroom": 0.1902,
+        "verdict": "계통수가 도움이 됨"
+      },
+      "size_quoted": false,
+      "sum_of_posteriors": null
+    },
+    "measured_hgt_level": 0.014,
+    "ancestor_size": {
+      "sum_of_posteriors": 4282,
+      "known_truth_size_bias": -0.0567
+    },
+    "n_confident_families": 3659,
+    "n_uncertain_families": 515,
+    "marker_panel": {
+      "chitin cell wall (expected present)": {
+        "Chitin_synth_1": {
+          "posterior": 0.116,
+          "core_node_posterior": 0.988,
+          "model_sd": 0.0,
+          "tree_sd": 0.0,
+          "share_of_clade_tips_today": 0.976
+        },
+        "Chitin_synth_2": {
+          "posterior": 0.998,
+          "core_node_posterior": 1.0,
+          "model_sd": 0.0,
+          "tree_sd": 0.0,
+          "share_of_clade_tips_today": 0.976
+        },
+        "Chitin_synth_1N": {
+          "posterior": 0.101,
+          "core_node_posterior": 0.996,
+          "model_sd": 0.0,
+          "tree_sd": 0.0,
+          "share_of_clade_tips_today": 0.972
+        }
+      },
+      "fungal-specific Zn2Cys6 transcription factors (expected present)": {
+        "Zn_clus": {
+          "posterior": 1.0,
+          "core_node_posterior": 1.0,
+          "model_sd": 0.0,
+          "tree_sd": 0.0,
+          "share_of_clade_tips_today": 1.0
+        },
+        "Fungal_trans": {
+          "posterior": 0.113,
+          "core_node_posterior": 0.988,
+          "model_sd": 0.0,
+          "tree_sd": 0.0,
+          "share_of_clade_tips_today": 0.976
+        }
+      },
+      "flagellum (expected present: chytrids, Rozella and Blastocladiomycota swim; Dikarya lost it)": {
+        "Radial_spoke_3": {
+          "posterior": 1.0,
+          "core_node_posterior": 1.0,
+          "model_sd": 0.0,
+          "tree_sd": 0.0,
+          "share_of_clade_tips_today": 0.069
+        },
+        "IFT57": {
+          "posterior": 1.0,
+          "core_node_posterior": 1.0,
+          "model_sd": 0.0,
+          "tree_sd": 0.0,
+          "share_of_clade_tips_today": 0.076
+        },
+        "IFT52_GIFT": {
+          "posterior": 1.0,
+          "core_node_posterior": 1.0,
+          "model_sd": 0.0,
+          "tree_sd": 0.0,
+          "share_of_clade_tips_today": 0.066
+        },
+        "BBS2_Mid": {
+          "posterior": 0.0,
+          "core_node_posterior": 0.0,
+          "model_sd": 0.0,
+          "tree_sd": 0.0,
+          "share_of_clade_tips_today": 0.014
+        },
+        "Dynein_heavy": {
+          "posterior": 1.0,
+          "core_node_posterior": 1.0,
+          "model_sd": 0.0,
+          "tree_sd": 0.0,
+          "share_of_clade_tips_today": 0.965
+        }
+      },
+      "sterol synthesis": {
+        "ERG4_ERG24": {
+          "posterior": 0.999,
+          "core_node_posterior": 0.999,
+          "model_sd": 0.0,
+          "tree_sd": 0.0,
+          "share_of_clade_tips_today": 0.979
+        },
+        "SQS_PSY": {
+          "posterior": 1.0,
+          "core_node_posterior": 1.0,
+          "model_sd": 0.0,
+          "tree_sd": 0.0,
+          "share_of_clade_tips_today": 0.993
+        },
+        "p450": {
+          "posterior": 1.0,
+          "core_node_posterior": 1.0,
+          "model_sd": 0.0,
+          "tree_sd": 0.0,
+          "share_of_clade_tips_today": 0.986
+        }
+      },
+      "actin cytoskeleton": {
+        "Actin": {
+          "posterior": 1.0,
+          "core_node_posterior": 1.0,
+          "model_sd": 0.0,
+          "tree_sd": 0.0,
+          "share_of_clade_tips_today": 1.0
+        },
+        "Cofilin_ADF": {
+          "posterior": 1.0,
+          "core_node_posterior": 1.0,
+          "model_sd": 0.0,
+          "tree_sd": 0.0,
+          "share_of_clade_tips_today": 0.997
+        },
+        "FH2": {
+          "posterior": 1.0,
+          "core_node_posterior": 1.0,
+          "model_sd": 0.0,
+          "tree_sd": 0.0,
+          "share_of_clade_tips_today": 0.997
+        },
+        "Myosin_head": {
+          "posterior": 1.0,
+          "core_node_posterior": 1.0,
+          "model_sd": 0.0,
+          "tree_sd": 0.0,
+          "share_of_clade_tips_today": 1.0
+        }
+      },
+      "peroxisome": {
+        "Pex2_Pex12": {
+          "posterior": 0.999,
+          "core_node_posterior": 1.0,
+          "model_sd": 0.0,
+          "tree_sd": 0.0,
+          "share_of_clade_tips_today": 0.986
+        },
+        "Pex14_N": {
+          "posterior": 0.972,
+          "core_node_posterior": 0.998,
+          "model_sd": 0.0,
+          "tree_sd": 0.0,
+          "share_of_clade_tips_today": 0.979
+        }
+      },
+      "mitochondrion-encoded (absent from most UniProt proteomes: an artifact, not loss)": {
+        "COX2": {
+          "posterior": 0.233,
+          "core_node_posterior": 0.157,
+          "model_sd": 0.0,
+          "tree_sd": 0.0,
+          "share_of_clade_tips_today": 0.201
+        },
+        "COX3": {
+          "posterior": 0.167,
+          "core_node_posterior": 0.167,
+          "model_sd": 0.0,
+          "tree_sd": 0.0,
+          "share_of_clade_tips_today": 0.173
+        },
+        "Cytochrome_B": {
+          "posterior": 0.167,
+          "core_node_posterior": 0.167,
+          "model_sd": 0.0,
+          "tree_sd": 0.0,
+          "share_of_clade_tips_today": 0.131
+        }
+      }
+    }
+  },
+  "caveats": [
+    "289 Fungi proteomes, chosen round-robin over orders (data/markers/<set>_pick.json) so early-diverging lineages are not swamped. UniProt reference proteomes still over-represent Dikarya, and lineages without a reference proteome (for example Aphelida, most Nucleariida) are absent.",
+    "The tree is a FastTree marker tree, unrooted as written; it was rooted on the outgroup tip farthest from the clade (Leishmania enriettii). With the tips listed next left out, the clade is monophyletic and the node reconstructed is the common ancestor of every remaining member. Left out because the tree placed them outside the clade (long-branch attraction): Astathelohania contejeani, Hamiltosporidium tvaerminnensis.",
+    "No bootstrap trees were used (n_bootstrap_trees = 0), so the tree_sd column is zero and phylogenetic uncertainty is NOT in the reported spread.",
+    "Leave-tips-out AUROC 0.972 against 0.950 for present-day frequency. That test scores a hidden tip's observed content, dropout included, which the completeness model deliberately does not reproduce; the known-truth grade below is the test that speaks to the ancestor.",
+    "Mitochondrion-encoded families come out low only because UniProt eukaryote proteomes hold nuclear proteins.",
+    "Completeness is estimated from families nearly every top-quartile proteome carries. Microsporidia and other reduced genomes really lack many of those, so they are scored as incomplete: their absences count as weak evidence. That keeps them from dragging the ancestor down, but it is a choice, not a measurement of their assembly quality.",
+    "The clade node splits into 3 reduced lineages (Mitosporidium daphniae, Paramicrosporidium saccamoebae, Rozella allomycis (strain CSF55)) and everything else. Families those few lineages lack, and the outgroup mostly lacks too, sit near the prior (about 0.1) at the clade node: absent from the start and lost in the parasites look the same from this sample, so read ~0.1 there as undecided, not absent. The larger child node (validation.core_node) is reported beside it.",
+    "Known-truth grade at this node (simulated families on the same tree, results/node_power/fungi): AUROC 0.8499 against 0.7453 for present-day frequency, log loss 0.452 against 0.724, ancestor-size bias -5.7% (frequency -55.1%). Verdict: 계통수가 도움이 됨.",
+    "Horizontal transfer is not modelled; measured for this tree at about 0.014, which only says 'below 0.02': the calibration curve saturates at 0.02 on this tree. That is far below the 0.35 at which ancestor size starts to inflate. The estimator cannot separate transfer from an intrinsically high gain rate (gene duplication, domain shuffling), so it is an upper bound."
+  ],
+  "contexts": {}
+}

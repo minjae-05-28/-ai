@@ -286,6 +286,14 @@ def findings_for(law):
         return {t: {"법칙-진화 안 함 (운명 정확도)": v["family_level"]["fate_accuracy.law - no_change"],
                     "기능 순위 상관 법칙/암기": [v["function_level"]["law.spearman"]["mean"],
                                          v["function_level"]["memorisation.spearman"]["mean"]]} for t, v in val.items()}
+    if lid.startswith("fungal_ancestor"):
+        out = {"잎 숨기기 (복원 / 현생 빈도)": val["leave_tips_out_auroc"],
+               "알려진 정답 (복원 / 현생 빈도 AUROC, 크기 편향)": (
+                   [val["known_truth"]["recon_auroc"], val["known_truth"]["freq_auroc"],
+                    val["known_truth"]["recon_size_bias"]] if val.get("known_truth") else None)}
+        for g, fams in (val.get("marker_panel") or {}).items():
+            out[g] = {f: v["posterior"] for f, v in fams.items()}
+        return out
     if lid.startswith("amoeba_ancestor"):
         out = {"잎 숨기기 (복원 / 현생 빈도)": val["leave_tips_out_auroc"]}
         for g, fams in (val.get("marker_panel") or {}).items():
@@ -394,6 +402,13 @@ def card_for(law):
         pp, ep = pro_cat.resolve_pairs(pro_present), euk_cat.resolve_pairs(euk_present)
         card = {"extremophiles": prokaryote_envelope(sp(pp), pp), "parasites": eukaryote_envelope(sp(ep), ep),
                 "species_from": "catalogue"}
+    elif lid.startswith("fungal_ancestor"):
+        d = law["data"]
+        card = {"catalogue": "ribosomal marker tree + UniProt", "envelope": {
+            "대상": f"균류 {d['clade_tips']}종(16개 문, 목마다 고르게) + 외군 {d['outgroup_tips']}종",
+            "환경": "자유생활·공생·기생 균류 모두. 레퍼런스 프로테옴이 없는 계통(아펠리다 등)과 "
+                    "누클레아리아는 미포함"},
+            "species_from": "law"}
     elif lid.startswith("amoeba_ancestor"):
         card = {"catalogue": "ribosomal marker tree + UniProt", "envelope": {
             "대상": "아메보조아 12종(세포성 점균 8, 엔타모에바 3, 아칸타모에바 1) + 외군 28종",

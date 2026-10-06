@@ -419,8 +419,29 @@ def main():
                                 "posterior": round(float(p[j]), 3), "model_sd": round(float(sd[j]), 3),
                                 "tree_sd": round(float(boot_sd[j]), 3)} for j in uncertain[:40]],
     }
+    # The two nodes right below the clade node: when one side is a few reduced lineages (Rozella and
+    # Microsporidia under Fungi), the clade node leans on them, and the other child is the node
+    # most readers mean by the clade's ancestor. Both are kept so they can be compared.
+    children_out = []
+    for c in d["children"][node]:
+        stack, under = [c], []
+        while stack:
+            w = stack.pop()
+            if not d["children"][w]:
+                under.append(w)
+            stack.extend(d["children"][w])
+        under = [w for w in under if in_clade[w]]
+        if under:
+            pc = mean[c]
+            children_out.append({"n_clade_tips": len(under), "examples": sorted(names[w] for w in under)[:6],
+                                 "n_confident": int(((pc >= 0.9) & (spread[c] < 0.1)).sum()),
+                                 "sum_of_posteriors": round(float(pc.sum()), 1), "posterior": pc})
+    summary["clade_node_children"] = [{k: v for k, v in ch.items() if k != "posterior"} for ch in children_out]
     np.savez_compressed(out / "posterior.npz", families=np.array(fams), posterior=p, model_sd=sd, tree_sd=boot_sd,
-                        clade_frequency=clade_freq)
+                        clade_frequency=clade_freq,
+                        child_posteriors=np.stack([ch["posterior"] for ch in children_out]) if children_out
+                        else np.zeros((0, len(fams))),
+                        child_n_tips=np.array([ch["n_clade_tips"] for ch in children_out]))
     (out / "summary.json").write_text(json.dumps(summary, indent=1, ensure_ascii=False))
     print(f"\nconfident families {len(confident)}, uncertain {len(uncertain)}")
     print("functions:", fcount.most_common(10))

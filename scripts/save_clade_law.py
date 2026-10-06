@@ -44,8 +44,13 @@ def caveats(s, power, hgt, clade):
         f"farthest from the clade ({s.get('rooted_on')}). "
         + (f"{len(intr)} non-clade tips fall inside the clade node ({', '.join(intr[:6])}), so the node "
            "reconstructed is not exactly the clade's ancestor." if intr else
-           "The clade came out monophyletic, so the node reconstructed is the common ancestor of every "
-           "sampled member."),
+           "With the tips listed next left out, the clade is monophyletic and the node reconstructed is the "
+           "common ancestor of every remaining member.")
+        + (f" Left out because the tree placed them outside the clade (long-branch attraction): "
+           f"{', '.join(s['misplaced_clade_tips_left_out'])}." if s.get("misplaced_clade_tips_left_out") else ""),
+        (f"No bootstrap trees were used (n_bootstrap_trees = {s.get('n_bootstrap_trees')}), so the tree_sd column "
+         "is zero and phylogenetic uncertainty is NOT in the reported spread." if not s.get("n_bootstrap_trees")
+         else f"{s['n_bootstrap_trees']} bootstrap trees give the tree_sd column."),
         f"Leave-tips-out AUROC {v['reconstruction']:.3f} against {v['clade_frequency']:.3f} for present-day "
         "frequency. That test scores a hidden tip's observed content, dropout included, which the completeness "
         "model deliberately does not reproduce; the known-truth grade below is the test that speaks to the "
@@ -57,6 +62,16 @@ def caveats(s, power, hgt, clade):
         "absences count as weak evidence. That keeps them from dragging the ancestor down, but it is a choice, "
         "not a measurement of their assembly quality.",
     ]
+    kids = s.get("clade_node_children") or []
+    small = [k for k in kids if k["n_clade_tips"] < 0.05 * s["clade_tips"]]
+    if small:
+        k = small[0]
+        out.append(
+            f"The clade node splits into {k['n_clade_tips']} reduced lineages ({', '.join(k['examples'][:3])}) and "
+            "everything else. Families those few lineages lack, and the outgroup mostly lacks too, sit near the "
+            "prior (about 0.1) at the clade node: absent from the start and lost in the parasites look the same "
+            "from this sample, so read ~0.1 there as undecided, not absent. The larger child node "
+            "(validation.core_node) is reported beside it.")
     if power:
         out.append(
             f"Known-truth grade at this node (simulated families on the same tree, results/node_power/{clade}): "
@@ -67,9 +82,14 @@ def caveats(s, power, hgt, clade):
     else:
         out.append("No known-truth grade was run for this node.")
     if hgt:
-        out.append(f"Horizontal transfer is not modelled; measured for this tree at about {hgt['estimated_hgt']} "
-                   f"({hgt['how']}). The estimator cannot separate transfer from an intrinsically high gain "
-                   "rate, so it is an upper bound.")
+        cal = [c for c in hgt["calibration"] if c["hgt"] > 0]
+        sat = next((c["hgt"] for c in cal if c["share_q_ge_0.3"] >= 0.99), None)
+        out.append(f"Horizontal transfer is not modelled; measured for this tree at about {hgt['estimated_hgt']}"
+                   + (f", which only says 'below {sat}': the calibration curve saturates at {sat} on this tree"
+                      if sat is not None and hgt["estimated_hgt"] < sat else "")
+                   + ". That is far below the 0.35 at which ancestor size starts to inflate. The estimator "
+                   "cannot separate transfer from an intrinsically high gain rate (gene duplication, domain "
+                   "shuffling), so it is an upper bound.")
     return out
 
 
@@ -92,9 +112,16 @@ def main():
     power = next((v for k, v in agg.items() if "표본이 도달한 마디" in k), None)
     hf = Path("results/hgt_rate") / args.clade / "summary.json"
     hgt = json.loads(hf.read_text())["sets"].get(args.clade) if hf.exists() else None
+    core = None
+    if "child_posteriors" in z.files and len(z["child_n_tips"]):
+        j = int(np.argmax(z["child_n_tips"]))
+        if z["child_n_tips"][j] < s["clade_tips"]:
+            core = z["child_posteriors"][j]
+    core_power = next((v for k, v in agg.items() if "뿌리 아래 큰 쪽" in k), None)
     panel = {}
     for group, fams in PANELS.get(args.clade, {}).items():
         panel[group] = {f: {"posterior": round(float(z["posterior"][col[f]]), 3),
+                            **({"core_node_posterior": round(float(core[col[f]]), 3)} if core is not None else {}),
                             "model_sd": round(float(z["model_sd"][col[f]]), 3),
                             "tree_sd": round(float(z["tree_sd"][col[f]]), 3),
                             "share_of_clade_tips_today": round(float(z["clade_frequency"][col[f]]), 3)}
@@ -122,6 +149,14 @@ def main():
         validation={"leave_tips_out_auroc": s["leave_tips_out_auroc"],
                     "known_truth": power, "known_truth_subclades": {k: v for k, v in agg.items()
                                                                     if "표본이 도달한 마디" not in k},
+                    "core_node": ({"n_clade_tips": int(z["child_n_tips"].max()),
+                                   "n_confident": int((core >= 0.9).sum()),
+                                   "known_truth": core_power,
+                                   "size_quoted": bool(core_power and abs(core_power["recon_size_bias"]) <= 0.10),
+                                   "sum_of_posteriors": (int(round(float(core.sum())))
+                                                         if core_power and abs(core_power["recon_size_bias"]) <= 0.10
+                                                         else None)}
+                                  if core is not None else None),
                     "measured_hgt_level": hgt["estimated_hgt"] if hgt else None,
                     "ancestor_size": size,
                     "n_confident_families": s["n_confident_families"],

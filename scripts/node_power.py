@@ -75,7 +75,22 @@ def main():
         d, _, vis, _, names, in_clade = clade_tree(args.tree, (), args.clade_kingdom, not args.root_split,
                                                    args.root_split or None, load_lineage(args.lineage))
         members = [v for v in d["tips"] if in_clade.get(v)]
-        nodes = {f"{args.clade} (표본이 도달한 마디)": (mrca(members, d["parent"], d["depth"]), members)}
+        top = mrca(members, d["parent"], d["depth"])
+        nodes = {f"{args.clade} (표본이 도달한 마디)": (top, members)}
+        # The larger child of the clade node: when the other side is a few reduced lineages, this is
+        # the node most readers mean (run_clade_ancestor.py stores its posterior as well).
+        sides = []
+        for c in d["children"][top]:
+            stack, under = [c], []
+            while stack:
+                w = stack.pop()
+                if not d["children"][w]:
+                    under.append(w)
+                stack.extend(d["children"][w])
+            sides.append((len([w for w in under if in_clade.get(w)]), c, [w for w in under if in_clade.get(w)]))
+        n_big, c_big, m_big = max(sides)
+        if 5 <= n_big < len(members):
+            nodes[f"{args.clade} 뿌리 아래 큰 쪽 ({n_big}종)"] = (c_big, m_big)
         if args.pick:
             lin = json.loads(Path(args.pick).read_text())["lineage"]
             phylum = {r["organism"].replace("'", ""): r.get("phylum") or r.get("supergroup") or "?" for r in lin.values()}

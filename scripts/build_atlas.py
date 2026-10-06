@@ -60,8 +60,27 @@ CLADES = [
     {"id": "fungi", "dir": "results/clade_ancestor/fungi", "name": "균류의 조상", "group": "진핵생물",
      "sub": "표본 균류 전체의 공통 조상",
      "blurb": "효모·곰팡이·버섯·키트리드·미포자충이 갈라지기 전의 유전자 구성입니다. 목(order)마다 고르게 "
-              "뽑은 균류와 외군(깃편모충·어류포자충·폰티쿨라 등)의 리보솜 마커 계통수 위에서 복원했습니다."},
+              "뽑은 균류와 외군(깃편모충·어류포자충·폰티쿨라 등)의 리보솜 마커 계통수 위에서 복원했습니다. "
+              "뿌리의 한쪽은 로젤라·미포자충 계열 3종뿐이라, 그 3종에 없는 유전자군은 여기서 '판단 불가'(약 0.1)로 "
+              "나옵니다 — 옆의 '핵심 균류의 조상'과 같이 보세요."},
+    {"id": "fungi_core", "dir": "results/clade_ancestor/fungi", "child": True, "power_key": "뿌리 아래 큰 쪽",
+     "hgt_id": "fungi", "name": "핵심 균류의 조상", "group": "진핵생물", "sub": "로젤라 계열이 갈라진 뒤의 마디",
+     "blurb": "균류 뿌리에서 로젤라·미포자충 계열(세포 안 기생체, 유전체가 크게 줄어듦)을 뺀 나머지 286종의 공통 "
+              "조상입니다. 키틴 합성효소 1군·균류 전사인자 같은 '균류다운' 유전자군이 여기서 확실해집니다."},
 ]
+
+
+_COUNTS = {}
+
+
+def family_counts(species):
+    """Pfam family count per collected UniProt proteome (richest copy), for the today-vs-ancestor bars."""
+    if not _COUNTS:
+        for f in sorted(Path("data/uniprot/shards").glob("*.json.gz")):
+            for v in json.loads(gzip.open(f, "rt").read()).values():
+                o = v["organism"].replace("'", "")
+                _COUNTS[o] = max(_COUNTS.get(o, 0), len(v.get("pfam") or {}))
+    return [_COUNTS[s] for s in species if s in _COUNTS]
 
 
 def clade_entry(c):
@@ -69,7 +88,15 @@ def clade_entry(c):
     if not (R / "summary.json").exists():
         return None
     a = json.loads((R / "summary.json").read_text())
-    z = np.load(R / "posterior.npz", allow_pickle=False)
+    z0 = np.load(R / "posterior.npz", allow_pickle=False)
+    z = {k: z0[k] for k in z0.files}
+    n_tips = a["clade_tips"]
+    if c.get("child"):
+        if "child_posteriors" not in z or not len(z["child_n_tips"]):
+            return None
+        j = int(np.argmax(z["child_n_tips"]))
+        z["posterior"] = z["child_posteriors"][j]
+        n_tips = int(z["child_n_tips"][j])
     fams = [str(x) for x in z["families"]]
     func, meta = functions_of(fams)
     comp = []
@@ -82,22 +109,25 @@ def clade_entry(c):
                      "today": round(float(z["clade_frequency"][ix].mean()), 3)})
     gap = z["posterior"] - z["clade_frequency"]
     top = np.argsort(-gap)[:14]
-    pw_file = Path("results/node_power") / c["id"] / "summary.json"
+    pw_file = Path("results/node_power") / c.get("hgt_id", c["id"]) / "summary.json"
     agg = json.loads(pw_file.read_text())["aggregate"] if pw_file.exists() else {}
-    power = next((v for k, v in agg.items() if "표본이 도달한 마디" in k), None)
-    hg_file = Path("results/hgt_rate") / c["id"] / "summary.json"
-    hg = json.loads(hg_file.read_text())["sets"].get(c["id"]) if hg_file.exists() else None
+    power = next((v for k, v in agg.items() if c.get("power_key", "표본이 도달한 마디") in k), None)
+    hid = c.get("hgt_id", c["id"])
+    hg_file = Path("results/hgt_rate") / hid / "summary.json"
+    hg = json.loads(hg_file.read_text())["sets"].get(hid) if hg_file.exists() else None
     # A size is quoted only when the known-truth test says the reconstruction gets it within 10%.
     bias = power["recon_size_bias"] if power else None
     quote = bias is not None and abs(bias) <= 0.10
     expected = int(round(float(z["posterior"].sum()))) if quote else None
     v = a["leave_tips_out_auroc"]
+    counts = family_counts(a["clade_species"])
     intruders = a.get("non_clade_tips_inside_clade_node") or []
     return {
         "id": c["id"], "name": c["name"], "sub": c["sub"], "group": c["group"], "blurb": c["blurb"],
         "confidence": "중간" if power and power["verdict"] == "계통수가 도움이 됨" else "낮음",
         "quote_size": quote, "power": power, "_hgt": hg,
-        "phylum_power": {k: val for k, val in agg.items() if "표본이 도달한 마디" not in k},
+        "phylum_power": {k: val for k, val in agg.items() if "표본이 도달한 마디" not in k
+                         and "뿌리 아래 큰 쪽" not in k},
         "extra_caveat": (f"뿌리는 균류에서 가장 먼 외군 잎({a.get('rooted_on')})에 잡았습니다. "
                          + (f"균류 마디 안으로 외군 {len(intruders)}종이 들어왔습니다: {', '.join(intruders[:5])}."
                             if intruders else "균류는 계통수에서 한 덩어리(단계통)로 나왔습니다.")
@@ -106,14 +136,19 @@ def clade_entry(c):
                       "(모든 유전자군의 사후확률 합)." if quote else
                       (f"알려진 정답 모의에서 조상 크기 편향 {bias:+.1%}로 10%를 넘어 개수를 말하지 않습니다."
                        if bias is not None else "알려진 정답 채점 전이라 개수를 말하지 않습니다.")),
-        "tips": a["clade_tips"], "families_considered": a["families_considered"],
+        "tips": n_tips, "families_considered": a["families_considered"],
         "validation": {"reconstruction": v["reconstruction"], "baseline": v["clade_frequency"],
-                       "baseline_label": "현생 빈도(계통수 없음)", "shared": False,
+                       "baseline_label": "현생 빈도(계통수 없음)", "shared": bool(c.get("child")),
                        "margin": round(v["reconstruction"] - v["clade_frequency"], 4), "extra": {}},
         "expected_families": expected,
-        "today_median_families": None, "today_min_families": None, "today_max_families": None,
-        "confident": a["n_confident_families"], "uncertain": a["n_uncertain_families"],
-        "functions": [[k, n] for k, n in a["functions_of_confident_families"][:12]],
+        "today_median_families": int(np.median(counts)) if counts else None,
+        "today_min_families": min(counts) if counts else None,
+        "today_max_families": max(counts) if counts else None,
+        "confident": (int((z["posterior"] >= 0.9).sum()) if c.get("child") else a["n_confident_families"]),
+        "uncertain": (int(((z["posterior"] >= 0.5) & (z["posterior"] < 0.9)).sum()) if c.get("child")
+                      else a["n_uncertain_families"]),
+        "functions": [[k, n] for k, n in a["functions_of_confident_families"][:12]] if not c.get("child") else
+                     Counter(t for j in np.flatnonzero(z["posterior"] >= 0.9) for t in func[j]).most_common(12),
         "comparison": comp,
         "lost": [{"family": fams[i], "desc": meta.get(fams[i], {}).get("description", ""),
                   "p": round(float(z["posterior"][i]), 2), "today": round(float(z["clade_frequency"][i]), 2)}
