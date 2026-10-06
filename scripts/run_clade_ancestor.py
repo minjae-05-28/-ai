@@ -123,7 +123,7 @@ def build(tree_path, clade_genera, min_families, clade_kingdom=None, root_outgro
     keep = [v for v in tips if label[v] in prof and len(prof[label[v]]["pfam"]) >= min_families]
     dropped = [label[v] for v in tips if v not in set(keep)]
     parent, length, label2, old = prune(parent, length, label, keep)
-    rooted_on = None
+    rooted_on, misplaced = None, []
     if root_outgroup:
         tips2 = [v for v in range(len(parent)) if v not in set(parent.tolist())]
         hit = {v: (prof[label2[v]].get("kingdom") == clade_kingdom if clade_kingdom
@@ -132,6 +132,30 @@ def build(tree_path, clade_genera, min_families, clade_kingdom=None, root_outgro
         if t is not None:
             rooted_on = label2[t]
             parent, length, label2 = reroot(parent, length, label2, t)
+        # Long-branch tips (classically Microsporidia) can be pulled out of their clade by the tree
+        # method. If only a few clade tips sit outside the largest clade-only subtree, they are left
+        # out of the reconstruction (and listed) rather than letting them drag the clade node down to
+        # a node that contains the outgroup.
+        ordr, ch = postorder(parent)
+        tips2 = [v for v in range(len(parent)) if not ch[v]]
+        hit = {v: (prof[label2[v]].get("kingdom") == clade_kingdom if clade_kingdom
+                   else label2[v].split()[0] in clade_genera) for v in tips2}
+        size, pure = {}, {}
+        for v in ordr:
+            size[v] = 1 if not ch[v] else sum(size[c] for c in ch[v])
+            pure[v] = hit[v] if not ch[v] else all(pure[c] for c in ch[v])
+        best = max((v for v in ordr if pure[v]), key=lambda v: size[v], default=None)
+        if best is not None:
+            inside, stack = set(), [best]
+            while stack:
+                v = stack.pop()
+                inside.add(v)
+                stack.extend(ch[v])
+            stray = [v for v in tips2 if hit[v] and v not in inside]
+            if stray and len(stray) <= 0.02 * sum(hit.values()):
+                misplaced = sorted(label2[v] for v in stray)
+                keep2 = [v for v in tips2 if v not in set(stray)]
+                parent, length, label2, _ = prune(parent, length, label2, keep2)
     order, children = postorder(parent)
     d = {"parent": parent, "length": np.maximum(length, 1e-6), "order": order, "children": children}
     d["tips"] = [v for v in range(len(parent)) if not children[v]]
@@ -209,6 +233,7 @@ def build(tree_path, clade_genera, min_families, clade_kingdom=None, root_outgro
             below.append(names[v])
         stack.extend(children[v])
     d["rooted_on"] = rooted_on
+    d["misplaced_clade_tips_left_out"] = misplaced
     d["non_clade_tips_inside_clade_node"] = sorted(below)
     return d, fams, names, in_clade, dropped, [names[v] for v in reduced_tips]
 
@@ -330,6 +355,7 @@ def main():
         "clade_species": [names[v] for v in clade_tips], "dropped_tips": dropped,
         "reduced_lineages": reduced, "families_considered": len(fams),
         "rooted_on": d.get("rooted_on"),
+        "misplaced_clade_tips_left_out": d.get("misplaced_clade_tips_left_out"),
         "non_clade_tips_inside_clade_node": d.get("non_clade_tips_inside_clade_node"),
         "node_reconstructed": "most recent common ancestor of the sampled clade tips, which at this "
                               "sample size is not the clade's root (see results/sample_size/summary.json)",
