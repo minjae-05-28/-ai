@@ -5,12 +5,9 @@ name: Ribosomal tree
 # results/phylo_tree.
 
 on:
+  # Manual only: a push-triggered run rebuilt every set (and replaced the 151-species eukaryote tree
+  # existing laws use) after an unrelated edit to scripts/ribosomal_tree.py.
   workflow_dispatch:
-  push:
-    branches: [main]
-    paths:
-      - ".github/workflows/ribosomal-tree.yml"
-      - "scripts/ribosomal_tree.py"
 
 permissions:
   contents: write
