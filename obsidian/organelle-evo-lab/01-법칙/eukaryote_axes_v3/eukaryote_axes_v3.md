@@ -21,7 +21,9 @@ tags:
 
 | 비교한 곳 | 법칙 | 기준선 | 차이 | 방향 |
 | --- | --- | --- | --- | --- |
-| mean_heldout_auroc | `enriched` 0.7699 | `memorisation` 0.8517 | -0.0818 | 높을수록 좋음 |
+| mean_heldout_auroc (auroc) | `enriched` 0.7699 | `memorisation` 0.8517 | -0.0818 | 높을수록 좋음 |
+
+판정은 표의 첫 줄(교차검증 쪽, AUROC 우선)로 매깁니다. 차이가 ±0.01 안이면 무승부. 비교는 같은 지표끼리만 합니다.
 
 ## 이 클러스터의 노트
 - [[eukaryote_axes_v3 · 계수]] — 학습된 가중치와 신뢰구간

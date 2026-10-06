@@ -2,12 +2,12 @@
 유형: 법칙 허브
 법칙: genome_traits_v1
 클러스터: 서열·조성
-판정: 양성
-기준선대비: 6.4358
+판정: 무승부
+기준선대비: 0.0331
 tags:
   - 법칙/genome_traits_v1
   - 클러스터/서열·조성
-  - 판정/양성
+  - 판정/무승부
 ---
 
 # genome_traits_v1
@@ -17,19 +17,20 @@ tags:
 
 **모형** — Ridge (temperature) / logistic (oxygen, host) on standardized genome features; gradient boosting on the same features reported next to it; taxonomy memorisation as the baseline.
 
-## 판정 — 양성
+## 판정 — 무승부
 
 | 비교한 곳 | 법칙 | 기준선 | 차이 | 방향 |
 | --- | --- | --- | --- | --- |
-| temperature · random_5fold · scores | `law_linear` 5.337 | `mean` 5.971 | -0.6344 | 높을수록 좋음 |
-| temperature · random_5fold · r2 | `law+taxonomy` 0.7537 | `mean` -0.0002 | +0.7539 | 높을수록 좋음 |
-| temperature · leave_order_out | `scores` 5.994 | `law_linear - mean` -0.4419 | +6.4358 | 높을수록 좋음 |
-| temperature · leave_order_out · scores | `law_linear` 5.552 | `mean` 5.994 | -0.4419 | 높을수록 좋음 |
-| temperature · leave_order_out · r2 | `law+taxonomy` 0.2811 | `mean` -0.0061 | +0.2872 | 높을수록 좋음 |
-| oxygen · random_5fold · scores | `law+taxonomy` 0.9782 | `mean` 0.5 | +0.4782 | 높을수록 좋음 |
-| oxygen · leave_order_out · scores | `law+taxonomy` 0.8505 | `mean` 0.5 | +0.3505 | 높을수록 좋음 |
-| host · random_5fold · scores | `law+taxonomy` 0.8439 | `mean` 0.5 | +0.3439 | 높을수록 좋음 |
-| host · leave_order_out · scores | `law_linear` 0.6518 | `mean` 0.5 | +0.1518 | 높을수록 좋음 |
+| oxygen · leave_order_out · scores (auroc) | `law_linear` 0.7883 | `taxonomy` 0.7552 | +0.0331 [-0.1108, 0.179] | 높을수록 좋음 |
+| host · leave_order_out · scores (auroc) | `law_nonlinear` 0.6797 | `taxonomy` 0.5021 | +0.1776 | 높을수록 좋음 |
+| temperature · leave_order_out · scores (mae) | `law_nonlinear` 5.177 | `taxonomy` 4.703 | -0.4745 | 낮을수록 좋음 |
+| temperature · leave_order_out · r2 (r2) | `law_nonlinear` 0.2123 | `taxonomy` 0.2738 | -0.0615 | 높을수록 좋음 |
+| oxygen · random_5fold · scores (auroc) | `law_nonlinear` 0.8807 | `taxonomy` 0.9681 | -0.0874 | 높을수록 좋음 |
+| host · random_5fold · scores (auroc) | `law_nonlinear` 0.7631 | `taxonomy` 0.8434 | -0.0803 | 높을수록 좋음 |
+| temperature · random_5fold · scores (mae) | `law_nonlinear` 4.201 | `taxonomy` 2.591 | -1.6103 | 낮을수록 좋음 |
+| temperature · random_5fold · r2 (r2) | `law_nonlinear` 0.4548 | `taxonomy` 0.7527 | -0.2979 | 높을수록 좋음 |
+
+판정은 표의 첫 줄(교차검증 쪽, AUROC 우선)로 매깁니다. 차이가 ±0.01 안이면 무승부. 비교는 같은 지표끼리만 합니다.
 
 ## 이 클러스터의 노트
 - [[genome_traits_v1 · 계수]] — 학습된 가중치와 신뢰구간

@@ -3,7 +3,7 @@
 법칙: human_cell_v1
 클러스터: 실험실 대조
 판정: 음성
-기준선대비: -0.0657
+기준선대비: -0.044
 tags:
   - 법칙/human_cell_v1
   - 클러스터/실험실 대조
@@ -21,12 +21,14 @@ tags:
 
 | 비교한 곳 | 법칙 | 기준선 | 차이 | 방향 |
 | --- | --- | --- | --- | --- |
-| gene_content · validation_auroc · Bacteroides thetaiotaomicron | `Bacillus subtilis` 0.8932 | `Bacillus subtilis (rarity baseline)` 0.9371 | -0.0440 | 높을수록 좋음 |
-| gene_content · validation_auroc · Bifidobacterium longum | `Bacillus subtilis` 0.8645 | `Pseudomonas putida (rarity baseline)` 0.9144 | -0.0500 | 높을수록 좋음 |
-| gene_content · validation_auroc · Akkermansia muciniphila | `Bacillus subtilis` 0.8901 | `Bacillus subtilis (rarity baseline)` 0.9378 | -0.0478 | 높을수록 좋음 |
-| gene_content · validation_auroc · Faecalibacterium prausnitzii | `Pseudomonas putida` 0.8595 | `Pseudomonas putida (rarity baseline)` 0.9199 | -0.0604 | 높을수록 좋음 |
-| gene_content · validation_auroc · Streptococcus salivarius | `Pseudomonas putida` 0.8644 | `Pseudomonas putida (rarity baseline)` 0.9282 | -0.0638 | 높을수록 좋음 |
-| gene_content · validation_auroc · Lactobacillus crispatus | `Bacillus subtilis` 0.8316 | `Pseudomonas putida (rarity baseline)` 0.8974 | -0.0657 | 높을수록 좋음 |
+| gene_content · validation_auroc · Bacteroides thetaiotaomicron (auroc) | `Bacillus subtilis` 0.8932 | `Bacillus subtilis (rarity baseline)` 0.9371 | -0.0440 | 높을수록 좋음 |
+| gene_content · validation_auroc · Bifidobacterium longum (auroc) | `Bacillus subtilis` 0.8645 | `Pseudomonas putida (rarity baseline)` 0.9144 | -0.0500 | 높을수록 좋음 |
+| gene_content · validation_auroc · Akkermansia muciniphila (auroc) | `Bacillus subtilis` 0.8901 | `Bacillus subtilis (rarity baseline)` 0.9378 | -0.0478 | 높을수록 좋음 |
+| gene_content · validation_auroc · Faecalibacterium prausnitzii (auroc) | `Pseudomonas putida` 0.8595 | `Pseudomonas putida (rarity baseline)` 0.9199 | -0.0604 | 높을수록 좋음 |
+| gene_content · validation_auroc · Streptococcus salivarius (auroc) | `Pseudomonas putida` 0.8644 | `Pseudomonas putida (rarity baseline)` 0.9282 | -0.0638 | 높을수록 좋음 |
+| gene_content · validation_auroc · Lactobacillus crispatus (auroc) | `Bacillus subtilis` 0.8316 | `Pseudomonas putida (rarity baseline)` 0.8974 | -0.0657 | 높을수록 좋음 |
+
+판정은 표의 첫 줄(교차검증 쪽, AUROC 우선)로 매깁니다. 차이가 ±0.01 안이면 무승부. 비교는 같은 지표끼리만 합니다.
 
 ## 이 클러스터의 노트
 - [[human_cell_v1 · 계수]] — 학습된 가중치와 신뢰구간

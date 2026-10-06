@@ -2,12 +2,12 @@
 유형: 법칙 허브
 법칙: loss_order_environment_v1
 클러스터: 소기관
-판정: 무승부
-기준선대비: 0.0052
+판정: 구조 분석
+기준선대비: —
 tags:
   - 법칙/loss_order_environment_v1
   - 클러스터/소기관
-  - 판정/무승부
+  - 판정/구조 분석
 ---
 
 # loss_order_environment_v1
@@ -17,11 +17,9 @@ tags:
 
 **모형** — Nestedness against row-fixed and fixed-fixed (curveball) nulls.
 
-## 판정 — 무승부
+## 판정 — 구조 분석
 
-| 비교한 곳 | 법칙 | 기준선 | 차이 | 방향 |
-| --- | --- | --- | --- | --- |
-| (최상위) | `containment` 0.08506 | `fixed_null_mean` 0.07987 | +0.0052 | 높을수록 좋음 |
+소실 순서·모듈·수렴 같은 구조를 기술하는 분석입니다. 기준선은 경쟁 방법이 아니라 무작위 귀무분포입니다. 수치는 [[loss_order_environment_v1 · 검증]]에 그대로 있습니다.
 
 ## 이 클러스터의 노트
 - [[loss_order_environment_v1 · 계수]] — 학습된 가중치와 신뢰구간

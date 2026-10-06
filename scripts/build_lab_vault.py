@@ -21,8 +21,8 @@ from pathlib import Path
 LAWS = Path("laws")
 RESULTS = Path("results")
 # A law's validation names its baselines differently per experiment; these are the ones used.
-LAW_KEYS = ("law", "axis_law", "environment_law", "reconstruction", "relatives", "combined", "recon")
-BASE_KEYS = ("memorisation", "rarity", "copies_only", "no_environment", "no_axes", "clade_frequency",
+LAW_KEYS = ("composition", "law", "axis_law", "environment_law", "reconstruction", "relatives", "combined", "recon")
+BASE_KEYS = ("taxonomy", "memorisation", "rarity", "copies_only", "no_environment", "no_axes", "clade_frequency",
              "alpha_frequency", "frequency", "mean", "baseline", "prior", "nearest_tip")
 CLUSTERS = {
     "소기관": ("mito", "organelle", "endosymbiosis", "coloss", "severity", "loss_order"),
@@ -80,10 +80,24 @@ def flat(d, prefix=""):
     return out
 
 
-LOWER_IS_BETTER = ("rmse", "logloss", "error", "loss", "bias", "p_", "distance")
-# counts and settings sit beside the scores and must not be mistaken for a method
-META_KEYS = ("n_", "_n", "folds", "scheme", "best_k", "lineages", "genes", "pairs", "clades",
-             "species", "threshold", "null", "seed", "share_of", "families_tested", "count")
+# A comparison is only meaningful between two numbers of the same metric. The first version of
+# this matched a law to a baseline by name alone and compared a count of pairs (9) with an AUROC
+# (0.836), a regression slope with an RMSE, and read "loss_biased" in a path as "lower is
+# better" - so a negative law came out positive. Now both sides must carry the same metric.
+METRICS = {"auroc": False, "auc": False, "r2": False, "spearman": False, "pearson": False,
+           "accuracy": False, "rmse": True, "logloss": True, "mae": True, "brier": True}
+NOT_A_METHOD = ("better_in", "delta", "per_", "max", "min", "share", "coef", "deleted",
+                "essential", "count", "folds", "scheme", "best_k", "lineages", "genes", "pairs",
+                "clades", "species", "threshold", "seed", "families", " - ", "difference", "gain_vs")
+PRIMARY = ("leave", "heldout", "held_out", "hidden", "loo", "out_of", "loco", "lopo")
+
+
+def metric_in(text):
+    t = text.lower().replace("loss_biased", "")
+    for m in METRICS:
+        if re.search(rf"(^|[^a-z]){m}($|[^a-z])", t):
+            return m
+    return None
 
 
 def _is(name, words):
@@ -91,49 +105,92 @@ def _is(name, words):
     return any(w in n for w in words)
 
 
-def comparison_groups(validation):
-    """Find the places where methods were actually put side by side.
+def is_count(name):
+    """n, n_pairs, pairs_n - but not mean_only, whose 'n_' is inside a word."""
+    n = name.lower()
+    return n == "n" or n.startswith("n_") or n.endswith("_n")
 
-    Validation blocks differ per experiment, so instead of guessing from a flat key name this looks
-    for a parent whose children are numbers competing with each other - 'mean_heldout_auroc' with
-    children copies_only / base / enriched / memorisation, or 'loco_rmse_logit' with mean_only /
-    all_axes. Within such a group one child names a baseline and another names the law.
+
+def comparison_groups(validation):
+    """Places where methods were scored side by side ON THE SAME METRIC.
+
+    A group is a parent whose numeric children compete. The metric comes from the child's own
+    name (auroc_rarity_baseline) or else from the parent path (leave_one_out_auroc); a law and a
+    baseline are only compared when they share it, and counts, deltas, slopes and differences are
+    never treated as a method.
     """
     groups = []
+    parents = []
 
-    def walk(d, path):
+    def walk(d, path, inherited=None):
+        parent = parents[-1] if parents else None
         if not isinstance(d, dict):
             return
-        nums = {k: v for k, v in d.items()
-                if isinstance(v, (int, float)) and not isinstance(v, bool)}
-        nums.update({k: v["mean"] for k, v in d.items()
-                     if isinstance(v, dict) and isinstance(v.get("mean"), (int, float))})
-        if len(nums) >= 2:
-            base = [(v, k) for k, v in nums.items() if _is(k, BASE_KEYS)]
-            # whatever is not a baseline and not a count is a method being compared against it
-            law = [(v, k) for k, v in nums.items()
-                   if not _is(k, BASE_KEYS) and not _is(k, META_KEYS) and k.lower() != "n"]
-            if law and base:
-                lower = _is(path, LOWER_IS_BETTER) or any(_is(k, LOWER_IS_BETTER) for k in nums)
-                pick = min if lower else max
-                bl, bb = pick(law), pick(base)
-                margin = (bb[0] - bl[0]) if lower else (bl[0] - bb[0])
-                groups.append({"where": path or "(최상위)", "law": bl[1], "law_value": bl[0],
-                               "baseline": bb[1], "baseline_value": bb[0],
-                               "lower_is_better": lower, "margin": round(margin, 4)})
+        if isinstance(d.get("metric"), str):
+            inherited = metric_in(d["metric"]) or inherited
+        nums = {}
+        for k, v in d.items():
+            if isinstance(v, bool):
+                continue
+            if isinstance(v, (int, float)):
+                nums[k] = v
+            elif isinstance(v, dict) and isinstance(v.get("mean"), (int, float)):
+                nums[k] = v["mean"]
+        path_metric = metric_in(path) or inherited
+        by_metric = {}
+        for k, v in nums.items():
+            if _is(k, NOT_A_METHOD) or is_count(k):
+                continue
+            m = metric_in(k) or path_metric
+            if m:
+                by_metric.setdefault(m, []).append((v, k))
+        for m, items in by_metric.items():
+            base = [x for x in items if _is(x[1], BASE_KEYS) and "+" not in x[1]]
+            law = [x for x in items if not _is(x[1], BASE_KEYS)]
+            if not law or not base:
+                continue
+            lower = METRICS[m]
+            pick = min if lower else max
+            # The law's own score first: a key that IS the law (law, law.auroc, law_linear), never
+            # the law with something added and never another predictor that merely sits beside it.
+            own = [x for x in law if x[1].lower().startswith("law") and "+" not in x[1]]
+            explicit = [x for x in law if _is(x[1], LAW_KEYS) and "+" not in x[1]]
+            bl, bb = pick(own or explicit or law), pick(base)
+            if m in ("auroc", "auc", "accuracy") and not (0 <= bl[0] <= 1 and 0 <= bb[0] <= 1):
+                continue
+            margin = (bb[0] - bl[0]) if lower else (bl[0] - bb[0])
+            # bounded scores (AUROC, r2) are judged on the raw difference; errors with units
+            # (RMSE in degrees, MAE) on the difference relative to the baseline's error
+            bounded = m in ("auroc", "auc", "accuracy", "r2", "spearman", "pearson")
+            rel = margin if bounded else margin / max(abs(bb[0]), 1e-9)
+            ci = None
+            for scope in (d, parent):
+                diff = (scope or {}).get(f"{bl[1]} - {bb[1]}")
+                if isinstance(diff, dict) and isinstance(diff.get("ci95"), list):
+                    ci = diff["ci95"]
+                    break
+            groups.append({"where": path or "(최상위)", "metric": m, "law": bl[1], "law_value": bl[0],
+                           "ci95": ci, "ci_holds_zero": bool(ci and ci[0] <= 0 <= ci[1]),
+                           "baseline": bb[1], "baseline_value": bb[0], "lower_is_better": lower,
+                           "primary": _is(path, PRIMARY) or _is(bl[1], PRIMARY),
+                           "margin": round(margin, 4), "relative": round(rel, 4),
+                           "bounded": bounded})
         for k, v in d.items():
             if isinstance(v, dict):
-                walk(v, f"{path} · {k}" if path else k)
+                parents.append(d)
+                walk(v, f"{path} · {k}" if path else k, inherited)
+                parents.pop()
 
     walk(validation or {}, "")
     return groups
 
 
-# Not every law is a method race. Some ask whether an effect survives a confounder, others
-# describe structure; calling those "unclassified" hides what they are.
+# Not every law is a method race. Some ask whether an effect survives a confounder, others whether
+# a law transfers, others describe structure; calling those "unclassified" hides what they are.
 KINDS = {"교란 검정": ("confound", "phylo_check"),
+         "전이 검정": ("animal_temperature",),
          "구조 분석": ("modules", "loss_order", "convergent", "family_sequence", "nestedness"),
-         "규모 보고": ("severity", "endosymbiosis")}
+         "규모 보고": ("severity_endosymbiosis", "coloss_environment", "endosymbiosis", "knockout")}
 
 
 def kind_of(law_id):
@@ -150,8 +207,13 @@ def verdict_of(validation, law_id=""):
         if not validation:
             return "검증 없음", None, None
         return kind_of(law_id) or "미분류", None, None
-    g = max(groups, key=lambda x: abs(x["margin"]))
-    label = "양성" if g["margin"] > 0.01 else ("음성" if g["margin"] < -0.01 else "무승부")
+    rank = {"auroc": 0, "auc": 0, "logloss": 1, "r2": 2, "rmse": 2, "mae": 2, "brier": 1,
+            "spearman": 3, "pearson": 3, "accuracy": 1}
+    g = sorted(groups, key=lambda x: (not x["primary"], rank.get(x["metric"], 9)))[0]
+    r = g["relative"]
+    label = "양성" if r > 0.01 else ("음성" if r < -0.01 else "무승부")
+    if g.get("ci_holds_zero") and label != "무승부":
+        label = "무승부"   # the interval of the difference holds zero: not separated
     return label, g["margin"], groups
 
 
@@ -182,17 +244,23 @@ def law_notes(out, law, env, experiments):
     hub += f"**모형** — {law.get('model', '—')}\n\n"
     if pair:
         hub += f"## 판정 — {label}\n\n"
-        hub += table([[g["where"], f'`{g["law"]}` {num(g["law_value"])}',
-                       f'`{g["baseline"]}` {num(g["baseline_value"])}', f'{g["margin"]:+.4f}',
+        pair = sorted(pair, key=lambda x: (not x["primary"], x["metric"] != "auroc"))
+        hub += table([[f'{g["where"]} ({g["metric"]})', f'`{g["law"]}` {num(g["law_value"])}',
+                       f'`{g["baseline"]}` {num(g["baseline_value"])}',
+                       f'{g["margin"]:+.4f}' + (f' [{num(g["ci95"][0])}, {num(g["ci95"][1])}]'
+                                                 if g.get("ci95") else ""),
                        "낮을수록 좋음" if g["lower_is_better"] else "높을수록 좋음"]
                       for g in pair],
                      ["비교한 곳", "법칙", "기준선", "차이", "방향"]) + "\n\n"
+        hub += ("판정은 표의 첫 줄(교차검증 쪽, AUROC 우선)로 매깁니다. 차이가 ±0.01 안이면 무승부. "
+                "비교는 같은 지표끼리만 합니다.\n\n")
     else:
         why = {"교란 검정": "교란 변수를 넣었을 때 효과가 살아남는지를 묻는 검정입니다. "
                             "법칙 대 기준선의 경주가 아니라 '살아남음/탈락'이 결과입니다.",
                "구조 분석": "소실 순서·모듈·수렴 같은 구조를 기술하는 분석입니다. 기준선은 "
                             "경쟁 방법이 아니라 무작위 귀무분포입니다.",
                "규모 보고": "얼마나 잃는지를 보고하는 분석입니다.",
+               "전이 검정": "한 계통에서 얻은 법칙이 다른 계통에도 통하는지 부호와 크기로 보는 검정입니다.",
                "검증 없음": "이 법칙 파일에는 검증 블록이 없습니다. 그 자체가 점검 대상입니다.",
                "미분류": "검증 블록에 법칙과 기준선을 나란히 둔 비교 묶음이 없습니다."}
         hub += f"## 판정 — {label}\n\n{why.get(label, '')} 수치는 [[{lid} · 검증]]에 그대로 있습니다.\n\n"
@@ -411,6 +479,20 @@ DATASETS = {
 
 
 CORRECTIONS = {
+    "정정 · 볼트 판정기가 단위가 다른 수치를 비교했음": (
+        "**무엇이 틀렸나** — 볼트를 처음 넘겼을 때 판정기가 이름만 보고 법칙과 기준선을 짝지어서 "
+        "단위가 다른 수치를 비교했습니다. `animal_content_v1`은 '축이 더 나았던 쌍의 수 9'를 "
+        "AUROC 0.836과 비교해 **음성 법칙을 양성 +8.16으로** 찍었고, `sequence_v1`은 회귀 기울기를 "
+        "RMSE와, `mito_ancestor_v1`은 경로 이름의 'loss_biased'를 보고 AUROC를 '낮을수록 좋음'으로 "
+        "뒤집었습니다. `loss_prediction_v1`은 법칙 단독(0.793)이 아니라 근친 정보를 더한 값(0.925)을 "
+        "법칙 성적으로 집었습니다.\n\n"
+        "**고친 것** — 같은 지표(AUROC끼리, RMSE끼리)만 비교합니다. 개수·차이·기울기는 방법으로 "
+        "취급하지 않습니다. 법칙 단독 성적을 우선합니다. 단위가 있는 오차는 기준선 대비 비율로 "
+        "판정합니다. 차이의 신뢰구간이 기록돼 있으면 그것이 0을 포함할 때 무승부로 내립니다.\n\n"
+        "**결과** — 양성 16 → **9**, 음성 7 → **9**. 양성으로 잘못 찍혔던 것: animal_content_v1, "
+        "loss_prediction_v1, context_features_v1(법칙 단독은 암기에 짐), genome_traits_v1(구간이 0 포함 "
+        "→ 무승부). 이 경우들은 테스트로 고정했습니다(`tests/test_lab_vault.py`).\n\n"
+        "**교훈** — 자동 판정은 '그동안 손으로 확인한 결론'과 대조하기 전까지 믿으면 안 됩니다."),
     "정정 · 리케차목 판정 철회": (
         "**무엇을 말했나** — 잎 숨기기에서 리케차목이 0.988 vs 기준선 0.988(+0.0005)이므로 "
         "'계통수가 아무것도 벌어주지 못한다'고 보고했습니다.\n\n"

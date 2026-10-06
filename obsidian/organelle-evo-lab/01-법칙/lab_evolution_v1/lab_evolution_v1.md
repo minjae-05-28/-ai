@@ -3,7 +3,7 @@
 법칙: lab_evolution_v1
 클러스터: 실험실 대조
 판정: 양성
-기준선대비: 3.59
+기준선대비: 0.0232
 tags:
   - 법칙/lab_evolution_v1
   - 클러스터/실험실 대조
@@ -21,11 +21,12 @@ tags:
 
 | 비교한 곳 | 법칙 | 기준선 | 차이 | 방향 |
 | --- | --- | --- | --- | --- |
-| LTEE (50,000 generations, 12 populations, selection) | `essential_share_deleted` 0.04356 | `auroc_rarity_baseline` 0.5665 | +0.5229 | 낮을수록 좋음 |
-| MAE (mutation accumulation, almost no selection) | `essential_share_deleted` 0.0339 | `auroc_rarity_baseline` 0.5598 | +0.5259 | 낮을수록 좋음 |
-| LTEE (50,000 generations, 12 populations, selection), dispensable genes | `deleted_that_are_essential` 0 | `auroc_rarity_baseline` 0.5482 | +0.5482 | 낮을수록 좋음 |
-| MAE (mutation accumulation, almost no selection), dispensable genes | `deleted_that_are_essential` 0 | `auroc_rarity_baseline` 0.5345 | +0.5345 | 낮을수록 좋음 |
-| genes_lost_per_1000_generations | `max` 7.64 | `mean` 4.05 | +3.5900 | 높을수록 좋음 |
+| LTEE (50,000 generations, 12 populations, selection) (auroc) | `auroc_comparative_loss_rate` 0.5897 | `auroc_rarity_baseline` 0.5665 | +0.0232 | 높을수록 좋음 |
+| MAE (mutation accumulation, almost no selection) (auroc) | `auroc_low_expression` 0.6012 | `auroc_rarity_baseline` 0.5598 | +0.0415 | 높을수록 좋음 |
+| LTEE (50,000 generations, 12 populations, selection), dispensable genes (auroc) | `auroc_comparative_loss_rate` 0.5646 | `auroc_rarity_baseline` 0.5482 | +0.0163 | 높을수록 좋음 |
+| MAE (mutation accumulation, almost no selection), dispensable genes (auroc) | `auroc_low_expression` 0.5798 | `auroc_rarity_baseline` 0.5345 | +0.0452 | 높을수록 좋음 |
+
+판정은 표의 첫 줄(교차검증 쪽, AUROC 우선)로 매깁니다. 차이가 ±0.01 안이면 무승부. 비교는 같은 지표끼리만 합니다.
 
 ## 이 클러스터의 노트
 - [[lab_evolution_v1 · 계수]] — 학습된 가중치와 신뢰구간

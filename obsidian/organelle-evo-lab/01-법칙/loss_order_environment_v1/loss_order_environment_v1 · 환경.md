@@ -5,7 +5,7 @@
 tags:
   - 법칙/loss_order_environment_v1
   - 클러스터/소기관
-  - 판정/무승부
+  - 판정/구조 분석
   - 유형/환경
 ---
 

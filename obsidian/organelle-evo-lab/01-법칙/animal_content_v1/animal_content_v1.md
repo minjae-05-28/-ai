@@ -2,12 +2,12 @@
 유형: 법칙 허브
 법칙: animal_content_v1
 클러스터: 동물
-판정: 양성
-기준선대비: 8.1639
+판정: 음성
+기준선대비: -0.0418
 tags:
   - 법칙/animal_content_v1
   - 클러스터/동물
-  - 판정/양성
+  - 판정/음성
 ---
 
 # animal_content_v1
@@ -17,12 +17,14 @@ tags:
 
 **모형** — Linear birth-death per family; log rate = a_pair + x @ (axis change @ W), design = (base, colder, freshwater, hypoxia, endothermy, parasite).
 
-## 판정 — 양성
+## 판정 — 음성
 
 | 비교한 곳 | 법칙 | 기준선 | 차이 | 방향 |
 | --- | --- | --- | --- | --- |
-| leave_one_origin_out_auroc · all | `axes_better_in` 9 | `rarity` 0.8361 | +8.1639 | 높을수록 좋음 |
-| leave_one_origin_out_auroc · close_proxies_only | `axes_better_in` 7 | `rarity` 0.8324 | +6.1676 | 높을수록 좋음 |
+| leave_one_origin_out_auroc · all (auroc) | `axis_law` 0.7943 | `rarity` 0.8361 | -0.0418 [-0.0842, -0.0077] | 높을수록 좋음 |
+| leave_one_origin_out_auroc · close_proxies_only (auroc) | `axis_law` 0.7924 | `rarity` 0.8324 | -0.0400 [-0.088, -0.0048] | 높을수록 좋음 |
+
+판정은 표의 첫 줄(교차검증 쪽, AUROC 우선)로 매깁니다. 차이가 ±0.01 안이면 무승부. 비교는 같은 지표끼리만 합니다.
 
 ## 이 클러스터의 노트
 - [[animal_content_v1 · 계수]] — 학습된 가중치와 신뢰구간

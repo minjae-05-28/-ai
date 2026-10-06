@@ -2,12 +2,12 @@
 유형: 법칙 허브
 법칙: context_features_v1
 클러스터: 기생·극한
-판정: 양성
-기준선대비: 0.0158
+판정: 음성
+기준선대비: -0.0314
 tags:
   - 법칙/context_features_v1
   - 클러스터/기생·극한
-  - 판정/양성
+  - 판정/음성
 ---
 
 # context_features_v1
@@ -17,12 +17,14 @@ tags:
 
 **모형** — Linear birth-death law on enriched + context family features; memorisation and a shrunk combination reported side by side, never mixed into the law.
 
-## 판정 — 양성
+## 판정 — 음성
 
 | 비교한 곳 | 법칙 | 기준선 | 차이 | 방향 |
 | --- | --- | --- | --- | --- |
-| extremophiles · mean_auroc | `combined_s3` 0.8615 | `memorisation` 0.8492 | +0.0123 | 높을수록 좋음 |
-| parasites · mean_auroc | `combined_s10` 0.8041 | `memorisation` 0.7883 | +0.0158 | 높을수록 좋음 |
+| extremophiles · mean_auroc (auroc) | `law_context` 0.8179 | `memorisation` 0.8492 | -0.0314 | 높을수록 좋음 |
+| parasites · mean_auroc (auroc) | `law_context` 0.7654 | `memorisation` 0.7883 | -0.0229 | 높을수록 좋음 |
+
+판정은 표의 첫 줄(교차검증 쪽, AUROC 우선)로 매깁니다. 차이가 ±0.01 안이면 무승부. 비교는 같은 지표끼리만 합니다.
 
 ## 이 클러스터의 노트
 - [[context_features_v1 · 계수]] — 학습된 가중치와 신뢰구간

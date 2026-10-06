@@ -2,12 +2,12 @@
 유형: 법칙 허브
 법칙: loss_order_v2
 클러스터: 소기관
-판정: 음성
-기준선대비: -0.0471
+판정: 구조 분석
+기준선대비: —
 tags:
   - 법칙/loss_order_v2
   - 클러스터/소기관
-  - 판정/음성
+  - 판정/구조 분석
 ---
 
 # loss_order_v2
@@ -17,14 +17,9 @@ tags:
 
 **모형** — Nestedness (containment) against row-fixed and row-and-column-fixed (curveball) nulls.
 
-## 판정 — 음성
+## 판정 — 구조 분석
 
-| 비교한 곳 | 법칙 | 기준선 | 차이 | 방향 |
-| --- | --- | --- | --- | --- |
-| results · mitochondrion | `containment` 0.962 | `fixed_null_mean` 0.9642 | -0.0022 | 높을수록 좋음 |
-| results · plastid | `containment` 0.9347 | `fixed_null_mean` 0.9426 | -0.0078 | 높을수록 좋음 |
-| results · insect_endosymbiont | `containment` 0.9464 | `fixed_null_mean` 0.9499 | -0.0035 | 높을수록 좋음 |
-| results · eukaryote_parasites | `containment` 0.4682 | `fixed_null_mean` 0.5153 | -0.0471 | 높을수록 좋음 |
+소실 순서·모듈·수렴 같은 구조를 기술하는 분석입니다. 기준선은 경쟁 방법이 아니라 무작위 귀무분포입니다. 수치는 [[loss_order_v2 · 검증]]에 그대로 있습니다.
 
 ## 이 클러스터의 노트
 - [[loss_order_v2 · 계수]] — 학습된 가중치와 신뢰구간

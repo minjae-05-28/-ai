@@ -2,11 +2,11 @@
 유형: 검증
 법칙: animal_temperature_v1
 클러스터: 동물
-판정: 양성
+판정: 전이 검정
 tags:
   - 법칙/animal_temperature_v1
   - 클러스터/동물
-  - 판정/양성
+  - 판정/전이 검정
   - 유형/검증
 ---
 

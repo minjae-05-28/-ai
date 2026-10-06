@@ -2,12 +2,12 @@
 유형: 법칙 허브
 법칙: loss_prediction_v1
 클러스터: 예측
-판정: 양성
-기준선대비: 0.1312
+판정: 음성
+기준선대비: -0.0201
 tags:
   - 법칙/loss_prediction_v1
   - 클러스터/예측
-  - 판정/양성
+  - 판정/음성
 ---
 
 # loss_prediction_v1
@@ -17,12 +17,14 @@ tags:
 
 **모형** — propensity20k = rank average of rarity across ~18,000 proteomes and within-genus absence rate, with the evaluated pair's genera removed (a law: properties of the family). relatives = share of the descendant's genus (or family) lacking the family, without its own and the proxy's species (a predictor, not a law: it reads the lineage's relatives). Combinations are rank averages.
 
-## 판정 — 양성
+## 판정 — 음성
 
 | 비교한 곳 | 법칙 | 기준선 | 차이 | 방향 |
 | --- | --- | --- | --- | --- |
-| extremophiles | `law+relatives.auroc` 0.9246 | `memorisation.auroc` 0.8131 | +0.1115 | 높을수록 좋음 |
-| extremophiles_consensus | `relatives.auroc` 0.919 | `memorisation.auroc` 0.7878 | +0.1312 | 높을수록 좋음 |
+| extremophiles (auroc) | `law.auroc` 0.793 | `memorisation.auroc` 0.8131 | -0.0201 | 높을수록 좋음 |
+| extremophiles_consensus (auroc) | `law.auroc` 0.7642 | `memorisation.auroc` 0.7878 | -0.0236 | 높을수록 좋음 |
+
+판정은 표의 첫 줄(교차검증 쪽, AUROC 우선)로 매깁니다. 차이가 ±0.01 안이면 무승부. 비교는 같은 지표끼리만 합니다.
 
 ## 이 클러스터의 노트
 - [[loss_prediction_v1 · 계수]] — 학습된 가중치와 신뢰구간

@@ -2,12 +2,12 @@
 유형: 법칙 허브
 법칙: forward_evolution_v1
 클러스터: 예측
-판정: 양성
-기준선대비: 0.0757
+판정: 음성
+기준선대비: -0.0201
 tags:
   - 법칙/forward_evolution_v1
   - 클러스터/예측
-  - 판정/양성
+  - 판정/음성
 ---
 
 # forward_evolution_v1
@@ -17,18 +17,24 @@ tags:
 
 **모형** — run_forward_evolution.py (200 stochastic replicates per pair) and run_function_level.py (GO-slim and keyword functions).
 
-## 판정 — 양성
+## 판정 — 음성
 
 | 비교한 곳 | 법칙 | 기준선 | 차이 | 방향 |
 | --- | --- | --- | --- | --- |
-| extremophiles · family_level | `fate_accuracy.law - no_change` -0.0403 | `fate_accuracy.law - no_axes_law` 0.0023 | +0.0426 | 낮을수록 좋음 |
-| extremophiles · function_level | `mae.law - uniform` -0.0608 | `spearman.law - memorisation` -0.0611 | -0.0003 | 낮을수록 좋음 |
-| extremophiles_consensus · family_level | `fate_accuracy.law - no_change` -0.0713 | `fate_accuracy.law - no_axes_law` 0.0044 | +0.0757 | 낮을수록 좋음 |
-| extremophiles_consensus · function_level | `mae.law - uniform` -0.0453 | `spearman.law - memorisation` -0.0756 | -0.0303 | 낮을수록 좋음 |
-| parasites · family_level | `fate_accuracy.law - no_change` 0.0303 | `fate_accuracy.law - no_axes_law` 0.0346 | +0.0043 | 낮을수록 좋음 |
-| parasites · function_level | `mae.law - uniform` -0.0312 | `spearman.law - memorisation` -0.0563 | -0.0251 | 낮을수록 좋음 |
-| parasites_consensus · family_level | `fate_accuracy.law - no_change` -0.0176 | `fate_accuracy.law - no_axes_law` 0.0217 | +0.0393 | 낮을수록 좋음 |
-| parasites_consensus · function_level | `mae.law - uniform` -0.0282 | `spearman.law - memorisation` -0.0661 | -0.0379 | 낮을수록 좋음 |
+| extremophiles · family_level (auroc) | `law.loss_auroc` 0.793 | `memorisation.loss_auroc` 0.8131 | -0.0201 | 높을수록 좋음 |
+| extremophiles_consensus · family_level (auroc) | `law.loss_auroc` 0.7642 | `memorisation.loss_auroc` 0.7878 | -0.0236 | 높을수록 좋음 |
+| parasites · family_level (auroc) | `law.loss_auroc` 0.7739 | `memorisation.loss_auroc` 0.7883 | -0.0144 | 높을수록 좋음 |
+| parasites_consensus · family_level (auroc) | `law.loss_auroc` 0.7482 | `memorisation.loss_auroc` 0.7607 | -0.0125 | 높을수록 좋음 |
+| extremophiles · family_level (accuracy) | `law.fate_accuracy` 0.6799 | `memorisation.fate_accuracy` 0.7199 | -0.0400 | 높을수록 좋음 |
+| extremophiles · function_level (spearman) | `law.spearman` 0.6623 | `memorisation.spearman` 0.7234 | -0.0611 | 높을수록 좋음 |
+| extremophiles_consensus · family_level (accuracy) | `law.fate_accuracy` 0.7058 | `memorisation.fate_accuracy` 0.7419 | -0.0361 | 높을수록 좋음 |
+| extremophiles_consensus · function_level (spearman) | `law.spearman` 0.6055 | `memorisation.spearman` 0.6811 | -0.0756 | 높을수록 좋음 |
+| parasites · family_level (accuracy) | `law.fate_accuracy` 0.6464 | `memorisation.fate_accuracy` 0.6563 | -0.0099 | 높을수록 좋음 |
+| parasites · function_level (spearman) | `law.spearman` 0.5399 | `memorisation.spearman` 0.5962 | -0.0563 | 높을수록 좋음 |
+| parasites_consensus · family_level (accuracy) | `law.fate_accuracy` 0.6398 | `memorisation.fate_accuracy` 0.6531 | -0.0133 | 높을수록 좋음 |
+| parasites_consensus · function_level (spearman) | `law.spearman` 0.4916 | `memorisation.spearman` 0.5576 | -0.0660 | 높을수록 좋음 |
+
+판정은 표의 첫 줄(교차검증 쪽, AUROC 우선)로 매깁니다. 차이가 ±0.01 안이면 무승부. 비교는 같은 지표끼리만 합니다.
 
 ## 이 클러스터의 노트
 - [[forward_evolution_v1 · 계수]] — 학습된 가중치와 신뢰구간

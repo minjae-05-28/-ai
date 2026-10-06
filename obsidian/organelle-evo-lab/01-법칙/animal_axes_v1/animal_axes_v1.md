@@ -2,12 +2,12 @@
 유형: 법칙 허브
 법칙: animal_axes_v1
 클러스터: 동물
-판정: 양성
-기준선대비: 0.0117
+판정: 음성
+기준선대비: -0.0002
 tags:
   - 법칙/animal_axes_v1
   - 클러스터/동물
-  - 판정/양성
+  - 판정/음성
 ---
 
 # animal_axes_v1
@@ -17,19 +17,21 @@ tags:
 
 **모형** — Additive least squares per composition statistic, checked by leave-one-clade-out, a clade-level refit, and genome GC as a covariate.
 
-## 판정 — 양성
+## 판정 — 음성
 
 | 비교한 곳 | 법칙 | 기준선 | 차이 | 방향 |
 | --- | --- | --- | --- | --- |
-| traits · ivywrel · leave_one_clade_out | `mae_law` 0.005266 | `mae_mean_baseline` 0.005078 | +0.0002 | 높을수록 좋음 |
-| traits · cvp · leave_one_clade_out | `mae_law` 0.01004 | `mae_mean_baseline` 0.009494 | +0.0005 | 높을수록 좋음 |
-| traits · acidic_excess · leave_one_clade_out | `mae_law` 0.004277 | `mae_mean_baseline` 0.003712 | +0.0006 | 높을수록 좋음 |
-| traits · median_pi · leave_one_clade_out | `mae_law` 0.318 | `mae_mean_baseline` 0.3063 | +0.0117 | 높을수록 좋음 |
-| traits · n_side · leave_one_clade_out | `mae_law` 0.005806 | `mae_mean_baseline` 0.005731 | +0.0001 | 높을수록 좋음 |
-| traits · gravy · leave_one_clade_out | `mae_law` 0.0309 | `mae_mean_baseline` 0.02951 | +0.0014 | 높을수록 좋음 |
-| traits · fymink · leave_one_clade_out | `mae_law` 0.02424 | `mae_mean_baseline` 0.0225 | +0.0017 | 높을수록 좋음 |
-| traits · aromatic · leave_one_clade_out | `mae_law` 0.004976 | `mae_mean_baseline` 0.00427 | +0.0007 | 높을수록 좋음 |
-| traits · cysteine · leave_one_clade_out | `mae_law` 0.001479 | `mae_mean_baseline` 0.001196 | +0.0003 | 높을수록 좋음 |
+| traits · ivywrel · leave_one_clade_out (mae) | `mae_law` 0.005266 | `mae_mean_baseline` 0.005078 | -0.0002 | 낮을수록 좋음 |
+| traits · cvp · leave_one_clade_out (mae) | `mae_law` 0.01004 | `mae_mean_baseline` 0.009494 | -0.0005 | 낮을수록 좋음 |
+| traits · acidic_excess · leave_one_clade_out (mae) | `mae_law` 0.004277 | `mae_mean_baseline` 0.003712 | -0.0006 | 낮을수록 좋음 |
+| traits · median_pi · leave_one_clade_out (mae) | `mae_law` 0.318 | `mae_mean_baseline` 0.3063 | -0.0117 | 낮을수록 좋음 |
+| traits · n_side · leave_one_clade_out (mae) | `mae_law` 0.005806 | `mae_mean_baseline` 0.005731 | -0.0001 | 낮을수록 좋음 |
+| traits · gravy · leave_one_clade_out (mae) | `mae_law` 0.0309 | `mae_mean_baseline` 0.02951 | -0.0014 | 낮을수록 좋음 |
+| traits · fymink · leave_one_clade_out (mae) | `mae_law` 0.02424 | `mae_mean_baseline` 0.0225 | -0.0017 | 낮을수록 좋음 |
+| traits · aromatic · leave_one_clade_out (mae) | `mae_law` 0.004976 | `mae_mean_baseline` 0.00427 | -0.0007 | 낮을수록 좋음 |
+| traits · cysteine · leave_one_clade_out (mae) | `mae_law` 0.001479 | `mae_mean_baseline` 0.001196 | -0.0003 | 낮을수록 좋음 |
+
+판정은 표의 첫 줄(교차검증 쪽, AUROC 우선)로 매깁니다. 차이가 ±0.01 안이면 무승부. 비교는 같은 지표끼리만 합니다.
 
 ## 이 클러스터의 노트
 - [[animal_axes_v1 · 계수]] — 학습된 가중치와 신뢰구간

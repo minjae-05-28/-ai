@@ -2,12 +2,12 @@
 유형: 법칙 허브
 법칙: proteome_traits_v1
 클러스터: 서열·조성
-판정: 음성
-기준선대비: -1.7639
+판정: 양성
+기준선대비: 0.0935
 tags:
   - 법칙/proteome_traits_v1
   - 클러스터/서열·조성
-  - 판정/음성
+  - 판정/양성
 ---
 
 # proteome_traits_v1
@@ -17,16 +17,18 @@ tags:
 
 **모형** — Ridge / logistic regression on standardized composition and Pfam presence; taxonomy memorisation and the mean as baselines; random folds and leave-order-out.
 
-## 판정 — 음성
+## 판정 — 양성
 
 | 비교한 곳 | 법칙 | 기준선 | 차이 | 방향 |
 | --- | --- | --- | --- | --- |
-| temperature · random_5fold · scores | `composition` 4.387 | `mean` 6.151 | -1.7639 | 높을수록 좋음 |
-| temperature · leave_order_out · scores | `taxonomy` 5.592 | `mean` 6.199 | -0.6071 | 높을수록 좋음 |
-| oxygen · random_5fold · scores | `composition+pfam` 0.9845 | `mean` 0.5 | +0.4845 | 높을수록 좋음 |
-| oxygen · leave_order_out · scores | `pfam` 0.9776 | `mean` 0.5 | +0.4776 | 높을수록 좋음 |
-| host · random_5fold · scores | `composition+pfam` 0.8925 | `mean` 0.5 | +0.3925 | 높을수록 좋음 |
-| host · leave_order_out · scores | `composition+pfam` 0.8431 | `mean` 0.5 | +0.3431 | 높을수록 좋음 |
+| oxygen · leave_order_out · scores (auroc) | `composition` 0.9232 | `taxonomy` 0.8297 | +0.0935 [0.0386, 0.1837] | 높을수록 좋음 |
+| host · leave_order_out · scores (auroc) | `composition` 0.6739 | `mean` 0.5 | +0.1739 | 높을수록 좋음 |
+| temperature · leave_order_out · scores (mae) | `composition` 5 | `taxonomy` 5.592 | +0.5921 [-2.181, 0.6987] | 낮을수록 좋음 |
+| oxygen · random_5fold · scores (auroc) | `composition` 0.949 | `taxonomy` 0.9698 | -0.0208 | 높을수록 좋음 |
+| host · random_5fold · scores (auroc) | `composition` 0.755 | `taxonomy` 0.8476 | -0.0926 | 높을수록 좋음 |
+| temperature · random_5fold · scores (mae) | `composition` 4.387 | `taxonomy` 2.576 | -1.8110 | 낮을수록 좋음 |
+
+판정은 표의 첫 줄(교차검증 쪽, AUROC 우선)로 매깁니다. 차이가 ±0.01 안이면 무승부. 비교는 같은 지표끼리만 합니다.
 
 ## 이 클러스터의 노트
 - [[proteome_traits_v1 · 계수]] — 학습된 가중치와 신뢰구간
