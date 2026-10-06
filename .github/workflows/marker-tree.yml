@@ -9,6 +9,9 @@ on:
       group:
         description: "comma-separated uniprot_proteomes.GROUPS keys, e.g. amoebozoa,discoba"
         default: ""
+      upids_file:
+        description: "optional committed sample file, e.g. data/markers/leca_pick.json (from pick_eukaryotes.py)"
+        default: ""
       pick:
         description: "optional kingdom:N, a lineage-spread sample of that kingdom (pick_clade_sample.py), e.g. fungi:300"
         default: ""
@@ -81,6 +84,7 @@ jobs:
         run: |
           extra=""
           [ -n "${{ inputs.pick }}" ] && extra="--upids data/markers/${{ inputs.set }}_pick.json"
+          [ -n "${{ inputs.upids_file }}" ] && extra="--upids ${{ inputs.upids_file }}"
           python scripts/uniprot_markers.py --group "${{ inputs.group }}" --set "${{ inputs.set }}" $extra \
             --shard ${{ matrix.shard }} --n-shards ${{ strategy.job-total }}
       - uses: actions/upload-artifact@v4
