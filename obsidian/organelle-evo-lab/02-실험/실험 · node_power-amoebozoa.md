@@ -1,0 +1,114 @@
+---
+유형: 실험
+실행: node_power/amoebozoa
+산출: results/node_power/amoebozoa/summary.json
+tags:
+  - 유형/실험
+  - 실험/node_power-amoebozoa
+---
+
+# 실험 · node_power-amoebozoa
+
+**산출물** `results/node_power/amoebozoa/summary.json`
+
+## 한눈에
+
+| 항목 | 값 |
+| --- | --- |
+| families | 800 |
+| reps | 3 |
+| note | 알려진 정답으로 각 마디의 조상을 직접 채점. 잎 숨기기와 달리 꽉 짜인 분류군에서도 변별력이 있음. |
+
+## generator
+
+```json
+{
+ "M": 5.0,
+ "hgt": 0.02,
+ "ratio": 0.1,
+ "incomplete": true
+}
+```
+
+## model
+
+```json
+{
+ "ratio": null,
+ "root": "stationary",
+ "min_busco": 0,
+ "drop_mag": false,
+ "mult": 14.0,
+ "tip_mult": 1.0
+}
+```
+
+## aggregate
+
+```json
+{
+ "Amoebozoa (표본이 도달한 마디)": {
+  "recon_auroc": 0.9293,
+  "freq_auroc": 0.8902,
+  "recon_logloss": 0.3306,
+  "freq_logloss": 0.4972,
+  "prior_logloss": 0.6705,
+  "recon_size_bias": -0.0859,
+  "freq_size_bias": -0.2064,
+  "n_tips": 12,
+  "auroc_margin": 0.0391,
+  "logloss_margin": 0.1666,
+  "auroc_headroom": 0.1098,
+  "verdict": "계통수가 도움이 됨"
+ }
+}
+```
+
+## runs
+
+```json
+[
+ {
+  "rep": 0,
+  "node": "Amoebozoa (표본이 도달한 마디)",
+  "n_tips": 12,
+  "recon_auroc": 0.9284726793943384,
+  "freq_auroc": 0.8844930875576037,
+  "recon_logloss": 0.3248837115220067,
+  "freq_logloss": 0.4999937898966866,
+  "prior_logloss": 0.6676166603431287,
+  "recon_size_bias": -0.09829593781502016,
+  "freq_size_bias": -0.21075268817204296,
+  "true_share": 0.3875
+ },
+ {
+  "rep": 1,
+  "node": "Amoebozoa (표본이 도달한 마디)",
+  "n_tips": 12,
+  "recon_auroc": 0.929388814948198,
+  "freq_auroc": 0.8900284454187218,
+  "recon_logloss": 0.3353682408878012,
+  "freq_logloss": 0.5132871255067409,
+  "prior_logloss": 0.6719849742973202,
+  "recon_size_bias": -0.08037216858294025,
+  "freq_size_bias": -0.20571278825995812,
+  "true_share": 0.3975
+ },
+ {
+  "rep": 2,
+  "node": "Amoebozoa (표본이 도달한 마디)",
+  "n_tips": 12,
+  "recon_auroc": 0.9301032125055455,
+  "freq_auroc": 0.8962133667371278,
+  "recon_logloss": 0.3314560068562059,
+  "freq_logloss": 0.47842082611115055,
+  "prior_logloss": 0.6719849742973202,
+  "recon_size_bias": -0.07888429269850629,
+  "freq_size_bias": -0.2028301886792453,
+  "true_share": 0.3975
+ }
+]
+```
+
+## 연결
+- [[실험 목록]]

@@ -1,0 +1,459 @@
+---
+유형: 환경
+법칙: environment_v2
+클러스터: 기생·극한
+tags:
+  - 법칙/environment_v2
+  - 클러스터/기생·극한
+  - 판정/음성
+  - 유형/환경
+---
+
+# environment_v2 · 환경
+
+← [[environment_v2]]
+
+**카탈로그** prokaryotes · **종 수** 65
+
+## 환경 범위
+
+```json
+{
+ "최적 온도 °C": {
+  "min": 8,
+  "median": 30,
+  "max": 88,
+  "n": 65
+ },
+ "최적 NaCl %": {
+  "min": 0,
+  "median": 1,
+  "max": 25,
+  "n": 65
+ },
+ "산소 호흡(1)": {
+  "1": 52,
+  "0": 13
+ },
+ "방사선 내성(1)": {
+  "0": 54,
+  "1": 11
+ },
+ "빈영양(1)": {
+  "0": 59,
+  "1": 6
+ }
+}
+```
+
+## 분류군 구성
+
+```json
+{
+ "gamma": 13,
+ "archaea": 12,
+ "firmicutes": 8,
+ "alpha": 6,
+ "delta": 6,
+ "cyano": 5,
+ "deinococcus": 5,
+ "bacteroidetes": 5,
+ "actino": 3,
+ "beta": 2
+}
+```
+
+## GC 함량
+
+```json
+{
+ "min": 0.295,
+ "median": 0.525,
+ "max": 0.74,
+ "n": 65
+}
+```
+
+## 축별 대비
+
+```json
+{
+ "colder": {
+  "pairs_changed": 21,
+  "change_range": [
+   -1.6,
+   1.33
+  ]
+ },
+ "saltier": {
+  "pairs_changed": 16,
+  "change_range": [
+   -0.05,
+   2.3
+  ]
+ },
+ "anaerobic": {
+  "pairs_changed": 9,
+  "change_range": [
+   -1.0,
+   1.0
+  ]
+ },
+ "radiation_resistant": {
+  "pairs_changed": 11,
+  "change_range": [
+   0.0,
+   1.0
+  ]
+ },
+ "oligotrophic": {
+  "pairs_changed": 6,
+  "change_range": [
+   0.0,
+   1.0
+  ]
+ },
+ "scale": "colder: (relative - descendant temperature)/30.0 C; saltier: change in NaCl/10.0%; others -1/0/1",
+ "control_pairs": 3
+}
+```
+
+## 요약 수치
+
+```json
+{
+ "loss_colder": [
+  {
+   "feature": "go:organelle",
+   "weight": 1.1878,
+   "direction": "더 잘 사라짐"
+  },
+  {
+   "feature": "kw:cilium_flagellum",
+   "weight": 0.5376,
+   "direction": "더 잘 사라짐"
+  },
+  {
+   "feature": "kw:zinc_finger",
+   "weight": 0.4481,
+   "direction": "더 잘 사라짐"
+  },
+  {
+   "feature": "atp_synthase",
+   "weight": 0.4197,
+   "direction": "더 잘 사라짐"
+  },
+  {
+   "feature": "go:structural molecule activity",
+   "weight": -0.3859,
+   "direction": "덜 사라짐"
+  },
+  {
+   "feature": "go:isomerase activity",
+   "weight": -0.3454,
+   "direction": "덜 사라짐"
+  }
+ ],
+ "loss_saltier": [
+  {
+   "feature": "protein_targeting",
+   "weight": -0.6649,
+   "direction": "덜 사라짐"
+  },
+  {
+   "feature": "go:organelle",
+   "weight": 0.4253,
+   "direction": "더 잘 사라짐"
+  },
+  {
+   "feature": "go:structural molecule activity",
+   "weight": -0.3342,
+   "direction": "덜 사라짐"
+  },
+  {
+   "feature": "kw:zinc_finger",
+   "weight": 0.2739,
+   "direction": "더 잘 사라짐"
+  },
+  {
+   "feature": "kw:cilium_flagellum",
+   "weight": -0.2143,
+   "direction": "덜 사라짐"
+  },
+  {
+   "feature": "kw:gtpase_signalling",
+   "weight": -0.2124,
+   "direction": "덜 사라짐"
+  }
+ ],
+ "loss_anaerobic": [
+  {
+   "feature": "atp_synthase",
+   "weight": -1.0988,
+   "direction": "덜 사라짐"
+  },
+  {
+   "feature": "go:ribosome",
+   "weight": 1.0528,
+   "direction": "더 잘 사라짐"
+  },
+  {
+   "feature": "kw:gtpase_signalling",
+   "weight": -0.7882,
+   "direction": "덜 사라짐"
+  },
+  {
+   "feature": "transcription",
+   "weight": 0.7622,
+   "direction": "더 잘 사라짐"
+  },
+  {
+   "feature": "kw:cilium_flagellum",
+   "weight": 0.7353,
+   "direction": "더 잘 사라짐"
+  },
+  {
+   "feature": "go:carbohydrate metabolic process",
+   "weight": -0.5292,
+   "direction": "덜 사라짐"
+  }
+ ],
+ "loss_radiation_resistant": [
+  {
+   "feature": "kw:ubiquitin_system",
+   "weight": 1.1832,
+   "direction": "더 잘 사라짐"
+  },
+  {
+   "feature": "go:structural molecule activity",
+   "weight": -0.5929,
+   "direction": "덜 사라짐"
+  },
+  {
+   "feature": "transcription",
+   "weight": -0.5639,
+   "direction": "덜 사라짐"
+  },
+  {
+   "feature": "go:RNA binding",
+   "weight": 0.5354,
+   "direction": "더 잘 사라짐"
+  },
+  {
+   "feature": "kw:amino_acid_metabolism",
+   "weight": -0.4742,
+   "direction": "덜 사라짐"
+  },
+  {
+   "feature": "redox_core",
+   "weight": -0.4496,
+   "direction": "덜 사라짐"
+  }
+ ],
+ "loss_oligotrophic": [
+  {
+   "feature": "kw:cilium_flagellum",
+   "weight": 2.1463,
+   "direction": "더 잘 사라짐"
+  },
+  {
+   "feature": "transcription",
+   "weight": -1.4197,
+   "direction": "덜 사라짐"
+  },
+  {
+   "feature": "protein_targeting",
+   "weight": -1.106,
+   "direction": "덜 사라짐"
+  },
+  {
+   "feature": "go:ribosome",
+   "weight": -0.902,
+   "direction": "덜 사라짐"
+  },
+  {
+   "feature": "go:organelle",
+   "weight": -0.5573,
+   "direction": "덜 사라짐"
+  },
+  {
+   "feature": "kw:cell_adhesion_surface",
+   "weight": -0.4467,
+   "direction": "덜 사라짐"
+  }
+ ],
+ "duplication_colder": [
+  {
+   "feature": "protein_targeting",
+   "weight": -0.8016,
+   "direction": "덜 사라짐"
+  },
+  {
+   "feature": "go:organelle",
+   "weight": 0.6563,
+   "direction": "더 잘 사라짐"
+  },
+  {
+   "feature": "go:ribosome",
+   "weight": -0.6197,
+   "direction": "덜 사라짐"
+  },
+  {
+   "feature": "translation",
+   "weight": 0.5712,
+   "direction": "더 잘 사라짐"
+  },
+  {
+   "feature": "go:isomerase activity",
+   "weight": -0.371,
+   "direction": "덜 사라짐"
+  },
+  {
+   "feature": "go:carbohydrate derivative metabolic process",
+   "weight": 0.3661,
+   "direction": "더 잘 사라짐"
+  }
+ ],
+ "duplication_saltier": [
+  {
+   "feature": "kw:cell_adhesion_surface",
+   "weight": -1.4836,
+   "direction": "덜 사라짐"
+  },
+  {
+   "feature": "kw:ubiquitin_system",
+   "weight": -1.2312,
+   "direction": "덜 사라짐"
+  },
+  {
+   "feature": "go:RNA binding",
+   "weight": -0.7527,
+   "direction": "덜 사라짐"
+  },
+  {
+   "feature": "protein_targeting",
+   "weight": 0.6146,
+   "direction": "더 잘 사라짐"
+  },
+  {
+   "feature": "go:organelle",
+   "weight": -0.6053,
+   "direction": "덜 사라짐"
+  },
+  {
+   "feature": "kw:repeat_domain",
+   "weight": -0.476,
+   "direction": "덜 사라짐"
+  }
+ ],
+ "duplication_anaerobic": [
+  {
+   "feature": "transcription",
+   "weight": -1.2706,
+   "direction": "덜 사라짐"
+  },
+  {
+   "feature": "kw:cell_adhesion_surface",
+   "weight": 1.2602,
+   "direction": "더 잘 사라짐"
+  },
+  {
+   "feature": "go:ribosome",
+   "weight": -1.0783,
+   "direction": "덜 사라짐"
+  },
+  {
+   "feature": "kw:lipid_metabolism",
+   "weight": -0.814,
+   "direction": "덜 사라짐"
+  },
+  {
+   "feature": "kw:zinc_finger",
+   "weight": -0.7548,
+   "direction": "덜 사라짐"
+  },
+  {
+   "feature": "kw:gtpase_signalling",
+   "weight": -0.7293,
+   "direction": "덜 사라짐"
+  }
+ ],
+ "duplication_radiation_resistant": [
+  {
+   "feature": "kw:ubiquitin_system",
+   "weight": 2.3126,
+   "direction": "더 잘 사라짐"
+  },
+  {
+   "feature": "atp_synthase",
+   "weight": -1.6218,
+   "direction": "덜 사라짐"
+  },
+  {
+   "feature": "kw:cell_adhesion_surface",
+   "weight": 1.2286,
+   "direction": "더 잘 사라짐"
+  },
+  {
+   "feature": "protein_targeting",
+   "weight": -1.1871,
+   "direction": "덜 사라짐"
+  },
+  {
+   "feature": "go:structural molecule activity",
+   "weight": 0.8746,
+   "direction": "더 잘 사라짐"
+  },
+  {
+   "feature": "go:ribosome",
+   "weight": -0.816,
+   "direction": "덜 사라짐"
+  }
+ ],
+ "duplication_oligotrophic": [
+  {
+   "feature": "kw:cilium_flagellum",
+   "weight": 2.4191,
+   "direction": "더 잘 사라짐"
+  },
+  {
+   "feature": "atp_synthase",
+   "weight": -1.6686,
+   "direction": "덜 사라짐"
+  },
+  {
+   "feature": "protein_targeting",
+   "weight": -1.426,
+   "direction": "덜 사라짐"
+  },
+  {
+   "feature": "kw:cell_adhesion_surface",
+   "weight": -1.1074,
+   "direction": "덜 사라짐"
+  },
+  {
+   "feature": "redox_core",
+   "weight": -1.016,
+   "direction": "덜 사라짐"
+  },
+  {
+   "feature": "kw:repeat_domain",
+   "weight": 0.8492,
+   "direction": "더 잘 사라짐"
+  }
+ ],
+ "summary": {
+  "leave_one_pair_out_auroc": {
+   "copies_only": 0.6199392920234301,
+   "no_environment": 0.8191445774072861,
+   "environment_law": 0.818859437295026,
+   "memorisation": 0.8439985034182216
+  },
+  "환경 축 효과": -0.0002851401122600905,
+  "주의": "축별 계수가 0과 구분돼도 환경 축은 처음 보는 쌍의 소실 예측을 개선하지 못함. 계수는 '이 데이터에서 이 환경일 때 이런 경향'이지 예측 규칙이 아님"
+ }
+}
+```
+
+> [!note]
+> envelope 밖의 환경에 이 법칙을 쓰면 외삽이다. 값은 문헌 근사치(카탈로그 주석 참조).

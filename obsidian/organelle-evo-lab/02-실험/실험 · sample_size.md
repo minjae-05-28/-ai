@@ -1,0 +1,321 @@
+---
+유형: 실험
+실행: sample_size
+산출: results/sample_size/summary.json
+tags:
+  - 유형/실험
+  - 실험/sample_size
+---
+
+# 실험 · sample_size
+
+**산출물** `results/sample_size/summary.json`
+
+## model
+
+```json
+{
+ "ratio": null,
+ "root": "stationary",
+ "min_busco": 0,
+ "drop_mag": false,
+ "mult": 14.0,
+ "tip_mult": 1.0
+}
+```
+
+## aggregate
+
+```json
+{
+ "spread_12": {
+  "recon_auroc": 0.9646,
+  "freq_auroc": 0.9315,
+  "recon_logloss": 0.2856,
+  "freq_logloss": 0.4804,
+  "prior_logloss": 0.6875,
+  "recon_size_bias": -0.1577,
+  "recon_auroc_reached": 0.9911,
+  "recon_logloss_reached": 0.1513,
+  "recon_size_bias_reached": -0.1183,
+  "reached_vs_true_root_jaccard": 0.9083,
+  "reached_size_vs_true_root": -0.0448,
+  "same_root_node_share": 0.0
+ },
+ "spread_50": {
+  "recon_auroc": 0.9736,
+  "freq_auroc": 0.9371,
+  "recon_logloss": 0.2329,
+  "freq_logloss": 0.389,
+  "prior_logloss": 0.6875,
+  "recon_size_bias": -0.1035,
+  "recon_auroc_reached": 0.9954,
+  "recon_logloss_reached": 0.0969,
+  "recon_size_bias_reached": -0.0702,
+  "reached_vs_true_root_jaccard": 0.9214,
+  "reached_size_vs_true_root": -0.0358,
+  "same_root_node_share": 0.0
+ },
+ "spread_300": {
+  "recon_auroc": 0.9769,
+  "freq_auroc": 0.9385,
+  "recon_logloss": 0.2166,
+  "freq_logloss": 0.3433,
+  "prior_logloss": 0.6875,
+  "recon_size_bias": -0.0993,
+  "recon_auroc_reached": 0.9937,
+  "recon_logloss_reached": 0.1023,
+  "recon_size_bias_reached": -0.0766,
+  "reached_vs_true_root_jaccard": 0.9323,
+  "reached_size_vs_true_root": -0.0246,
+  "same_root_node_share": 0.0
+ },
+ "spread_2323": {
+  "recon_auroc": 0.9861,
+  "freq_auroc": 0.9382,
+  "recon_logloss": 0.1507,
+  "freq_logloss": 0.3375,
+  "prior_logloss": 0.6875,
+  "recon_size_bias": -0.0864,
+  "recon_auroc_reached": 0.9861,
+  "recon_logloss_reached": 0.1507,
+  "recon_size_bias_reached": -0.0864,
+  "reached_vs_true_root_jaccard": 1.0,
+  "reached_size_vs_true_root": 0.0,
+  "same_root_node_share": 1.0
+ },
+ "clustered_12": {
+  "recon_auroc": 0.9571,
+  "freq_auroc": 0.8999,
+  "recon_logloss": 0.3061,
+  "freq_logloss": 0.6748,
+  "prior_logloss": 0.6875,
+  "recon_size_bias": -0.1736,
+  "recon_auroc_reached": 0.9798,
+  "recon_logloss_reached": 0.2054,
+  "recon_size_bias_reached": -0.135,
+  "reached_vs_true_root_jaccard": 0.9083,
+  "reached_size_vs_true_root": -0.0448,
+  "same_root_node_share": 0.0
+ },
+ "clustered_50": {
+  "recon_auroc": 0.9618,
+  "freq_auroc": 0.9229,
+  "recon_logloss": 0.2716,
+  "freq_logloss": 0.4938,
+  "prior_logloss": 0.6875,
+  "recon_size_bias": -0.1237,
+  "recon_auroc_reached": 0.992,
+  "recon_logloss_reached": 0.1143,
+  "recon_size_bias_reached": -0.0826,
+  "reached_vs_true_root_jaccard": 0.9083,
+  "reached_size_vs_true_root": -0.0448,
+  "same_root_node_share": 0.0
+ },
+ "clustered_300": {
+  "recon_auroc": 0.9785,
+  "freq_auroc": 0.9273,
+  "recon_logloss": 0.2097,
+  "freq_logloss": 0.3892,
+  "prior_logloss": 0.6875,
+  "recon_size_bias": -0.1031,
+  "recon_auroc_reached": 0.9939,
+  "recon_logloss_reached": 0.1064,
+  "recon_size_bias_reached": -0.0783,
+  "reached_vs_true_root_jaccard": 0.9301,
+  "reached_size_vs_true_root": -0.0269,
+  "same_root_node_share": 0.0
+ }
+}
+```
+
+## runs
+
+```json
+[
+ {
+  "rep": 0,
+  "n_alpha": 12,
+  "pattern": "spread",
+  "same_root_node": false,
+  "reached_vs_true_root_jaccard": 0.9047619047619048,
+  "reached_size_vs_true_root": -0.03571428571428571,
+  "recon_auroc_reached": 0.9907896452790819,
+  "recon_logloss_reached": 0.15112528433371336,
+  "recon_size_bias_reached": -0.10816333912037036,
+  "recon_auroc": 0.9598133410973085,
+  "freq_auroc": 0.9302131858178054,
+  "recon_logloss": 0.3040745577074267,
+  "freq_logloss": 0.48683642186587495,
+  "prior_logloss": 0.6877293893152671,
+  "recon_size_bias": -0.1400146484375
+ },
+ {
+  "rep": 0,
+  "n_alpha": 12,
+  "pattern": "clustered",
+  "same_root_node": false,
+  "reached_vs_true_root_jaccard": 0.9047619047619048,
+  "reached_size_vs_true_root": -0.03571428571428571,
+  "recon_auroc_reached": 0.9753928664580073,
+  "recon_logloss_reached": 0.21499733680045757,
+  "recon_size_bias_reached": -0.1278235117594401,
+  "recon_auroc": 0.9479004917184265,
+  "freq_auroc": 0.9000064699792961,
+  "recon_logloss": 0.3232044492765708,
+  "freq_logloss": 0.6816680649343198,
+  "prior_logloss": 0.6877293893152671,
+  "recon_size_bias": -0.15897267205374582
+ },
+ {
+  "rep": 0,
+  "n_alpha": 50,
+  "pattern": "spread",
+  "same_root_node": false,
+  "reached_vs_true_root_jaccard": 0.9090909090909091,
+  "reached_size_vs_true_root": -0.03125,
+  "recon_auroc_reached": 0.9951148816987184,
+  "recon_logloss_reached": 0.10455271813782747,
+  "recon_size_bias_reached": -0.08010934574812788,
+  "recon_auroc": 0.9669626682194618,
+  "freq_auroc": 0.9391741071428571,
+  "recon_logloss": 0.26698557438395804,
+  "freq_logloss": 0.3765906394365968,
+  "prior_logloss": 0.6877293893152671,
+  "recon_size_bias": -0.10885592869349889
+ },
+ {
+  "rep": 0,
+  "n_alpha": 50,
+  "pattern": "clustered",
+  "same_root_node": false,
+  "reached_vs_true_root_jaccard": 0.9047619047619048,
+  "reached_size_vs_true_root": -0.03571428571428571,
+  "recon_auroc_reached": 0.9927621283255086,
+  "recon_logloss_reached": 0.11087062005684128,
+  "recon_size_bias_reached": -0.07743030124240452,
+  "recon_auroc": 0.9598942158385093,
+  "freq_auroc": 0.9298330745341615,
+  "recon_logloss": 0.2789799305083288,
+  "freq_logloss": 0.4337692007487187,
+  "prior_logloss": 0.6877293893152671,
+  "recon_size_bias": -0.11037921905517578
+ },
+ {
+  "rep": 0,
+  "n_alpha": 300,
+  "pattern": "spread",
+  "same_root_node": false,
+  "reached_vs_true_root_jaccard": 0.9177489177489178,
+  "reached_size_vs_true_root": -0.022321428571428572,
+  "recon_auroc_reached": 0.9936625554526398,
+  "recon_logloss_reached": 0.08884149329658249,
+  "recon_size_bias_reached": -0.06674891084296518,
+  "recon_auroc": 0.9751714544513458,
+  "freq_auroc": 0.9417459239130435,
+  "recon_logloss": 0.2162261777034728,
+  "freq_logloss": 0.3388561691035903,
+  "prior_logloss": 0.6877293893152671,
+  "recon_size_bias": -0.08758040836879186
+ },
+ {
+  "rep": 0,
+  "n_alpha": 300,
+  "pattern": "clustered",
+  "same_root_node": false,
+  "reached_vs_true_root_jaccard": 0.9177489177489178,
+  "reached_size_vs_true_root": -0.022321428571428572,
+  "recon_auroc_reached": 0.9942638001917483,
+  "recon_logloss_reached": 0.10361561417445773,
+  "recon_size_bias_reached": -0.08178028124108162,
+  "recon_auroc": 0.9722195263975155,
+  "freq_auroc": 0.9310057582815735,
+  "recon_logloss": 0.2347312184505281,
+  "freq_logloss": 0.3615452214257298,
+  "prior_logloss": 0.6877293893152671,
+  "recon_size_bias": -0.10227625710623604
+ },
+ {
+  "rep": 0,
+  "n_alpha": 2323,
+  "pattern": "spread",
+  "same_root_node": true,
+  "reached_vs_true_root_jaccard": 1.0,
+  "reached_size_vs_true_root": 0.0,
+  "recon_auroc_reached": 0.9856366459627329,
+  "recon_logloss_reached": 0.15607316746957076,
+  "recon_size_bias_reached": -0.0864800044468471,
+  "recon_auroc": 0.9856366459627329,
+  "freq_auroc": 0.9400556418219461,
+  "recon_logloss": 0.15607316746957076,
+  "freq_logloss": 0.3353299435455809,
+  "prior_logloss": 0.6877293893152671,
+  "recon_size_bias": -0.0864800044468471
+ },
+ {
+  "rep": 1,
+  "n_alpha": 12,
+  "pattern": "spread",
+  "same_root_node": false,
+  "reached_vs_true_root_jaccard": 0.9118942731277533,
+  "reached_size_vs_true_root": -0.053811659192825115,
+  "recon_auroc_reached": 0.9913412814247528,
+  "recon_logloss_reached": 0.1514357792952942,
+  "recon_size_bias_reached": -0.12850539944183206,
+  "recon_auroc": 0.9694354956209225,
+  "freq_auroc": 0.9326949539427887,
+  "recon_logloss": 0.2670823283820791,
+  "freq_logloss": 0.4738851671923217,
+  "prior_logloss": 0.6873037899231931,
+  "recon_size_bias": -0.17540196987545545
+ },
+ {
+  "rep": 1,
+  "n_alpha": 12,
+  "pattern": "clustered",
+  "same_root_node": false,
+  "reached_vs_true_root_jaccard": 0.9118942731277533,
+  "reached_size_vs_true_root": -0.053811659192825115,
+  "recon_auroc_reached": 0.9842896734941537,
+  "recon_logloss_reached": 0.1958796423535532,
+  "recon_size_bias_reached": -0.14210618728710012,
+  "recon_auroc": 0.9662058247397646,
+  "freq_auroc": 0.8997264088326237,
+  "recon_logloss": 0.2890483240533358,
+  "freq_logloss": 0.6680150909531101,
+  "prior_logloss": 0.6873037899231931,
+  "recon_size_bias": -0.18827087676044002
+ },
+ {
+  "rep": 1,
+  "n_alpha": 50,
+  "pattern": "spread",
+  "same_root_node": false,
+  "reached_vs_true_root_jaccard": 0.9336283185840708,
+  "reached_size_vs_true_root": -0.04035874439461883,
+  "recon_auroc_reached": 0.9955885236259068,
+  "recon_logloss_reached": 0.08922703884627844,
+  "recon_size_bias_reached": -0.06020882864978826,
+  "recon_auroc": 0.9802658205306697,
+  "freq_auroc": 0.935107089087112,
+  "recon_logloss": 0.1988645827848668,
+  "freq_logloss": 0.4013501464322323,
+  "prior_logloss": 0.6873037899231931,
+  "recon_size_bias": -0.09813762031863088
+ },
+ {
+  "rep": 1,
+  "n_alpha": 50,
+  "pattern": "clustered",
+  "same_root_node": false,
+  "reached_vs_true_root_jaccard": 0.9118942731277533,
+  "reached_size_vs_true_root": -0.053811659192825115,
+  "recon_auroc_reached": 0.9913166827924368,
+  "recon_logloss_reached": 0.1177775055564416,
+  "recon_size_bias_reached": -0.08785316503443424,
+  "recon_auroc
+… (잘림, 원본 파일 참조)
+```
+
+## 연결
+- [[실험 목록]]

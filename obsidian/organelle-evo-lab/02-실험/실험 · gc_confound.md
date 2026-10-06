@@ -1,0 +1,385 @@
+---
+유형: 실험
+실행: gc_confound
+산출: results/gc_confound/metrics.json
+tags:
+  - 유형/실험
+  - 실험/gc_confound
+---
+
+# 실험 · gc_confound
+
+**산출물** `results/gc_confound/metrics.json`
+
+## species
+
+```json
+{
+ "ivywrel_vs_temperature": {
+  "n": 86,
+  "without_gc": {
+   "coef": 0.0007846827969093175,
+   "p_ols": 4.445318433615807e-25,
+   "p_rank_gls": 1.4026427901225574e-29
+  },
+  "with_gc": {
+   "coef": 0.0007660566981552037,
+   "p_ols": 4.740580333363116e-25,
+   "p_rank_gls": 9.571114001788203e-28,
+   "gc_coef": 0.011373588116987353,
+   "gc_p_rank_gls": 0.27147246122021895,
+   "tree_pgls": [
+    0.0006841471365288159,
+    1.5832932565065236e-13,
+    1.0,
+    86
+   ]
+  },
+  "corr_env_gc": 0.026358433625965717,
+  "retained_share_of_effect": 0.9762628939649529,
+  "survives": true,
+  "survives_tree": true
+ },
+ "cvp_vs_temperature": {
+  "n": 86,
+  "without_gc": {
+   "coef": 0.0011314911195783488,
+   "p_ols": 1.2826360080756616e-15,
+   "p_rank_gls": 2.7956914349351982e-14
+  },
+  "with_gc": {
+   "coef": 0.001065129499124187,
+   "p_ols": 7.182419488515516e-17,
+   "p_rank_gls": 5.397212641591788e-14,
+   "gc_coef": 0.07478647859250324,
+   "gc_p_rank_gls": 0.0005422398235305031,
+   "tree_pgls": [
+    0.0009913228480991796,
+    1.811333531065445e-09,
+    1.0,
+    86
+   ]
+  },
+  "corr_env_gc": 0.026358433625965717,
+  "retained_share_of_effect": 0.9413502949286147,
+  "survives": true,
+  "survives_tree": true
+ },
+ "acidic_vs_salt": {
+  "n": 86,
+  "without_gc": {
+   "coef": 0.0016532843066467589,
+   "p_ols": 2.8549288559408527e-21,
+   "p_rank_gls": 9.102153725007249e-12
+  },
+  "with_gc": {
+   "coef": 0.0015869536875293948,
+   "p_ols": 2.646504071709722e-21,
+   "p_rank_gls": 1.9427357306055544e-12,
+   "gc_coef": 0.03479157674995703,
+   "gc_p_rank_gls": 0.00035217485990633474,
+   "tree_pgls": [
+    0.001368210664401918,
+    4.654977714048515e-08,
+    1.0,
+    86
+   ]
+  },
+  "corr_env_gc": 0.08971886881564795,
+  "retained_share_of_effect": 0.9598794842177522,
+  "survives": true,
+  "survives_tree": true
+ },
+ "nitrogen_vs_oligotrophy": {
+  "n": 86,
+  "without_gc": {
+   "coef": -0.021897687755785544,
+   "p_ols": 0.8118705882493471,
+   "p_rank_gls": 0.0006753135619025098
+  },
+  "with_gc": {
+   "coef": 0.002744209232022371,
+   "p_ols": 0.13852704172905145,
+   "p_rank_gls": 0.5980936383266222,
+   "gc_coef": 0.14122783215059045,
+   "gc_p_rank_gls": 3.794014281389488e-24,
+   "tree_pgls": [
+    -0.0022315129220888685,
+    0.662132706915087,
+    1.0,
+    86
+   ]
+  },
+  "corr_env_gc": -0.1895143888967849,
+  "retained_share_of_effect": -0.1253195891103767,
+  "survives": false,
+  "survives_tree": false
+ },
+ "fymink_vs_anoxia": {
+  "n": 86,
+  "without_gc": {
+   "coef": 0.0805164234477487,
+   "p_ols": 5.687965000989708e-06,
+   "p_rank_gls": 0.0003614792927730401
+  },
+  "with_gc": {
+   "coef": 0.01881620313642879,
+   "p_ols": 1.3906381280767865e-07,
+   "p_rank_gls": 0.002230892606461149,
+   "gc_coef": -0.46192797469410113,
+   "gc_p_rank_gls": 3.540015646638349e-182,
+   "tree_pgls": [
+    0.018788968948585838,
+    0.004641479134471193,
+    0.9750000000000001,
+    86
+   ]
+  },
+  "corr_env_gc": -0.32889140407378964,
+  "retained_share_of_effect": 0.23369397609469827,
+  "survives": true,
+  "survives_tree": true
+ },
+ "gc_explains": {
+  "fymink": -0.952078947641144,
+  "garp": 0.9783488426958965,
+  "ivywrel": 0.10541844628673738,
+  "cvp": 0.2822756180870567,
+  "acidic_excess": 0.2164818294700734,
+  "n_side": 0.7199482276363707
+ }
+}
+```
+
+## pairs
+
+```json
+{
+ "ivywrel_colder": {
+  "n": 57,
+  "without_gc": {
+   "coef": -0.017009680749822505,
+   "p_ols": 1.3155166503670074e-10,
+   "p_rank_gls": 2.4306774423716094e-24
+  },
+  "with_gc": {
+   "coef": -0.01713221841650287,
+   "p_ols": 1.4704984178667016e-09,
+   "p_rank_gls": 3.299348957690763e-23,
+   "gc_coef": -0.0036421115511516026,
+   "gc_p_rank_gls": 0.7816968629889638,
+   "tree_pgls": [
+    -0.019204731802040083,
+    2.796454736289544e-07,
+    1.0,
+    57
+   ]
+  },
+  "corr_env_gc": -0.26243147005387857,
+  "retained_share_of_effect": 1.007203995682379,
+  "survives": true,
+  "survives_tree": true,
+  "loo_r2_env": 0.5686674176506967,
+  "loo_r2_env_gc": 0.5517460678983483,
+  "loo_r2_gc_only": -0.027502003607676517
+ },
+ "cvp_colder": {
+  "n": 57,
+  "without_gc": {
+   "coef": -0.03335808144228063,
+   "p_ols": 6.614835738467015e-11,
+   "p_rank_gls": 1.8305065944083973e-13
+  },
+  "with_gc": {
+   "coef": -0.02709061200719634,
+   "p_ols": 9.695517650142405e-10,
+   "p_rank_gls": 1.5693981932374546e-09,
+   "gc_coef": 0.11191472157505133,
+   "gc_p_rank_gls": 3.398848288546425e-05,
+   "tree_pgls": [
+    -0.029450728402549736,
+    3.1529883785389706e-06,
+    0.9750000000000001,
+    57
+   ]
+  },
+  "corr_env_gc": -0.26243147005387857,
+  "retained_share_of_effect": 0.8121154105961139,
+  "survives": true,
+  "survives_tree": true,
+  "loo_r2_env": 0.6065368100307953,
+  "loo_r2_env_gc": 0.6338457149440149,
+  "loo_r2_gc_only": 0.050801759667425395
+ },
+ "acidic_excess_saltier": {
+  "n": 57,
+  "without_gc": {
+   "coef": 0.01720806023615845,
+   "p_ols": 1.08300918510543e-06,
+   "p_rank_gls": 2.908775330088942e-07
+  },
+  "with_gc": {
+   "coef": 0.011101685044050465,
+   "p_ols": 2.0437184046929833e-06,
+   "p_rank_gls": 2.8797235128189567e-06,
+   "gc_coef": 0.09231510687100923,
+   "gc_p_rank_gls": 1.3847426155612832e-17,
+   "tree_pgls": [
+    0.01318870292508137,
+    3.638474384325059e-05,
+    0.9750000000000001,
+    57
+   ]
+  },
+  "corr_env_gc": 0.37752158820111775,
+  "retained_share_of_effect": 0.6451444783255139,
+  "survives": true,
+  "survives_tree": true,
+  "loo_r2_env": 0.5388751409066659,
+  "loo_r2_env_gc": 0.64473890754254,
+  "loo_r2_gc_only": 0.2787890031484922
+ },
+ "n_side_oligotrophic": {
+  "n": 57,
+  "without_gc": {
+   "coef": -0.014979902483507293,
+   "p_ols": 0.019935786879246412,
+   "p_rank_gls": 0.00365956595022934
+  },
+  "with_gc": {
+   "coef": -0.0061850535767256735,
+   "p_ols": 0.710475697732697,
+   "p_rank_gls": 0.23340309836674922,
+   "gc_coef": 0.06582257218834651,
+   "gc_p_rank_gls": 0.00010551112771762037,
+   "tree_pgls": [
+    -0.0003446246696800631,
+    0.9601108268594186,
+    0.9750000000000001,
+    57
+   ]
+  },
+  "corr_env_gc": -0.47283189654580127,
+  "retained_share_of_effect": 0.412890109500736,
+  "survives": false,
+  "survives_tree": false,
+  "loo_r2_env": 0.38908236724305967,
+  "loo_r2_env_gc": 0.5487011893455189,
+  "loo_r2_gc_only": 0.30391025001924443
+ },
+ "fymink_anaerobic": {
+  "n": 57,
+  "without_gc": {
+   "coef": 0.05476146791344761,
+   "p_ols": 0.004980798902836206,
+   "p_rank_gls": 0.003240480891754966
+  },
+  "with_gc": {
+   "coef": 0.007109079913990846,
+   "p_ols": 0.07268479677528811,
+   "p_rank_gls": 0.272126115688207,
+   "gc_coef": -0.47240163502461857,
+   "gc_p_rank_gls": 1.1262018713471265e-101,
+   "tree_pgls": [
+    0.012165248636308305,
+    0.050046396198685277,
+    0.0,
+    57
+   ]
+  },
+  "corr_env_gc": -0.43742749914171475,
+  "retained_share_of_effect": 0.12981901663459774,
+  "survives": false,
+  "survives_tree": false,
+  "loo_r2_env": 0.38974130854747235,
+  "loo_r2_env_gc": 0.9273615537595408,
+  "loo_r2_gc_only": 0.9207440489138902
+ }
+}
+```
+
+## symbionts
+
+```json
+{
+ "fymink": {
+  "n": 25,
+  "without_gc": {
+   "coef": -0.08783153151544101,
+   "p_ols": 2.240287806120025e-06,
+   "p_rank_gls": 7.011868635315649e-10
+  },
+  "with_gc": {
+   "coef": -0.0070344795491337556,
+   "p_ols": 0.5630706028199636,
+   "p_rank_gls": 0.5722938340358343,
+   "gc_coef": -0.8441966309208004,
+   "gc_p_rank_gls": 4.3759728586956576e-16,
+   "tree_pgls": [
+    -5.043038452601581e-05,
+    0.9945269033356605,
+    1.0,
+    25
+   ]
+  },
+  "corr_env_gc": 0.8144555864370934,
+  "retained_share_of_effect": 0.08009059420644482,
+  "survives": false,
+  "survives_tree": false,
+  "r_gc": -0.9407307185423358,
+  "r_size_gc": 0.8144555864370934
+ },
+ "median_pi": {
+  "n": 25,
+  "without_gc": {
+   "coef": -1.033058827127401,
+   "p_ols": 3.0858241450494217e-07,
+   "p_rank_gls": 2.8504147968063422e-12
+  },
+  "with_gc": {
+   "coef": -0.19107443933300816,
+   "p_ols": 0.20580671896708647,
+   "p_rank_gls": 0.11101176652958632,
+   "gc_coef": -8.960763943221751,
+   "gc_p_rank_gls": 3.9800855365754345e-19,
+   "tree_pgls": [
+    -0.09541068273641662,
+    0.4075684919723651,
+    0.7000000000000001,
+    25
+   ]
+  },
+  "corr_env_gc": 0.8144555864370934,
+  "retained_share_of_effect": 0.18495988255027423,
+  "survives": false,
+  "survives_tree": false,
+  "r_gc": -0.9619177697637328,
+  "r_size_gc": 0.8144555864370934
+ }
+}
+```
+
+## summary
+
+```json
+{
+ "adaptive_laws_tested": 10,
+ "survive": [
+  "pair:acidic_excess_saltier",
+  "pair:cvp_colder",
+  "pair:ivywrel_colder",
+  "species:acidic_vs_salt",
+  "species:cvp_vs_temperature",
+  "species:fymink_vs_anoxia",
+  "species:ivywrel_vs_temperature"
+ ],
+ "do_not_survive": [
+  "pair:fymink_anaerobic",
+  "pair:n_side_oligotrophic",
+  "species:nitrogen_vs_oligotrophy"
+ ]
+}
+```
+
+## 연결
+- [[실험 목록]]

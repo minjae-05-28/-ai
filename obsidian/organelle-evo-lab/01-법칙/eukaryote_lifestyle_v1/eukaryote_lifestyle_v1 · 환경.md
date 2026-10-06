@@ -1,0 +1,212 @@
+---
+유형: 환경
+법칙: eukaryote_lifestyle_v1
+클러스터: 기생·극한
+tags:
+  - 법칙/eukaryote_lifestyle_v1
+  - 클러스터/기생·극한
+  - 판정/검증 없음
+  - 유형/환경
+---
+
+# eukaryote_lifestyle_v1 · 환경
+
+← [[eukaryote_lifestyle_v1]]
+
+**카탈로그** eukaryotes · **종 수** 23
+
+## 환경 범위
+
+```json
+{
+ "생활 방식": {
+  "free_living": 15,
+  "parasite": 8
+ },
+ "위치": {
+  "free": 15,
+  "intracellular": 5,
+  "extracellular": 3
+ },
+ "에너지(미토콘드리아)": {
+  "aerobic": 20,
+  "reduced": 3
+ },
+ "세포 온도 °C (동물 카탈로그에 있는 종만)": {
+  "min": 25.0,
+  "median": 26.0,
+  "max": 27.0,
+  "n": 2
+ }
+}
+```
+
+## 분류군 구성
+
+```json
+{
+ "discoba": 5,
+ "alveolata": 5,
+ "holozoa": 4,
+ "fungi": 4,
+ "amoebozoa": 3,
+ "chlorophyta": 2
+}
+```
+
+## GC 함량
+
+```json
+{
+ "min": 0.16,
+ "median": 0.42,
+ "max": 0.64,
+ "n": 23
+}
+```
+
+## 축별 대비
+
+```json
+{
+ "parasite": {
+  "pairs_with_axis": 8
+ },
+ "intracellular": {
+  "pairs_with_axis": 5
+ },
+ "reduced_mitochondria": {
+  "pairs_with_axis": 3
+ },
+ "control_pairs": 6,
+ "independent_parasite_clades": 4
+}
+```
+
+## 요약 수치
+
+```json
+{
+ "loss_free_living": [
+  {
+   "feature": "transcription",
+   "weight": -1.4261,
+   "direction": "덜 사라짐"
+  },
+  {
+   "feature": "translation",
+   "weight": -0.6248,
+   "direction": "덜 사라짐"
+  },
+  {
+   "feature": "protein_length",
+   "weight": -0.1293,
+   "direction": "덜 사라짐"
+  },
+  {
+   "feature": "hydrophobicity_gravy",
+   "weight": 0.0628,
+   "direction": "더 잘 사라짐"
+  }
+ ],
+ "loss_parasite": [
+  {
+   "feature": "transcription",
+   "weight": -1.5413,
+   "direction": "덜 사라짐"
+  },
+  {
+   "feature": "atp_synthase",
+   "weight": -1.2763,
+   "direction": "덜 사라짐"
+  },
+  {
+   "feature": "translation",
+   "weight": -1.086,
+   "direction": "덜 사라짐"
+  },
+  {
+   "feature": "protein_targeting",
+   "weight": -0.5199,
+   "direction": "덜 사라짐"
+  },
+  {
+   "feature": "tm_helices",
+   "weight": 0.0556,
+   "direction": "더 잘 사라짐"
+  },
+  {
+   "feature": "protein_length",
+   "weight": -0.0521,
+   "direction": "덜 사라짐"
+  }
+ ],
+ "duplication_free_living": [
+  {
+   "feature": "atp_synthase",
+   "weight": -1.5338,
+   "direction": "덜 사라짐"
+  },
+  {
+   "feature": "transcription",
+   "weight": -0.9384,
+   "direction": "덜 사라짐"
+  },
+  {
+   "feature": "protein_targeting",
+   "weight": -0.8839,
+   "direction": "덜 사라짐"
+  },
+  {
+   "feature": "redox_core",
+   "weight": -0.7819,
+   "direction": "덜 사라짐"
+  },
+  {
+   "feature": "translation",
+   "weight": -0.7595,
+   "direction": "덜 사라짐"
+  },
+  {
+   "feature": "protein_length",
+   "weight": -0.1922,
+   "direction": "덜 사라짐"
+  }
+ ],
+ "duplication_parasite": [
+  {
+   "feature": "redox_core",
+   "weight": -1.8103,
+   "direction": "덜 사라짐"
+  },
+  {
+   "feature": "transcription",
+   "weight": -1.6007,
+   "direction": "덜 사라짐"
+  },
+  {
+   "feature": "atp_synthase",
+   "weight": -1.3075,
+   "direction": "덜 사라짐"
+  },
+  {
+   "feature": "protein_targeting",
+   "weight": -0.8566,
+   "direction": "덜 사라짐"
+  },
+  {
+   "feature": "translation",
+   "weight": -0.7017,
+   "direction": "덜 사라짐"
+  },
+  {
+   "feature": "hydrophobicity_gravy",
+   "weight": 0.1606,
+   "direction": "더 잘 사라짐"
+  }
+ ]
+}
+```
+
+> [!note]
+> envelope 밖의 환경에 이 법칙을 쓰면 외삽이다. 값은 문헌 근사치(카탈로그 주석 참조).

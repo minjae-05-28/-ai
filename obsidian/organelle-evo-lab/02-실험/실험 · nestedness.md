@@ -1,0 +1,75 @@
+---
+유형: 실험
+실행: nestedness
+산출: results/nestedness/metrics.json
+tags:
+  - 유형/실험
+  - 실험/nestedness
+---
+
+# 실험 · nestedness
+
+**산출물** `results/nestedness/metrics.json`
+
+## mitochondrion
+
+```json
+{
+ "lineages": 75,
+ "genes": 80,
+ "containment": 0.9619958263945191,
+ "row_null_mean": 0.7870677302414206,
+ "row_null_z": 185.145322681353,
+ "fixed_null_mean": 0.9642311796766007,
+ "fixed_null_z": -4.128261768273009,
+ "fixed_null_p": 1.0
+}
+```
+
+## plastid
+
+```json
+{
+ "lineages": 54,
+ "genes": 271,
+ "containment": 0.9347197126501351,
+ "row_null_mean": 0.8129280567509973,
+ "row_null_z": 211.12466287680363,
+ "fixed_null_mean": 0.9425628756701923,
+ "fixed_null_z": -22.506167457463786,
+ "fixed_null_p": 1.0
+}
+```
+
+## insect_endosymbiont
+
+```json
+{
+ "lineages": 25,
+ "genes": 2206,
+ "containment": 0.9464332813407622,
+ "row_null_mean": 0.8279762255987513,
+ "row_null_z": 264.02354903687086,
+ "fixed_null_mean": 0.9499216499616812,
+ "fixed_null_z": -18.29776378623987,
+ "fixed_null_p": 1.0
+}
+```
+
+## eukaryote_parasites
+
+```json
+{
+ "lineages": 79,
+ "genes": 1238,
+ "containment": 0.46820053928809835,
+ "row_null_mean": 0.24848250962748422,
+ "row_null_z": 164.7504720231406,
+ "fixed_null_mean": 0.5153211789459138,
+ "fixed_null_z": -10.922851479957828,
+ "fixed_null_p": 1.0
+}
+```
+
+## 연결
+- [[실험 목록]]

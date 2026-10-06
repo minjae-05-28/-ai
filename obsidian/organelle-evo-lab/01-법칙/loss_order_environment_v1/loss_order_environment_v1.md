@@ -1,0 +1,38 @@
+---
+유형: 법칙 허브
+법칙: loss_order_environment_v1
+클러스터: 소기관
+판정: 무승부
+기준선대비: 0.0052
+tags:
+  - 법칙/loss_order_environment_v1
+  - 클러스터/소기관
+  - 판정/무승부
+---
+
+# loss_order_environment_v1
+
+> [!abstract] 적용 범위
+> Order of gene-family loss when bacteria and archaea move to extreme environments.
+
+**모형** — Nestedness against row-fixed and fixed-fixed (curveball) nulls.
+
+## 판정 — 무승부
+
+| 비교한 곳 | 법칙 | 기준선 | 차이 | 방향 |
+| --- | --- | --- | --- | --- |
+| (최상위) | `containment` 0.08506 | `fixed_null_mean` 0.07987 | +0.0052 | 높을수록 좋음 |
+
+## 이 클러스터의 노트
+- [[loss_order_environment_v1 · 계수]] — 학습된 가중치와 신뢰구간
+- [[loss_order_environment_v1 · 검증]] — 기준선과 나란히 본 성적
+- [[loss_order_environment_v1 · 한계]] — 이 법칙을 깨뜨리는 조건
+- [[loss_order_environment_v1 · 환경]] — 어떤 환경의 종들에서 나왔나
+- [[loss_order_environment_v1 · 데이터]] — 쓰인 종·쌍·유전자군
+
+## 이 법칙을 만든 실험
+- (연결된 실행 기록 없음)
+
+## 클러스터
+- [[클러스터 · 소기관]]
+- [[법칙 목록]]

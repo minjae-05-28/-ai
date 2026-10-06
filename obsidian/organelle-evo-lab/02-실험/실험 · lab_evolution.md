@@ -1,0 +1,170 @@
+---
+유형: 실험
+실행: lab_evolution
+산출: results/lab_evolution/metrics.json
+tags:
+  - 유형/실험
+  - 실험/lab_evolution
+---
+
+# 실험 · lab_evolution
+
+**산출물** `results/lab_evolution/metrics.json`
+
+## 한눈에
+
+| 항목 | 값 |
+| --- | --- |
+| n_ancestor_genes | 4386 |
+| n_comparative_pairs | 57 |
+| spearman_first_generation_vs_comparative_loss_rate | 0.07049 |
+
+## LTEE (50,000 generations, 12 populations, selection)
+
+```json
+{
+ "n_clones": 303,
+ "n_genes_deleted": 856,
+ "n_scored": 3099,
+ "n_deleted_scored": 493,
+ "auroc_comparative_loss_rate": 0.5897250688456503,
+ "auroc_ci": [
+  0.5619434554392145,
+  0.6170032962547248
+ ],
+ "auroc_rarity_baseline": 0.5664957914253113,
+ "auroc_low_expression": 0.5556896587613828,
+ "deleted_genes_with_knockout_data": 551,
+ "deleted_that_are_essential": 24,
+ "essential_share_overall": 0.10543130990415335,
+ "essential_share_deleted": 0.043557168784029036,
+ "auroc_minus_no_selection_control": {
+  "mean": -0.005493386466515391,
+  "ci95": [
+   -0.06658759003265548,
+   0.05623955525958089
+  ]
+ }
+}
+```
+
+## MAE (mutation accumulation, almost no selection)
+
+```json
+{
+ "n_clones": 15,
+ "n_genes_deleted": 210,
+ "n_scored": 3099,
+ "n_deleted_scored": 95,
+ "auroc_comparative_loss_rate": 0.5953360431705095,
+ "auroc_ci": [
+  0.5394798570710152,
+  0.649327464148067
+ ],
+ "auroc_rarity_baseline": 0.5597589179339828,
+ "auroc_low_expression": 0.6012490605850387,
+ "deleted_genes_with_knockout_data": 118,
+ "deleted_that_are_essential": 4,
+ "essential_share_overall": 0.10543130990415335,
+ "essential_share_deleted": 0.03389830508474576
+}
+```
+
+## LTEE (50,000 generations, 12 populations, selection), dispensable genes
+
+```json
+{
+ "n_clones": 303,
+ "n_genes_deleted": 856,
+ "n_scored": 2749,
+ "n_deleted_scored": 470,
+ "auroc_comparative_loss_rate": 0.5645617245339034,
+ "auroc_ci": [
+  0.5354114757077931,
+  0.5933444461023335
+ ],
+ "auroc_rarity_baseline": 0.5482238383762942,
+ "auroc_low_expression": 0.5280079969348924,
+ "deleted_genes_with_knockout_data": 527,
+ "deleted_that_are_essential": 0,
+ "essential_share_overall": 0.0,
+ "essential_share_deleted": 0.0,
+ "auroc_minus_no_selection_control": {
+  "mean": 0.002826493189253262,
+  "ci95": [
+   -0.05677099845617566,
+   0.06641507273463902
+  ]
+ }
+}
+```
+
+## MAE (mutation accumulation, almost no selection), dispensable genes
+
+```json
+{
+ "n_clones": 15,
+ "n_genes_deleted": 210,
+ "n_scored": 2749,
+ "n_deleted_scored": 92,
+ "auroc_comparative_loss_rate": 0.5622187494886355,
+ "auroc_ci": [
+  0.5065264095017328,
+  0.6176639147819011
+ ],
+ "auroc_rarity_baseline": 0.5345498355451556,
+ "auroc_low_expression": 0.5797655259822561,
+ "deleted_genes_with_knockout_data": 114,
+ "deleted_that_are_essential": 0,
+ "essential_share_overall": 0.0,
+ "essential_share_deleted": 0.0
+}
+```
+
+## genes_lost_per_1000_generations
+
+```json
+{
+ "mean": 4.05,
+ "min": 2.14,
+ "max": 7.64,
+ "n_populations": 12
+}
+```
+
+## parallelism
+
+```json
+{
+ "1": 446,
+ "2": 121,
+ "3": 86,
+ "4": 34,
+ "5": 23,
+ "6": 42,
+ "7": 25,
+ "8": 2,
+ "9": 12,
+ "10": 45,
+ "11": 8,
+ "12": 12
+}
+```
+
+## by_first_generation
+
+```json
+{
+ "deleted by 5,000 generations": {
+  "n_genes": 134,
+  "mean_comparative_loss_rate": 0.17507336294790682
+ },
+ "first deleted after 20,000": {
+  "n_genes": 455,
+  "mean_comparative_loss_rate": 0.27297411735620575
+ }
+}
+```
+
+## 연결
+- [[실험 목록]]

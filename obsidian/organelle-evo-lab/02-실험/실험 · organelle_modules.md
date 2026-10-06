@@ -1,0 +1,232 @@
+---
+유형: 실험
+실행: organelle_modules
+산출: results/organelle_modules/metrics.json
+tags:
+  - 유형/실험
+  - 실험/organelle_modules
+---
+
+# 실험 · organelle_modules
+
+**산출물** `results/organelle_modules/metrics.json`
+
+## mitochondrion
+
+```json
+[
+ {
+  "genes": [
+   "ai3",
+   "bi2",
+   "ai4",
+   "bi4",
+   "bi3",
+   "ai1",
+   "rps5",
+   "scei",
+   "ai2",
+   "cox3",
+   "yejv",
+   "yeju",
+   "yejr",
+   "cox1",
+   "cox2"
+  ],
+  "classes": {
+   "other": 11,
+   "translation": 1,
+   "redox_core": 3
+  },
+  "lost_by": [
+   "Reclinomonas americana",
+   "Histiona aroides",
+   "Seculamonas ecuadoriensis",
+   "Andalucia godoyi",
+   "Jakoba libera",
+   "Acanthamoeba castellanii"
+  ],
+  "strength": 74.3196029663086
+ },
+ {
+  "genes": [
+   "rpl14",
+   "rps8",
+   "rpl11",
+   "nad11",
+   "yejr",
+   "rpl6",
+   "yeju",
+   "rps11",
+   "rpl20",
+   "rpl31",
+   "rps14",
+   "sdh2",
+   "atp9",
+   "nad8",
+   "atp3"
+  ],
+  "classes": {
+   "translation": 8,
+   "other": 3,
+   "redox_core": 2,
+   "atp_synthase": 2
+  },
+  "lost_by": [
+   "Zea mays subsp. parviglumis",
+   "Arabidopsis thaliana",
+   "Nicotiana tabacum",
+   "Oryza sativa",
+   "Ginkgo biloba",
+   "Cycas taitungensis"
+  ],
+  "strength": 67.1250228881836
+ }
+]
+```
+
+## plastid
+
+```json
+[
+ {
+  "genes": [
+   "clpc",
+   "rpl4",
+   "rpl6",
+   "rps5",
+   "ycf24",
+   "rps17",
+   "tufa",
+   "rpl11",
+   "rpl31",
+   "seca",
+   "psbv",
+   "rps13",
+   "rpl3",
+   "secy",
+   "cbbx"
+  ],
+  "classes": {
+   "other": 2,
+   "translation": 9,
+   "protein_targeting": 2,
+   "redox_core": 1,
+   "carbon_fixation": 1
+  },
+  "lost_by": [
+   "Physcomitrium patens",
+   "Selaginella moellendorffii",
+   "Ginkgo biloba",
+   "Amborella trichopoda",
+   "Huperzia lucidula",
+   "Nicotiana tabacum"
+  ],
+  "strength": 97.05967712402344
+ },
+ {
+  "genes": [
+   "rpl4",
+   "lpxa",
+   "ycf85",
+   "ycf84",
+   "tils",
+   "apcd",
+   "apca",
+   "cpca",
+   "rpl28",
+   "cpcb",
+   "apcb",
+   "prea",
+   "apce",
+   "trpg",
+   "ycf23"
+  ],
+  "classes": {
+   "translation": 2,
+   "other": 13
+  },
+  "lost_by": [
+   "Thalassiosira pseudonana",
+   "Phaeodactylum tricornutum",
+   "Heterosigma akashiwo",
+   "Ectocarpus siliculosus",
+   "Marchantia polymorpha",
+   "Huperzia lucidula"
+  ],
+  "strength": 91.13302612304688
+ }
+]
+```
+
+## insect_endosymbiont
+
+```json
+[
+ {
+  "genes": [
+   "argg",
+   "glk",
+   "ygdq",
+   "ilvi",
+   "tdcf",
+   "tktb",
+   "argd",
+   "gatb",
+   "argo",
+   "phel",
+   "fetb",
+   "fecd",
+   "xanp",
+   "dpia",
+   "taud"
+  ],
+  "classes": {
+   "other": 15
+  },
+  "lost_by": [
+   "Sodalis glossinidius str. 'morsitans'",
+   "Candidatus Blochmanniella vafra str. BVAF",
+   "Candidatus Blochmanniella floridana",
+   "Candidatus Blochmanniella pennsylvanica",
+   "Arsenophonus nasoniae",
+   "Candidatus Palibaumannia cicadellinicola"
+  ],
+  "strength": 97.29206848144531
+ },
+ {
+  "genes": [
+   "digh",
+   "trkh",
+   "trka",
+   "djla",
+   "thip",
+   "thib",
+   "dfp",
+   "yeeo",
+   "maeb",
+   "ldha",
+   "rhta",
+   "gltj",
+   "tyrp",
+   "waah",
+   "frua"
+  ],
+  "classes": {
+   "other": 15
+  },
+  "lost_by": [
+   "Buchnera aphidicola str. APS (Acyrthosiphon pisum)",
+   "Buchnera aphidicola (Myzus persicae)",
+   "Buchnera aphidicola (Schizaphis graminum)",
+   "Buchnera aphidicola (Uroleucon sonchi)",
+   "Buchnera aphidicola (Cinara tujafilina)",
+   "Buchnera aphidicola BCc"
+  ],
+  "strength": 75.7192611694336
+ }
+]
+```
+
+## 연결
+- [[실험 목록]]
