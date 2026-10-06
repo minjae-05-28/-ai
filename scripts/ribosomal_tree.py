@@ -139,6 +139,10 @@ def build(n_boot=0, only=None):
             sup.write_text("".join(f">{ids[s]}\n{''.join(concat[s])}\n" for s in species))
             ft = shutil.which("FastTreeMP") or shutil.which("FastTree") or shutil.which("fasttree")
             nwk = subprocess.run([ft, "-lg", "-gamma", "-quiet", str(sup)], capture_output=True, text=True, check=True).stdout
+            back = {v: k for k, v in ids.items()}
+            rename = lambda t: re.sub(r"\b(t\d+)(?=[:,)])", lambda m: "'" + back[m.group(1)].replace("'", "") + "'", t)  # noqa: E731
+            # Written before the bootstrap starts: a job that runs out of time keeps the tree.
+            (TREES / f"{cat_dir.name}.nwk").write_text(rename(nwk))
             boots = []
             if n_boot:
                 # Nonparametric bootstrap: resample alignment columns, one tree per replicate
@@ -153,9 +157,8 @@ def build(n_boot=0, only=None):
                     rep.write_text("".join(f">{ids[s]}\n{''.join(rows[s][c] for c in cols)}\n" for s in species))
                     boots.append(subprocess.run([ft, "-lg", "-gamma", "-quiet", "-nosupport", str(rep)],
                                                 capture_output=True, text=True, check=True).stdout.strip())
+                    (TREES / f"{cat_dir.name}.boot.nwk").write_text("\n".join(rename(t) for t in boots) + "\n")
                     print(f"  {cat_dir.name} bootstrap {b + 1}/{n_boot}", flush=True)
-        back = {v: k for k, v in ids.items()}
-        rename = lambda t: re.sub(r"\b(t\d+)(?=[:,)])", lambda m: "'" + back[m.group(1)].replace("'", "") + "'", t)  # noqa: E731
         nwk = rename(nwk)
         (TREES / f"{cat_dir.name}.nwk").write_text(nwk)
         if boots:

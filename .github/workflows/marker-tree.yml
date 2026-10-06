@@ -112,7 +112,11 @@ jobs:
       - name: Build the tree for this set only
         env:
           PYTHONPATH: src
-        run: python scripts/ribosomal_tree.py --build --only "${{ inputs.set }}" --bootstrap ${{ inputs.bootstrap }}
+        # Capped below the job limit: the tree and every finished bootstrap are written as they come,
+        # so a slow bootstrap costs replicates, not the whole run.
+        run: |
+          timeout 230m python scripts/ribosomal_tree.py --build --only "${{ inputs.set }}" --bootstrap ${{ inputs.bootstrap }} \
+            || { [ -f results/phylo_tree/${{ inputs.set }}.nwk ] && echo "::warning::stopped early; keeping the tree and $(wc -l < results/phylo_tree/${{ inputs.set }}.boot.nwk 2>/dev/null || echo 0) bootstrap trees"; }
       - uses: actions/upload-artifact@v4
         with:
           name: tree-${{ inputs.set }}
