@@ -64,6 +64,16 @@ CLADES = [
      "hgt_id": "fungi", "shared_with": "균류 뿌리 복원(같은 실행)", "name": "핵심 균류의 조상", "group": "진핵생물", "sub": "로젤라 계열이 갈라진 뒤의 마디",
      "blurb": "균류 뿌리에서 로젤라·미포자충 계열(세포 안 기생체, 유전체가 크게 줄어듦)을 뺀 나머지 286종의 공통 "
               "조상입니다. 키틴 합성효소 1군·균류 전사인자 같은 '균류다운' 유전자군이 여기서 확실해집니다."},
+    {"id": "leca", "dir": "results/clade_ancestor/leca", "name": "모든 진핵생물의 조상 (LECA)", "group": "진핵생물",
+     "sub": "동물·식물·균류·원생생물의 마지막 공통 조상", "confidence": "낮음",
+     "blurb": "핵·미토콘드리아·섬모를 가진 첫 진핵세포입니다. 진핵생물의 뿌리가 어디인지는 아직 결론이 없어서, "
+              "이 계통수에서 나눌 수 있는 두 뿌리(디스코바 / 후편모생물)로 각각 복원하고 두 경우 모두에서 있는 것만 "
+              "'있었다'로 셉니다. 아래 확률은 두 뿌리 중 작은 값입니다.",
+     "caveat": "외군 없이 뿌리를 '이름 붙은 갈래 | 나머지'로 잡았습니다. 아모르페아 뿌리는 이 계통수에서 갈래가 "
+               "깔끔하게 나뉘지 않고(아메보조아 등 15종이 밖에 있음), 메타모나다 뿌리는 표본이 2종뿐이라 시험하지 "
+               "못했습니다. 알려진 정답 채점에서 두 뿌리 모두 기준선보다는 낫지만 AUROC가 0.62(디스코바)·0.82"
+               "(후편모생물)로 다른 조상보다 크게 낮고, 크기 오차가 +34%와 −38%로 반대 방향이라 개수는 말하지 "
+               "않습니다. 유전자군 목록은 순위로만 읽어 주세요."},
     {"id": "cyano", "dir": "results/clade_ancestor/cyano", "name": "남세균의 조상", "group": "소기관",
      "ko_clade": "남세균", "sub": "산소 광합성 남세균(Cyanobacteriia) 공통 조상",
      "blurb": "엽록체를 낳은 남세균 무리 전체의 공통 조상입니다. GTDB 세균 계통수 위에서 복원했고, 뿌리의 한쪽은 "
@@ -132,11 +142,11 @@ def clade_entry(c):
     intruders = a.get("non_clade_tips_inside_clade_node") or []
     return {
         "id": c["id"], "name": c["name"], "sub": c["sub"], "group": c["group"], "blurb": c["blurb"],
-        "confidence": "중간" if power and power["verdict"] == "계통수가 도움이 됨" else "낮음",
+        "confidence": c.get("confidence") or ("중간" if power and power["verdict"] == "계통수가 도움이 됨" else "낮음"),
         "quote_size": quote, "power": power, "_hgt": hg,
         "phylum_power": {k: val for k, val in agg.items() if "표본이 도달한 마디" not in k
                          and "뿌리 아래 큰 쪽" not in k},
-        "extra_caveat": (f"뿌리는 {kc}에서 가장 먼 외군 잎({a.get('rooted_on')})에 잡았습니다. "
+        "extra_caveat": c.get("caveat") or (f"뿌리는 {kc}에서 가장 먼 외군 잎({a.get('rooted_on')})에 잡았습니다. "
                          + (f"{kc} 마디 안으로 외군 {len(intruders)}종이 들어왔습니다: {', '.join(intruders[:5])}."
                             if intruders else f"{kc}는 계통수에서 한 덩어리(단계통)로 나왔습니다")
                          + (f" — 단, 계통수가 {kc} 밖에 붙인 {len(a['misplaced_clade_tips_left_out'])}종"

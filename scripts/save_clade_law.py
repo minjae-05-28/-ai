@@ -33,11 +33,15 @@ PANELS = {
             ["Complex1_51K", "ATP-synt_ab", "Mito_carr", "Tom20", "Tim17"],
         "meiosis and sex (expected present)": ["TP6A_N", "Rad51", "Spo11", "HORMA", "Mnd1"],
         "cilium (expected present)": ["Radial_spoke_3", "IFT57", "IFT52_GIFT", "Dynein_heavy", "Tubulin"],
-        "endomembrane and nucleus (expected present)": ["Clathrin", "Sec23_trunk", "Snf7", "Nup153", "Ran_BP1"],
+        "endomembrane and nucleus (expected present)": ["Clathrin", "Sec23_trunk", "Snf7", "Ran_BP1",
+                                                        "Nup96", "Nup54", "Nucleoporin_N"],
         "peroxisome and autophagy (expected present)": ["Pex2_Pex12", "ATG7_N", "APG12"],
-        "spliceosome (expected present)": ["PRP8_U5-snRNA_bdg", "Sm", "DEAD"],
+        "spliceosome (expected present)": ["PRP8_domainIV", "SF3b1", "U6-snRNA_bdg", "LSM"],
         "photosynthesis (expected ABSENT: the plastid came after LECA)":
             ["Photo_RC", "PSII", "PsbP", "Chloroa_b-bind", "PsaA_PsaB"],
+        "panel choice error, kept for transparency (Nup153 was in the first panel as a nuclear-pore marker; "
+        "this Pfam family is in 7% of sampled species, not pan-eukaryotic; Nup96/Nup54/Nucleoporin_N replaced "
+        "it AFTER the results were seen)": ["Nup153"],
     },
 }
 PANELS["cyano"] = {

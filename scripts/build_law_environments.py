@@ -286,6 +286,14 @@ def findings_for(law):
         return {t: {"법칙-진화 안 함 (운명 정확도)": v["family_level"]["fate_accuracy.law - no_change"],
                     "기능 순위 상관 법칙/암기": [v["function_level"]["law.spearman"]["mean"],
                                          v["function_level"]["memorisation.spearman"]["mean"]]} for t, v in val.items()}
+    if lid.startswith("leca_ancestor"):
+        out = {"잎 숨기기 (뿌리별)": val["leave_tips_out_auroc_per_root"],
+               "알려진 정답 (뿌리별 복원/현생 AUROC, 크기 편향)": {
+                   r: [g["recon_auroc"], g["freq_auroc"], g["recon_size_bias"]]
+                   for r, g in (val.get("known_truth_per_root") or {}).items()}}
+        for g, fams in (val.get("marker_panel") or {}).items():
+            out[g] = {f: min(v2 for k2, v2 in v.items() if k2.startswith("posterior_")) for f, v in fams.items()}
+        return out
     if lid.startswith("fungal_ancestor") or lid.startswith("plastid_ancestor"):
         out = {"잎 숨기기 (복원 / 현생 빈도)": val["leave_tips_out_auroc"],
                "알려진 정답 (복원 / 현생 빈도 AUROC, 크기 편향)": (
@@ -408,6 +416,13 @@ def card_for(law):
             "대상": f"균류 {d['clade_tips']}종(16개 문, 목마다 고르게) + 외군 {d['outgroup_tips']}종",
             "환경": "자유생활·공생·기생 균류 모두. 레퍼런스 프로테옴이 없는 계통(아펠리다 등)과 "
                     "누클레아리아는 미포함"},
+            "species_from": "law"}
+    elif lid.startswith("leca_ancestor"):
+        d = law["data"]
+        card = {"catalogue": "ribosomal marker tree + UniProt", "envelope": {
+            "대상": f"진핵생물 {d['tips']}종(큰 갈래마다 같은 몫으로 고름), 외군 없음",
+            "환경": "모든 진핵생물 큰 갈래. 메타모나다·리자리아·합토파이트·크립토파이트·CRuMs는 매우 적거나 없음; "
+                    f"검증한 뿌리 위치: {', '.join(d['roots_tested'])}"},
             "species_from": "law"}
     elif lid.startswith("plastid_ancestor"):
         d = law["data"]

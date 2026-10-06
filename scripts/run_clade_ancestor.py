@@ -165,6 +165,29 @@ def build(tree_path, clade_genera, min_families, clade_kingdom=None, root_outgro
                 below.append(label2[v])
             stack.extend(ch[v])
         split_intruders = sorted(below)
+        if split_intruders:
+            # Not a clean split. If only a few group tips stray (long branches, as with Microsporidia),
+            # leave them out and root at the largest group-only subtree; otherwise this root position
+            # cannot be represented on this tree, which is said rather than forced.
+            size, pure = {}, {}
+            for v in ordr:
+                size[v] = 1 if not ch[v] else sum(size[c] for c in ch[v])
+                pure[v] = in_split(label2[v]) if not ch[v] else all(pure[c] for c in ch[v])
+            best = max((v for v in ordr if pure[v]), key=lambda v: size[v])
+            inside, stack = set(), [best]
+            while stack:
+                v = stack.pop()
+                inside.add(v)
+                stack.extend(ch[v])
+            stray = [v for v in gt if v not in inside]
+            if len(stray) > 0.06 * len(gt):
+                raise ValueError(f"root split {root_split!r} is not a split of this tree: {len(stray)} of "
+                                 f"{len(gt)} group tips sit outside the largest group-only subtree")
+            misplaced = sorted(label2[v] for v in stray)
+            keep2 = [v for v in tips2 if v not in set(stray)]
+            parent, length, label2, old2 = prune(parent, length, label2, keep2)
+            node = int(np.flatnonzero(old2 == best)[0])
+            split_intruders = []
         if node != 0:
             parent, length, label2 = reroot(parent, length, label2, node)
         rooted_on = f"split: {root_split} | rest"
@@ -354,7 +377,8 @@ def main():
     clade_tips = [v for v in d["tips"] if in_clade[v]]
     print(f"{len(d['tips'])} tips with a usable proteome ({len(clade_tips)} in the clade), "
           f"{len(dropped)} dropped, {len(fams)} families in >= 3 tips")
-    print(f"  reduced lineages (loss accelerated): {reduced}")
+    print(f"  reduced lineages ({'listed only: the loss multiplier is off' if args.no_reduced_mult else 'loss accelerated'}): "
+          f"{reduced}")
     node = mrca(clade_tips, d["parent"], d["depth"])
     specs = [{**sp, 'tip_mult': 1.0} for sp in ENSEMBLE] if args.completeness else list(ENSEMBLE)
     if args.no_reduced_mult:

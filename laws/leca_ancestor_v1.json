@@ -1,0 +1,264 @@
+{
+  "id": "leca_ancestor_v1",
+  "scope": "Gene-family (Pfam) content of the last eukaryotic common ancestor (LECA), reconstructed on a ribosomal-marker tree of supergroup-balanced UniProt proteomes under several root positions; reported as what holds under every root. Family presence only; no sequences.",
+  "model": "Two-state gain/loss Markov chain per family, ensemble of the five leading models of the mitochondrial model search, incomplete proteomes as dropout in the likelihood, no reduced-lineage multiplier; one run per root position (rooted on the named split), combined by minimum.",
+  "feature_names": [],
+  "data": {
+    "tips": 256,
+    "families_considered": 14828,
+    "roots_tested": [
+      "discoba",
+      "opisthokonta"
+    ],
+    "roots_not_testable": {
+      "Amorphea (Opisthokonta + Amoebozoa + Apusozoa | rest; the unikont-bikont root)": "not a split of this marker tree: 15 of 103 amorphean tips (all 9 Amoebozoa, Thecamonas, the Microsporidia) sit outside the largest amorphean-only subtree",
+      "Metamonada | rest": "only 2 metamonads reached the tree (most metamonad proteomes had too few ribosomal markers) and they do not group together"
+    },
+    "tree": "results/phylo_tree/leca.nwk",
+    "n_bootstrap_trees": 5
+  },
+  "validation": {
+    "leave_tips_out_auroc_per_root": {
+      "discoba": {
+        "reconstruction": 0.9818,
+        "clade_frequency": 0.9329
+      },
+      "opisthokonta": {
+        "reconstruction": 0.9828,
+        "clade_frequency": 0.9141
+      }
+    },
+    "known_truth_per_root": {
+      "discoba": {
+        "recon_auroc": 0.6196,
+        "freq_auroc": 0.5554,
+        "recon_logloss": 0.7701,
+        "freq_logloss": 1.0343,
+        "prior_logloss": 0.6929,
+        "recon_size_bias": 0.3428,
+        "freq_size_bias": -0.6495,
+        "n_tips": 256,
+        "auroc_margin": 0.0642,
+        "logloss_margin": 0.2642,
+        "auroc_headroom": 0.4446,
+        "verdict": "계통수가 도움이 됨"
+      },
+      "opisthokonta": {
+        "recon_auroc": 0.8227,
+        "freq_auroc": 0.6721,
+        "recon_logloss": 0.7027,
+        "freq_logloss": 0.8105,
+        "prior_logloss": 0.6929,
+        "recon_size_bias": -0.3804,
+        "freq_size_bias": -0.5087,
+        "n_tips": 251,
+        "auroc_margin": 0.1506,
+        "logloss_margin": 0.1078,
+        "auroc_headroom": 0.3279,
+        "verdict": "계통수가 도움이 됨"
+      }
+    },
+    "ancestor_size_per_root": null,
+    "n_present_every_root": 3048,
+    "n_root_dependent": 452,
+    "n_absent_every_root": 9512,
+    "marker_panel": {
+      "mitochondrion, nuclear-encoded (expected present: LECA had a mitochondrion)": {
+        "Complex1_51K": {
+          "posterior_discoba": 1.0,
+          "posterior_opisthokonta": 1.0,
+          "share_of_tips_today": 0.867
+        },
+        "ATP-synt_ab": {
+          "posterior_discoba": 1.0,
+          "posterior_opisthokonta": 1.0,
+          "share_of_tips_today": 1.0
+        },
+        "Mito_carr": {
+          "posterior_discoba": 0.999,
+          "posterior_opisthokonta": 1.0,
+          "share_of_tips_today": 0.98
+        },
+        "Tim17": {
+          "posterior_discoba": 0.999,
+          "posterior_opisthokonta": 1.0,
+          "share_of_tips_today": 0.992
+        }
+      },
+      "meiosis and sex (expected present)": {
+        "TP6A_N": {
+          "posterior_discoba": 0.961,
+          "posterior_opisthokonta": 0.999,
+          "share_of_tips_today": 0.883
+        },
+        "Rad51": {
+          "posterior_discoba": 1.0,
+          "posterior_opisthokonta": 1.0,
+          "share_of_tips_today": 1.0
+        },
+        "HORMA": {
+          "posterior_discoba": 1.0,
+          "posterior_opisthokonta": 1.0,
+          "share_of_tips_today": 0.91
+        },
+        "Mnd1": {
+          "posterior_discoba": 0.984,
+          "posterior_opisthokonta": 0.973,
+          "share_of_tips_today": 0.902
+        }
+      },
+      "cilium (expected present)": {
+        "Radial_spoke_3": {
+          "posterior_discoba": 0.999,
+          "posterior_opisthokonta": 0.998,
+          "share_of_tips_today": 0.602
+        },
+        "IFT57": {
+          "posterior_discoba": 1.0,
+          "posterior_opisthokonta": 0.998,
+          "share_of_tips_today": 0.594
+        },
+        "IFT52_GIFT": {
+          "posterior_discoba": 1.0,
+          "posterior_opisthokonta": 0.998,
+          "share_of_tips_today": 0.602
+        },
+        "Dynein_heavy": {
+          "posterior_discoba": 1.0,
+          "posterior_opisthokonta": 1.0,
+          "share_of_tips_today": 0.871
+        },
+        "Tubulin": {
+          "posterior_discoba": 1.0,
+          "posterior_opisthokonta": 1.0,
+          "share_of_tips_today": 1.0
+        }
+      },
+      "endomembrane and nucleus (expected present)": {
+        "Clathrin": {
+          "posterior_discoba": 0.999,
+          "posterior_opisthokonta": 1.0,
+          "share_of_tips_today": 0.973
+        },
+        "Sec23_trunk": {
+          "posterior_discoba": 1.0,
+          "posterior_opisthokonta": 1.0,
+          "share_of_tips_today": 1.0
+        },
+        "Snf7": {
+          "posterior_discoba": 0.999,
+          "posterior_opisthokonta": 1.0,
+          "share_of_tips_today": 0.98
+        },
+        "Ran_BP1": {
+          "posterior_discoba": 1.0,
+          "posterior_opisthokonta": 1.0,
+          "share_of_tips_today": 0.996
+        },
+        "Nup96": {
+          "posterior_discoba": 1.0,
+          "posterior_opisthokonta": 1.0,
+          "share_of_tips_today": 0.887
+        },
+        "Nup54": {
+          "posterior_discoba": 0.998,
+          "posterior_opisthokonta": 0.998,
+          "share_of_tips_today": 0.875
+        },
+        "Nucleoporin_N": {
+          "posterior_discoba": 1.0,
+          "posterior_opisthokonta": 1.0,
+          "share_of_tips_today": 0.902
+        }
+      },
+      "peroxisome and autophagy (expected present)": {
+        "Pex2_Pex12": {
+          "posterior_discoba": 1.0,
+          "posterior_opisthokonta": 1.0,
+          "share_of_tips_today": 0.875
+        },
+        "ATG7_N": {
+          "posterior_discoba": 1.0,
+          "posterior_opisthokonta": 1.0,
+          "share_of_tips_today": 0.887
+        },
+        "APG12": {
+          "posterior_discoba": 0.981,
+          "posterior_opisthokonta": 1.0,
+          "share_of_tips_today": 0.754
+        }
+      },
+      "spliceosome (expected present)": {
+        "PRP8_domainIV": {
+          "posterior_discoba": 0.999,
+          "posterior_opisthokonta": 1.0,
+          "share_of_tips_today": 0.973
+        },
+        "SF3b1": {
+          "posterior_discoba": 0.996,
+          "posterior_opisthokonta": 1.0,
+          "share_of_tips_today": 0.902
+        },
+        "U6-snRNA_bdg": {
+          "posterior_discoba": 1.0,
+          "posterior_opisthokonta": 1.0,
+          "share_of_tips_today": 0.973
+        },
+        "LSM": {
+          "posterior_discoba": 1.0,
+          "posterior_opisthokonta": 1.0,
+          "share_of_tips_today": 1.0
+        }
+      },
+      "photosynthesis (expected ABSENT: the plastid came after LECA)": {
+        "Photo_RC": {
+          "posterior_discoba": 0.064,
+          "posterior_opisthokonta": 0.172,
+          "share_of_tips_today": 0.156
+        },
+        "PSII": {
+          "posterior_discoba": 0.057,
+          "posterior_opisthokonta": 0.201,
+          "share_of_tips_today": 0.145
+        },
+        "PsbP": {
+          "posterior_discoba": 0.0,
+          "posterior_opisthokonta": 0.004,
+          "share_of_tips_today": 0.332
+        },
+        "Chloroa_b-bind": {
+          "posterior_discoba": 0.0,
+          "posterior_opisthokonta": 0.001,
+          "share_of_tips_today": 0.332
+        },
+        "PsaA_PsaB": {
+          "posterior_discoba": 0.071,
+          "posterior_opisthokonta": 0.203,
+          "share_of_tips_today": 0.16
+        }
+      },
+      "panel choice error, kept for transparency (Nup153 was in the first panel as a nuclear-pore marker; this Pfam family is in 7% of sampled species, not pan-eukaryotic; Nup96/Nup54/Nucleoporin_N replaced it AFTER the results were seen)": {
+        "Nup153": {
+          "posterior_discoba": 0.002,
+          "posterior_opisthokonta": 0.023,
+          "share_of_tips_today": 0.07
+        }
+      }
+    }
+  },
+  "caveats": [
+    "256 eukaryote proteomes reached the tree out of 300 picked with an equal share per supergroup (data/markers/leca_pick.json; pick_eukaryotes.py). UniProt has very few proteomes for Metamonada, Rhizaria, Haptista, Cryptista, CRuMs and Hemimastigophora, so those lineages are thin or absent, and the deepest-branching candidates are exactly the ones least sampled.",
+    "No prokaryote outgroup: at this distance gene-content models cannot place the root, so the tree is rooted on a named split and the root position is treated as unknown. Root positions tested: discoba, opisthokonta. A family is called present in LECA only if P >= 0.9 under every tested root; the 'posterior' column of results/clade_ancestor/leca is the minimum over roots.",
+    "Root positions NOT tested, with the reason: Amorphea (Opisthokonta + Amoebozoa + Apusozoa | rest; the unikont-bikont root): not a split of this marker tree: 15 of 103 amorphean tips (all 9 Amoebozoa, Thecamonas, the Microsporidia) sit outside the largest amorphean-only subtree; Metamonada | rest: only 2 metamonads reached the tree (most metamonad proteomes had too few ribosomal markers) and they do not group together.",
+    "Tips left out because the tree placed them outside their group (long-branch attraction): discoba: none; opisthokonta: Encephalitozoon cuniculi (strain GB-M1) (Microsporidian parasite), Encephalitozoon hellem (Microsporidian parasite), Encephalitozoon intestinalis (strain ATCC 50506) (Microsporidian parasite) (Septata intestinalis), Nematocida ausubeli (Nematode killer fungus), Nematocida displodere.",
+    "Bootstrap trees used per root: discoba 6, opisthokonta 5 of the 9 the time-capped build produced (a bootstrap tree on which the root split does not hold is skipped); the tree_sd of each root run includes them.",
+    "Mitochondrion-encoded families (COX2, COX3, cytochrome b) come out low only because UniProt eukaryote proteomes hold nuclear proteins.",
+    "Completeness is scored once across all sampled eukaryotes (no outgroup): near-universal families among the top-quartile proteomes. Reduced parasites (Microsporidia, Cryptosporidium, Giardia-like lineages) score low and their absences count as weak evidence.",
+    "Present under every root: 3048 families; root-dependent: 452; absent under every root: 9512. Families present per root: {'discoba': 3193, 'opisthokonta': 3767}.",
+    "Known-truth grade with the discoba root: AUROC 0.6196 against 0.5554 for present-day frequency, log loss 0.770 against 1.034, ancestor-size bias +34.3%. Verdict: 계통수가 도움이 됨.",
+    "Known-truth grade with the opisthokonta root: AUROC 0.8227 against 0.6721 for present-day frequency, log loss 0.703 against 0.810, ancestor-size bias -38.0%. Verdict: 계통수가 도움이 됨.",
+    "Read the known-truth grades above as the main limit of this card. The tree beats the no-tree baseline under every root, but the absolute quality is far below the other ancestors in this project (lowest AUROC 0.620; fungi 0.850, plastid 0.995), and the size bias runs in opposite directions under the two roots. So no family count is quoted, and the families are a ranking: the robust-present list (high under every root) and the expected-marker panel are what the data support. Deep eukaryote splits on a FastTree ribosomal tree of ~250 species are the weak link.",
+    "Horizontal transfer is not modelled; measured per root at {'discoba': 0.012, 'opisthokonta': 0.008}. The estimator cannot separate transfer from duplication or domain shuffling, so read it as an upper bound."
+  ],
+  "contexts": {}
+}

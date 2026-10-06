@@ -7,6 +7,7 @@
 
 import argparse
 import subprocess
+from pathlib import Path
 import sys
 
 PRESETS = {
@@ -41,10 +42,12 @@ def main():
     root = (["--root-split", args.root_split, "--lineage", p["pick"]] if args.root_split
             else ["--root-outgroup"] + (["--lineage", p["pick"]] if p.get("lineage_for_clade") else []))
     extra = ["--extra-nodes", p["extra"]] if p.get("extra") else []
+    bt = tree.replace(".nwk", ".boot.nwk")
+    boot = ["--bootstrap-trees", bt] if Path(bt).exists() else []
     steps = args.steps.split(",")
     if "ancestor" in steps:
         run([py, "scripts/run_clade_ancestor.py", "--tree", tree, "--clade-kingdom", p["kingdom"], "--name", name,
-             "--completeness", "--no-reduced-mult"] + root + extra)
+             "--completeness", "--no-reduced-mult"] + root + extra + boot)
     split = (["--root-split", args.root_split, "--lineage", p["pick"]] if args.root_split
              else ["--lineage", p["pick"]] if p.get("lineage_for_clade") else [])
     if "power" in steps:
