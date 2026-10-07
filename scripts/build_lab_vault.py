@@ -32,6 +32,7 @@ CLUSTERS = {
     "실험실 대조": ("knockout", "lab_evolution", "human_cell", "literature", "phylo_check"),
     "동물": ("animal",),
     "예측": ("loss_prediction", "forward_evolution"),
+    "전환 경로": ("transition",),
 }
 
 

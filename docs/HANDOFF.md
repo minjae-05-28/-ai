@@ -134,10 +134,10 @@ UniProt은 샌드박스에서 막혀 있으므로 수집은 Actions(`public-geno
 
 ## 5. 법칙 저장소
 
-`laws/*.json` 41개(미생물·단세포 진핵·소기관·조상), `laws/animals/*.json` 3개. **두 저장소를 섞지 마세요.**
+`laws/*.json` 43개(미생물·단세포 진핵·소기관·조상), `laws/animals/*.json` 3개. **두 저장소를 섞지 마세요.**
 모든 법칙에는 `laws/environments/<id>.json` 환경 카드가 있어야 합니다(테스트가 검사).
 
-판정(볼트 판정기 기준, 2026-10-07): 양성 12 · 음성 9 · 무승부 5 · 구조 분석 7 · 규모 보고 3 · 교란 검정 3 ·
+판정(볼트 판정기 기준, 2026-10-07): 양성 13 · 음성 10 · 무승부 5 · 구조 분석 7 · 규모 보고 3 · 교란 검정 3 ·
 전이 검정 1 · 검증 없음 3(`endosymbiosis_v1`, `eukaryote_axes_v1`, `eukaryote_lifestyle_v1`).
 
 **유전자 구성**
@@ -148,6 +148,14 @@ UniProt은 샌드박스에서 막혀 있으므로 수집은 Actions(`public-geno
 
 **서열 조성** (환경이 실제로 작동하는 곳)
 - IVYWREL vs 온도 r 0.85 (n=86). GC3 교란·계통 보정 검정 통과
+
+**새 진화 경로 두 개 (2026-10-07, `scripts/run_transitions.py`, 쌍은 `scripts/transition_catalog.py`)**
+- `anaerobic_transition_v1` (호기 → 혐기, 독립 기원 6개): 다른 기원들의 손실 패턴만으로는 희귀도에 짐(0.777 vs 0.801,
+  차이 구간 0 포함). 하지만 희귀도에 더하면 정보를 보태고(+0.021 [0.008, 0.035]), 같은 방식의 호기성 기생충 패턴보다
+  낫습니다(+0.029 [0.012, 0.046], 출처 수 맞춤). 호흡 사슬은 모든 혐기 기원에서 사라지고 호기성 기생충 쌍에서는 안 사라짐.
+- `multicellular_transition_v1` (단세포 → 다세포, 독립 기원 5개): **음성.** 다른 기원의 획득 패턴이 단세포 대조 쌍과
+  희귀도보다 못하고(−0.195 [−0.229, −0.168]), 복제수 확장의 기원 간 일치도 0.008(대조 쌍 0.156). 독립적인 다세포화는
+  같은 유전자군을 얻지 않습니다.
 
 **음성 결과 (가장 중요)**
 - `lab_evolution_v1`: LTEE 5만 세대. 법칙 − 선택압 없는 대조군 = −0.005 [−0.067, +0.056] → 선택의 몫 검출 안 됨
@@ -244,7 +252,7 @@ UniProt은 샌드박스에서 막혀 있으므로 수집은 Actions(`public-geno
 
 ```bash
 cd /home/user/-ai && PYTHONPATH=src python3 scripts/<스크립트>.py
-cd /home/user/-ai && PYTHONPATH=src python3 -m pytest -q    # 90개 통과해야 함
+cd /home/user/-ai && PYTHONPATH=src python3 -m pytest -q    # 92개 통과해야 함
 cd /home/user/-ai && PYTHONPATH=src python3 scripts/build_lab_vault.py   # 볼트
 cd /home/user/-ai && PYTHONPATH=src python3 scripts/build_law_environments.py  # 법칙 환경 카드
 cd /home/user/-ai && PYTHONPATH=src python3 scripts/build_atlas.py       # 아틀라스 데이터

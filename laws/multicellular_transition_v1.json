@@ -1,0 +1,191 @@
+{
+  "id": "multicellular_transition_v1",
+  "scope": "Whether independent origins of the multicellular transition change the same gene families (Pfam presence) — eukaryotes, UniProt reference and collected proteomes.",
+  "model": "Leave-one-origin-out: the share of the other origins that changed each family, scored as a predictor of the held-out origin's changes (AUROC), against baselines.",
+  "feature_names": [],
+  "data": {
+    "origins": [
+      "Volvocales",
+      "Metazoa",
+      "Dictyostelia",
+      "Phaeophyceae",
+      "Rhodophyta (Bangiophyceae + Florideophyceae)"
+    ],
+    "catalogue": "scripts/transition_catalog.py",
+    "n_reference_proteomes": 1751
+  },
+  "validation": {
+    "law_plus_rarity_minus_control_plus_rarity": {
+      "mean": -0.0456,
+      "ci95": [
+        -0.0603,
+        -0.0271
+      ],
+      "what": "law+rarity minus control+rarity, per origin: is the added information specific to this transition"
+    },
+    "leave_one_origin_out": {
+      "metric": "auroc",
+      "what": "predict which candidate families the held-out origin gained",
+      "law": 0.6191,
+      "control_baseline": 0.7298,
+      "rarity_baseline": 0.8137
+    },
+    "per_origin": {
+      "Volvocales": {
+        "n_candidates": 14588,
+        "n_changed": 87,
+        "share_changed": 0.006,
+        "law": 0.6273,
+        "control_baseline": 0.7288,
+        "rarity_baseline": 0.7936,
+        "law+rarity": 0.7823,
+        "combined_minus_rarity": -0.0113,
+        "control_baseline+rarity": 0.8176,
+        "law_vs_control_combined": -0.0353
+      },
+      "Metazoa": {
+        "n_candidates": 13446,
+        "n_changed": 1032,
+        "share_changed": 0.0768,
+        "law": 0.5399,
+        "control_baseline": 0.5862,
+        "rarity_baseline": 0.7978,
+        "law+rarity": 0.7333,
+        "combined_minus_rarity": -0.0645,
+        "control_baseline+rarity": 0.746,
+        "law_vs_control_combined": -0.0127
+      },
+      "Dictyostelia": {
+        "n_candidates": 13868,
+        "n_changed": 353,
+        "share_changed": 0.0255,
+        "law": 0.6042,
+        "control_baseline": 0.7417,
+        "rarity_baseline": 0.7817,
+        "law+rarity": 0.7235,
+        "combined_minus_rarity": -0.0582,
+        "control_baseline+rarity": 0.7855,
+        "law_vs_control_combined": -0.062
+      },
+      "Phaeophyceae": {
+        "n_candidates": 14963,
+        "n_changed": 691,
+        "share_changed": 0.0462,
+        "law": 0.6595,
+        "control_baseline": 0.8042,
+        "rarity_baseline": 0.8664,
+        "law+rarity": 0.8125,
+        "combined_minus_rarity": -0.0539,
+        "control_baseline+rarity": 0.8721,
+        "law_vs_control_combined": -0.0596
+      },
+      "Rhodophyta (Bangiophyceae + Florideophyceae)": {
+        "n_candidates": 15234,
+        "n_changed": 264,
+        "share_changed": 0.0173,
+        "law": 0.6647,
+        "control_baseline": 0.7883,
+        "rarity_baseline": 0.8288,
+        "law+rarity": 0.7879,
+        "combined_minus_rarity": -0.0409,
+        "control_baseline+rarity": 0.8464,
+        "law_vs_control_combined": -0.0585
+      }
+    },
+    "law_alone_minus_best_baseline": {
+      "mean": -0.1945,
+      "ci95": [
+        -0.2289,
+        -0.1677
+      ],
+      "per_origin": {
+        "Volvocales": -0.1663,
+        "Metazoa": -0.2579,
+        "Dictyostelia": -0.1775,
+        "Phaeophyceae": -0.2069,
+        "Rhodophyta (Bangiophyceae + Florideophyceae)": -0.1641
+      },
+      "note": "law minus the better baseline in each held-out origin; bootstrap over origins"
+    },
+    "law_plus_rarity_minus_rarity": {
+      "mean": -0.0458,
+      "ci95": [
+        -0.0599,
+        -0.0266
+      ],
+      "what": "AUROC of law+rarity (rank average) minus rarity alone, per origin: does the convergent signal carry information rarity does not"
+    },
+    "expansion_concordance": {
+      "metric": "spearman",
+      "what": "mean pairwise rank correlation of log2 copy-number change over shared families",
+      "multicellular_origins": 0.008,
+      "n_origin_pairs": 10,
+      "control_baseline": 0.1564,
+      "n_control_pairs": 10
+    },
+    "marker_panel": {
+      "cell adhesion / extracellular matrix": {
+        "Cadherin": {
+          "share_of_derived_with_it": 0.214,
+          "share_of_relatives_with_it": 0.231,
+          "changed_in_origins": 0.0,
+          "changed_in_controls": 0.111
+        },
+        "Integrin_beta": {
+          "share_of_derived_with_it": 0.286,
+          "share_of_relatives_with_it": 0.077,
+          "changed_in_origins": 0.25,
+          "changed_in_controls": 0.143
+        },
+        "Integrin_alpha": {
+          "share_of_derived_with_it": 0.0,
+          "share_of_relatives_with_it": 0.0,
+          "changed_in_origins": 0.0,
+          "changed_in_controls": 0.0
+        },
+        "Laminin_G_1": {
+          "share_of_derived_with_it": 0.214,
+          "share_of_relatives_with_it": 0.154,
+          "changed_in_origins": 0.0,
+          "changed_in_controls": 0.111
+        },
+        "Collagen": {
+          "share_of_derived_with_it": 0.643,
+          "share_of_relatives_with_it": 0.462,
+          "changed_in_origins": 0.5,
+          "changed_in_controls": 0.429
+        },
+        "fn3": {
+          "share_of_derived_with_it": 0.5,
+          "share_of_relatives_with_it": 0.769,
+          "changed_in_origins": 0.0,
+          "changed_in_controls": 1.0
+        },
+        "EGF": {
+          "share_of_derived_with_it": 0.286,
+          "share_of_relatives_with_it": 0.385,
+          "changed_in_origins": 0.5,
+          "changed_in_controls": 0.143
+        }
+      },
+      "developmental transcription factors": {
+        "Homeobox_KN": {
+          "share_of_derived_with_it": 1.0,
+          "share_of_relatives_with_it": 0.923,
+          "changed_in_origins": null,
+          "changed_in_controls": 0.0
+        }
+      }
+    }
+  },
+  "caveats": [
+    "Leave-one-origin-out AUROC: law 0.6191 against control_baseline 0.7298, rarity_baseline 0.8137. Law minus the better baseline per origin: -0.1945 [-0.2289, -0.1677] — the law loses to the better baseline.",
+    "Added to rarity, the law gains -0.0458 [-0.0599, -0.0266] AUROC; against the control signature added to rarity the same way: -0.0456 [-0.0603, -0.0271].",
+    "5 independent origins; the interval is a bootstrap over origins, so it is wide and would narrow only with more origins, not more species per origin.",
+    "Pairs are curated from taxonomy (scripts/transition_catalog.py); the relative stands in for the ancestor, so changes on the relative's own branch are counted as the transition's.",
+    "Presence comes from UniProt Pfam cross-references with no completeness model: an incomplete proteome reads as losses. Reduced genomes (Microsporidia, Giardia, Cryptosporidium) are both incomplete-looking and genuinely reduced, which this design cannot separate.",
+    "Copy-number expansion concordance (Spearman between origins): 0.008 against 0.1564 between unicellular control pairs.",
+    "Dictyostelia are aggregative (cells gather), the others clonal (cells stay together after division): different routes to multicellularity are pooled."
+  ],
+  "contexts": {}
+}

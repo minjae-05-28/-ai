@@ -33,6 +33,10 @@ def law(lid):
     # leave-tips-out saturates (0.986 vs 0.980); the known-truth test against present-day
     # frequency is the ancestor test and is clear (0.995 vs 0.976)
     ("plastid_ancestor_v1", "양성"),
+    # its claim is specificity beyond the aerobic-parasite signature and rarity (interval clear of
+    # zero); the law alone loses to rarity, which the card says
+    ("anaerobic_transition_v1", "양성"),
+    ("multicellular_transition_v1", "음성"),   # independent origins do not gain the same families
 ])
 def test_known_verdicts(lid, expected):
     from build_lab_vault import verdict_of

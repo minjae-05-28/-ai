@@ -1,0 +1,48 @@
+---
+유형: 환경
+법칙: anaerobic_transition_v1
+클러스터: 전환 경로
+tags:
+  - 법칙/anaerobic_transition_v1
+  - 클러스터/전환 경로
+  - 판정/양성
+  - 유형/환경
+---
+
+# anaerobic_transition_v1 · 환경
+
+← [[anaerobic_transition_v1]]
+
+**카탈로그** scripts/transition_catalog.py + UniProt · **종 수** —
+
+## 환경 범위
+
+```json
+{
+ "대상": "독립 기원 6개: Metamonada, Archamoebae (Entamoeba), Neocallimastigomycota, Microsporidia, Cryptosporidium, Blastocystis",
+ "환경": "미토콘드리아가 수소발생체·미토좀으로 줄어든 진핵생물(기생·자유생활 모두)"
+}
+```
+
+## 요약 수치
+
+```json
+{
+ "한 기원 빼고 (법칙 / 기준선들)": {
+  "law": 0.7769,
+  "parasite_baseline": 0.6839,
+  "rarity_baseline": 0.8007
+ },
+ "법칙+희귀도 − 대조+희귀도": {
+  "mean": 0.0292,
+  "ci95": [
+   0.0118,
+   0.0459
+  ],
+  "what": "as law_vs_control_signature, with the law built from 3 origins (all combinations) to match the 3 control pairs"
+ }
+}
+```
+
+> [!note]
+> envelope 밖의 환경에 이 법칙을 쓰면 외삽이다. 값은 문헌 근사치(카탈로그 주석 참조).

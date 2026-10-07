@@ -1,0 +1,325 @@
+{
+ "pathway": "anaerobic",
+ "n_reference_proteomes": 1751,
+ "leave_one_origin_out": {
+  "metric": "auroc",
+  "what": "predict which candidate families the held-out origin lost",
+  "per_origin": {
+   "Metamonada": {
+    "n_candidates": 4453,
+    "n_changed": 2822,
+    "share_changed": 0.6337,
+    "law": 0.8148,
+    "parasite_baseline": 0.6733,
+    "rarity_baseline": 0.8095,
+    "law+rarity": 0.8403,
+    "combined_minus_rarity": 0.0308,
+    "parasite_baseline+rarity": 0.7734,
+    "law_vs_control_combined": 0.0669
+   },
+   "Archamoebae (Entamoeba)": {
+    "n_candidates": 4317,
+    "n_changed": 2556,
+    "share_changed": 0.5921,
+    "law": 0.8065,
+    "parasite_baseline": 0.6606,
+    "rarity_baseline": 0.7942,
+    "law+rarity": 0.8332,
+    "combined_minus_rarity": 0.039,
+    "parasite_baseline+rarity": 0.7619,
+    "law_vs_control_combined": 0.0713
+   },
+   "Neocallimastigomycota": {
+    "n_candidates": 4459,
+    "n_changed": 913,
+    "share_changed": 0.2048,
+    "law": 0.7421,
+    "parasite_baseline": 0.6268,
+    "rarity_baseline": 0.7058,
+    "law+rarity": 0.7482,
+    "combined_minus_rarity": 0.0424,
+    "parasite_baseline+rarity": 0.6948,
+    "law_vs_control_combined": 0.0534
+   },
+   "Microsporidia": {
+    "n_candidates": 3311,
+    "n_changed": 2227,
+    "share_changed": 0.6726,
+    "law": 0.7868,
+    "parasite_baseline": 0.7067,
+    "rarity_baseline": 0.8526,
+    "law+rarity": 0.855,
+    "combined_minus_rarity": 0.0024,
+    "parasite_baseline+rarity": 0.8211,
+    "law_vs_control_combined": 0.0339
+   },
+   "Cryptosporidium": {
+    "n_candidates": 2731,
+    "n_changed": 1002,
+    "share_changed": 0.3669,
+    "law": 0.7656,
+    "parasite_baseline": 0.7106,
+    "rarity_baseline": 0.8177,
+    "law+rarity": 0.8323,
+    "combined_minus_rarity": 0.0146,
+    "parasite_baseline+rarity": 0.8059,
+    "law_vs_control_combined": 0.0264
+   },
+   "Blastocystis": {
+    "n_candidates": 4996,
+    "n_changed": 2450,
+    "share_changed": 0.4904,
+    "law": 0.7458,
+    "parasite_baseline": 0.7257,
+    "rarity_baseline": 0.8245,
+    "law+rarity": 0.8229,
+    "combined_minus_rarity": -0.0016,
+    "parasite_baseline+rarity": 0.8134,
+    "law_vs_control_combined": 0.0095
+   }
+  },
+  "law": 0.7769,
+  "parasite_baseline": 0.6839,
+  "rarity_baseline": 0.8007
+ },
+ "law_minus_best_baseline": {
+  "mean": -0.0238,
+  "ci95": [
+   -0.0574,
+   0.0101
+  ],
+  "per_origin": {
+   "Metamonada": 0.0053,
+   "Archamoebae (Entamoeba)": 0.0123,
+   "Neocallimastigomycota": 0.0363,
+   "Microsporidia": -0.0658,
+   "Cryptosporidium": -0.0521,
+   "Blastocystis": -0.0787
+  },
+  "note": "law minus the better baseline in each held-out origin; bootstrap over origins"
+ },
+ "law_vs_control_matched_sources": {
+  "mean": 0.0292,
+  "ci95": [
+   0.0118,
+   0.0459
+  ],
+  "what": "as law_vs_control_signature, with the law built from 3 origins (all combinations) to match the 3 control pairs"
+ },
+ "law_adds_to_rarity": {
+  "mean": 0.0213,
+  "ci95": [
+   0.0078,
+   0.0347
+  ],
+  "what": "AUROC of law+rarity (rank average) minus rarity alone, per origin: does the convergent signal carry information rarity does not"
+ },
+ "law_vs_control_signature": {
+  "mean": 0.0436,
+  "ci95": [
+   0.0261,
+   0.0606
+  ],
+  "what": "law+rarity minus control+rarity, per origin: is the added information specific to this transition"
+ },
+ "parasitism_matched_origins": {
+  "Microsporidia": {
+   "law": 0.7868,
+   "parasite_baseline": 0.7067,
+   "rarity_baseline": 0.8526,
+   "share_lost": 0.6726
+  },
+  "Cryptosporidium": {
+   "law": 0.7656,
+   "parasite_baseline": 0.7106,
+   "rarity_baseline": 0.8177,
+   "share_lost": 0.3669
+  }
+ },
+ "share_lost": {
+  "anaerobic_origins": {
+   "Metamonada": 0.6337,
+   "Archamoebae (Entamoeba)": 0.5921,
+   "Neocallimastigomycota": 0.2048,
+   "Microsporidia": 0.6726,
+   "Cryptosporidium": 0.3669,
+   "Blastocystis": 0.4904
+  },
+  "aerobic_parasite_controls": {
+   "Trypanosomatida": 0.1613,
+   "Haemosporida + Piroplasmida": 0.6198,
+   "Pneumocystis": 0.2202
+  }
+ },
+ "panel": {
+  "respiratory chain (expected LOST)": {
+   "Complex1_51K": {
+    "share_of_derived_with_it": 0.364,
+    "share_of_relatives_with_it": 0.714,
+    "changed_in_origins": 0.5,
+    "changed_in_controls": 0.0
+   },
+   "Complex1_30kDa": {
+    "share_of_derived_with_it": 0.091,
+    "share_of_relatives_with_it": 0.286,
+    "changed_in_origins": 1.0,
+    "changed_in_controls": null
+   },
+   "COX15-CtaA": {
+    "share_of_derived_with_it": 0.0,
+    "share_of_relatives_with_it": 1.0,
+    "changed_in_origins": 1.0,
+    "changed_in_controls": 0.0
+   },
+   "COX4": {
+    "share_of_derived_with_it": 0.0,
+    "share_of_relatives_with_it": 0.357,
+    "changed_in_origins": 1.0,
+    "changed_in_controls": 0.0
+   },
+   "COX17": {
+    "share_of_derived_with_it": 0.0,
+    "share_of_relatives_with_it": 0.714,
+    "changed_in_origins": 1.0,
+    "changed_in_controls": 0.0
+   },
+   "Cytochrom_C1": {
+    "share_of_derived_with_it": 0.0,
+    "share_of_relatives_with_it": 1.0,
+    "changed_in_origins": 1.0,
+    "changed_in_controls": 0.0
+   },
+   "UCR_14kD": {
+    "share_of_derived_with_it": 0.0,
+    "share_of_relatives_with_it": 0.929,
+    "changed_in_origins": 1.0,
+    "changed_in_controls": 0.0
+   },
+   "UCR_hinge": {
+    "share_of_derived_with_it": 0.0,
+    "share_of_relatives_with_it": 0.643,
+    "changed_in_origins": 1.0,
+    "changed_in_controls": 0.0
+   },
+   "Rieske": {
+    "share_of_derived_with_it": 0.045,
+    "share_of_relatives_with_it": 1.0,
+    "changed_in_origins": 1.0,
+    "changed_in_controls": 0.0
+   },
+   "SDH_C": {
+    "share_of_derived_with_it": 0.0,
+    "share_of_relatives_with_it": 0.286,
+    "changed_in_origins": 1.0,
+    "changed_in_controls": 1.0
+   }
+  },
+  "TCA cycle (expected mostly lost)": {
+   "Citrate_synt": {
+    "share_of_derived_with_it": 0.227,
+    "share_of_relatives_with_it": 1.0,
+    "changed_in_origins": 0.667,
+    "changed_in_controls": 0.0
+   },
+   "SDH_beta": {
+    "share_of_derived_with_it": 0.455,
+    "share_of_relatives_with_it": 0.286,
+    "changed_in_origins": 0.667,
+    "changed_in_controls": null
+   }
+  },
+  "ATP synthase (expected lost in mitosomes)": {
+   "ATP-synt_D": {
+    "share_of_derived_with_it": 0.955,
+    "share_of_relatives_with_it": 1.0,
+    "changed_in_origins": 0.0,
+    "changed_in_controls": 0.0
+   },
+   "ATP-synt_DE": {
+    "share_of_derived_with_it": 0.045,
+    "share_of_relatives_with_it": 0.0,
+    "changed_in_origins": null,
+    "changed_in_controls": null
+   },
+   "ATP-synt_C": {
+    "share_of_derived_with_it": 1.0,
+    "share_of_relatives_with_it": 1.0,
+    "changed_in_origins": 0.0,
+    "changed_in_controls": 0.0
+   }
+  },
+  "anaerobic energy metabolism (expected GAINED/kept)": {
+   "Fe_hyd_lg_C": {
+    "share_of_derived_with_it": 1.0,
+    "share_of_relatives_with_it": 0.857,
+    "changed_in_origins": 0.0,
+    "changed_in_controls": 0.0
+   },
+   "Fe_hyd_SSU": {
+    "share_of_derived_with_it": 0.591,
+    "share_of_relatives_with_it": 0.429,
+    "changed_in_origins": 0.0,
+    "changed_in_controls": 1.0
+   },
+   "POR_N": {
+    "share_of_derived_with_it": 0.864,
+    "share_of_relatives_with_it": 0.286,
+    "changed_in_origins": 0.0,
+    "changed_in_controls": 1.0
+   },
+   "PFOR_II": {
+    "share_of_derived_with_it": 0.818,
+    "share_of_relatives_with_it": 0.286,
+    "changed_in_origins": 0.0,
+    "changed_in_controls": 1.0
+   },
+   "ADH_Fe_C": {
+    "share_of_derived_with_it": 0.818,
+    "share_of_relatives_with_it": 0.643,
+    "changed_in_origins": 0.0,
+    "changed_in_controls": 1.0
+   },
+   "Rubredoxin": {
+    "share_of_derived_with_it": 0.045,
+    "share_of_relatives_with_it": 0.0,
+    "changed_in_origins": null,
+    "changed_in_controls": 1.0
+   },
+   "Hemerythrin": {
+    "share_of_derived_with_it": 0.273,
+    "share_of_relatives_with_it": 0.643,
+    "changed_in_origins": 0.5,
+    "changed_in_controls": 1.0
+   }
+  },
+  "Fe-S cluster assembly (expected KEPT: the one job mitosomes still do)": {
+   "NifU": {
+    "share_of_derived_with_it": 0.636,
+    "share_of_relatives_with_it": 0.857,
+    "changed_in_origins": 0.333,
+    "changed_in_controls": 0.0
+   },
+   "NifU_N": {
+    "share_of_derived_with_it": 1.0,
+    "share_of_relatives_with_it": 0.929,
+    "changed_in_origins": 0.0,
+    "changed_in_controls": 0.0
+   },
+   "Frataxin_Cyay": {
+    "share_of_derived_with_it": 0.591,
+    "share_of_relatives_with_it": 0.929,
+    "changed_in_origins": 0.167,
+    "changed_in_controls": 0.333
+   }
+  }
+ },
+ "panel_gains": {
+  "Fe_hyd_lg_C": NaN,
+  "Fe_hyd_SSU": 0.0,
+  "POR_N": 0.6666666666666666,
+  "PFOR_II": 0.6666666666666666,
+  "ADH_Fe_C": 0.5,
+  "Rubredoxin": 0.0,
+  "Hemerythrin": 0.0
+ }
+}

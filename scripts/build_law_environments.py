@@ -286,6 +286,10 @@ def findings_for(law):
         return {t: {"법칙-진화 안 함 (운명 정확도)": v["family_level"]["fate_accuracy.law - no_change"],
                     "기능 순위 상관 법칙/암기": [v["function_level"]["law.spearman"]["mean"],
                                          v["function_level"]["memorisation.spearman"]["mean"]]} for t, v in val.items()}
+    if lid.endswith("_transition_v1"):
+        lo = val["leave_one_origin_out"]
+        return {"한 기원 빼고 (법칙 / 기준선들)": {k: v for k, v in lo.items() if isinstance(v, float)},
+                "법칙+희귀도 − 대조+희귀도": val["law_plus_rarity_minus_control_plus_rarity"]}
     if lid.startswith("leca_ancestor"):
         out = {"잎 숨기기 (뿌리별)": val["leave_tips_out_auroc_per_root"],
                "알려진 정답 (뿌리별 복원/현생 AUROC, 크기 편향)": {
@@ -416,6 +420,14 @@ def card_for(law):
             "대상": f"균류 {d['clade_tips']}종(16개 문, 목마다 고르게) + 외군 {d['outgroup_tips']}종",
             "환경": "자유생활·공생·기생 균류 모두. 레퍼런스 프로테옴이 없는 계통(아펠리다 등)과 "
                     "누클레아리아는 미포함"},
+            "species_from": "law"}
+    elif lid.endswith("_transition_v1"):
+        d = law["data"]
+        card = {"catalogue": "scripts/transition_catalog.py + UniProt", "envelope": {
+            "대상": f"독립 기원 {len(d['origins'])}개: {', '.join(d['origins'])}",
+            "환경": ("미토콘드리아가 수소발생체·미토좀으로 줄어든 진핵생물(기생·자유생활 모두)"
+                    if lid.startswith("anaerobic") else
+                    "단세포 친척과 비교한 다세포 계통(클론형 4, 집합형 1)")},
             "species_from": "law"}
     elif lid.startswith("leca_ancestor"):
         d = law["data"]
