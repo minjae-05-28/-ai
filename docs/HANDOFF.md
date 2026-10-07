@@ -1,7 +1,7 @@
 # 인계 문서 (organelle-evo)
 
 다른 모델이나 새 세션이 이 프로젝트를 이어받을 때 읽는 문서입니다.
-2026-10-02 기준, HEAD `cf4b439`.
+2026-10-07 기준. 이전 판(2026-10-02, `cf4b439`)의 내용 중 바뀐 것은 고쳤고, 사용자 제약은 그대로 둡니다.
 
 ---
 
@@ -70,8 +70,9 @@ Claude-Session: <최신 system reminder의 세션 URL>"
 ## 3. 환경
 
 - 저장소: `minjae-05-28/-ai` (공개). 로컬 클론은 `/home/user/-ai`.
-- **주 작업 디렉터리는 `/home/user/coin_anomaly_scanner`**이고 Bash 호출마다 그리로 되돌아갑니다.
+- **주 작업 디렉터리는 세션마다 다릅니다**(최근: `/home/user/Organ-eco-`). Bash 호출마다 그리로 되돌아가므로
   `cd /home/user/-ai &&` 를 매번 붙이세요. 사용자에게 줄 파일은 주 작업 디렉터리나 스크래치패드에 두세요.
+- 권한 확인을 줄이려고 `~/.claude/settings.json`에 허용 목록을 넣어도 **컨테이너가 바뀌면 사라집니다.**
 - **NCBI, EBI, UniProt은 샌드박스에서 막혀 있습니다.** 데이터 수집은 전부 GitHub Actions에서 합니다.
   GitHub(raw, git clone)은 로컬에서도 됩니다.
 - `gh api`는 됩니다. GitHub MCP 도구(`mcp__github__*`)를 우선 쓰세요.
@@ -85,9 +86,12 @@ Claude-Session: <최신 system reminder의 세션 URL>"
 | `proteome-composition.yml` | 아미노산 조성 (빠름, 종당 몇 분) |
 | `phenotypes.yml` | 녹아웃·단백질량 (`sources`, `orgs` 입력) |
 | `rna-expression.yml` | ENA 리드 → salmon TPM |
-| `ribosomal-tree.yml` | 리보솜 단백질 계통수 (`--bootstrap`) |
+| `ribosomal-tree.yml` | 리보솜 단백질 계통수 (`--bootstrap`). **수동 실행 전용** (아래 10절 사고 참조) |
+| `public-genomes.yml` | UniProt 프로테옴 수집. `kingdoms`(왕국·그룹 이름) 또는 `pick`(`leca2:300`처럼 진핵 균형 표본을 먼저 고르고 그것만 받음) |
+| `marker-tree.yml` | UniProt 수집 분류군의 리보솜 마커 + 계통수. `pick`(kingdom:N 계통 고르게 뽑기), `upids_file`, `method`(fasttree / iqtree / iqtree-fast), `lineage`(IQ-TREE 제약용) |
+| `lab-vault.yml` | laws/·results/가 바뀌면 옵시디언 볼트를 다시 만들어 커밋 |
 | `fetch-data.yml` | GenBank 레코드 |
-| `run-analysis.yml` | `python scripts/`로 시작하는 임의 명령 실행 후 결과 커밋 |
+| `run-analysis.yml` | `python scripts/`로 시작하는 임의 명령 실행 후 결과 커밋. **명령이 길면 동시성 그룹 이름이 거부돼 작업이 아예 안 생깁니다** — 여러 단계는 `scripts/run_clade_pipeline.py` 같은 짧은 래퍼로 |
 | `recover-artifacts.yml` | **커밋 단계가 실패한 과거 실행의 산출물을 복구** (`run_id`, `pattern`, `path`) |
 
 Pfam은 캐시 키 `pfam-a-current-v1`에 있습니다.
@@ -117,169 +121,90 @@ done
 
 | 데이터 | 개수 |
 |---|---|
-| 세균·고세균 Pfam 프로필 | 96종 (57쌍, 유효 54쌍) |
-| 진핵생물 Pfam 프로필 | 145종 (112쌍, 15개 기생 계통) |
-| 실제 유전체 | 미토콘드리아 75, 색소체 54, 곤충 공생세균 26 |
-| 아미노산 조성 | 세균 96, 진핵 142, **동물 69** |
-| 실측 RNA 발현 | 51종 (진핵 46, 세균 26 중 유효) |
-| 녹아웃 (Fitness Browser) | 세균 69종 |
-| 단백질량 (PaxDb) | 11종 |
-| 리보솜 마커 | 세균 86, 진핵 142 |
-| 계통수 | `results/phylo_tree/{prokaryotes,eukaryotes,symbionts}.nwk` + 부트스트랩 20개 |
+| UniProt 프로테옴 (Pfam 프로필, `data/uniprot/shards`) | 세균 17,926 · 바이러스 14,590 · 균류 1,525 · 고세균 635 · 기타 진핵 256 |
+| GTDB | 세균·고세균 종 대표 전체(`data/gtdb/species_reps.tsv.gz`), bac120·ar53 계통수 |
+| HMMER로 만든 프로필 | 원핵 96종, 진핵 145종, 동물 69종 |
+| 소기관 유전체 | 미토콘드리아 75, 색소체 54, 곤충 공생세균 26 |
+| 실험 자료 | 녹아웃 69종, RNA 발현 51종, 단백질량 11종, LTEE 대장균 |
+| 계통수 (`results/phylo_tree/`) | prokaryotes·eukaryotes·symbionts(+부트스트랩), amoeba, fungi_nb, leca(FastTree), leca2_fast(IQ-TREE 제약), cyano(GTDB 부분) |
+
+UniProt은 샌드박스에서 막혀 있으므로 수집은 Actions(`public-genomes.yml`)에서만 합니다.
 
 ---
 
 ## 5. 법칙 저장소
 
-```
-laws/*.json          27개  미생물·단세포 진핵생물·소기관
-laws/animals/*.json   2개  동물 세포
-```
+`laws/*.json` 41개(미생물·단세포 진핵·소기관·조상), `laws/animals/*.json` 3개. **두 저장소를 섞지 마세요.**
+모든 법칙에는 `laws/environments/<id>.json` 환경 카드가 있어야 합니다(테스트가 검사).
 
-**두 저장소를 섞지 마세요.** 측정 결과입니다 — 미생물 온도 법칙을 동물에 적용하면 틀립니다.
-코드에서도 분리됩니다:
-
-```python
-from organelle_evo.laws import registry_for
-registry_for("animals")      # -> laws/animals
-registry_for("prokaryotes")  # -> laws
-registry_for("nope")         # -> KeyError (조용히 미생물 저장소로 가지 않음)
-```
-
-### 핵심 결과 요약
+판정(볼트 판정기 기준, 2026-10-07): 양성 12 · 음성 9 · 무승부 5 · 구조 분석 7 · 규모 보고 3 · 교란 검정 3 ·
+전이 검정 1 · 검증 없음 3(`endosymbiosis_v1`, `eukaryote_axes_v1`, `eukaryote_lifestyle_v1`).
 
 **유전자 구성**
 - 환경 축은 도움이 안 됩니다: 0.813(축 있음) vs 0.814(없음), 암기 0.849
-- 기생 축은 작동합니다: 처음 보는 계통 전이 법칙 0.760 vs 암기 0.785 vs 복제수만 0.647
-- 잃는 비율: 자유생활 9.0% / 세포 밖 기생 19.9% / 세포 안 34.8% / 세포 안+미토콘드리아 퇴화 74.8%
-- 잃는 **순서**는 유전자별 소실 성향만으로 설명됩니다 (네 시스템 공통)
-- 맥락 특성(발현량·오페론·도메인 짝·엑손): 법칙 +0.005 [0.003, 0.009]. 많이 발현되는 유전자가 남음(−0.31)
+- 기생 축은 작동합니다. 잃는 비율: 자유생활 9.0% / 세포 밖 기생 19.9% / 세포 안 34.8% / 세포 안+미토콘드리아 퇴화 74.8%
+- 잃는 **순서**는 유전자별 소실 성향만으로 설명됩니다(네 시스템 공통)
 - 형제 계통 천장: 기생 0.895, 극한 0.853
 
-**서열 조성** (여기가 환경이 실제로 작동하는 곳)
-- IVYWREL vs 온도 r 0.85 (n=86), R² 0.53–0.63
-- GC3 교란 검증: 온도·염분 법칙 유지, 질소 절약 소멸, 무산소 FYMINK 32% 잔존
-- 계통 보정: 14개 중 12개가 서열 계통수 PGLS 통과, 그 12개는 부트스트랩 20개 전부 통과
-
-**실험 데이터 연결**
-- 대장균 녹아웃 → 곤충 공생세균 유지율: 필수 59% / 풍부배지 손해 35% / 최소배지만 20% / 없어도 됨 8%
-- 극한 세균: 필수 아님 60% vs 대부분 필수 14% 소실, 녹아웃만으로 AUROC 0.72
-- 실측 RNA: 코돈 대리값과 중앙값 Spearman +0.30. 약하게 발현되는 유전자가 사라짐(AUROC 0.58–0.64)
-  — 다만 흔한 정도를 빼면 −0.06/−0.15로 약함
+**서열 조성** (환경이 실제로 작동하는 곳)
+- IVYWREL vs 온도 r 0.85 (n=86). GC3 교란·계통 보정 검정 통과
 
 **음성 결과 (가장 중요)**
-- `lab_evolution_v1`: LTEE 대장균 5만 세대 303클론 + 돌연변이 축적 15클론 대조군.
-  비교진화 법칙이 실험 결실을 맞히는 정도 AUROC 0.59인데, **선택압 없는 대조군도 0.60**.
-  차이 −0.005 [−0.067, +0.056] → 선택이 하는 몫이 검출되지 않음.
-  속도 1,000세대당 4.0개 (축소 유전체는 수백~수천 개)
-- `animal_temperature_v1`: 미생물 온도 법칙이 동물에 전이되지 않음
-- `animal_axes_v1`: 동물 조성 지표 9개 **전부** 분류군 하나를 빼면 평균 기준선보다 못함.
-  삼투압 → 측쇄 질소만 분류군 수준 통과. GC 보정 후에는 삼투압·요소가 4개 지표에 잔존,
-  온도는 GC로 설명되어 탈락
-- `human_cell_v1`: 사람 몸 세포 역예측. 조성은 잘 맞지만(장 IVYWREL 오차 0.011)
-  유전자 구성은 법칙 0.86 < 희귀도 기준선 0.93 < 암기 0.92 → **법칙이 짐**
-
-### 정정한 것 (이 방식을 따르세요)
-
-아침에 "동물에서 온도 법칙의 부호가 뒤집힌다"고 보고했습니다. 미토콘드리아 단백질체
-19종(유전자 13개씩) 기준이었습니다. 핵 단백질체 69종으로 다시 보니 부호는 **같고**
-5배 약했습니다. 부호 역전은 미토콘드리아 AT 편향의 성질이었습니다.
-
-법칙 파일을 지우지 않고 `animal_temperature_v1`의 `caveats`에 `SUPERSEDED IN PART`로
-무엇이 유지되고 무엇이 철회되는지 적었습니다. **유지:** "미생물 법칙을 동물에 쓰면 안 된다".
-**철회:** "동물에선 법칙이 뒤집힌다".
+- `lab_evolution_v1`: LTEE 5만 세대. 법칙 − 선택압 없는 대조군 = −0.005 [−0.067, +0.056] → 선택의 몫 검출 안 됨
+- `animal_temperature_v1`, `animal_axes_v1`, `animal_content_v1`(축 법칙 0.794 < 희귀도 0.836): 미생물 법칙은 동물에 안 통함
+- `human_cell_v1`: 유전자 구성 역예측에서 법칙 0.86 < 희귀도 0.93 < 암기 0.92
+- `loss_prediction_v1`, `environment_v2/v3`: 법칙 단독은 암기를 못 이김
 
 ---
 
-## 6. 동물 법칙 (가장 최근 작업)
+## 6. 조상 복원 (2026-10-03 ~ 10-07의 주 작업)
 
-미생물 축을 그대로 쓸 수 없으니 `src/organelle_evo/animals/catalog.py`에 새로 정의했습니다.
-**69종 18개 분류군.**
+모든 조상은 **유전자군(Pfam) 보유 여부**만 복원합니다. 서열은 만들지 않습니다.
 
-| 축 | 범위 | 뜻 |
-|---|---|---|
-| `tcell` | −1 ~ 41.5°C | 세포가 실제로 작동하는 온도 (항온동물은 체온, 변온동물은 서식 온도) |
-| `osmol` | 300 vs 1000 mOsm | 세포 내 삼투압. 해양 무척추동물은 바닷물에 맞춰 순응, 척추동물·담수·육상은 조절 |
-| `hypoxia` | 0/1 | 산소가 거의 없는 곳 |
-| `endo` | 0/1 | 항온동물 |
-| `parasite` | 0/1 | 기생 |
-| `urea` | 0/1 | 요소·TMAO로 삼투 맞춤 (연골어류) |
+### 방법
+- 유전자군마다 보유/소실 2상태 마르코프 사슬. 미토콘드리아 모형 탐색의 상위 5개 모형 앙상블.
+- **완전도 관측 모형**(`--completeness`): 불완전 프로테옴을 '손실'이 아니라 '누락'으로 가능도에 넣음.
+  모의에서 크기 오차 −9.6% → −6.6%. 축소 계통 손실 가속(`--no-reduced-mult`)은 끔(이중 보정 방지).
+- **알려진 정답 채점**(`scripts/node_power.py`): 같은 계통수에서 정답을 아는 가짜 유전자군을 진화시켜 각 마디를 직접
+  채점. 잎 숨기기는 촘촘한 분류군에서 포화하므로 **조상의 성적은 이것으로 말합니다.** 크기는 이 채점의 크기 편향이
+  10% 안쪽일 때만 밝힙니다.
+- **수평 전달 측정**(`scripts/hgt_rate.py`): 상한으로만 읽음(전달과 원래 높은 획득률을 구분 못 함).
+- 뿌리: FastTree 계통수는 뿌리가 없으므로 외군에서 가장 먼 잎에 뿌리를 잡음(`--root-outgroup`).
+  외군이 없는 LECA는 이름 붙은 갈래로 뿌리를 나눔(`--root-split`, 여러 후보를 각각 돌려 결합).
+- 긴 가지 끌림으로 분류군 밖에 붙은 잎이 2% 이하면 빼고 기록(미포자충).
+- 한 줄 실행: `python scripts/run_clade_pipeline.py <fungi|leca|leca2|cyano> [--root-split X --root-name y] [--tree ...]`
+  → 복원 + 알려진 정답 + 수평 전달. 법칙 카드: `save_clade_law.py`(균류·남세균), `save_leca_law.py`(LECA, `combine_leca.py` 뒤).
 
-설계 의도: 온도와 삼투압을 **교차**시켜 축이 서로 섞이지 않게 했습니다
-(상관 −0.35). 담수 자포동물 히드라가 산호·말미잘에 대한 분류군 고정 대조군입니다.
-온도 ↔ 항온성은 +0.56으로 생물학적으로 불가피하게 상관이 있고, 법칙 한계에 적어 뒀습니다.
+### 결과
+| 조상 | 법칙 | 표본 | 알려진 정답 AUROC (복원 / 현생 빈도) | 크기 |
+|---|---|---|---|---|
+| 미토콘드리아 조상(알파프로테오박테리아) | `mito_ancestor_v1` | 2,322 | 0.991 / 0.945 | 4,038 (−8.9%) |
+| 리케차목 | (같은 법칙) | 53 | 0.975 / 0.908 | 크기 −37%: 경고 |
+| 아메바(표본 12종) | `amoeba_ancestor_v4` | 12 | 0.929 / 0.890 | 말하지 않음 |
+| 균류 / 핵심 균류 | `fungal_ancestor_v1` | 289 / 286 | 0.850 / 0.745 · 0.890 / 0.810 | 4,282 / 말하지 않음 |
+| LECA 1판 | `leca_ancestor_v1` | 256 | 0.62~0.82 | 말하지 않음 |
+| LECA 2판 | `leca_ancestor_v2` | 250 | 0.81~0.86 / 0.71~0.74 (뿌리 4곳) | 3,919~4,601 |
+| 남세균 / 엽록체 분기점 | `plastid_ancestor_v1` | 162 / 159 | 0.995 / 0.976 · 0.999 / 0.989 | 2,417 / 2,498 |
 
-5종은 NCBI에 주석 달린 유전체가 없어 제외했습니다(카탈로그에 종별 이유 주석).
-남극깔따구(2°C)를 잃어 육상 저온 끝이 사라지고 기생이 6→4종으로 줄었습니다.
+알려진 사실과 맞은 것: 균류·LECA 조상의 편모, 미토콘드리아 조상의 레클리노모나스 유전자, 글로에오박터의 KaiA/KaiB 부재.
+알려진 한계: LECA 2판에서 엽록체 광계 유전자군이 0.24~0.73(2차 내공생으로 옆으로 퍼진 유전자를 모형이 조상 보유로
+읽음); 균류 뿌리는 축소 기생체 3종에 기댐; 균류·남세균·LECA 2판은 부트스트랩 계통수 없음.
 
----
-
-## 7. 지금 하던 일 (여기서 이어받으세요)
-
-### 진행 중: 동물 유전자 구성(Pfam) 프로필 수집 — **아직 시작 안 함**
-
-사용자가 "ㄱㄱ"로 승인했습니다. 조성(아미노산)은 끝났고, **"어떤 유전자군을 잃고 늘리는가"는
-아직 안 했습니다.** 동물 69종의 Pfam 프로필이 필요합니다.
-
-**해야 할 일:**
-
-1. `scripts/animal_profile.py`를 만듭니다. `scripts/eukaryote_profile.py`를 본뜨되
-   `organelle_evo.animals.catalog`에서 `SPECIES`, `slug`를 읽고 `data/animals/`에 씁니다.
-   출력 형식은 진핵생물과 같게 유지하세요 (기존 분석 코드가 그 형식을 읽습니다):
-   ```json
-   {"species": ..., "organism": ..., "accession": ..., "n_genes": ...,
-    "columns": ["n_genes","n_domains","sum_gravy","sum_tm_helices","sum_length"],
-    "families": {"PF이름": [n_genes, n_domains, sum_gravy, sum_tm_helices, sum_length]}}
-   ```
-2. `.github/workflows/animal-pfam.yml`을 만듭니다. `eukaryote-pfam.yml`을 본뜨되:
-   - **커밋 단계에 6회 재시도 루프를 꼭 넣으세요** (위 4절 참조)
-   - `data/eukaryotes/pfam_subset.txt`(11,162개 유전자군)을 `--families`로 쓰면 검색 시간이
-     절반으로 줄어듭니다. 동물 전용 유전자군이 빠질 수 있으니, 쓸지 말지 판단하고
-     판단 근거를 적으세요
-   - 동물 유전체는 큽니다(종당 단백질 약 2만 개). `timeout-minutes: 330`, `max-parallel: 12`
-3. 수집 후 유전자 소실·복제 법칙을 적합합니다. 환경 축이 **유전자 구성**에는 도움이 안 됐던
-   미생물 결과(0.813 vs 0.814)와 동물 조성 결과를 보면 여기서도 음성이 나올 가능성이 높습니다.
-   **반드시 암기·희귀도 기준선과 나란히 보고하세요.**
-   결과는 `laws/animals/animal_content_v1.json`에 저장합니다 (미생물 저장소 아님).
-
-**주의:** 동물은 쌍(ancestor → descendant) 구조가 없습니다. 미생물·진핵 법칙은 쌍 비교로
-학습하는데, 동물 카탈로그는 축만 있고 쌍이 없습니다. 유전자 소실을 보려면
-(a) 분류군 내 비교쌍을 설계하거나 (b) 조성처럼 축에 대한 회귀로 가거나 둘 중 하나를
-골라야 합니다. **이 설계 판단을 사용자에게 설명하고 진행하세요.**
-
-### 자동 체크인
-
-`trig_01URvnmvXYgxEekjZiW911AR` (routine "Check knockout/RNA runs")가
-`2026-10-03T00:10:00Z`에 한 번 발화하도록 설정돼 있습니다. 전체 작업 목록을 담고 있습니다.
-`mcp__Claude_Code_Remote__update_trigger`로 갱신하세요. **`run_once_at`은 미래여야 합니다** —
-먼저 `date -u` 로 현재 시각을 확인하세요 (세션이 10시간 넘게 쉴 수 있습니다).
-
-### 남은 백로그 (`docs/BACKLOG.md`)
-
-- 동물 유전자 구성(Pfam) 법칙 ← 위 진행 중 항목
-- 척추동물 핵 단백질체로 온도 전이 재검정 (미토콘드리아는 유전자 13개뿐)
-- 포트폴리오·법칙 지도 아티팩트에 천장·신뢰구간·새 특성 결과 반영
-- 진핵생물 GC3/맥락 특성을 기생생물 후손으로 확장할지 판단
-- RNA 미수집 21종 (예쁜꼬마선충·짚신벌레는 공개 RNA-seq가 매핑률 10% 필터를 통과 못 함)
+### 표본 고르기
+- 균류: `pick_clade_sample.py` — 목(order)마다 한 종씩 먼저(돌려가며).
+- LECA: `pick_eukaryotes.py` — 진핵 큰 갈래마다 같은 몫. 2판부터 몫보다 후보가 적은 갈래는 BUSCO 기준을 빼고(지아르디아처럼
+  원래 줄어든 유전체), 같은 속은 하나씩 먼저.
+- 남세균: `make_gtdb_subtree.py` — GTDB 종 대표를 종 이름으로 UniProt과 짝지음. 'Synechococcus sp.' 같은 이름은 뺌.
 
 ---
 
-## 8. 작업 방식
-
-```bash
-cd /home/user/-ai && PYTHONPATH=src python3 scripts/<스크립트>.py
-cd /home/user/-ai && PYTHONPATH=src python3 -m pytest -q    # 63개 통과해야 함
-cd /home/user/-ai && python3 scripts/build_obsidian.py      # Obsidian 볼트 55개 노트
-```
-
-결과를 내면 이 네 곳에 기록하세요: `laws/README.md`, `README.md`, `docs/BACKLOG.md`,
-그리고 `scripts/build_obsidian.py`의 `LAWS`(미생물) 또는 `ANIMAL_LAWS`(동물) 딕셔너리.
-볼트를 다시 만들고 커밋·푸시합니다.
+## 7. 산출물
 
 ### 아티팩트 (사용자 claude.ai 계정, 비공개)
-
 | 이름 | URL |
 |---|---|
+| **조상 복원 아틀라스** (복원한 조상 전부, 복원하기 → 상세, 현재 vs 조상 막대그래프) | https://claude.ai/artifact/4TCtAaAbETWqPSXtbZFhpT |
+| 아메바 조상 복원 보고서 | https://claude.ai/artifact/MgkJrwkyVvwR82LXQSS8py |
 | 포트폴리오 | https://claude.ai/artifact/KmEtXRmrMdLmDY7rw2QkaA |
 | 진화 법칙 지도 | https://claude.ai/artifact/6P3rWZp3Y1sjwuh2JycjVj |
 | 조상 역추적기 | https://claude.ai/artifact/6en5NX62SRcLPZhnut7YJg |
@@ -287,9 +212,50 @@ cd /home/user/-ai && python3 scripts/build_obsidian.py      # Obsidian 볼트 55
 | 두 행성의 45억 년 | https://claude.ai/artifact/N3rhy44F7hP3aqxMfFxFPK |
 | 사람 몸 세포 3D | https://claude.ai/artifact/XW5r3bLqC8MY1t5rzEWLmA |
 
+아틀라스 갱신: `scripts/build_atlas.py` → `results/atlas/atlas.json`을 페이지의 `<script id="data">`에 넣어 같은 URL로
+다시 게시. 새 조상은 `build_atlas.py`의 `CLADES`에 추가합니다.
+
+### 옵시디언 연구노트 볼트
+- `scripts/build_lab_vault.py` → `obsidian/organelle-evo-lab`(노트 약 400개): 법칙마다 묶음(허브·계수·검증·한계·환경·데이터),
+  실험·방법·데이터셋·조상·음성 결과·정정.
+- 판정기는 같은 지표끼리만 비교하고, 법칙이 직접 기록한 '법칙 − 대조' 검정이 있으면 그것이, 조상 법칙은 자기 마디의
+  알려진 정답(최악의 뿌리)이 판정합니다. `tests/test_lab_vault.py`에 고정.
+- `lab-vault.yml`이 푸시마다 다시 만들고, 사용자 PC(Windows)의 예약 작업 "organelle-evo vault sync"가 15분마다
+  sparse clone으로 받아 `바탕 화면\organelle-evo-lab`에 복사합니다(`C:\Users\gimm3\vs code\sync_organelle_vault.ps1`).
+
 ---
 
-## 9. 고쳤던 버그 (같은 실수 반복 방지)
+## 8. 지금 상태와 다음 일 (여기서 이어받으세요)
+
+1. **계통수 불확실성이 빠진 복원**: 균류(부트스트랩 실행이 시간 초과로 0개), LECA 2판(IQ-TREE 전체 탐색 2회 모두
+   4시간 한도 초과 → `-fast` 계통수 사용). 정렬이 13만 열로 대부분 빈칸이라 느립니다. 빈칸 열을 거른 정렬로
+   IQ-TREE 전체 탐색 + 빠른 부트스트랩을 다시 돌리거나, 실행 시간을 나눠야 합니다.
+2. **판정이 잎 숨기기에 머문 법칙**: `mito_ancestor_v1`(볼트 '무승부'), 아메바 법칙들 — 알려진 정답 채점은
+   `results/node_power/`에 있지만 법칙 파일에는 없습니다. 법칙을 덮어쓰지 말고 새 판에 채점을 넣으세요.
+3. **검증 없는 법칙 3개**: `endosymbiosis_v1`, `eukaryote_axes_v1`, `eukaryote_lifestyle_v1`.
+4. **LECA 더 나아가기**: UniProt에 없는 갈래(CRuMs, 헤미마스티고포라, 텔로네미아 등)는 EukProt에서 받아 HMMER로
+   Pfam을 달아야 함(Actions 수 시간 — 먼저 물어볼 것). 내공생 유전자 전달을 모형에서 따로 다루는 방법도 필요.
+5. **아직 못 하는 조상**: 거대바이러스(계통수 미구축), CPR(쓸 수 있는 서열 15종), 감기 바이러스(방법 불성립, 하지 않음).
+6. `docs/BACKLOG.md`의 이전 항목들(동물 핵 단백질체 온도 재검정, RNA 미수집 21종 등).
+
+---
+
+## 9. 작업 방식
+
+```bash
+cd /home/user/-ai && PYTHONPATH=src python3 scripts/<스크립트>.py
+cd /home/user/-ai && PYTHONPATH=src python3 -m pytest -q    # 90개 통과해야 함
+cd /home/user/-ai && PYTHONPATH=src python3 scripts/build_lab_vault.py   # 볼트
+cd /home/user/-ai && PYTHONPATH=src python3 scripts/build_law_environments.py  # 법칙 환경 카드
+cd /home/user/-ai && PYTHONPATH=src python3 scripts/build_atlas.py       # 아틀라스 데이터
+```
+
+새 법칙을 만들면: 환경 카드(`build_law_environments.py`에 항목 추가) → 볼트 → 아틀라스(조상이면) 순으로 갱신하고 커밋합니다.
+법칙 파일은 만든 뒤에는 고치지 않습니다(커밋 전 같은 세션 안에서 다시 만드는 것만 허용).
+
+---
+
+## 10. 고쳤던 버그 (같은 실수 반복 방지)
 
 - **DEG 녹아웃 분석이 뒤집혀 나옴** (AUROC 0.39). DEG는 필수 유전자만 싣기 때문에,
   없는 유전자군을 0으로 세지 않으면 부호가 뒤집힙니다. 프로필의 모든 유전자군을 분모로 쓰세요.
@@ -305,3 +271,12 @@ cd /home/user/-ai && python3 scripts/build_obsidian.py      # Obsidian 볼트 55
   4줄 배수로 자르고, salmon이 실패하면 그 실행만 건너뜁니다.
 - **NCBI 주석 유전체 없음**: 진핵 5종, 동물 5종이 이 이유로 제외됐습니다.
   카탈로그에서 지울 때 **이유를 주석으로 남기세요.**
+- **푸시가 다른 워크플로를 돌려 기존 결과를 덮어씀** (10-06). `scripts/ribosomal_tree.py`를 고치자 `ribosomal-tree.yml`이
+  푸시로 돌아 진핵 계통수(151종)를 148종으로 바꿨습니다. 되돌리고 그 워크플로를 수동 전용으로 바꿨습니다.
+  **푸시 트리거가 있는 워크플로의 경로를 건드릴 때는 확인하세요**(지금은 `lab-vault.yml`, `tests.yml`).
+- **긴 계산이 끝에서만 저장됨**: FastTree 부트스트랩·IQ-TREE가 작업 한도에 걸리면 전부 날아갔습니다. 본 계통수를
+  먼저 쓰고, 부트스트랩은 하나씩 쓰고, 빌드에 230분 상한을 둡니다. IQ-TREE는 끝에서만 쓰므로 `-fast` 대비책을 같이 돌리세요.
+- **FastTree 계통수에 뿌리가 없음**: 써 있는 뿌리가 분류군 안에 있을 수 있습니다. `--root-outgroup`을 쓰세요.
+- **볼트 판정기**: 단위가 다른 수치 비교(10-04), 법칙 자신의 질문 무시·조상 법칙의 포화된 검정 사용(10-07). 둘 다 정정 노트와 테스트가 있음.
+- **IQ-TREE 제약 계통수의 이중 괄호**: 하위 그룹이 하나뿐인 그룹이 `((a,b))`가 되어 거부됨. 고침, 테스트 있음.
+
