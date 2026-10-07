@@ -3,7 +3,7 @@
 법칙: leca_ancestor_v1
 클러스터: 조상 복원
 판정: 양성
-기준선대비: 0.0489
+기준선대비: 0.0642
 tags:
   - 법칙/leca_ancestor_v1
   - 클러스터/조상 복원
@@ -23,6 +23,8 @@ tags:
 | --- | --- | --- | --- | --- |
 | leave_tips_out_auroc_per_root · discoba (auroc) | `reconstruction` 0.9818 | `clade_frequency` 0.9329 | +0.0489 | 높을수록 좋음 |
 | leave_tips_out_auroc_per_root · opisthokonta (auroc) | `reconstruction` 0.9828 | `clade_frequency` 0.9141 | +0.0687 | 높을수록 좋음 |
+| known_truth_per_root · discoba (auroc) | `recon_auroc` 0.6196 | `freq_auroc` 0.5554 | +0.0642 | 높을수록 좋음 |
+| known_truth_per_root · opisthokonta (auroc) | `recon_auroc` 0.8227 | `freq_auroc` 0.6721 | +0.1506 | 높을수록 좋음 |
 | known_truth_per_root · discoba (logloss) | `recon_logloss` 0.7701 | `prior_logloss` 0.6929 | -0.0772 | 낮을수록 좋음 |
 | known_truth_per_root · opisthokonta (logloss) | `recon_logloss` 0.7027 | `prior_logloss` 0.6929 | -0.0098 | 낮을수록 좋음 |
 

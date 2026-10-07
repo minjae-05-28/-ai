@@ -23,7 +23,7 @@ RESULTS = Path("results")
 # A law's validation names its baselines differently per experiment; these are the ones used.
 LAW_KEYS = ("composition", "law", "axis_law", "environment_law", "reconstruction", "relatives", "combined", "recon")
 BASE_KEYS = ("taxonomy", "memorisation", "rarity", "copies_only", "no_environment", "no_axes", "clade_frequency",
-             "alpha_frequency", "frequency", "mean", "baseline", "prior", "nearest_tip")
+             "alpha_frequency", "frequency", "freq", "mean", "baseline", "prior", "nearest_tip")
 CLUSTERS = {
     "소기관": ("mito", "organelle", "endosymbiosis", "coloss", "severity", "loss_order"),
     "기생·극한": ("environment", "eukaryote", "context", "composite", "convergent", "expansion"),
@@ -200,9 +200,49 @@ def kind_of(law_id):
     return None
 
 
+def decisive_tests(validation):
+    """Differences a law reports itself with an interval, e.g. auroc_minus_no_selection_control:
+    {"mean", "ci95"}. When a law states its own head-to-head test, that test decides the verdict,
+    not whichever baseline happens to sit next to it (lab_evolution_v1 beat rarity but not the
+    no-selection control, which is its actual claim)."""
+    out = []
+
+    def walk(d, path):
+        if not isinstance(d, dict):
+            return
+        for k, v in d.items():
+            if isinstance(v, dict):
+                if "_minus_" in k and isinstance(v.get("mean"), (int, float)) and isinstance(v.get("ci95"), list):
+                    out.append({"where": f"{path} · {k}" if path else k, "mean": v["mean"], "ci95": v["ci95"]})
+                else:
+                    walk(v, f"{path} · {k}" if path else k)
+
+    walk(validation or {}, "")
+    return out
+
+
 def verdict_of(validation, law_id=""):
     """Did the law beat the baselines it was measured against? Read off the comparison groups."""
     groups = comparison_groups(validation)
+    tests = decisive_tests(validation)
+    if tests:
+        t = tests[0]
+        lo, hi = t["ci95"]
+        label = "양성" if lo > 0 else ("음성" if hi < 0 else "무승부")
+        return label, round(t["mean"], 4), groups + [{
+            "where": t["where"], "metric": "difference", "law": "법칙 - 대조", "law_value": t["mean"],
+            "ci95": t["ci95"], "ci_holds_zero": lo <= 0 <= hi, "baseline": "0", "baseline_value": 0.0,
+            "lower_is_better": False, "primary": True, "margin": round(t["mean"], 4),
+            "relative": round(t["mean"], 4), "bounded": True, "decisive": True}]
+    # Ancestor reconstructions: the known-truth test (simulated families on the same tree) speaks
+    # to the ancestor; leave-tips-out saturates in tight clades. Judge on the WORST known-truth
+    # node (several root positions or nodes), against present-day frequency.
+    kt = [x for x in groups if "known_truth" in x["where"] and x["metric"] == "auroc"
+          and "subclades" not in x["where"] and "core_node" not in x["where"]]   # other nodes, not this law's
+    if kt:
+        g = min(kt, key=lambda x: x["relative"])
+        r = g["relative"]
+        return ("양성" if r > 0.01 else ("음성" if r < -0.01 else "무승부")), g["margin"], groups
     if not groups:
         if not validation:
             return "검증 없음", None, None
@@ -493,6 +533,21 @@ CORRECTIONS = {
         "loss_prediction_v1, context_features_v1(법칙 단독은 암기에 짐), genome_traits_v1(구간이 0 포함 "
         "→ 무승부). 이 경우들은 테스트로 고정했습니다(`tests/test_lab_vault.py`).\n\n"
         "**교훈** — 자동 판정은 '그동안 손으로 확인한 결론'과 대조하기 전까지 믿으면 안 됩니다."),
+    "정정 · 판정기가 법칙 자신의 질문을 보지 않았음": (
+        "**무엇이 틀렸나** — 두 가지였습니다. (1) `lab_evolution_v1`이 **양성**으로 찍혔습니다. 판정기가 "
+        "옆에 있던 희귀도 기준선(0.590 대 0.566)만 봤기 때문입니다. 이 법칙이 묻는 것은 '선택압 없는 대조군보다 "
+        "나은가'이고, 그 차이는 −0.005 [−0.067, +0.056]로 0을 포함합니다. (2) 조상 복원 법칙들은 포화된 잎 "
+        "숨기기 검증으로 판정됐고, 알려진 정답 채점에서는 현생 빈도 기준선(`freq_auroc`)을 기준선으로 알아보지 "
+        "못해 사전확률과 비교했습니다. 그래서 알려진 정답이 분명히 좋은 `plastid_ancestor_v1`이 무승부로 "
+        "찍혔습니다.\n\n"
+        "**고친 것** — 법칙이 스스로 '법칙 − 대조' 차이와 신뢰구간을 기록해 두었으면 그 검정이 판정을 정합니다. "
+        "조상 법칙은 그 법칙 자신의 마디(하위 분류군·핵심 마디 제외)의 알려진 정답 AUROC를 현생 빈도와 비교하고, "
+        "뿌리 위치가 여러 개면 가장 나쁜 뿌리로 판정합니다.\n\n"
+        "**결과** — lab_evolution_v1 양성 → **무승부**(선택의 몫이 대조군과 구별되지 않음), plastid_ancestor_v1 "
+        "무승부 → **양성**. 다른 법칙의 판정은 바뀌지 않았습니다(이전 판정기와 전수 비교). 테스트로 고정했습니다.\n\n"
+        "**남은 것** — `mito_ancestor_v1`과 아메바 법칙들은 알려진 정답 채점이 법칙 파일이 아니라 "
+        "`results/node_power/`에만 있어서 여전히 잎 숨기기로 판정됩니다(미토콘드리아 무승부). 법칙 파일은 "
+        "덮어쓰지 않으므로, 새 판(_v2/_v5)을 만들 때 채점을 함께 넣어야 바뀝니다."),
     "정정 · 리케차목 판정 철회": (
         "**무엇을 말했나** — 잎 숨기기에서 리케차목이 0.988 vs 기준선 0.988(+0.0005)이므로 "
         "'계통수가 아무것도 벌어주지 못한다'고 보고했습니다.\n\n"

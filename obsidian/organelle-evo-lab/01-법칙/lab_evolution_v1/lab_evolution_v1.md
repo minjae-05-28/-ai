@@ -2,12 +2,12 @@
 유형: 법칙 허브
 법칙: lab_evolution_v1
 클러스터: 실험실 대조
-판정: 양성
-기준선대비: 0.0232
+판정: 무승부
+기준선대비: -0.0055
 tags:
   - 법칙/lab_evolution_v1
   - 클러스터/실험실 대조
-  - 판정/양성
+  - 판정/무승부
 ---
 
 # lab_evolution_v1
@@ -17,10 +17,11 @@ tags:
 
 **모형** — Per gene: mean comparative loss rate of its Pfam families across the project's prokaryote pairs, scored against whether the gene falls inside a deletion in a sequenced clone. Rarity, expression proxy and lab essentiality as baselines.
 
-## 판정 — 양성
+## 판정 — 무승부
 
 | 비교한 곳 | 법칙 | 기준선 | 차이 | 방향 |
 | --- | --- | --- | --- | --- |
+| LTEE (50,000 generations, 12 populations, selection) · auroc_minus_no_selection_control (difference) | `법칙 - 대조` -0.005493 | `0` 0 | -0.0055 [-0.06659, 0.05624] | 높을수록 좋음 |
 | LTEE (50,000 generations, 12 populations, selection) (auroc) | `auroc_comparative_loss_rate` 0.5897 | `auroc_rarity_baseline` 0.5665 | +0.0232 | 높을수록 좋음 |
 | MAE (mutation accumulation, almost no selection) (auroc) | `auroc_low_expression` 0.6012 | `auroc_rarity_baseline` 0.5598 | +0.0415 | 높을수록 좋음 |
 | LTEE (50,000 generations, 12 populations, selection), dispensable genes (auroc) | `auroc_comparative_loss_rate` 0.5646 | `auroc_rarity_baseline` 0.5482 | +0.0163 | 높을수록 좋음 |

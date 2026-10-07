@@ -3,7 +3,7 @@
 법칙: fungal_ancestor_v1
 클러스터: 조상 복원
 판정: 양성
-기준선대비: 0.0221
+기준선대비: 0.1046
 tags:
   - 법칙/fungal_ancestor_v1
   - 클러스터/조상 복원
@@ -22,15 +22,24 @@ tags:
 | 비교한 곳 | 법칙 | 기준선 | 차이 | 방향 |
 | --- | --- | --- | --- | --- |
 | leave_tips_out_auroc (auroc) | `reconstruction` 0.9721 | `clade_frequency` 0.95 | +0.0221 | 높을수록 좋음 |
+| known_truth (auroc) | `recon_auroc` 0.8499 | `freq_auroc` 0.7453 | +0.1046 | 높을수록 좋음 |
+| known_truth_subclades · fungi 뿌리 아래 큰 쪽 (286종) (auroc) | `recon_auroc` 0.8904 | `freq_auroc` 0.8098 | +0.0806 | 높을수록 좋음 |
+| known_truth_subclades · Ascomycota (auroc) | `recon_auroc` 0.8317 | `freq_auroc` 0.7678 | +0.0639 | 높을수록 좋음 |
+| known_truth_subclades · Basidiomycota (auroc) | `recon_auroc` 0.8475 | `freq_auroc` 0.8143 | +0.0332 | 높을수록 좋음 |
+| known_truth_subclades · Chytridiomycota (auroc) | `recon_auroc` 0.8862 | `freq_auroc` 0.7933 | +0.0929 | 높을수록 좋음 |
+| known_truth_subclades · Glomeromycota (auroc) | `recon_auroc` 0.8737 | `freq_auroc` 0.8448 | +0.0289 | 높을수록 좋음 |
+| known_truth_subclades · Kickxellomycota (auroc) | `recon_auroc` 0.8893 | `freq_auroc` 0.8441 | +0.0452 | 높을수록 좋음 |
+| known_truth_subclades · Mucoromycota (auroc) | `recon_auroc` 0.8904 | `freq_auroc` 0.7936 | +0.0968 | 높을수록 좋음 |
+| core_node · known_truth (auroc) | `recon_auroc` 0.8904 | `freq_auroc` 0.8098 | +0.0806 | 높을수록 좋음 |
 | known_truth (logloss) | `recon_logloss` 0.4524 | `prior_logloss` 0.6668 | +0.2144 | 낮을수록 좋음 |
-| known_truth_subclades · fungi 뿌리 아래 큰 쪽 (286종) (logloss) | `recon_logloss` 0.3382 | `prior_logloss` 0.6162 | +0.2780 | 낮을수록 좋음 |
-| known_truth_subclades · Ascomycota (logloss) | `recon_logloss` 0.3282 | `prior_logloss` 0.5311 | +0.2029 | 낮을수록 좋음 |
-| known_truth_subclades · Basidiomycota (logloss) | `recon_logloss` 0.3105 | `prior_logloss` 0.5362 | +0.2257 | 낮을수록 좋음 |
-| known_truth_subclades · Chytridiomycota (logloss) | `recon_logloss` 0.31 | `prior_logloss` 0.5692 | +0.2592 | 낮을수록 좋음 |
-| known_truth_subclades · Glomeromycota (logloss) | `recon_logloss` 0.2948 | `prior_logloss` 0.5345 | +0.2397 | 낮을수록 좋음 |
-| known_truth_subclades · Kickxellomycota (logloss) | `recon_logloss` 0.2659 | `prior_logloss` 0.5199 | +0.2540 | 낮을수록 좋음 |
+| known_truth_subclades · fungi 뿌리 아래 큰 쪽 (286종) (logloss) | `recon_logloss` 0.3382 | `freq_logloss` 0.5427 | +0.2045 | 낮을수록 좋음 |
+| known_truth_subclades · Ascomycota (logloss) | `recon_logloss` 0.3282 | `freq_logloss` 0.4425 | +0.1143 | 낮을수록 좋음 |
+| known_truth_subclades · Basidiomycota (logloss) | `recon_logloss` 0.3105 | `freq_logloss` 0.3956 | +0.0851 | 낮을수록 좋음 |
+| known_truth_subclades · Chytridiomycota (logloss) | `recon_logloss` 0.31 | `freq_logloss` 0.5653 | +0.2553 | 낮을수록 좋음 |
+| known_truth_subclades · Glomeromycota (logloss) | `recon_logloss` 0.2948 | `freq_logloss` 0.5214 | +0.2266 | 낮을수록 좋음 |
+| known_truth_subclades · Kickxellomycota (logloss) | `recon_logloss` 0.2659 | `freq_logloss` 0.4496 | +0.1837 | 낮을수록 좋음 |
 | known_truth_subclades · Mucoromycota (logloss) | `recon_logloss` 0.2753 | `prior_logloss` 0.5088 | +0.2335 | 낮을수록 좋음 |
-| core_node · known_truth (logloss) | `recon_logloss` 0.3382 | `prior_logloss` 0.6162 | +0.2780 | 낮을수록 좋음 |
+| core_node · known_truth (logloss) | `recon_logloss` 0.3382 | `freq_logloss` 0.5427 | +0.2045 | 낮을수록 좋음 |
 
 판정은 표의 첫 줄(교차검증 쪽, AUROC 우선)로 매깁니다. 차이가 ±0.01 안이면 무승부. 비교는 같은 지표끼리만 합니다.
 

@@ -27,6 +27,12 @@ def law(lid):
     ("proteome_traits_v1", "양성"),    # composition beats taxonomy, interval clear of zero
     ("genome_traits_v1", "무승부"),     # point estimate ahead, interval holds zero
     ("animal_temperature_v1", "전이 검정"),
+    # its own claim is the difference from a no-selection control, whose interval holds zero; it
+    # beats rarity by 0.023, which is not the question it asks
+    ("lab_evolution_v1", "무승부"),
+    # leave-tips-out saturates (0.986 vs 0.980); the known-truth test against present-day
+    # frequency is the ancestor test and is clear (0.995 vs 0.976)
+    ("plastid_ancestor_v1", "양성"),
 ])
 def test_known_verdicts(lid, expected):
     from build_lab_vault import verdict_of
@@ -58,3 +64,24 @@ def test_law_plus_something_is_not_the_law():
     v = {"heldout_auroc": {"law": 0.79, "law+relatives": 0.92, "memorisation": 0.81}}
     (g,) = comparison_groups(v)
     assert g["law"] == "law" and g["margin"] < 0
+
+
+def test_ancestor_verdict_uses_the_laws_own_node_and_frequency_baseline():
+    """Known truth decides, against present-day frequency (not the flat prior), on the law's own
+    node; subclade and core-node grades are other nodes."""
+    from build_lab_vault import verdict_of
+
+    d = law("fungal_ancestor_v1")
+    kt = d["validation"]["known_truth"]
+    label, margin, _ = verdict_of(d["validation"], "fungal_ancestor_v1")
+    assert label == "양성"
+    assert margin == pytest.approx(kt["recon_auroc"] - kt["freq_auroc"], abs=1e-3)
+
+
+def test_several_roots_are_judged_on_the_worst():
+    from build_lab_vault import verdict_of
+
+    d = law("leca_ancestor_v2")
+    per = d["validation"]["known_truth_per_root"]
+    worst = min(g["recon_auroc"] - g["freq_auroc"] for g in per.values())
+    assert verdict_of(d["validation"], "leca_ancestor_v2")[1] == pytest.approx(worst, abs=1e-3)

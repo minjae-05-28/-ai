@@ -3,7 +3,7 @@
 법칙: leca_ancestor_v2
 클러스터: 조상 복원
 판정: 양성
-기준선대비: 0.0702
+기준선대비: 0.1001
 tags:
   - 법칙/leca_ancestor_v2
   - 클러스터/조상 복원
@@ -25,6 +25,10 @@ tags:
 | leave_tips_out_auroc_per_root · opisthokonta (auroc) | `reconstruction` 0.9794 | `clade_frequency` 0.9184 | +0.0610 | 높을수록 좋음 |
 | leave_tips_out_auroc_per_root · amorphea (auroc) | `reconstruction` 0.9846 | `clade_frequency` 0.9099 | +0.0747 | 높을수록 좋음 |
 | leave_tips_out_auroc_per_root · metamonada (auroc) | `reconstruction` 0.9835 | `clade_frequency` 0.93 | +0.0535 | 높을수록 좋음 |
+| known_truth_per_root · discoba (auroc) | `recon_auroc` 0.8057 | `freq_auroc` 0.7056 | +0.1001 | 높을수록 좋음 |
+| known_truth_per_root · opisthokonta (auroc) | `recon_auroc` 0.863 | `freq_auroc` 0.7404 | +0.1226 | 높을수록 좋음 |
+| known_truth_per_root · amorphea (auroc) | `recon_auroc` 0.8509 | `freq_auroc` 0.7335 | +0.1174 | 높을수록 좋음 |
+| known_truth_per_root · metamonada (auroc) | `recon_auroc` 0.8247 | `freq_auroc` 0.7205 | +0.1042 | 높을수록 좋음 |
 | known_truth_per_root · discoba (logloss) | `recon_logloss` 0.5057 | `prior_logloss` 0.6929 | +0.1872 | 낮을수록 좋음 |
 | known_truth_per_root · opisthokonta (logloss) | `recon_logloss` 0.4554 | `prior_logloss` 0.6929 | +0.2375 | 낮을수록 좋음 |
 | known_truth_per_root · amorphea (logloss) | `recon_logloss` 0.5017 | `prior_logloss` 0.6929 | +0.1912 | 낮을수록 좋음 |

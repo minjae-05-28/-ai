@@ -2,12 +2,12 @@
 유형: 법칙 허브
 법칙: plastid_ancestor_v1
 클러스터: 조상 복원
-판정: 무승부
-기준선대비: 0.0066
+판정: 양성
+기준선대비: 0.0198
 tags:
   - 법칙/plastid_ancestor_v1
   - 클러스터/조상 복원
-  - 판정/무승부
+  - 판정/양성
 ---
 
 # plastid_ancestor_v1
@@ -17,14 +17,17 @@ tags:
 
 **모형** — Two-state gain/loss Markov chain per family, ensemble of the five leading models of the mitochondrial model search, incomplete proteomes handled as dropout in the likelihood (completeness from in-group marker families, clade and outgroup scored separately), no reduced-lineage loss multiplier, tree rooted on the outgroup; bootstrap trees for phylogenetic spread.
 
-## 판정 — 무승부
+## 판정 — 양성
 
 | 비교한 곳 | 법칙 | 기준선 | 차이 | 방향 |
 | --- | --- | --- | --- | --- |
 | leave_tips_out_auroc (auroc) | `reconstruction` 0.9863 | `clade_frequency` 0.9797 | +0.0066 | 높을수록 좋음 |
-| known_truth (logloss) | `recon_logloss` 0.0733 | `prior_logloss` 0.6611 | +0.5878 | 낮을수록 좋음 |
-| known_truth_subclades · cyano 뿌리 아래 큰 쪽 (159종) (logloss) | `recon_logloss` 0.0335 | `prior_logloss` 0.6573 | +0.6238 | 낮을수록 좋음 |
-| core_node · known_truth (logloss) | `recon_logloss` 0.0335 | `prior_logloss` 0.6573 | +0.6238 | 낮을수록 좋음 |
+| known_truth (auroc) | `recon_auroc` 0.9954 | `freq_auroc` 0.9756 | +0.0198 | 높을수록 좋음 |
+| known_truth_subclades · cyano 뿌리 아래 큰 쪽 (159종) (auroc) | `recon_auroc` 0.9986 | `freq_auroc` 0.9885 | +0.0101 | 높을수록 좋음 |
+| core_node · known_truth (auroc) | `recon_auroc` 0.9986 | `freq_auroc` 0.9885 | +0.0101 | 높을수록 좋음 |
+| known_truth (logloss) | `recon_logloss` 0.0733 | `freq_logloss` 0.1787 | +0.1054 | 낮을수록 좋음 |
+| known_truth_subclades · cyano 뿌리 아래 큰 쪽 (159종) (logloss) | `recon_logloss` 0.0335 | `freq_logloss` 0.1146 | +0.0811 | 낮을수록 좋음 |
+| core_node · known_truth (logloss) | `recon_logloss` 0.0335 | `freq_logloss` 0.1146 | +0.0811 | 낮을수록 좋음 |
 
 판정은 표의 첫 줄(교차검증 쪽, AUROC 우선)로 매깁니다. 차이가 ±0.01 안이면 무승부. 비교는 같은 지표끼리만 합니다.
 
