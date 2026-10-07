@@ -132,7 +132,19 @@ def constraint_newick(species, ids, lineage):
     return "(" + ",".join(parts) + ");"
 
 
-def iqtree(sup, ids, species, lineage, n_boot, tmp):
+def trim_gappy(fasta, max_gap=0.5):
+    """Drop alignment columns where more than max_gap of the rows are gaps (in place)."""
+    names, seqs = [], []
+    for block in Path(fasta).read_text().split(">")[1:]:
+        head, _, body = block.partition("\n")
+        names.append(head.strip())
+        seqs.append(body.replace("\n", ""))
+    keep = [j for j in range(len(seqs[0])) if sum(s[j] == "-" for s in seqs) <= max_gap * len(seqs)]
+    Path(fasta).write_text("".join(f">{n}\n{''.join(s[j] for j in keep)}\n" for n, s in zip(names, seqs)))
+    return len(seqs[0]), len(keep)
+
+
+def iqtree(sup, ids, species, lineage, n_boot, tmp, fast=False):
     """Maximum-likelihood tree (LG+F+G4) under the constraint, plus n_boot of IQ-TREE's ultrafast
     bootstrap trees spread evenly over the 1000 it writes."""
     exe = shutil.which("iqtree2") or shutil.which("iqtree")
@@ -140,6 +152,12 @@ def iqtree(sup, ids, species, lineage, n_boot, tmp):
     con.write_text(constraint_newick(species, ids, lineage))
     cmd = [exe, "-s", str(sup), "-m", "LG+F+G4", "-g", str(con), "-T", "AUTO", "--threads-max", "4",
            "--prefix", str(Path(tmp) / "iq"), "-seed", "1", "--quiet"]
+    if fast:
+        # Fallback when the full search does not fit in a CI job: gappy columns out, IQ-TREE's fast search.
+        before, after = trim_gappy(sup)
+        print(f"  fast mode: {after} of {before} columns kept (<= 50% gaps), iqtree -fast", flush=True)
+        cmd += ["-fast"]
+        n_boot = 0   # IQ-TREE refuses ultrafast bootstrap with -fast: this mode yields no bootstrap trees
     if n_boot:
         cmd += ["-B", "1000", "--wbt"]
     subprocess.run(cmd, check=True)
@@ -152,7 +170,7 @@ def iqtree(sup, ids, species, lineage, n_boot, tmp):
     return nwk, boots
 
 
-def build(n_boot=0, only=None, method="fasttree", lineage_file=None):
+def build(n_boot=0, only=None, method="fasttree", lineage_file=None, fast=False):
     import tempfile
 
     TREES.mkdir(parents=True, exist_ok=True)
@@ -200,7 +218,7 @@ def build(n_boot=0, only=None, method="fasttree", lineage_file=None):
             if method == "iqtree":
                 lin = {r["organism"]: r["lineage"]
                        for r in json.loads(Path(lineage_file).read_text())["lineage"].values()}
-                nwk, boots = iqtree(sup, ids, species, lin, n_boot, tmp)
+                nwk, boots = iqtree(sup, ids, species, lin, n_boot, tmp, fast)
                 (TREES / f"{cat_dir.name}.nwk").write_text(rename(nwk))
                 n_boot = 0   # IQ-TREE's own bootstrap trees, not the FastTree resampling below
             else:
@@ -244,11 +262,12 @@ def main():
     ap.add_argument("--only", help="comma-separated marker sets to build (default: all)")
     ap.add_argument("--method", choices=("fasttree", "iqtree"), default="fasttree")
     ap.add_argument("--lineage", help="pick file with NCBI lineages, for the IQ-TREE constraint")
+    ap.add_argument("--fast", action="store_true", help="iqtree: drop >50%%-gap columns and use -fast")
     args = ap.parse_args()
     if args.list_missing:
         print(json.dumps([e for e in entries() if not path(e).exists()]))
     elif args.build:
-        build(args.bootstrap, args.only.split(",") if args.only else None, args.method, args.lineage)
+        build(args.bootstrap, args.only.split(",") if args.only else None, args.method, args.lineage, args.fast)
     else:
         collect(args.entry, args.pfam)
 

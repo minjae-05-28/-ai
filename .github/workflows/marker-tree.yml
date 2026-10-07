@@ -24,7 +24,7 @@ on:
         description: "bootstrap replicate trees"
         default: "20"
       method:
-        description: "fasttree, or iqtree (LG+F+G4 under the eukaryote supergroup constraint; needs lineage)"
+        description: "fasttree, iqtree (LG+F+G4 under the eukaryote supergroup constraint; needs lineage), or iqtree-fast"
         default: "fasttree"
       lineage:
         description: "pick file with NCBI lineages, for the iqtree constraint (e.g. data/markers/leca2_pick.json)"
@@ -127,6 +127,7 @@ jobs:
         run: |
           extra=""
           [ "${{ inputs.method }}" = "iqtree" ] && extra="--method iqtree --lineage ${{ inputs.lineage }}"
+          [ "${{ inputs.method }}" = "iqtree-fast" ] && extra="--method iqtree --fast --lineage ${{ inputs.lineage }}"
           timeout 230m python scripts/ribosomal_tree.py --build --only "${{ inputs.set }}" --bootstrap ${{ inputs.bootstrap }} $extra \
             || { [ -f results/phylo_tree/${{ inputs.set }}.nwk ] && echo "::warning::stopped early; keeping the tree and $(wc -l < results/phylo_tree/${{ inputs.set }}.boot.nwk 2>/dev/null || echo 0) bootstrap trees"; }
       - uses: actions/upload-artifact@v4
