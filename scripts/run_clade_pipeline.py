@@ -38,10 +38,11 @@ def main():
     ap.add_argument("--root-split", default="")
     ap.add_argument("--tree", default="")
     ap.add_argument("--steps", default="ancestor,power,hgt")
+    ap.add_argument("--root-name", default="", help="run-name suffix for the root (else the split's first name)")
     args = ap.parse_args()
     p = PRESETS[args.clade]
     tree = args.tree or p["tree"]
-    name = args.clade + (f"_{args.root_split.split('+')[0].lower()}" if args.root_split else "")
+    name = args.clade + (f"_{(args.root_name or args.root_split.split('+')[0]).lower()}" if args.root_split else "")
     py = sys.executable
     root = (["--root-split", args.root_split, "--lineage", p["pick"]] if args.root_split
             else ["--root-outgroup"] + (["--lineage", p["pick"]] if p.get("lineage_for_clade") else []))
