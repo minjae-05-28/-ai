@@ -58,3 +58,18 @@ def test_pick_gives_every_order_one_before_any_gets_two():
     assert n_orders == 3
     assert set(chosen[:3]) == {"u2", "u3", "u5"}      # richest of each order first
     assert chosen[3] == "u1"
+
+
+def test_constraint_newick_nests_groups_without_redundant_brackets():
+    from ribosomal_tree import constraint_newick
+    lin = {"A": ["Opisthokonta", "Metazoa"], "B": ["Opisthokonta", "Fungi"], "C": ["Amoebozoa"],
+           "D": ["Sar", "Alveolata"], "E": ["Sar", "Alveolata"], "F": ["Sar", "Rhizaria"],
+           "G": ["Discoba"], "H": ["Metamonada"], "I": ["Metamonada"], "J": ["Viridiplantae"]}
+    sp = sorted(lin)
+    ids = {s: f"t{i}" for i, s in enumerate(sp)}
+    assert constraint_newick(sp, ids, lin) == "(((t0,t1),t2),((t3,t4),t5),t9,t6,(t7,t8));"
+    only_opis = {"A": ["Opisthokonta"], "B": ["Opisthokonta"], "C": ["Sar"], "D": ["Sar"]}
+    sp2 = sorted(only_opis)
+    ids2 = {s: f"t{i}" for i, s in enumerate(sp2)}
+    # Amorphea holding only Opisthokonta must not become ((t0,t1)), which IQ-TREE rejects
+    assert constraint_newick(sp2, ids2, only_opis) == "((t0,t1),(t2,t3));"

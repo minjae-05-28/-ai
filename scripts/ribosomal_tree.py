@@ -94,7 +94,65 @@ def collect(entry, pfam):
     print(f"{entry}: {len(best)} ribosomal markers")
 
 
-def build(n_boot=0, only=None):
+# Groups whose monophyly is not in serious dispute (Burki et al. 2020), used as an IQ-TREE constraint
+# for the deep eukaryote tree: a ~40-protein marker set cannot resolve these on its own (ciliates and
+# Amoebozoa wandered off in the unconstrained FastTree LECA tree). Nested as (group, [subgroups]).
+EUK_CONSTRAINT = [
+    ("Amorphea", ["Opisthokonta", "Amoebozoa", "Apusozoa", "Breviatea"]),
+    ("Sar", ["Stramenopiles", "Alveolata", "Rhizaria"]),
+    ("Viridiplantae", []), ("Rhodophyta", []), ("Glaucocystophyceae", []),
+    ("Discoba", []), ("Metamonada", []), ("Haptista", []), ("Cryptophyceae", []),
+]
+
+
+def constraint_newick(species, ids, lineage):
+    """IQ-TREE constraint (-g) from NCBI lineage names; tips outside every group stay unconstrained."""
+    def members(name):
+        return [s for s in species if name in lineage.get(s, ())]
+
+    parts = []
+    for top, subs in EUK_CONSTRAINT:
+        if top == "Amorphea":
+            inside = [s for s in species if any(n in lineage.get(s, ()) for n in subs)]
+        else:
+            inside = members(top)
+        if not inside:
+            continue
+        blocks, used = [], set()
+        for sub in subs:
+            m = [s for s in members(sub) if s in inside]
+            if len(m) >= 2:
+                blocks.append("(" + ",".join(ids[x] for x in m) + ")")
+            elif m:
+                blocks.append(ids[m[0]])
+            used |= set(m)
+        blocks += [ids[x] for x in inside if x not in used]
+        # one block alone is already a group (or a single tip): no redundant (( )), which IQ-TREE rejects
+        parts.append(blocks[0] if len(blocks) == 1 else "(" + ",".join(blocks) + ")")
+    return "(" + ",".join(parts) + ");"
+
+
+def iqtree(sup, ids, species, lineage, n_boot, tmp):
+    """Maximum-likelihood tree (LG+F+G4) under the constraint, plus n_boot of IQ-TREE's ultrafast
+    bootstrap trees spread evenly over the 1000 it writes."""
+    exe = shutil.which("iqtree2") or shutil.which("iqtree")
+    con = Path(tmp) / "constraint.nwk"
+    con.write_text(constraint_newick(species, ids, lineage))
+    cmd = [exe, "-s", str(sup), "-m", "LG+F+G4", "-g", str(con), "-T", "AUTO", "--threads-max", "4",
+           "--prefix", str(Path(tmp) / "iq"), "-seed", "1", "--quiet"]
+    if n_boot:
+        cmd += ["-B", "1000", "--wbt"]
+    subprocess.run(cmd, check=True)
+    nwk = (Path(tmp) / "iq.treefile").read_text()
+    boots = []
+    if n_boot:
+        allb = [t for t in (Path(tmp) / "iq.ufboot").read_text().split("\n") if t.strip()]
+        step = max(1, len(allb) // n_boot)
+        boots = allb[::step][:n_boot]
+    return nwk, boots
+
+
+def build(n_boot=0, only=None, method="fasttree", lineage_file=None):
     import tempfile
 
     TREES.mkdir(parents=True, exist_ok=True)
@@ -137,13 +195,21 @@ def build(n_boot=0, only=None):
                     concat[s].append(seqs.get(ids[s], "-" * width))
             sup = Path(tmp) / "concat.fa"
             sup.write_text("".join(f">{ids[s]}\n{''.join(concat[s])}\n" for s in species))
-            ft = shutil.which("FastTreeMP") or shutil.which("FastTree") or shutil.which("fasttree")
-            nwk = subprocess.run([ft, "-lg", "-gamma", "-quiet", str(sup)], capture_output=True, text=True, check=True).stdout
             back = {v: k for k, v in ids.items()}
             rename = lambda t: re.sub(r"\b(t\d+)(?=[:,)])", lambda m: "'" + back[m.group(1)].replace("'", "") + "'", t)  # noqa: E731
-            # Written before the bootstrap starts: a job that runs out of time keeps the tree.
-            (TREES / f"{cat_dir.name}.nwk").write_text(rename(nwk))
-            boots = []
+            if method == "iqtree":
+                lin = {r["organism"]: r["lineage"]
+                       for r in json.loads(Path(lineage_file).read_text())["lineage"].values()}
+                nwk, boots = iqtree(sup, ids, species, lin, n_boot, tmp)
+                (TREES / f"{cat_dir.name}.nwk").write_text(rename(nwk))
+                n_boot = 0   # IQ-TREE's own bootstrap trees, not the FastTree resampling below
+            else:
+                ft = shutil.which("FastTreeMP") or shutil.which("FastTree") or shutil.which("fasttree")
+                nwk = subprocess.run([ft, "-lg", "-gamma", "-quiet", str(sup)], capture_output=True, text=True,
+                                     check=True).stdout
+                # Written before the bootstrap starts: a job that runs out of time keeps the tree.
+                (TREES / f"{cat_dir.name}.nwk").write_text(rename(nwk))
+                boots = []
             if n_boot:
                 # Nonparametric bootstrap: resample alignment columns, one tree per replicate
                 import random
@@ -176,11 +242,13 @@ def main():
     ap.add_argument("--build", action="store_true")
     ap.add_argument("--bootstrap", type=int, default=0, help="bootstrap replicate trees per set")
     ap.add_argument("--only", help="comma-separated marker sets to build (default: all)")
+    ap.add_argument("--method", choices=("fasttree", "iqtree"), default="fasttree")
+    ap.add_argument("--lineage", help="pick file with NCBI lineages, for the IQ-TREE constraint")
     args = ap.parse_args()
     if args.list_missing:
         print(json.dumps([e for e in entries() if not path(e).exists()]))
     elif args.build:
-        build(args.bootstrap, args.only.split(",") if args.only else None)
+        build(args.bootstrap, args.only.split(",") if args.only else None, args.method, args.lineage)
     else:
         collect(args.entry, args.pfam)
 

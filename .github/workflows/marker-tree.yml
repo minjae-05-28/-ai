@@ -23,6 +23,12 @@ on:
       bootstrap:
         description: "bootstrap replicate trees"
         default: "20"
+      method:
+        description: "fasttree, or iqtree (LG+F+G4 under the eukaryote supergroup constraint; needs lineage)"
+        default: "fasttree"
+      lineage:
+        description: "pick file with NCBI lineages, for the iqtree constraint (e.g. data/markers/leca2_pick.json)"
+        default: ""
 
 permissions:
   contents: write
@@ -102,7 +108,7 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
-      - run: pip install numpy && sudo apt-get update -q && sudo apt-get install -y -q mafft fasttree
+      - run: pip install numpy && sudo apt-get update -q && sudo apt-get install -y -q mafft fasttree iqtree
       - uses: actions/download-artifact@v4
         with:
           pattern: markers-${{ inputs.set }}-*
@@ -119,7 +125,9 @@ jobs:
         # Capped below the job limit: the tree and every finished bootstrap are written as they come,
         # so a slow bootstrap costs replicates, not the whole run.
         run: |
-          timeout 230m python scripts/ribosomal_tree.py --build --only "${{ inputs.set }}" --bootstrap ${{ inputs.bootstrap }} \
+          extra=""
+          [ "${{ inputs.method }}" = "iqtree" ] && extra="--method iqtree --lineage ${{ inputs.lineage }}"
+          timeout 230m python scripts/ribosomal_tree.py --build --only "${{ inputs.set }}" --bootstrap ${{ inputs.bootstrap }} $extra \
             || { [ -f results/phylo_tree/${{ inputs.set }}.nwk ] && echo "::warning::stopped early; keeping the tree and $(wc -l < results/phylo_tree/${{ inputs.set }}.boot.nwk 2>/dev/null || echo 0) bootstrap trees"; }
       - uses: actions/upload-artifact@v4
         with:

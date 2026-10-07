@@ -117,16 +117,32 @@ def main():
         score = (c if c is not None else -1, int(r["protein_count"] or 0))
         if sp not in best or score > best[sp][0]:
             best[sp] = (score, u, g, names)
-    floor_ok = defaultdict(bool)
+    # The BUSCO floor applies only where a group has more good proteomes than its share. In thin groups
+    # (Metamonada, Rhizaria) the low scores are mostly real reduction (Giardia, Trichomonas), and the
+    # first LECA sample lost exactly those lineages to the floor.
+    groups = {g for _, _, g, _ in best.values()}
+    share = args.n / max(len(groups), 1)
+    n_good = defaultdict(int)
     for score, u, g, names in best.values():
-        floor_ok[g] |= score[0] >= args.min_busco
+        n_good[g] += score[0] >= args.min_busco
     cands = defaultdict(lambda: defaultdict(list))
     for score, u, g, names in best.values():
-        if floor_ok[g] and 0 <= score[0] < args.min_busco:
-            continue   # the group has good proteomes; skip the poor ones (no BUSCO: kept, ranked last)
+        if n_good[g] >= share and 0 <= score[0] < args.min_busco:
+            continue   # the group has enough good proteomes; skip the poor ones (no BUSCO: kept, ranked last)
         i = names.index(g)
         key = tuple(names[i + 1:i + 3])
-        cands[g][key].append(((-score[0], -score[1], rows[u]["organism"]), u))
+        genus = rows[u]["organism"].split()[0]
+        cands[g][key].append(((-score[0], -score[1], rows[u]["organism"]), u, genus))
+    # Within a key, one proteome per genus before any genus gets a second (the first sample filled
+    # Discoba with dozens of Leishmania).
+    for g in cands:
+        for k, lst in cands[g].items():
+            lst.sort()
+            seen, first, rest = set(), [], []
+            for it in lst:
+                (first if it[2] not in seen else rest).append(it)
+                seen.add(it[2])
+            cands[g][k] = [(j, it[1]) for j, it in enumerate(first + rest)]
     chosen = balanced(cands, args.n)
     per = defaultdict(int)
     lin = {}
