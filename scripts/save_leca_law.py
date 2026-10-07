@@ -30,24 +30,30 @@ NOT_TESTED = {
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--id", required=True)
+    ap.add_argument("--prefix", default="leca")
+    ap.add_argument("--not-tested", default="",
+                    help="JSON {root: reason} for this run; default: the v1 list in NOT_TESTED")
+    ap.add_argument("--tree-note", default="", help="one sentence on how the tree was built")
     args = ap.parse_args()
+    not_tested = json.loads(args.not_tested) if args.not_tested else NOT_TESTED
+    pre = args.prefix
     dest = LAWS_DIR / f"{args.id}.json"
     if dest.exists():
         raise SystemExit(f"{dest} exists; laws are never overwritten — use a new id")
-    R = Path("results/clade_ancestor/leca")
+    R = Path(f"results/clade_ancestor/{pre}")
     s = json.loads((R / "summary.json").read_text())
     z = np.load(R / "posterior.npz", allow_pickle=False)
     roots = [str(r) for r in z["roots"]]
     col = {str(f): i for i, f in enumerate(z["families"])}
     P = z["per_root"]
     grades = {}
-    pf = Path("results/node_power/leca/summary.json")
+    pf = Path(f"results/node_power/{pre}/summary.json")
     if pf.exists():
         for k, v in json.loads(pf.read_text())["aggregate"].items():
             if k.startswith("뿌리 "):
                 grades[k[3:]] = v
-    hg = json.loads(Path("results/hgt_rate/leca/summary.json").read_text()) if Path(
-        "results/hgt_rate/leca/summary.json").exists() else {}
+    hg = json.loads(Path(f"results/hgt_rate/{pre}/summary.json").read_text()) if Path(
+        f"results/hgt_rate/{pre}/summary.json").exists() else {}
     panel = {}
     for group, fams in PANELS["leca"].items():
         panel[group] = {f: {**{f"posterior_{r}": round(float(P[k, col[f]]), 3) for k, r in enumerate(roots)},
@@ -56,23 +62,23 @@ def main():
     sizes = {r: s["sum_of_posteriors_per_root"][r] for r in roots}
     quote = bool(grades) and all(abs(grades[r]["recon_size_bias"]) <= 0.10 for r in roots if r in grades) \
         and len(grades) == len(roots)
-    strays = {r: json.loads(Path(f"results/clade_ancestor/leca_{r}/summary.json").read_text()).get(
+    strays = {r: json.loads(Path(f"results/clade_ancestor/{pre}_{r}/summary.json").read_text()).get(
         "misplaced_clade_tips_left_out") for r in roots}
     cav = [
         f"{s['clade_tips']} eukaryote proteomes reached the tree out of 300 picked with an equal share per "
-        "supergroup (data/markers/leca_pick.json; pick_eukaryotes.py). UniProt has very few proteomes for "
+        f"supergroup (data/markers/{pre}_pick.json; pick_eukaryotes.py). UniProt has very few proteomes for "
         "Metamonada, Rhizaria, Haptista, Cryptista, CRuMs and Hemimastigophora, so those lineages are thin or "
         "absent, and the deepest-branching candidates are exactly the ones least sampled.",
         "No prokaryote outgroup: at this distance gene-content models cannot place the root, so the tree is "
         "rooted on a named split and the root position is treated as unknown. Root positions tested: "
         + ", ".join(roots) + ". A family is called present in LECA only if P >= 0.9 under every tested root; "
-        "the 'posterior' column of results/clade_ancestor/leca is the minimum over roots.",
+        f"the 'posterior' column of results/clade_ancestor/{pre} is the minimum over roots.",
         "Root positions NOT tested, with the reason: "
-        + "; ".join(f"{k}: {v}" for k, v in NOT_TESTED.items()) + ".",
+        + ("; ".join(f"{k}: {v}" for k, v in not_tested.items()) or "none") + ".",
         "Tips left out because the tree placed them outside their group (long-branch attraction): "
         + "; ".join(f"{r}: {', '.join(v) if v else 'none'}" for r, v in strays.items()) + ".",
         "Bootstrap trees used per root: " + ", ".join(
-            f"{r} {json.loads(Path(f'results/clade_ancestor/leca_{r}/summary.json').read_text()).get('n_bootstrap_trees')}"
+            f"{r} {json.loads(Path(f'results/clade_ancestor/{pre}_{r}/summary.json').read_text()).get('n_bootstrap_trees')}"
             for r in roots)
         + " of the 9 the time-capped build produced (a bootstrap tree on which the root split does not hold is "
         "skipped); the tree_sd of each root run includes them.",
@@ -112,7 +118,8 @@ def main():
                "multiplier; one run per root position (rooted on the named split), combined by minimum."),
         feature_names=[],
         data={"tips": s["tips"], "families_considered": s["families_considered"], "roots_tested": roots,
-              "roots_not_testable": NOT_TESTED, "tree": "results/phylo_tree/leca.nwk",
+              "roots_not_testable": not_tested, "tree": f"results/phylo_tree/{pre}.nwk",
+              "tree_method": args.tree_note or "FastTree LG+gamma, unconstrained",
               "n_bootstrap_trees": s.get("n_bootstrap_trees")},
         validation={"leave_tips_out_auroc_per_root": s["leave_tips_out_auroc_per_root"],
                     "known_truth_per_root": grades,
