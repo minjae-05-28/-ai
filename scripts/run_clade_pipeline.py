@@ -15,6 +15,10 @@ PRESETS = {
               "pick": "data/markers/fungi_nb_pick.json", "label": "균류 + 외군"},
     "leca": {"tree": "results/phylo_tree/leca.nwk", "kingdom": "*",
              "pick": "data/markers/leca_pick.json", "label": "진핵생물 전체"},
+    # Second LECA sample (thin groups keep their reduced lineages) on an IQ-TREE tree constrained to
+    # the uncontested supergroups (ribosomal_tree.py --method iqtree).
+    "leca2": {"tree": "results/phylo_tree/leca2.nwk", "kingdom": "*",
+              "pick": "data/markers/leca2_pick.json", "label": "진핵생물 전체 (2판)"},
     # The GTDB tree, pruned to Cyanobacteriota + 150 other bacteria (make_gtdb_subtree.py).
     # Gloeomargarita is the closest living relative of the plastid; ^ = the node where it split off.
     "cyano": {"tree": "results/phylo_tree/cyano.nwk", "kingdom": "lineage:c__Cyanobacteriia",

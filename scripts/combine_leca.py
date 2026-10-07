@@ -28,11 +28,12 @@ KEY = "표본이 도달한 마디"
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--roots", default="discoba,opisthokonta,metamonada")
+    ap.add_argument("--prefix", default="leca", help="run-name prefix: leca, leca2")
     args = ap.parse_args()
     roots = args.roots.split(",")
     runs = {}
     for r in roots:
-        d = Path(f"results/clade_ancestor/leca_{r}")
+        d = Path(f"results/clade_ancestor/{args.prefix}_{r}")
         if not (d / "summary.json").exists():
             raise SystemExit(f"missing {d}")
         z = np.load(d / "posterior.npz", allow_pickle=False)
@@ -53,29 +54,29 @@ def main():
 
     power, grades = {}, {}
     for r in roots:
-        f = Path(f"results/node_power/leca_{r}/summary.json")
+        f = Path(f"results/node_power/{args.prefix}_{r}/summary.json")
         if f.exists():
             agg = json.loads(f.read_text())["aggregate"]
             grades[r] = next((v for k, v in agg.items() if KEY in k), None)
     if grades and all(grades.values()):
         worst = min(grades, key=lambda r: grades[r]["auroc_margin"])
-        power = {f"leca ({KEY}, 세 뿌리 중 가장 나쁜 값: {worst})": grades[worst],
+        power = {f"{args.prefix} ({KEY}, 뿌리 {len(grades)}곳 중 가장 나쁜 값: {worst})": grades[worst],
                  **{f"뿌리 {r}": g for r, g in grades.items()}}
-        out = Path("results/node_power/leca")
+        out = Path(f"results/node_power/{args.prefix}")
         out.mkdir(parents=True, exist_ok=True)
         (out / "summary.json").write_text(json.dumps({"note": "세 뿌리 위치 각각의 알려진 정답 채점과 그중 "
                                                                "가장 나쁜 값", "aggregate": power},
                                                      ensure_ascii=False, indent=1))
     hg = {}
     for r in roots:
-        f = Path(f"results/hgt_rate/leca_{r}/summary.json")
+        f = Path(f"results/hgt_rate/{args.prefix}_{r}/summary.json")
         if f.exists():
-            hg[r] = json.loads(f.read_text())["sets"][f"leca_{r}"]
+            hg[r] = json.loads(f.read_text())["sets"][f"{args.prefix}_{r}"]
     if hg:
         top = max(hg, key=lambda r: hg[r]["estimated_hgt"])
-        out = Path("results/hgt_rate/leca")
+        out = Path(f"results/hgt_rate/{args.prefix}")
         out.mkdir(parents=True, exist_ok=True)
-        (out / "summary.json").write_text(json.dumps({"sets": {"leca": {**hg[top], "label": f"진핵생물 전체 "
+        (out / "summary.json").write_text(json.dumps({"sets": {args.prefix: {**hg[top], "label": f"진핵생물 전체 "
                                                                          f"(뿌리별 가장 높은 값: {top})"}},
                                                       "per_root": {r: v["estimated_hgt"] for r, v in hg.items()}},
                                                      ensure_ascii=False, indent=1))
@@ -91,7 +92,7 @@ def main():
 
     from collections import Counter
     summary = {
-        "clade": "leca", "roots": roots, "tips": s0["tips"], "clade_tips": s0["clade_tips"],
+        "clade": args.prefix, "roots": roots, "tips": s0["tips"], "clade_tips": s0["clade_tips"],
         "clade_species": s0["clade_species"], "families_considered": len(fams),
         "rooted_on": " / ".join(runs[r][0]["rooted_on"] for r in roots),
         "root_split_intruders": {r: runs[r][0].get("root_split_intruders") for r in roots},
@@ -112,7 +113,7 @@ def main():
         "rule": "present = posterior >= 0.9 under every root; absent = < 0.1 under every root; root-dependent "
                 "= >= 0.9 under one root and < 0.1 or far lower under another (spread >= 0.5)",
     }
-    out = Path("results/clade_ancestor/leca")
+    out = Path(f"results/clade_ancestor/{args.prefix}")
     out.mkdir(parents=True, exist_ok=True)
     np.savez_compressed(out / "posterior.npz", families=np.array(fams), posterior=lo, model_sd=P.std(0),
                         tree_sd=np.zeros(len(fams)), clade_frequency=freq, per_root=P, roots=np.array(roots),
