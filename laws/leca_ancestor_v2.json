@@ -1,0 +1,387 @@
+{
+  "id": "leca_ancestor_v2",
+  "scope": "Gene-family (Pfam) content of the last eukaryotic common ancestor (LECA), reconstructed on a ribosomal-marker tree of supergroup-balanced UniProt proteomes under several root positions; reported as what holds under every root. Family presence only; no sequences.",
+  "model": "Two-state gain/loss Markov chain per family, ensemble of the five leading models of the mitochondrial model search, incomplete proteomes as dropout in the likelihood, no reduced-lineage multiplier; one run per root position (rooted on the named split), combined by minimum.",
+  "feature_names": [],
+  "data": {
+    "tips": 250,
+    "families_considered": 14335,
+    "roots_tested": [
+      "discoba",
+      "opisthokonta",
+      "amorphea",
+      "metamonada"
+    ],
+    "roots_not_testable": {},
+    "tree": "results/phylo_tree/leca2.nwk",
+    "tree_method": "IQ-TREE LG+F+G4 with -fast on the ribosomal concatenate after dropping columns with more than 50% gaps (131,149 columns before trimming), constrained to the uncontested supergroups (Amorphea with Opisthokonta and Amoebozoa inside, Sar with Stramenopiles, Alveolata and Rhizaria inside, Viridiplantae, Rhodophyta, Glaucophyta, Discoba, Metamonada, Haptista, Cryptophyta); no bootstrap (IQ-TREE refuses ultrafast bootstrap with -fast; the full searches did not finish inside the CI time limit)",
+    "n_bootstrap_trees": 0
+  },
+  "validation": {
+    "leave_tips_out_auroc_per_root": {
+      "discoba": {
+        "reconstruction": 0.9851,
+        "clade_frequency": 0.9149
+      },
+      "opisthokonta": {
+        "reconstruction": 0.9794,
+        "clade_frequency": 0.9184
+      },
+      "amorphea": {
+        "reconstruction": 0.9846,
+        "clade_frequency": 0.9099
+      },
+      "metamonada": {
+        "reconstruction": 0.9835,
+        "clade_frequency": 0.93
+      }
+    },
+    "known_truth_per_root": {
+      "discoba": {
+        "recon_auroc": 0.8057,
+        "freq_auroc": 0.7056,
+        "recon_logloss": 0.5057,
+        "freq_logloss": 0.9568,
+        "prior_logloss": 0.6929,
+        "recon_size_bias": 0.0805,
+        "freq_size_bias": -0.6238,
+        "n_tips": 250,
+        "auroc_margin": 0.1001,
+        "logloss_margin": 0.4511,
+        "auroc_headroom": 0.2944,
+        "verdict": "계통수가 도움이 됨"
+      },
+      "opisthokonta": {
+        "recon_auroc": 0.863,
+        "freq_auroc": 0.7404,
+        "recon_logloss": 0.4554,
+        "freq_logloss": 0.9042,
+        "prior_logloss": 0.6929,
+        "recon_size_bias": 0.0431,
+        "freq_size_bias": -0.6091,
+        "n_tips": 250,
+        "auroc_margin": 0.1226,
+        "logloss_margin": 0.4488,
+        "auroc_headroom": 0.2596,
+        "verdict": "계통수가 도움이 됨"
+      },
+      "amorphea": {
+        "recon_auroc": 0.8509,
+        "freq_auroc": 0.7335,
+        "recon_logloss": 0.5017,
+        "freq_logloss": 0.9055,
+        "prior_logloss": 0.6929,
+        "recon_size_bias": 0.0405,
+        "freq_size_bias": -0.6081,
+        "n_tips": 250,
+        "auroc_margin": 0.1174,
+        "logloss_margin": 0.4038,
+        "auroc_headroom": 0.2665,
+        "verdict": "계통수가 도움이 됨"
+      },
+      "metamonada": {
+        "recon_auroc": 0.8247,
+        "freq_auroc": 0.7205,
+        "recon_logloss": 0.5007,
+        "freq_logloss": 0.935,
+        "prior_logloss": 0.6929,
+        "recon_size_bias": 0.0636,
+        "freq_size_bias": -0.6169,
+        "n_tips": 250,
+        "auroc_margin": 0.1042,
+        "logloss_margin": 0.4343,
+        "auroc_headroom": 0.2795,
+        "verdict": "계통수가 도움이 됨"
+      }
+    },
+    "ancestor_size_per_root": {
+      "discoba": {
+        "sum_of_posteriors": 3951.3,
+        "known_truth_size_bias": 0.0805
+      },
+      "opisthokonta": {
+        "sum_of_posteriors": 4601.3,
+        "known_truth_size_bias": 0.0431
+      },
+      "amorphea": {
+        "sum_of_posteriors": 4413.1,
+        "known_truth_size_bias": 0.0405
+      },
+      "metamonada": {
+        "sum_of_posteriors": 3918.8,
+        "known_truth_size_bias": 0.0636
+      }
+    },
+    "n_present_every_root": 2849,
+    "n_root_dependent": 683,
+    "n_absent_every_root": 8844,
+    "marker_panel": {
+      "mitochondrion, nuclear-encoded (expected present: LECA had a mitochondrion)": {
+        "Complex1_51K": {
+          "posterior_discoba": 1.0,
+          "posterior_opisthokonta": 1.0,
+          "posterior_amorphea": 1.0,
+          "posterior_metamonada": 1.0,
+          "share_of_tips_today": 0.836
+        },
+        "ATP-synt_ab": {
+          "posterior_discoba": 1.0,
+          "posterior_opisthokonta": 1.0,
+          "posterior_amorphea": 1.0,
+          "posterior_metamonada": 1.0,
+          "share_of_tips_today": 0.992
+        },
+        "Mito_carr": {
+          "posterior_discoba": 1.0,
+          "posterior_opisthokonta": 1.0,
+          "posterior_amorphea": 1.0,
+          "posterior_metamonada": 1.0,
+          "share_of_tips_today": 0.964
+        },
+        "Tim17": {
+          "posterior_discoba": 1.0,
+          "posterior_opisthokonta": 1.0,
+          "posterior_amorphea": 1.0,
+          "posterior_metamonada": 1.0,
+          "share_of_tips_today": 0.948
+        }
+      },
+      "meiosis and sex (expected present)": {
+        "TP6A_N": {
+          "posterior_discoba": 0.996,
+          "posterior_opisthokonta": 1.0,
+          "posterior_amorphea": 1.0,
+          "posterior_metamonada": 0.998,
+          "share_of_tips_today": 0.86
+        },
+        "Rad51": {
+          "posterior_discoba": 1.0,
+          "posterior_opisthokonta": 1.0,
+          "posterior_amorphea": 1.0,
+          "posterior_metamonada": 1.0,
+          "share_of_tips_today": 1.0
+        },
+        "HORMA": {
+          "posterior_discoba": 1.0,
+          "posterior_opisthokonta": 1.0,
+          "posterior_amorphea": 1.0,
+          "posterior_metamonada": 1.0,
+          "share_of_tips_today": 0.9
+        },
+        "Mnd1": {
+          "posterior_discoba": 0.98,
+          "posterior_opisthokonta": 0.987,
+          "posterior_amorphea": 0.996,
+          "posterior_metamonada": 0.989,
+          "share_of_tips_today": 0.924
+        }
+      },
+      "cilium (expected present)": {
+        "Radial_spoke_3": {
+          "posterior_discoba": 1.0,
+          "posterior_opisthokonta": 1.0,
+          "posterior_amorphea": 1.0,
+          "posterior_metamonada": 1.0,
+          "share_of_tips_today": 0.6
+        },
+        "IFT57": {
+          "posterior_discoba": 1.0,
+          "posterior_opisthokonta": 1.0,
+          "posterior_amorphea": 1.0,
+          "posterior_metamonada": 1.0,
+          "share_of_tips_today": 0.596
+        },
+        "IFT52_GIFT": {
+          "posterior_discoba": 1.0,
+          "posterior_opisthokonta": 1.0,
+          "posterior_amorphea": 1.0,
+          "posterior_metamonada": 1.0,
+          "share_of_tips_today": 0.604
+        },
+        "Dynein_heavy": {
+          "posterior_discoba": 1.0,
+          "posterior_opisthokonta": 1.0,
+          "posterior_amorphea": 1.0,
+          "posterior_metamonada": 1.0,
+          "share_of_tips_today": 0.852
+        },
+        "Tubulin": {
+          "posterior_discoba": 1.0,
+          "posterior_opisthokonta": 1.0,
+          "posterior_amorphea": 1.0,
+          "posterior_metamonada": 1.0,
+          "share_of_tips_today": 1.0
+        }
+      },
+      "endomembrane and nucleus (expected present)": {
+        "Clathrin": {
+          "posterior_discoba": 1.0,
+          "posterior_opisthokonta": 1.0,
+          "posterior_amorphea": 1.0,
+          "posterior_metamonada": 1.0,
+          "share_of_tips_today": 0.976
+        },
+        "Sec23_trunk": {
+          "posterior_discoba": 1.0,
+          "posterior_opisthokonta": 1.0,
+          "posterior_amorphea": 1.0,
+          "posterior_metamonada": 1.0,
+          "share_of_tips_today": 1.0
+        },
+        "Snf7": {
+          "posterior_discoba": 1.0,
+          "posterior_opisthokonta": 1.0,
+          "posterior_amorphea": 1.0,
+          "posterior_metamonada": 1.0,
+          "share_of_tips_today": 0.98
+        },
+        "Ran_BP1": {
+          "posterior_discoba": 1.0,
+          "posterior_opisthokonta": 1.0,
+          "posterior_amorphea": 1.0,
+          "posterior_metamonada": 1.0,
+          "share_of_tips_today": 0.992
+        },
+        "Nup96": {
+          "posterior_discoba": 0.999,
+          "posterior_opisthokonta": 1.0,
+          "posterior_amorphea": 1.0,
+          "posterior_metamonada": 0.998,
+          "share_of_tips_today": 0.836
+        },
+        "Nup54": {
+          "posterior_discoba": 0.996,
+          "posterior_opisthokonta": 1.0,
+          "posterior_amorphea": 1.0,
+          "posterior_metamonada": 1.0,
+          "share_of_tips_today": 0.848
+        },
+        "Nucleoporin_N": {
+          "posterior_discoba": 1.0,
+          "posterior_opisthokonta": 1.0,
+          "posterior_amorphea": 1.0,
+          "posterior_metamonada": 1.0,
+          "share_of_tips_today": 0.868
+        }
+      },
+      "peroxisome and autophagy (expected present)": {
+        "Pex2_Pex12": {
+          "posterior_discoba": 0.985,
+          "posterior_opisthokonta": 1.0,
+          "posterior_amorphea": 1.0,
+          "posterior_metamonada": 0.697,
+          "share_of_tips_today": 0.828
+        },
+        "ATG7_N": {
+          "posterior_discoba": 1.0,
+          "posterior_opisthokonta": 1.0,
+          "posterior_amorphea": 1.0,
+          "posterior_metamonada": 1.0,
+          "share_of_tips_today": 0.844
+        },
+        "APG12": {
+          "posterior_discoba": 0.99,
+          "posterior_opisthokonta": 1.0,
+          "posterior_amorphea": 1.0,
+          "posterior_metamonada": 0.999,
+          "share_of_tips_today": 0.716
+        }
+      },
+      "spliceosome (expected present)": {
+        "PRP8_domainIV": {
+          "posterior_discoba": 1.0,
+          "posterior_opisthokonta": 1.0,
+          "posterior_amorphea": 1.0,
+          "posterior_metamonada": 1.0,
+          "share_of_tips_today": 0.968
+        },
+        "SF3b1": {
+          "posterior_discoba": 1.0,
+          "posterior_opisthokonta": 0.999,
+          "posterior_amorphea": 1.0,
+          "posterior_metamonada": 1.0,
+          "share_of_tips_today": 0.884
+        },
+        "U6-snRNA_bdg": {
+          "posterior_discoba": 1.0,
+          "posterior_opisthokonta": 1.0,
+          "posterior_amorphea": 1.0,
+          "posterior_metamonada": 1.0,
+          "share_of_tips_today": 0.972
+        },
+        "LSM": {
+          "posterior_discoba": 1.0,
+          "posterior_opisthokonta": 1.0,
+          "posterior_amorphea": 1.0,
+          "posterior_metamonada": 1.0,
+          "share_of_tips_today": 1.0
+        }
+      },
+      "photosynthesis (expected ABSENT: the plastid came after LECA)": {
+        "Photo_RC": {
+          "posterior_discoba": 0.401,
+          "posterior_opisthokonta": 0.236,
+          "posterior_amorphea": 0.531,
+          "posterior_metamonada": 0.478,
+          "share_of_tips_today": 0.156
+        },
+        "PSII": {
+          "posterior_discoba": 0.4,
+          "posterior_opisthokonta": 0.235,
+          "posterior_amorphea": 0.53,
+          "posterior_metamonada": 0.477,
+          "share_of_tips_today": 0.152
+        },
+        "PsbP": {
+          "posterior_discoba": 0.0,
+          "posterior_opisthokonta": 0.0,
+          "posterior_amorphea": 0.0,
+          "posterior_metamonada": 0.0,
+          "share_of_tips_today": 0.324
+        },
+        "Chloroa_b-bind": {
+          "posterior_discoba": 0.0,
+          "posterior_opisthokonta": 0.0,
+          "posterior_amorphea": 0.0,
+          "posterior_metamonada": 0.0,
+          "share_of_tips_today": 0.324
+        },
+        "PsaA_PsaB": {
+          "posterior_discoba": 0.51,
+          "posterior_opisthokonta": 0.501,
+          "posterior_amorphea": 0.731,
+          "posterior_metamonada": 0.608,
+          "share_of_tips_today": 0.168
+        }
+      },
+      "panel choice error, kept for transparency (Nup153 was in the first panel as a nuclear-pore marker; this Pfam family is in 7% of sampled species, not pan-eukaryotic; Nup96/Nup54/Nucleoporin_N replaced it AFTER the results were seen)": {
+        "Nup153": {
+          "posterior_discoba": 0.002,
+          "posterior_opisthokonta": 0.011,
+          "posterior_amorphea": 0.003,
+          "posterior_metamonada": 0.002,
+          "share_of_tips_today": 0.088
+        }
+      }
+    }
+  },
+  "caveats": [
+    "250 eukaryote proteomes reached the tree out of 300 picked with an equal share per supergroup (data/markers/leca2_pick.json; pick_eukaryotes.py). UniProt has very few proteomes for Metamonada, Rhizaria, Haptista, Cryptista, CRuMs and Hemimastigophora, so those lineages are thin or absent, and the deepest-branching candidates are exactly the ones least sampled.",
+    "No prokaryote outgroup: at this distance gene-content models cannot place the root, so the tree is rooted on a named split and the root position is treated as unknown. Root positions tested: discoba, opisthokonta, amorphea, metamonada. A family is called present in LECA only if P >= 0.9 under every tested root; the 'posterior' column of results/clade_ancestor/leca2 is the minimum over roots.",
+    "Root positions NOT tested, with the reason: none.",
+    "Tips left out because the tree placed them outside their group (long-branch attraction): discoba: none; opisthokonta: none; amorphea: none; metamonada: none.",
+    "No bootstrap trees: phylogenetic uncertainty is NOT in the reported spread (tree_sd is zero).",
+    "Mitochondrion-encoded families (COX2, COX3, cytochrome b) come out low only because UniProt eukaryote proteomes hold nuclear proteins.",
+    "Completeness is scored once across all sampled eukaryotes (no outgroup): near-universal families among the top-quartile proteomes. Reduced parasites (Microsporidia, Cryptosporidium, Giardia-like lineages) score low and their absences count as weak evidence.",
+    "Present under every root: 2849 families; root-dependent: 683; absent under every root: 8844. Families present per root: {'discoba': 3153, 'opisthokonta': 4085, 'amorphea': 3969, 'metamonada': 3058}.",
+    "Known-truth grade with the discoba root: AUROC 0.8057 against 0.7056 for present-day frequency, log loss 0.506 against 0.957, ancestor-size bias +8.1%. Verdict: 계통수가 도움이 됨.",
+    "Known-truth grade with the opisthokonta root: AUROC 0.8630 against 0.7404 for present-day frequency, log loss 0.455 against 0.904, ancestor-size bias +4.3%. Verdict: 계통수가 도움이 됨.",
+    "Known-truth grade with the amorphea root: AUROC 0.8509 against 0.7335 for present-day frequency, log loss 0.502 against 0.905, ancestor-size bias +4.0%. Verdict: 계통수가 도움이 됨.",
+    "Known-truth grade with the metamonada root: AUROC 0.8247 against 0.7205 for present-day frequency, log loss 0.501 against 0.935, ancestor-size bias +6.4%. Verdict: 계통수가 도움이 됨.",
+    "Negative control partly FAILED: Photo_RC 0.24-0.53, PSII 0.23-0.53, PsaA_PsaB 0.50-0.73 across roots, though the plastid came after LECA. These are plastid-encoded photosystem families; plastids spread between eukaryote groups by secondary and tertiary endosymbiosis (red algae into Sar, haptophytes, cryptophytes), i.e. sideways, and the gain/loss model reads a family scattered over many groups as present at the root and lost many times. None of them is in the present-under-every-root list (P >= 0.9 under all roots), but the same effect can lift any family spread by endosymbiosis or transfer, so families that are rare today and high at the root need that caution. The transfer estimator below does not catch it.",
+    "Known-truth quality: lowest AUROC over roots 0.806 (fungi 0.850, plastid 0.995 in this project), size bias within 10% under every root and of the same sign. The tree beats the no-tree baseline under every root. Tree: IQ-TREE LG+F+G4 with -fast on the ribosomal concatenate after dropping columns with more than 50% gaps (131,149 columns before trimming), constrained to the uncontested supergroups (Amorphea with Opisthokonta and Amoebozoa inside, Sar with Stramenopiles, Alveolata and Rhizaria inside, Viridiplantae, Rhodophyta, Glaucophyta, Discoba, Metamonada, Haptista, Cryptophyta); no bootstrap (IQ-TREE refuses ultrafast bootstrap with -fast; the full searches did not finish inside the CI time limit).",
+    "Horizontal transfer is not modelled; measured per root at {'discoba': 0.014, 'opisthokonta': 0.013, 'amorphea': 0.013, 'metamonada': 0.014}. The estimator cannot separate transfer from duplication or domain shuffling, so read it as an upper bound.",
+    "Ancestor size (sum of posteriors) per root: {'discoba': 3951.3, 'opisthokonta': 4601.3, 'amorphea': 4413.1, 'metamonada': 3918.8}; the known-truth bias is within 10% under every root (an overestimate of a few percent), so the range across roots is quoted, not one number."
+  ],
+  "contexts": {}
+}

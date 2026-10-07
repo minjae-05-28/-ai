@@ -1,0 +1,87 @@
+{
+ "sets": {
+  "leca2": {
+   "label": "진핵생물 전체 (뿌리별 가장 높은 값: discoba)",
+   "families": 14335,
+   "observed": {
+    "median_q": 0.5,
+    "mean_log10_q": -0.02199930116718524,
+    "share_q_ge_1": 0.49696546913149636,
+    "share_q_ge_0.3": 0.8048133937914196
+   },
+   "calibration": [
+    {
+     "hgt": 0.0,
+     "median_q": 0.2,
+     "mean_log10_q": -0.8848,
+     "share_q_ge_1": 0.1767,
+     "share_q_ge_0.3": 0.3667
+    },
+    {
+     "hgt": 0.02,
+     "median_q": 1.0,
+     "mean_log10_q": 0.1728,
+     "share_q_ge_1": 0.8475,
+     "share_q_ge_0.3": 0.995
+    },
+    {
+     "hgt": 0.05,
+     "median_q": 3.0,
+     "mean_log10_q": 0.5587,
+     "share_q_ge_1": 0.9992,
+     "share_q_ge_0.3": 1.0
+    },
+    {
+     "hgt": 0.1,
+     "median_q": 10.0,
+     "mean_log10_q": 0.841,
+     "share_q_ge_1": 1.0,
+     "share_q_ge_0.3": 1.0
+    },
+    {
+     "hgt": 0.2,
+     "median_q": 10.0,
+     "mean_log10_q": 1.0,
+     "share_q_ge_1": 1.0,
+     "share_q_ge_0.3": 1.0
+    },
+    {
+     "hgt": 0.35,
+     "median_q": 10.0,
+     "mean_log10_q": 1.0,
+     "share_q_ge_1": 1.0,
+     "share_q_ge_0.3": 1.0
+    },
+    {
+     "hgt": 0.5,
+     "median_q": 10.0,
+     "mean_log10_q": 1.0,
+     "share_q_ge_1": 1.0,
+     "share_q_ge_0.3": 1.0
+    },
+    {
+     "hgt": 0.8,
+     "median_q": 10.0,
+     "mean_log10_q": 1.0,
+     "share_q_ge_1": 1.0,
+     "share_q_ge_0.3": 1.0
+    }
+   ],
+   "estimated_hgt": 0.014,
+   "estimated_hgt_by_median_q": 0.007,
+   "how": "보간",
+   "gates_passed": [
+    "0.35 (크기(유전자군 수) 부풀기 시작)",
+    "0.5 (확률 보정이 깨짐)",
+    "0.8 (순위도 무너짐)"
+   ],
+   "gates_broken": []
+  }
+ },
+ "per_root": {
+  "discoba": 0.014,
+  "opisthokonta": 0.013,
+  "amorphea": 0.013,
+  "metamonada": 0.014
+ }
+}

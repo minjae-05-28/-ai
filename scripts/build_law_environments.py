@@ -420,7 +420,8 @@ def card_for(law):
     elif lid.startswith("leca_ancestor"):
         d = law["data"]
         card = {"catalogue": "ribosomal marker tree + UniProt", "envelope": {
-            "대상": f"진핵생물 {d['tips']}종(큰 갈래마다 같은 몫으로 고름), 외군 없음",
+            "대상": f"진핵생물 {d['tips']}종(큰 갈래마다 같은 몫으로 고름), 외군 없음; 계통수: "
+                    f"{d.get('tree_method', 'FastTree')[:60]}",
             "환경": "모든 진핵생물 큰 갈래. 메타모나다·리자리아·합토파이트·크립토파이트·CRuMs는 매우 적거나 없음; "
                     f"검증한 뿌리 위치: {', '.join(d['roots_tested'])}"},
             "species_from": "law"}

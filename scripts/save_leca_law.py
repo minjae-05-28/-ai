@@ -64,6 +64,13 @@ def main():
         and len(grades) == len(roots)
     strays = {r: json.loads(Path(f"results/clade_ancestor/{pre}_{r}/summary.json").read_text()).get(
         "misplaced_clade_tips_left_out") for r in roots}
+    nboot = {r: json.loads(Path(f"results/clade_ancestor/{pre}_{r}/summary.json").read_text()).get(
+        "n_bootstrap_trees") or 0 for r in roots}
+    boot_text = ("No bootstrap trees: phylogenetic uncertainty is NOT in the reported spread (tree_sd is zero)."
+                 if not any(nboot.values()) else
+                 "Bootstrap trees used per root: " + ", ".join(f"{r} {n}" for r, n in nboot.items())
+                 + " (a bootstrap tree on which the root split does not hold is skipped); the tree_sd of each "
+                 "root run includes them.")
     cav = [
         f"{s['clade_tips']} eukaryote proteomes reached the tree out of 300 picked with an equal share per "
         f"supergroup (data/markers/{pre}_pick.json; pick_eukaryotes.py). UniProt has very few proteomes for "
@@ -77,11 +84,7 @@ def main():
         + ("; ".join(f"{k}: {v}" for k, v in not_tested.items()) or "none") + ".",
         "Tips left out because the tree placed them outside their group (long-branch attraction): "
         + "; ".join(f"{r}: {', '.join(v) if v else 'none'}" for r, v in strays.items()) + ".",
-        "Bootstrap trees used per root: " + ", ".join(
-            f"{r} {json.loads(Path(f'results/clade_ancestor/{pre}_{r}/summary.json').read_text()).get('n_bootstrap_trees')}"
-            for r in roots)
-        + " of the 9 the time-capped build produced (a bootstrap tree on which the root split does not hold is "
-        "skipped); the tree_sd of each root run includes them.",
+        boot_text,
         "Mitochondrion-encoded families (COX2, COX3, cytochrome b) come out low only because UniProt eukaryote "
         "proteomes hold nuclear proteins.",
         "Completeness is scored once across all sampled eukaryotes (no outgroup): near-universal families "
@@ -95,19 +98,50 @@ def main():
         cav.append(f"Known-truth grade with the {r} root: AUROC {g['recon_auroc']:.4f} against "
                    f"{g['freq_auroc']:.4f} for present-day frequency, log loss {g['recon_logloss']:.3f} against "
                    f"{g['freq_logloss']:.3f}, ancestor-size bias {g['recon_size_bias']:+.1%}. Verdict: {g['verdict']}.")
+    # Negative control, read from the panel itself: families expected ABSENT that are not low under
+    # every root. Plastid genes spread by secondary endosymbiosis, which a gain/loss model reads as
+    # ancestral presence plus losses.
+    for group, fams in panel.items():
+        if "expected ABSENT" not in group:
+            continue
+        bad = {f: [v[f"posterior_{r}"] for r in roots] for f, v in fams.items()
+               if max(v[f"posterior_{r}"] for r in roots) >= 0.1}
+        if bad:
+            cav.append(
+                "Negative control partly FAILED: " + ", ".join(f"{f} {min(v):.2f}-{max(v):.2f}" for f, v in bad.items())
+                + " across roots, though the plastid came after LECA. These are plastid-encoded photosystem "
+                "families; plastids spread between eukaryote groups by secondary and tertiary endosymbiosis "
+                "(red algae into Sar, haptophytes, cryptophytes), i.e. sideways, and the gain/loss model reads a "
+                "family scattered over many groups as present at the root and lost many times. None of them is in "
+                "the present-under-every-root list (P >= 0.9 under all roots), but the same effect can lift any "
+                "family spread by endosymbiosis or transfer, so families that are rare today and high at the root "
+                "need that caution. The transfer estimator below does not catch it.")
+        else:
+            cav.append("Negative control passed: every family expected absent (photosynthesis) is below 0.1 "
+                       "under every root.")
     if grades:
         worst = min(grades.values(), key=lambda g: g["recon_auroc"])
-        cav.append(
-            "Read the known-truth grades above as the main limit of this card. The tree beats the no-tree "
-            "baseline under every root, but the absolute quality is far below the other ancestors in this project "
-            f"(lowest AUROC {worst['recon_auroc']:.3f}; fungi 0.850, plastid 0.995), and the size bias runs in "
-            "opposite directions under the two roots. So no family count is quoted, and the families are a "
-            "ranking: the robust-present list (high under every root) and the expected-marker panel are what "
-            "the data support. Deep eukaryote splits on a FastTree ribosomal tree of ~250 species are the weak "
-            "link.")
+        if quote:
+            cav.append(
+                f"Known-truth quality: lowest AUROC over roots {worst['recon_auroc']:.3f} (fungi 0.850, plastid 0.995 "
+                "in this project), size bias within 10% under every root"
+                + (" and of the same sign" if len({g["recon_size_bias"] > 0 for g in grades.values()}) == 1
+                   else " but of mixed sign") + ". The tree beats the "
+                "no-tree baseline under every root. Tree: " + (args.tree_note or "see data.tree_method") + ".")
+        else:
+            cav.append(
+                "Read the known-truth grades above as the main limit of this card. The tree beats the no-tree "
+                f"baseline under every root, but the absolute quality is low (lowest AUROC {worst['recon_auroc']:.3f}; "
+                "fungi 0.850, plastid 0.995), and the size bias is outside 10% under at least one root. So no "
+                "family count is quoted, and the families are a ranking: the robust-present list (high under every "
+                "root) and the expected-marker panel are what the data support.")
     if hg:
         cav.append(f"Horizontal transfer is not modelled; measured per root at {hg.get('per_root')}. The estimator "
                    "cannot separate transfer from duplication or domain shuffling, so read it as an upper bound.")
+    if quote:
+        cav.append(f"Ancestor size (sum of posteriors) per root: {sizes}; the known-truth bias is within 10% under "
+                   "every root (an overestimate of a few percent), so the range across roots is quoted, not one "
+                   "number.")
     save_law(
         dest, id=args.id,
         scope=("Gene-family (Pfam) content of the last eukaryotic common ancestor (LECA), reconstructed on a "

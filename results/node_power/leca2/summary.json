@@ -1,0 +1,75 @@
+{
+ "note": "세 뿌리 위치 각각의 알려진 정답 채점과 그중 가장 나쁜 값",
+ "aggregate": {
+  "leca2 (표본이 도달한 마디, 뿌리 4곳 중 가장 나쁜 값: discoba)": {
+   "recon_auroc": 0.8057,
+   "freq_auroc": 0.7056,
+   "recon_logloss": 0.5057,
+   "freq_logloss": 0.9568,
+   "prior_logloss": 0.6929,
+   "recon_size_bias": 0.0805,
+   "freq_size_bias": -0.6238,
+   "n_tips": 250,
+   "auroc_margin": 0.1001,
+   "logloss_margin": 0.4511,
+   "auroc_headroom": 0.2944,
+   "verdict": "계통수가 도움이 됨"
+  },
+  "뿌리 discoba": {
+   "recon_auroc": 0.8057,
+   "freq_auroc": 0.7056,
+   "recon_logloss": 0.5057,
+   "freq_logloss": 0.9568,
+   "prior_logloss": 0.6929,
+   "recon_size_bias": 0.0805,
+   "freq_size_bias": -0.6238,
+   "n_tips": 250,
+   "auroc_margin": 0.1001,
+   "logloss_margin": 0.4511,
+   "auroc_headroom": 0.2944,
+   "verdict": "계통수가 도움이 됨"
+  },
+  "뿌리 opisthokonta": {
+   "recon_auroc": 0.863,
+   "freq_auroc": 0.7404,
+   "recon_logloss": 0.4554,
+   "freq_logloss": 0.9042,
+   "prior_logloss": 0.6929,
+   "recon_size_bias": 0.0431,
+   "freq_size_bias": -0.6091,
+   "n_tips": 250,
+   "auroc_margin": 0.1226,
+   "logloss_margin": 0.4488,
+   "auroc_headroom": 0.2596,
+   "verdict": "계통수가 도움이 됨"
+  },
+  "뿌리 amorphea": {
+   "recon_auroc": 0.8509,
+   "freq_auroc": 0.7335,
+   "recon_logloss": 0.5017,
+   "freq_logloss": 0.9055,
+   "prior_logloss": 0.6929,
+   "recon_size_bias": 0.0405,
+   "freq_size_bias": -0.6081,
+   "n_tips": 250,
+   "auroc_margin": 0.1174,
+   "logloss_margin": 0.4038,
+   "auroc_headroom": 0.2665,
+   "verdict": "계통수가 도움이 됨"
+  },
+  "뿌리 metamonada": {
+   "recon_auroc": 0.8247,
+   "freq_auroc": 0.7205,
+   "recon_logloss": 0.5007,
+   "freq_logloss": 0.935,
+   "prior_logloss": 0.6929,
+   "recon_size_bias": 0.0636,
+   "freq_size_bias": -0.6169,
+   "n_tips": 250,
+   "auroc_margin": 0.1042,
+   "logloss_margin": 0.4343,
+   "auroc_headroom": 0.2795,
+   "verdict": "계통수가 도움이 됨"
+  }
+ }
+}

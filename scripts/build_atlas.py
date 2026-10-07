@@ -74,6 +74,18 @@ CLADES = [
                "못했습니다. 알려진 정답 채점에서 두 뿌리 모두 기준선보다는 낫지만 AUROC가 0.62(디스코바)·0.82"
                "(후편모생물)로 다른 조상보다 크게 낮고, 크기 오차가 +34%와 −38%로 반대 방향이라 개수는 말하지 "
                "않습니다. 유전자군 목록은 순위로만 읽어 주세요."},
+    {"id": "leca2", "dir": "results/clade_ancestor/leca2", "hgt_id": "leca2",
+     "name": "모든 진핵생물의 조상 (LECA, 2판)", "group": "진핵생물",
+     "sub": "희귀 갈래를 보강하고 제약 계통수로 다시 복원", "confidence": "중간",
+     "blurb": "1판보다 메타모나다(4→18종)·리자리아·합토파이트를 늘리고, 큰 갈래의 단계통성을 제약으로 준 IQ-TREE "
+              "계통수로 다시 복원했습니다. 그 덕분에 뿌리 위치 네 곳(디스코바·후편모생물·아모르페아·메타모나다)을 "
+              "모두 시험했고, 네 경우 모두에서 있는 것만 '있었다'로 셉니다. 아래 확률은 네 뿌리 중 가장 작은 값입니다.",
+     "caveat": "알려진 정답 채점: 네 뿌리 모두 기준선보다 낫고 AUROC 0.81~0.86, 크기 오차 +4~+8%(조금 크게 나옴)라 "
+               "크기는 뿌리별 범위로만 말합니다(3,900~4,600개). 음성 대조 일부 실패: 엽록체 유전체의 광계 유전자군이 "
+               "0.24~0.73으로 나왔습니다. 엽록체는 2차 내공생으로 여러 갈래에 옆으로 퍼졌는데, 보유/소실 모형은 이를 "
+               "'조상에 있었고 여러 번 잃음'으로 읽습니다. 이 유전자군들은 '모든 뿌리에서 있음' 목록에는 들지 않지만, "
+               "'지금은 드문데 조상에 있었다'는 목록은 같은 이유로 부풀 수 있습니다. 계통수는 빠른 탐색(-fast)이고 "
+               "부트스트랩이 없어 계통수 불확실성은 빠져 있습니다."},
     {"id": "cyano", "dir": "results/clade_ancestor/cyano", "name": "남세균의 조상", "group": "소기관",
      "ko_clade": "남세균", "sub": "산소 광합성 남세균(Cyanobacteriia) 공통 조상",
      "blurb": "엽록체를 낳은 남세균 무리 전체의 공통 조상입니다. GTDB 세균 계통수 위에서 복원했고, 뿌리의 한쪽은 "
@@ -136,6 +148,11 @@ def clade_entry(c):
     bias = power["recon_size_bias"] if power else None
     quote = bias is not None and abs(bias) <= 0.10
     expected = int(round(float(z["posterior"].sum()))) if quote else None
+    per_root = a.get("sum_of_posteriors_per_root")
+    if per_root and quote:
+        # Several root positions: the minimum-over-roots posterior is a "present everywhere" call, not a size.
+        # The size is each root's own sum; the bar shows their mean, the note their range.
+        expected = int(round(float(np.mean(list(per_root.values())))))
     v = a["leave_tips_out_auroc"]
     kc = c.get("ko_clade", "균류")
     counts = family_counts(a["clade_species"])
@@ -155,7 +172,10 @@ def clade_entry(c):
                          + (" 부트스트랩 계통수 없이 돌려서 계통수 불확실성은 아직 반영되지 않았습니다."
                             if not a.get("n_bootstrap_trees") else "")
                          + " 불완전한 프로테옴은 손실이 아니라 누락으로 다룹니다(완전도 모형, 축소 계통 가속 끔)."),
-        "size_note": (f"알려진 정답 모의에서 조상 크기 편향 {bias:+.1%}. 10% 안쪽이라 개수를 함께 보입니다 "
+        "size_note": (f"뿌리 위치별 크기 {', '.join(f'{k} {v:,.0f}' for k, v in per_root.items())}; 막대는 그 평균입니다. "
+                      f"알려진 정답 모의의 크기 편향은 가장 나쁜 뿌리에서도 {bias:+.1%}로 10% 안쪽입니다."
+                      if per_root and quote else
+                      f"알려진 정답 모의에서 조상 크기 편향 {bias:+.1%}. 10% 안쪽이라 개수를 함께 보입니다 "
                       "(모든 유전자군의 사후확률 합)." if quote else
                       (f"알려진 정답 모의에서 조상 크기 편향 {bias:+.1%}로 10%를 넘어 개수를 말하지 않습니다."
                        if bias is not None else "알려진 정답 채점 전이라 개수를 말하지 않습니다.")),
