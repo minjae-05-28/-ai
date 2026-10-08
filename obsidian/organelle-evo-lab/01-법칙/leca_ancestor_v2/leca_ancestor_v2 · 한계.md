@@ -5,7 +5,7 @@
 tags:
   - 법칙/leca_ancestor_v2
   - 클러스터/조상 복원
-  - 판정/양성
+  - 판정/음성
   - 유형/한계
 ---
 
@@ -60,4 +60,7 @@ Horizontal transfer is not modelled; measured per root at {'discoba': 0.014, 'op
 
 ### 한계 16
 Ancestor size (sum of posteriors) per root: {'discoba': 3951.3, 'opisthokonta': 4601.3, 'amorphea': 4413.1, 'metamonada': 3918.8}; the known-truth bias is within 10% under every root (an overestimate of a few percent), so the range across roots is quoted, not one number.
+
+### 한계 17
+Correction (2026-10-08, pre-registered external benchmark 2, docs/preregistration/2026-10-08_external_benchmark_phylogenetic_RESULT.md): against Vosseberg et al. 2021 gene-tree LECA families (5,489 shared Pfams, 3,858 LECA) this reconstruction does WORSE than present-day frequency (AUROC 0.866 vs 0.954, difference -0.088 [-0.096, -0.080]; negative under every root). Families present in 20-50% of species today are 78% LECA by their trees but average P 0.29 here: the model underestimates massive loss and overestimates late gains. Within the shared Pfams our LECA size is 15-26% smaller than theirs (2,866-3,278 vs 3,858), so the size range quoted above (3,919-4,601) is likely an UNDERestimate; the known-truth bias (+4-8%) was measured on data simulated from the same model and cannot see this.
 

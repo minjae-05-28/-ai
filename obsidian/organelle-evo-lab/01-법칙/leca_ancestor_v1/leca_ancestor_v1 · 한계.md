@@ -5,7 +5,7 @@
 tags:
   - 법칙/leca_ancestor_v1
   - 클러스터/조상 복원
-  - 판정/양성
+  - 판정/음성
   - 유형/한계
 ---
 
@@ -48,4 +48,7 @@ Read the known-truth grades above as the main limit of this card. The tree beats
 
 ### 한계 12
 Horizontal transfer is not modelled; measured per root at {'discoba': 0.012, 'opisthokonta': 0.008}. The estimator cannot separate transfer from duplication or domain shuffling, so read it as an upper bound.
+
+### 한계 13
+Correction (2026-10-08, pre-registered external benchmark 2): against Vosseberg et al. 2021 gene-tree LECA families this reconstruction does worse than present-day frequency (AUROC 0.872 vs 0.955, -0.083 [-0.091, -0.076]); intermediate-frequency families are under-called. See docs/preregistration/2026-10-08_external_benchmark_phylogenetic_RESULT.md.
 

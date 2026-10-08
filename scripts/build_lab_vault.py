@@ -222,9 +222,30 @@ def decisive_tests(validation):
     return out
 
 
+# Pre-registered comparisons against an external reference that can adjudicate (built by a different
+# method on different data). They outrank the law's own known-truth grade, which is measured on data
+# simulated from the same model and cannot see that model's own bias. Laws are not rewritten; the
+# correction is also in each law's caveats.
+EXTERNAL_VERDICTS = {
+    "leca_ancestor_v2": {"where": "외부 기준 · Vosseberg 2021 계통수 LECA (사전 등록 2)",
+                         "law_value": 0.866, "baseline_value": 0.954, "mean": -0.088, "ci95": [-0.096, -0.080]},
+    "leca_ancestor_v1": {"where": "외부 기준 · Vosseberg 2021 계통수 LECA (사전 등록 2, 보조)",
+                         "law_value": 0.872, "baseline_value": 0.955, "mean": -0.083, "ci95": [-0.091, -0.076]},
+}
+
+
 def verdict_of(validation, law_id=""):
     """Did the law beat the baselines it was measured against? Read off the comparison groups."""
     groups = comparison_groups(validation)
+    ext = EXTERNAL_VERDICTS.get(law_id)
+    if ext:
+        lo, hi = ext["ci95"]
+        label = "양성" if lo > 0 else ("음성" if hi < 0 else "무승부")
+        return label, ext["mean"], (groups or []) + [{
+            "where": ext["where"], "metric": "auroc", "law": "법칙", "law_value": ext["law_value"],
+            "baseline": "현생 빈도", "baseline_value": ext["baseline_value"], "ci95": ext["ci95"],
+            "ci_holds_zero": lo <= 0 <= hi, "lower_is_better": False, "primary": True,
+            "margin": ext["mean"], "relative": ext["mean"], "bounded": True, "decisive": True}]
     tests = decisive_tests(validation)
     if tests:
         t = tests[0]
@@ -588,6 +609,20 @@ CORRECTIONS = {
 }
 
 NEGATIVES = {
+    "음성 · 계통수로 확인한 LECA 목록과도 현생 빈도를 못 이긴다 (사전 등록 2)": (
+        "사전 등록(`docs/preregistration/2026-10-08_external_benchmark_phylogenetic.md`, 자료를 받기 전 커밋) 그대로 비교했습니다. "
+        "대상은 Vosseberg 등 2021(Nat Ecol Evol)이 Pfam마다 계통수를 그려 판정한 LECA 유전자군. 분포 넓이가 아니라 나무 모양으로 정한 "
+        "기준이라 1차(Dollo)와 달리 판정력이 있습니다. 공통 Pfam 5,489개, 그중 그들 LECA 3,858개.\n\n"
+        "| 비교 | 우리 AUROC | 현생 빈도 | 차이 [95%] | 판정 |\n|---|---|---|---|---|\n"
+        "| LECA 2판(뿌리 4곳 최솟값) | 0.866 | 0.954 | −0.088 [−0.096, −0.080] | 음성 |\n"
+        "| LECA 1판(보조) | 0.872 | 0.955 | −0.083 [−0.091, −0.076] | 음성 |\n\n"
+        "뿌리 하나씩 써도 모두 음성(−0.056 ~ −0.101). **두 예측 모두 틀렸습니다** — 차이 > 0, 빈도 층화 AUROC > 0.55(실제 0.543 [0.501, 0.588]).\n\n"
+        "**탐색적 진단** — 오늘날 20–50%의 종에 있는 유전자군 1,397개를 계통수는 78% LECA로 보는데 우리 평균 사후확률은 0.29. "
+        "우리 모형은 대량 손실을 과소평가하고 뒤늦은 획득을 과대평가합니다. 같은 Pfam 안에서 LECA 크기를 15–26% 작게 잡습니다"
+        "(그들 3,858 vs 우리 2,866–3,278). 알려진 정답 채점은 같은 모형으로 만든 모의 자료라 이 구조적 편향을 볼 수 없었습니다.\n\n"
+        "**남는 결론** — 진핵생물에서 '흔함'은 LECA 기원의 매우 강한 신호(계통수 판정과 AUROC 0.954)이고, 우리 모형은 그것을 깎아 먹습니다. "
+        "LECA 크기 인용(3,919–4,601)은 과소 추정일 가능성이 높습니다. 고치려면 획득률 사전분포나 손실 편향 모형을 새 사전 등록으로 시험해야 합니다.\n\n"
+        "- 결과: `results/external_benchmark/phylogenetic.json` · `docs/preregistration/2026-10-08_external_benchmark_phylogenetic_RESULT.md` · [[leca_ancestor_v2]] · [[leca_ancestor_v1]]"),
     "음성 · 외부 복원과의 일치에서 현생 빈도를 못 이긴다 (사전 등록)": (
         "사전 등록(`docs/preregistration/2026-10-08_external_benchmark.md`, 자료를 열기 전 커밋) 그대로 비교했습니다. "
         "대상은 Zmasek & Godzik 2011(114개 유전체, Dollo 절약법, Pfam 24.0)의 조상 Pfam 집합.\n\n"

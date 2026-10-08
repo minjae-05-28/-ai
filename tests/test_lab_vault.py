@@ -88,4 +88,12 @@ def test_several_roots_are_judged_on_the_worst():
     d = law("leca_ancestor_v2")
     per = d["validation"]["known_truth_per_root"]
     worst = min(g["recon_auroc"] - g["freq_auroc"] for g in per.values())
-    assert verdict_of(d["validation"], "leca_ancestor_v2")[1] == pytest.approx(worst, abs=1e-3)
+    assert verdict_of(d["validation"])[1] == pytest.approx(worst, abs=1e-3)
+
+
+def test_external_preregistered_verdict_outranks_known_truth():
+    from build_lab_vault import verdict_of
+
+    for lid in ("leca_ancestor_v2", "leca_ancestor_v1"):
+        label, margin, _ = verdict_of(law(lid)["validation"], lid)
+        assert label == "음성" and margin < 0

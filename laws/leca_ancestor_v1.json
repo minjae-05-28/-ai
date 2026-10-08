@@ -258,7 +258,8 @@
     "Known-truth grade with the discoba root: AUROC 0.6196 against 0.5554 for present-day frequency, log loss 0.770 against 1.034, ancestor-size bias +34.3%. Verdict: 계통수가 도움이 됨.",
     "Known-truth grade with the opisthokonta root: AUROC 0.8227 against 0.6721 for present-day frequency, log loss 0.703 against 0.810, ancestor-size bias -38.0%. Verdict: 계통수가 도움이 됨.",
     "Read the known-truth grades above as the main limit of this card. The tree beats the no-tree baseline under every root, but the absolute quality is far below the other ancestors in this project (lowest AUROC 0.620; fungi 0.850, plastid 0.995), and the size bias runs in opposite directions under the two roots. So no family count is quoted, and the families are a ranking: the robust-present list (high under every root) and the expected-marker panel are what the data support. Deep eukaryote splits on a FastTree ribosomal tree of ~250 species are the weak link.",
-    "Horizontal transfer is not modelled; measured per root at {'discoba': 0.012, 'opisthokonta': 0.008}. The estimator cannot separate transfer from duplication or domain shuffling, so read it as an upper bound."
+    "Horizontal transfer is not modelled; measured per root at {'discoba': 0.012, 'opisthokonta': 0.008}. The estimator cannot separate transfer from duplication or domain shuffling, so read it as an upper bound.",
+    "Correction (2026-10-08, pre-registered external benchmark 2): against Vosseberg et al. 2021 gene-tree LECA families this reconstruction does worse than present-day frequency (AUROC 0.872 vs 0.955, -0.083 [-0.091, -0.076]); intermediate-frequency families are under-called. See docs/preregistration/2026-10-08_external_benchmark_phylogenetic_RESULT.md."
   ],
   "contexts": {}
 }

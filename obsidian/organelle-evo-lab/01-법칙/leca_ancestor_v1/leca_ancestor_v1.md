@@ -2,12 +2,12 @@
 유형: 법칙 허브
 법칙: leca_ancestor_v1
 클러스터: 조상 복원
-판정: 양성
-기준선대비: 0.0642
+판정: 음성
+기준선대비: -0.083
 tags:
   - 법칙/leca_ancestor_v1
   - 클러스터/조상 복원
-  - 판정/양성
+  - 판정/음성
 ---
 
 # leca_ancestor_v1
@@ -17,12 +17,13 @@ tags:
 
 **모형** — Two-state gain/loss Markov chain per family, ensemble of the five leading models of the mitochondrial model search, incomplete proteomes as dropout in the likelihood, no reduced-lineage multiplier; one run per root position (rooted on the named split), combined by minimum.
 
-## 판정 — 양성
+## 판정 — 음성
 
 | 비교한 곳 | 법칙 | 기준선 | 차이 | 방향 |
 | --- | --- | --- | --- | --- |
 | leave_tips_out_auroc_per_root · discoba (auroc) | `reconstruction` 0.9818 | `clade_frequency` 0.9329 | +0.0489 | 높을수록 좋음 |
 | leave_tips_out_auroc_per_root · opisthokonta (auroc) | `reconstruction` 0.9828 | `clade_frequency` 0.9141 | +0.0687 | 높을수록 좋음 |
+| 외부 기준 · Vosseberg 2021 계통수 LECA (사전 등록 2, 보조) (auroc) | `법칙` 0.872 | `현생 빈도` 0.955 | -0.0830 [-0.091, -0.076] | 높을수록 좋음 |
 | known_truth_per_root · discoba (auroc) | `recon_auroc` 0.6196 | `freq_auroc` 0.5554 | +0.0642 | 높을수록 좋음 |
 | known_truth_per_root · opisthokonta (auroc) | `recon_auroc` 0.8227 | `freq_auroc` 0.6721 | +0.1506 | 높을수록 좋음 |
 | known_truth_per_root · discoba (logloss) | `recon_logloss` 0.7701 | `prior_logloss` 0.6929 | -0.0772 | 낮을수록 좋음 |
