@@ -40,6 +40,8 @@ def main():
     ap.add_argument("--figshare", default="", help="figshare article id")
     ap.add_argument("--files", default="", help="comma-separated figshare file names to download; "
                                                 "empty = write the file list only (names and sizes)")
+    ap.add_argument("--tar-names-only", action="store_true",
+                    help="for downloaded .tar.gz files keep only the member names (<file>.names.txt), not the archive")
     args = ap.parse_args()
     out = Path("results/external") / args.name
     out.mkdir(parents=True, exist_ok=True)
@@ -54,7 +56,14 @@ def main():
         for f in files:
             if f["name"] in want:
                 data = get(f["url"])
-                if data:
+                if data and args.tar_names_only and f["name"].endswith(".tar.gz"):
+                    import tarfile
+                    with tarfile.open(fileobj=io.BytesIO(data), mode="r:gz") as t:
+                        names = [m.name for m in t.getmembers() if m.isfile()]
+                    (out / (f["name"] + ".names.txt")).write_text("\n".join(names) + "\n")
+                    index.append({"file": f["name"] + ".names.txt", "source": f["url"], "bytes": len(data),
+                                  "note": "member names only; archive not kept"})
+                elif data:
                     (out / f["name"]).write_bytes(data)
                     index.append({"file": f["name"], "source": f["url"], "bytes": len(data)})
         if not want:
