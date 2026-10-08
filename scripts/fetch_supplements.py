@@ -36,11 +36,30 @@ def main():
     ap.add_argument("--name", required=True)
     ap.add_argument("--pmcid", default="")
     ap.add_argument("--article", default="")
+    ap.add_argument("--list-only", action="store_true", help="record the article's supplementary links, download nothing")
+    ap.add_argument("--figshare", default="", help="figshare article id")
+    ap.add_argument("--files", default="", help="comma-separated figshare file names to download; "
+                                                "empty = write the file list only (names and sizes)")
     args = ap.parse_args()
     out = Path("results/external") / args.name
     out.mkdir(parents=True, exist_ok=True)
     index = []
-    if args.pmcid:
+    if args.figshare:
+        meta = json.loads(get(f"https://api.figshare.com/v2/articles/{args.figshare}") or b"{}")
+        files = [{"name": f["name"], "bytes": f["size"], "url": f["download_url"]} for f in meta.get("files", [])]
+        (out / "figshare_files.json").write_text(json.dumps({"title": meta.get("title"), "doi": meta.get("doi"),
+                                                             "files": files}, indent=1))
+        print(f"figshare {args.figshare}: {len(files)} files")
+        want = {w for w in args.files.split(",") if w}
+        for f in files:
+            if f["name"] in want:
+                data = get(f["url"])
+                if data:
+                    (out / f["name"]).write_bytes(data)
+                    index.append({"file": f["name"], "source": f["url"], "bytes": len(data)})
+        if not want:
+            return
+    if args.pmcid and not args.list_only:
         url = f"https://www.ebi.ac.uk/europepmc/webservices/rest/{args.pmcid}/supplementaryFiles"
         data = get(url)
         if data and data[:2] == b"PK":
@@ -53,10 +72,13 @@ def main():
             print(f"Europe PMC: {len(index)} files")
         else:
             print(f"Europe PMC returned nothing usable ({len(data or b'')} bytes)")
-    if not index and args.article:
+    if (not index or args.list_only) and args.article:
         page = get(args.article)
         links = sorted(set(re.findall(rb'https://static-content\.springer\.com/esm/[^"\'\s<>]+', page or b"")))
         print(f"article page: {len(links)} supplementary links")
+        if args.list_only:
+            (out / "article_links.json").write_text(json.dumps([x.decode() for x in links], indent=1))
+            return
         for link in links:
             u = link.decode()
             data = get(u)
