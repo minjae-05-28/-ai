@@ -1,0 +1,144 @@
+name: Gene trees (pre-registration 6)
+
+# Per-family gene trees: eukaryote proteomes of the leca2 pick plus a prokaryote panel (both fixed in
+# data/gene_trees/panel.json, committed with the pre-registration),
+# Pfam domains cut out with the family HMM, hmmalign, FastTree. Only trees and counts are committed.
+
+on:
+  workflow_dispatch:
+    inputs:
+      n_fetch:
+        default: "8"
+      n_build:
+        default: "4"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: gene-trees
+  cancel-in-progress: false
+
+env:
+  PFAM_URL: https://ftp.ebi.ac.uk/pub/databases/Pfam/current_release/Pfam-A.hmm.gz
+  PFAM_KEY: pfam-a-current-v1
+
+jobs:
+  plan:
+    runs-on: ubuntu-latest
+    outputs:
+      fetch: ${{ steps.s.outputs.fetch }}
+      build: ${{ steps.s.outputs.build }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - id: s
+        run: |
+          echo "fetch=$(python3 -c "print(list(range(int('${{ inputs.n_fetch }}'))))")" >> "$GITHUB_OUTPUT"
+          echo "build=$(python3 -c "print(list(range(int('${{ inputs.n_build }}'))))")" >> "$GITHUB_OUTPUT"
+
+  pfam:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/cache@v4
+        id: cache
+        with:
+          path: pfam/Pfam-A.hmm.gz
+          key: ${{ env.PFAM_KEY }}
+      - if: steps.cache.outputs.cache-hit != 'true'
+        run: mkdir -p pfam && curl -fsSL "$PFAM_URL" -o pfam/Pfam-A.hmm.gz && ls -lh pfam
+
+  fetch:
+    needs: plan
+    runs-on: ubuntu-latest
+    timeout-minutes: 300
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: ${{ fromJSON(needs.plan.outputs.fetch) }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Fetch sequences
+        env:
+          PYTHONPATH: src
+        run: |
+          pip install numpy
+          python scripts/gene_trees.py fetch --shard ${{ matrix.shard }} --n-shards ${{ inputs.n_fetch }}
+      - uses: actions/upload-artifact@v4
+        with:
+          name: gt-seqs-${{ matrix.shard }}
+          path: work/
+          retention-days: 7
+
+  build:
+    needs: [plan, pfam, fetch]
+    runs-on: ubuntu-latest
+    timeout-minutes: 300
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: ${{ fromJSON(needs.plan.outputs.build) }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install numpy pyhmmer && sudo apt-get update -q && sudo apt-get install -y -q fasttree
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: gt-seqs-*
+          path: work
+          merge-multiple: true
+      - uses: actions/cache/restore@v4
+        with:
+          path: pfam/Pfam-A.hmm.gz
+          key: ${{ env.PFAM_KEY }}
+          fail-on-cache-miss: true
+      - run: gunzip -kf pfam/Pfam-A.hmm.gz
+      - name: Build trees
+        env:
+          PYTHONPATH: src
+        run: timeout 270m python scripts/gene_trees.py build --shard ${{ matrix.shard }} --n-shards ${{ inputs.n_build }}
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: gt-trees-${{ matrix.shard }}
+          path: results/gene_trees/
+
+  collect:
+    needs: build
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: gt-trees-*
+          path: results/gene_trees
+          merge-multiple: true
+      - name: Analyse (pre-registered)
+        env:
+          PYTHONPATH: src
+        run: pip install numpy scipy && python scripts/gene_trees.py analyze
+      - name: Commit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -f results/gene_trees
+          if git diff --cached --quiet; then echo "No changes."; else
+            git commit -m "Gene trees (pre-registration 6): trees, per-family counts, analysis"
+            ok=0
+            for i in 1 2 3 4 5 6; do
+              git pull --rebase origin main && git push origin HEAD:main && { ok=1; break; }
+              echo "push attempt $i failed; retrying"; sleep $((i*10))
+            done
+            [ "$ok" = 1 ] || { echo "::error::could not push"; exit 1; }
+          fi
