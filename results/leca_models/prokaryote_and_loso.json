@@ -1,0 +1,232 @@
+{
+ "preregistration": "docs/preregistration/2026-10-09_prokaryote_and_loso.md",
+ "C": {
+  "n_archaea": 628,
+  "n_bacteria": 17441,
+  "test_auroc": {
+   "P0": 0.9568,
+   "P1": 0.9739,
+   "P2": 0.9727,
+   "frequency": 0.9568,
+   "M7H2": 0.9296
+  },
+  "calibration_auroc_cv": {
+   "P0": 0.9499,
+   "P1": 0.9665,
+   "P2": 0.9671
+  },
+  "coefficients_last_is_intercept": {
+   "P0": [
+    3.1196,
+    4.7654
+   ],
+   "P1": [
+    3.5593,
+    -0.0042,
+    -0.3854,
+    3.8862
+   ],
+   "P2": [
+    2.7478,
+    -0.037,
+    -0.3814,
+    0.1308,
+    3.129
+   ]
+  },
+  "P1_minus_frequency": {
+   "mean": 0.0171,
+   "ci95": [
+    0.0131,
+    0.0213
+   ],
+   "verdict": "양성"
+  },
+  "P2_minus_P1": {
+   "mean": -0.0011,
+   "ci95": [
+    -0.0024,
+    0.0001
+   ],
+   "verdict": "무승부"
+  },
+  "P1_minus_P0": {
+   "mean": 0.0171,
+   "ci95": [
+    0.0131,
+    0.0213
+   ],
+   "verdict": "양성"
+  },
+  "leca_share_by_prokaryote_presence": {
+   "in_prokaryotes": 0.615,
+   "eukaryote_only": 0.874,
+   "n_in_prokaryotes": 1910,
+   "n_eukaryote_only": 891
+  }
+ },
+ "D": {
+  "groups": {
+   "Alveolata": {
+    "n_tips": 30,
+    "mixed": false,
+    "non_group_tips_under_ancestor": 0,
+    "n_families": 14178,
+    "y_any": {
+     "model": 0.9203,
+     "count": 0.8558,
+     "diff": 0.0644
+    },
+    "y_half": {
+     "model": 0.9685,
+     "count": 0.9678,
+     "diff": 0.0007
+    }
+   },
+   "Amoebozoa": {
+    "n_tips": 12,
+    "mixed": false,
+    "non_group_tips_under_ancestor": 0,
+    "n_families": 14280,
+    "y_any": {
+     "model": 0.9444,
+     "count": 0.9194,
+     "diff": 0.025
+    },
+    "y_half": {
+     "model": 0.9523,
+     "count": 0.9459,
+     "diff": 0.0064
+    }
+   },
+   "Discoba": {
+    "n_tips": 24,
+    "mixed": false,
+    "non_group_tips_under_ancestor": 0,
+    "n_families": 14219,
+    "y_any": {
+     "model": 0.9416,
+     "count": 0.9113,
+     "diff": 0.0303
+    },
+    "y_half": {
+     "model": 0.9447,
+     "count": 0.9415,
+     "diff": 0.0032
+    }
+   },
+   "Fungi": {
+    "n_tips": 39,
+    "mixed": true,
+    "non_group_tips_under_ancestor": 42,
+    "n_families": 13852,
+    "y_any": {
+     "model": 0.8962,
+     "count": 0.8411,
+     "diff": 0.0551
+    },
+    "y_half": {
+     "model": 0.944,
+     "count": 0.9285,
+     "diff": 0.0155
+    }
+   },
+   "Metamonada": {
+    "n_tips": 11,
+    "mixed": false,
+    "non_group_tips_under_ancestor": 0,
+    "n_families": 14327,
+    "y_any": {
+     "model": 0.909,
+     "count": 0.8652,
+     "diff": 0.0438
+    },
+    "y_half": {
+     "model": 0.954,
+     "count": 0.9481,
+     "diff": 0.006
+    }
+   },
+   "Metazoa": {
+    "n_tips": 37,
+    "mixed": false,
+    "non_group_tips_under_ancestor": 0,
+    "n_families": 11327,
+    "y_any": {
+     "model": 0.865,
+     "count": 0.7692,
+     "diff": 0.0958
+    },
+    "y_half": {
+     "model": 0.886,
+     "count": 0.8112,
+     "diff": 0.0748
+    }
+   },
+   "Rhodophyta": {
+    "n_tips": 11,
+    "mixed": false,
+    "non_group_tips_under_ancestor": 0,
+    "n_families": 14330,
+    "y_any": {
+     "model": 0.931,
+     "count": 0.9072,
+     "diff": 0.0238
+    },
+    "y_half": {
+     "model": 0.9504,
+     "count": 0.9455,
+     "diff": 0.0049
+    }
+   },
+   "Stramenopiles": {
+    "n_tips": 34,
+    "mixed": false,
+    "non_group_tips_under_ancestor": 0,
+    "n_families": 14308,
+    "y_any": {
+     "model": 0.9385,
+     "count": 0.8833,
+     "diff": 0.0552
+    },
+    "y_half": {
+     "model": 0.9598,
+     "count": 0.9652,
+     "diff": -0.0054
+    }
+   },
+   "Viridiplantae": {
+    "n_tips": 38,
+    "mixed": false,
+    "non_group_tips_under_ancestor": 0,
+    "n_families": 13485,
+    "y_any": {
+     "model": 0.9251,
+     "count": 0.8397,
+     "diff": 0.0854
+    },
+    "y_half": {
+     "model": 0.9505,
+     "count": 0.9219,
+     "diff": 0.0287
+    }
+   }
+  },
+  "y_any": {
+   "mean_model_minus_count": 0.0532,
+   "ci95": [
+    0.0518,
+    0.0545
+   ],
+   "verdict": "양성"
+  },
+  "y_half": {
+   "mean_model_minus_count": 0.015,
+   "ci95": [
+    0.014,
+    0.0159
+   ],
+   "verdict": "양성"
+  }
+ }
+}
