@@ -1,0 +1,187 @@
+{
+ "preregistration": "docs/preregistration/2026-10-09_tree_scramble_and_transfer.md",
+ "A_tree_information": {
+  "T0_real": 0.9263,
+  "T1_shuffled_each": [
+   0.9556,
+   0.9538,
+   0.9566,
+   0.9553,
+   0.9525
+  ],
+  "T1_shuffled_mean": 0.9548,
+  "T2_star": 0.9358,
+  "frequency": 0.9568,
+  "T0_minus_T1": {
+   "mean": -0.0285,
+   "ci95": [
+    -0.035,
+    -0.0219
+   ]
+  },
+  "verdict": "음성",
+  "T0_minus_T2": {
+   "mean": -0.0095,
+   "ci95": [
+    -0.0185,
+    -0.0002
+   ]
+  },
+  "T2_minus_frequency": -0.021
+ },
+ "B_transfer": {
+  "calibration_auroc": {
+   "T0": 0.9277,
+   "H1": 0.9267,
+   "H2": 0.9327
+  },
+  "test_auroc": {
+   "T0": 0.9263,
+   "H1": 0.9268,
+   "H2": 0.9296
+  },
+  "chosen": "H2",
+  "chosen_minus_H0": {
+   "mean": 0.0034,
+   "ci95": [
+    0.0008,
+    0.006
+   ]
+  },
+  "verdict": "양성",
+  "chosen_minus_frequency": {
+   "mean": -0.0272,
+   "ci95": [
+    -0.0338,
+    -0.0207
+   ]
+  },
+  "negative_control_posterior_per_root": {
+   "T0": {
+    "Photo_RC": [
+     0.003,
+     0.001,
+     0.007,
+     0.001
+    ],
+    "PSII": [
+     0.003,
+     0.001,
+     0.007,
+     0.001
+    ],
+    "PsbP": [
+     0.0,
+     0.0,
+     0.003,
+     0.0
+    ],
+    "Chloroa_b-bind": [
+     0.0,
+     0.0,
+     0.001,
+     0.0
+    ],
+    "PsaA_PsaB": [
+     0.215,
+     0.149,
+     0.265,
+     0.235
+    ]
+   },
+   "H1": {
+    "Photo_RC": [
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "PSII": [
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "PsbP": [
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "Chloroa_b-bind": [
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "PsaA_PsaB": [
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ]
+   },
+   "H2": {
+    "Photo_RC": [
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "PSII": [
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "PsbP": [
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "Chloroa_b-bind": [
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "PsaA_PsaB": [
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  "negative_control_passed": {
+   "T0": false,
+   "H1": true,
+   "H2": true
+  },
+  "size_ratio_test": {
+   "T0": 0.796,
+   "H1": 0.796,
+   "H2": 0.791
+  }
+ },
+ "fit": {
+  "T0 discoba": "{'ratio': [np.float32(0.2)], 'root': 'stationary'}",
+  "H1 discoba": "{'ratio': [np.float32(0.2)], 'root': 'stationary'}",
+  "plastid tips discoba": 92,
+  "enriched families discoba": 2784,
+  "T2": "{'ratio': [np.float32(0.2)], 'root': 'stationary'}",
+  "T0 opisthokonta": "{'ratio': [np.float32(0.2)], 'root': 'stationary'}",
+  "H1 opisthokonta": "{'ratio': [np.float32(0.2)], 'root': 'stationary'}",
+  "plastid tips opisthokonta": 92,
+  "enriched families opisthokonta": 2784,
+  "T0 amorphea": "{'ratio': [np.float32(0.2)], 'root': 'stationary'}",
+  "H1 amorphea": "{'ratio': [np.float32(0.2)], 'root': 'stationary'}",
+  "plastid tips amorphea": 92,
+  "enriched families amorphea": 2784,
+  "T0 metamonada": "{'ratio': [np.float32(0.2)], 'root': 'stationary'}",
+  "H1 metamonada": "{'ratio': [np.float32(0.2)], 'root': 'stationary'}",
+  "plastid tips metamonada": 92,
+  "enriched families metamonada": 2784
+ }
+}
