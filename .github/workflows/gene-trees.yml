@@ -11,6 +11,15 @@ on:
         default: "8"
       n_build:
         default: "4"
+      families_file:
+        description: "family list (default: pre-registration 6)"
+        default: "data/gene_trees/families.json"
+      out_dir:
+        description: "where trees and per-family counts go"
+        default: "results/gene_trees"
+      analyze:
+        description: "run the pre-registration 6 analysis (true only for its own family list)"
+        default: "true"
 
 permissions:
   contents: write
@@ -20,6 +29,8 @@ concurrency:
   cancel-in-progress: false
 
 env:
+  GT_FAMS: ${{ inputs.families_file }}
+  GT_OUT: ${{ inputs.out_dir }}
   PFAM_URL: https://ftp.ebi.ac.uk/pub/databases/Pfam/current_release/Pfam-A.hmm.gz
   PFAM_KEY: pfam-a-current-v1
 
@@ -108,7 +119,7 @@ jobs:
         if: always()
         with:
           name: gt-trees-${{ matrix.shard }}
-          path: results/gene_trees/
+          path: ${{ inputs.out_dir }}/
 
   collect:
     needs: build
@@ -122,9 +133,10 @@ jobs:
       - uses: actions/download-artifact@v4
         with:
           pattern: gt-trees-*
-          path: results/gene_trees
+          path: ${{ inputs.out_dir }}
           merge-multiple: true
       - name: Analyse (pre-registered)
+        if: inputs.analyze == 'true'
         env:
           PYTHONPATH: src
         run: pip install numpy scipy && python scripts/gene_trees.py analyze
@@ -132,7 +144,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -f results/gene_trees
+          git add -f ${{ inputs.out_dir }}
           if git diff --cached --quiet; then echo "No changes."; else
             git commit -m "Gene trees (pre-registration 6): trees, per-family counts, analysis"
             ok=0

@@ -33,9 +33,12 @@ import numpy as np
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
-FAMS = Path("data/gene_trees/families.json")
+import os
+
+# A different family list and output folder can be given (reliability calibration, pre-registration 11).
+FAMS = Path(os.environ.get("GT_FAMS", "data/gene_trees/families.json"))
 PANEL = Path("data/gene_trees/panel.json")
-OUT = Path("results/gene_trees")
+OUT = Path(os.environ.get("GT_OUT", "results/gene_trees"))
 WORK = Path("work")
 AMORPHEA = {"Opisthokonta", "Amoebozoa", "Apusozoa", "Breviatea"}
 SUPPORT = 0.9
