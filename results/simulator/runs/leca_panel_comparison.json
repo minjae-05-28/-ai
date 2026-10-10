@@ -1,0 +1,575 @@
+{
+ "expected_size": {
+  "free": 3994,
+  "anaerobic": 2538,
+  "parasitic": 2930,
+  "multicellular": 3864
+ },
+ "panel": {
+  "respiratory chain (expected LOST)": {
+   "Complex1_51K": {
+    "free": 0.98,
+    "anaerobic": 0.93,
+    "parasitic": 0.98,
+    "multicellular": 1.0,
+    "in_start": true
+   },
+   "Complex1_30kDa": {
+    "free": 0.16,
+    "anaerobic": 0.27,
+    "parasitic": 0.47,
+    "multicellular": 0.81,
+    "in_start": false
+   },
+   "COX15-CtaA": {
+    "free": 0.97,
+    "anaerobic": 0.75,
+    "parasitic": 0.98,
+    "multicellular": 0.99,
+    "in_start": true
+   },
+   "COX4": {
+    "free": 0.11,
+    "anaerobic": 0.01,
+    "parasitic": 0.02,
+    "multicellular": 0.38,
+    "in_start": false
+   },
+   "COX17": {
+    "free": 0.69,
+    "anaerobic": 0.02,
+    "parasitic": 0.73,
+    "multicellular": 0.91,
+    "in_start": true
+   },
+   "Cytochrom_C1": {
+    "free": 0.99,
+    "anaerobic": 0.86,
+    "parasitic": 0.99,
+    "multicellular": 1.0,
+    "in_start": true
+   },
+   "UCR_14kD": {
+    "free": 0.91,
+    "anaerobic": 0.34,
+    "parasitic": 0.91,
+    "multicellular": 0.97,
+    "in_start": true
+   },
+   "UCR_hinge": {
+    "free": 0.72,
+    "anaerobic": 0.05,
+    "parasitic": 0.75,
+    "multicellular": 0.9,
+    "in_start": true
+   },
+   "Rieske": {
+    "free": 0.99,
+    "anaerobic": 0.86,
+    "parasitic": 0.99,
+    "multicellular": 1.0,
+    "in_start": true
+   },
+   "SDH_C": {
+    "free": 0.05,
+    "anaerobic": 0.0,
+    "parasitic": 0.0,
+    "multicellular": 0.03,
+    "in_start": false
+   }
+  },
+  "TCA cycle (expected mostly lost)": {
+   "Citrate_synt": {
+    "free": 0.99,
+    "anaerobic": 0.93,
+    "parasitic": 0.99,
+    "multicellular": 1.0,
+    "in_start": true
+   },
+   "SDH_beta": {
+    "free": 0.09,
+    "anaerobic": 0.28,
+    "parasitic": 0.01,
+    "multicellular": 0.02,
+    "in_start": false
+   }
+  },
+  "ATP synthase (expected lost in mitosomes)": {
+   "ATP-synt_D": {
+    "free": 0.99,
+    "anaerobic": 0.99,
+    "parasitic": 0.99,
+    "multicellular": 1.0,
+    "in_start": true
+   },
+   "ATP-synt_DE": {
+    "free": 0.04,
+    "anaerobic": 0.0,
+    "parasitic": 0.0,
+    "multicellular": 0.17,
+    "in_start": false
+   },
+   "ATP-synt_C": {
+    "free": 0.99,
+    "anaerobic": 0.99,
+    "parasitic": 0.99,
+    "multicellular": 1.0,
+    "in_start": true
+   }
+  },
+  "anaerobic energy metabolism (expected GAINED/kept)": {
+   "Fe_hyd_lg_C": {
+    "free": 0.99,
+    "anaerobic": 0.99,
+    "parasitic": 0.99,
+    "multicellular": 1.0,
+    "in_start": true
+   },
+   "Fe_hyd_SSU": {
+    "free": 0.69,
+    "anaerobic": 0.61,
+    "parasitic": 0.17,
+    "multicellular": 0.88,
+    "in_start": true
+   },
+   "POR_N": {
+    "free": 0.12,
+    "anaerobic": 0.7,
+    "parasitic": 0.02,
+    "multicellular": 0.04,
+    "in_start": false
+   },
+   "PFOR_II": {
+    "free": 0.11,
+    "anaerobic": 0.71,
+    "parasitic": 0.02,
+    "multicellular": 0.03,
+    "in_start": false
+   },
+   "ADH_Fe_C": {
+    "free": 0.75,
+    "anaerobic": 0.81,
+    "parasitic": 0.41,
+    "multicellular": 0.62,
+    "in_start": true
+   },
+   "Rubredoxin": {
+    "free": 0.04,
+    "anaerobic": 0.0,
+    "parasitic": 0.01,
+    "multicellular": 0.02,
+    "in_start": false
+   },
+   "Hemerythrin": {
+    "free": 0.68,
+    "anaerobic": 0.22,
+    "parasitic": 0.09,
+    "multicellular": 0.67,
+    "in_start": true
+   }
+  },
+  "Fe-S cluster assembly (expected KEPT: the one job mitosomes still do)": {
+   "NifU": {
+    "free": 0.99,
+    "anaerobic": 0.97,
+    "parasitic": 0.99,
+    "multicellular": 1.0,
+    "in_start": true
+   },
+   "NifU_N": {
+    "free": 0.99,
+    "anaerobic": 0.99,
+    "parasitic": 0.99,
+    "multicellular": 1.0,
+    "in_start": true
+   },
+   "Frataxin_Cyay": {
+    "free": 0.96,
+    "anaerobic": 0.94,
+    "parasitic": 0.91,
+    "multicellular": 0.96,
+    "in_start": true
+   }
+  },
+  "cell adhesion / extracellular matrix": {
+   "Cadherin": {
+    "free": 0.05,
+    "anaerobic": 0.01,
+    "parasitic": 0.01,
+    "multicellular": 0.01,
+    "in_start": false
+   },
+   "Integrin_beta": {
+    "free": 0.02,
+    "anaerobic": 0.0,
+    "parasitic": 0.0,
+    "multicellular": 0.1,
+    "in_start": false
+   },
+   "Integrin_alpha": {
+    "free": 0.02,
+    "anaerobic": 0.0,
+    "parasitic": 0.0,
+    "multicellular": 0.0,
+    "in_start": false
+   },
+   "Laminin_G_1": {
+    "free": 0.01,
+    "anaerobic": 0.0,
+    "parasitic": 0.0,
+    "multicellular": 0.0,
+    "in_start": false
+   },
+   "Collagen": {
+    "free": 0.31,
+    "anaerobic": 0.57,
+    "parasitic": 0.03,
+    "multicellular": 0.9,
+    "in_start": false
+   },
+   "fn3": {
+    "free": 0.89,
+    "anaerobic": 0.63,
+    "parasitic": 0.7,
+    "multicellular": 0.85,
+    "in_start": true
+   },
+   "EGF": {
+    "free": 0.14,
+    "anaerobic": 0.39,
+    "parasitic": 0.02,
+    "multicellular": 0.47,
+    "in_start": false
+   }
+  },
+  "developmental transcription factors": {
+   "Homeobox_KN": {
+    "free": 0.92,
+    "anaerobic": 0.93,
+    "parasitic": 0.77,
+    "multicellular": 0.98,
+    "in_start": true
+   }
+  }
+ },
+ "biggest_env_effects": {
+  "anaerobic": {
+   "lost_more": [
+    [
+     "SGL",
+     -0.7
+    ],
+    [
+     "LigB",
+     -0.68
+    ],
+    [
+     "PQQ_2",
+     -0.68
+    ],
+    [
+     "LANC_like",
+     -0.68
+    ],
+    [
+     "Oxidored-like",
+     -0.68
+    ],
+    [
+     "COX17",
+     -0.67
+    ],
+    [
+     "Ribosomal_L36",
+     -0.67
+    ],
+    [
+     "UCR_UQCRX_QCR9",
+     -0.67
+    ],
+    [
+     "AidB_N",
+     -0.67
+    ],
+    [
+     "Ribonucleas_3_3",
+     -0.67
+    ],
+    [
+     "DUF423",
+     -0.67
+    ],
+    [
+     "UCR_hinge",
+     -0.67
+    ],
+    [
+     "PAS_3",
+     -0.67
+    ],
+    [
+     "Integrase_H2C2",
+     -0.67
+    ],
+    [
+     "RdRP_head",
+     -0.67
+    ]
+   ],
+   "kept_or_gained_more": [
+    [
+     "EKR",
+     0.7
+    ],
+    [
+     "TK",
+     0.66
+    ],
+    [
+     "POR",
+     0.65
+    ],
+    [
+     "Polysacc_deac_1",
+     0.63
+    ],
+    [
+     "Rad17",
+     0.62
+    ],
+    [
+     "PFOR_II",
+     0.6
+    ],
+    [
+     "POR_N",
+     0.59
+    ],
+    [
+     "EPL1",
+     0.58
+    ],
+    [
+     "Zn_ribbon_TOP3B",
+     0.56
+    ],
+    [
+     "AHSA1",
+     0.56
+    ]
+   ]
+  },
+  "parasitic": {
+   "lost_more": [
+    [
+     "Ank_3",
+     -0.63
+    ],
+    [
+     "zf-RING_11",
+     -0.63
+    ],
+    [
+     "Melibiase_2",
+     -0.63
+    ],
+    [
+     "GFA",
+     -0.62
+    ],
+    [
+     "POLH-Rev1_HhH",
+     -0.62
+    ],
+    [
+     "MR_MLE_C",
+     -0.62
+    ],
+    [
+     "Rit1_C",
+     -0.62
+    ],
+    [
+     "TMP-TENI",
+     -0.62
+    ],
+    [
+     "Abhydro_lipase",
+     -0.61
+    ],
+    [
+     "LANC_like",
+     -0.61
+    ],
+    [
+     "Glyco_hydro_3",
+     -0.6
+    ],
+    [
+     "LigB",
+     -0.6
+    ],
+    [
+     "Melibiase_C",
+     -0.6
+    ],
+    [
+     "Dimerisation",
+     -0.6
+    ],
+    [
+     "Glyco_hydro_3_C",
+     -0.6
+    ]
+   ],
+   "kept_or_gained_more": [
+    [
+     "HHH_9",
+     0.63
+    ],
+    [
+     "Sec3_CC",
+     0.63
+    ],
+    [
+     "YqgF",
+     0.62
+    ],
+    [
+     "Rad17",
+     0.59
+    ],
+    [
+     "Syntaxin_2",
+     0.57
+    ],
+    [
+     "Fer4_Nqo3",
+     0.57
+    ],
+    [
+     "HUN",
+     0.53
+    ],
+    [
+     "TPR_14",
+     0.5
+    ],
+    [
+     "HAND",
+     0.5
+    ],
+    [
+     "Gln-synt_N",
+     0.5
+    ]
+   ]
+  },
+  "multicellular": {
+   "lost_more": [
+    [
+     "ELYS",
+     -0.59
+    ],
+    [
+     "Glyco_transf_17",
+     -0.56
+    ],
+    [
+     "SHNi-TPR",
+     -0.53
+    ],
+    [
+     "Nucleoprot-TPR",
+     -0.53
+    ],
+    [
+     "DNA_ligase_OB_2",
+     -0.53
+    ],
+    [
+     "GLUCM-like_C",
+     -0.53
+    ],
+    [
+     "SANTA",
+     -0.53
+    ],
+    [
+     "Sec3-PIP2_bind",
+     -0.53
+    ],
+    [
+     "MMPL",
+     -0.53
+    ],
+    [
+     "RBBP6_link",
+     -0.52
+    ],
+    [
+     "AstE_AspA_cat",
+     -0.52
+    ],
+    [
+     "WS_DGAT_cat",
+     -0.51
+    ],
+    [
+     "S1-P1_nuclease",
+     -0.51
+    ],
+    [
+     "Mut7-C",
+     -0.5
+    ],
+    [
+     "Nbl1_Borealin_N",
+     -0.5
+    ]
+   ],
+   "kept_or_gained_more": [
+    [
+     "COX2_TM",
+     0.73
+    ],
+    [
+     "Cu2_monooxygen",
+     0.71
+    ],
+    [
+     "Cu2_monoox_C",
+     0.7
+    ],
+    [
+     "Dimer_Tnp_hAT",
+     0.7
+    ],
+    [
+     "HTH_Tnp_Tc5",
+     0.69
+    ],
+    [
+     "Peptidase_C14",
+     0.68
+    ],
+    [
+     "SEN1_N",
+     0.67
+    ],
+    [
+     "DDE_1",
+     0.67
+    ],
+    [
+     "Ricin_B_lectin",
+     0.66
+    ],
+    [
+     "COX2",
+     0.66
+    ]
+   ]
+  }
+ }
+}

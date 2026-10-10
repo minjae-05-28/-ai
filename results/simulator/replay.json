@@ -1,0 +1,219 @@
+{
+ "preregistration": "docs/preregistration/2026-10-10_evolution_simulator.md",
+ "envs": {
+  "anaerobic": {
+   "kind": "loss",
+   "origins": {
+    "Metamonada": {
+     "simulator_env": 0.8656,
+     "simulator_base": 0.8439,
+     "transition_law": 0.7428,
+     "rarity": 0.8095,
+     "n_candidates": 4453,
+     "n_changed": 2822,
+     "time": 0.4488
+    },
+    "Archamoebae (Entamoeba)": {
+     "simulator_env": 0.8497,
+     "simulator_base": 0.8167,
+     "transition_law": 0.7631,
+     "rarity": 0.7942,
+     "n_candidates": 4317,
+     "n_changed": 2556,
+     "time": 0.4775
+    },
+    "Neocallimastigomycota": {
+     "simulator_env": 0.7384,
+     "simulator_base": 0.7083,
+     "transition_law": 0.6879,
+     "rarity": 0.7058,
+     "n_candidates": 4459,
+     "n_changed": 913,
+     "time": 0.4516
+    },
+    "Microsporidia": {
+     "simulator_env": 0.8445,
+     "simulator_base": 0.8146,
+     "transition_law": 0.766,
+     "rarity": 0.8526,
+     "n_candidates": 3311,
+     "n_changed": 2227,
+     "time": 0.6082
+    },
+    "Cryptosporidium": {
+     "simulator_env": 0.8297,
+     "simulator_base": 0.8028,
+     "transition_law": 0.6791,
+     "rarity": 0.8177,
+     "n_candidates": 2731,
+     "n_changed": 1002,
+     "time": 0.8027
+    },
+    "Blastocystis": {
+     "simulator_env": 0.8315,
+     "simulator_base": 0.8248,
+     "transition_law": 0.6573,
+     "rarity": 0.8245,
+     "n_candidates": 4996,
+     "n_changed": 2450,
+     "time": 0.3946
+    }
+   },
+   "simulator_env_minus_simulator_base": {
+    "mean": 0.0247,
+    "ci95": [
+     0.017,
+     0.0305
+    ],
+    "verdict": "양성"
+   },
+   "simulator_env_minus_transition_law": {
+    "mean": 0.1105,
+    "ci95": [
+     0.0779,
+     0.1446
+    ],
+    "verdict": "양성"
+   },
+   "simulator_env_minus_rarity": {
+    "mean": 0.0259,
+    "ci95": [
+     0.0062,
+     0.0447
+    ],
+    "verdict": "양성"
+   }
+  },
+  "parasitic": {
+   "kind": "loss",
+   "origins": {
+    "Trypanosomatida": {
+     "simulator_env": 0.8066,
+     "simulator_base": 0.8085,
+     "transition_law": 0.5853,
+     "rarity": 0.7819,
+     "n_candidates": 3013,
+     "n_changed": 486,
+     "time": 0.6234
+    },
+    "Haemosporida + Piroplasmida": {
+     "simulator_env": 0.8595,
+     "simulator_base": 0.8449,
+     "transition_law": 0.5857,
+     "rarity": 0.8348,
+     "n_candidates": 4169,
+     "n_changed": 2584,
+     "time": 0.4775
+    },
+    "Pneumocystis": {
+     "simulator_env": 0.7442,
+     "simulator_base": 0.7262,
+     "transition_law": 0.5997,
+     "rarity": 0.7758,
+     "n_candidates": 3846,
+     "n_changed": 847,
+     "time": 0.468
+    }
+   },
+   "simulator_env_minus_simulator_base": {
+    "mean": 0.0102,
+    "ci95": [
+     -0.0019,
+     0.018
+    ],
+    "verdict": "무승부"
+   },
+   "simulator_env_minus_transition_law": {
+    "mean": 0.2132,
+    "ci95": [
+     0.1445,
+     0.2738
+    ],
+    "verdict": "양성"
+   },
+   "simulator_env_minus_rarity": {
+    "mean": 0.0059,
+    "ci95": [
+     -0.0316,
+     0.0247
+    ],
+    "verdict": "무승부"
+   }
+  },
+  "multicellular": {
+   "kind": "gain",
+   "origins": {
+    "Volvocales": {
+     "simulator_env": 0.7064,
+     "simulator_base": 0.7269,
+     "transition_law": 0.5898,
+     "rarity": 0.7936,
+     "n_candidates": 14588,
+     "n_changed": 87,
+     "time": 0.453
+    },
+    "Metazoa": {
+     "simulator_env": 0.4958,
+     "simulator_base": 0.4519,
+     "transition_law": 0.5313,
+     "rarity": 0.7978,
+     "n_candidates": 13446,
+     "n_changed": 1032,
+     "time": 0.4821
+    },
+    "Dictyostelia": {
+     "simulator_env": 0.6913,
+     "simulator_base": 0.664,
+     "transition_law": 0.5658,
+     "rarity": 0.7817,
+     "n_candidates": 13868,
+     "n_changed": 353,
+     "time": 0.3542
+    },
+    "Phaeophyceae": {
+     "simulator_env": 0.7942,
+     "simulator_base": 0.7698,
+     "transition_law": 0.5516,
+     "rarity": 0.8664,
+     "n_candidates": 14963,
+     "n_changed": 691,
+     "time": 0.4431
+    },
+    "Rhodophyta (Bangiophyceae + Florideophyceae)": {
+     "simulator_env": 0.7682,
+     "simulator_base": 0.7647,
+     "transition_law": 0.579,
+     "rarity": 0.8288,
+     "n_candidates": 15234,
+     "n_changed": 264,
+     "time": 0.728
+    }
+   },
+   "simulator_env_minus_simulator_base": {
+    "mean": 0.0157,
+    "ci95": [
+     -0.0061,
+     0.0334
+    ],
+    "verdict": "무승부"
+   },
+   "simulator_env_minus_transition_law": {
+    "mean": 0.1277,
+    "ci95": [
+     0.0416,
+     0.1978
+    ],
+    "verdict": "양성"
+   },
+   "simulator_env_minus_rarity": {
+    "mean": -0.1225,
+    "ci95": [
+     -0.2137,
+     -0.0689
+    ],
+    "verdict": "음성"
+   },
+   "note": "the multicellular transition law was judged negative (multicellular_transition_v1); its multipliers are shown but not validated"
+  }
+ }
+}

@@ -59,7 +59,7 @@ def em_prior(ll, iters=500, tol=1e-6):
     return w, num / num.sum(0, keepdims=True), marg
 
 
-def g3_fit(d, vis, strata, use_strata=True, choose_mult=True):
+def g3_fit(d, vis, strata, use_strata=True, choose_mult=True, return_weights=False):
     """Posterior at every node (n_nodes, F), chosen m, per-stratum priors, marginal log-likelihood."""
     X = d["X"]
     F = X.shape[1]
@@ -82,6 +82,8 @@ def g3_fit(d, vis, strata, use_strata=True, choose_mult=True):
         if best is None or marg > best[0]:
             best = (marg, m, mult, R, priors)
     marg, m, mult, R, priors = best
+    if return_weights:                         # per-family posterior weights over the grid (simulator)
+        return R, {"m": m, "marginal_loglik": round(marg, 1)}
     post = np.zeros((len(d["parent"]), F), np.float32)
     for k, (lv, gv) in enumerate(GRID):
         if R[k].max() < 1e-6:
