@@ -41,7 +41,9 @@ BASE_TREE = "results/phylo_tree/leca2_fast.nwk"
 AMORPHEA = "Opisthokonta+Amoebozoa+Apusozoa+Breviatea"
 SOURCES = [("reference, BUSCO C >= 60", "reference:true AND taxonomy_id:2759", 60.0),
            ("reference, any BUSCO", "reference:true AND taxonomy_id:2759", None),
-           ("other proteomes", "reference:false AND redundant:false AND taxonomy_id:2759", None)]
+           ("other proteomes", "reference:false AND taxonomy_id:2759", None)]
+# "redundant:false" is not a UniProt proteome field (HTTP 400, round 4 plan); redundant proteomes are removed
+# instead by keeping one proteome per species (binomial) that the project has not used yet.
 
 
 # ---------------------------------------------------------------- bookkeeping
@@ -76,6 +78,22 @@ def all_new_species():
                 out[f"NS_{u}"] = {"upid": u, "organism": r["organism"], "lineage": sp["lineage"], "pfam": r["pfam"],
                                   "n_proteins": r["n_proteins"], "busco": f"C:{sp.get('busco_c', '')}%"}
     return out
+
+
+def binomial(org):
+    return " ".join(org.replace("[", "").replace("]", "").split()[:2])
+
+
+def used_species():
+    """Binomials of every organism already used (base collection, round 1, loop rounds)."""
+    names = set()
+    for f in Path("data/uniprot/shards").glob("*.json.gz"):
+        names |= {binomial(v["organism"]) for v in json.loads(gzip.open(f, "rt").read()).values()}
+    names |= {binomial(o) for o in json.loads(Path("data/markers/leca2_pick.json").read_text())["lineage"]}
+    for p in [Path("data/new_species/pick.json")] + sorted((DATA / "rounds").glob("*/pick.json")):
+        if p.exists():
+            names |= {binomial(sp["organism"]) for sp in json.loads(p.read_text())["species"].values()}
+    return names
 
 
 def used_upids():
@@ -157,6 +175,18 @@ def plan(n, n_shards, seed=0):
             if min_busco is not None and (c is None or c < min_busco):
                 continue
             rows[upid] = {"organism": org, "taxid": tid, "busco_c": c if c is not None else -1.0, "source": label}
+        if label == "other proteomes" and rows:
+            seen, best = used_species(), {}
+            for u, r in rows.items():
+                bn = binomial(r["organism"])
+                if bn in seen:
+                    continue
+                if bn not in best or r["busco_c"] > rows[best[bn]]["busco_c"]:
+                    best[bn] = u
+            keep = sorted(best.values())
+            random.Random(seed + len(state()["rounds"])).shuffle(keep)
+            rows = {u: rows[u] for u in keep[:3 * n]}        # taxonomy is looked up one taxid at a time
+            print(f"  one proteome per unused species: {len(best)} species, {len(rows)} looked up", flush=True)
         print(f"source {label!r}: {len(rows)} candidates so far", flush=True)
         if rows:
             source_used = label
