@@ -45,6 +45,16 @@ SOURCES = [("reference, BUSCO C >= 60", "reference:true AND taxonomy_id:2759", 6
 
 
 # ---------------------------------------------------------------- bookkeeping
+def mem(tag):
+    """Current and peak resident memory, for the Actions log (the runner has 16 GB)."""
+    try:
+        st_ = dict(ln.split(":", 1) for ln in open("/proc/self/status") if ln.startswith(("VmRSS", "VmHWM")))
+        print(f"  [mem] {tag}: now {int(st_['VmRSS'].split()[0]) / 1e6:.2f} GB, "
+              f"peak {int(st_['VmHWM'].split()[0]) / 1e6:.2f} GB", flush=True)
+    except OSError:
+        pass
+
+
 def state():
     p = RES / "state.json"
     return json.loads(p.read_text()) if p.exists() else {"rounds": [], "used_upids": []}
@@ -77,6 +87,51 @@ def used_upids():
         if p.exists():
             used |= set(json.loads(p.read_text())["upids"])
     return used
+
+
+def compact(profiles):
+    """Share one string object per family name across all profiles (memory grows with every round)."""
+    for v in profiles.values():
+        v["pfam"] = [sys.intern(x) for x in v["pfam"]]
+    return profiles
+
+
+SHARES_CACHE = RES / "prokaryote_shares.json"
+
+
+def build_shares_cache():
+    """Share of bacterial / archaeal proteomes carrying each family, for every family seen in any prokaryote.
+    The prokaryote collection (data/uniprot/shards) is fixed, so a family missing here has share 0."""
+    from prokaryote_and_loso import prokaryote_shares
+    fams = set()
+    for f in sorted(Path("data/uniprot/shards").glob("*.json.gz")):
+        for v in json.loads(gzip.open(f, "rt").read()).values():
+            if v.get("kingdom") in ("bacteria", "archaea"):
+                fams.update(v.get("pfam") or [])
+    fams = sorted(fams)
+    pro = prokaryote_shares(fams)
+    SHARES_CACHE.parent.mkdir(parents=True, exist_ok=True)
+    SHARES_CACHE.write_text(json.dumps({k: {f: round(float(x), 6) for f, x in zip(fams, pro[k]) if x > 0}
+                                        for k in ("bacteria", "archaea")}))
+    print(f"prokaryote shares cached for {len(fams)} families")
+
+
+def load_shares_cache():
+    import leca_v3_model as lv
+    if not SHARES_CACHE.exists():
+        build_shares_cache()
+    c = json.loads(SHARES_CACHE.read_text())
+    for k in ("bacteria", "archaea"):
+        lv._SHARES.setdefault(k, {}).update(c[k])
+    lv._SHARES["complete"] = True
+
+
+def fill_missing_shares(fams):
+    import leca_v3_model as lv
+    if lv._SHARES.get("complete"):
+        for k in ("bacteria", "archaea"):
+            for f in fams:
+                lv._SHARES[k].setdefault(f, 0.0)
 
 
 # ---------------------------------------------------------------- 1. next batch (Actions)
@@ -245,6 +300,7 @@ def fit_model(d, fams, nodes, chunk=2000):
     so memory does not grow with tips x families as the tree grows."""
     from leca_v3_model import GRID, g3_fit, shares_for, strata_of
     from mito_model_search import posterior
+    fill_missing_shares(fams)
     strata = strata_of(fams, shares_for(fams))
     vis = np.zeros(len(d["parent"]), bool)
     vis[d["tips"]] = True
@@ -337,8 +393,10 @@ def round_():
     if not pick["upids"]:
         print("nothing to do: the batch is empty (sources used up)")
         return
-    base_prof = base_loader()
-    held = all_new_species()                         # everything learned so far (round 1 + earlier rounds)
+    base_prof = compact(base_loader())
+    load_shares_cache()
+    mem("profiles")
+    held = compact(all_new_species())                # everything learned so far (round 1 + earlier rounds)
     batch = {}
     for f in sorted((BATCH / "shards").glob("*.json.gz")):
         for u, r in json.loads(gzip.open(f, "rt").read()).items():
@@ -348,6 +406,7 @@ def round_():
                                     "n_proteins": r["n_proteins"], "busco": f"C:{sp.get('busco_c', '')}%"}
     base_lin = {r["organism"].replace("'", ""): r["lineage"]
                 for r in json.loads(Path("data/markers/leca2_pick.json").read_text())["lineage"].values()}
+    compact(batch)
     lin_all = {**base_lin, **{k_: v["lineage"] for k_, v in held.items()}}
     prof_all = {**base_prof, **{k_: {**v, "kingdom": "eukaryotes"} for k_, v in held.items()}}
     # CURRENT model: tree with everything grafted so far
@@ -357,7 +416,9 @@ def round_():
     def needed(dd, tl):
         hits = [anchor_node(dd, tl, sp["lineage"]) for sp in batch.values()]
         return [int(np.where(dd["parent"] < 0)[0][0])] + [h[0] for h in hits if h]
+    mem("current tree built")
     post, R, info = fit_model(d, fams, needed(d, tip_lin))
+    mem("current model fitted")
     # BASE model: the 250-species tree only
     import run_clade_ancestor as rca
     rca.load_profiles = lambda: base_prof
@@ -365,13 +426,21 @@ def round_():
     nb = {v: nb[v] for v in db["tips"]}
     tlb = {v: set(base_lin.get(nb[v], [])) for v in db["tips"]}
     post_b, R_b, _ = fit_model(db, fb, needed(db, tlb))
+    mem("base model fitted")
     universe = sorted(set(fams) | set(fb))
     pc = predict_batch(d, fams, names, tip_lin, post, R, batch, universe)
     pb = predict_batch(db, fb, nb, tlb, post_b, R_b, batch, universe)
     # relatives among every proteome held so far (base collection + learned species)
+    # (counted without building a set per proteome: memory grows with every round)
+    from collections import Counter
     held_lin = {**{o: set(L) for o, L in base_lin.items()}, **{k_: set(v["lineage"]) for k_, v in held.items()}}
-    held_prof = {**{o: set(p["pfam"]) for o, p in base_prof.items()}, **{k_: set(v["pfam"]) for k_, v in held.items()}}
-    gfreq = np.array([sum(f in s for s in held_prof.values()) for f in universe], float) / len(held_prof)
+    held_prof = {**{o: p["pfam"] for o, p in base_prof.items()}, **{k_: v["pfam"] for k_, v in held.items()}}
+
+    def share(orgs):
+        c = Counter(f for o in orgs for f in set(held_prof[o]))
+        return np.array([c.get(f, 0) for f in universe], float) / len(orgs)
+    gfreq = share(list(held_prof))
+    rel_cache = {}
     rows = []
     miss = np.zeros(len(universe))                    # sum over species of (predicted - present)
     lose_by_anchor = {}
@@ -380,8 +449,10 @@ def round_():
             continue
         truth = np.array([f in sp["pfam"] for f in universe], float)
         anchor = pc[lab][1]
-        rel = [o for o, L in held_lin.items() if anchor in L and o in held_prof]
-        relp = np.array([np.mean([f in held_prof[o] for o in rel]) for f in universe]) if rel else gfreq
+        if anchor not in rel_cache:
+            rel_ = [o for o, L in held_lin.items() if anchor in L and o in held_prof]
+            rel_cache[anchor] = (rel_, share(rel_) if rel_ else gfreq)
+        rel, relp = rel_cache[anchor]
         grp = group_of(sp["lineage"])
         w = lesson["w_by_group"].get(grp, lesson["w_global"])
         applied = w * pc[lab][0] + (1 - w) * relp
@@ -394,6 +465,7 @@ def round_():
              "blend": [round(float(auroc(x * pc[lab][0] + (1 - x) * relp, truth)), 5) for x in WEIGHTS]}
         rows.append(r)
         lose_by_anchor.setdefault(anchor, []).append(r["current"] - r["relatives"])
+    mem("batch scored")
     rng = np.random.default_rng(0)
 
     def ci(dv):
@@ -428,10 +500,15 @@ def round_():
     (RES / "tree.nwk").write_text(to_newick(parent, length, label))
     root_before = int(np.where(d["parent"] < 0)[0][0])
     leca_before = {fams[j] for j in np.where(post[root_before] >= 0.5)[0]}
+    del post, R, post_b, R_b, db, pc, pb, held_prof, held_lin, rel_cache
+    import gc
+    gc.collect()
+    mem("freed before refit")
     lin_all.update({lab: sp["lineage"] for lab, sp in batch.items()})
     prof_all.update({lab: {**sp, "kingdom": "eukaryotes"} for lab, sp in batch.items()})
     d2, fams2, _ = load_tree_rooted(lin_all, prof_all)
     post2, _, info2 = fit_model(d2, fams2, [int(np.where(d2["parent"] < 0)[0][0])])
+    mem("refit done")
     root2 = int(np.where(d2["parent"] < 0)[0][0])
     leca_after = {fams2[j] for j in np.where(post2[root2] >= 0.5)[0]}
     summary["evolution_after"] = {"tips": len(d2["tips"]), "m": info2["m"],
