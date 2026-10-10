@@ -1,0 +1,102 @@
+name: New species (pre-registration 10)
+
+# Eukaryote reference proteomes never used by the project: pick (with lineage), fetch Pfam annotations,
+# commit data/new_species/. The prediction runs afterwards (scripts/new_species.py predict).
+
+on:
+  workflow_dispatch:
+    inputs:
+      n:
+        default: "1000"
+      n_shards:
+        default: "20"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: new-species
+  cancel-in-progress: false
+
+jobs:
+  plan:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    outputs:
+      shards: ${{ steps.p.outputs.shards }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - id: p
+        env:
+          PYTHONPATH: src
+        run: |
+          pip install numpy
+          python scripts/new_species.py plan --n ${{ inputs.n }} --n-shards ${{ inputs.n_shards }} | tee plan.log
+          echo "shards=$(tail -1 plan.log)" >> "$GITHUB_OUTPUT"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ns-pick
+          path: data/new_species/pick.json
+
+  fetch:
+    needs: plan
+    runs-on: ubuntu-latest
+    timeout-minutes: 330
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: ${{ fromJSON(needs.plan.outputs.shards) }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - uses: actions/download-artifact@v4
+        with:
+          name: ns-pick
+          path: data/new_species
+      - name: Fetch
+        env:
+          PYTHONPATH: src
+        run: |
+          pip install numpy
+          timeout 320m python scripts/new_species.py fetch --shard ${{ matrix.shard }} --n-shards ${{ inputs.n_shards }}
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: ns-shard-${{ matrix.shard }}
+          path: data/new_species/shards/
+
+  collect:
+    needs: fetch
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: ns-pick
+          path: data/new_species
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: ns-shard-*
+          path: data/new_species/shards
+          merge-multiple: true
+      - name: Commit
+        run: |
+          ls -la data/new_species data/new_species/shards | head -40
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -f data/new_species
+          if git diff --cached --quiet; then echo "No changes."; else
+            git commit -m "New species (pre-registration 10): picked proteomes and their Pfam annotations"
+            ok=0
+            for i in 1 2 3 4 5 6; do
+              git pull --rebase origin main && git push origin HEAD:main && { ok=1; break; }
+              echo "push attempt $i failed; retrying"; sleep $((i*10))
+            done
+            [ "$ok" = 1 ] || { echo "::error::could not push"; exit 1; }
+          fi
