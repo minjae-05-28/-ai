@@ -271,7 +271,7 @@ UniProt은 샌드박스에서 막혀 있으므로 수집은 Actions(`public-geno
      +0.0195 [+0.0185, +0.0206], 998종 중 99.4%. 크기 비 1.01. **프로젝트 첫 대규모 완전 외부 양성.** `scripts/new_species.py`,
      `new-species.yml`, `data/new_species/`, `results/new_species/`.
    - **11차(신뢰도 시스템, `scripts/reliability.py`)**: 계통수 773개로 조상 판정마다 등급. 등급별 실제 일치 A 97% · B 80% · C 54% · D 41%,
-     주 판정(보정 vs 자기 확신) 무승부. LECA 마디의 계통수 일치 71%(가장 낮음). 페이지 "조상 신뢰도 지도"(비공개 아티팩트).
+     주 판정(보정 vs 자기 확신) 무승부. LECA 마디의 계통수 일치 71%(가장 낮음). 페이지 "조상 신뢰도 지도" https://claude.ai/artifact/SyV6A22kZQYUeoht8jfuHi (비공개).
    - 결과: `docs/preregistration/` 등록·결과 파일, `results/external_benchmark/`. **새 실험은 이 방식(등록 먼저 커밋)으로 하세요.**
 1. **계통수 불확실성이 빠진 복원**: 균류(부트스트랩 실행이 시간 초과로 0개), LECA 2판(IQ-TREE 전체 탐색 2회 모두
    4시간 한도 초과 → `-fast` 계통수 사용). 정렬이 13만 열로 대부분 빈칸이라 느립니다. 빈칸 열을 거른 정렬로
