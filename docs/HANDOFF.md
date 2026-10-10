@@ -267,6 +267,9 @@ UniProt은 샌드박스에서 막혀 있으므로 수집은 Actions(`public-geno
      재연 시험: 무산소 손실 +0.025 [+0.017, +0.031] 양성(6/6), 기생·다세포 무승부, 획득 예측은 약함. `run --start leca --schedule "anaerobic:0.4"`.
      환경 추가(사전 등록 9): 편모 상실 +0.019 양성(4/5), 광합성 상실·산성고온은 기원 2개라 근거 약함. 실험대 페이지(비공개 아티팩트)
      https://claude.ai/artifact/Arrb4W78W9nftbhDEf9jB6 — 원본은 스크래치패드라 다시 만들려면 evo_simulator의 laws.npz와 replay 결과로 데이터 재생성.
+   - **10차(2026-10-10, 처음 보는 1,000종)**: 분류 위치만으로 유전자 구성 예측 — 모형 0.969 vs 친척 세기 0.950 vs 전체 0.783,
+     +0.0195 [+0.0185, +0.0206], 998종 중 99.4%. 크기 비 1.01. **프로젝트 첫 대규모 완전 외부 양성.** `scripts/new_species.py`,
+     `new-species.yml`, `data/new_species/`, `results/new_species/`.
    - 결과: `docs/preregistration/` 등록·결과 파일, `results/external_benchmark/`. **새 실험은 이 방식(등록 먼저 커밋)으로 하세요.**
 1. **계통수 불확실성이 빠진 복원**: 균류(부트스트랩 실행이 시간 초과로 0개), LECA 2판(IQ-TREE 전체 탐색 2회 모두
    4시간 한도 초과 → `-fast` 계통수 사용). 정렬이 13만 열로 대부분 빈칸이라 느립니다. 빈칸 열을 거른 정렬로
