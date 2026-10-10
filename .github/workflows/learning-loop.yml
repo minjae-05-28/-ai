@@ -26,6 +26,8 @@ concurrency:
 env:
   N: ${{ inputs.n || '1000' }}
   N_SHARDS: ${{ inputs.n_shards || '20' }}
+  PFAM_URL: https://ftp.ebi.ac.uk/pub/databases/Pfam/current_release/Pfam-A.hmm.gz
+  PFAM_KEY: pfam-a-current-v1
 
 jobs:
   plan:
@@ -50,6 +52,14 @@ jobs:
         with:
           name: ll-pick
           path: data/learning_loop/batch/pick.json
+      - name: Pfam HMMs for NCBI rounds (cached once)
+        uses: actions/cache@v4
+        id: pfam
+        with:
+          path: pfam
+          key: ${{ env.PFAM_KEY }}
+      - if: steps.pfam.outputs.cache-hit != 'true'
+        run: mkdir -p pfam && curl -fsSL "$PFAM_URL" -o pfam/Pfam-A.hmm.gz && ls -lh pfam
 
   fetch:
     needs: plan
@@ -69,11 +79,16 @@ jobs:
         with:
           name: ll-pick
           path: data/learning_loop/batch
+      - uses: actions/cache/restore@v4
+        with:
+          path: pfam
+          key: ${{ env.PFAM_KEY }}
       - name: Fetch
         env:
           PYTHONPATH: src
         run: |
-          pip install numpy
+          pip install numpy pyhmmer
+          if grep -q '"source": "ncbi"' data/learning_loop/batch/pick.json; then gunzip -kf pfam/Pfam-A.hmm.gz; fi
           timeout 320m python scripts/learning_loop.py fetch --shard ${{ matrix.shard }} --n-shards "$N_SHARDS"
       - uses: actions/upload-artifact@v4
         if: always()

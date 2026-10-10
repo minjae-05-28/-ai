@@ -41,9 +41,12 @@ BASE_TREE = "results/phylo_tree/leca2_fast.nwk"
 AMORPHEA = "Opisthokonta+Amoebozoa+Apusozoa+Breviatea"
 SOURCES = [("reference, BUSCO C >= 60", "reference:true AND taxonomy_id:2759", 60.0),
            ("reference, any BUSCO", "reference:true AND taxonomy_id:2759", None),
-           ("other proteomes", "reference:false AND taxonomy_id:2759", None)]
-# "redundant:false" is not a UniProt proteome field (HTTP 400, round 4 plan); redundant proteomes are removed
-# instead by keeping one proteome per species (binomial) that the project has not used yet.
+           ]
+# Round 4 tried the non-reference proteomes ("reference:false"): all 848 came back with 0 proteins, because
+# UniProtKB now holds only reference-proteome proteins (the rest are in UniParc). From then on the loop
+# continues on NCBI annotated genomes, counted with HMMER (pre-registration 13).
+NCBI_API = "https://api.ncbi.nlm.nih.gov/datasets/v2"
+NCBI_SHARDS = 100                                  # each species is a full Pfam search (tens of minutes)
 
 
 # ---------------------------------------------------------------- bookkeeping
@@ -175,24 +178,20 @@ def plan(n, n_shards, seed=0):
             if min_busco is not None and (c is None or c < min_busco):
                 continue
             rows[upid] = {"organism": org, "taxid": tid, "busco_c": c if c is not None else -1.0, "source": label}
-        if label == "other proteomes" and rows:
-            seen, best = used_species(), {}
-            for u, r in rows.items():
-                bn = binomial(r["organism"])
-                if bn in seen:
-                    continue
-                if bn not in best or r["busco_c"] > rows[best[bn]]["busco_c"]:
-                    best[bn] = u
-            keep = sorted(best.values())
-            random.Random(seed + len(state()["rounds"])).shuffle(keep)
-            rows = {u: rows[u] for u in keep[:3 * n]}        # taxonomy is looked up one taxid at a time
-            print(f"  one proteome per unused species: {len(best)} species, {len(rows)} looked up", flush=True)
         print(f"source {label!r}: {len(rows)} candidates so far", flush=True)
         if rows:
             source_used = label
             break
     if not rows:
-        print("no uncollected eukaryote proteomes left in UniProt")
+        rows = ncbi_candidates(used_species())
+        if rows:
+            source_used = "ncbi"
+            keep = sorted(rows)
+            random.Random(seed + len(state()["rounds"])).shuffle(keep)
+            rows = {u: rows[u] for u in keep[:3 * n]}        # taxonomy is looked up one taxid at a time
+            print(f"source 'ncbi': {len(keep)} unused species, {len(rows)} looked up", flush=True)
+    if not rows:
+        print("no uncollected eukaryote proteomes left in UniProt or NCBI")
         BATCH.mkdir(parents=True, exist_ok=True)
         (BATCH / "pick.json").write_text(json.dumps({"upids": [], "species": {}, "exhausted": True}))
         print("[]")
@@ -219,19 +218,79 @@ def plan(n, n_shards, seed=0):
             if len(by_class[k]) > i and len(chosen) < n:
                 chosen.append(by_class[k][i][2])
         i += 1
+    if source_used == "ncbi":
+        n_shards = NCBI_SHARDS
     BATCH.mkdir(parents=True, exist_ok=True)
     (BATCH / "pick.json").write_text(json.dumps({
-        "source": source_used, "n_candidates": len(rows), "upids": chosen,
+        "source": source_used, "n_candidates": len(rows), "upids": chosen, "n_shards": n_shards,
         "species": {u: {**rows[u], **tax[rows[u]["taxid"]]} for u in chosen}}, indent=1))
     print(f"picked {len(chosen)} of {len(rows)} ({source_used})")
     print(json.dumps(list(range(min(n_shards, max(1, len(chosen)))))))
 
 
-def fetch(shard, n_shards):
+def ncbi_candidates(used):
+    """accession -> row, one annotated assembly per unused species (RefSeq first, then assembly level,
+    then protein-coding gene count), from NCBI Datasets."""
+    from organelle_evo.eukaryotes.proteomes import _LEVEL, _get
+    best, token, pages = {}, None, 0
+    while True:
+        url = f"{NCBI_API}/genome/taxon/2759/dataset_report?filters.has_annotation=true&page_size=1000"
+        if token:
+            url += f"&page_token={urllib.parse.quote(token)}"
+        try:
+            page = json.loads(_get(url))
+        except Exception as e:
+            print(f"  ncbi listing failed on page {pages + 1}: {e}", flush=True)
+            break
+        pages += 1
+        for r in page.get("reports", []):
+            org = r.get("organism", {})
+            name, tid = org.get("organism_name", ""), org.get("tax_id")
+            bn = binomial(name)
+            if not tid or len(bn.split()) < 2 or bn in used or " sp." in f" {bn}":
+                continue
+            ann = r.get("annotation_info", {})
+            genes = int(ann.get("stats", {}).get("gene_counts", {}).get("protein_coding", 0) or 0)
+            busco = ann.get("busco", {}).get("complete")
+            score = (r.get("source_database") == "SOURCE_DATABASE_REFSEQ",
+                     _LEVEL.get(r.get("assembly_info", {}).get("assembly_level", ""), 0), genes)
+            if genes < 1000:
+                continue
+            if bn not in best or score > best[bn][0]:
+                best[bn] = (score, {"organism": name, "taxid": str(tid), "accession": r["accession"],
+                                    "busco_c": round(100 * float(busco), 1) if busco is not None else -1.0,
+                                    "source": "ncbi", "protein_coding_genes": genes})
+        token = page.get("next_page_token")
+        if not token:
+            break
+    print(f"  ncbi: {pages} pages, {len(best)} unused species with an annotated assembly", flush=True)
+    return {row["accession"]: row for _, row in best.values()}
+
+
+def ncbi_proteome(acc):
+    """gene -> longest protein for one NCBI assembly (sequences are only held in memory)."""
+    import io
+    import zipfile
+    from organelle_evo.eukaryotes.proteomes import _get, longest_per_gene, protein_to_gene, read_fasta
+    url = f"{NCBI_API}/genome/accession/{acc}/download?include_annotation_type=PROT_FASTA" \
+          "&include_annotation_type=GENOME_GFF"
+    zf = zipfile.ZipFile(io.BytesIO(_get(url)))
+    names = zf.namelist()
+    faa = next(n for n in names if n.endswith("protein.faa"))
+    gff = next((n for n in names if re.search(r"genomic\.gff$", n)), None)
+    proteins = read_fasta(zf.read(faa).decode())
+    gene_of = protein_to_gene(zf.read(gff).decode()) if gff else {}
+    return longest_per_gene(proteins, gene_of)
+
+
+def fetch(shard, n_shards, pfam="pfam/Pfam-A.hmm", budget_s=300 * 60):
+    pick = json.loads((BATCH / "pick.json").read_text())
+    n_shards = pick.get("n_shards", n_shards)
+    if pick.get("source") == "ncbi":
+        return fetch_ncbi(pick, shard, n_shards, pfam, budget_s)
     from uniprot_proteomes import profile
     meta = json.loads(Path("data/eukaryotes/pfam_meta.json").read_text())
     name_of = {v["accession"].split(".")[0]: k for k, v in meta.items()}
-    pick = json.loads((BATCH / "pick.json").read_text())
     out = {}
     for upid in pick["upids"][shard::n_shards]:
         try:
@@ -240,6 +299,35 @@ def fetch(shard, n_shards):
             print(f"  skip {upid}: {e}", flush=True)
             continue
         out[upid] = {"organism": pick["species"][upid]["organism"], "n_proteins": p["n_proteins"], "pfam": p["pfam"]}
+    (BATCH / "shards").mkdir(parents=True, exist_ok=True)
+    with gzip.open(BATCH / "shards" / f"part_{shard:03d}.json.gz", "wt") as f:
+        json.dump(out, f)
+
+
+def fetch_ncbi(pick, shard, n_shards, pfam, budget_s):
+    """HMMER (Pfam GA cut-offs) on each assembly's proteins; stops starting new species near the time budget."""
+    from organelle_evo.eukaryotes.pfam import family_profile, load_hmms
+    t_start = time.time()
+    hmms = load_hmms(pfam)
+    print(f"loaded {len(hmms)} Pfam HMMs", flush=True)
+    out, took = {}, []
+    for acc in pick["upids"][shard::n_shards]:
+        if took and time.time() - t_start + 1.5 * max(took) > budget_s:
+            print(f"  time budget reached; {acc} left for a later round", flush=True)
+            break
+        t0 = time.time()
+        try:
+            proteins = ncbi_proteome(acc)
+            fam = family_profile(proteins, hmms)
+        except Exception as e:
+            print(f"  skip {acc}: {e}", flush=True)
+            continue
+        took.append(time.time() - t0)
+        out[acc] = {"organism": pick["species"][acc]["organism"], "n_proteins": len(proteins),
+                    "pfam": sorted(f for f, v in fam.items() if v[0] > 0)}
+        print(f"  {acc} {out[acc]['organism']}: {len(proteins)} genes, {len(out[acc]['pfam'])} families, "
+              f"{took[-1]:.0f}s", flush=True)
+        del proteins
     (BATCH / "shards").mkdir(parents=True, exist_ok=True)
     with gzip.open(BATCH / "shards" / f"part_{shard:03d}.json.gz", "wt") as f:
         json.dump(out, f)
