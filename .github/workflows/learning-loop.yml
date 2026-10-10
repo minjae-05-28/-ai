@@ -1,0 +1,126 @@
+name: Learning loop (pre-registration 12)
+
+# One round: pick 1,000 unused eukaryote proteomes -> fetch Pfam annotations -> predict them BEFORE learning
+# (current / base / relatives / global / lesson-applied) -> graft into the tree, refit G3c, update the lesson
+# -> commit -> start the next round. Stops when UniProt has no unused eukaryote proteomes left, or when the
+# repository variable LEARNING_LOOP_STOP is "1".
+
+on:
+  workflow_dispatch:
+    inputs:
+      n:
+        default: "1000"
+      n_shards:
+        default: "20"
+  schedule:
+    - cron: "17 3 * * *"          # safety net if a chained run was lost
+
+permissions:
+  contents: write
+  actions: write
+
+concurrency:
+  group: learning-loop
+  cancel-in-progress: false
+
+env:
+  N: ${{ inputs.n || '1000' }}
+  N_SHARDS: ${{ inputs.n_shards || '20' }}
+
+jobs:
+  plan:
+    if: vars.LEARNING_LOOP_STOP != '1'
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    outputs:
+      shards: ${{ steps.p.outputs.shards }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - id: p
+        env:
+          PYTHONPATH: src
+        run: |
+          pip install numpy
+          python scripts/learning_loop.py plan --n "$N" --n-shards "$N_SHARDS" | tee plan.log
+          echo "shards=$(tail -1 plan.log)" >> "$GITHUB_OUTPUT"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ll-pick
+          path: data/learning_loop/batch/pick.json
+
+  fetch:
+    needs: plan
+    if: needs.plan.outputs.shards != '[]'
+    runs-on: ubuntu-latest
+    timeout-minutes: 330
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: ${{ fromJSON(needs.plan.outputs.shards) }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - uses: actions/download-artifact@v4
+        with:
+          name: ll-pick
+          path: data/learning_loop/batch
+      - name: Fetch
+        env:
+          PYTHONPATH: src
+        run: |
+          pip install numpy
+          timeout 320m python scripts/learning_loop.py fetch --shard ${{ matrix.shard }} --n-shards "$N_SHARDS"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: ll-shard-${{ matrix.shard }}
+          path: data/learning_loop/batch/shards/
+
+  round:
+    needs: fetch
+    if: always() && needs.fetch.result != 'skipped' && needs.fetch.result != 'cancelled'
+    runs-on: ubuntu-latest
+    timeout-minutes: 340
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - uses: actions/download-artifact@v4
+        with:
+          name: ll-pick
+          path: data/learning_loop/batch
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: ll-shard-*
+          path: data/learning_loop/batch/shards
+          merge-multiple: true
+      - name: Predict, learn, refit
+        env:
+          PYTHONPATH: src
+        run: |
+          pip install numpy scipy
+          python scripts/learning_loop.py round
+      - name: Commit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -f data/learning_loop results/learning_loop
+          if git diff --cached --quiet; then echo "No changes."; else
+            git commit -m "Learning loop (pre-registration 12): round $(python -c 'import json;print(json.load(open("results/learning_loop/state.json"))["rounds"][-1]["round"])')"
+            ok=0
+            for i in 1 2 3 4 5 6; do
+              git pull --rebase origin main && git push origin HEAD:main && { ok=1; break; }
+              echo "push attempt $i failed; retrying"; sleep $((i*10))
+            done
+            [ "$ok" = 1 ] || { echo "::error::could not push"; exit 1; }
+          fi
+      - name: Start the next round
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run learning-loop.yml --ref main -f n="$N" -f n_shards="$N_SHARDS"
