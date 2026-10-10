@@ -306,7 +306,7 @@ def apply():
         sel = tips if groups is None else [v for v in tips if grp[v] in groups]
         if len(sel) < 2:
             continue
-        node = mrca(sel, d["parent"], d["depth"]) if groups else 0
+        node = group_node(d, set(sel)) if groups else 0
         under = [t for t in tips if node in _ancestors(d, t)]
         pg, pm = p_g3[node].astype(float), p_m7[node].astype(float)
         freq = d["X"][under].mean(0).astype(float)
@@ -319,8 +319,12 @@ def apply():
                 any(x in L for x in groups)) and o in new_prof]
         desc_auc = None
         if desc:
-            aucs = [auroc(pg, np.array([f in new_prof[o] for f in fams], float)) for o in desc[:200]]
-            desc_auc = round(float(np.mean(aucs)), 4)
+            aucs = []
+            for o in desc[:200]:
+                y = np.array([f in new_prof[o] for f in fams], float)
+                if 0 < y.sum() < len(y):
+                    aucs.append(auroc(pg, y))
+            desc_auc = round(float(np.mean(aucs)), 4) if aucs else None
         # gene-tree record at this node
         here = a[a[:, 1] == node]
         gt = {"n_checked": int(len(here)), "agreement": round(float(((here[:, 3] >= 0.5) == here[:, 2]).mean()), 3)
@@ -340,6 +344,22 @@ def apply():
         print(f"{label}: size {out[label]['expected_size']}, present {present.sum()}, grades {out[label]['grade_counts_present']}, "
               f"gene trees {gt}, descendants {out[label]['descendant_check']}", flush=True)
     (RES / "ancestors.json").write_text(json.dumps(out, ensure_ascii=False))
+
+
+def group_node(d, members):
+    """The node with the most group tips among nodes whose tips are at least 90% group members (a few
+    long-branch strays elsewhere in the tree do not drag the ancestor up to a mixed node)."""
+    best, best_n = None, -1
+    count, total = {}, {}
+    for v in d["order"]:
+        if not d["children"][v]:
+            count[v], total[v] = int(v in members), 1
+        else:
+            count[v] = sum(count[c] for c in d["children"][v])
+            total[v] = sum(total[c] for c in d["children"][v])
+        if d["children"][v] and count[v] >= 0.9 * total[v] and count[v] > best_n:
+            best, best_n = v, count[v]
+    return best
 
 
 def _ancestors(d, t):

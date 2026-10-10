@@ -1,0 +1,61 @@
+{
+ "preregistration": "docs/preregistration/2026-10-11_reliability_system.md",
+ "n_checks": 81511,
+ "n_decided": 71226,
+ "n_test": 35115,
+ "agreement_overall_test": 0.9409,
+ "auroc_reliability": 0.8382,
+ "auroc_posterior_confidence": 0.8387,
+ "reliability_minus_confidence": {
+  "mean": -0.0005,
+  "ci95": [
+   -0.0129,
+   0.0126
+  ],
+  "verdict": "무승부"
+ },
+ "brier_reliability": 0.0436,
+ "grades_on_test": {
+  "A": {
+   "n": 32041,
+   "observed_agreement": 0.972
+  },
+  "B": {
+   "n": 1435,
+   "observed_agreement": 0.797
+  },
+  "C": {
+   "n": 752,
+   "observed_agreement": 0.539
+  },
+  "D": {
+   "n": 887,
+   "observed_agreement": 0.409
+  }
+ },
+ "by_depth_test": {
+  "shallow": {
+   "n": 11587,
+   "agreement": 0.876,
+   "mean_reliability": 0.886
+  },
+  "middle": {
+   "n": 11870,
+   "agreement": 0.972,
+   "mean_reliability": 0.966
+  },
+  "deep": {
+   "n": 11658,
+   "agreement": 0.974,
+   "mean_reliability": 0.981
+  }
+ },
+ "coefficients": {
+  "log_odds_p": 0.2175,
+  "confidence": 0.3864,
+  "model_gap": -1.3542,
+  "depth": 3.1936,
+  "log_n_tips": 0.4952,
+  "freq_under": 1.45
+ }
+}
