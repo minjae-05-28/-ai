@@ -1,0 +1,225 @@
+{
+ "groups": {
+  "Alveolata": {
+   "count": 0.8558,
+   "M7": 0.9203,
+   "G3a": 0.9236,
+   "G3b": 0.9344,
+   "G3c": 0.9344,
+   "G3": 0.9281
+  },
+  "Amoebozoa": {
+   "count": 0.9194,
+   "M7": 0.9444,
+   "G3a": 0.9385,
+   "G3b": 0.9399,
+   "G3c": 0.9399,
+   "G3": 0.9444
+  },
+  "Discoba": {
+   "count": 0.9113,
+   "M7": 0.9416,
+   "G3a": 0.9405,
+   "G3b": 0.9422,
+   "G3c": 0.9422,
+   "G3": 0.9459
+  },
+  "Fungi": {
+   "count": 0.8411,
+   "M7": 0.8962,
+   "G3a": 0.8916,
+   "G3b": 0.8927,
+   "G3c": 0.8927,
+   "G3": 0.8974
+  },
+  "Metamonada": {
+   "count": 0.8652,
+   "M7": 0.909,
+   "G3a": 0.9064,
+   "G3b": 0.9133,
+   "G3c": 0.9133,
+   "G3": 0.9164
+  },
+  "Metazoa": {
+   "count": 0.7692,
+   "M7": 0.865,
+   "G3a": 0.8788,
+   "G3b": 0.8796,
+   "G3c": 0.8796,
+   "G3": 0.8849
+  },
+  "Rhodophyta": {
+   "count": 0.9072,
+   "M7": 0.931,
+   "G3a": 0.9311,
+   "G3b": 0.9328,
+   "G3c": 0.9328,
+   "G3": 0.9148
+  },
+  "Stramenopiles": {
+   "count": 0.8833,
+   "M7": 0.9385,
+   "G3a": 0.9383,
+   "G3b": 0.9441,
+   "G3c": 0.9441,
+   "G3": 0.939
+  },
+  "Viridiplantae": {
+   "count": 0.8397,
+   "M7": 0.9251,
+   "G3a": 0.9359,
+   "G3b": 0.9423,
+   "G3c": 0.9423,
+   "G3": 0.9328
+  }
+ },
+ "fit": {
+  "Alveolata": {
+   "m": 1.0,
+   "marginal_loglik": -548320.9,
+   "prior_mean_ratio": {
+    "0": 0.6145,
+    "1": 0.9577,
+    "2": 2.7891
+   },
+   "plastid_enriched_families": 2569,
+   "m_plastid_hidden_fit": 2.0
+  },
+  "Amoebozoa": {
+   "m": 1.0,
+   "marginal_loglik": -598472.7,
+   "prior_mean_ratio": {
+    "0": 0.6177,
+    "1": 1.047,
+    "2": 2.9577
+   },
+   "plastid_enriched_families": 2811,
+   "m_plastid_hidden_fit": 2.0
+  },
+  "Discoba": {
+   "m": 1.0,
+   "marginal_loglik": -592986.9,
+   "prior_mean_ratio": {
+    "0": 0.6264,
+    "1": 1.0077,
+    "2": 2.9667
+   },
+   "plastid_enriched_families": 2744,
+   "m_plastid_hidden_fit": 2.0
+  },
+  "Fungi": {
+   "m": 1.0,
+   "marginal_loglik": -537471.5,
+   "prior_mean_ratio": {
+    "0": 0.6346,
+    "1": 0.9756,
+    "2": 3.1211
+   },
+   "plastid_enriched_families": 2958,
+   "m_plastid_hidden_fit": 2.0
+  },
+  "Metamonada": {
+   "m": 1.0,
+   "marginal_loglik": -592131.2,
+   "prior_mean_ratio": {
+    "0": 0.6487,
+    "1": 1.0845,
+    "2": 2.9996
+   },
+   "plastid_enriched_families": 2792,
+   "m_plastid_hidden_fit": 2.0
+  },
+  "Metazoa": {
+   "m": 1.0,
+   "marginal_loglik": -519630.1,
+   "prior_mean_ratio": {
+    "0": 0.514,
+    "1": 0.8998,
+    "2": 2.9427
+   },
+   "plastid_enriched_families": 3321,
+   "m_plastid_hidden_fit": 2.0
+  },
+  "Rhodophyta": {
+   "m": 1.0,
+   "marginal_loglik": -600351.8,
+   "prior_mean_ratio": {
+    "0": 0.626,
+    "1": 1.0079,
+    "2": 2.9855
+   },
+   "plastid_enriched_families": 2807,
+   "m_plastid_hidden_fit": 2.0
+  },
+  "Stramenopiles": {
+   "m": 1.0,
+   "marginal_loglik": -548959.8,
+   "prior_mean_ratio": {
+    "0": 0.6336,
+    "1": 1.0759,
+    "2": 2.8023
+   },
+   "plastid_enriched_families": 2736,
+   "m_plastid_hidden_fit": 2.0
+  },
+  "Viridiplantae": {
+   "m": 1.0,
+   "marginal_loglik": -545973.3,
+   "prior_mean_ratio": {
+    "0": 0.6316,
+    "1": 1.0211,
+    "2": 2.9049
+   },
+   "plastid_enriched_families": 1685,
+   "m_plastid_hidden_fit": 2.0
+  }
+ },
+ "G3_minus_M7": {
+  "mean": 0.0036,
+  "ci95": [
+   0.0028,
+   0.0044
+  ],
+  "verdict": "양성"
+ },
+ "G3_minus_count": {
+  "mean": 0.0568,
+  "ci95": [
+   0.0552,
+   0.0583
+  ],
+  "verdict": "양성"
+ },
+ "G3a_minus_M7": {
+  "mean": 0.0015,
+  "ci95": [
+   0.0009,
+   0.0021
+  ],
+  "verdict": "양성"
+ },
+ "G3b_minus_G3a": {
+  "mean": 0.0041,
+  "ci95": [
+   0.0038,
+   0.0044
+  ],
+  "verdict": "양성"
+ },
+ "G3c_minus_G3b": {
+  "mean": 0.0,
+  "ci95": [
+   0.0,
+   0.0
+  ],
+  "verdict": "무승부"
+ },
+ "G3_minus_G3c": {
+  "mean": -0.002,
+  "ci95": [
+   -0.0025,
+   -0.0015
+  ],
+  "verdict": "음성"
+ }
+}
