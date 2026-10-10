@@ -1,8 +1,68 @@
 {
- "rounds": [],
+ "rounds": [
+  {
+   "round": 2,
+   "source": "reference, BUSCO C >= 60",
+   "n_scored": 582,
+   "tree_tips_before": 1250,
+   "tree_tips_after": 1832,
+   "mean_auroc": {
+    "applied": 0.9746,
+    "current": 0.9746,
+    "base": 0.9556,
+    "relatives": 0.9623,
+    "global": 0.6953
+   },
+   "applied_minus_relatives": {
+    "mean": 0.0123,
+    "ci95": [
+     0.0111,
+     0.0136
+    ],
+    "verdict": "양성",
+    "share_positive": 0.869
+   },
+   "current_minus_relatives": {
+    "mean": 0.0123,
+    "ci95": [
+     0.0112,
+     0.0136
+    ],
+    "verdict": "양성",
+    "share_positive": 0.869
+   },
+   "current_minus_base": {
+    "mean": 0.019,
+    "ci95": [
+     0.0168,
+     0.0211
+    ],
+    "verdict": "양성",
+    "share_positive": 0.902
+   },
+   "applied_minus_current": {
+    "mean": 0.0,
+    "ci95": [
+     0.0,
+     0.0
+    ],
+    "verdict": "무승부",
+    "share_positive": 0.0
+   },
+   "leca_families": 4921
+  }
+ ],
  "used_upids": [],
  "round1": {
   "grafted": 998,
   "tree_tips_after": 1250
+ },
+ "lesson_next": {
+  "w_global": 0.5,
+  "w_by_group": {
+   "Metazoa": 0.5,
+   "Viridiplantae": 0.25
+  },
+  "n_from": 582
  }
 }
