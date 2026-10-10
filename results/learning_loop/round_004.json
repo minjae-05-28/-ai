@@ -1,0 +1,250 @@
+{
+ "round": 4,
+ "source": "other proteomes",
+ "n_batch": 0,
+ "n_scored": 0,
+ "tree_tips_before": 1979,
+ "learned_species_before": 1739,
+ "busco_c_quartiles": null,
+ "lesson_applied": {
+  "w_global": 0.25,
+  "w_by_group": {
+   "Metazoa": 0.5,
+   "Viridiplantae": 0.25
+  },
+  "n_from": 729
+ },
+ "mean_auroc": {
+  "applied": NaN,
+  "current": NaN,
+  "base": NaN,
+  "relatives": NaN,
+  "global": NaN
+ },
+ "applied_minus_relatives": {
+  "mean": NaN,
+  "ci95": [
+   NaN,
+   NaN
+  ],
+  "verdict": "무승부",
+  "share_positive": NaN
+ },
+ "current_minus_relatives": {
+  "mean": NaN,
+  "ci95": [
+   NaN,
+   NaN
+  ],
+  "verdict": "무승부",
+  "share_positive": NaN
+ },
+ "current_minus_base": {
+  "mean": NaN,
+  "ci95": [
+   NaN,
+   NaN
+  ],
+  "verdict": "무승부",
+  "share_positive": NaN
+ },
+ "applied_minus_current": {
+  "mean": NaN,
+  "ci95": [
+   NaN,
+   NaN
+  ],
+  "verdict": "무승부",
+  "share_positive": NaN
+ },
+ "fit_before": {
+  "m": 2.0
+ },
+ "report_only": {
+  "anchors_where_model_loses": [],
+  "lost_more_than_predicted": [
+   [
+    "zn-ribbon_14",
+    NaN
+   ],
+   [
+    "zinc_ribbon_6",
+    NaN
+   ],
+   [
+    "zinc_ribbon_16",
+    NaN
+   ],
+   [
+    "zf_topless",
+    NaN
+   ],
+   [
+    "zf_ZIC",
+    NaN
+   ],
+   [
+    "zf_VAL1_N",
+    NaN
+   ],
+   [
+    "zf_ULT1",
+    NaN
+   ],
+   [
+    "zf_UBZ",
+    NaN
+   ],
+   [
+    "zf_Tbcl_Rhp7",
+    NaN
+   ],
+   [
+    "zf_Tbcl_5",
+    NaN
+   ],
+   [
+    "zf_Tbcl",
+    NaN
+   ],
+   [
+    "zf_RING_Vps8_fungal",
+    NaN
+   ],
+   [
+    "zf_RING_Vps8",
+    NaN
+   ],
+   [
+    "zf_RING-like",
+    NaN
+   ],
+   [
+    "zf_PCFS4",
+    NaN
+   ],
+   [
+    "zf_MP81",
+    NaN
+   ],
+   [
+    "zf_Hakai",
+    NaN
+   ],
+   [
+    "zf_DPOE_2",
+    NaN
+   ],
+   [
+    "zf_CCCH_5",
+    NaN
+   ],
+   [
+    "zf_CCCH_4",
+    NaN
+   ]
+  ],
+  "present_more_than_predicted": [
+   [
+    "03009_C",
+    NaN
+   ],
+   [
+    "1-cysPrx_C",
+    NaN
+   ],
+   [
+    "12TM_Mok13",
+    NaN
+   ],
+   [
+    "14-3-3",
+    NaN
+   ],
+   [
+    "17kDa_Anti_2",
+    NaN
+   ],
+   [
+    "2-Hacid_dh",
+    NaN
+   ],
+   [
+    "2-Hacid_dh_C",
+    NaN
+   ],
+   [
+    "2-oxoacid_dh",
+    NaN
+   ],
+   [
+    "2-oxogl_dehyd_N",
+    NaN
+   ],
+   [
+    "2-ph_phosp",
+    NaN
+   ],
+   [
+    "2-thiour_desulf",
+    NaN
+   ],
+   [
+    "23ISL",
+    NaN
+   ],
+   [
+    "2CSK_N",
+    NaN
+   ],
+   [
+    "2C_adapt",
+    NaN
+   ],
+   [
+    "2Fe-2S_Ferredox",
+    NaN
+   ],
+   [
+    "2Fe-2S_thioredx",
+    NaN
+   ],
+   [
+    "2H-SAK",
+    NaN
+   ],
+   [
+    "2H-phosphodiest",
+    NaN
+   ],
+   [
+    "2HCT",
+    NaN
+   ],
+   [
+    "2OG-FeII_Oxy",
+    NaN
+   ]
+  ]
+ },
+ "evolution_after": {
+  "tips": 1979,
+  "m": 2.0,
+  "prior_mean_gain_loss_ratio": null,
+  "leca_families_before": 5028,
+  "leca_families_after": 5028,
+  "leca_gained": [],
+  "leca_lost": []
+ },
+ "lesson_next": {
+  "w_global": 0.25,
+  "w_by_group": {
+   "Metazoa": 0.5,
+   "Viridiplantae": 0.25
+  },
+  "n_from": 729
+ },
+ "grafted": 0,
+ "tree_tips_after": 1979,
+ "species": []
+}
