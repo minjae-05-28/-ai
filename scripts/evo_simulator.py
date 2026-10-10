@@ -41,6 +41,10 @@ ENVS = {
     "anaerobic": {k: (v["anaerobes"], v["relatives"]) for k, v in T.ANAEROBIC.items()},
     "parasitic": {k: (v["derived"], v["relatives"]) for k, v in T.AEROBIC_PARASITES.items()},
     "multicellular": {k: (v["derived"], v["relatives"]) for k, v in T.MULTICELLULAR.items()},
+    # pre-registration 9
+    "flagellum_loss": {k: (v["derived"], v["relatives"]) for k, v in T.FLAGELLUM_LOSS.items()},
+    "photosynthesis_loss": {k: (v["derived"], v["relatives"]) for k, v in T.PHOTOSYNTHESIS_LOSS.items()},
+    "acid_heat": {k: (v["derived"], v["relatives"]) for k, v in T.ACID_HEAT.items()},
 }
 FAILED_LAWS = {"multicellular": "the multicellular transition law was judged negative "
                                 "(multicellular_transition_v1); its multipliers are shown but not validated"}
@@ -163,7 +167,7 @@ class Simulator:
 
 
 # ---------------------------------------------------------------- pre-registered replay test
-def replay(reps=200):
+def replay(reps=200, envs=None, out_name="replay.json"):
     sim = Simulator()
     prevalence = {}
     for p in sim.prof.values():
@@ -172,6 +176,8 @@ def replay(reps=200):
     n_sp = len(sim.prof)
     res = {"preregistration": "docs/preregistration/2026-10-10_evolution_simulator.md", "envs": {}}
     for env, origins in ENVS.items():
+        if envs and env not in envs:
+            continue
         kind = "gain" if env == "multicellular" else "loss"
         rows = {}
         for o, (derived, relatives) in origins.items():
@@ -215,7 +221,7 @@ def replay(reps=200):
         if env in FAILED_LAWS:
             res["envs"][env]["note"] = FAILED_LAWS[env]
     OUT.mkdir(parents=True, exist_ok=True)
-    (OUT / "replay.json").write_text(json.dumps(res, ensure_ascii=False, indent=1))
+    (OUT / out_name).write_text(json.dumps(res, ensure_ascii=False, indent=1))
     print(json.dumps({e: {k: v for k, v in r.items() if k != "origins"} for e, r in res["envs"].items()},
                      ensure_ascii=False, indent=1))
 
@@ -265,11 +271,13 @@ def main():
     ap.add_argument("--reps", type=int, default=200)
     ap.add_argument("--seed", type=int, default=0)
     ap.add_argument("--name", default="run")
+    ap.add_argument("--envs", default="", help="replay only these environments (comma-separated)")
+    ap.add_argument("--out", default="replay.json")
     a = ap.parse_args()
     if a.step == "bank":
         build_bank()
     elif a.step == "replay":
-        replay(a.reps)
+        replay(a.reps, a.envs.split(",") if a.envs else None, a.out)
     else:
         run(a.start, a.schedule, a.reps, a.seed, a.name)
 

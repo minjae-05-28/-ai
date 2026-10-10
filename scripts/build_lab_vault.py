@@ -470,7 +470,10 @@ METHODS = {
         "**재연 시험(기원 하나 빼고)** — 무산소 손실: 환경 법칙이 기본 법칙보다 **+0.025 [+0.017, +0.031] (양성, 6/6 기원)**, 이전 전환 법칙보다 +0.11. "
         "기생 손실 +0.010 (무승부), 다세포 획득 +0.016 (무승부)이며 다세포 획득은 '흔한 유전자'에 −0.12로 짐.\n\n"
         "**예시** — LECA + 무산소: COX17 0.69→0.02, UCR_hinge 0.72→0.05, PFOR_II 0.11→0.71 획득, Fe-S 조립 유지(교과서적 그림과 일치).\n\n"
-        "구현: `scripts/evo_simulator.py`. 결과: `results/simulator/`, `docs/preregistration/2026-10-10_evolution_simulator_RESULT.md`."),
+        "**새 환경(사전 등록 9)** — 편모 상실 +0.019 [+0.005, +0.029] 양성(4/5 기원; LECA에서 편모 유전자 16개 중 15개가 더 빨리 사라짐, IFT20 0.68→0.12), "
+        "광합성 상실 무승부(2기원), 산성·고온 근거 부족(2기원).\n\n"
+        "구현: `scripts/evo_simulator.py`. 결과: `results/simulator/`, `docs/preregistration/2026-10-10_evolution_simulator_RESULT.md`, "
+        "`docs/preregistration/2026-10-10_simulator_new_environments_RESULT.md`. 실험대 페이지: https://claude.ai/artifact/Arrb4W78W9nftbhDEf9jB6"),
     "통합 모형 G3 (사전 등록 7)": (
         "격자 위 속도분포를 EM으로 배우는 경험적 베이즈 + 원핵 분포 3층별 사전분포 + 축소 갈래 손실 배수(가능도로 선택) + 엽록체 전달 처리. "
         "모든 매개변수를 유전체 자료만으로 정합니다.\n\n"

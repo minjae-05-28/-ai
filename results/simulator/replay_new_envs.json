@@ -1,0 +1,173 @@
+{
+ "preregistration": "docs/preregistration/2026-10-10_evolution_simulator.md",
+ "envs": {
+  "flagellum_loss": {
+   "kind": "loss",
+   "origins": {
+    "Terrestrial fungi (Mucoromycota + Dikarya)": {
+     "simulator_env": 0.8287,
+     "simulator_base": 0.8137,
+     "transition_law": 0.6143,
+     "rarity": 0.964,
+     "n_candidates": 4701,
+     "n_changed": 838,
+     "time": 0.4224
+    },
+    "Microsporidia": {
+     "simulator_env": 0.8029,
+     "simulator_base": 0.8099,
+     "transition_law": 0.6077,
+     "rarity": 0.8567,
+     "n_candidates": 3130,
+     "n_changed": 2133,
+     "time": 0.6382
+    },
+    "Pennate diatoms": {
+     "simulator_env": 0.8388,
+     "simulator_base": 0.8061,
+     "transition_law": 0.6493,
+     "rarity": 0.8013,
+     "n_candidates": 3517,
+     "n_changed": 318,
+     "time": 0.5899
+    },
+    "Bathycoccaceae": {
+     "simulator_env": 0.8646,
+     "simulator_base": 0.84,
+     "transition_law": 0.6324,
+     "rarity": 0.7847,
+     "n_candidates": 4495,
+     "n_changed": 1001,
+     "time": 0.4327
+    },
+    "Chlorellales": {
+     "simulator_env": 0.8658,
+     "simulator_base": 0.8381,
+     "transition_law": 0.6316,
+     "rarity": 0.8173,
+     "n_candidates": 4768,
+     "n_changed": 709,
+     "time": 0.4006
+    }
+   },
+   "simulator_env_minus_simulator_base": {
+    "mean": 0.0186,
+    "ci95": [
+     0.0053,
+     0.0291
+    ],
+    "verdict": "양성"
+   },
+   "simulator_env_minus_transition_law": {
+    "mean": 0.2131,
+    "ci95": [
+     0.1979,
+     0.229
+    ],
+    "verdict": "양성"
+   },
+   "simulator_env_minus_rarity": {
+    "mean": -0.0046,
+    "ci95": [
+     -0.0822,
+     0.0589
+    ],
+    "verdict": "무승부"
+   }
+  },
+  "photosynthesis_loss": {
+   "kind": "loss",
+   "origins": {
+    "Apicomplexa": {
+     "simulator_env": 0.8693,
+     "simulator_base": 0.8587,
+     "transition_law": 0.6217,
+     "rarity": 0.8472,
+     "n_candidates": 4169,
+     "n_changed": 2513,
+     "time": 0.4775
+    },
+    "Perkinsus": {
+     "simulator_env": 0.8023,
+     "simulator_base": 0.8162,
+     "transition_law": 0.5244,
+     "rarity": 0.8432,
+     "n_candidates": 4455,
+     "n_changed": 1721,
+     "time": 0.3932
+    }
+   },
+   "simulator_env_minus_simulator_base": {
+    "mean": -0.0017,
+    "ci95": [
+     -0.0139,
+     0.0106
+    ],
+    "verdict": "무승부"
+   },
+   "simulator_env_minus_transition_law": {
+    "mean": 0.2627,
+    "ci95": [
+     0.2476,
+     0.2779
+    ],
+    "verdict": "양성"
+   },
+   "simulator_env_minus_rarity": {
+    "mean": -0.0094,
+    "ci95": [
+     -0.0409,
+     0.0221
+    ],
+    "verdict": "무승부"
+   }
+  },
+  "acid_heat": {
+   "kind": "loss",
+   "origins": {
+    "Cyanidiophyceae": {
+     "simulator_env": 0.8508,
+     "simulator_base": 0.8553,
+     "transition_law": 0.5428,
+     "rarity": 0.8173,
+     "n_candidates": 3463,
+     "n_changed": 669,
+     "time": 0.5905
+    },
+    "Chlamydomonas eustigma": {
+     "simulator_env": 0.8105,
+     "simulator_base": 0.8139,
+     "transition_law": 0.5277,
+     "rarity": 0.7729,
+     "n_candidates": 4698,
+     "n_changed": 572,
+     "time": 0.4138
+    }
+   },
+   "simulator_env_minus_simulator_base": {
+    "mean": -0.0039,
+    "ci95": [
+     -0.0045,
+     -0.0034
+    ],
+    "verdict": "음성"
+   },
+   "simulator_env_minus_transition_law": {
+    "mean": 0.2954,
+    "ci95": [
+     0.2828,
+     0.308
+    ],
+    "verdict": "양성"
+   },
+   "simulator_env_minus_rarity": {
+    "mean": 0.0355,
+    "ci95": [
+     0.0335,
+     0.0376
+    ],
+    "verdict": "양성"
+   }
+  }
+ }
+}

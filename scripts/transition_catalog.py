@@ -115,3 +115,75 @@ PANELS = {
         "developmental transcription factors": ["Homeobox_KN"],
     },
 }
+
+# ---- Added for the simulator's new environments (pre-registration 9, 2026-10-10). Picked from
+# taxonomy and the literature, not from gene content. Pairs: derived lineage vs close relatives
+# that still have the trait.
+
+# Loss of the flagellum (cilium): relatives keep a flagellated stage.
+FLAGELLUM_LOSS = {
+    "Terrestrial fungi (Mucoromycota + Dikarya)": {
+        "derived": ["Mucor circinelloides f. circinelloides (strain 1006PhL) (Mucormycosis agent) (Calyptromyces circinelloides)",
+                    "Rhizopus delemar", "Mortierella alpina (Oleaginous fungus) (Mortierella renispora)",
+                    "Saccharomyces cerevisiae (strain ATCC 204508 / S288c) (Baker's yeast)",
+                    "Neurospora crassa (strain ATCC 24698 / 74-OR23-1A / CBS 708.71 / DSM 1257 / FGSC 987)"],
+        "relatives": ["Spizellomyces punctatus (strain DAOM BR117)",
+                      "Batrachochytrium dendrobatidis (strain JAM81 / FGSC 10211) (Frog chytrid fungus)",
+                      "Rhizoclosmatium globosum", "Gonapodya prolifera (strain JEL478) (Monoblepharis prolifera)"]},
+    "Microsporidia": {
+        "derived": ["Encephalitozoon cuniculi (strain GB-M1) (Microsporidian parasite)",
+                    "Nematocida parisii (strain ERTm3) (Nematode killer fungus)",
+                    "Vairimorpha ceranae (Microsporidian parasite) (Nosema ceranae)"],
+        "relatives": ["Rozella allomycis (strain CSF55)"]},
+    # Centric diatoms keep flagellated sperm; pennate diatoms have none.
+    "Pennate diatoms": {
+        "derived": ["Phaeodactylum tricornutum (strain CCAP 1055/1)", "Fragilariopsis cylindrus CCMP1102"],
+        "relatives": ["Thalassiosira pseudonana (Marine diatom) (Cyclotella nana)"]},
+    "Bathycoccaceae": {
+        "derived": ["Ostreococcus tauri (Marine green alga)", "Ostreococcus lucimarinus (strain CCE9901)",
+                    "Bathycoccus prasinos"],
+        "relatives": ["Micromonas commoda (Picoplanktonic green alga)",
+                      "Micromonas pusilla (strain CCMP1545) (Picoplanktonic green alga)"]},
+    # Different classes (Trebouxiophyceae vs Chlorophyceae): the relatives are distant.
+    "Chlorellales": {
+        "derived": ["Chlorella vulgaris (Green alga)",
+                    "Auxenochlorella protothecoides (Green microalga) (Chlorella protothecoides)"],
+        "relatives": ["Chlamydomonas reinhardtii (Chlamydomonas smithii)", "Gonium pectorale (Green alga)"]},
+}
+
+# Loss of photosynthesis. Both origins are parasites, so parasitism is mixed in.
+PHOTOSYNTHESIS_LOSS = {
+    "Apicomplexa": {
+        "derived": ["Plasmodium falciparum (isolate 3D7)", "Babesia bovis",
+                    "Theileria parva (East coast fever infection agent)", "Eimeria tenella (Coccidian parasite)",
+                    "Gregarina niphandrodes (Septate eugregarine)"],
+        "relatives": ["Vitrella brassicaformis"]},
+    "Perkinsus": {
+        "derived": ["Perkinsus marinus (strain ATCC 50983 / TXsc)",
+                    "Perkinsus chesapeaki (Clam parasite) (Perkinsus andrewsi)"],
+        "relatives": ["Symbiodinium microadriaticum (Dinoflagellate) (Zooxanthella microadriatica)",
+                      "Symbiodinium natans"]},
+}
+
+# Acid and heat (Cyanidiophyceae: hot acid springs) or acid alone (Chlamydomonas eustigma).
+ACID_HEAT = {
+    "Cyanidiophyceae": {
+        "derived": ["Galdieria sulphuraria (Red alga)", "Galdieria yellowstonensis",
+                    "Cyanidioschyzon merolae (strain NIES-3377 / 10D) (Unicellular red alga)"],
+        "relatives": ["Porphyridium purpureum (Red alga) (Porphyridium cruentum)"]},
+    "Chlamydomonas eustigma": {
+        "derived": ["Chlamydomonas eustigma"],
+        "relatives": ["Chlamydomonas reinhardtii (Chlamydomonas smithii)", "Chlamydomonas schloesseri"]},
+}
+
+PANELS["flagellum"] = {
+    "intraflagellar transport (expected LOST)": ["IFT20", "IFT43", "IFT46_B_C", "IFT52_central", "IFT56", "IFT57",
+                                                 "IFT70_C"],
+    "BBSome (expected LOST)": ["BBS1", "BBS2_N", "BBS7_GAE"],
+    "axoneme (expected LOST)": ["Radial_spoke", "Radial_spoke_3", "Tektin", "DHC_N1", "CFAP251_N", "CFAP298"],
+}
+PANELS["photosynthesis"] = {
+    "photosystem and light harvesting, nuclear-encoded (expected LOST)": ["PsbP", "PsbQ", "PsbU", "Psb28",
+                                                                         "Chloroa_b-bind"],
+    "Calvin cycle regulation (expected LOST)": ["CP12", "PRK"],
+}
