@@ -9,7 +9,7 @@ on:
   workflow_dispatch:
     inputs:
       n:
-        default: "1000"
+        default: "250"
       n_shards:
         default: "20"
   schedule:
@@ -24,7 +24,7 @@ concurrency:
   cancel-in-progress: false
 
 env:
-  N: ${{ inputs.n || '1000' }}
+  N: ${{ inputs.n || '250' }}
   N_SHARDS: ${{ inputs.n_shards || '20' }}
   PFAM_URL: https://ftp.ebi.ac.uk/pub/databases/Pfam/current_release/Pfam-A.hmm.gz
   PFAM_KEY: pfam-a-current-v1
@@ -138,4 +138,4 @@ jobs:
       - name: Start the next round
         env:
           GH_TOKEN: ${{ github.token }}
-        run: gh workflow run learning-loop.yml --ref main -f n=1000 -f n_shards=20   # a small test round still chains to full rounds
+        run: gh workflow run learning-loop.yml --ref main -f n=250 -f n_shards=20   # a small test round still chains to full rounds

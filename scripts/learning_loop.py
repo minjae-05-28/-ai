@@ -46,7 +46,21 @@ SOURCES = [("reference, BUSCO C >= 60", "reference:true AND taxonomy_id:2759", 6
 # UniProtKB now holds only reference-proteome proteins (the rest are in UniParc). From then on the loop
 # continues on NCBI annotated genomes, counted with HMMER (pre-registration 13).
 NCBI_API = "https://api.ncbi.nlm.nih.gov/datasets/v2"
-NCBI_SHARDS = 100                                  # each species is a full Pfam search (tens of minutes)
+NCBI_SHARDS = 50                                   # each species is a Pfam search (~15 min); 20 run at a time
+SEARCH_FAMILIES = RES / "search_families.txt"      # Pfam families seen in >= 3 eukaryote proteomes held so far
+
+
+def write_search_families(profiles):
+    """Families HMMER searches for on NCBI species: those in >= 3 eukaryote proteomes held so far. Families rarer
+    than that cannot enter the model (it keeps families in >= 3 tree tips), so searching for them only costs time."""
+    from collections import Counter
+    c = Counter()
+    for v in profiles.values():
+        if v.get("kingdom") not in ("bacteria", "archaea", "viruses"):
+            c.update(set(v["pfam"]))
+    fams = sorted(f for f, n in c.items() if n >= 3)
+    SEARCH_FAMILIES.write_text("\n".join(fams) + "\n")
+    return len(fams)
 
 
 # ---------------------------------------------------------------- bookkeeping
@@ -309,6 +323,9 @@ def fetch_ncbi(pick, shard, n_shards, pfam, budget_s):
     from organelle_evo.eukaryotes.pfam import family_profile, load_hmms
     t_start = time.time()
     hmms = load_hmms(pfam)
+    if SEARCH_FAMILIES.exists():
+        keep = set(SEARCH_FAMILIES.read_text().split())
+        hmms = [h for h in hmms if (h.name.decode() if isinstance(h.name, bytes) else h.name) in keep]
     print(f"loaded {len(hmms)} Pfam HMMs", flush=True)
     out, took = {}, []
     for acc in pick["upids"][shard::n_shards]:
@@ -624,6 +641,7 @@ def round_():
     mem("freed before refit")
     lin_all.update({lab: sp["lineage"] for lab, sp in batch.items()})
     prof_all.update({lab: {**sp, "kingdom": "eukaryotes"} for lab, sp in batch.items()})
+    write_search_families(prof_all)
     d2, fams2, _ = load_tree_rooted(lin_all, prof_all)
     post2, _, info2 = fit_model(d2, fams2, [int(np.where(d2["parent"] < 0)[0][0])])
     mem("refit done")
@@ -684,7 +702,7 @@ def bootstrap_round1():
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("step", choices=["plan", "fetch", "round", "bootstrap"])
-    ap.add_argument("--n", type=int, default=1000)
+    ap.add_argument("--n", type=int, default=250)
     ap.add_argument("--shard", type=int, default=0)
     ap.add_argument("--n-shards", type=int, default=20)
     a = ap.parse_args()
