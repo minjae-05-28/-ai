@@ -448,8 +448,10 @@ def load_tree_rooted(lineage_all, profiles):
     return d, fams, names
 
 
-def graft(d, names, tip_lin, new):
-    """Hang each new species from the common ancestor of the tips sharing its most specific taxon."""
+def graft(d, names, tip_lin, new, branch=None):
+    """Hang each new species from the common ancestor of the tips sharing its most specific taxon.
+    branch: label -> learned pendant branch length (pre-registration 14); default the clade's mean depth."""
+    branch = branch or {}
     from run_clade_ancestor import mrca
     parent = list(d["parent"])
     length = list(d["length"])
@@ -467,7 +469,7 @@ def graft(d, names, tip_lin, new):
         A = [v for v in tips if anchor in tip_lin[v]]
         if len(A) > 1:
             node = mrca(A, d["parent"], depth)
-            bl = float(np.mean([depth[v] - depth[node] for v in A]))
+            bl = branch.get(lab, float(np.mean([depth[v] - depth[node] for v in A])))
             parent.append(node)
             length.append(max(bl, 1e-3))
             label.append(lab)
@@ -481,7 +483,7 @@ def graft(d, names, tip_lin, new):
             parent[t] = mid
             length[t] = half
             parent.append(mid)
-            length.append(half)
+            length.append(max(branch.get(lab, half), 1e-3))
             label.append(lab)
         placed[lab] = anchor
     return np.array(parent), np.array(length), label, placed
@@ -534,13 +536,37 @@ def anchor_node(d, tip_lin, lineage):
     return node, anchor, A
 
 
-def predict_batch(d, fams, names, tip_lin, post, R, batch, fam_universe):
-    """Per batch species: probability per family in fam_universe (families outside the model get 0)."""
+BRANCH_GRID = np.geomspace(0.005, 2.0, 30)
+
+
+def tip_probs(p0, R, t):
+    """P(family present at the end of a branch of length t below a node with posterior p0), mixed over the grid."""
     from leca_v3_model import GRID
-    col = {f: j for j, f in enumerate(fams)}
-    idx = np.array([col.get(f, -1) for f in fam_universe])
     lo = np.array([a for a, _ in GRID])[:, None]
     g = np.array([b for _, b in GRID])[:, None]
+    r = lo + g
+    e = np.exp(-r * t)
+    pi = g / r
+    return (R * (p0[None, :] * (pi + (1 - pi) * e) + (1 - p0[None, :]) * pi * (1 - e))).sum(0)
+
+
+def fit_branch(p0, R, y):
+    """Branch length that makes this species' observed family set most likely (pre-registration 14).
+    Used only to graft the species into the tree, after it has been scored."""
+    best, best_t = -np.inf, None
+    for t in BRANCH_GRID:
+        p = np.clip(tip_probs(p0, R, t), 1e-6, 1 - 1e-6)
+        ll = float((y * np.log(p) + (1 - y) * np.log(1 - p)).sum())
+        if ll > best:
+            best, best_t = ll, float(t)
+    return best_t
+
+
+def predict_batch(d, fams, names, tip_lin, post, R, batch, fam_universe, learn_branch=False):
+    """Per batch species: (probability per family in fam_universe, anchor[, learned branch length]).
+    Families outside the model get 0."""
+    col = {f: j for j, f in enumerate(fams)}
+    idx = np.array([col.get(f, -1) for f in fam_universe])
     out = {}
     for lab, sp in batch.items():
         hit = anchor_node(d, tip_lin, sp["lineage"])
@@ -549,15 +575,39 @@ def predict_batch(d, fams, names, tip_lin, post, R, batch, fam_universe):
         node, anchor, A = hit
         t = float(np.mean([d["depth"][v] - d["depth"][node] for v in A])) if len(A) > 1 else 0.05
         p0 = post[node].astype(float)
-        r = lo + g
-        e = np.exp(-r * t)
-        pi = g / r
-        p = (R * (p0[None, :] * (pi + (1 - pi) * e) + (1 - p0[None, :]) * pi * (1 - e))).sum(0)
-        out[lab] = (np.where(idx >= 0, p[np.maximum(idx, 0)], 0.0), anchor)
+        p = tip_probs(p0, R, t)
+        res = (np.where(idx >= 0, p[np.maximum(idx, 0)], 0.0), anchor)
+        if learn_branch:
+            have = set(sp["pfam"])
+            res = res + (fit_branch(p0, R, np.array([f in have for f in fams], float)),)
+        out[lab] = res
     return out
 
 
 WEIGHTS = (0.0, 0.25, 0.5, 0.75, 1.0)           # w * current model + (1 - w) * relatives
+
+
+def family_bias(st):
+    """Per-family correction learned from every earlier round (pre-registration 14):
+    b_f = (S_f / V_f) * n_f / (n_f + 50), clipped to +-3, with S = sum(y - p) and V = sum p(1 - p)."""
+    out = {}
+    for f, (S, V, n) in st.get("family_stats", {}).items():
+        if V > 0:
+            out[f] = float(np.clip(S / V * n / (n + 50.0), -3, 3))
+    return out
+
+
+def logit(p):
+    p = np.clip(p, 1e-4, 1 - 1e-4)
+    return np.log(p / (1 - p))
+
+
+def law_snapshot(R, fams):
+    """Per-family posterior-mean gain and loss rates (the G3c law of that family) after this round's refit."""
+    from leca_v3_model import GRID
+    lo = np.array([a for a, _ in GRID])
+    g = np.array([b for _, b in GRID])
+    return {f: [round(float(R[:, j] @ g), 5), round(float(R[:, j] @ lo), 5)] for j, f in enumerate(fams)}
 
 
 def group_of(lineage):
@@ -585,6 +635,8 @@ def round_():
     from organelle_evo.predict import auroc
     st = state()
     lesson = lesson_from(st)
+    bias = family_bias(st)
+    bias_on = st.get("bias_on", True)
     k = len(st["rounds"]) + 2                        # round 1 = pre-registration 10
     pick = json.loads((BATCH / "pick.json").read_text()) if (BATCH / "pick.json").exists() else {"upids": []}
     if not pick["upids"]:
@@ -625,7 +677,9 @@ def round_():
     post_b, R_b, _ = fit_model(db, fb, needed(db, tlb))
     mem("base model fitted")
     universe = sorted(set(fams) | set(fb))
-    pc = predict_batch(d, fams, names, tip_lin, post, R, batch, universe)
+    pc = predict_batch(d, fams, names, tip_lin, post, R, batch, universe, learn_branch=True)
+    bvec = np.array([bias.get(f, 0.0) for f in universe])
+    fstats = st.setdefault("family_stats", {})
     pb = predict_batch(db, fb, nb, tlb, post_b, R_b, batch, universe)
     # relatives among every proteome held so far (base collection + learned species)
     # (counted without building a set per proteome: memory grows with every round)
@@ -653,12 +707,18 @@ def round_():
         grp = group_of(sp["lineage"])
         w = lesson["w_by_group"].get(grp, lesson["w_global"])
         applied = w * pc[lab][0] + (1 - w) * relp
+        learned = 1 / (1 + np.exp(-(logit(applied) + bvec)))
         miss += pc[lab][0] - truth
+        pa = np.clip(applied, 1e-4, 1 - 1e-4)
+        for j in np.flatnonzero(pc[lab][0] > 0):                 # families the model scores for this species
+            S, V, n = fstats.get(universe[j], (0.0, 0.0, 0))
+            fstats[universe[j]] = (S + float(truth[j] - pa[j]), V + float(pa[j] * (1 - pa[j])), n + 1)
         r = {"label": lab, "organism": sp["organism"], "group": grp, "anchor": anchor, "n_relatives": len(rel),
              "busco": sp["busco"], "w": w,
              "current": float(auroc(pc[lab][0], truth)), "base": float(auroc(pb[lab][0], truth)),
              "relatives": float(auroc(relp, truth)), "global": float(auroc(gfreq, truth)),
-             "applied": float(auroc(applied, truth)),
+             "applied": float(auroc(applied, truth)), "learned": float(auroc(learned, truth)),
+             "branch_learned": round(pc[lab][2], 4),
              "blend": [round(float(auroc(x * pc[lab][0] + (1 - x) * relp, truth)), 5) for x in WEIGHTS]}
         rows.append(r)
         lose_by_anchor.setdefault(anchor, []).append(r["current"] - r["relatives"])
@@ -671,7 +731,7 @@ def round_():
         return {"mean": round(float(dv.mean()), 4), "ci95": [round(float(lo_), 4), round(float(hi_), 4)],
                 "verdict": "양성" if lo_ > 0 else ("음성" if hi_ < 0 else "무승부"),
                 "share_positive": round(float((dv > 0).mean()), 3)}
-    A = {k_: np.array([r[k_] for r in rows]) for k_ in ("applied", "current", "base", "relatives", "global")}
+    A = {k_: np.array([r[k_] for r in rows]) for k_ in ("learned", "applied", "current", "base", "relatives", "global")}
     busco = np.array([float(r["busco"][2:-1]) for r in rows if r["busco"][2:-1] not in ("", "-1.0")])
     order = np.argsort(miss)
     summary = {"round": k, "source": pick.get("source"), "n_batch": len(batch), "n_scored": len(rows),
@@ -683,6 +743,10 @@ def round_():
                "current_minus_relatives": ci(A["current"] - A["relatives"]),
                "current_minus_base": ci(A["current"] - A["base"]),
                "applied_minus_current": ci(A["applied"] - A["current"]),
+               "learned_minus_relatives": ci(A["learned"] - A["relatives"]),
+               "learned_minus_applied": ci(A["learned"] - A["applied"]),
+               "family_bias_used": {"on": bias_on, "n_families": len(bias),
+                                    "final_model": "learned" if bias_on else "applied"},
                "fit_before": {"m": info["m"]},
                "report_only": {
                    "anchors_where_model_loses": sorted(
@@ -692,7 +756,8 @@ def round_():
                    "present_more_than_predicted": [[universe[i], round(float(miss[i] / len(rows)), 3)] for i in order[:20]]}}
     print(json.dumps({k_: v for k_, v in summary.items() if k_ != "report_only"}, ensure_ascii=False, indent=1), flush=True)
     # learn: graft the batch, save the grown tree, and rerun evolution (refit G3c) on it
-    parent, length, label, placed = graft(d, names, tip_lin, batch)
+    parent, length, label, placed = graft(d, names, tip_lin, batch,
+                                          branch={lab: v[2] for lab, v in pc.items() if len(v) > 2})
     RES.mkdir(parents=True, exist_ok=True)
     (RES / "tree.nwk").write_text(to_newick(parent, length, label))
     root_before = int(np.where(d["parent"] < 0)[0][0])
@@ -705,7 +770,20 @@ def round_():
     prof_all.update({lab: {**sp, "kingdom": "eukaryotes"} for lab, sp in batch.items()})
     write_search_families(prof_all)
     d2, fams2, _ = load_tree_rooted(lin_all, prof_all)
-    post2, _, info2 = fit_model(d2, fams2, [int(np.where(d2["parent"] < 0)[0][0])])
+    post2, R2, info2 = fit_model(d2, fams2, [int(np.where(d2["parent"] < 0)[0][0])])
+    laws = law_snapshot(R2, fams2)
+    with gzip.open(RES / f"laws_round_{k:03d}.json.gz", "wt") as f:
+        json.dump(laws, f)
+    prev = sorted(RES.glob("laws_round_*.json.gz"))
+    prev = [q for q in prev if q.name != f"laws_round_{k:03d}.json.gz"]
+    law_change = []
+    if prev:
+        old = json.loads(gzip.open(prev[-1], "rt").read())
+        for fam_, (gn, ls) in laws.items():
+            if fam_ in old:
+                law_change.append((abs(np.log((gn + 1e-6) / (ls + 1e-6)) - np.log((old[fam_][0] + 1e-6) /
+                                                                                   (old[fam_][1] + 1e-6))), fam_))
+    law_change.sort(reverse=True)
     mem("refit done")
     root2 = int(np.where(d2["parent"] < 0)[0][0])
     leca_after = {fams2[j] for j in np.where(post2[root2] >= 0.5)[0]}
@@ -728,9 +806,15 @@ def round_():
     (RES / f"round_{k:03d}.json").write_text(json.dumps({**summary, "species": rows}, ensure_ascii=False, indent=1))
     st["rounds"].append({k_: summary[k_] for k_ in ("round", "source", "n_scored", "tree_tips_before", "tree_tips_after",
                                                      "mean_auroc", "applied_minus_relatives", "current_minus_relatives",
-                                                     "current_minus_base", "applied_minus_current")})
+                                                     "current_minus_base", "applied_minus_current",
+                                                     "learned_minus_relatives", "learned_minus_applied")})
     st["rounds"][-1]["leca_families"] = summary["evolution_after"]["leca_families_after"]
     st["lesson_next"] = lesson_from(st)
+    lm = summary["learned_minus_applied"]
+    st["bias_on"] = not (lm["ci95"][1] < 0) if not np.isnan(lm["mean"]) else bias_on    # switch off if it hurt
+    summary["laws"] = {"families": len(laws), "changed_most_vs_last_round": [
+        [f_, round(float(c_), 3)] for c_, f_ in law_change[:20]]}
+    summary["family_bias_next"] = {"on": st["bias_on"], "n_families": len(family_bias(st))}
     summary["lesson_next"] = st["lesson_next"]
     (RES / f"round_{k:03d}.json").write_text(json.dumps({**summary, "species": rows}, ensure_ascii=False, indent=1))
     (RES / "state.json").write_text(json.dumps(st, ensure_ascii=False, indent=1))
