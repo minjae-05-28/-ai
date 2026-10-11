@@ -1,0 +1,1415 @@
+{
+ "round": 5,
+ "source": "ncbi",
+ "n_batch": 40,
+ "n_scored": 40,
+ "tree_tips_before": 1979,
+ "learned_species_before": 2587,
+ "busco_c_quartiles": [
+  95.7,
+  97.7,
+  99.2
+ ],
+ "lesson_applied": {
+  "w_global": 0.25,
+  "w_by_group": {
+   "Metazoa": 0.5,
+   "Viridiplantae": 0.25
+  },
+  "n_from": 729
+ },
+ "mean_auroc": {
+  "applied": 0.9752,
+  "current": 0.9701,
+  "base": 0.9691,
+  "relatives": 0.9495,
+  "global": 0.7836
+ },
+ "applied_minus_relatives": {
+  "mean": 0.0257,
+  "ci95": [
+   0.0208,
+   0.0309
+  ],
+  "verdict": "양성",
+  "share_positive": 0.975
+ },
+ "current_minus_relatives": {
+  "mean": 0.0206,
+  "ci95": [
+   0.0142,
+   0.0269
+  ],
+  "verdict": "양성",
+  "share_positive": 0.925
+ },
+ "current_minus_base": {
+  "mean": 0.001,
+  "ci95": [
+   -0.0065,
+   0.007
+  ],
+  "verdict": "무승부",
+  "share_positive": 0.6
+ },
+ "applied_minus_current": {
+  "mean": 0.0051,
+  "ci95": [
+   0.0016,
+   0.0112
+  ],
+  "verdict": "양성",
+  "share_positive": 0.95
+ },
+ "fit_before": {
+  "m": 2.0
+ },
+ "report_only": {
+  "anchors_where_model_loses": [],
+  "lost_more_than_predicted": [
+   [
+    "BRCA-2_OB1",
+    0.334
+   ],
+   [
+    "TPR_XPO7",
+    0.333
+   ],
+   [
+    "AI-2E_transport",
+    0.331
+   ],
+   [
+    "Ribosomal_L29e",
+    0.309
+   ],
+   [
+    "MYCBP_helical",
+    0.309
+   ],
+   [
+    "rRNA_processing",
+    0.309
+   ],
+   [
+    "FPL",
+    0.309
+   ],
+   [
+    "UN_NPL4",
+    0.309
+   ],
+   [
+    "ribosomal_L24",
+    0.309
+   ],
+   [
+    "YGL041W_C",
+    0.289
+   ],
+   [
+    "DUF1242",
+    0.284
+   ],
+   [
+    "Beta-prop_EIPR1",
+    0.284
+   ],
+   [
+    "TRAM",
+    0.284
+   ],
+   [
+    "Peptidase_S24",
+    0.284
+   ],
+   [
+    "E3_UFM1_ligase",
+    0.283
+   ],
+   [
+    "YegS_C",
+    0.278
+   ],
+   [
+    "ER",
+    0.273
+   ],
+   [
+    "DDRGK",
+    0.272
+   ],
+   [
+    "YqeH-like_C",
+    0.271
+   ],
+   [
+    "KMS1_N",
+    0.271
+   ]
+  ],
+  "present_more_than_predicted": [
+   [
+    "Kinase-like",
+    -0.994
+   ],
+   [
+    "Polysacc_synt_2",
+    -0.975
+   ],
+   [
+    "MreB_Mbl",
+    -0.939
+   ],
+   [
+    "AAA_15",
+    -0.939
+   ],
+   [
+    "Sigma54_activat",
+    -0.935
+   ],
+   [
+    "DNA_pol_B_exo2",
+    -0.935
+   ],
+   [
+    "PTP-NADK",
+    -0.919
+   ],
+   [
+    "FeoB_N",
+    -0.918
+   ],
+   [
+    "Fe-ADH_2",
+    -0.911
+   ],
+   [
+    "Pyr_redox",
+    -0.906
+   ],
+   [
+    "Methyltransf_9",
+    -0.895
+   ],
+   [
+    "RuvB_N",
+    -0.89
+   ],
+   [
+    "CbiA",
+    -0.887
+   ],
+   [
+    "Prok-JAB",
+    -0.885
+   ],
+   [
+    "VPS11_N",
+    -0.882
+   ],
+   [
+    "Succ_CoA_lig",
+    -0.881
+   ],
+   [
+    "Mg_chelatase",
+    -0.88
+   ],
+   [
+    "SDR",
+    -0.878
+   ],
+   [
+    "AAA_3",
+    -0.876
+   ],
+   [
+    "Thioredoxin_2",
+    -0.872
+   ]
+  ]
+ },
+ "evolution_after": {
+  "tips": 2019,
+  "m": 2.0,
+  "prior_mean_gain_loss_ratio": null,
+  "leca_families_before": 5028,
+  "leca_families_after": 5160,
+  "leca_gained": [
+   "5_nucleotid",
+   "AAA_31",
+   "ABA4-like",
+   "ADPRTs_Tse2",
+   "ALMT",
+   "APD1-4_N",
+   "ARS2",
+   "ATP-synt_DE",
+   "AdoMetDC_leader",
+   "Alpha-amyl_C2",
+   "Alpha_L_fucos",
+   "Amidohydro_2",
+   "Amidoligase_2",
+   "Anamorsin_N",
+   "Arylsulfotrans",
+   "Asp_Glu_race",
+   "At4g18257_C",
+   "At4g29660",
+   "At5g52880_ARM",
+   "BBS7_pf",
+   "BFA1_C",
+   "BSD2_CRD",
+   "Barwin",
+   "Bgal_small_N",
+   "Bles03",
+   "Branch",
+   "CABIN1_C",
+   "CCB2_CCB4",
+   "CCB3_YggT",
+   "CGL160_C",
+   "COG7",
+   "CP12",
+   "CPP1-like",
+   "CarD_TRCF_RID",
+   "Cgr1",
+   "Chondroitinas_B",
+   "CsbD",
+   "Cu_amine_oxid",
+   "Cyanate_lyase",
+   "Cyclin_C_2",
+   "Cyt_b-c1_8",
+   "Cytochrom_C_asm",
+   "DAP_epimerase",
+   "DCAF1_4th",
+   "DDA1",
+   "DDB_G0281251",
+   "DDB_G0285495_C",
+   "DMFA2_C",
+   "DPBB_1",
+   "DUF1517",
+   "DUF1664",
+   "DUF1967",
+   "DUF1997",
+   "DUF2358",
+   "DUF2854",
+   "DUF2855",
+   "DUF3067",
+   "DUF3177",
+   "DUF3253",
+   "DUF3464",
+   "DUF3479",
+   "DUF3493",
+   "DUF3522",
+   "DUF3611",
+   "DUF3727",
+   "DUF3783",
+   "DUF4079",
+   "DUF5323",
+   "DUF565",
+   "DUF5695",
+   "DUF5759",
+   "DUF7358",
+   "DUF751",
+   "DUF7589",
+   "DUF7755",
+   "DUF7794",
+   "DUF7875",
+   "DUF7880",
+   "DUF7898",
+   "DUF7953",
+   "DUF8563",
+   "DUF8822",
+   "Dam",
+   "EDR2_C",
+   "EFP",
+   "EGF_alliinase",
+   "Elong-fact-P_C",
+   "Elong_Iki1",
+   "FPN1",
+   "FTA4",
+   "FabA",
+   "Fe_bilin_red",
+   "FmdA_AmdA",
+   "GH3_C",
+   "GH3_M",
+   "GIDE",
+   "GT4-conflict",
+   "GTP_cyclohydro2",
+   "GWD1_pHisD",
+   "Gal80p_C-like",
+   "Glyco_hyd_65N_2",
+   "Glyco_hydr_30_2",
+   "Glyco_hydro127M",
+   "Glyco_hydro_28",
+   "Glyco_hydro_95_C",
+   "HAUS2",
+   "HEAT_Ints3_C",
+   "HEAT_SGR6",
+   "HLH",
+   "Haem_oxygenas_2",
+   "Hs1pro-1_N",
+   "ILV_EDD_C",
+   "IQM_M",
+   "Ig_CofE",
+   "Ig_GP210_15th",
+   "Ig_NOMO",
+   "Ig_N_CWD1",
+   "Jacalin",
+   "LD_N",
+   "LIM_bind",
+   "LMF1",
+   "Lectin_L-type_dom",
+   "Lipase_2",
+   "LrgA",
+   "LrgB",
+   "MASE1",
+   "MDHAR3-like_C",
+   "MED16_beta-prop",
+   "MED8_mid",
+   "MMPL",
+   "MSP",
+   "MSSS",
+   "Mahjong_helical",
+   "Melibiase",
+   "Methyltransf_7",
+   "Mg-por_mtran_C",
+   "MlaE",
+   "Mod_r",
+   "NADH_dhqG_C",
+   "NAF",
+   "NDUFB11",
+   "NFD4_C",
+   "NTR2",
+   "NUMOD3",
+   "NUP160_helical",
+   "NUP214_coiled",
+   "NYN_YacP",
+   "NpwBP",
+   "Nt_Gln_amidase",
+   "NuBaID_C",
+   "Nucleolin_bd",
+   "NusG",
+   "OHA",
+   "ORC5_lid",
+   "PAD_porph",
+   "PAE",
+   "PAZ",
+   "PDR_assoc",
+   "PEP_hydrolase",
+   "PEX11",
+   "PGDH_inter",
+   "PG_binding_1",
+   "PHAX_RNA-bd",
+   "PLATZ",
+   "PNPase",
+   "PRONE",
+   "PRORP",
+   "PSII_BNR",
+   "PSII_Pbs27",
+   "PSI_PSAK",
+   "PSI_PsaE",
+   "PTR2",
+   "PXA",
+   "Pectate_lyase",
+   "Phosphoesterase",
+   "Phospholip_A2_3",
+   "Plant_NMP1",
+   "Pop8",
+   "PsaO_TMD",
+   "Psb28",
+   "PsbX",
+   "PspA_IM30",
+   "Pullul_strch_C",
+   "Pullulanase_N2",
+   "RETICULATA-like",
+   "RGS",
+   "RNase_H",
+   "RRM_MUD2_C",
+   "RRM_R3HCC1L",
+   "RTP1_C2",
+   "RVE6",
+   "RXYLT1_C",
+   "RecA_C",
+   "Rho_GDI",
+   "Ribophorin_II",
+   "Ribosom_S30AE_C",
+   "Roc",
+   "RuBisCo_chap_C",
+   "SDG2_C",
+   "SDH6"
+  ],
+  "leca_lost": [
+   "4HB",
+   "AAA_lid_11",
+   "ANM3_C2H2_Zf",
+   "ARM_KNTC1_3rd",
+   "ASH2L-like_WH",
+   "ASMase_C",
+   "Ald_Xan_dh_C",
+   "ArsB",
+   "Arylesterase",
+   "BRAT1",
+   "CANIN",
+   "CCDC24",
+   "CEP19",
+   "CEP76_C",
+   "CEP83_CC_1st",
+   "CHB_HEX_C_1",
+   "COMMD9_HN",
+   "CRIM",
+   "CreA",
+   "DENND11",
+   "DUF1057",
+   "DUF1963",
+   "DUF2452",
+   "DUF2505",
+   "DUF305",
+   "DUF3593",
+   "DUF3668",
+   "DUF4440",
+   "DUF4833",
+   "DUF5880",
+   "DUF7918",
+   "DUF819",
+   "DUF8221",
+   "Dala_Dala_lig_C",
+   "Ddi2_HDD",
+   "EDR1_CTR1_ARMC3_pept",
+   "EGF_2",
+   "EKR",
+   "Fer4_8",
+   "Form_Nir_trans",
+   "GPR137_N",
+   "GlcNAc_2-epim",
+   "Glyco_hydro_30",
+   "Glyco_hydro_88",
+   "Glyco_trans_2_3",
+   "HEAT_MROH2B_1st",
+   "HOOK_N",
+   "Htt_N-HEAT_1",
+   "INO80F",
+   "Ig_NUP210_13th",
+   "Ig_TRAPPC11_2nd",
+   "Intu_longin_3",
+   "Itfg2",
+   "KIX_2",
+   "KRIT1_FRMD8_FERM_C",
+   "LAMTOR",
+   "LOH1CR12",
+   "LPMO_AA14",
+   "LYRM2-like",
+   "Lgl_C",
+   "LicD",
+   "MIOS_a-sol",
+   "MRP-L20",
+   "Methyltransf_22",
+   "Microtub_bind",
+   "MoCoBD_1",
+   "Muted",
+   "N-glycanase_N",
+   "NAAA-beta",
+   "NFKBIL1_C",
+   "NIBRIN_BRCT_II",
+   "NIPSNAP",
+   "NOPCHAP1",
+   "NTE_Ploop",
+   "NUMOD1",
+   "Nucleos_tra2_N",
+   "Nup188_N-subdom_III",
+   "PDZD8_N",
+   "PFOR_II",
+   "PH_NISCH_C",
+   "PH_PLEKHM2",
+   "PP2C_2",
+   "Peptidase_M60",
+   "Peripla_BP_2",
+   "Phosphonate-bd",
+   "Polysacc_deac_1",
+   "Pox_A32",
+   "Pyridox_oxase_2",
+   "QLQ",
+   "R1_ABCA1",
+   "RAI16-like",
+   "RESC8",
+   "RIIa",
+   "RTT107_BRCT_5",
+   "SFXNs",
+   "Shikimate_DH",
+   "TAXi_N",
+   "TBC2_N",
+   "TIP_N",
+   "TMD0_ABC",
+   "TMEM237",
+   "TMEM33_Pom33",
+   "TPR_DOP1B",
+   "TehB",
+   "Tuberin",
+   "UQCC2_CBP6",
+   "Vezatin",
+   "WH1",
+   "XFP",
+   "XFP_C",
+   "XFP_N",
+   "XPA_C",
+   "YdjM",
+   "Zn_Ribbon_1",
+   "dDENN",
+   "preSET_CXC",
+   "vWA-TerF-like",
+   "zf_UBZ"
+  ]
+ },
+ "lesson_next": {
+  "w_global": 0.25,
+  "w_by_group": {
+   "Metazoa": 0.5,
+   "Viridiplantae": 0.25
+  },
+  "n_from": 769
+ },
+ "grafted": 40,
+ "tree_tips_after": 2019,
+ "species": [
+  {
+   "label": "NS_GCA_058224955.1",
+   "organism": "Classicula fluitans",
+   "group": "Fungi",
+   "anchor": "Basidiomycota",
+   "n_relatives": 153,
+   "busco": "C:-1.0%",
+   "w": 0.25,
+   "current": 0.9734544709282733,
+   "base": 0.9826189982614053,
+   "relatives": 0.963377609022366,
+   "global": 0.8555450259251958,
+   "applied": 0.9751514978198239,
+   "blend": [
+    0.96338,
+    0.97515,
+    0.97427,
+    0.97393,
+    0.97345
+   ]
+  },
+  {
+   "label": "NS_GCF_965637545.1",
+   "organism": "Phallusia mammillata",
+   "group": "Metazoa",
+   "anchor": "Phlebobranchia",
+   "n_relatives": 2,
+   "busco": "C:95.8%",
+   "w": 0.5,
+   "current": 0.948642614396853,
+   "base": 0.9305752381415512,
+   "relatives": 0.930745519200872,
+   "global": 0.7553634615559255,
+   "applied": 0.9751023326842669,
+   "blend": [
+    0.93075,
+    0.97535,
+    0.9751,
+    0.97296,
+    0.94864
+   ]
+  },
+  {
+   "label": "NS_GCF_017639515.1",
+   "organism": "Carcharodon carcharias",
+   "group": "Metazoa",
+   "anchor": "Elasmobranchii",
+   "n_relatives": 3,
+   "busco": "C:97.7%",
+   "w": 0.5,
+   "current": 0.9863385868290208,
+   "base": 0.9802851480807219,
+   "relatives": 0.9667194215801449,
+   "global": 0.701575846224094,
+   "applied": 0.989425912152827,
+   "blend": [
+    0.96672,
+    0.98852,
+    0.98943,
+    0.98906,
+    0.98634
+   ]
+  },
+  {
+   "label": "NS_GCA_001691785.3",
+   "organism": "Amanita brunnescens Koide BX004",
+   "group": "Fungi",
+   "anchor": "Agaricomycetidae",
+   "n_relatives": 54,
+   "busco": "C:-1.0%",
+   "w": 0.25,
+   "current": 0.9649999824914904,
+   "base": 0.9767172945187491,
+   "relatives": 0.9434779788102802,
+   "global": 0.8487904107920241,
+   "applied": 0.9650817748763209,
+   "blend": [
+    0.94348,
+    0.96508,
+    0.96504,
+    0.965,
+    0.965
+   ]
+  },
+  {
+   "label": "NS_GCF_015104395.2",
+   "organism": "Macrobrachium nipponense",
+   "group": "Metazoa",
+   "anchor": "Caridea",
+   "n_relatives": 1,
+   "busco": "C:93.6%",
+   "w": 0.5,
+   "current": 0.9633534926533115,
+   "base": 0.9680718982844453,
+   "relatives": 0.9112198882791386,
+   "global": 0.7645878091967766,
+   "applied": 0.9634040638335517,
+   "blend": [
+    0.91122,
+    0.9634,
+    0.9634,
+    0.9634,
+    0.96335
+   ]
+  },
+  {
+   "label": "NS_GCF_910592395.1",
+   "organism": "Lineus longissimus",
+   "group": "Metazoa",
+   "anchor": "Lophotrochozoa",
+   "n_relatives": 90,
+   "busco": "C:98.2%",
+   "w": 0.5,
+   "current": 0.9784654535825311,
+   "base": 0.9510756753144639,
+   "relatives": 0.9826442666564235,
+   "global": 0.7428165985493401,
+   "applied": 0.9826054440435843,
+   "blend": [
+    0.98264,
+    0.98371,
+    0.98261,
+    0.98104,
+    0.97847
+   ]
+  },
+  {
+   "label": "NS_GCF_027887145.1",
+   "organism": "Ammospiza caudacuta",
+   "group": "Metazoa",
+   "anchor": "Passerellidae",
+   "n_relatives": 4,
+   "busco": "C:99.2%",
+   "w": 0.5,
+   "current": 0.989291658988814,
+   "base": 0.968737281281721,
+   "relatives": 0.967725496280453,
+   "global": 0.6971584873791353,
+   "applied": 0.9911504965889536,
+   "blend": [
+    0.96773,
+    0.99133,
+    0.99115,
+    0.99101,
+    0.98929
+   ]
+  },
+  {
+   "label": "NS_GCA_001373355.1",
+   "organism": "Sporobolomyces salmonicolor",
+   "group": "Fungi",
+   "anchor": "Basidiomycota",
+   "n_relatives": 153,
+   "busco": "C:-1.0%",
+   "w": 0.25,
+   "current": 0.9671857919201966,
+   "base": 0.9753463167581946,
+   "relatives": 0.9550229376764676,
+   "global": 0.8645261683444259,
+   "applied": 0.968800209917476,
+   "blend": [
+    0.95502,
+    0.9688,
+    0.96798,
+    0.96767,
+    0.96719
+   ]
+  },
+  {
+   "label": "NS_GCA_023646125.1",
+   "organism": "Gyalolechia ehrenbergii",
+   "group": "Fungi",
+   "anchor": "Pezizomycotina",
+   "n_relatives": 303,
+   "busco": "C:-1.0%",
+   "w": 0.25,
+   "current": 0.9724266559056269,
+   "base": 0.966099724302422,
+   "relatives": 0.9557339336534468,
+   "global": 0.8360616097637404,
+   "applied": 0.9729214741456613,
+   "blend": [
+    0.95573,
+    0.97292,
+    0.97265,
+    0.97256,
+    0.97243
+   ]
+  },
+  {
+   "label": "NS_GCA_976943325.1",
+   "organism": "Jaminaea angkorensis CBS 10918",
+   "group": "Fungi",
+   "anchor": "Ustilaginomycotina",
+   "n_relatives": 7,
+   "busco": "C:-1.0%",
+   "w": 0.25,
+   "current": 0.9724227024302378,
+   "base": 0.9823489548997819,
+   "relatives": 0.946594925389854,
+   "global": 0.8648803074031146,
+   "applied": 0.9725140638070721,
+   "blend": [
+    0.94659,
+    0.97251,
+    0.9725,
+    0.97248,
+    0.97242
+   ]
+  },
+  {
+   "label": "NS_GCF_023757985.1",
+   "organism": "Alternaria ethzedia",
+   "group": "Fungi",
+   "anchor": "Pezizomycotina",
+   "n_relatives": 303,
+   "busco": "C:-1.0%",
+   "w": 0.25,
+   "current": 0.9752732593732637,
+   "base": 0.9698161258433451,
+   "relatives": 0.9621082199367644,
+   "global": 0.8409723191440662,
+   "applied": 0.9757453478253488,
+   "blend": [
+    0.96211,
+    0.97575,
+    0.97547,
+    0.9754,
+    0.97527
+   ]
+  },
+  {
+   "label": "NS_GCF_026930045.1",
+   "organism": "Uloborus diversus",
+   "group": "Metazoa",
+   "anchor": "Orbiculariae",
+   "n_relatives": 10,
+   "busco": "C:95.5%",
+   "w": 0.5,
+   "current": 0.9751354731075816,
+   "base": 0.9613656270801869,
+   "relatives": 0.9721434634113754,
+   "global": 0.7602343856246108,
+   "applied": 0.9832639714004863,
+   "blend": [
+    0.97214,
+    0.98326,
+    0.98326,
+    0.98129,
+    0.97514
+   ]
+  },
+  {
+   "label": "NS_GCF_030435805.1",
+   "organism": "Mustela lutreola",
+   "group": "Metazoa",
+   "anchor": "Mustela",
+   "n_relatives": 1,
+   "busco": "C:98.8%",
+   "w": 0.5,
+   "current": 0.9935141550956231,
+   "base": 0.991959921607489,
+   "relatives": 0.9807650871472172,
+   "global": 0.6502056941928845,
+   "applied": 0.9935294572171193,
+   "blend": [
+    0.98077,
+    0.99353,
+    0.99353,
+    0.99353,
+    0.99351
+   ]
+  },
+  {
+   "label": "NS_GCA_900007795.1",
+   "organism": "Blastobotrys adeninivorans",
+   "group": "Fungi",
+   "anchor": "Saccharomycotina",
+   "n_relatives": 17,
+   "busco": "C:-1.0%",
+   "w": 0.25,
+   "current": 0.9616002215866762,
+   "base": 0.9736099332348528,
+   "relatives": 0.9101357313916258,
+   "global": 0.8445862578271492,
+   "applied": 0.9619796729715434,
+   "blend": [
+    0.91014,
+    0.96198,
+    0.96191,
+    0.96177,
+    0.9616
+   ]
+  },
+  {
+   "label": "NS_GCF_028017835.1",
+   "organism": "Emys orbicularis",
+   "group": "Metazoa",
+   "anchor": "Emydidae",
+   "n_relatives": 3,
+   "busco": "C:99.3%",
+   "w": 0.5,
+   "current": 0.9887079785027617,
+   "base": 0.9749370105357236,
+   "relatives": 0.972481417123438,
+   "global": 0.6800159760429803,
+   "applied": 0.9909212215390852,
+   "blend": [
+    0.97248,
+    0.99105,
+    0.99092,
+    0.99046,
+    0.98871
+   ]
+  },
+  {
+   "label": "NS_GCF_039999085.1",
+   "organism": "Cystobasidium minutum MCA 4210",
+   "group": "Fungi",
+   "anchor": "Basidiomycota",
+   "n_relatives": 153,
+   "busco": "C:-1.0%",
+   "w": 0.25,
+   "current": 0.9731008311710148,
+   "base": 0.9809610033278687,
+   "relatives": 0.9618966969070525,
+   "global": 0.8607664123956678,
+   "applied": 0.9747555774460198,
+   "blend": [
+    0.9619,
+    0.97476,
+    0.9739,
+    0.97356,
+    0.9731
+   ]
+  },
+  {
+   "label": "NS_GCA_977110925.1",
+   "organism": "Cunninghamella blakesleeana",
+   "group": "Fungi",
+   "anchor": "Cunninghamellaceae",
+   "n_relatives": 4,
+   "busco": "C:-1.0%",
+   "w": 0.25,
+   "current": 0.9704732051165994,
+   "base": 0.9795812828784504,
+   "relatives": 0.9446454133147899,
+   "global": 0.8469881420524793,
+   "applied": 0.9704966312335439,
+   "blend": [
+    0.94465,
+    0.9705,
+    0.9705,
+    0.9705,
+    0.97047
+   ]
+  },
+  {
+   "label": "NS_GCF_029931775.1",
+   "organism": "Euleptes europaea",
+   "group": "Metazoa",
+   "anchor": "Sphaerodactylidae",
+   "n_relatives": 1,
+   "busco": "C:97.6%",
+   "w": 0.5,
+   "current": 0.9717496013305295,
+   "base": 0.9723624910911947,
+   "relatives": 0.920822149816542,
+   "global": 0.6877634777868704,
+   "applied": 0.9716885480279742,
+   "blend": [
+    0.92082,
+    0.97169,
+    0.97169,
+    0.97169,
+    0.97175
+   ]
+  },
+  {
+   "label": "NS_GCF_036588685.1",
+   "organism": "Mytilus trossulus",
+   "group": "Metazoa",
+   "anchor": "Mytilida",
+   "n_relatives": 4,
+   "busco": "C:96.1%",
+   "w": 0.5,
+   "current": 0.9814336337996671,
+   "base": 0.9482389645973419,
+   "relatives": 0.972776960113654,
+   "global": 0.7463308271079058,
+   "applied": 0.9873088098877163,
+   "blend": [
+    0.97278,
+    0.98719,
+    0.98731,
+    0.9859,
+    0.98143
+   ]
+  },
+  {
+   "label": "NS_GCF_001194135.2",
+   "organism": "Octopus bimaculoides",
+   "group": "Metazoa",
+   "anchor": "Incirrata",
+   "n_relatives": 2,
+   "busco": "C:90.8%",
+   "w": 0.5,
+   "current": 0.9772863885707449,
+   "base": 0.9514083183124081,
+   "relatives": 0.9714004762189636,
+   "global": 0.7570559766809347,
+   "applied": 0.9875204072166334,
+   "blend": [
+    0.9714,
+    0.98755,
+    0.98752,
+    0.98585,
+    0.97729
+   ]
+  },
+  {
+   "label": "NS_GCA_978019225.1",
+   "organism": "Delisea pulchra",
+   "group": "Rhodophyta",
+   "anchor": "Florideophyceae",
+   "n_relatives": 3,
+   "busco": "C:-1.0%",
+   "w": 0.25,
+   "current": 0.9758900697149537,
+   "base": 0.9851884270893085,
+   "relatives": 0.9530498034759565,
+   "global": 0.8585016156249997,
+   "applied": 0.9793052585741019,
+   "blend": [
+    0.95305,
+    0.97931,
+    0.97902,
+    0.97829,
+    0.97589
+   ]
+  },
+  {
+   "label": "NS_GCA_056508025.1",
+   "organism": "Pinus longaeva",
+   "group": "Viridiplantae",
+   "anchor": "Acrogymnospermae",
+   "n_relatives": 2,
+   "busco": "C:-1.0%",
+   "w": 0.25,
+   "current": 0.8592804763239511,
+   "base": 0.9810081030696768,
+   "relatives": 0.914949068682286,
+   "global": 0.7620311919507413,
+   "applied": 0.960983136937866,
+   "blend": [
+    0.91495,
+    0.96098,
+    0.95259,
+    0.9294,
+    0.85928
+   ]
+  },
+  {
+   "label": "NS_GCA_023231475.1",
+   "organism": "Seison nebaliae",
+   "group": "Metazoa",
+   "anchor": "Gnathifera",
+   "n_relatives": 9,
+   "busco": "C:-1.0%",
+   "w": 0.5,
+   "current": 0.9474116631795205,
+   "base": 0.9416809212556015,
+   "relatives": 0.9286885647671587,
+   "global": 0.7921107198411492,
+   "applied": 0.9566962673463041,
+   "blend": [
+    0.92869,
+    0.95585,
+    0.9567,
+    0.95479,
+    0.94741
+   ]
+  },
+  {
+   "label": "NS_GCF_011397635.1",
+   "organism": "Epinephelus fuscoguttatus",
+   "group": "Metazoa",
+   "anchor": "Perciformes",
+   "n_relatives": 21,
+   "busco": "C:99.6%",
+   "w": 0.5,
+   "current": 0.9923143621328698,
+   "base": 0.9897209074752608,
+   "relatives": 0.9860044431575853,
+   "global": 0.7059519518915042,
+   "applied": 0.9931225631040418,
+   "blend": [
+    0.986,
+    0.99312,
+    0.99312,
+    0.99304,
+    0.99231
+   ]
+  },
+  {
+   "label": "NS_GCA_964200325.2",
+   "organism": "Himanthalia elongata",
+   "group": "Stramenopiles",
+   "anchor": "Phaeophyceae",
+   "n_relatives": 3,
+   "busco": "C:-1.0%",
+   "w": 0.25,
+   "current": 0.9455679166894454,
+   "base": 0.9583244002803823,
+   "relatives": 0.9107148180684569,
+   "global": 0.8365915148131642,
+   "applied": 0.9455819513449042,
+   "blend": [
+    0.91071,
+    0.94558,
+    0.94558,
+    0.94558,
+    0.94557
+   ]
+  },
+  {
+   "label": "NS_GCF_027579735.1",
+   "organism": "Bombina bombina",
+   "group": "Metazoa",
+   "anchor": "Anura",
+   "n_relatives": 13,
+   "busco": "C:93.8%",
+   "w": 0.5,
+   "current": 0.9820645443536395,
+   "base": 0.9661096423964433,
+   "relatives": 0.9823713344677518,
+   "global": 0.6963710696333224,
+   "applied": 0.9875084902557731,
+   "blend": [
+    0.98237,
+    0.98886,
+    0.98751,
+    0.98562,
+    0.98206
+   ]
+  },
+  {
+   "label": "NS_GCA_964249495.1",
+   "organism": "Spironucleus barkhanus",
+   "group": "Metamonada",
+   "anchor": "Spironucleus",
+   "n_relatives": 1,
+   "busco": "C:-1.0%",
+   "w": 0.25,
+   "current": 0.9653562315729604,
+   "base": 0.9734830816803118,
+   "relatives": 0.9207803702351436,
+   "global": 0.8350933205378442,
+   "applied": 0.9657570169793236,
+   "blend": [
+    0.92078,
+    0.96576,
+    0.96576,
+    0.96576,
+    0.96536
+   ]
+  },
+  {
+   "label": "NS_GCF_003369915.1",
+   "organism": "Drosophila miranda",
+   "group": "Metazoa",
+   "anchor": "pseudoobscura subgroup",
+   "n_relatives": 1,
+   "busco": "C:99.7%",
+   "w": 0.5,
+   "current": 0.9846948431860836,
+   "base": 0.9706180641136268,
+   "relatives": 0.9608779770592141,
+   "global": 0.7494234678165576,
+   "applied": 0.9847348166274785,
+   "blend": [
+    0.96088,
+    0.98473,
+    0.98473,
+    0.98473,
+    0.98469
+   ]
+  },
+  {
+   "label": "NS_GCA_059628155.1",
+   "organism": "Colletotrichum nigrum",
+   "group": "Fungi",
+   "anchor": "Hypocreomycetidae",
+   "n_relatives": 57,
+   "busco": "C:-1.0%",
+   "w": 0.25,
+   "current": 0.9721100193723656,
+   "base": 0.9672871596427131,
+   "relatives": 0.9563952428606928,
+   "global": 0.8417474564385554,
+   "applied": 0.9722468136239364,
+   "blend": [
+    0.9564,
+    0.97225,
+    0.97213,
+    0.97211,
+    0.97211
+   ]
+  },
+  {
+   "label": "NS_GCF_963422355.1",
+   "organism": "Corticium candelabrum",
+   "group": "Metazoa",
+   "anchor": "Porifera",
+   "n_relatives": 3,
+   "busco": "C:93.1%",
+   "w": 0.5,
+   "current": 0.9672727692269822,
+   "base": 0.9708325070838879,
+   "relatives": 0.9072514203789068,
+   "global": 0.7649228571270142,
+   "applied": 0.9705502473643413,
+   "blend": [
+    0.90725,
+    0.97026,
+    0.97055,
+    0.9699,
+    0.96727
+   ]
+  },
+  {
+   "label": "NS_GCA_055863025.1",
+   "organism": "Morchella disparilis",
+   "group": "Fungi",
+   "anchor": "Pezizomycotina",
+   "n_relatives": 303,
+   "busco": "C:-1.0%",
+   "w": 0.25,
+   "current": 0.9775001255846975,
+   "base": 0.9744649877578494,
+   "relatives": 0.9587246389632824,
+   "global": 0.8377346526498715,
+   "applied": 0.9778477337405534,
+   "blend": [
+    0.95872,
+    0.97785,
+    0.97765,
+    0.97759,
+    0.9775
+   ]
+  },
+  {
+   "label": "NS_GCF_958298935.1",
+   "organism": "Phragmites australis",
+   "group": "Viridiplantae",
+   "anchor": "PACMAD clade",
+   "n_relatives": 18,
+   "busco": "C:99.2%",
+   "w": 0.25,
+   "current": 0.9869556531725953,
+   "base": 0.9906186666741406,
+   "relatives": 0.9819803060424989,
+   "global": 0.7526237096675747,
+   "applied": 0.9887931974085603,
+   "blend": [
+    0.98198,
+    0.98879,
+    0.98873,
+    0.98845,
+    0.98696
+   ]
+  },
+  {
+   "label": "NS_GCA_053814205.1",
+   "organism": "Sparganum proliferum",
+   "group": "Metazoa",
+   "anchor": "Diphyllobothriidae",
+   "n_relatives": 4,
+   "busco": "C:-1.0%",
+   "w": 0.5,
+   "current": 0.9664780874222786,
+   "base": 0.931998343287029,
+   "relatives": 0.9293095036726194,
+   "global": 0.7808729981414515,
+   "applied": 0.9699007285604012,
+   "blend": [
+    0.92931,
+    0.97022,
+    0.9699,
+    0.96866,
+    0.96648
+   ]
+  },
+  {
+   "label": "NS_GCF_028828655.1",
+   "organism": "Penicillium verrucosum",
+   "group": "Fungi",
+   "anchor": "Pezizomycotina",
+   "n_relatives": 303,
+   "busco": "C:97.7%",
+   "w": 0.25,
+   "current": 0.9785562236841405,
+   "base": 0.9722590318479217,
+   "relatives": 0.9650823368399022,
+   "global": 0.8425352409396829,
+   "applied": 0.9790698813654926,
+   "blend": [
+    0.96508,
+    0.97907,
+    0.97877,
+    0.97868,
+    0.97856
+   ]
+  },
+  {
+   "label": "NS_GCF_964194155.1",
+   "organism": "Cetorhinus maximus",
+   "group": "Metazoa",
+   "anchor": "Elasmobranchii",
+   "n_relatives": 3,
+   "busco": "C:96.8%",
+   "w": 0.5,
+   "current": 0.9853035258287519,
+   "base": 0.980237486910356,
+   "relatives": 0.967262661457432,
+   "global": 0.6978520642812455,
+   "applied": 0.9888504727247315,
+   "blend": [
+    0.96726,
+    0.98797,
+    0.98885,
+    0.98831,
+    0.9853
+   ]
+  },
+  {
+   "label": "NS_GCA_029204335.1",
+   "organism": "Mycena vulgaris",
+   "group": "Fungi",
+   "anchor": "Agaricomycetidae",
+   "n_relatives": 54,
+   "busco": "C:-1.0%",
+   "w": 0.25,
+   "current": 0.9594085667118397,
+   "base": 0.9756198188997632,
+   "relatives": 0.9387798308933406,
+   "global": 0.8494292093700172,
+   "applied": 0.9594880137272198,
+   "blend": [
+    0.93878,
+    0.95949,
+    0.95944,
+    0.95941,
+    0.95941
+   ]
+  },
+  {
+   "label": "NS_GCA_987114755.1",
+   "organism": "Palaemon varians",
+   "group": "Metazoa",
+   "anchor": "Caridea",
+   "n_relatives": 1,
+   "busco": "C:-1.0%",
+   "w": 0.5,
+   "current": 0.9425847792921647,
+   "base": 0.9403506048367575,
+   "relatives": 0.8889119954462039,
+   "global": 0.7588880851595424,
+   "applied": 0.942624177374548,
+   "blend": [
+    0.88891,
+    0.94262,
+    0.94262,
+    0.94262,
+    0.94258
+   ]
+  },
+  {
+   "label": "NS_GCF_037042795.1",
+   "organism": "Molothrus aeneus",
+   "group": "Metazoa",
+   "anchor": "Molothrus",
+   "n_relatives": 1,
+   "busco": "C:99.1%",
+   "w": 0.5,
+   "current": 0.9790431137228759,
+   "base": 0.9683542390882784,
+   "relatives": 0.9172534499992833,
+   "global": 0.6963948917137378,
+   "applied": 0.9790334226162921,
+   "blend": [
+    0.91725,
+    0.97903,
+    0.97903,
+    0.97903,
+    0.97904
+   ]
+  },
+  {
+   "label": "NS_GCA_023645975.1",
+   "organism": "Usnochroma carphineum",
+   "group": "Fungi",
+   "anchor": "Pezizomycotina",
+   "n_relatives": 303,
+   "busco": "C:-1.0%",
+   "w": 0.25,
+   "current": 0.9733446558336858,
+   "base": 0.9669312589633935,
+   "relatives": 0.9567859270322128,
+   "global": 0.8372424633135903,
+   "applied": 0.973824153809113,
+   "blend": [
+    0.95679,
+    0.97382,
+    0.97355,
+    0.97347,
+    0.97334
+   ]
+  },
+  {
+   "label": "NS_GCA_052576345.1",
+   "organism": "Cladosporium fusiforme",
+   "group": "Fungi",
+   "anchor": "Pezizomycotina",
+   "n_relatives": 303,
+   "busco": "C:-1.0%",
+   "w": 0.25,
+   "current": 0.9770064300190276,
+   "base": 0.9716487827262849,
+   "relatives": 0.9625405954379809,
+   "global": 0.8427433137716619,
+   "applied": 0.9774627476212204,
+   "blend": [
+    0.96254,
+    0.97746,
+    0.97719,
+    0.97712,
+    0.97701
+   ]
+  }
+ ]
+}

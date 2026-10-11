@@ -152,6 +152,57 @@
     "share_positive": NaN
    },
    "leca_families": 5028
+  },
+  {
+   "round": 5,
+   "source": "ncbi",
+   "n_scored": 40,
+   "tree_tips_before": 1979,
+   "tree_tips_after": 2019,
+   "mean_auroc": {
+    "applied": 0.9752,
+    "current": 0.9701,
+    "base": 0.9691,
+    "relatives": 0.9495,
+    "global": 0.7836
+   },
+   "applied_minus_relatives": {
+    "mean": 0.0257,
+    "ci95": [
+     0.0208,
+     0.0309
+    ],
+    "verdict": "양성",
+    "share_positive": 0.975
+   },
+   "current_minus_relatives": {
+    "mean": 0.0206,
+    "ci95": [
+     0.0142,
+     0.0269
+    ],
+    "verdict": "양성",
+    "share_positive": 0.925
+   },
+   "current_minus_base": {
+    "mean": 0.001,
+    "ci95": [
+     -0.0065,
+     0.007
+    ],
+    "verdict": "무승부",
+    "share_positive": 0.6
+   },
+   "applied_minus_current": {
+    "mean": 0.0051,
+    "ci95": [
+     0.0016,
+     0.0112
+    ],
+    "verdict": "양성",
+    "share_positive": 0.95
+   },
+   "leca_families": 5160
   }
  ],
  "used_upids": [],
@@ -165,6 +216,6 @@
    "Metazoa": 0.5,
    "Viridiplantae": 0.25
   },
-  "n_from": 729
+  "n_from": 769
  }
 }
