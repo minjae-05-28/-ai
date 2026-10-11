@@ -707,7 +707,8 @@ def round_():
         grp = group_of(sp["lineage"])
         w = lesson["w_by_group"].get(grp, lesson["w_global"])
         applied = w * pc[lab][0] + (1 - w) * relp
-        learned = 1 / (1 + np.exp(-(logit(applied) + bvec)))
+        # only families with a learned correction change; clipping the rest would reorder near-zero probabilities
+        learned = np.where(bvec != 0, 1 / (1 + np.exp(-(logit(applied) + bvec))), applied)
         miss += pc[lab][0] - truth
         pa = np.clip(applied, 1e-4, 1 - 1e-4)
         for j in np.flatnonzero(pc[lab][0] > 0):                 # families the model scores for this species
