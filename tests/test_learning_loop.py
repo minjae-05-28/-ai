@@ -53,3 +53,20 @@ def test_graft_single_and_multi_anchor():
     i2 = label.index("NS_2")
     mid = parent[i2]
     assert parent[4] == mid and abs(length[4] - 0.25) < 1e-9  # c's branch split in half
+
+
+def test_balance_shards_full_waves_and_even_load():
+    genes = {f"a{i}": 10000 + 300 * i for i in range(100)}
+    shard_of, k, pred = ll.balance_shards(list(genes), genes, 0.05)
+    assert k == min(100, ll.PARALLEL * pred["waves"])
+    assert set(shard_of) == set(genes) and set(shard_of.values()) == set(range(k))
+    assert pred["predicted_max_shard_min"] <= 1.2 * pred["predicted_mean_shard_min"]
+
+
+def test_attempted_ncbi_only_counts_fetched(tmp_path):
+    import gzip
+    (tmp_path / "shards").mkdir()
+    with gzip.open(tmp_path / "shards" / "part_000.json.gz", "wt") as f:
+        json.dump({"GCF_1": {}}, f)
+    assert ll.attempted(tmp_path, {"source": "ncbi", "upids": ["GCF_1", "GCF_2"]}) == {"GCF_1"}
+    assert ll.attempted(tmp_path, {"source": "reference", "upids": ["U1", "U2"]}) == {"U1", "U2"}

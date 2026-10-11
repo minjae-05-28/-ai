@@ -50,6 +50,43 @@ NCBI_SHARDS = 50                                   # each species is a Pfam sear
 SEARCH_FAMILIES = RES / "search_families.txt"      # Pfam families seen in >= 3 eukaryote proteomes held so far
 
 
+PARALLEL = 20                                      # jobs GitHub runs at once for this repository
+SHARD_BUDGET_S = 270 * 60                          # aim each shard at this; the job limit is 330 min
+
+
+def speed_model():
+    """Seconds of HMMER per gene, learned from every NCBI species timed in earlier rounds (least squares through
+    the origin). Before any timing exists: the round-5 test species, 1561 s for 19,521 genes over all 30,134 Pfam
+    HMMs, scaled to the 18,349 searched now."""
+    num = den = 0.0
+    n = 0
+    for f in sorted((DATA / "rounds").glob("*/shards/*.json.gz")):
+        for r in json.loads(gzip.open(f, "rt").read()).values():
+            if r.get("seconds") and r.get("n_proteins"):
+                num += r["seconds"] * r["n_proteins"]
+                den += r["n_proteins"] ** 2
+                n += 1
+    if n >= 5:
+        return {"s_per_gene": num / den, "n_timed": n}
+    return {"s_per_gene": 1561 / 19521 * 18349 / 30134, "n_timed": 0}
+
+
+def balance_shards(accs, genes, s_per_gene):
+    """Fewest full waves of PARALLEL shards that fit the budget, filled longest-first (LPT), so no shard
+    straggles far behind the others."""
+    t = {a: max(genes.get(a, 0), 1000) * s_per_gene + 60 for a in accs}       # + download and parsing
+    waves = max(1, int(np.ceil(sum(t.values()) / (PARALLEL * 0.9 * SHARD_BUDGET_S))))
+    k = min(len(accs), PARALLEL * waves)
+    load = [0.0] * k
+    shard_of = {}
+    for a in sorted(accs, key=lambda x: -t[x]):
+        i = int(np.argmin(load))
+        shard_of[a] = i
+        load[i] += t[a]
+    return shard_of, k, {"predicted_max_shard_min": round(max(load) / 60, 1),
+                         "predicted_mean_shard_min": round(float(np.mean(load)) / 60, 1), "waves": waves}
+
+
 def write_search_families(profiles):
     """Families HMMER searches for on NCBI species: those in >= 3 eukaryote proteomes held so far. Families rarer
     than that cannot enter the model (it keeps families in >= 3 tree tips), so searching for them only costs time."""
@@ -109,8 +146,21 @@ def used_species():
     names |= {binomial(o) for o in json.loads(Path("data/markers/leca2_pick.json").read_text())["lineage"]}
     for p in [Path("data/new_species/pick.json")] + sorted((DATA / "rounds").glob("*/pick.json")):
         if p.exists():
-            names |= {binomial(sp["organism"]) for sp in json.loads(p.read_text())["species"].values()}
+            pick = json.loads(p.read_text())
+            tried = attempted(p.parent, pick)
+            names |= {binomial(sp["organism"]) for u, sp in pick["species"].items() if u in tried}
     return names
+
+
+def attempted(round_dir, pick):
+    """Species a round actually tried. NCBI rounds can leave species unstarted when a shard runs out of time;
+    those go back into the pool. UniProt rounds count everything picked (as before)."""
+    if pick.get("source") != "ncbi":
+        return set(pick["upids"])
+    done = set()
+    for f in sorted((round_dir / "shards").glob("*.json.gz")):
+        done |= set(json.loads(gzip.open(f, "rt").read()))
+    return done
 
 
 def used_upids():
@@ -120,7 +170,7 @@ def used_upids():
     used |= set(json.loads(Path("data/markers/leca2_pick.json").read_text())["upids"])
     for p in [Path("data/new_species/pick.json")] + sorted((DATA / "rounds").glob("*/pick.json")):
         if p.exists():
-            used |= set(json.loads(p.read_text())["upids"])
+            used |= attempted(p.parent, json.loads(p.read_text()))
     return used
 
 
@@ -232,11 +282,16 @@ def plan(n, n_shards, seed=0):
             if len(by_class[k]) > i and len(chosen) < n:
                 chosen.append(by_class[k][i][2])
         i += 1
+    extra = {}
     if source_used == "ncbi":
-        n_shards = NCBI_SHARDS
+        sp = speed_model()
+        shard_of, n_shards, pred = balance_shards(chosen, {u: rows[u].get("protein_coding_genes", 0) for u in chosen},
+                                                  sp["s_per_gene"])
+        extra = {"shard_of": shard_of, "speed_model": sp, "shard_plan": pred}
+        print(f"speed model {sp}; {n_shards} shards, {pred}", flush=True)
     BATCH.mkdir(parents=True, exist_ok=True)
     (BATCH / "pick.json").write_text(json.dumps({
-        "source": source_used, "n_candidates": len(rows), "upids": chosen, "n_shards": n_shards,
+        "source": source_used, "n_candidates": len(rows), "upids": chosen, "n_shards": n_shards, **extra,
         "species": {u: {**rows[u], **tax[rows[u]["taxid"]]} for u in chosen}}, indent=1))
     print(f"picked {len(chosen)} of {len(rows)} ({source_used})")
     print(json.dumps(list(range(min(n_shards, max(1, len(chosen)))))))
@@ -328,7 +383,12 @@ def fetch_ncbi(pick, shard, n_shards, pfam, budget_s):
         hmms = [h for h in hmms if (h.name.decode() if isinstance(h.name, bytes) else h.name) in keep]
     print(f"loaded {len(hmms)} Pfam HMMs", flush=True)
     out, took = {}, []
-    for acc in pick["upids"][shard::n_shards]:
+    if "shard_of" in pick:
+        mine = [a for a in pick["upids"] if pick["shard_of"].get(a) == shard]
+        mine.sort(key=lambda a: -pick["species"][a].get("protein_coding_genes", 0))
+    else:
+        mine = pick["upids"][shard::n_shards]
+    for acc in mine:
         if took and time.time() - t_start + 1.5 * max(took) > budget_s:
             print(f"  time budget reached; {acc} left for a later round", flush=True)
             break
@@ -338,10 +398,12 @@ def fetch_ncbi(pick, shard, n_shards, pfam, budget_s):
             fam = family_profile(proteins, hmms)
         except Exception as e:
             print(f"  skip {acc}: {e}", flush=True)
+            out[acc] = {"organism": pick["species"][acc]["organism"], "n_proteins": 0, "pfam": [],
+                        "failed": str(e)[:200]}                      # counted as used; not retried forever
             continue
         took.append(time.time() - t0)
         out[acc] = {"organism": pick["species"][acc]["organism"], "n_proteins": len(proteins),
-                    "pfam": sorted(f for f, v in fam.items() if v[0] > 0)}
+                    "pfam": sorted(f for f, v in fam.items() if v[0] > 0), "seconds": round(took[-1], 1)}
         print(f"  {acc} {out[acc]['organism']}: {len(proteins)} genes, {len(out[acc]['pfam'])} families, "
               f"{took[-1]:.0f}s", flush=True)
         del proteins
@@ -659,6 +721,8 @@ def round_():
     shutil.copy(BATCH / "pick.json", dest / "pick.json")
     shutil.copytree(BATCH / "shards", dest / "shards", dirs_exist_ok=True)
     shutil.rmtree(BATCH)
+    summary["speed_after"] = speed_model()            # learned seconds per gene, used to plan the next round
+    summary["shard_plan"] = pick.get("shard_plan")
     summary["grafted"] = len(placed)
     summary["tree_tips_after"] = int(sum(1 for lab in label if lab))
     (RES / f"round_{k:03d}.json").write_text(json.dumps({**summary, "species": rows}, ensure_ascii=False, indent=1))
