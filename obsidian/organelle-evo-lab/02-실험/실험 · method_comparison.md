@@ -1,0 +1,77 @@
+---
+유형: 실험
+실행: method_comparison
+산출: results/method_comparison/summary.json
+tags:
+  - 유형/실험
+  - 실험/method_comparison
+---
+
+# 실험 · method_comparison
+
+**산출물** `results/method_comparison/summary.json`
+
+## 한눈에
+
+| 항목 | 값 |
+| --- | --- |
+| preregistration | docs/preregistration/2026-10-12_method_comparison.md |
+| tree_commit | 2d7628f |
+| tree_tips | 3244 |
+| B_heldout_species | not completed (process stopped after A; rerun scripts/method_comparison.py) |
+| C_leca_stability | not completed |
+
+## A_leca_vs_vosseberg
+
+```json
+{
+ "n_families": 5883,
+ "n_leca": 3861,
+ "auroc": {
+  "Lecio (G3c+H2)": 0.857,
+  "G3c": 0.8214,
+  "Wagner": 0.8072,
+  "Dollo": 0.8009,
+  "frequency": 0.9491
+ },
+ "f1": {
+  "Lecio (G3c+H2)": 0.831,
+  "G3c": 0.8273,
+  "Wagner": 0.8479,
+  "Dollo": 0.8423
+ },
+ "leca_calls": {
+  "Lecio (G3c+H2)": 4266,
+  "G3c": 5516,
+  "Wagner": 5990,
+  "Dollo": 5744
+ },
+ "primary_lecio_minus_wagner": {
+  "diff": 0.0498,
+  "ci95": [
+   0.0384,
+   0.0615
+  ],
+  "verdict": "양성"
+ },
+ "lecio_minus_dollo": {
+  "diff": 0.0562,
+  "ci95": [
+   0.0449,
+   0.0675
+  ],
+  "verdict": "양성"
+ },
+ "lecio_minus_frequency": {
+  "diff": -0.092,
+  "ci95": [
+   -0.1011,
+   -0.0819
+  ],
+  "verdict": "음성"
+ }
+}
+```
+
+## 연결
+- [[실험 목록]]
