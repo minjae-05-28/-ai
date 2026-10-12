@@ -12,8 +12,6 @@ on:
         default: "250"
       n_shards:
         default: "20"
-  schedule:
-    - cron: "17 3 * * *"          # safety net if a chained run was lost
 
 permissions:
   contents: write

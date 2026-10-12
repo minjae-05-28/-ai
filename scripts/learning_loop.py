@@ -222,6 +222,12 @@ def fill_missing_shares(fams):
 # ---------------------------------------------------------------- 1. next batch (Actions)
 def plan(n, n_shards, seed=0):
     import random
+    if (DATA / "STOP").exists():                     # the user stopped the loop (2026-10-12)
+        BATCH.mkdir(parents=True, exist_ok=True)
+        (BATCH / "pick.json").write_text(json.dumps({"upids": [], "species": {}, "stopped": True}))
+        print("stopped: data/learning_loop/STOP exists")
+        print("[]")
+        return
     from new_species import taxonomy
     from uniprot_proteomes import REST, get
     used = used_upids()
