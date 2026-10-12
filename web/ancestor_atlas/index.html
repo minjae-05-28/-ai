@@ -1,6 +1,6 @@
 <title>Lecio</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@900&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@900&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+KR:ital,wght@0,400;0,500;0,600;1,500&display=swap">
 <style>
 /* Layout: one centred column. Wordmark and a single name field in the middle of an ivory page; the ancestor
    ladder (rows = ancestors from LECA down, columns = cell functions) unfolds under the field after a search.
@@ -16,7 +16,7 @@
   --orange-soft: #fde3cf;
   --absent: #f1ebde;
   --display: "Archivo", "Arial Black", sans-serif;
-  --body: "IBM Plex Sans", "Helvetica Neue", Arial, sans-serif;
+  --body: "IBM Plex Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
   --mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
 }
 body { background: var(--ivory); color: var(--ink); font-family: var(--body); font-size: 15px; line-height: 1.55; }
@@ -75,39 +75,39 @@ h1 span { color: var(--orange); }
 
 <div class="wrap">
   <h1>Le<span>c</span>io</h1>
-  <p class="lede">Type a species name to trace its ancestors from LECA, the last eukaryotic common ancestor, down to that species, and see which cell functions each ancestor had.</p>
+  <p class="lede">종의 학명을 넣으면 진핵생물 공통조상(LECA)부터 그 종까지, 조상마다 어떤 세포 기능을 가졌는지 복원합니다.</p>
   <div class="search">
-    <label for="q">Scientific name</label>
+    <label for="q">종의 학명</label>
     <input id="q" type="search" autocomplete="off" spellcheck="false" placeholder="Homo sapiens" aria-controls="sugg">
     <ul id="sugg" role="listbox" hidden></ul>
   </div>
-  <div class="chips" id="examples" aria-label="Examples"></div>
-  <p id="status">Loading data…</p>
+  <div class="chips" id="examples" aria-label="예시"></div>
+  <p id="status">자료를 불러오는 중…</p>
   <div id="result" hidden>
-  <section class="board" aria-label="Cell functions by ancestor">
+  <section class="board" aria-label="조상별 세포 기능">
     <div class="grid" id="grid"></div>
   </section>
   <div class="legend">
-    <span>Share present <span class="ramp" aria-hidden="true"><i style="--v:0"></i><i style="--v:.25"></i><i style="--v:.5"></i><i style="--v:.75"></i><i style="--v:1"></i></span> 0 → 100%</span>
-    <span>Tap a cell to see its gene families</span>
+    <span>있었을 비율 <span class="ramp" aria-hidden="true"><i style="--v:0"></i><i style="--v:.25"></i><i style="--v:.5"></i><i style="--v:.75"></i><i style="--v:1"></i></span> 0 → 100%</span>
+    <span>칸을 누르면 유전자군 목록이 열립니다</span>
   </div>
 
   <section class="detail" id="detail" aria-live="polite"></section>
 
   <div class="two">
     <section style="display:grid;gap:10px">
-      <h2>Confidence grades</h2>
-      <table class="grades" id="gradeTable"><thead><tr><th>Grade</th><th>Confidence</th><th>Agrees with gene trees</th><th>Checks</th></tr></thead><tbody></tbody></table>
+      <h2>판정 등급</h2>
+      <table class="grades" id="gradeTable"><thead><tr><th>등급</th><th>확신도</th><th>유전자 계통수와 일치</th><th>검사 수</th></tr></thead><tbody></tbody></table>
     </section>
     <section class="notes">
-      <h2>How to read it, and its limits</h2>
+      <h2>읽는 법과 한계</h2>
       <p id="meta"></p>
-      <p>Grades come from how confident each call is. The agreement rates come from checking calls of the same kind against thousands of gene trees (that check used an earlier 250-species tree).</p>
-      <p>A cell's shade is the share of that function's gene families the ancestor had. Each function also includes families that only exist in some lineages (for example animal sperm proteins), so a pale cell does not mean the function itself was missing. Tap a cell to check the families one by one.</p>
-      <p>Genes that moved from plastids into the nucleus can make deep ancestors look photosynthetic. For families concentrated in plastid-bearing lineages, deep ancestors use a reconstruction with those lineages hidden.</p>
-      <p>Lecio only reconstructs whether gene families were present or absent. It says nothing about DNA or RNA sequences or what organelles looked like.</p>
-      <p>If a species is not in the data, search for its genus or family; Lecio shows the ancestors of the closest group it has.</p>
-      <p>The number of LECA gene families shifted as species were added. The deeper the ancestor, the more carefully you should read B, C and D calls.</p>
+      <p>등급은 판정의 확신도로 매깁니다. 일치율은 이전에 그린 유전자 계통수 수천 개로 같은 방식의 판정을 검사한 결과입니다(그때는 250종 나무였습니다).</p>
+      <p>칸의 진하기는 그 기능에 묶인 유전자군 중 있었던 비율입니다. 한 기능에는 특정 계통에만 생긴 유전자군(예: 동물 정자 단백질)도 섞여 있어서, 칸이 연하다고 그 기능 자체가 없었다는 뜻은 아닙니다. 칸을 눌러 유전자군 하나하나를 확인하세요.</p>
+      <p>엽록체에서 핵으로 옮겨 간 유전자가 깊은 조상을 광합성 생물처럼 보이게 하는 문제가 있어서, 엽록체 계통에 몰린 유전자군은 그 계통을 가리고 다시 복원한 값을 깊은 조상에 씁니다.</p>
+      <p>유전자군이 있었는지 없었는지만 복원합니다. DNA·RNA 서열이나 소기관의 생김새는 이 자료로 알 수 없습니다.</p>
+      <p>아틀라스에 없는 생물은 이름을 학명으로 넣으면, 분류상 가장 가까운 무리의 조상들로 보여 줍니다. 속이나 과 이름으로 찾아도 됩니다.</p>
+      <p>가장 깊은 조상(LECA)의 유전자군 수는 종을 더할 때마다 흔들렸습니다. 깊을수록 B·C·D 등급 판정을 조심해서 읽으세요.</p>
     </section>
   </div>
   </div>
@@ -126,7 +126,7 @@ async function load() {
     const buf = await res.arrayBuffer();
     const head = new Uint8Array(buf.slice(0, 2));
     if (head[0] === 0x1f && head[1] === 0x8b) {
-      if (!("DecompressionStream" in window)) throw new Error("This browser cannot unpack compressed data. Please use a current browser.");
+      if (!("DecompressionStream" in window)) throw new Error("이 브라우저는 압축 자료를 풀 수 없습니다. 최신 브라우저로 열어 주세요.");
       const stream = new Blob([buf]).stream().pipeThrough(new DecompressionStream("gzip"));
       text = await new Response(stream).text();
     } else {
@@ -134,16 +134,16 @@ async function load() {
     }
     A = JSON.parse(text);
   } catch (e) {
-    $("#status").textContent = "Could not load the data: " + e.message;
+    $("#status").textContent = "자료를 불러오지 못했습니다: " + e.message;
     $("#status").className = "note";
     return;
   }
   names = Object.keys(A.index).sort((a, b) => a.length - b.length || a.localeCompare(b));
-  $("#meta").textContent = `${A.tree_tips.toLocaleString()} species in the tree, ${A.families_in_model.toLocaleString()} gene families in the model, ${A.family_order.length.toLocaleString()} of them with a known function shown in the cells, ${Object.keys(A.nodes).length.toLocaleString()} reconstructed ancestors.`;
+  $("#meta").textContent = `나무에 든 생물 ${A.tree_tips.toLocaleString()}종, 모형이 다루는 유전자군 ${A.families_in_model.toLocaleString()}개, 그중 기능이 알려져 칸에 들어간 유전자군 ${A.family_order.length.toLocaleString()}개, 복원한 조상 ${Object.keys(A.nodes).length.toLocaleString()}개.`;
   const tb = $("#gradeTable tbody");
   for (const [g, v] of Object.entries(A.grades)) {
     const tr = document.createElement("tr");
-    tr.innerHTML = `<td><b>${g}</b></td><td>≥ ${v.min_confidence.toFixed(2)}</td><td>${(v.agreement * 100).toFixed(1)}%</td><td>${v.n.toLocaleString()}</td>`;
+    tr.innerHTML = `<td><b>${g}</b></td><td>${v.min_confidence.toFixed(2)} 이상</td><td>${(v.agreement * 100).toFixed(1)}%</td><td>${v.n.toLocaleString()}</td>`;
     tb.append(tr);
   }
   const ex = $("#examples");
@@ -153,7 +153,7 @@ async function load() {
     b.onclick = () => { $("#q").value = n; show(n); };
     ex.append(b);
   }
-  $("#status").textContent = "Type a scientific name and press Enter. Genus and family names work too.";
+  $("#status").textContent = "학명을 입력하고 Enter를 누르세요. 속·과 이름도 됩니다.";
   $("#q").focus({ preventScroll: true });
 }
 
@@ -175,13 +175,13 @@ function decode(node) {
 
 function label(node) {
   const L = A.nodes[String(node)].labels;
-  return L.length ? L[0] : "Unnamed ancestor";
+  return L.length ? L[0] : "이름 없는 조상";
 }
 
 function show(name) {
   const v = A.index[name];
   if (v === undefined) {
-    $("#status").textContent = `Could not find '${name}'. Try a scientific name, or a genus, family or phylum name.`;
+    $("#status").textContent = `'${name}'을(를) 찾지 못했습니다. 학명이나 속·과·문 이름으로 다시 찾아보세요.`;
     $("#status").className = "note";
     return;
   }
@@ -191,8 +191,8 @@ function show(name) {
   const exact = leaf.labels.includes(name);
   $("#status").className = "";
   $("#status").textContent = exact
-    ? `From LECA to the common ancestor of ${name}: ${current.path.length} ancestors`
-    : `${current.path.length} ancestors of ${name}, from LECA to its closest reconstructed ancestor, ${label(v)}`;
+    ? `${name} 무리의 공통조상까지, LECA부터 ${current.path.length}단계`
+    : `${name}의 조상 ${current.path.length}단계 · LECA부터 가장 가까운 조상 '${label(v)}'까지`;
   drawGrid();
   if (!selected) selected = { node: current.path[0], key: "mitochondrion" };
   else selected.node = current.path.includes(selected.node) ? selected.node : current.path[0];
@@ -214,15 +214,15 @@ function drawGrid() {
     const rh = document.createElement("div");
     rh.className = "rowhead" + (i === 0 ? " leca" : "");
     const other = n.labels.slice(1).filter(t => t !== "cellular organisms" && t !== "Eukaryota").slice(0, 2).join(" · ");
-    rh.innerHTML = `<b title="${n.labels.join(" / ")}">${label(node)}</b><span>${n.n_tips.toLocaleString()} species · ~${n.expected_families.toLocaleString()} families${other ? " · " + other : ""}</span>`;
+    rh.innerHTML = `<b title="${n.labels.join(" / ")}">${label(node)}</b><span>${n.n_tips.toLocaleString()}종 · 유전자군 약 ${n.expected_families.toLocaleString()}${other ? " · " + other : ""}</span>`;
     g.append(rh);
     for (const m of mods) {
       const [frac, present, aCount] = n.modules[m.key];
       const c = document.createElement("button");
       c.type = "button"; c.className = "cell";
       c.style.setProperty("--v", frac.toFixed(3));
-      c.setAttribute("aria-label", `${label(node)}, ${m.name}: ${present} of ${m.families.length} present`);
-      c.title = `${label(node)} · ${m.name}\n${present}/${m.families.length} present (${aCount} grade A)`;
+      c.setAttribute("aria-label", `${label(node)}, ${m.name}: ${present}/${m.families.length}개 있음`);
+      c.title = `${label(node)} · ${m.name}\n있음 ${present}/${m.families.length} (A등급 ${aCount})`;
       if (selected && selected.node === node && selected.key === m.key) c.classList.add("on");
       c.onclick = () => { selected = { node, key: m.key }; drawGrid(); drawDetail(); $("#detail").scrollIntoView({ behavior: "smooth", block: "start" }); };
       g.append(c);
@@ -246,11 +246,11 @@ function drawDetail() {
   const d = $("#detail");
   d.innerHTML = `
     <h2>${label(node)} — ${m.name}</h2>
-    <p class="sub">${nYes} of this function's ${rows.length} gene families reconstructed as present (${n.modules[key][2]} at grade A). Badge: filled = present, outlined = absent, letter = confidence grade.</p>
+    <p class="sub">이 기능의 유전자군 ${rows.length}개 중 ${nYes}개가 있었다고 복원됨 (A등급 있음 ${n.modules[key][2]}개). 칸 왼쪽 표시: 채움 = 있었음, 테두리 = 없었음, 글자 = 판정 등급.</p>
     <div class="filters">
-      <button type="button" class="chip" data-f="all">All ${rows.length}</button>
-      <button type="button" class="chip" data-f="yes">Present ${nYes}</button>
-      <button type="button" class="chip" data-f="no">Absent ${rows.length - nYes}</button>
+      <button type="button" class="chip" data-f="all">전체 ${rows.length}</button>
+      <button type="button" class="chip" data-f="yes">있었음 ${nYes}</button>
+      <button type="button" class="chip" data-f="no">없었음 ${rows.length - nYes}</button>
     </div>
     <ul class="fams">${shown.map(r => `<li><span class="g ${r.present ? "yes" : "no"}">${r.grade}</span><div style="min-width:0"><code>${r.f}</code><p>${(A.descriptions[r.f] || "").replace(/</g, "&lt;")}</p></div></li>`).join("")}</ul>`;
   d.querySelectorAll("[data-f]").forEach(b => {
@@ -276,7 +276,7 @@ function suggest() {
     if (!items.includes(n) && n.toLowerCase().includes(t)) items.push(n);
   }
   active = -1;
-  sugg.innerHTML = items.map((n, i) => `<li role="option" id="s${i}" data-i="${i}"><span>${n}</span><small>${A.nodes[String(A.index[n])].n_tips} species</small></li>`).join("");
+  sugg.innerHTML = items.map((n, i) => `<li role="option" id="s${i}" data-i="${i}"><span>${n}</span><small>${A.nodes[String(A.index[n])].n_tips}종</small></li>`).join("");
   sugg.hidden = items.length === 0;
 }
 function pick(i) { q.value = items[i]; sugg.hidden = true; show(items[i]); }
