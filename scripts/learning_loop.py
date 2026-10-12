@@ -500,15 +500,16 @@ class NodePost(dict):
     """Posterior rows for the nodes that were asked for (node -> (F,) vector); indexed like the full array."""
 
 
-def fit_model(d, fams, nodes, chunk=2000):
+def fit_model(d, fams, nodes, chunk=2000, vis=None):
     """G3c fit; the posterior is the same as g3_fit's, but only kept at `nodes` and computed in family chunks,
     so memory does not grow with tips x families as the tree grows."""
     from leca_v3_model import GRID, g3_fit, shares_for, strata_of
     from mito_model_search import posterior
     fill_missing_shares(fams)
     strata = strata_of(fams, shares_for(fams))
-    vis = np.zeros(len(d["parent"]), bool)
-    vis[d["tips"]] = True
+    if vis is None:
+        vis = np.zeros(len(d["parent"]), bool)
+        vis[d["tips"]] = True
     R, info = g3_fit(d, vis, strata, use_strata=True, choose_mult=True, return_weights=True)
     mult = np.where(d["reduced_branch"], info["m"], 1.0).astype(np.float32)
     nodes = sorted(set(int(v) for v in nodes))
