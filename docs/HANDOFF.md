@@ -5,6 +5,26 @@
 
 ---
 
+## 0. 마무리 상태 (2026-10-12) — 먼저 읽기
+
+사용자가 프로젝트를 마무리했습니다. 마지막 작업 묶음:
+
+- **학습 고리**(사전 등록 12·13·14): UniProt → NCBI 진핵 유전체를 회차마다 배우기 전에 예측하고 나무에 붙임.
+  - 회차 2–11, 나무 250 → 3,493종.
+  - 주 지표는 9회차 모두 양성. 유전자군별 교정은 효과 없음.
+  - 결과: `docs/preregistration/2026-10-11_learning_loop_RESULT.md`.
+  - `data/learning_loop/STOP` 파일이 있어 다시 돌지 않습니다. 다시 돌리려면 지우고 `learning-loop.yml`을 실행하세요.
+- **Lecio**(`scripts/ancestor_atlas.py`, `web/ancestor_atlas/`, `docs/ancestor_atlas.md`): 학명 → LECA부터 조상마다 28개 세포 기능, 판정 등급.
+  - 영어 페이지이고, 비공개 아티팩트 https://claude.ai/artifact/RTjDhiyMrgF19AgoiSHQaS 에 링크 공유로 올라가 있습니다.
+- **사전 등록 15**(표준 방법 비교)는 A만 완료했습니다.
+  - Lecio > Wagner·Dollo, 하지만 단순 빈도 > 전부.
+  - B·C는 미완료입니다. `scripts/method_comparison.py`로 다시 돌리면 됩니다.
+- **다음에 할 만한 것**(학술용):
+  - 서열 기반 계통수로 다시 하기
+  - 오솔로그 그룹으로 다시 하기
+  - ALE·Count와 비교
+  - 3,000종 나무에서 신뢰도 등급 다시 재기
+
 ## 1. 이 프로젝트가 하는 일
 
 실제 유전체를 비교해서 **유전체 진화의 법칙을 학습하고 검증**합니다. 세 가지 계통에서:

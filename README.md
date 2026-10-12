@@ -1,5 +1,31 @@
 # organelle-evo
 
+## Lecio — ancestor reconstruction for any eukaryote
+
+**Type a species name, see what each of its ancestors had, from LECA down.** Lecio reconstructs, for every ancestor
+on a species' lineage, which Pfam gene families and which of 28 cell functions (mitochondria, cilia, ER, Golgi, ...)
+were present, with a confidence grade for each call.
+
+- **Data:** about 3,500 eukaryote proteomes (UniProt reference proteomes and NCBI annotated genomes, Pfam via HMMER).
+- **Model:** a two-state gain/loss model per family with an empirical-Bayes prior over rates
+  (`scripts/leca_v3_model.py`). Deep ancestors get a plastid-to-nucleus transfer correction; without it, LECA comes out photosynthetic.
+- **Validation:** every test was pre-registered (`docs/preregistration/`).
+  - About 3,200 species were predicted *before* being added to the tree. The model beat "copy the closest relatives" in every round (AUROC ~0.99 vs ~0.97).
+  - On Vosseberg et al. 2021's LECA set the model beat Wagner and Dollo parsimony (0.857 vs 0.807 / 0.801).
+  - Simple family frequency beat all tree methods there (0.949).
+- **Limits:**
+  - The tree is grafted by taxonomy, not inferred from sequences.
+  - It uses Pfam domains, not orthogroups.
+  - Deep-node calls are unstable.
+  - Presence/absence only: no sequences.
+- **Use it:** open `web/ancestor_atlas/index.html` through a local server (`cd web/ancestor_atlas && python -m http.server`).
+  From the command line: `python scripts/ancestor_atlas.py query "Homo sapiens"`.
+  Notes: `docs/ancestor_atlas.md`.
+
+Built by a life-science undergraduate with no coding background, working with an AI assistant (Claude).
+
+---
+
 **유전체가 줄어들 때, 무엇을 잃고 무엇을 바꿀까.**
 공생 세균이 소기관이 될 때, 자유생활 생물이 기생생물이 될 때, 평범한 세균이 극한 환경으로 갈 때를 비교합니다. 실제 유전체 약 270개와 단백질체 260개에서 진화의 규칙을 학습하고, 그 규칙이 어디까지 통하는지 검증한 개인 연구 프로젝트입니다.
 
