@@ -41,7 +41,7 @@ h1 span { color: var(--orange); }
 #result { width: 100%; display: grid; gap: 24px; }
 .board { background: var(--sheet); border: 1px solid var(--rule); border-radius: 18px; padding: 16px; overflow-x: auto; }
 .grid { display: grid; grid-template-columns: minmax(150px, 220px) repeat(var(--m), 22px); gap: 3px; align-items: center; min-width: max-content; }
-.colhead { writing-mode: vertical-rl; transform: rotate(180deg); font-size: 11.5px; color: var(--muted); height: 138px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; padding-bottom: 4px; justify-self: center; }
+.colhead { writing-mode: vertical-rl; text-orientation: sideways; transform: rotate(180deg); font-size: 11.5px; color: var(--muted); height: 138px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; padding-bottom: 4px; justify-self: center; }
 .rowhead { padding-right: 10px; min-width: 0; }
 .rowhead b { font-weight: 600; font-size: 14px; display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .rowhead span { font-family: var(--mono); font-size: 11.5px; color: var(--muted); font-variant-numeric: tabular-nums; }
