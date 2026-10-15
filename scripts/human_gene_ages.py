@@ -1,6 +1,6 @@
 """Human gene ages from Lecio ancestors (pre-registration 16, docs/preregistration/2026-10-15_human_gene_ages.md).
 
-    python scripts/human_gene_ages.py fit    -> results/human_gene_ages/strata_posteriors.json.gz, pruned.json
+    python scripts/human_gene_ages.py fit    -> results/human_gene_ages/strata_posteriors.json.gz
     python scripts/human_gene_ages.py ages   -> results/human_gene_ages/gene_ages.tsv, summary.json
 
 Gene-family level only: presence or absence of Pfam families, never sequences.
@@ -32,9 +32,12 @@ UNICELLULAR_HOLOZOA = {"Choanoflagellata", "Filasterea", "Ichthyosporea"}
 PROKARYOTE_SHARE = 0.05
 
 
-def load_tree(drop=()):
-    """The learning-loop tree with its tip lineages, minus the tips in `drop` (they lose their profile)."""
+def load_tree(drop=(), tree=None, base_only=False):
+    """The learning-loop tree (or `tree`) with its tip lineages, minus the tips in `drop` (they lose their
+    profile). base_only: the base tree before any grafting."""
     import learning_loop as ll
+    if tree is not None:
+        ll.current_tree = lambda: str(tree)
     from run_clade_ancestor import load_profiles as base_loader
     base_prof = ll.compact(base_loader())
     ll.load_shares_cache()
@@ -43,6 +46,8 @@ def load_tree(drop=()):
                 for r in json.loads(Path("data/markers/leca2_pick.json").read_text())["lineage"].values()}
     lin_all = {**base_lin, **{k: v["lineage"] for k, v in held.items()}}
     prof_all = {**base_prof, **{k: {**v, "kingdom": "eukaryotes"} for k, v in held.items()}}
+    if base_only:
+        prof_all = dict(base_prof)
     for lab in drop:
         prof_all.pop(lab, None)
         prof_all.pop(lab.replace("'", ""), None)
@@ -51,18 +56,6 @@ def load_tree(drop=()):
     tip_name = {v: (held[n]["organism"] if n in held else n) for v, n in names.items()}
     tip_lin = {v: list(lin_all.get(n, [])) for v, n in names.items()}
     return d, fams, names, tip_name, tip_lin
-
-
-# Stratum node = the first ancestor of human whose subtree holds >= 90% of the reference group's tips
-# (deviation 1 of pre-registration 16). Backbone taxon = the human-lineage taxon that node stands for.
-REFERENCE = {"PS3": {"Fungi"}, "PS4": UNICELLULAR_HOLOZOA, "PS5": {"Porifera"}, "PS6": {"Cnidaria"},
-             "PS7": {"Protostomia"}, "PS8": {"Echinodermata", "Hemichordata"}, "PS9": {"Cephalochordata", "Tunicata"},
-             "PS10": {"Cyclostomata"}, "PS11": {"Actinopterygii"}, "PS12": {"Amphibia"}, "PS13": {"Sauropsida"},
-             "PS14": {"Monotremata"}, "PS15": {"Afrotheria", "Xenarthra"}, "PS16": {"Strepsirrhini"}}
-BACKBONE = {"PS3": {"Opisthokonta"}, "PS4": {"Metazoa"} | UNICELLULAR_HOLOZOA, "PS5": {"Metazoa"},
-            "PS6": {"Eumetazoa"}, "PS7": {"Bilateria"}, "PS8": {"Deuterostomia"}, "PS9": {"Chordata"},
-            "PS10": {"Vertebrata"}, "PS11": {"Euteleostomi"}, "PS12": {"Tetrapoda"}, "PS13": {"Amniota"},
-            "PS14": {"Mammalia"}, "PS15": {"Eutheria"}, "PS16": {"Primates"}}
 
 
 def _tips_under(d):
@@ -76,49 +69,36 @@ def _tips_under(d):
 
 
 def strata_nodes(d, tip_name, tip_lin):
+    """Stratum node = common ancestor of every tip of the stratum's taxon on the taxonomy tree (deviation 2);
+    PS4 = Holozoa (animals + unicellular holozoans)."""
+    from run_clade_ancestor import mrca
     human = [v for v, n in tip_name.items() if n.startswith(HUMAN)]
     assert len(human) == 1, human
     h = human[0]
-    path = []
+    path = set()
     w = h
     while w != -1:
-        path.append(int(w))
+        path.add(int(w))
         w = d["parent"][w]
-    under = _tips_under(d)
-    root = path[-1]
+    root = int(np.where(d["parent"] < 0)[0][0])
     nodes, notes = {"PS1": root, "PS2": root}, []
-    for ps, _, _ in STRATA[2:]:
-        ref = {v for v, L in tip_lin.items() if REFERENCE[ps] & set(L)}
-        nodes[ps] = next(v for v in path if len(ref & under[v]) >= 0.9 * len(ref))
+    for ps, _, taxon in STRATA[2:]:
+        group = {"Metazoa"} | UNICELLULAR_HOLOZOA if ps == "PS4" else {taxon}
+        A = [v for v, L in tip_lin.items() if group & set(L)]
+        nodes[ps] = int(mrca(A, d["parent"], d["depth"]))
+        if nodes[ps] not in path:
+            notes.append(f"{ps} node {nodes[ps]} is not on the human path")
     return h, nodes, notes
 
 
-def misplaced(d, tip_name, tip_lin):
-    """Tips that carry a backbone taxon but sit outside its stratum node, or sit inside it without the taxon."""
-    h, nodes, _ = strata_nodes(d, tip_name, tip_lin)
-    under = _tips_under(d)
-    out = {}
-    for ps, _, _ in STRATA[2:]:
-        inside = under[nodes[ps]]
-        for v, L in tip_lin.items():
-            has = bool(BACKBONE[ps] & set(L))
-            if has != (v in inside) and v not in out:
-                out[v] = f"{ps}:{'outside' if has else 'inside'}"
-    return out
+TREE = Path("results/human_gene_ages/tree_taxonomy.nwk")
 
 
 def fit():
-    d, fams, names, tip_name, tip_lin = load_tree()
-    bad = misplaced(d, tip_name, tip_lin)
-    drop = sorted(names[u] for u in bad)
-    print(f"misplaced tips: {len(drop)} of {len(d['tips'])}", flush=True)
-    OUT.mkdir(parents=True, exist_ok=True)
-    (OUT / "pruned.json").write_text(json.dumps(
-        {"n_tips_before": len(d["tips"]), "dropped": [{"label": names[u], "organism": tip_name[u], "taxon": t,
-                                                       "lineage": tip_lin[u][-6:]} for u, t in bad.items()]},
-        ensure_ascii=False, indent=1))
-    d, fams, names, tip_name, tip_lin = load_tree(drop)
+    d, fams, names, tip_name, tip_lin = load_tree(tree=TREE)
+    print(f"taxonomy tree: {len(d['tips'])} tips, {len(fams)} families", flush=True)
     h, nodes, notes = strata_nodes(d, tip_name, tip_lin)
+    drop = []
     for n in notes:
         print("NOTE", n, flush=True)
     import learning_loop as ll
