@@ -154,8 +154,112 @@ def main():
         ages()
 
 
+LS_BIN = {"Cellular_organisms": 1, "Euk_Archaea": 1, "Euk+Bac": 1, "Eukaryota": 2, "Opisthokonta": 3,
+          "Eumetazoa": 4, "Vertebrata": 5, "Mammalia": 6}
+
+
+def ls_bin(k):
+    """Our stratum index (1..16) on Litman & Stein's coarser scale (1..6)."""
+    return 1 if k == 1 else 2 if k == 2 else 3 if k == 3 else 4 if k <= 9 else 5 if k <= 13 else 6
+
+
+def family_ages(res):
+    """Lecio age and classic (any-hit) age of every model family, as stratum indices 1..16, plus the grade
+    of the Lecio call at its age node."""
+    fams = res["families"]
+    P = np.array([res["strata"][f"PS{k}"]["posterior"] for k in range(1, 17)])     # 16 x F
+    share = np.array(res["prokaryote_share"])
+    present = P >= 0.5
+    k_old = np.where(present.any(0), present.argmax(0) + 1, 16)
+    lecio = np.where((k_old == 1) & (share < PROKARYOTE_SHARE), 2, k_old)          # PS1 vs PS2 at LECA
+    conf = np.abs(P - 0.5) * 2
+    grade = np.select([conf >= 0.98, conf >= 0.9, conf >= 0.6], ["A", "B", "C"], "D")
+    g_at = grade[np.minimum(k_old, 16) - 1, np.arange(len(fams))]
+    classic = np.full(len(fams), 16)
+    for k in range(16, 2, -1):                         # oldest outgroup branch holding the family wins
+        classic = np.where(np.array(res["outgroup_has"][f"PS{k}"]) > 0, k - 1, classic)
+    classic = np.where(share > 0, 1, classic)
+    return {f: (int(lecio[i]), int(classic[i]), str(g_at[i])) for i, f in enumerate(fams)}
+
+
 def ages():
-    raise SystemExit("ages: written after the inputs arrive")
+    from scipy.stats import spearmanr
+    with gzip.open(OUT / "strata_posteriors.json.gz", "rt") as f:
+        res = json.load(f)
+    fa = family_ages(res)
+    meta = json.loads(Path("data/eukaryotes/pfam_meta.json").read_text())
+    acc2name = {m["accession"].split(".")[0]: n for n, m in meta.items()}
+    rows = []
+    with gzip.open("data/human/uniprot_human.tsv.gz", "rt") as f:
+        next(f)
+        for line in f:
+            acc, gene, pfam, geneid, _ = (line.rstrip("\n").split("\t") + [""] * 5)[:5]
+            doms = [acc2name.get(x) for x in pfam.split(";") if x]
+            inm = sorted({x for x in doms if x in fa})
+            row = {"accession": acc, "gene": gene, "entrez": geneid.split(";")[0], "n_pfam": len([x for x in pfam.split(";") if x]),
+                   "domains_in_model": inm}
+            if inm:
+                la = [fa[x][0] for x in inm]
+                ca = [fa[x][1] for x in inm]
+                row.update(age=max(la), age_oldest_domain=min(la), age_classic=max(ca),
+                           grade=fa[inm[int(np.argmax(la))]][2])
+            rows.append(row)
+    aged = [r for r in rows if "age" in r]
+    ls = {}
+    with open("data/human/litman_stein/Main__main_HUMAN.csv") as f:
+        head = next(f).rstrip().split(",")
+        j = head.index("modeAge")
+        for line in f:
+            x = line.rstrip().split(",")
+            if x[j] in LS_BIN:
+                ls[x[0]] = LS_BIN[x[j]]
+    uc = lambda k, holo=False: k <= (4 if holo else 3)
+
+    def compare(key, holo=False):
+        both = [(r[key], ls[r["accession"]]) for r in aged if r["accession"] in ls]
+        a = np.array([uc(k, holo) for k, _ in both])
+        b = np.array([l <= 3 for _, l in both])
+        rho = spearmanr([ls_bin(k) for k, _ in both], [l for _, l in both]).correlation
+        return {"n": len(both), "uc_mc_agreement": round(float((a == b).mean()), 4),
+                "ours_uc_share": round(float(a.mean()), 4), "litman_uc_share": round(float(b.mean()), 4),
+                "spearman_6_bins": round(float(rho), 4)}
+    fam_l = np.array([v[0] for v in fa.values()])
+    fam_c = np.array([v[1] for v in fa.values()])
+    gl = np.array([r["age"] for r in aged])
+    gc = np.array([r["age_classic"] for r in aged])
+    sanity = {}
+    for name, test in [("ribosomal RPL/RPS", lambda g: g.startswith(("RPL", "RPS")) and not g.startswith("RPS6K")),
+                       ("MHC I (HLA-A/B/C)", lambda g: g in ("HLA-A", "HLA-B", "HLA-C"))]:
+        sel = [r["age"] for r in aged if test(r["gene"])]
+        sanity[name] = dict(sorted(Counter(f"PS{k}" for k in sel).items(), key=lambda x: int(x[0][2:])))
+    summary = {
+        "families": {"n": len(fa), "lecio_by_stratum": dict(Counter(f"PS{k}" for k in fam_l)),
+                     "grade_at_age_node": dict(Counter(v[2] for v in fa.values())),
+                     "lecio_minus_classic_mean_index": round(float((fam_l - fam_c).mean()), 3),
+                     "lecio_younger_share": round(float((fam_l > fam_c).mean()), 4),
+                     "lecio_older_share": round(float((fam_l < fam_c).mean()), 4),
+                     "spearman_lecio_classic": round(float(spearmanr(fam_l, fam_c).correlation), 4)},
+        "genes": {"uniprot_reviewed": len(rows), "with_age": len(aged),
+                  "lecio_by_stratum": dict(sorted(Counter(f"PS{r['age']}" for r in aged).items(), key=lambda x: int(x[0][2:]))),
+                  "grade_at_age_node": dict(Counter(r["grade"] for r in aged)),
+                  "lecio_minus_classic_mean_index": round(float((gl - gc).mean()), 3),
+                  "spearman_lecio_classic": round(float(spearmanr(gl, gc).correlation), 4)},
+        "litman_stein": {"primary_youngest_domain": compare("age"),
+                         "secondary_oldest_domain": compare("age_oldest_domain"),
+                         "classic_baseline": compare("age_classic"),
+                         "sensitivity_PS4_as_UC": compare("age", holo=True)},
+        "gate_pass": None, "sanity": sanity, "strata_nodes": {k: v["node"] for k, v in res["strata"].items()},
+        "fit": res["fit"], "notes": res["notes"]}
+    summary["gate_pass"] = summary["litman_stein"]["primary_youngest_domain"]["uc_mc_agreement"] >= 0.60
+    (OUT / "summary.json").write_text(json.dumps(summary, ensure_ascii=False, indent=1))
+    with open(OUT / "gene_ages.tsv", "w") as f:
+        f.write("accession\tgene\tentrez\tage_stratum\tage_name\tunicellular\tgrade\tage_oldest_domain\tage_classic\tdomains\n")
+        names = {f"PS{k}": nm for k, (_, nm, _) in enumerate(STRATA, 1)}
+        for r in aged:
+            f.write(f"{r['accession']}\t{r['gene']}\t{r['entrez']}\tPS{r['age']}\t{names['PS' + str(r['age'])]}\t"
+                    f"{int(r['age'] <= 3)}\t{r['grade']}\tPS{r['age_oldest_domain']}\tPS{r['age_classic']}\t"
+                    f"{','.join(r['domains_in_model'])}\n")
+    print(json.dumps(summary, ensure_ascii=False, indent=1))
 
 
 if __name__ == "__main__":
