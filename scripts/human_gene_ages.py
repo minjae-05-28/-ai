@@ -68,10 +68,22 @@ def _tips_under(d):
     return under
 
 
+def mrca_by_steps(A, parent):
+    """Common ancestor deepest in number of nodes from the root; depth ties (zero-length taxonomy branches)
+    would otherwise resolve to the root."""
+    common = None
+    for u in A:
+        path, w = [], u
+        while w != -1:
+            path.append(int(w))
+            w = parent[w]
+        common = path[::-1] if common is None else [a for a, b in zip(common, path[::-1]) if a == b]
+    return common[-1]
+
+
 def strata_nodes(d, tip_name, tip_lin):
     """Stratum node = common ancestor of every tip of the stratum's taxon on the taxonomy tree (deviation 2);
     PS4 = Holozoa (animals + unicellular holozoans)."""
-    from run_clade_ancestor import mrca
     human = [v for v, n in tip_name.items() if n.startswith(HUMAN)]
     assert len(human) == 1, human
     h = human[0]
@@ -85,7 +97,7 @@ def strata_nodes(d, tip_name, tip_lin):
     for ps, _, taxon in STRATA[2:]:
         group = {"Metazoa"} | UNICELLULAR_HOLOZOA if ps == "PS4" else {taxon}
         A = [v for v, L in tip_lin.items() if group & set(L)]
-        nodes[ps] = int(mrca(A, d["parent"], d["depth"]))
+        nodes[ps] = mrca_by_steps(A, d["parent"])
         if nodes[ps] not in path:
             notes.append(f"{ps} node {nodes[ps]} is not on the human path")
     return h, nodes, notes
