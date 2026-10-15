@@ -1,0 +1,43 @@
+name: Human genes
+
+# Inputs for the human gene age table (pre-registration 16): reviewed human proteins with their Pfam
+# cross-references (UniProt) and Litman & Stein 2019 consensus gene ages. Commits data/human/.
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/human-genes.yml"
+      - "scripts/human_genes_fetch.py"
+
+permissions:
+  contents: write
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Download
+        run: python scripts/human_genes_fetch.py
+      - name: Commit downloaded data
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -f data/human
+          if git diff --cached --quiet; then
+            echo "No new data."
+          else
+            git commit -m "Add human gene inputs (UniProt Pfam cross-references, Litman & Stein gene ages)"
+            ok=0
+            for i in 1 2 3 4 5 6; do
+              git pull --rebase origin main && git push origin HEAD:main && { ok=1; break; }
+              echo "push attempt $i failed; retrying"; sleep $((i*10))
+            done
+            [ "$ok" = 1 ] || { echo "::error::could not push"; exit 1; }
+          fi
