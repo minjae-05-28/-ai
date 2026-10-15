@@ -9,7 +9,7 @@ added because the human strata need them: Amorphea (the LECA root split the lear
 """
 
 import sys
-from collections import Counter, defaultdict
+from collections import defaultdict
 from pathlib import Path
 
 import numpy as np
@@ -36,39 +36,21 @@ def augment(L):
 
 def build_tree(lineage, scale):
     """lineage: tip label -> list of taxa ending in the species name. Returns parent, length, label (root 0)."""
-    votes = defaultdict(Counter)
-    for lab, L in lineage.items():
-        L = augment(L[:-1])
-        for a, b in zip(L, L[1:]):
-            votes[b][a] += 1
-    par = {t: c.most_common(1)[0][0] for t, c in votes.items()}
-    root = "Eukaryota"
-    # guard against a cycle from inconsistent lineages: walk up, drop the vote that closes a loop
-    for t in list(par):
-        seen, w = set(), t
-        while w in par:
-            if w in seen:
-                del par[w]
-                break
-            seen.add(w)
-            w = par[w]
-    idx = {root: 0}
+    # a node per lineage prefix (not per name): homonyms such as Morus (mulberry / gannet) stay apart
+    idx = {(): 0}
     parent, label = [-1], [""]
-    tip_parent = {}
-    for lab, L in lineage.items():
-        L = augment(L[:-1])
-        tip_parent[lab] = L[-1] if L else root
-
-    def node(t):
-        if t in idx:
-            return idx[t]
-        p = node(par[t]) if t in par and par[t] != t else 0
-        idx[t] = len(parent)
-        parent.append(p)
-        label.append("")
-        return idx[t]
     for lab in sorted(lineage):
-        p = node(tip_parent[lab])
+        L = augment(lineage[lab][:-1])
+        if L and L[0] == "Eukaryota":
+            L = L[1:]
+        key, p = (), 0
+        for t in L:
+            key = key + (t,)
+            if key not in idx:
+                idx[key] = len(parent)
+                parent.append(p)
+                label.append("")
+            p = idx[key]
         parent.append(p)
         label.append(lab)
     parent = np.array(parent)
