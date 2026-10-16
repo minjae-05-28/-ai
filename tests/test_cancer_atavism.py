@@ -73,3 +73,12 @@ def test_odds_ratio_direction():
     mc = np.array([True] * 10 + [False] * 90)
     assert cd.odds_ratio(uc, mc) > 3
     assert cd.or_ci(uc, mc)["verdict"] == "양성"
+
+
+def test_logistic_separates():
+    import cancer_combined as cc
+    rng = np.random.default_rng(0)
+    x = np.r_[rng.normal(-1, 1, 200), rng.normal(1, 1, 200)]
+    y = np.r_[np.zeros(200), np.ones(200)]
+    w = cc.logistic(x[:, None], y)
+    assert w[1] > 1.0
