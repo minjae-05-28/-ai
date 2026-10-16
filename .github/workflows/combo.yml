@@ -23,7 +23,9 @@ jobs:
         with:
           python-version: "3.11"
       - name: Download
-        run: python scripts/combo_fetch.py
+        run: |
+          pip install numpy
+          python scripts/combo_fetch.py
       - name: Commit downloaded data
         run: |
           git config user.name "github-actions[bot]"
