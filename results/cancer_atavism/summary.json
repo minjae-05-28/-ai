@@ -1,0 +1,734 @@
+{
+ "overall_primary": {
+  "cohorts": 13,
+  "positive": 10,
+  "negative": 0,
+  "draw": 3,
+  "call": "지지"
+ },
+ "overall_unadjusted": {
+  "cohorts": 13,
+  "positive": 9,
+  "negative": 1,
+  "draw": 3,
+  "call": "지지"
+ },
+ "overall_sensitivity": {
+  "a_oldest_domain": {
+   "cohorts": 13,
+   "positive": 11,
+   "negative": 0,
+   "draw": 2,
+   "call": "지지"
+  },
+  "b_grade_A_only": {
+   "cohorts": 13,
+   "positive": 10,
+   "negative": 0,
+   "draw": 3,
+   "call": "지지"
+  },
+  "c_PS4_as_UC": {
+   "cohorts": 13,
+   "positive": 10,
+   "negative": 0,
+   "draw": 3,
+   "call": "지지"
+  },
+  "d_no_mitosis_chromosome": {
+   "cohorts": 13,
+   "positive": 10,
+   "negative": 0,
+   "draw": 3,
+   "call": "지지"
+  }
+ },
+ "negative_age_slope_cohorts": 10,
+ "cohorts": {
+  "BLCA": {
+   "pairs": 14,
+   "genes": 14116,
+   "uc_genes": 6941,
+   "mc_genes": 7175,
+   "primary": {
+    "delta": 0.3472,
+    "lo": 0.2709,
+    "hi": 0.4257,
+    "verdict": "양성"
+   },
+   "unadjusted": {
+    "delta": 0.2589,
+    "lo": 0.163,
+    "hi": 0.3586,
+    "verdict": "양성"
+   },
+   "age_slope_spearman": -0.0935,
+   "sensitivity": {
+    "a_oldest_domain": {
+     "delta": 0.3513,
+     "lo": 0.2422,
+     "hi": 0.4595,
+     "verdict": "양성"
+    },
+    "b_grade_A_only": {
+     "delta": 0.3334,
+     "lo": 0.2654,
+     "hi": 0.4114,
+     "verdict": "양성"
+    },
+    "c_PS4_as_UC": {
+     "delta": 0.3368,
+     "lo": 0.2643,
+     "hi": 0.4107,
+     "verdict": "양성"
+    },
+    "d_no_mitosis_chromosome": {
+     "delta": 0.3436,
+     "lo": 0.2677,
+     "hi": 0.422,
+     "verdict": "양성"
+    }
+   }
+  },
+  "BRCA": {
+   "pairs": 112,
+   "genes": 14117,
+   "uc_genes": 6940,
+   "mc_genes": 7177,
+   "primary": {
+    "delta": 0.285,
+    "lo": 0.2531,
+    "hi": 0.3184,
+    "verdict": "양성"
+   },
+   "unadjusted": {
+    "delta": 0.2635,
+    "lo": 0.2285,
+    "hi": 0.2988,
+    "verdict": "양성"
+   },
+   "age_slope_spearman": -0.1125,
+   "sensitivity": {
+    "a_oldest_domain": {
+     "delta": 0.3271,
+     "lo": 0.2817,
+     "hi": 0.3753,
+     "verdict": "양성"
+    },
+    "b_grade_A_only": {
+     "delta": 0.2751,
+     "lo": 0.2438,
+     "hi": 0.3058,
+     "verdict": "양성"
+    },
+    "c_PS4_as_UC": {
+     "delta": 0.2768,
+     "lo": 0.2462,
+     "hi": 0.3097,
+     "verdict": "양성"
+    },
+    "d_no_mitosis_chromosome": {
+     "delta": 0.2826,
+     "lo": 0.2507,
+     "hi": 0.316,
+     "verdict": "양성"
+    }
+   }
+  },
+  "COAD": {
+   "pairs": 26,
+   "genes": 14097,
+   "uc_genes": 6929,
+   "mc_genes": 7168,
+   "primary": {
+    "delta": 0.2293,
+    "lo": 0.1621,
+    "hi": 0.2982,
+    "verdict": "양성"
+   },
+   "unadjusted": {
+    "delta": 0.224,
+    "lo": 0.1418,
+    "hi": 0.306,
+    "verdict": "양성"
+   },
+   "age_slope_spearman": -0.0932,
+   "sensitivity": {
+    "a_oldest_domain": {
+     "delta": 0.307,
+     "lo": 0.2377,
+     "hi": 0.3753,
+     "verdict": "양성"
+    },
+    "b_grade_A_only": {
+     "delta": 0.2152,
+     "lo": 0.1498,
+     "hi": 0.2865,
+     "verdict": "양성"
+    },
+    "c_PS4_as_UC": {
+     "delta": 0.2212,
+     "lo": 0.1569,
+     "hi": 0.2874,
+     "verdict": "양성"
+    },
+    "d_no_mitosis_chromosome": {
+     "delta": 0.2284,
+     "lo": 0.1604,
+     "hi": 0.2973,
+     "verdict": "양성"
+    }
+   }
+  },
+  "HNSC": {
+   "pairs": 38,
+   "genes": 14291,
+   "uc_genes": 6972,
+   "mc_genes": 7319,
+   "primary": {
+    "delta": 0.014,
+    "lo": -0.0402,
+    "hi": 0.0693,
+    "verdict": "무승부"
+   },
+   "unadjusted": {
+    "delta": -0.0051,
+    "lo": -0.0781,
+    "hi": 0.0702,
+    "verdict": "무승부"
+   },
+   "age_slope_spearman": 0.0239,
+   "sensitivity": {
+    "a_oldest_domain": {
+     "delta": 0.0583,
+     "lo": 0.0014,
+     "hi": 0.1153,
+     "verdict": "양성"
+    },
+    "b_grade_A_only": {
+     "delta": -0.0052,
+     "lo": -0.0611,
+     "hi": 0.0506,
+     "verdict": "무승부"
+    },
+    "c_PS4_as_UC": {
+     "delta": -0.0041,
+     "lo": -0.0556,
+     "hi": 0.0483,
+     "verdict": "무승부"
+    },
+    "d_no_mitosis_chromosome": {
+     "delta": 0.0122,
+     "lo": -0.0424,
+     "hi": 0.0673,
+     "verdict": "무승부"
+    }
+   }
+  },
+  "KICH": {
+   "pairs": 23,
+   "genes": 14162,
+   "uc_genes": 6965,
+   "mc_genes": 7197,
+   "primary": {
+    "delta": 0.2109,
+    "lo": 0.1394,
+    "hi": 0.2798,
+    "verdict": "양성"
+   },
+   "unadjusted": {
+    "delta": 0.2149,
+    "lo": 0.1303,
+    "hi": 0.2964,
+    "verdict": "양성"
+   },
+   "age_slope_spearman": -0.0556,
+   "sensitivity": {
+    "a_oldest_domain": {
+     "delta": 0.4035,
+     "lo": 0.3304,
+     "hi": 0.4804,
+     "verdict": "양성"
+    },
+    "b_grade_A_only": {
+     "delta": 0.0992,
+     "lo": 0.0228,
+     "hi": 0.1732,
+     "verdict": "양성"
+    },
+    "c_PS4_as_UC": {
+     "delta": 0.2484,
+     "lo": 0.1811,
+     "hi": 0.3133,
+     "verdict": "양성"
+    },
+    "d_no_mitosis_chromosome": {
+     "delta": 0.2095,
+     "lo": 0.1377,
+     "hi": 0.2777,
+     "verdict": "양성"
+    }
+   }
+  },
+  "KIRC": {
+   "pairs": 63,
+   "genes": 14083,
+   "uc_genes": 6947,
+   "mc_genes": 7136,
+   "primary": {
+    "delta": -0.0014,
+    "lo": -0.0342,
+    "hi": 0.0328,
+    "verdict": "무승부"
+   },
+   "unadjusted": {
+    "delta": -0.0632,
+    "lo": -0.1021,
+    "hi": -0.022,
+    "verdict": "음성"
+   },
+   "age_slope_spearman": 0.051,
+   "sensitivity": {
+    "a_oldest_domain": {
+     "delta": 0.0265,
+     "lo": -0.0049,
+     "hi": 0.0602,
+     "verdict": "무승부"
+    },
+    "b_grade_A_only": {
+     "delta": -0.0353,
+     "lo": -0.0756,
+     "hi": 0.0047,
+     "verdict": "무승부"
+    },
+    "c_PS4_as_UC": {
+     "delta": 0.0133,
+     "lo": -0.0183,
+     "hi": 0.0456,
+     "verdict": "무승부"
+    },
+    "d_no_mitosis_chromosome": {
+     "delta": -0.0041,
+     "lo": -0.0374,
+     "hi": 0.0303,
+     "verdict": "무승부"
+    }
+   }
+  },
+  "KIRP": {
+   "pairs": 30,
+   "genes": 14132,
+   "uc_genes": 6958,
+   "mc_genes": 7174,
+   "primary": {
+    "delta": 0.2129,
+    "lo": 0.1547,
+    "hi": 0.2749,
+    "verdict": "양성"
+   },
+   "unadjusted": {
+    "delta": 0.1746,
+    "lo": 0.0997,
+    "hi": 0.2505,
+    "verdict": "양성"
+   },
+   "age_slope_spearman": -0.0451,
+   "sensitivity": {
+    "a_oldest_domain": {
+     "delta": 0.2867,
+     "lo": 0.23,
+     "hi": 0.3477,
+     "verdict": "양성"
+    },
+    "b_grade_A_only": {
+     "delta": 0.1385,
+     "lo": 0.0692,
+     "hi": 0.2078,
+     "verdict": "양성"
+    },
+    "c_PS4_as_UC": {
+     "delta": 0.242,
+     "lo": 0.1863,
+     "hi": 0.3005,
+     "verdict": "양성"
+    },
+    "d_no_mitosis_chromosome": {
+     "delta": 0.21,
+     "lo": 0.1513,
+     "hi": 0.2726,
+     "verdict": "양성"
+    }
+   }
+  },
+  "LIHC": {
+   "pairs": 45,
+   "genes": 13766,
+   "uc_genes": 6859,
+   "mc_genes": 6907,
+   "primary": {
+    "delta": 0.2792,
+    "lo": 0.2403,
+    "hi": 0.3193,
+    "verdict": "양성"
+   },
+   "unadjusted": {
+    "delta": 0.1841,
+    "lo": 0.1275,
+    "hi": 0.24,
+    "verdict": "양성"
+   },
+   "age_slope_spearman": -0.0458,
+   "sensitivity": {
+    "a_oldest_domain": {
+     "delta": 0.4204,
+     "lo": 0.3732,
+     "hi": 0.4695,
+     "verdict": "양성"
+    },
+    "b_grade_A_only": {
+     "delta": 0.229,
+     "lo": 0.1814,
+     "hi": 0.2771,
+     "verdict": "양성"
+    },
+    "c_PS4_as_UC": {
+     "delta": 0.2772,
+     "lo": 0.2418,
+     "hi": 0.3133,
+     "verdict": "양성"
+    },
+    "d_no_mitosis_chromosome": {
+     "delta": 0.2763,
+     "lo": 0.2371,
+     "hi": 0.3165,
+     "verdict": "양성"
+    }
+   }
+  },
+  "LUAD": {
+   "pairs": 54,
+   "genes": 14211,
+   "uc_genes": 6966,
+   "mc_genes": 7245,
+   "primary": {
+    "delta": 0.2605,
+    "lo": 0.2187,
+    "hi": 0.3005,
+    "verdict": "양성"
+   },
+   "unadjusted": {
+    "delta": 0.1906,
+    "lo": 0.1474,
+    "hi": 0.2324,
+    "verdict": "양성"
+   },
+   "age_slope_spearman": -0.0969,
+   "sensitivity": {
+    "a_oldest_domain": {
+     "delta": 0.3221,
+     "lo": 0.28,
+     "hi": 0.369,
+     "verdict": "양성"
+    },
+    "b_grade_A_only": {
+     "delta": 0.2544,
+     "lo": 0.212,
+     "hi": 0.2958,
+     "verdict": "양성"
+    },
+    "c_PS4_as_UC": {
+     "delta": 0.2521,
+     "lo": 0.2121,
+     "hi": 0.292,
+     "verdict": "양성"
+    },
+    "d_no_mitosis_chromosome": {
+     "delta": 0.2582,
+     "lo": 0.2165,
+     "hi": 0.298,
+     "verdict": "양성"
+    }
+   }
+  },
+  "LUSC": {
+   "pairs": 50,
+   "genes": 14401,
+   "uc_genes": 7009,
+   "mc_genes": 7392,
+   "primary": {
+    "delta": 0.3705,
+    "lo": 0.3195,
+    "hi": 0.4191,
+    "verdict": "양성"
+   },
+   "unadjusted": {
+    "delta": 0.2577,
+    "lo": 0.2057,
+    "hi": 0.307,
+    "verdict": "양성"
+   },
+   "age_slope_spearman": -0.0965,
+   "sensitivity": {
+    "a_oldest_domain": {
+     "delta": 0.4874,
+     "lo": 0.4271,
+     "hi": 0.5433,
+     "verdict": "양성"
+    },
+    "b_grade_A_only": {
+     "delta": 0.3241,
+     "lo": 0.2749,
+     "hi": 0.3728,
+     "verdict": "양성"
+    },
+    "c_PS4_as_UC": {
+     "delta": 0.3532,
+     "lo": 0.3043,
+     "hi": 0.4,
+     "verdict": "양성"
+    },
+    "d_no_mitosis_chromosome": {
+     "delta": 0.3667,
+     "lo": 0.3158,
+     "hi": 0.4153,
+     "verdict": "양성"
+    }
+   }
+  },
+  "PRAD": {
+   "pairs": 40,
+   "genes": 14039,
+   "uc_genes": 6916,
+   "mc_genes": 7123,
+   "primary": {
+    "delta": 0.1276,
+    "lo": 0.0802,
+    "hi": 0.1734,
+    "verdict": "양성"
+   },
+   "unadjusted": {
+    "delta": 0.1474,
+    "lo": 0.0909,
+    "hi": 0.202,
+    "verdict": "양성"
+   },
+   "age_slope_spearman": -0.1175,
+   "sensitivity": {
+    "a_oldest_domain": {
+     "delta": 0.1714,
+     "lo": 0.1201,
+     "hi": 0.2212,
+     "verdict": "양성"
+    },
+    "b_grade_A_only": {
+     "delta": 0.0896,
+     "lo": 0.0468,
+     "hi": 0.1318,
+     "verdict": "양성"
+    },
+    "c_PS4_as_UC": {
+     "delta": 0.1147,
+     "lo": 0.0699,
+     "hi": 0.1581,
+     "verdict": "양성"
+    },
+    "d_no_mitosis_chromosome": {
+     "delta": 0.1256,
+     "lo": 0.0776,
+     "hi": 0.1716,
+     "verdict": "양성"
+    }
+   }
+  },
+  "STAD": {
+   "pairs": 26,
+   "genes": 14377,
+   "uc_genes": 7017,
+   "mc_genes": 7360,
+   "primary": {
+    "delta": 0.1052,
+    "lo": 0.0237,
+    "hi": 0.1872,
+    "verdict": "양성"
+   },
+   "unadjusted": {
+    "delta": 0.0787,
+    "lo": -0.0089,
+    "hi": 0.1692,
+    "verdict": "무승부"
+   },
+   "age_slope_spearman": -0.0395,
+   "sensitivity": {
+    "a_oldest_domain": {
+     "delta": 0.1028,
+     "lo": 0.0309,
+     "hi": 0.1779,
+     "verdict": "양성"
+    },
+    "b_grade_A_only": {
+     "delta": 0.1512,
+     "lo": 0.0558,
+     "hi": 0.2475,
+     "verdict": "양성"
+    },
+    "c_PS4_as_UC": {
+     "delta": 0.1207,
+     "lo": 0.0416,
+     "hi": 0.2008,
+     "verdict": "양성"
+    },
+    "d_no_mitosis_chromosome": {
+     "delta": 0.1019,
+     "lo": 0.0209,
+     "hi": 0.1834,
+     "verdict": "양성"
+    }
+   }
+  },
+  "THCA": {
+   "pairs": 43,
+   "genes": 13834,
+   "uc_genes": 6846,
+   "mc_genes": 6988,
+   "primary": {
+    "delta": 0.0084,
+    "lo": -0.022,
+    "hi": 0.0391,
+    "verdict": "무승부"
+   },
+   "unadjusted": {
+    "delta": -0.0364,
+    "lo": -0.0768,
+    "hi": 0.0051,
+    "verdict": "무승부"
+   },
+   "age_slope_spearman": 0.0049,
+   "sensitivity": {
+    "a_oldest_domain": {
+     "delta": -0.0206,
+     "lo": -0.0532,
+     "hi": 0.0119,
+     "verdict": "무승부"
+    },
+    "b_grade_A_only": {
+     "delta": 0.0007,
+     "lo": -0.0304,
+     "hi": 0.0315,
+     "verdict": "무승부"
+    },
+    "c_PS4_as_UC": {
+     "delta": 0.0177,
+     "lo": -0.0113,
+     "hi": 0.0473,
+     "verdict": "무승부"
+    },
+    "d_no_mitosis_chromosome": {
+     "delta": 0.0078,
+     "lo": -0.0228,
+     "hi": 0.0386,
+     "verdict": "무승부"
+    }
+   }
+  }
+ },
+ "manifest": {
+  "BLCA": {
+   "pairs_before": 19,
+   "pairs_after": 14,
+   "swapped_or_low_purity": 5,
+   "extreme_lfc": 0,
+   "genes_dropped_missing": 0
+  },
+  "BRCA": {
+   "pairs_before": 114,
+   "pairs_after": 112,
+   "swapped_or_low_purity": 2,
+   "extreme_lfc": 0,
+   "genes_dropped_missing": 0
+  },
+  "COAD": {
+   "pairs_before": 26,
+   "pairs_after": 26,
+   "swapped_or_low_purity": 0,
+   "extreme_lfc": 0,
+   "genes_dropped_missing": 0
+  },
+  "ESCA": {
+   "pairs_before": 11,
+   "pairs_after": 7,
+   "swapped_or_low_purity": 2,
+   "extreme_lfc": 2,
+   "genes_dropped_missing": 0
+  },
+  "HNSC": {
+   "pairs_before": 43,
+   "pairs_after": 38,
+   "swapped_or_low_purity": 2,
+   "extreme_lfc": 3,
+   "genes_dropped_missing": 0
+  },
+  "KICH": {
+   "pairs_before": 25,
+   "pairs_after": 23,
+   "swapped_or_low_purity": 2,
+   "extreme_lfc": 0,
+   "genes_dropped_missing": 0
+  },
+  "KIRC": {
+   "pairs_before": 72,
+   "pairs_after": 63,
+   "swapped_or_low_purity": 2,
+   "extreme_lfc": 7,
+   "genes_dropped_missing": 0
+  },
+  "KIRP": {
+   "pairs_before": 32,
+   "pairs_after": 30,
+   "swapped_or_low_purity": 1,
+   "extreme_lfc": 1,
+   "genes_dropped_missing": 0
+  },
+  "LIHC": {
+   "pairs_before": 50,
+   "pairs_after": 45,
+   "swapped_or_low_purity": 3,
+   "extreme_lfc": 2,
+   "genes_dropped_missing": 0
+  },
+  "LUAD": {
+   "pairs_before": 58,
+   "pairs_after": 54,
+   "swapped_or_low_purity": 2,
+   "extreme_lfc": 2,
+   "genes_dropped_missing": 0
+  },
+  "LUSC": {
+   "pairs_before": 51,
+   "pairs_after": 50,
+   "swapped_or_low_purity": 1,
+   "extreme_lfc": 0,
+   "genes_dropped_missing": 0
+  },
+  "PRAD": {
+   "pairs_before": 52,
+   "pairs_after": 40,
+   "swapped_or_low_purity": 6,
+   "extreme_lfc": 6,
+   "genes_dropped_missing": 0
+  },
+  "STAD": {
+   "pairs_before": 32,
+   "pairs_after": 26,
+   "swapped_or_low_purity": 6,
+   "extreme_lfc": 0,
+   "genes_dropped_missing": 0
+  },
+  "THCA": {
+   "pairs_before": 59,
+   "pairs_after": 43,
+   "swapped_or_low_purity": 9,
+   "extreme_lfc": 7,
+   "genes_dropped_missing": 0
+  }
+ }
+}
