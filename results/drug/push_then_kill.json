@@ -1,0 +1,88 @@
+{
+ "source": {
+  "nsc_names": 105,
+  "combo": {
+   "source": "NCI-ALMANAC",
+   "url": "https://wiki.nci.nih.gov/download/attachments/338237347/ComboDrugGrowth_Nov2017.zip",
+   "file": "ComboDrugGrowth_Nov2017.csv",
+   "pairs": 311466,
+   "note": "ComboScore stored in the hsa column; drugs are NSC numbers"
+  }
+ },
+ "class_sizes": {
+  "push": 13,
+  "reverse": 20,
+  "lipid": 45
+ },
+ "class_overlap_removed": {
+  "push_and_lipid": [
+   "cerulenin"
+  ],
+  "reverse_and_lipid": [],
+  "push_and_reverse": [
+   "geldanamycin"
+  ]
+ },
+ "combo_rows": 311466,
+ "score_used": "hsa",
+ "pairs": {
+  "P+L": 0,
+  "R+L": 0,
+  "rest": 5233
+ },
+ "primary_push_plus_lipid": {
+  "n_group": 0,
+  "skipped": "fewer than 5 pairs"
+ },
+ "secondary_reverse_plus_lipid": {
+  "n_group": 0,
+  "skipped": "fewer than 5 pairs"
+ },
+ "overall": "판정 불가(짝 부족)",
+ "aux_synergy_vs_tilt": {
+  "n": 0,
+  "skipped": "fewer than 100 matched rows"
+ },
+ "lipid_drugs_found": [
+  "4methylgenistein",
+  "a939572",
+  "alphaasarone",
+  "aramchol",
+  "atorvastatin",
+  "benfluorex",
+  "biotin",
+  "butenafine",
+  "cianidanol",
+  "cp640186",
+  "ellagicacid",
+  "epicatechingallate",
+  "epigallocatechingallate",
+  "firsocostat",
+  "fisetin",
+  "fluvastatin",
+  "gsk2194069",
+  "kd023",
+  "liranaftate",
+  "lovastatin",
+  "meglutol",
+  "mevastatin",
+  "mk4074",
+  "mk8245",
+  "morin",
+  "nadide",
+  "naftifine",
+  "nicodicosapent",
+  "nsc4644",
+  "olumacostatglasaretil",
+  "orlistat",
+  "pf05175157",
+  "pf429242",
+  "pitavastatin",
+  "plurisin1",
+  "pravastatin",
+  "pretomanid",
+  "procaine",
+  "pyrazinamide",
+  "ro488071"
+ ]
+}
