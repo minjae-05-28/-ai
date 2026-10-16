@@ -65,3 +65,11 @@ def test_stage_number_parsing():
     import tcga_stage_fetch as ts
     assert [ts.stage_number(x) for x in ["Stage I", "Stage IA", "Stage IIB", "Stage IIIC", "Stage IV", "Stage IVA",
                                          "Stage X", "", "[Discrepancy]"]] == [1, 1, 2, 3, 4, 4, None, None, None]
+
+
+def test_odds_ratio_direction():
+    import cancer_depmap as cd
+    uc = np.array([True] * 30 + [False] * 70)
+    mc = np.array([True] * 10 + [False] * 90)
+    assert cd.odds_ratio(uc, mc) > 3
+    assert cd.or_ci(uc, mc)["verdict"] == "양성"
