@@ -64,7 +64,8 @@ def main():
     g = np.array([lineage.get(l, "NA") for l in line_ids])
     groups = {}
     for k, cid in enumerate(comp_ids):
-        bid = (meta.get(cid, ("",))[0] or re.sub(r"::.*$", "", cid))[:13]
+        raw = (meta.get(cid, ("",))[0] or re.sub(r"::.*$", "", cid)).split(",")[0].strip()
+        bid = raw.replace("BRD:", "")[:13]                   # BRD-K12345678: the compound, without batch / dose
         groups.setdefault(bid, []).append(k)
     n_out = 0
     with open(OUT / "compounds.tsv", "w") as f:

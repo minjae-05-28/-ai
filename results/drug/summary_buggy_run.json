@@ -1,0 +1,137 @@
+{
+ "source": {
+  "l1000cds2_reverse": "https://maayanlab.cloud/L1000CDS2/query",
+  "l1000cds2_mimic": "https://maayanlab.cloud/L1000CDS2/query",
+  "depmap": "DepMap 24Q4 Public (figshare 27993248)",
+  "signature_genes_found": {
+   "up": 150,
+   "down": 150,
+   "proliferation": 1263
+  },
+  "expression_lines": 1673,
+  "prism": "not found"
+ },
+ "lines": 1673,
+ "tilt_vs_proliferation_r": 0.319,
+ "B_dependencies": {
+  "odds_ratio": 1.79,
+  "lo": 1.439,
+  "hi": 2.259,
+  "n_selected": 322,
+  "uc_share_selected": 0.6087,
+  "uc_share_all": 0.4673,
+  "verdict": "양성"
+ },
+ "B_top_dependencies": [
+  "SCD\t-0.2241\t9.08e-10\t-0.8158\t",
+  "PCYT1A\t-0.1852\t2.06e-06\t-0.8154\tPS1",
+  "ITGA3\t-0.1781\t6.62e-06\t-0.1040\tPS5",
+  "YJU2B\t-0.1764\t8.23e-06\t-0.5738\tPS2",
+  "SREBF1\t-0.1707\t2.09e-05\t-0.3364\tPS3",
+  "SCAP\t-0.1566\t0.000257\t-1.0043\tPS8",
+  "CYB5B\t-0.1541\t0.000346\t-0.3235\tPS1",
+  "PKMYT1\t-0.1490\t0.0007\t-1.2399\tPS1",
+  "OR10T2\t-0.1489\t0.00117\t-0.1895\tPS8",
+  "RXRA\t-0.1459\t0.00107\t-0.0683\tPS10",
+  "PRELID3B\t-0.1448\t0.00117\t-1.6686\tPS3",
+  "GRHL2\t-0.1439\t0.0013\t-0.1154\tPS3",
+  "MBTPS1\t-0.1385\t0.00266\t-0.5775\tPS2",
+  "RAB10\t-0.1383\t0.00266\t-0.4440\tPS2",
+  "VPS26A\t-0.1381\t0.00266\t-0.2702\tPS2",
+  "NPM2\t-0.1357\t0.00353\t0.1410\tPS5",
+  "CAP1\t-0.1354\t0.00356\t-0.3487\tPS9",
+  "JUNB\t-0.1349\t0.00356\t-0.2649\tPS6",
+  "GMNN\t-0.1334\t0.00425\t-0.5261\tPS5",
+  "CMPK1\t-0.1291\t0.00762\t-0.8981\tPS1"
+ ],
+ "A_reverse": {
+  "l1000_named": 30,
+  "l1000_brd": 32,
+  "matched_in_prism": 14,
+  "matched_names": [
+   "ALVOCIDIB",
+   "AMINOPURVALANOL-A",
+   "AT-7519",
+   "BI-2536",
+   "BMS-536924",
+   "CGP-60474",
+   "ENROFLOXACIN",
+   "GDC-0980",
+   "GELDANAMYCIN",
+   "GSK2126458",
+   "LY294002",
+   "PD-0325901",
+   "PD-184352",
+   "VEMURAFENIB"
+  ],
+  "partial_rho": {
+   "difference": -0.0316,
+   "lo": -0.0603,
+   "hi": 0.0088,
+   "n_group": 14,
+   "n_rest": 4723,
+   "verdict": "무승부"
+  },
+  "mean_viability_group": -1.5109,
+  "mean_viability_rest": -0.2279
+ },
+ "A_mimic": {
+  "l1000_named": 31,
+  "l1000_brd": 41,
+  "matched_in_prism": 5,
+  "matched_names": [
+   "GELDANAMYCIN",
+   "GF109203X",
+   "PX-12",
+   "TRICHOSTATIN-A",
+   "VORINOSTAT"
+  ],
+  "partial_rho": {
+   "difference": 0.0289,
+   "lo": -0.0356,
+   "hi": 0.1124,
+   "n_group": 5,
+   "n_rest": 4732,
+   "verdict": "무승부"
+  },
+  "mean_viability_group": -1.7792,
+  "mean_viability_rest": -0.2301
+ },
+ "A_lineage_only_reverse": {
+  "difference": -0.024,
+  "lo": -0.0536,
+  "hi": 0.0179,
+  "n_group": 14,
+  "n_rest": 4723,
+  "verdict": "무승부"
+ },
+ "A_tilt_selective_compounds_fdr10": 60,
+ "A_top_tilt_selective": [
+  "BRD:BRD-K2890\tCD-437\tRETINOID RECEPTOR AGONIST\tRARG\t-0.1990\t0.00129\t-1.9445\t552",
+  "BRD:BRD-K4262\tBML-284\tWNT AGONIST\t\t-0.1825\t0.00024\t-0.6276\t879",
+  "BRD:BRD-A4257\tCETIRIZINE\tHISTAMINE RECEPTOR ANTAGONIST\tHRH1\t-0.1769\t0.0108\t0.1611\t551",
+  "BRD:BRD-K3917\tSTF-118804\tNAMPT INHIBITOR\tNAMPT\t-0.1751\t0.0121\t-2.9167\t551",
+  "BRD:BRD-K1234\tTRAMETINIB\tMEK INHIBITOR\tMAP2K1, MAP2K2\t-0.1743\t0.0122\t-0.6161\t551",
+  "BRD:BRD-K8398\t2-BENZYL-4-CHLOROPHENOL\t\t\t-0.1737\t0.000309\t-1.1964\t882",
+  "BRD:BRD-K1456\tTG-02\tCDK INHIBITOR, FLT3 INHIBITOR, JAK INHIBITOR\tCDK1, CDK2, CDK7, CDK9, FLT3, JAK2\t-0.1722\t0.000309\t-0.8373\t896",
+  "BRD:BRD-K5881\tCLOBETASONE-BUTYRATE\tCORTICOSTEROID AGONIST\tNR3C1\t-0.1715\t0.0132\t-0.7310\t557",
+  "BRD:BRD-K8901\tAS-703026\tMEK INHIBITOR\tMAP2K1, MAP2K2\t-0.1706\t0.0152\t-0.7643\t550",
+  "BRD:BRD-K2457\tCINPA-1\tCAR ANTAGONIST\tNR1H4, NR1I3, PPARG\t-0.1700\t0.000309\t-0.7779\t892",
+  "BRD:BRD-K2922\tESZOPICLONE\tBENZODIAZEPINE RECEPTOR AGONIST\tGABRA1, GABRA2, GABRA3, GABRA4, GABRA5, GABRA6, GABRB1, GABRB2, GABRB3, GABRD, GABRE, GABRG1, GABRG2, GABRG3, GABRP, GABRQ, TSPO\t-0.1680\t0.0234\t-0.2043\t532",
+  "BRD:BRD-K8101\tINC-280\tC-MET INHIBITOR\tMET\t-0.1671\t0.0243\t-0.5565\t532",
+  "BRD:BRD-K0006\tCBP/P300-IN-4\t\t\t-0.1609\t0.00128\t-0.9479\t858",
+  "BRD:BRD-A6417\tOCTREOTIDE\tSOMATOSTATIN RECEPTOR AGONIST\tSSTR1, SSTR2, SSTR3, SSTR5\t-0.1583\t0.0392\t-0.0412\t534",
+  "BRD:BRD-K7346\tNEDAPLATIN\tDNA INHIBITOR\t\t-0.1580\t0.0392\t-0.0825\t539",
+  "BRD:BRD-K3055\tPF-04620110\tDIACYLGLYCEROL O ACYLTRANSFERASE INHIBITOR\tDGAT1\t-0.1558\t0.0392\t-0.0615\t552",
+  "BRD:BRD-K2102\tNVP-TAE226\tPROTEIN TYROSINE KINASE INHIBITOR\tPTK2\t-0.1556\t0.0399\t-1.5758\t549",
+  "BRD:BRD-K3652\tPAROMOMYCIN\tBACTERIAL 30S RIBOSOMAL SUBUNIT INHIBITOR\t\t-0.1551\t0.0392\t-1.8711\t557",
+  "BRD:BRD-A1539\tL-CYSTINE\t\tCTNS, SLC3A1, SLC7A11, SLC7A9\t-0.1532\t0.0637\t0.0133\t505",
+  "BRD:BRD-K3361\tROCILETINIB\tEGFR INHIBITOR\tEGFR\t-0.1514\t0.0553\t-0.2158\t546"
+ ],
+ "dependencies_with_tilt_selective_drug": [
+  "BRD:BRD-K3361\tROCILETINIB\tEGFR INHIBITOR\tEGFR\t-0.1514\t0.0553\t-0.2158\t546",
+  "BRD:BRD-K2319\tAV-412\tPROTEIN TYROSINE KINASE INHIBITOR\tEGFR, ERBB2\t-0.1370\t0.0946\t-0.6722\t547",
+  "BRD:BRD-K1770\tPD-168393\tEGFR INHIBITOR\tEGFR, ERBB2, SRC\t-0.1350\t0.0965\t-0.5126\t557",
+  "BRD:BRD-K6281\tPD-98059\tMEK INHIBITOR\tAKT1, CHEK1, GSK3B, LCK, MAP2K1, MAPK1, MAPK11, MAPK12, MAPK14, MAPK8, PRKCA, RAF1, ROCK1, RPS6KB1, SGK1\t-0.1159\t0.0637\t-0.3202\t893"
+ ]
+}
