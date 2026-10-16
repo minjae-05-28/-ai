@@ -43,10 +43,13 @@ def bh(p):
     return np.minimum(q, 1)
 
 
-def l1000_names(tag):
+def l1000_hits(tag):
+    """Names and BRD ids (first 13 characters) of the L1000CDS2 hits; '-666' marks an unnamed compound."""
     r = json.loads((D / f"l1000cds2_{tag}.json").read_text()).get("result") or {}
     top = r.get("topMeta") or []
-    return [m.get("pert_desc") or m.get("pert_id") for m in top]
+    names = {norm(m.get("pert_desc")) for m in top if m.get("pert_desc") not in (None, "", "-666")}
+    brd = {(m.get("pert_id") or "")[:13] for m in top if (m.get("pert_id") or "").startswith("BRD-")}
+    return names - {""}, brd
 
 
 def diff_ci(a, b):
@@ -113,17 +116,18 @@ def main():
         viab = np.array([float(c["mean_viability"]) for c in comps])
         qc = bh([p_from_r(a, b) for a, b in zip(rc, nc)])
         names = [norm(c["name"]) for c in comps]
+        brds = [c["compound"][:13] for c in comps]
+        match = lambda h: np.array([(nm != "" and nm in h[0]) or b in h[1] for nm, b in zip(names, brds)])
         for tag in ("reverse", "mimic"):
-            hits = {norm(x) for x in l1000_names(tag) if x}
-            m = np.array([nm in hits and nm != "" for nm in names])
-            out[f"A_{tag}"] = {"l1000_hits": len(hits), "matched_in_prism": int(m.sum()),
+            h = l1000_hits(tag)
+            m = match(h)
+            out[f"A_{tag}"] = {"l1000_named": len(h[0]), "l1000_brd": len(h[1]), "matched_in_prism": int(m.sum()),
                                "matched_names": sorted({comps[i]["name"] for i in np.where(m)[0]}),
                                "partial_rho": diff_ci(rc[m], rc[~m]) if m.sum() >= 3 else None,
                                "mean_viability_group": round(float(viab[m].mean()), 4) if m.any() else None,
                                "mean_viability_rest": round(float(viab[~m].mean()), 4)}
         out["A_lineage_only_reverse"] = None
-        hits = {norm(x) for x in l1000_names("reverse") if x}
-        m = np.array([nm in hits and nm != "" for nm in names])
+        m = match(l1000_hits("reverse"))
         if m.sum() >= 3:
             out["A_lineage_only_reverse"] = diff_ci(rl[m], rl[~m])
         o = np.argsort(rc)
