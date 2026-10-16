@@ -13,7 +13,7 @@ import numpy as np
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
-DATA = Path("data/tcga")
+DATA = Path("data/tcga_qc")          # quality-controlled pairs (pre-registration 17, deviation 1)
 OUT = Path("results/cancer_atavism")
 AGES = Path("results/human_gene_ages/gene_ages.tsv")
 N_BOOT, SEED = 2000, 0

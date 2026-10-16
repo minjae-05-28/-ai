@@ -30,3 +30,15 @@ def test_overall_two_thirds_rule():
     assert ca.overall(res, "primary")["call"] == "지지"
     res["D"] = mk("음성")
     assert ca.overall(res, "primary")["call"] == "판단 보류"
+
+
+def test_qc_drops_swapped_pairs():
+    import tcga_fetch as tf
+    rng = np.random.default_rng(0)
+    base, shift = rng.normal(5, 2, 2000), rng.normal(0, 1.5, 2000)
+    N = base + rng.normal(0, .3, (30, 2000))
+    T = base + shift + rng.normal(0, .3, (30, 2000))
+    N[3] = T[3] + rng.normal(0, .1, 2000)
+    T[7] = N[7] + rng.normal(0, .1, 2000)
+    keep, _, counts = tf.qc(T, N)
+    assert not keep[3] and not keep[7] and counts["swapped_or_low_purity"] == 2
