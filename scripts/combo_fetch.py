@@ -8,6 +8,7 @@ Tries DrugComb first (API summary table), then NCI-ALMANAC (ComboScore) as the f
 
 import csv
 import gzip
+import re
 import io
 import json
 import sys
@@ -23,6 +24,8 @@ DRUGCOMB = ["https://drugcomb.fimm.fi/jing/summary_v_1_5.csv",
             "https://drugcomb.org/download/summary_v_1_5.csv"]
 ALMANAC = ["https://wiki.nci.nih.gov/download/attachments/338237347/ComboDrugGrowth_Nov2017.zip",
            "https://ctd2-data.nci.nih.gov/Public/JHU-FSU/NCI-ALMANAC/ComboDrugGrowth_Nov2017.zip"]
+ALMANAC_NAMES = ["https://wiki.nci.nih.gov/download/attachments/338237347/ComboCompoundNames_small.txt",
+                 "https://wiki.nci.nih.gov/download/attachments/338237347/ComboCompoundNames_all.txt"]
 
 
 def rows_from_csv(raw, sep=","):
@@ -90,6 +93,26 @@ def try_almanac(source):
         if not all((d1, d2, cl, sc)):
             print("missing expected ALMANAC columns", flush=True)
             continue
+        names = {}
+        for n in z.namelist():                              # a names file inside the zip, if the release has one
+            if "name" in n.lower() and n.lower().endswith((".txt", ".csv", ".tsv")):
+                for line in z.read(n).decode(errors="replace").splitlines():
+                    parts = re.split(r"[\t,]", line, maxsplit=1)
+                    if len(parts) == 2 and parts[0].strip().isdigit():
+                        names.setdefault(parts[0].strip(), parts[1].strip())
+        for u in ALMANAC_NAMES:                              # else the separate names table
+            if names:
+                break
+            raw2 = get(u, tries=1)
+            if raw2 is None:
+                continue
+            for line in raw2.decode(errors="replace").splitlines():
+                parts = re.split(r"[\t,]", line, maxsplit=1)
+                if len(parts) == 2 and parts[0].strip().isdigit():
+                    names.setdefault(parts[0].strip(), parts[1].strip())
+        source["nsc_names"] = len(names)
+        print("NSC names:", len(names), list(names.items())[:5], flush=True)
+        label = lambda nsc: names.get(str(nsc).strip(), f"NSC{nsc}")
         agg = {}
         for r in rows:
             if not r.get(d2) or not r.get(sc):
@@ -102,7 +125,7 @@ def try_almanac(source):
         with open(OUT / "combos.tsv", "w") as f:
             f.write("drug1\tdrug2\tline\tloewe\tzip\tbliss\thsa\n")
             for (a, b, c), v in agg.items():
-                f.write(f"NSC{a}\tNSC{b}\t{c}\t\t\t\t{sum(v) / len(v):.4f}\n")
+                f.write(f"{label(a)}\t{label(b)}\t{c}\t\t\t\t{sum(v) / len(v):.4f}\n")
         source["combo"] = {"source": "NCI-ALMANAC", "url": url, "file": name, "pairs": len(agg),
                            "note": "ComboScore stored in the hsa column; drugs are NSC numbers"}
         return True
