@@ -59,3 +59,9 @@ def test_composition_fit_recovers_intercept():
     y = 0.2 + 0.1 * s - 0.3 * i - 0.2 * t
     coef = cc.fit(y, [s, i, t])
     assert np.allclose(coef, [0.2, 0.1, -0.3, -0.2])
+
+
+def test_stage_number_parsing():
+    import tcga_stage_fetch as ts
+    assert [ts.stage_number(x) for x in ["Stage I", "Stage IA", "Stage IIB", "Stage IIIC", "Stage IV", "Stage IVA",
+                                         "Stage X", "", "[Discrepancy]"]] == [1, 1, 2, 3, 4, 4, None, None, None]
