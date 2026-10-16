@@ -22,7 +22,11 @@ from depmap_fetch import get  # noqa: E402
 OUT = Path("data/combo")
 DRUGCOMB = ["https://drugcomb.fimm.fi/jing/summary_v_1_5.csv",
             "https://api.drugcomb.org/summary",
-            "https://drugcomb.org/download/summary_v_1_5.csv"]
+            "https://drugcomb.org/download/summary_v_1_5.csv",
+            "https://drugcomb.fimm.fi/download/summary_v_1_5.csv",
+            "https://drugcomb.org/jing/summary_v_1_5.csv",
+            "https://zenodo.org/records/7340614/files/summary_v_1_5.csv",
+            "https://api.drugcomb.org/summary?from=0&to=1000000"]
 ALMANAC = ["https://wiki.nci.nih.gov/download/attachments/338237347/ComboDrugGrowth_Nov2017.zip",
            "https://ctd2-data.nci.nih.gov/Public/JHU-FSU/NCI-ALMANAC/ComboDrugGrowth_Nov2017.zip"]
 ALMANAC_NAMES = ["https://wiki.nci.nih.gov/download/attachments/338237347/ComboCompoundNames_small.txt",
