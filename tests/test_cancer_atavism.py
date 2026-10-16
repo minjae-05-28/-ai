@@ -50,3 +50,12 @@ def test_intercept_recovers_effect_beyond_proliferation():
     d = 0.1 + 0.3 * s
     a, b = cp.intercept(d, s)
     assert abs(a - 0.1) < 1e-9 and abs(b - 0.3) < 1e-9
+
+
+def test_composition_fit_recovers_intercept():
+    import cancer_composition as cc
+    rng = np.random.default_rng(1)
+    s, i, t = rng.normal(0, 1, (3, 50))
+    y = 0.2 + 0.1 * s - 0.3 * i - 0.2 * t
+    coef = cc.fit(y, [s, i, t])
+    assert np.allclose(coef, [0.2, 0.1, -0.3, -0.2])
