@@ -42,3 +42,11 @@ def test_qc_drops_swapped_pairs():
     T[7] = N[7] + rng.normal(0, .1, 2000)
     keep, _, counts = tf.qc(T, N)
     assert not keep[3] and not keep[7] and counts["swapped_or_low_purity"] == 2
+
+
+def test_intercept_recovers_effect_beyond_proliferation():
+    import cancer_proliferation as cp
+    s = np.linspace(-1, 2, 40)
+    d = 0.1 + 0.3 * s
+    a, b = cp.intercept(d, s)
+    assert abs(a - 0.1) < 1e-9 and abs(b - 0.3) < 1e-9
