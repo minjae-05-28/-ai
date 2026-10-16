@@ -12,6 +12,7 @@ import re
 import io
 import json
 import sys
+import time
 import zipfile
 from pathlib import Path
 
@@ -110,6 +111,23 @@ def try_almanac(source):
                 parts = re.split(r"[\t,]", line, maxsplit=1)
                 if len(parts) == 2 and parts[0].strip().isdigit():
                     names.setdefault(parts[0].strip(), parts[1].strip())
+        if not names:                                        # resolve the distinct NSCs through PubChem
+            nscs = sorted({r[low["nsc1"]] for r in rows if r.get(low["nsc1"])} |
+                          {r[low["nsc2"]] for r in rows if r.get(low["nsc2"])})
+            print(f"{len(nscs)} distinct NSC numbers; resolving via PubChem", flush=True)
+            for nsc in nscs[:400]:
+                raw2 = get(f"https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/NSC{nsc}/synonyms/JSON",
+                           tries=1)
+                if raw2 is None:
+                    continue
+                try:
+                    syn = json.loads(raw2)["InformationList"]["Information"][0]["Synonym"]
+                except Exception:
+                    continue
+                pick = next((x for x in syn if x.isalpha() and 3 <= len(x) <= 30), None) or syn[0]
+                names[nsc] = pick
+                time.sleep(0.25)
+        (OUT / "nsc_names.tsv").write_text("\n".join(f"{k}\t{v}" for k, v in sorted(names.items())) + "\n")
         source["nsc_names"] = len(names)
         print("NSC names:", len(names), list(names.items())[:5], flush=True)
         label = lambda nsc: names.get(str(nsc).strip(), f"NSC{nsc}")
