@@ -1,0 +1,189 @@
+{
+ "arms": {
+  "depmap": {
+   "lines": 1103,
+   "primary_full_adjustment": {
+    "rho_partial": -0.1704,
+    "lo": -0.2266,
+    "hi": -0.1093,
+    "n": 1103,
+    "verdict": "양성"
+   },
+   "steps": {
+    "lineage_plus_prol": {
+     "rho_partial": -0.1771,
+     "n": 1103
+    },
+    "plus_epithelial": {
+     "rho_partial": -0.176,
+     "n": 1103
+    },
+    "plus_mesenchymal": {
+     "rho_partial": -0.1704,
+     "n": 1103
+    },
+    "plus_stemness": {
+     "rho_partial": -0.1704,
+     "n": 1103
+    }
+   },
+   "epi_vs_module_given_prol": {
+    "rho_partial": -0.0371,
+    "lo": -0.0972,
+    "hi": 0.0248,
+    "n": 1103,
+    "verdict": "무승부"
+   },
+   "mes_vs_module_given_prol": {
+    "rho_partial": 0.0889,
+    "lo": 0.0307,
+    "hi": 0.1504,
+    "n": 1103,
+    "verdict": "음성"
+   },
+   "epi_vs_module_given_prol_tilt": {
+    "rho_partial": 0.0309,
+    "lo": -0.029,
+    "hi": 0.0913,
+    "n": 1103,
+    "verdict": "무승부"
+   },
+   "mes_vs_module_given_prol_tilt": {
+    "rho_partial": 0.0498,
+    "lo": -0.011,
+    "hi": 0.1086,
+    "n": 1103,
+    "verdict": "무승부"
+   },
+   "tilt_vs_states_pearson": {
+    "epithelial": 0.584,
+    "mesenchymal": -0.404
+   },
+   "vif_tilt_prol_epi_mes_stem": [
+    1.35,
+    1.53,
+    1.4,
+    1.37,
+    1.24
+   ],
+   "tilt_residual_after_epithelial": {
+    "rho_partial": -0.1822,
+    "lo": -0.2358,
+    "hi": -0.1234,
+    "n": 1103,
+    "verdict": "양성"
+   },
+   "strata": {
+    "epithelial_high": {
+     "rho_partial": -0.2257,
+     "lo": -0.3039,
+     "hi": -0.1464,
+     "n": 552,
+     "verdict": "양성"
+    },
+    "epithelial_low": {
+     "rho_partial": -0.1219,
+     "lo": -0.202,
+     "hi": -0.0379,
+     "n": 551,
+     "verdict": "양성"
+    }
+   }
+  },
+  "project_score": {
+   "lines": 249,
+   "primary_full_adjustment": {
+    "rho_partial": -0.1913,
+    "lo": -0.2991,
+    "hi": -0.0826,
+    "n": 249,
+    "verdict": "양성"
+   },
+   "steps": {
+    "lineage_plus_prol": {
+     "rho_partial": -0.1717,
+     "n": 249
+    },
+    "plus_epithelial": {
+     "rho_partial": -0.1985,
+     "n": 249
+    },
+    "plus_mesenchymal": {
+     "rho_partial": -0.1833,
+     "n": 249
+    },
+    "plus_stemness": {
+     "rho_partial": -0.1913,
+     "n": 249
+    }
+   },
+   "epi_vs_module_given_prol": {
+    "rho_partial": 0.0341,
+    "lo": -0.0963,
+    "hi": 0.1608,
+    "n": 249,
+    "verdict": "무승부"
+   },
+   "mes_vs_module_given_prol": {
+    "rho_partial": 0.1275,
+    "lo": 0.0005,
+    "hi": 0.2587,
+    "n": 249,
+    "verdict": "음성"
+   },
+   "epi_vs_module_given_prol_tilt": {
+    "rho_partial": 0.1065,
+    "lo": -0.017,
+    "hi": 0.2316,
+    "n": 249,
+    "verdict": "무승부"
+   },
+   "mes_vs_module_given_prol_tilt": {
+    "rho_partial": 0.0838,
+    "lo": -0.0388,
+    "hi": 0.211,
+    "n": 249,
+    "verdict": "무승부"
+   },
+   "tilt_vs_states_pearson": {
+    "epithelial": 0.569,
+    "mesenchymal": -0.445
+   },
+   "vif_tilt_prol_epi_mes_stem": [
+    1.34,
+    1.45,
+    1.54,
+    1.52,
+    1.17
+   ],
+   "tilt_residual_after_epithelial": {
+    "rho_partial": -0.1861,
+    "lo": -0.2946,
+    "hi": -0.0737,
+    "n": 249,
+    "verdict": "양성"
+   },
+   "strata": {
+    "epithelial_high": {
+     "rho_partial": -0.1446,
+     "lo": -0.2907,
+     "hi": 0.0345,
+     "n": 125,
+     "verdict": "무승부"
+    },
+    "epithelial_low": {
+     "rho_partial": -0.146,
+     "lo": -0.2969,
+     "hi": 0.0205,
+     "n": 124,
+     "verdict": "무승부"
+    }
+   }
+  }
+ },
+ "overall": {
+  "arms": 2,
+  "positive": 2,
+  "call": "상피 상태로 설명되지 않음"
+ }
+}
