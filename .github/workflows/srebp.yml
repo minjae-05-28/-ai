@@ -1,0 +1,44 @@
+name: SREBP validation inputs
+
+# Sanger Project Score and GDSC2 inputs for pre-registration 24. Commits data/srebp/.
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/srebp.yml"
+      - "scripts/srebp_fetch.py"
+
+permissions:
+  contents: write
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Download
+        run: |
+          pip install numpy openpyxl
+          python scripts/srebp_fetch.py
+      - name: Commit downloaded data
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -f data/srebp
+          if git diff --cached --quiet; then
+            echo "No new data."
+          else
+            git commit -m "Add SREBP validation inputs (Project Score, GDSC2)"
+            ok=0
+            for i in 1 2 3 4 5 6; do
+              git pull --rebase origin main && git push origin HEAD:main && { ok=1; break; }
+              echo "push attempt $i failed; retrying"; sleep $((i*10))
+            done
+            [ "$ok" = 1 ] || { echo "::error::could not push"; exit 1; }
+          fi
