@@ -1,0 +1,45 @@
+name: Atavism drugs
+
+# Inputs for pre-registration 23: L1000CDS2 reversal search, DepMap expression / CRISPR, PRISM drug response,
+# reduced to per-line, per-gene and per-compound summaries. Commits data/drug/.
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/atavism-drugs.yml"
+      - "scripts/drug_fetch.py"
+
+permissions:
+  contents: write
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Download
+        run: |
+          pip install numpy
+          python scripts/drug_fetch.py
+      - name: Commit downloaded data
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -f data/drug
+          if git diff --cached --quiet; then
+            echo "No new data."
+          else
+            git commit -m "Add atavism drug inputs (L1000CDS2, DepMap expression and CRISPR, PRISM)"
+            ok=0
+            for i in 1 2 3 4 5 6; do
+              git pull --rebase origin main && git push origin HEAD:main && { ok=1; break; }
+              echo "push attempt $i failed; retrying"; sleep $((i*10))
+            done
+            [ "$ok" = 1 ] || { echo "::error::could not push"; exit 1; }
+          fi
