@@ -1,0 +1,1553 @@
+{
+ "p_sizes": {
+  "go": 1028,
+  "hallmark": 484,
+  "union": 1295,
+  "hallmark_source": "https://data.broadinstitute.org/gsea-msigdb/msigdb/release/2023.2.Hs/h.all.v2023.2.Hs.symbols.gmt"
+ },
+ "main": {
+  "overall": {
+   "primary_intercept": {
+    "cohorts": 13,
+    "positive": 10,
+    "negative": 0,
+    "draw": 3,
+    "call": "지지"
+   },
+   "removal_only": {
+    "cohorts": 13,
+    "positive": 10,
+    "negative": 0,
+    "draw": 3,
+    "call": "지지"
+   },
+   "strict_removal": {
+    "cohorts": 13,
+    "positive": 10,
+    "negative": 0,
+    "draw": 3,
+    "call": "지지"
+   },
+   "slope": {
+    "cohorts": 13,
+    "positive": 1,
+    "negative": 4,
+    "draw": 8,
+    "call": "판단 보류"
+   }
+  },
+  "cohorts": {
+   "BLCA": {
+    "pairs": 14,
+    "p_genes_removed": 1085,
+    "genes_left": 13053,
+    "p_uc_share": 0.6183,
+    "all_uc_share": 0.481,
+    "s_range": [
+     0.131,
+     0.827
+    ],
+    "s_mean": 0.514,
+    "primary_intercept": {
+     "estimate": 0.3148,
+     "lo": 0.1108,
+     "hi": 0.508,
+     "verdict": "양성"
+    },
+    "slope": {
+     "estimate": 0.0051,
+     "lo": -0.3477,
+     "hi": 0.3599,
+     "verdict": "무승부"
+    },
+    "removal_only": {
+     "estimate": 0.3174,
+     "lo": 0.2442,
+     "hi": 0.3942,
+     "verdict": "양성"
+    },
+    "strict_removal": {
+     "estimate": 0.3085,
+     "lo": 0.2354,
+     "hi": 0.3846,
+     "verdict": "양성",
+     "extra_genes_dropped": 710
+    }
+   },
+   "BRCA": {
+    "pairs": 112,
+    "p_genes_removed": 1087,
+    "genes_left": 13052,
+    "p_uc_share": 0.6183,
+    "all_uc_share": 0.4809,
+    "s_range": [
+     -0.103,
+     1.11
+    ],
+    "s_mean": 0.359,
+    "primary_intercept": {
+     "estimate": 0.2224,
+     "lo": 0.1595,
+     "hi": 0.285,
+     "verdict": "양성"
+    },
+    "slope": {
+     "estimate": 0.0972,
+     "lo": -0.0424,
+     "hi": 0.2585,
+     "verdict": "무승부"
+    },
+    "removal_only": {
+     "estimate": 0.2573,
+     "lo": 0.2259,
+     "hi": 0.291,
+     "verdict": "양성"
+    },
+    "strict_removal": {
+     "estimate": 0.2572,
+     "lo": 0.2253,
+     "hi": 0.2909,
+     "verdict": "양성",
+     "extra_genes_dropped": 281
+    }
+   },
+   "COAD": {
+    "pairs": 26,
+    "p_genes_removed": 1079,
+    "genes_left": 13039,
+    "p_uc_share": 0.6183,
+    "all_uc_share": 0.4807,
+    "s_range": [
+     -0.035,
+     0.571
+    ],
+    "s_mean": 0.265,
+    "primary_intercept": {
+     "estimate": 0.306,
+     "lo": 0.1714,
+     "hi": 0.4395,
+     "verdict": "양성"
+    },
+    "slope": {
+     "estimate": -0.3236,
+     "lo": -0.7023,
+     "hi": 0.0694,
+     "verdict": "무승부"
+    },
+    "removal_only": {
+     "estimate": 0.2201,
+     "lo": 0.1539,
+     "hi": 0.288,
+     "verdict": "양성"
+    },
+    "strict_removal": {
+     "estimate": 0.2207,
+     "lo": 0.1543,
+     "hi": 0.2884,
+     "verdict": "양성",
+     "extra_genes_dropped": 217
+    }
+   },
+   "HNSC": {
+    "pairs": 38,
+    "p_genes_removed": 1080,
+    "genes_left": 13232,
+    "p_uc_share": 0.6183,
+    "all_uc_share": 0.4773,
+    "s_range": [
+     -0.257,
+     1.085
+    ],
+    "s_mean": 0.29,
+    "primary_intercept": {
+     "estimate": 0.0158,
+     "lo": -0.0677,
+     "hi": 0.0856,
+     "verdict": "무승부"
+    },
+    "slope": {
+     "estimate": -0.0605,
+     "lo": -0.2008,
+     "hi": 0.164,
+     "verdict": "무승부"
+    },
+    "removal_only": {
+     "estimate": -0.0018,
+     "lo": -0.0571,
+     "hi": 0.0526,
+     "verdict": "무승부"
+    },
+    "strict_removal": {
+     "estimate": -0.0011,
+     "lo": -0.057,
+     "hi": 0.0551,
+     "verdict": "무승부",
+     "extra_genes_dropped": 436
+    }
+   },
+   "KICH": {
+    "pairs": 23,
+    "p_genes_removed": 1084,
+    "genes_left": 13100,
+    "p_uc_share": 0.6183,
+    "all_uc_share": 0.4811,
+    "s_range": [
+     -0.439,
+     0.704
+    ],
+    "s_mean": -0.104,
+    "primary_intercept": {
+     "estimate": 0.1959,
+     "lo": 0.0812,
+     "hi": 0.2685,
+     "verdict": "양성"
+    },
+    "slope": {
+     "estimate": -0.0137,
+     "lo": -0.5484,
+     "hi": 0.201,
+     "verdict": "무승부"
+    },
+    "removal_only": {
+     "estimate": 0.1973,
+     "lo": 0.128,
+     "hi": 0.2632,
+     "verdict": "양성"
+    },
+    "strict_removal": {
+     "estimate": 0.2023,
+     "lo": 0.1306,
+     "hi": 0.2704,
+     "verdict": "양성",
+     "extra_genes_dropped": 711
+    }
+   },
+   "KIRC": {
+    "pairs": 63,
+    "p_genes_removed": 1084,
+    "genes_left": 13021,
+    "p_uc_share": 0.6183,
+    "all_uc_share": 0.4825,
+    "s_range": [
+     -0.335,
+     0.702
+    ],
+    "s_mean": 0.238,
+    "primary_intercept": {
+     "estimate": 0.0678,
+     "lo": 0.0124,
+     "hi": 0.1312,
+     "verdict": "양성"
+    },
+    "slope": {
+     "estimate": -0.389,
+     "lo": -0.5817,
+     "hi": -0.2278,
+     "verdict": "음성"
+    },
+    "removal_only": {
+     "estimate": -0.0249,
+     "lo": -0.0591,
+     "hi": 0.0101,
+     "verdict": "무승부"
+    },
+    "strict_removal": {
+     "estimate": 0.0051,
+     "lo": -0.0279,
+     "hi": 0.0395,
+     "verdict": "무승부",
+     "extra_genes_dropped": 546
+    }
+   },
+   "KIRP": {
+    "pairs": 30,
+    "p_genes_removed": 1081,
+    "genes_left": 13072,
+    "p_uc_share": 0.6183,
+    "all_uc_share": 0.4818,
+    "s_range": [
+     -0.315,
+     0.875
+    ],
+    "s_mean": 0.262,
+    "primary_intercept": {
+     "estimate": 0.2334,
+     "lo": 0.1497,
+     "hi": 0.3269,
+     "verdict": "양성"
+    },
+    "slope": {
+     "estimate": -0.1909,
+     "lo": -0.4085,
+     "hi": 0.0733,
+     "verdict": "무승부"
+    },
+    "removal_only": {
+     "estimate": 0.1833,
+     "lo": 0.123,
+     "hi": 0.2475,
+     "verdict": "양성"
+    },
+    "strict_removal": {
+     "estimate": 0.1822,
+     "lo": 0.1222,
+     "hi": 0.2465,
+     "verdict": "양성",
+     "extra_genes_dropped": 654
+    }
+   },
+   "LIHC": {
+    "pairs": 45,
+    "p_genes_removed": 1074,
+    "genes_left": 12713,
+    "p_uc_share": 0.6183,
+    "all_uc_share": 0.4881,
+    "s_range": [
+     -0.488,
+     0.997
+    ],
+    "s_mean": 0.5,
+    "primary_intercept": {
+     "estimate": 0.3176,
+     "lo": 0.2661,
+     "hi": 0.396,
+     "verdict": "양성"
+    },
+    "slope": {
+     "estimate": -0.1319,
+     "lo": -0.2728,
+     "hi": -0.0366,
+     "verdict": "음성"
+    },
+    "removal_only": {
+     "estimate": 0.2517,
+     "lo": 0.2129,
+     "hi": 0.2916,
+     "verdict": "양성"
+    },
+    "strict_removal": {
+     "estimate": 0.2577,
+     "lo": 0.218,
+     "hi": 0.2978,
+     "verdict": "양성",
+     "extra_genes_dropped": 445
+    }
+   },
+   "LUAD": {
+    "pairs": 54,
+    "p_genes_removed": 1087,
+    "genes_left": 13146,
+    "p_uc_share": 0.6183,
+    "all_uc_share": 0.4795,
+    "s_range": [
+     -0.038,
+     1.009
+    ],
+    "s_mean": 0.473,
+    "primary_intercept": {
+     "estimate": 0.1973,
+     "lo": 0.1055,
+     "hi": 0.28,
+     "verdict": "양성"
+    },
+    "slope": {
+     "estimate": 0.0786,
+     "lo": -0.0818,
+     "hi": 0.2391,
+     "verdict": "무승부"
+    },
+    "removal_only": {
+     "estimate": 0.2345,
+     "lo": 0.1934,
+     "hi": 0.2736,
+     "verdict": "양성"
+    },
+    "strict_removal": {
+     "estimate": 0.2309,
+     "lo": 0.1897,
+     "hi": 0.27,
+     "verdict": "양성",
+     "extra_genes_dropped": 295
+    }
+   },
+   "LUSC": {
+    "pairs": 50,
+    "p_genes_removed": 1087,
+    "genes_left": 13335,
+    "p_uc_share": 0.6183,
+    "all_uc_share": 0.4758,
+    "s_range": [
+     0.16,
+     1.158
+    ],
+    "s_mean": 0.677,
+    "primary_intercept": {
+     "estimate": 0.2452,
+     "lo": 0.0984,
+     "hi": 0.3994,
+     "verdict": "양성"
+    },
+    "slope": {
+     "estimate": 0.1327,
+     "lo": -0.0585,
+     "hi": 0.3162,
+     "verdict": "무승부"
+    },
+    "removal_only": {
+     "estimate": 0.335,
+     "lo": 0.2844,
+     "hi": 0.3835,
+     "verdict": "양성"
+    },
+    "strict_removal": {
+     "estimate": 0.3337,
+     "lo": 0.2827,
+     "hi": 0.3828,
+     "verdict": "양성",
+     "extra_genes_dropped": 207
+    }
+   },
+   "PRAD": {
+    "pairs": 40,
+    "p_genes_removed": 1076,
+    "genes_left": 12984,
+    "p_uc_share": 0.6183,
+    "all_uc_share": 0.482,
+    "s_range": [
+     -0.28,
+     0.629
+    ],
+    "s_mean": 0.113,
+    "primary_intercept": {
+     "estimate": 0.165,
+     "lo": 0.1137,
+     "hi": 0.2087,
+     "verdict": "양성"
+    },
+    "slope": {
+     "estimate": -0.4115,
+     "lo": -0.8865,
+     "hi": -0.1053,
+     "verdict": "음성"
+    },
+    "removal_only": {
+     "estimate": 0.1185,
+     "lo": 0.0711,
+     "hi": 0.1648,
+     "verdict": "양성"
+    },
+    "strict_removal": {
+     "estimate": 0.1278,
+     "lo": 0.0819,
+     "hi": 0.1731,
+     "verdict": "양성",
+     "extra_genes_dropped": 643
+    }
+   },
+   "STAD": {
+    "pairs": 26,
+    "p_genes_removed": 1086,
+    "genes_left": 13313,
+    "p_uc_share": 0.6183,
+    "all_uc_share": 0.4774,
+    "s_range": [
+     -0.007,
+     0.832
+    ],
+    "s_mean": 0.446,
+    "primary_intercept": {
+     "estimate": -0.0519,
+     "lo": -0.1821,
+     "hi": 0.0656,
+     "verdict": "무승부"
+    },
+    "slope": {
+     "estimate": 0.291,
+     "lo": 0.0254,
+     "hi": 0.5257,
+     "verdict": "양성"
+    },
+    "removal_only": {
+     "estimate": 0.078,
+     "lo": 0.0013,
+     "hi": 0.1561,
+     "verdict": "양성"
+    },
+    "strict_removal": {
+     "estimate": 0.0965,
+     "lo": 0.0153,
+     "hi": 0.1793,
+     "verdict": "양성",
+     "extra_genes_dropped": 1472
+    }
+   },
+   "THCA": {
+    "pairs": 43,
+    "p_genes_removed": 1078,
+    "genes_left": 12777,
+    "p_uc_share": 0.6183,
+    "all_uc_share": 0.4842,
+    "s_range": [
+     -0.399,
+     0.376
+    ],
+    "s_mean": 0.057,
+    "primary_intercept": {
+     "estimate": 0.015,
+     "lo": -0.0111,
+     "hi": 0.0449,
+     "verdict": "무승부"
+    },
+    "slope": {
+     "estimate": -0.286,
+     "lo": -0.4481,
+     "hi": -0.1381,
+     "verdict": "음성"
+    },
+    "removal_only": {
+     "estimate": -0.0013,
+     "lo": -0.0315,
+     "hi": 0.0293,
+     "verdict": "무승부"
+    },
+    "strict_removal": {
+     "estimate": 0.0007,
+     "lo": -0.0292,
+     "hi": 0.0311,
+     "verdict": "무승부",
+     "extra_genes_dropped": 755
+    }
+   }
+  }
+ },
+ "go_only": {
+  "overall": {
+   "primary_intercept": {
+    "cohorts": 13,
+    "positive": 9,
+    "negative": 0,
+    "draw": 4,
+    "call": "지지"
+   },
+   "removal_only": {
+    "cohorts": 13,
+    "positive": 10,
+    "negative": 0,
+    "draw": 3,
+    "call": "지지"
+   },
+   "strict_removal": {
+    "cohorts": 13,
+    "positive": 10,
+    "negative": 0,
+    "draw": 3,
+    "call": "지지"
+   },
+   "slope": {
+    "cohorts": 13,
+    "positive": 1,
+    "negative": 3,
+    "draw": 9,
+    "call": "판단 보류"
+   }
+  },
+  "cohorts": {
+   "BLCA": {
+    "pairs": 14,
+    "p_genes_removed": 832,
+    "genes_left": 13302,
+    "p_uc_share": 0.6466,
+    "all_uc_share": 0.4818,
+    "s_range": [
+     0.153,
+     0.927
+    ],
+    "s_mean": 0.577,
+    "primary_intercept": {
+     "estimate": 0.3103,
+     "lo": 0.1224,
+     "hi": 0.5009,
+     "verdict": "양성"
+    },
+    "slope": {
+     "estimate": 0.0153,
+     "lo": -0.2913,
+     "hi": 0.2926,
+     "verdict": "무승부"
+    },
+    "removal_only": {
+     "estimate": 0.3191,
+     "lo": 0.2464,
+     "hi": 0.3955,
+     "verdict": "양성"
+    },
+    "strict_removal": {
+     "estimate": 0.3032,
+     "lo": 0.2322,
+     "hi": 0.3775,
+     "verdict": "양성",
+     "extra_genes_dropped": 796
+    }
+   },
+   "BRCA": {
+    "pairs": 112,
+    "p_genes_removed": 834,
+    "genes_left": 13301,
+    "p_uc_share": 0.6466,
+    "all_uc_share": 0.4817,
+    "s_range": [
+     -0.085,
+     1.211
+    ],
+    "s_mean": 0.407,
+    "primary_intercept": {
+     "estimate": 0.2121,
+     "lo": 0.145,
+     "hi": 0.2778,
+     "verdict": "양성"
+    },
+    "slope": {
+     "estimate": 0.1233,
+     "lo": -0.0118,
+     "hi": 0.2777,
+     "verdict": "무승부"
+    },
+    "removal_only": {
+     "estimate": 0.2623,
+     "lo": 0.2308,
+     "hi": 0.2957,
+     "verdict": "양성"
+    },
+    "strict_removal": {
+     "estimate": 0.26,
+     "lo": 0.2285,
+     "hi": 0.2936,
+     "verdict": "양성",
+     "extra_genes_dropped": 312
+    }
+   },
+   "COAD": {
+    "pairs": 26,
+    "p_genes_removed": 826,
+    "genes_left": 13288,
+    "p_uc_share": 0.6466,
+    "all_uc_share": 0.4815,
+    "s_range": [
+     0.001,
+     0.583
+    ],
+    "s_mean": 0.285,
+    "primary_intercept": {
+     "estimate": 0.2991,
+     "lo": 0.1619,
+     "hi": 0.4343,
+     "verdict": "양성"
+    },
+    "slope": {
+     "estimate": -0.273,
+     "lo": -0.6454,
+     "hi": 0.1197,
+     "verdict": "무승부"
+    },
+    "removal_only": {
+     "estimate": 0.2212,
+     "lo": 0.1548,
+     "hi": 0.2887,
+     "verdict": "양성"
+    },
+    "strict_removal": {
+     "estimate": 0.22,
+     "lo": 0.1532,
+     "hi": 0.2881,
+     "verdict": "양성",
+     "extra_genes_dropped": 244
+    }
+   },
+   "HNSC": {
+    "pairs": 38,
+    "p_genes_removed": 827,
+    "genes_left": 13481,
+    "p_uc_share": 0.6466,
+    "all_uc_share": 0.4782,
+    "s_range": [
+     -0.272,
+     1.105
+    ],
+    "s_mean": 0.3,
+    "primary_intercept": {
+     "estimate": 0.0119,
+     "lo": -0.0765,
+     "hi": 0.0842,
+     "verdict": "무승부"
+    },
+    "slope": {
+     "estimate": -0.037,
+     "lo": -0.1735,
+     "hi": 0.1873,
+     "verdict": "무승부"
+    },
+    "removal_only": {
+     "estimate": 0.0007,
+     "lo": -0.054,
+     "hi": 0.055,
+     "verdict": "무승부"
+    },
+    "strict_removal": {
+     "estimate": -0.0007,
+     "lo": -0.0567,
+     "hi": 0.055,
+     "verdict": "무승부",
+     "extra_genes_dropped": 452
+    }
+   },
+   "KICH": {
+    "pairs": 23,
+    "p_genes_removed": 831,
+    "genes_left": 13349,
+    "p_uc_share": 0.6466,
+    "all_uc_share": 0.4819,
+    "s_range": [
+     -0.448,
+     0.757
+    ],
+    "s_mean": -0.091,
+    "primary_intercept": {
+     "estimate": 0.1996,
+     "lo": 0.1007,
+     "hi": 0.2685,
+     "verdict": "양성"
+    },
+    "slope": {
+     "estimate": 0.0401,
+     "lo": -0.4504,
+     "hi": 0.2343,
+     "verdict": "무승부"
+    },
+    "removal_only": {
+     "estimate": 0.1959,
+     "lo": 0.1264,
+     "hi": 0.2622,
+     "verdict": "양성"
+    },
+    "strict_removal": {
+     "estimate": 0.1988,
+     "lo": 0.127,
+     "hi": 0.2666,
+     "verdict": "양성",
+     "extra_genes_dropped": 790
+    }
+   },
+   "KIRC": {
+    "pairs": 63,
+    "p_genes_removed": 831,
+    "genes_left": 13270,
+    "p_uc_share": 0.6466,
+    "all_uc_share": 0.4833,
+    "s_range": [
+     -0.37,
+     0.724
+    ],
+    "s_mean": 0.263,
+    "primary_intercept": {
+     "estimate": 0.0571,
+     "lo": -0.0007,
+     "hi": 0.1207,
+     "verdict": "무승부"
+    },
+    "slope": {
+     "estimate": -0.3047,
+     "lo": -0.4744,
+     "hi": -0.1489,
+     "verdict": "음성"
+    },
+    "removal_only": {
+     "estimate": -0.023,
+     "lo": -0.057,
+     "hi": 0.0121,
+     "verdict": "무승부"
+    },
+    "strict_removal": {
+     "estimate": -0.0021,
+     "lo": -0.0356,
+     "hi": 0.0329,
+     "verdict": "무승부",
+     "extra_genes_dropped": 509
+    }
+   },
+   "KIRP": {
+    "pairs": 30,
+    "p_genes_removed": 828,
+    "genes_left": 13321,
+    "p_uc_share": 0.6466,
+    "all_uc_share": 0.4825,
+    "s_range": [
+     -0.323,
+     0.9
+    ],
+    "s_mean": 0.297,
+    "primary_intercept": {
+     "estimate": 0.2252,
+     "lo": 0.1374,
+     "hi": 0.3234,
+     "verdict": "양성"
+    },
+    "slope": {
+     "estimate": -0.1345,
+     "lo": -0.3502,
+     "hi": 0.1252,
+     "verdict": "무승부"
+    },
+    "removal_only": {
+     "estimate": 0.1852,
+     "lo": 0.1256,
+     "hi": 0.2493,
+     "verdict": "양성"
+    },
+    "strict_removal": {
+     "estimate": 0.1792,
+     "lo": 0.1184,
+     "hi": 0.2445,
+     "verdict": "양성",
+     "extra_genes_dropped": 562
+    }
+   },
+   "LIHC": {
+    "pairs": 45,
+    "p_genes_removed": 822,
+    "genes_left": 12961,
+    "p_uc_share": 0.6466,
+    "all_uc_share": 0.4887,
+    "s_range": [
+     -0.473,
+     1.024
+    ],
+    "s_mean": 0.561,
+    "primary_intercept": {
+     "estimate": 0.3006,
+     "lo": 0.2479,
+     "hi": 0.3735,
+     "verdict": "양성"
+    },
+    "slope": {
+     "estimate": -0.0862,
+     "lo": -0.2051,
+     "hi": 0.0041,
+     "verdict": "무승부"
+    },
+    "removal_only": {
+     "estimate": 0.2523,
+     "lo": 0.2135,
+     "hi": 0.2924,
+     "verdict": "양성"
+    },
+    "strict_removal": {
+     "estimate": 0.2518,
+     "lo": 0.2124,
+     "hi": 0.292,
+     "verdict": "양성",
+     "extra_genes_dropped": 360
+    }
+   },
+   "LUAD": {
+    "pairs": 54,
+    "p_genes_removed": 834,
+    "genes_left": 13395,
+    "p_uc_share": 0.6466,
+    "all_uc_share": 0.4803,
+    "s_range": [
+     -0.004,
+     1.07
+    ],
+    "s_mean": 0.512,
+    "primary_intercept": {
+     "estimate": 0.1847,
+     "lo": 0.0883,
+     "hi": 0.2717,
+     "verdict": "양성"
+    },
+    "slope": {
+     "estimate": 0.1025,
+     "lo": -0.0484,
+     "hi": 0.2556,
+     "verdict": "무승부"
+    },
+    "removal_only": {
+     "estimate": 0.2372,
+     "lo": 0.1961,
+     "hi": 0.2763,
+     "verdict": "양성"
+    },
+    "strict_removal": {
+     "estimate": 0.2297,
+     "lo": 0.1885,
+     "hi": 0.2687,
+     "verdict": "양성",
+     "extra_genes_dropped": 349
+    }
+   },
+   "LUSC": {
+    "pairs": 50,
+    "p_genes_removed": 834,
+    "genes_left": 13584,
+    "p_uc_share": 0.6466,
+    "all_uc_share": 0.4767,
+    "s_range": [
+     0.123,
+     1.266
+    ],
+    "s_mean": 0.722,
+    "primary_intercept": {
+     "estimate": 0.2484,
+     "lo": 0.0959,
+     "hi": 0.4094,
+     "verdict": "양성"
+    },
+    "slope": {
+     "estimate": 0.1249,
+     "lo": -0.054,
+     "hi": 0.3026,
+     "verdict": "무승부"
+    },
+    "removal_only": {
+     "estimate": 0.3385,
+     "lo": 0.288,
+     "hi": 0.3868,
+     "verdict": "양성"
+    },
+    "strict_removal": {
+     "estimate": 0.3368,
+     "lo": 0.2859,
+     "hi": 0.3855,
+     "verdict": "양성",
+     "extra_genes_dropped": 209
+    }
+   },
+   "PRAD": {
+    "pairs": 40,
+    "p_genes_removed": 823,
+    "genes_left": 13233,
+    "p_uc_share": 0.6466,
+    "all_uc_share": 0.4827,
+    "s_range": [
+     -0.279,
+     0.66
+    ],
+    "s_mean": 0.132,
+    "primary_intercept": {
+     "estimate": 0.1626,
+     "lo": 0.1057,
+     "hi": 0.2114,
+     "verdict": "양성"
+    },
+    "slope": {
+     "estimate": -0.3308,
+     "lo": -0.7587,
+     "hi": -0.0546,
+     "verdict": "음성"
+    },
+    "removal_only": {
+     "estimate": 0.1188,
+     "lo": 0.0714,
+     "hi": 0.1651,
+     "verdict": "양성"
+    },
+    "strict_removal": {
+     "estimate": 0.1279,
+     "lo": 0.0815,
+     "hi": 0.1733,
+     "verdict": "양성",
+     "extra_genes_dropped": 552
+    }
+   },
+   "STAD": {
+    "pairs": 26,
+    "p_genes_removed": 833,
+    "genes_left": 13562,
+    "p_uc_share": 0.6466,
+    "all_uc_share": 0.4782,
+    "s_range": [
+     -0.03,
+     0.932
+    ],
+    "s_mean": 0.474,
+    "primary_intercept": {
+     "estimate": -0.0578,
+     "lo": -0.1896,
+     "hi": 0.0565,
+     "verdict": "무승부"
+    },
+    "slope": {
+     "estimate": 0.2993,
+     "lo": 0.0791,
+     "hi": 0.5201,
+     "verdict": "양성"
+    },
+    "removal_only": {
+     "estimate": 0.084,
+     "lo": 0.0067,
+     "hi": 0.1623,
+     "verdict": "양성"
+    },
+    "strict_removal": {
+     "estimate": 0.1011,
+     "lo": 0.0192,
+     "hi": 0.1847,
+     "verdict": "양성",
+     "extra_genes_dropped": 1683
+    }
+   },
+   "THCA": {
+    "pairs": 43,
+    "p_genes_removed": 826,
+    "genes_left": 13025,
+    "p_uc_share": 0.6466,
+    "all_uc_share": 0.4849,
+    "s_range": [
+     -0.382,
+     0.39
+    ],
+    "s_mean": 0.065,
+    "primary_intercept": {
+     "estimate": 0.0153,
+     "lo": -0.012,
+     "hi": 0.0454,
+     "verdict": "무승부"
+    },
+    "slope": {
+     "estimate": -0.233,
+     "lo": -0.3847,
+     "hi": -0.0877,
+     "verdict": "음성"
+    },
+    "removal_only": {
+     "estimate": 0.0002,
+     "lo": -0.0304,
+     "hi": 0.0309,
+     "verdict": "무승부"
+    },
+    "strict_removal": {
+     "estimate": 0.0008,
+     "lo": -0.0298,
+     "hi": 0.0315,
+     "verdict": "무승부",
+     "extra_genes_dropped": 680
+    }
+   }
+  }
+ },
+ "hallmark_only": {
+  "overall": {
+   "primary_intercept": {
+    "cohorts": 13,
+    "positive": 9,
+    "negative": 0,
+    "draw": 4,
+    "call": "지지"
+   },
+   "removal_only": {
+    "cohorts": 13,
+    "positive": 10,
+    "negative": 0,
+    "draw": 3,
+    "call": "지지"
+   },
+   "strict_removal": {
+    "cohorts": 13,
+    "positive": 10,
+    "negative": 0,
+    "draw": 3,
+    "call": "지지"
+   },
+   "slope": {
+    "cohorts": 13,
+    "positive": 3,
+    "negative": 4,
+    "draw": 6,
+    "call": "판단 보류"
+   }
+  },
+  "cohorts": {
+   "BLCA": {
+    "pairs": 14,
+    "p_genes_removed": 459,
+    "genes_left": 13661,
+    "p_uc_share": 0.5758,
+    "all_uc_share": 0.4889,
+    "s_range": [
+     0.181,
+     1.253
+    ],
+    "s_mean": 0.809,
+    "primary_intercept": {
+     "estimate": 0.2889,
+     "lo": 0.0461,
+     "hi": 0.4887,
+     "verdict": "양성"
+    },
+    "slope": {
+     "estimate": 0.0492,
+     "lo": -0.1686,
+     "hi": 0.3081,
+     "verdict": "무승부"
+    },
+    "removal_only": {
+     "estimate": 0.3286,
+     "lo": 0.2548,
+     "hi": 0.4057,
+     "verdict": "양성"
+    },
+    "strict_removal": {
+     "estimate": 0.3055,
+     "lo": 0.2331,
+     "hi": 0.3806,
+     "verdict": "양성",
+     "extra_genes_dropped": 608
+    }
+   },
+   "BRCA": {
+    "pairs": 112,
+    "p_genes_removed": 459,
+    "genes_left": 13662,
+    "p_uc_share": 0.5758,
+    "all_uc_share": 0.4888,
+    "s_range": [
+     -0.081,
+     1.567
+    ],
+    "s_mean": 0.6,
+    "primary_intercept": {
+     "estimate": 0.2029,
+     "lo": 0.1301,
+     "hi": 0.2746,
+     "verdict": "양성"
+    },
+    "slope": {
+     "estimate": 0.1087,
+     "lo": 0.0077,
+     "hi": 0.2213,
+     "verdict": "양성"
+    },
+    "removal_only": {
+     "estimate": 0.2682,
+     "lo": 0.2366,
+     "hi": 0.3014,
+     "verdict": "양성"
+    },
+    "strict_removal": {
+     "estimate": 0.2525,
+     "lo": 0.2215,
+     "hi": 0.2857,
+     "verdict": "양성",
+     "extra_genes_dropped": 291
+    }
+   },
+   "COAD": {
+    "pairs": 26,
+    "p_genes_removed": 459,
+    "genes_left": 13642,
+    "p_uc_share": 0.5758,
+    "all_uc_share": 0.4887,
+    "s_range": [
+     -0.067,
+     0.778
+    ],
+    "s_mean": 0.427,
+    "primary_intercept": {
+     "estimate": 0.2791,
+     "lo": 0.1414,
+     "hi": 0.4498,
+     "verdict": "양성"
+    },
+    "slope": {
+     "estimate": -0.1303,
+     "lo": -0.4616,
+     "hi": 0.1451,
+     "verdict": "무승부"
+    },
+    "removal_only": {
+     "estimate": 0.2235,
+     "lo": 0.1568,
+     "hi": 0.292,
+     "verdict": "양성"
+    },
+    "strict_removal": {
+     "estimate": 0.2193,
+     "lo": 0.1519,
+     "hi": 0.2883,
+     "verdict": "양성",
+     "extra_genes_dropped": 318
+    }
+   },
+   "HNSC": {
+    "pairs": 38,
+    "p_genes_removed": 459,
+    "genes_left": 13836,
+    "p_uc_share": 0.5758,
+    "all_uc_share": 0.485,
+    "s_range": [
+     -0.167,
+     1.533
+    ],
+    "s_mean": 0.437,
+    "primary_intercept": {
+     "estimate": 0.0041,
+     "lo": -0.0824,
+     "hi": 0.0783,
+     "verdict": "무승부"
+    },
+    "slope": {
+     "estimate": 0.0046,
+     "lo": -0.0969,
+     "hi": 0.1482,
+     "verdict": "무승부"
+    },
+    "removal_only": {
+     "estimate": 0.0061,
+     "lo": -0.0481,
+     "hi": 0.0606,
+     "verdict": "무승부"
+    },
+    "strict_removal": {
+     "estimate": 0.0002,
+     "lo": -0.0571,
+     "hi": 0.0575,
+     "verdict": "무승부",
+     "extra_genes_dropped": 870
+    }
+   },
+   "KICH": {
+    "pairs": 23,
+    "p_genes_removed": 458,
+    "genes_left": 13708,
+    "p_uc_share": 0.5758,
+    "all_uc_share": 0.489,
+    "s_range": [
+     -0.392,
+     1.21
+    ],
+    "s_mean": 0.047,
+    "primary_intercept": {
+     "estimate": 0.204,
+     "lo": 0.1332,
+     "hi": 0.2682,
+     "verdict": "양성"
+    },
+    "slope": {
+     "estimate": 0.0079,
+     "lo": -0.4098,
+     "hi": 0.1659,
+     "verdict": "무승부"
+    },
+    "removal_only": {
+     "estimate": 0.2043,
+     "lo": 0.1338,
+     "hi": 0.2718,
+     "verdict": "양성"
+    },
+    "strict_removal": {
+     "estimate": 0.1982,
+     "lo": 0.1263,
+     "hi": 0.2664,
+     "verdict": "양성",
+     "extra_genes_dropped": 780
+    }
+   },
+   "KIRC": {
+    "pairs": 63,
+    "p_genes_removed": 458,
+    "genes_left": 13629,
+    "p_uc_share": 0.5758,
+    "all_uc_share": 0.4905,
+    "s_range": [
+     -0.39,
+     1.107
+    ],
+    "s_mean": 0.397,
+    "primary_intercept": {
+     "estimate": 0.094,
+     "lo": 0.0299,
+     "hi": 0.1688,
+     "verdict": "양성"
+    },
+    "slope": {
+     "estimate": -0.2671,
+     "lo": -0.4127,
+     "hi": -0.148,
+     "verdict": "음성"
+    },
+    "removal_only": {
+     "estimate": -0.0122,
+     "lo": -0.0456,
+     "hi": 0.0224,
+     "verdict": "무승부"
+    },
+    "strict_removal": {
+     "estimate": 0.0058,
+     "lo": -0.0272,
+     "hi": 0.0401,
+     "verdict": "무승부",
+     "extra_genes_dropped": 688
+    }
+   },
+   "KIRP": {
+    "pairs": 30,
+    "p_genes_removed": 458,
+    "genes_left": 13678,
+    "p_uc_share": 0.5758,
+    "all_uc_share": 0.4895,
+    "s_range": [
+     -0.326,
+     1.381
+    ],
+    "s_mean": 0.454,
+    "primary_intercept": {
+     "estimate": 0.253,
+     "lo": 0.1638,
+     "hi": 0.3524,
+     "verdict": "양성"
+    },
+    "slope": {
+     "estimate": -0.1202,
+     "lo": -0.261,
+     "hi": 0.068,
+     "verdict": "무승부"
+    },
+    "removal_only": {
+     "estimate": 0.1984,
+     "lo": 0.1393,
+     "hi": 0.2608,
+     "verdict": "양성"
+    },
+    "strict_removal": {
+     "estimate": 0.1842,
+     "lo": 0.1253,
+     "hi": 0.2472,
+     "verdict": "양성",
+     "extra_genes_dropped": 907
+    }
+   },
+   "LIHC": {
+    "pairs": 45,
+    "p_genes_removed": 458,
+    "genes_left": 13312,
+    "p_uc_share": 0.5758,
+    "all_uc_share": 0.4956,
+    "s_range": [
+     -0.585,
+     1.521
+    ],
+    "s_mean": 0.733,
+    "primary_intercept": {
+     "estimate": 0.3259,
+     "lo": 0.2686,
+     "hi": 0.4167,
+     "verdict": "양성"
+    },
+    "slope": {
+     "estimate": -0.0853,
+     "lo": -0.2028,
+     "hi": -0.0098,
+     "verdict": "음성"
+    },
+    "removal_only": {
+     "estimate": 0.2635,
+     "lo": 0.2248,
+     "hi": 0.3033,
+     "verdict": "양성"
+    },
+    "strict_removal": {
+     "estimate": 0.2557,
+     "lo": 0.2165,
+     "hi": 0.2955,
+     "verdict": "양성",
+     "extra_genes_dropped": 565
+    }
+   },
+   "LUAD": {
+    "pairs": 54,
+    "p_genes_removed": 459,
+    "genes_left": 13756,
+    "p_uc_share": 0.5758,
+    "all_uc_share": 0.4874,
+    "s_range": [
+     -0.017,
+     1.599
+    ],
+    "s_mean": 0.726,
+    "primary_intercept": {
+     "estimate": 0.1966,
+     "lo": 0.1018,
+     "hi": 0.2819,
+     "verdict": "양성"
+    },
+    "slope": {
+     "estimate": 0.0653,
+     "lo": -0.0496,
+     "hi": 0.1721,
+     "verdict": "무승부"
+    },
+    "removal_only": {
+     "estimate": 0.244,
+     "lo": 0.2031,
+     "hi": 0.2833,
+     "verdict": "양성"
+    },
+    "strict_removal": {
+     "estimate": 0.2274,
+     "lo": 0.1869,
+     "hi": 0.2662,
+     "verdict": "양성",
+     "extra_genes_dropped": 397
+    }
+   },
+   "LUSC": {
+    "pairs": 50,
+    "p_genes_removed": 459,
+    "genes_left": 13946,
+    "p_uc_share": 0.5758,
+    "all_uc_share": 0.4838,
+    "s_range": [
+     0.442,
+     1.691
+    ],
+    "s_mean": 1.069,
+    "primary_intercept": {
+     "estimate": 0.1634,
+     "lo": -0.0141,
+     "hi": 0.338,
+     "verdict": "무승부"
+    },
+    "slope": {
+     "estimate": 0.1734,
+     "lo": 0.0369,
+     "hi": 0.3219,
+     "verdict": "양성"
+    },
+    "removal_only": {
+     "estimate": 0.3488,
+     "lo": 0.2982,
+     "hi": 0.397,
+     "verdict": "양성"
+    },
+    "strict_removal": {
+     "estimate": 0.3289,
+     "lo": 0.2782,
+     "hi": 0.377,
+     "verdict": "양성",
+     "extra_genes_dropped": 256
+    }
+   },
+   "PRAD": {
+    "pairs": 40,
+    "p_genes_removed": 458,
+    "genes_left": 13585,
+    "p_uc_share": 0.5758,
+    "all_uc_share": 0.4898,
+    "s_range": [
+     -0.232,
+     0.983
+    ],
+    "s_mean": 0.22,
+    "primary_intercept": {
+     "estimate": 0.1757,
+     "lo": 0.111,
+     "hi": 0.2472,
+     "verdict": "양성"
+    },
+    "slope": {
+     "estimate": -0.2441,
+     "lo": -0.6596,
+     "hi": -0.0242,
+     "verdict": "음성"
+    },
+    "removal_only": {
+     "estimate": 0.1219,
+     "lo": 0.0745,
+     "hi": 0.1678,
+     "verdict": "양성"
+    },
+    "strict_removal": {
+     "estimate": 0.1245,
+     "lo": 0.0786,
+     "hi": 0.17,
+     "verdict": "양성",
+     "extra_genes_dropped": 535
+    }
+   },
+   "STAD": {
+    "pairs": 26,
+    "p_genes_removed": 458,
+    "genes_left": 13923,
+    "p_uc_share": 0.5758,
+    "all_uc_share": 0.4852,
+    "s_range": [
+     -0.014,
+     1.397
+    ],
+    "s_mean": 0.681,
+    "primary_intercept": {
+     "estimate": -0.0776,
+     "lo": -0.1822,
+     "hi": 0.025,
+     "verdict": "무승부"
+    },
+    "slope": {
+     "estimate": 0.2443,
+     "lo": 0.0873,
+     "hi": 0.3695,
+     "verdict": "양성"
+    },
+    "removal_only": {
+     "estimate": 0.0886,
+     "lo": 0.0105,
+     "hi": 0.1679,
+     "verdict": "양성"
+    },
+    "strict_removal": {
+     "estimate": 0.089,
+     "lo": 0.0092,
+     "hi": 0.17,
+     "verdict": "양성",
+     "extra_genes_dropped": 1592
+    }
+   },
+   "THCA": {
+    "pairs": 43,
+    "p_genes_removed": 458,
+    "genes_left": 13380,
+    "p_uc_share": 0.5758,
+    "all_uc_share": 0.4922,
+    "s_range": [
+     -0.564,
+     0.662
+    ],
+    "s_mean": 0.154,
+    "primary_intercept": {
+     "estimate": 0.0253,
+     "lo": -0.0018,
+     "hi": 0.0582,
+     "verdict": "무승부"
+    },
+    "slope": {
+     "estimate": -0.156,
+     "lo": -0.2673,
+     "hi": -0.0519,
+     "verdict": "음성"
+    },
+    "removal_only": {
+     "estimate": 0.0012,
+     "lo": -0.0283,
+     "hi": 0.0316,
+     "verdict": "무승부"
+    },
+    "strict_removal": {
+     "estimate": -0.0011,
+     "lo": -0.0304,
+     "hi": 0.0287,
+     "verdict": "무승부",
+     "extra_genes_dropped": 802
+    }
+   }
+  }
+ }
+}
