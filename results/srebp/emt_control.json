@@ -1,0 +1,148 @@
+{
+ "source": {
+  "depmap": "DepMap 24Q4 Public (figshare 27993248)",
+  "lines": 1673,
+  "genes_found": {
+   "epithelial": 12,
+   "mesenchymal": 12,
+   "stemness": 14,
+   "depmap_module": [
+    "SCD",
+    "SREBF1",
+    "SCAP",
+    "MBTPS1",
+    "MBTPS2"
+   ]
+  },
+  "genes_missing": {
+   "epithelial": [],
+   "mesenchymal": [],
+   "stemness": []
+  }
+ },
+ "score_overlap_pearson": {
+  "prol": 0.319,
+  "emt": -0.602,
+  "stem": 0.149
+ },
+ "emt_vs_stem": -0.134,
+ "arms": {
+  "project_score": {
+   "lines": 249,
+   "primary_full_adjustment": {
+    "rho_partial": -0.1705,
+    "lo": -0.2758,
+    "hi": -0.0589,
+    "n": 249,
+    "verdict": "양성"
+   },
+   "steps": {
+    "lineage_only": {
+     "rho_partial": -0.1382,
+     "n": 249
+    },
+    "plus_proliferation": {
+     "rho_partial": -0.1717,
+     "n": 249
+    },
+    "plus_emt": {
+     "rho_partial": -0.166,
+     "n": 249
+    },
+    "plus_stemness": {
+     "rho_partial": -0.1705,
+     "n": 249
+    }
+   },
+   "emt_vs_module_given_prol": {
+    "rho_partial": 0.0473,
+    "lo": -0.0764,
+    "hi": 0.1762,
+    "n": 249,
+    "verdict": "무승부"
+   },
+   "stem_vs_module_given_prol": {
+    "rho_partial": -0.0395,
+    "lo": -0.1678,
+    "hi": 0.0936,
+    "n": 249,
+    "verdict": "무승부"
+   },
+   "emt_vs_module_given_prol_tilt": {
+    "rho_partial": -0.016,
+    "lo": -0.138,
+    "hi": 0.1118,
+    "n": 249,
+    "verdict": "무승부"
+   },
+   "stem_vs_module_given_prol_tilt": {
+    "rho_partial": -0.0503,
+    "lo": -0.1811,
+    "hi": 0.0765,
+    "n": 249,
+    "verdict": "무승부"
+   }
+  },
+  "depmap": {
+   "lines": 1103,
+   "primary_full_adjustment": {
+    "rho_partial": -0.1598,
+    "lo": -0.215,
+    "hi": -0.0986,
+    "n": 1103,
+    "verdict": "양성"
+   },
+   "steps": {
+    "lineage_only": {
+     "rho_partial": -0.1652,
+     "n": 1103
+    },
+    "plus_proliferation": {
+     "rho_partial": -0.1771,
+     "n": 1103
+    },
+    "plus_emt": {
+     "rho_partial": -0.1602,
+     "n": 1103
+    },
+    "plus_stemness": {
+     "rho_partial": -0.1598,
+     "n": 1103
+    }
+   },
+   "emt_vs_module_given_prol": {
+    "rho_partial": 0.0789,
+    "lo": 0.0201,
+    "hi": 0.1396,
+    "n": 1103,
+    "verdict": "음성"
+   },
+   "stem_vs_module_given_prol": {
+    "rho_partial": 0.0081,
+    "lo": -0.0518,
+    "hi": 0.0675,
+    "n": 1103,
+    "verdict": "무승부"
+   },
+   "emt_vs_module_given_prol_tilt": {
+    "rho_partial": 0.0185,
+    "lo": -0.0397,
+    "hi": 0.0806,
+    "n": 1103,
+    "verdict": "무승부"
+   },
+   "stem_vs_module_given_prol_tilt": {
+    "rho_partial": 0.0055,
+    "lo": -0.0537,
+    "hi": 0.0645,
+    "n": 1103,
+    "verdict": "무승부"
+   }
+  }
+ },
+ "overall": {
+  "arms": 2,
+  "positive": 2,
+  "call": "설명 A 지지"
+ }
+}
