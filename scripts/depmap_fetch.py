@@ -17,7 +17,7 @@ from pathlib import Path
 import numpy as np
 
 OUT = Path("data/depmap")
-INDEX = "https://depmap.org/portal/api/download/files"
+INDEX = "https://depmap.org/portal/api/download/files"   # falls back to the figshare copies
 WANT = ["CRISPRGeneEffect.csv", "Model.csv", "CRISPRInferredCommonEssentials.csv"]
 DGIDB = ["https://dgidb.org/data/latest/interactions.tsv", "https://www.dgidb.org/data/latest/interactions.tsv"]
 DEP = -0.5
@@ -35,20 +35,58 @@ def get(url, tries=4):
     return None
 
 
-def latest_files():
-    rows = list(csv.DictReader(io.StringIO(get(INDEX).decode())))
-    print("index columns:", list(rows[0]), flush=True)
+def _from_index():
+    raw = get(INDEX + "?format=csv")
+    if raw is None or raw.lstrip()[:1] == b"<":
+        return None
+    rows = list(csv.DictReader(io.StringIO(raw.decode())))
     rel_key = next(k for k in rows[0] if k.lower() in ("release", "release_name"))
     date_key = next((k for k in rows[0] if "date" in k.lower()), None)
-    by_rel = defaultdict(dict)
-    dates = {}
+    by_rel, dates = defaultdict(dict), {}
     for r in rows:
         by_rel[r[rel_key]][r["filename"]] = r["url"]
         if date_key:
             dates[r[rel_key]] = r[date_key]
     ok = [rel for rel, f in by_rel.items() if all(w in f for w in WANT) and "public" in rel.lower()]
+    if not ok:
+        return None
     rel = max(ok, key=lambda x: dates.get(x, x))
     return rel, {w: by_rel[rel][w] for w in WANT}
+
+
+def _from_figshare():
+    """DepMap posts each public release on figshare ("DepMap 24Q4 Public" etc.); newest one with all files."""
+    found = []
+    for q in ("DepMap Public", "DepMap Q Public"):
+        body = json.dumps({"search_for": q, "page_size": 100}).encode()
+        req = urllib.request.Request("https://api.figshare.com/v2/articles/search", data=body,
+                                     headers={"Content-Type": "application/json"})
+        try:
+            with urllib.request.urlopen(req, timeout=120) as r:
+                found += json.loads(r.read())
+        except Exception as e:
+            print("figshare search:", e, flush=True)
+    seen = set()
+    cands = []
+    for a in found:
+        if a["id"] in seen or "depmap" not in a["title"].lower() or "public" not in a["title"].lower():
+            continue
+        seen.add(a["id"])
+        cands.append(a)
+    cands.sort(key=lambda a: a.get("published_date", ""), reverse=True)
+    for a in cands[:15]:
+        files = json.loads(get(f"https://api.figshare.com/v2/articles/{a['id']}/files?page_size=1000") or b"[]")
+        names = {f["name"]: f["download_url"] for f in files}
+        if all(w in names for w in WANT):
+            return f"{a['title']} (figshare {a['id']})", {w: names[w] for w in WANT}
+    return None
+
+
+def latest_files():
+    res = _from_index() or _from_figshare()
+    if res is None:
+        raise SystemExit("DepMap release not found (portal index and figshare)")
+    return res
 
 
 def main():
