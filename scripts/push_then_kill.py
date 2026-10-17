@@ -23,6 +23,13 @@ LIPID = ["SCD", "SREBF", "MBTPS", "SCAP", "FASN", "ACACA", "ACC1", "ACC2", "HMGC
 LIPID_WORDS = ["STEAROYL", "FATTY ACID SYNTHASE", "SREBP", "ACETYL-COA CARBOXYLASE", "HMGCR INHIBITOR",
                "SQUALENE", "LIPOGEN", "DESATURASE"]
 MIN_PAIRS = 5
+# Added after seeing which pairs exist (deviation of 2026-10-17). The lipid list of the earlier deviation
+# was too loose: it caught drugs that inhibit a bacterial or fungal enzyme, or none of the pre-registered
+# ones. These are the human de-novo lipogenesis / sterol synthesis inhibitors among the drugs the
+# combination data actually holds.
+STRICT_LIPID = ["mk8245", "orlistat", "c75", "gsk2194069", "cerulenin", "pf05175157", "simvastatin",
+                "atorvastatincalcium", "lovastatin", "mevastatin", "fluvastatin", "pravastatin",
+                "pravastatinsodium", "pitavastatincalcium", "cerivastatin"]
 SCORES = ["loewe", "zip", "bliss", "hsa"]
 
 
@@ -210,7 +217,7 @@ def main():
     hdac = {d for d in push if any(k in d for k in ("vorinostat", "zolinza", "belinostat", "trichostatin",
                                                     "panobinostat", "entinostat", "mocetinostat", "saha"))}
     hd_pairs = [np.mean([x[1] for x in v]) for (a, b), v in by_pair.items()
-                if ("L" in tag(a) and b in hdac) or ("L" in tag(b) and a in hdac)]
+                if ("L" in tag(a) and members(b) & hdac) or ("L" in tag(b) and members(a) & hdac)]
     out["aux_hdac_only_push"] = diff_ci(np.array(hd_pairs), rest) if len(hd_pairs) >= MIN_PAIRS else {
         "n_group": len(hd_pairs), "skipped": f"fewer than {MIN_PAIRS} pairs", "hdac_drugs": sorted(hdac)}
     # auxiliary 4: the primary metric under each synergy score
@@ -227,6 +234,53 @@ def main():
         out["aux_by_score"][k] = diff_ci(np.array(pairs_k), np.array(rest_k)) \
             if len(pairs_k) >= MIN_PAIRS and len(rest_k) >= MIN_PAIRS else {"n_group": len(pairs_k),
                                                                            "skipped": "too few pairs"}
+    # added after seeing the by-score result (deviation of 2026-10-17): DrugCombDB's ZIP and Bliss columns
+    # hold extreme values (up to 1.8 million), so a mean difference says more about outliers than about the
+    # groups. Rank-based comparison of the same pairs, for every score.
+    out["added_rank_check"] = {"why": "ZIP/Bliss outliers up to 1.8e6 make the mean difference meaningless"}
+    for k in SCORES:
+        bp = {}
+        for d1, d2, line, vals in rows:
+            if k in vals:
+                bp.setdefault(tuple(sorted((d1, d2))), []).append(vals[k])
+        g, r = [], []
+        for (a, b), v in bp.items():
+            ta, tb = tag(a), tag(b)
+            m = float(np.median(v))
+            (g if (("P" in ta and "L" in tb) or ("P" in tb and "L" in ta)) else r).append(m)
+        if len(g) < MIN_PAIRS or len(r) < MIN_PAIRS:
+            out["added_rank_check"][k] = {"n_group": len(g), "skipped": "too few pairs"}
+            continue
+        g, r = np.array(g), np.array(r)
+        auc = float(np.mean([(r < x).mean() + 0.5 * (r == x).mean() for x in g]))
+        rng = np.random.default_rng(ca.SEED)
+        bs = [float(np.mean([(rng.choice(r, len(r)) < x).mean() for x in rng.choice(g, len(g))]))
+              for _ in range(ca.N_BOOT)]
+        lo, hi = np.percentile(bs, [2.5, 97.5])
+        out["added_rank_check"][k] = {
+            "auc": round(auc, 4), "lo": round(float(lo), 4), "hi": round(float(hi), 4),
+            "median_group": round(float(np.median(g)), 4), "median_rest": round(float(np.median(r)), 4),
+            "n_group": int(len(g)), "n_rest": int(len(r)),
+            "verdict": "양성" if lo > 0.5 else ("음성" if hi < 0.5 else "무승부")}
+    # added after seeing the pairs (deviation of 2026-10-17): the primary metric with the lipid class
+    # narrowed to human de-novo lipogenesis / sterol synthesis inhibitors, and the coverage of each pair.
+    strict = {norm(x) for x in STRICT_LIPID}
+    sg, pair_list = [], []
+    for (a, b), v in by_pair.items():
+        ta, tb = tag(a), tag(b)
+        m = float(np.mean([x[1] for x in v]))
+        if ("P" in ta and "L" in tb) or ("P" in tb and "L" in ta):
+            pair_list.append({"pair": [a, b], "n_lines": len(v), "mean": round(m, 3),
+                              "strict_lipid": bool((members(a) | members(b)) & strict)})
+            if (members(a) | members(b)) & strict:
+                sg.append(m)
+    out["push_plus_lipid_pairs"] = sorted(pair_list, key=lambda x: -x["n_lines"])
+    out["added_strict_lipid"] = diff_ci(np.array(sg), rest) if len(sg) >= MIN_PAIRS else {
+        "n_group": len(sg), "skipped": f"fewer than {MIN_PAIRS} pairs"}
+    out["added_strict_lipid"]["drugs"] = sorted(strict)
+    out["added_scd_or_srebp_pairs"] = sum(1 for x in pair_list
+                                          if {"mk8245", "fatostatin", "pf429242"} &
+                                          (members(x["pair"][0]) | members(x["pair"][1])))
     seen = {d for pair in by_pair for d in pair}
     out["drugs_in_combination_data"] = len(seen)
     out["lipid_drugs_in_combination_data"] = sorted(d for d in seen if "L" in tag(d))

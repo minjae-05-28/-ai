@@ -1,5 +1,9 @@
 {
  "source": {
+  "line_names": {
+   "depmap": "DepMap 24Q4 Public (figshare 27993248)",
+   "rows": 2105
+  },
   "combo": {
    "source": "DrugCombDB",
    "url": "http://drugcombdb.denglab.org/download/drugcombs_scored.csv",
@@ -59,9 +63,208 @@
  },
  "overall": "지지하지 않음",
  "aux_synergy_vs_tilt": {
-  "n": 0,
+  "n": 43,
   "skipped": "fewer than 100 matched rows"
  },
+ "aux_single_agent_viability": {
+  "push": {
+   "n": 13,
+   "mean": -1.3299
+  },
+  "reverse": {
+   "n": 20,
+   "mean": -1.6232
+  },
+  "lipid": {
+   "n": 48,
+   "mean": -0.2524
+  }
+ },
+ "aux_hdac_only_push": {
+  "difference": -0.7703,
+  "lo": -9.2477,
+  "hi": 6.8341,
+  "n_group": 5,
+  "n_rest": 77967,
+  "verdict": "무승부"
+ },
+ "aux_by_score": {
+  "loewe": {
+   "difference": 1.8749,
+   "lo": -5.5157,
+   "hi": 9.2425,
+   "n_group": 8,
+   "n_rest": 77969,
+   "verdict": "무승부"
+  },
+  "zip": {
+   "difference": -329.7554,
+   "lo": -406.9041,
+   "hi": -254.5658,
+   "n_group": 8,
+   "n_rest": 77969,
+   "verdict": "음성"
+  },
+  "bliss": {
+   "difference": -329.9078,
+   "lo": -407.2909,
+   "hi": -254.9294,
+   "n_group": 8,
+   "n_rest": 77969,
+   "verdict": "음성"
+  },
+  "hsa": {
+   "difference": 1.2101,
+   "lo": -3.3789,
+   "hi": 6.2594,
+   "n_group": 8,
+   "n_rest": 77969,
+   "verdict": "무승부"
+  }
+ },
+ "added_rank_check": {
+  "why": "ZIP/Bliss outliers up to 1.8e6 make the mean difference meaningless",
+  "loewe": {
+   "auc": 0.5312,
+   "lo": 0.3552,
+   "hi": 0.7189,
+   "median_group": -4.745,
+   "median_rest": -4.39,
+   "n_group": 8,
+   "n_rest": 77969,
+   "verdict": "무승부"
+  },
+  "zip": {
+   "auc": 0.429,
+   "lo": 0.303,
+   "hi": 0.5574,
+   "median_group": -3.13,
+   "median_rest": -0.7115,
+   "n_group": 8,
+   "n_rest": 77969,
+   "verdict": "무승부"
+  },
+  "bliss": {
+   "auc": 0.458,
+   "lo": 0.3259,
+   "hi": 0.5837,
+   "median_group": -1.985,
+   "median_rest": -0.8,
+   "n_group": 8,
+   "n_rest": 77969,
+   "verdict": "무승부"
+  },
+  "hsa": {
+   "auc": 0.5155,
+   "lo": 0.3535,
+   "hi": 0.6909,
+   "median_group": -0.175,
+   "median_rest": -0.12,
+   "n_group": 8,
+   "n_rest": 77969,
+   "verdict": "무승부"
+  }
+ },
+ "push_plus_lipid_pairs": [
+  {
+   "pair": [
+    "zoledronicacid",
+    "zolinza"
+   ],
+   "n_lines": 59,
+   "mean": -7.446,
+   "strict_lipid": false
+  },
+  {
+   "pair": [
+    "orlistat",
+    "zolinza"
+   ],
+   "n_lines": 2,
+   "mean": -8.44,
+   "strict_lipid": true
+  },
+  {
+   "pair": [
+    "liothyronine",
+    "orlistat"
+   ],
+   "n_lines": 1,
+   "mean": -10.19,
+   "strict_lipid": true
+  },
+  {
+   "pair": [
+    "liothyronine",
+    "pyrazinamide"
+   ],
+   "n_lines": 1,
+   "mean": 14.79,
+   "strict_lipid": false
+  },
+  {
+   "pair": [
+    "cerivastatin",
+    "zolinza"
+   ],
+   "n_lines": 1,
+   "mean": 1.64,
+   "strict_lipid": true
+  },
+  {
+   "pair": [
+    "pyrazinamide",
+    "zolinza"
+   ],
+   "n_lines": 1,
+   "mean": 4.85,
+   "strict_lipid": false
+  },
+  {
+   "pair": [
+    "cerivastatin",
+    "liothyronine"
+   ],
+   "n_lines": 1,
+   "mean": -2.66,
+   "strict_lipid": true
+  },
+  {
+   "pair": [
+    "orlistat",
+    "vorinostatsaha"
+   ],
+   "n_lines": 1,
+   "mean": -22.639,
+   "strict_lipid": true
+  }
+ ],
+ "added_strict_lipid": {
+  "difference": -2.821,
+  "lo": -10.4945,
+  "hi": 4.0233,
+  "n_group": 5,
+  "n_rest": 77967,
+  "verdict": "무승부",
+  "drugs": [
+   "atorvastatincalcium",
+   "c75",
+   "cerivastatin",
+   "cerulenin",
+   "fluvastatin",
+   "gsk2194069",
+   "lovastatin",
+   "mevastatin",
+   "mk8245",
+   "orlistat",
+   "pf05175157",
+   "pitavastatincalcium",
+   "pravastatin",
+   "pravastatinsodium",
+   "simvastatin"
+  ]
+ },
+ "added_scd_or_srebp_pairs": 0,
  "drugs_in_combination_data": 5002,
  "lipid_drugs_in_combination_data": [
   "alendronate",
