@@ -1,0 +1,722 @@
+{
+ "direct": {
+  "drugcombdb_scored_http": {
+   "url": "http://drugcombdb.denglab.org/download/drugcombs_scored.csv",
+   "reachable": true,
+   "bytes": 4000000,
+   "tables": {
+    "drugcombs_scored.csv": {
+     "rows_seen": 72760,
+     "columns": [
+      "ID",
+      "Drug1",
+      "Drug2",
+      "Cell line",
+      "ZIP",
+      "Bliss",
+      "Loewe",
+      "HSA"
+     ],
+     "drug_columns": [
+      "Drug1",
+      "Drug2"
+     ],
+     "annotation_columns": [],
+     "distinct_drug_values_seen": 38,
+     "drug_sample": [
+      "5-FU",
+      "ABT-888",
+      "AZD1775",
+      "BEZ-235",
+      "BORTEZOMIB",
+      "CARBOPLATIN",
+      "CYCLOPHOSPHAMIDE",
+      "DASATINIB",
+      "DEXAMETHASONE",
+      "DINACICLIB",
+      "DOXORUBICIN",
+      "ERLOTINIB",
+      "ETOPOSIDE",
+      "GELDANAMYCIN",
+      "GEMCITABINE",
+      "L778123",
+      "LAPATINIB",
+      "METFORMIN",
+      "METHOTREXATE",
+      "MITOMYCINE",
+      "MK-2206",
+      "MK-4541",
+      "MK-4827",
+      "MK-5108",
+      "MK-8669"
+     ],
+     "lipid_drugs_found": [],
+     "lipid_words_in_annotation": []
+    }
+   }
+  },
+  "drugcombdb_scored_https": {
+   "url": "https://drugcombdb.denglab.org/download/drugcombs_scored.csv",
+   "reachable": false,
+   "error": "<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1016)>"
+  },
+  "drugcombdb_response": {
+   "url": "http://drugcombdb.denglab.org/download/drugcombs_response.csv",
+   "reachable": false,
+   "error": "too big (685920301 bytes)"
+  },
+  "drugcombdb_chem": {
+   "url": "http://drugcombdb.denglab.org/download/drug_chemical_info.csv",
+   "reachable": true,
+   "bytes": 297674,
+   "tables": {
+    "drug_chemical_info.csv": {
+     "rows_seen": 3058,
+     "columns": [
+      "drugName",
+      "cIds",
+      "drugNameOfficial",
+      "molecularWeight",
+      "smilesString"
+     ],
+     "drug_columns": [
+      "drugName",
+      "drugNameOfficial"
+     ],
+     "annotation_columns": [],
+     "distinct_drug_values_seen": 5235,
+     "drug_sample": [
+      "#N/A",
+      "(+)-JQ-1",
+      "(+)-JQ1",
+      "(+)-Usniacin",
+      "(+/-)-SULFINPYRAZONE",
+      "(-)-Blebbistatin",
+      "(-)-Gossypol",
+      "(-)-Indolactam V",
+      "(-)-Usnic acid",
+      "(-)-methyl jasmonate",
+      "(2S)-1-[2,6-dimethoxy-4-(2-methyl-3-phenyl-benzyl)oxy-benzyl]pipecolinic acid",
+      "(2S)-2,6-diamino-N-[(1S)-5-amino-1-[[(1S)-2-[[(1S)-2-[[(1S)-5-amino-1-[[(1S)-5-amino-1-[[(1S)-2-[[(1S)-1-[[(1S)-5-amino-1-carbamoyl-pentyl]carbamoyl]-2,2-diphenyl-ethyl]amino]-1-(1H-indol-3-ylmethyl)-2-oxo-ethyl]carbamoyl]pentyl]carbamoyl]pentyl]amino]-1-(1H-indol-3-ylmethyl)-2-oxo-ethyl]amino]-1-(1H-indol-3-ylmethyl)-2-oxo-ethyl]carbamoyl]pentyl]hexanamide",
+      "(2S)-2-amino-3-[4-[(5-amino-2-phenyl-1,3-benzoxazol-7-yl)methoxy]-3,5-dichlorophenyl]propanoic acid",
+      "(3E,5E)-1-acryloyl-3,5-bis(4-fluoro-3-nitro-benzylidene)azepan-4-one",
+      "(E)-3-[3-[3,5-bis(trifluoromethyl)phenyl]-1,2,4-triazol-1-yl]-2-(5-pyrimidyl)acrylamide",
+      "(E,2S,4R,8S)-8-[(2S,5R,7S,8R,9R)-7-hydroxy-2-[(2R,4S,5S,7R,9S,10R)-2-[(2S,3S,5R,6R)-6-hydroxy-6-(hydroxymethyl)-3,5-dimethyloxan-2-yl]-9-[(2S,5S,6R)-5-methoxy-6-methyloxan-2-yl]oxy-4,10-dimethyl-1,6-dioxaspiro[4.5]decan-7-yl]-2,8-dimethyl-1,10-dioxaspiro[4.5]decan-9-yl]-2,4,6-trimethyl-5-oxonon-6-enoic acid",
+      "(R)-PFI-2",
+      "(R)-Talarozole",
+      "(S)-(+)-Niguldipine",
+      "(S)-(-)-blebbistatin",
+      "(�?-Taxifolin",
+      "0W9Q8U337A",
+      "0X5",
+      "0XF",
+      "1) varenicline"
+     ],
+     "lipid_drugs_found": [
+      "Alendronate",
+      "C75",
+      "CERIVASTATIN",
+      "Cerulenin",
+      "Ellagic acid",
+      "Fisetin",
+      "Fluvastatin",
+      "GSK-2194069",
+      "Liranaftate",
+      "Lovastatin",
+      "MK-8245",
+      "Mevastatin",
+      "Nelfinavir",
+      "Orlistat",
+      "PF-05175157",
+      "Pyrazinamide",
+      "Simvastatin",
+      "Tolnaftate",
+      "Zoledronic acid",
+      "alendronate",
+      "atorvastatin",
+      "cerulenin",
+      "compactin",
+      "ellagic acid",
+      "fisetin",
+      "fluvastatin",
+      "liranaftate",
+      "lovastatin",
+      "nelfinavir",
+      "orlistat",
+      "pitavastatin",
+      "pravastatin",
+      "pretomanid",
+      "pyrazinamide",
+      "simvastatin",
+      "tolnaftate",
+      "zoledronic acid"
+     ],
+     "lipid_words_in_annotation": []
+    }
+   }
+  },
+  "drugcombdb_alt": {
+   "url": "http://drugcombdb.denglab.org/static/download/drugcombs_scored.csv",
+   "reachable": false,
+   "error": "HTTP Error 404: 404"
+  },
+  "drugcomb_api_summary": {
+   "url": "https://api.drugcomb.org/summary",
+   "reachable": false,
+   "error": "<urlopen error [Errno 110] Connection timed out>"
+  },
+  "drugcomb_api_drugs": {
+   "url": "https://api.drugcomb.org/drugs",
+   "reachable": false,
+   "error": "<urlopen error [Errno 110] Connection timed out>"
+  },
+  "drugcomb_jing": {
+   "url": "https://drugcomb.fimm.fi/jing/summary_v_1_5.csv",
+   "reachable": false,
+   "error": "<urlopen error [Errno 110] Connection timed out>"
+  },
+  "synergxdb_api": {
+   "url": "https://www.synergxdb.ca/api/synergy?limit=10",
+   "reachable": false,
+   "error": "HTTP Error 400: Bad Request"
+  },
+  "synergxdb_dl": {
+   "url": "https://www.synergxdb.ca/downloads/synergy.csv",
+   "reachable": true,
+   "bytes": 4289,
+   "tables": {
+    "synergy.csv": {
+     "not_a_table": "<!doctype html><html lang=\"en\"><head><meta charset=\"utf-8\"/><link rel=\"shortcut icon\" href=\"/favicon-bg.png\"/><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"/><meta name=\"theme-colo"
+    }
+   }
+  },
+  "oneil_deepsynergy": {
+   "url": "https://raw.githubusercontent.com/KristinaPreuer/DeepSynergy/master/labels.csv",
+   "reachable": false,
+   "error": "HTTP Error 404: Not Found"
+  },
+  "gdsc_combo_portal": {
+   "url": "https://gdsc-combinations.depmap.sanger.ac.uk/",
+   "reachable": true,
+   "bytes": 5444,
+   "tables": {
+    "": {
+     "not_a_table": "<!DOCTYPE html>\n<html>\n    <head>\n        <!-- Global site tag (gtag.js) - Google Analytics -->\n        <script async src=\"https://www.googletagmanager.com/gtag/js?id=G-W42DJB6ZEK\"></script>\n        <"
+    }
+   }
+  },
+  "gdsc_combo_anchor": {
+   "url": "https://cog.sanger.ac.uk/cancerrxgene/GDSC_release8.5/combinations_anchor.csv",
+   "reachable": false,
+   "error": "HTTP Error 404: Not Found"
+  },
+  "gdsc_combo_matrix": {
+   "url": "https://cog.sanger.ac.uk/cancerrxgene/GDSC_release8.5/combinations_matrix.csv",
+   "reachable": false,
+   "error": "HTTP Error 404: Not Found"
+  },
+  "ncats_matrix": {
+   "url": "https://matrix.ncats.nih.gov/api/matrices",
+   "reachable": false,
+   "error": "<urlopen error [Errno -2] Name or service not known>"
+  }
+ },
+ "search": {
+  "zenodo: drug combination synergy": [
+   {
+    "title": "Black-hole microstate counting in an asymmetric Z5 CHL model outside M24: positivity, blind growth tests and exact Radem",
+    "doi": "10.5281/zenodo.23427521",
+    "files": [
+     {
+      "name": "bh_code_and_data.zip",
+      "size": 98271652,
+      "url": "https://zenodo.org/api/records/23427521/files/bh_code_and_data.zip/content"
+     },
+     {
+      "name": "Bogovich_2026_Z5_CHL_black_hole_counting.pdf",
+      "size": 832168,
+      "url": "https://zenodo.org/api/records/23427521/files/Bogovich_2026_Z5_CHL_black_hole_counting.pdf/content"
+     },
+     {
+      "name": "Bogovich_2026_Z5_CHL_black_hole_counting.tex",
+      "size": 169367,
+      "url": "https://zenodo.org/api/records/23427521/files/Bogovich_2026_Z5_CHL_black_hole_counting.tex/content"
+     }
+    ]
+   },
+   {
+    "title": "QBC-CyTOF cross-species PBMC dataset: human and rhesus macaque single-cell protein and phospho-signaling profiles under ",
+    "doi": "10.5281/zenodo.23406825",
+    "files": [
+     {
+      "name": "Rhesus_CyTOF_data.tar.gz",
+      "size": 12976653,
+      "url": "https://zenodo.org/api/records/23406825/files/Rhesus_CyTOF_data.tar.gz/content"
+     },
+     {
+      "name": "Human_CyTOF_data.tar.gz",
+      "size": 13049879,
+      "url": "https://zenodo.org/api/records/23406825/files/Human_CyTOF_data.tar.gz/content"
+     },
+     {
+      "name": "Human_QBC_data.tar.gz",
+      "size": 11417607,
+      "url": "https://zenodo.org/api/records/23406825/files/Human_QBC_data.tar.gz/content"
+     },
+     {
+      "name": "Rhesus_QBC_data.tar.gz",
+      "size": 8915165,
+      "url": "https://zenodo.org/api/records/23406825/files/Rhesus_QBC_data.tar.gz/content"
+     },
+     {
+      "name": "CyTOF_Stimulation_vs_Basal_4k_single_cells_each_data_FCS_part1of3.tar.gz",
+      "size": 45229636,
+      "url": "https://zenodo.org/api/records/23406825/files/CyTOF_Stimulation_vs_Basal_4k_single_cells_each_data_FCS_part1of3.tar.gz/content"
+     },
+     {
+      "name": "CyTOF_Stimulation_vs_Basal_4k_single_cells_each_data_CombinedMatrix_part3of6.tar.gz",
+      "size": 46233116,
+      "url": "https://zenodo.org/api/records/23406825/files/CyTOF_Stimulation_vs_Basal_4k_single_cells_each_data_CombinedMatrix_part3of6.tar.gz/content"
+     },
+     {
+      "name": "CyTOF_Stimulation_vs_Basal_4k_single_cells_each_data_Individual_CSVs_part5of6.tar.gz",
+      "size": 45879821,
+      "url": "https://zenodo.org/api/records/23406825/files/CyTOF_Stimulation_vs_Basal_4k_single_cells_each_data_Individual_CSVs_part5of6.tar.gz/content"
+     },
+     {
+      "name": "CyTOF_Stimulation_vs_Basal_4k_single_cells_each_data_Individual_CSVs_part6of6.tar.gz",
+      "size": 45781678,
+      "url": "https://zenodo.org/api/records/23406825/files/CyTOF_Stimulation_vs_Basal_4k_single_cells_each_data_Individual_CSVs_part6of6.tar.gz/content"
+     },
+     {
+      "name": "data_manifest.txt",
+      "size": 38782,
+      "url": "https://zenodo.org/api/records/23406825/files/data_manifest.txt/content"
+     },
+     {
+      "name": "CyTOF_Stimulation_vs_Basal_4k_single_cells_each_data_Individual_CSVs_part2of6.tar.gz",
+      "size": 47191674,
+      "url": "https://zenodo.org/api/records/23406825/files/CyTOF_Stimulation_vs_Basal_4k_single_cells_each_data_Individual_CSVs_part2of6.tar.gz/content"
+     }
+    ]
+   },
+   {
+    "title": "OpenFF BespokeFit",
+    "doi": "10.5281/zenodo.23426510",
+    "files": [
+     {
+      "name": "openforcefield/openff-bespokefit-0.4.4.zip",
+      "size": 425577,
+      "url": "https://zenodo.org/api/records/23426510/files/openforcefield/openff-bespokefit-0.4.4.zip/content"
+     }
+    ]
+   },
+   {
+    "title": "lherwehe/moz-hazards-erl: Northern Mozambique hazards and cultivated land cover change analysis",
+    "doi": "10.5281/zenodo.23426429",
+    "files": [
+     {
+      "name": "lherwehe/moz-hazards-erl-v1.0.0.zip",
+      "size": 65921,
+      "url": "https://zenodo.org/api/records/23426429/files/lherwehe/moz-hazards-erl-v1.0.0.zip/content"
+     }
+    ]
+   },
+   {
+    "title": "Fragility of steel transmission monopoles under hurricane wind loading: Part I - Static framework",
+    "doi": "10.5281/zenodo.23398856",
+    "files": [
+     {
+      "name": "Otite_et_al_PaperI_Static_Monopole_Fragility_preprint.pdf",
+      "size": 2145961,
+      "url": "https://zenodo.org/api/records/23398856/files/Otite_et_al_PaperI_Static_Monopole_Fragility_preprint.pdf/content"
+     }
+    ]
+   },
+   {
+    "title": "MetaFlux: a unified short-read multi-marker amplicon and shotgun taxonomic profiling workflow",
+    "doi": "10.5281/zenodo.23426290",
+    "files": [
+     {
+      "name": "iLivius/MetaFlux-v2.5.0.zip",
+      "size": 1683480,
+      "url": "https://zenodo.org/api/records/23426290/files/iLivius/MetaFlux-v2.5.0.zip/content"
+     }
+    ]
+   },
+   {
+    "title": "A human engineered mini-heart platform for mimicking ventricular pump function",
+    "doi": "10.1093/cvr/cvag210",
+    "files": [
+     {
+      "name": "cvag210.pdf",
+      "size": 3784622,
+      "url": "https://zenodo.org/api/records/23424652/files/cvag210.pdf/content"
+     }
+    ]
+   },
+   {
+    "title": "Mathematical invariant constraining the relationship among physical dimensions in Planck units and the linear combinatio",
+    "doi": "10.5281/zenodo.23424307",
+    "files": [
+     {
+      "name": "Manuscript of Zhe lu October 16 2026.pdf",
+      "size": 714856,
+      "url": "https://zenodo.org/api/records/23424307/files/Manuscript%20of%20Zhe%20lu%20October%2016%202026.pdf/content"
+     }
+    ]
+   },
+   {
+    "title": "A inteligência artificial e os algoritmos no poder judiciário",
+    "doi": "10.5281/zenodo.23425015",
+    "files": [
+     {
+      "name": "isl7_003.pdf",
+      "size": 341532,
+      "url": "https://zenodo.org/api/records/23425015/files/isl7_003.pdf/content"
+     }
+    ]
+   },
+   {
+    "title": "Methodological Foundations for the Market Valuation of Different Categories of Jewelry: Contemporary Relevance, Innovati",
+    "doi": "10.5281/zenodo.23424688",
+    "files": [
+     {
+      "name": "CHto-nado-znat-otsenshhiku-yuvelirnyh-izdelij-1.jpg",
+      "size": 332482,
+      "url": "https://zenodo.org/api/records/23424688/files/CHto-nado-znat-otsenshhiku-yuvelirnyh-izdelij-1.jpg/content"
+     },
+     {
+      "name": "CHto-nado-znat-otsenshhiku-yuvelirnyh-izdelij (2).pdf",
+      "size": 195188137,
+      "url": "https://zenodo.org/api/records/23424688/files/CHto-nado-znat-otsenshhiku-yuvelirnyh-izdelij%20(2).pdf/content"
+     }
+    ]
+   }
+  ],
+  "zenodo: drug combination screen cancer cell lines": [
+   {
+    "title": "github.com/broadinstitute/warp/TestUltimaGenomicsWholeGenomeCramOnly",
+    "doi": "10.5281/zenodo.23428255",
+    "files": [
+     {
+      "name": "github.com-broadinstitute-warp-TestUltimaGenomicsWholeGenomeCramOnly_Glimpse2LowPassImputation_v2.1.0.zip",
+      "size": 49000,
+      "url": "https://zenodo.org/api/records/23428255/files/github.com-broadinstitute-warp-TestUltimaGenomicsWholeGenomeCramOnly_Glimpse2LowPassImputation_v2.1.0.zip/content"
+     }
+    ]
+   },
+   {
+    "title": "github.com/broadinstitute/warp/TestUltimaGenomicsJointGenotyping",
+    "doi": "10.5281/zenodo.23428246",
+    "files": [
+     {
+      "name": "github.com-broadinstitute-warp-TestUltimaGenomicsJointGenotyping_Glimpse2LowPassImputation_v2.1.0.zip",
+      "size": 36723,
+      "url": "https://zenodo.org/api/records/23428246/files/github.com-broadinstitute-warp-TestUltimaGenomicsJointGenotyping_Glimpse2LowPassImputation_v2.1.0.zip/content"
+     }
+    ]
+   },
+   {
+    "title": "github.com/broadinstitute/warp/TestscANVI",
+    "doi": "10.5281/zenodo.23428244",
+    "files": [
+     {
+      "name": "github.com-broadinstitute-warp-TestscANVI_Glimpse2LowPassImputation_v2.1.0.zip",
+      "size": 20149,
+      "url": "https://zenodo.org/api/records/23428244/files/github.com-broadinstitute-warp-TestscANVI_Glimpse2LowPassImputation_v2.1.0.zip/content"
+     }
+    ]
+   },
+   {
+    "title": "github.com/broadinstitute/warp/Testsnm3C",
+    "doi": "10.5281/zenodo.23428243",
+    "files": [
+     {
+      "name": "github.com-broadinstitute-warp-Testsnm3C_Glimpse2LowPassImputation_v2.1.0.zip",
+      "size": 25761,
+      "url": "https://zenodo.org/api/records/23428243/files/github.com-broadinstitute-warp-Testsnm3C_Glimpse2LowPassImputation_v2.1.0.zip/content"
+     }
+    ]
+   },
+   {
+    "title": "github.com/broadinstitute/warp/TestSlideTags",
+    "doi": "10.5281/zenodo.23428241",
+    "files": [
+     {
+      "name": "github.com-broadinstitute-warp-TestSlideTags_Glimpse2LowPassImputation_v2.1.0.zip",
+      "size": 45108,
+      "url": "https://zenodo.org/api/records/23428241/files/github.com-broadinstitute-warp-TestSlideTags_Glimpse2LowPassImputation_v2.1.0.zip/content"
+     }
+    ]
+   },
+   {
+    "title": "github.com/broadinstitute/warp/TestSlideSeq",
+    "doi": "10.5281/zenodo.23428240",
+    "files": [
+     {
+      "name": "github.com-broadinstitute-warp-TestSlideSeq_Glimpse2LowPassImputation_v2.1.0.zip",
+      "size": 40241,
+      "url": "https://zenodo.org/api/records/23428240/files/github.com-broadinstitute-warp-TestSlideSeq_Glimpse2LowPassImputation_v2.1.0.zip/content"
+     }
+    ]
+   },
+   {
+    "title": "github.com/broadinstitute/warp/TestRNAWithUMIsPipeline",
+    "doi": "10.5281/zenodo.23428239",
+    "files": [
+     {
+      "name": "github.com-broadinstitute-warp-TestRNAWithUMIsPipeline_Glimpse2LowPassImputation_v2.1.0.zip",
+      "size": 33540,
+      "url": "https://zenodo.org/api/records/23428239/files/github.com-broadinstitute-warp-TestRNAWithUMIsPipeline_Glimpse2LowPassImputation_v2.1.0.zip/content"
+     }
+    ]
+   },
+   {
+    "title": "github.com/broadinstitute/warp/TestReblockGVCF",
+    "doi": "10.5281/zenodo.23428238",
+    "files": [
+     {
+      "name": "github.com-broadinstitute-warp-TestReblockGVCF_Glimpse2LowPassImputation_v2.1.0.zip",
+      "size": 27506,
+      "url": "https://zenodo.org/api/records/23428238/files/github.com-broadinstitute-warp-TestReblockGVCF_Glimpse2LowPassImputation_v2.1.0.zip/content"
+     }
+    ]
+   },
+   {
+    "title": "github.com/broadinstitute/warp/TestPeakCalling",
+    "doi": "10.5281/zenodo.23428234",
+    "files": [
+     {
+      "name": "github.com-broadinstitute-warp-TestPeakCalling_Glimpse2LowPassImputation_v2.1.0.zip",
+      "size": 19850,
+      "url": "https://zenodo.org/api/records/23428234/files/github.com-broadinstitute-warp-TestPeakCalling_Glimpse2LowPassImputation_v2.1.0.zip/content"
+     }
+    ]
+   },
+   {
+    "title": "github.com/broadinstitute/warp/TestPairedTag",
+    "doi": "10.5281/zenodo.23428231",
+    "files": [
+     {
+      "name": "github.com-broadinstitute-warp-TestPairedTag_Glimpse2LowPassImputation_v2.1.0.zip",
+      "size": 59778,
+      "url": "https://zenodo.org/api/records/23428231/files/github.com-broadinstitute-warp-TestPairedTag_Glimpse2LowPassImputation_v2.1.0.zip/content"
+     }
+    ]
+   }
+  ],
+  "figshare: drug combination synergy": [
+   {
+    "title": "Growth and DNA Damage-Inducible Transcription Factor 153 Mediates Apoptosis in Response to Fenretinide but Not Synergy b",
+    "id": 34611015,
+    "files": []
+   },
+   {
+    "title": "Clinical pharmacokinetic and in vitro combination studies of nolatrexed dihydrochloride (AG337, Thymitaq(TM)) and paclit",
+    "id": 34597221,
+    "files": []
+   },
+   {
+    "title": "Supplementary Figure S1 from Inhibition of Acetyl-CoA Carboxylase Induces Endoplasmic Reticulum Stress and Augments the ",
+    "id": 34520326,
+    "files": [
+     {
+      "name": "ccr-26-1028_supplementary_figure_s1_suppfs1.pdf",
+      "size": 1260139,
+      "url": "https://ndownloader.figshare.com/files/70161844"
+     }
+    ]
+   },
+   {
+    "title": "Supplementary Figure S10 from Inhibition of Acetyl-CoA Carboxylase Induces Endoplasmic Reticulum Stress and Augments the",
+    "id": 34520323,
+    "files": [
+     {
+      "name": "ccr-26-1028_supplementary_figure_s10_suppfs10.pdf",
+      "size": 1304622,
+      "url": "https://ndownloader.figshare.com/files/70161820"
+     }
+    ]
+   },
+   {
+    "title": "Supplementary Figure S11 from Inhibition of Acetyl-CoA Carboxylase Induces Endoplasmic Reticulum Stress and Augments the",
+    "id": 34520320,
+    "files": [
+     {
+      "name": "ccr-26-1028_supplementary_figure_s11_suppfs11.pdf",
+      "size": 971438,
+      "url": "https://ndownloader.figshare.com/files/70161808"
+     }
+    ]
+   },
+   {
+    "title": "Supplementary Figure S12 from Inhibition of Acetyl-CoA Carboxylase Induces Endoplasmic Reticulum Stress and Augments the",
+    "id": 34520317,
+    "files": [
+     {
+      "name": "ccr-26-1028_supplementary_figure_s12_suppfs12.pdf",
+      "size": 952174,
+      "url": "https://ndownloader.figshare.com/files/70161802"
+     }
+    ]
+   },
+   {
+    "title": "Supplementary Figure S13 from Inhibition of Acetyl-CoA Carboxylase Induces Endoplasmic Reticulum Stress and Augments the",
+    "id": 34520314,
+    "files": [
+     {
+      "name": "ccr-26-1028_supplementary_figure_s13_suppfs13.pdf",
+      "size": 1000712,
+      "url": "https://ndownloader.figshare.com/files/70161799"
+     }
+    ]
+   },
+   {
+    "title": "Supplementary Figure S14 from Inhibition of Acetyl-CoA Carboxylase Induces Endoplasmic Reticulum Stress and Augments the",
+    "id": 34520311,
+    "files": [
+     {
+      "name": "ccr-26-1028_supplementary_figure_s14_suppfs14.pdf",
+      "size": 982936,
+      "url": "https://ndownloader.figshare.com/files/70161796"
+     }
+    ]
+   },
+   {
+    "title": "Supplementary Figure S15 from Inhibition of Acetyl-CoA Carboxylase Induces Endoplasmic Reticulum Stress and Augments the",
+    "id": 34520305,
+    "files": [
+     {
+      "name": "ccr-26-1028_supplementary_figure_s15_suppfs15.pdf",
+      "size": 1697539,
+      "url": "https://ndownloader.figshare.com/files/70161787"
+     }
+    ]
+   },
+   {
+    "title": "Supplementary Figure S16 from Inhibition of Acetyl-CoA Carboxylase Induces Endoplasmic Reticulum Stress and Augments the",
+    "id": 34520302,
+    "files": [
+     {
+      "name": "ccr-26-1028_supplementary_figure_s16_suppfs16.pdf",
+      "size": 2137075,
+      "url": "https://ndownloader.figshare.com/files/70161778"
+     }
+    ]
+   }
+  ],
+  "figshare: drug synergy screen": [
+   {
+    "title": "Chemotherapy modulation by a cancer-associated microbiota metabolite",
+    "id": 34533966,
+    "files": [
+     {
+      "name": "621A11C7-6785-4542-96A7-D32C62E58BDC.pdf",
+      "size": 18041141,
+      "url": "https://ndownloader.figshare.com/files/70176984"
+     }
+    ]
+   },
+   {
+    "title": "Supplementary Figure S1 from Inhibition of Acetyl-CoA Carboxylase Induces Endoplasmic Reticulum Stress and Augments the ",
+    "id": 34520326,
+    "files": [
+     {
+      "name": "ccr-26-1028_supplementary_figure_s1_suppfs1.pdf",
+      "size": 1260139,
+      "url": "https://ndownloader.figshare.com/files/70161844"
+     }
+    ]
+   },
+   {
+    "title": "Supplementary Figure S10 from Inhibition of Acetyl-CoA Carboxylase Induces Endoplasmic Reticulum Stress and Augments the",
+    "id": 34520323,
+    "files": [
+     {
+      "name": "ccr-26-1028_supplementary_figure_s10_suppfs10.pdf",
+      "size": 1304622,
+      "url": "https://ndownloader.figshare.com/files/70161820"
+     }
+    ]
+   },
+   {
+    "title": "Supplementary Figure S11 from Inhibition of Acetyl-CoA Carboxylase Induces Endoplasmic Reticulum Stress and Augments the",
+    "id": 34520320,
+    "files": [
+     {
+      "name": "ccr-26-1028_supplementary_figure_s11_suppfs11.pdf",
+      "size": 971438,
+      "url": "https://ndownloader.figshare.com/files/70161808"
+     }
+    ]
+   },
+   {
+    "title": "Supplementary Figure S12 from Inhibition of Acetyl-CoA Carboxylase Induces Endoplasmic Reticulum Stress and Augments the",
+    "id": 34520317,
+    "files": [
+     {
+      "name": "ccr-26-1028_supplementary_figure_s12_suppfs12.pdf",
+      "size": 952174,
+      "url": "https://ndownloader.figshare.com/files/70161802"
+     }
+    ]
+   },
+   {
+    "title": "Supplementary Figure S13 from Inhibition of Acetyl-CoA Carboxylase Induces Endoplasmic Reticulum Stress and Augments the",
+    "id": 34520314,
+    "files": [
+     {
+      "name": "ccr-26-1028_supplementary_figure_s13_suppfs13.pdf",
+      "size": 1000712,
+      "url": "https://ndownloader.figshare.com/files/70161799"
+     }
+    ]
+   },
+   {
+    "title": "Supplementary Figure S14 from Inhibition of Acetyl-CoA Carboxylase Induces Endoplasmic Reticulum Stress and Augments the",
+    "id": 34520311,
+    "files": [
+     {
+      "name": "ccr-26-1028_supplementary_figure_s14_suppfs14.pdf",
+      "size": 982936,
+      "url": "https://ndownloader.figshare.com/files/70161796"
+     }
+    ]
+   },
+   {
+    "title": "Supplementary Figure S15 from Inhibition of Acetyl-CoA Carboxylase Induces Endoplasmic Reticulum Stress and Augments the",
+    "id": 34520305,
+    "files": [
+     {
+      "name": "ccr-26-1028_supplementary_figure_s15_suppfs15.pdf",
+      "size": 1697539,
+      "url": "https://ndownloader.figshare.com/files/70161787"
+     }
+    ]
+   },
+   {
+    "title": "Supplementary Figure S16 from Inhibition of Acetyl-CoA Carboxylase Induces Endoplasmic Reticulum Stress and Augments the",
+    "id": 34520302,
+    "files": [
+     {
+      "name": "ccr-26-1028_supplementary_figure_s16_suppfs16.pdf",
+      "size": 2137075,
+      "url": "https://ndownloader.figshare.com/files/70161778"
+     }
+    ]
+   },
+   {
+    "title": "Supplementary Figure S17 from Inhibition of Acetyl-CoA Carboxylase Induces Endoplasmic Reticulum Stress and Augments the",
+    "id": 34520299,
+    "files": [
+     {
+      "name": "ccr-26-1028_supplementary_figure_s17_suppfs17.pdf",
+      "size": 2256568,
+      "url": "https://ndownloader.figshare.com/files/70161775"
+     }
+    ]
+   }
+  ]
+ }
+}
