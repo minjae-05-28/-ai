@@ -31,10 +31,11 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -f data/combo
+          git rm -q --cached --ignore-unmatch data/combo/combos.tsv
           if git diff --cached --quiet; then
             echo "No new data."
           else
-            git commit -m "Add drug combination synergy data (DrugComb or NCI-ALMANAC)"
+            git commit -m "Add drug combination synergy data (DrugCombDB, DrugComb or NCI-ALMANAC)"
             ok=0
             for i in 1 2 3 4 5 6; do
               git pull --rebase origin main && git push origin HEAD:main && { ok=1; break; }

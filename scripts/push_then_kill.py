@@ -4,6 +4,7 @@
     python scripts/push_then_kill.py   -> results/drug/push_then_kill.json
 """
 
+import gzip
 import json
 import re
 import sys
@@ -13,6 +14,7 @@ import numpy as np
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import cancer_atavism as ca  # noqa: E402
+from combo_probe import LIPID_NAMES  # noqa: E402
 from drug_fetch import partial  # noqa: E402
 
 D = Path("data/combo")
@@ -49,7 +51,9 @@ def classes():
     s = json.loads(Path("results/drug/summary.json").read_text())
     push = {norm(x) for x in s["A_mimic"]["matched_names"]}
     rev = {norm(x) for x in s["A_reverse"]["matched_names"]}
-    lip = prism_lipid()
+    # PRISM annotation, plus known inhibitors of the same targets by name: the combination data carries no
+    # mechanism column (deviation of 2026-10-17).
+    lip = prism_lipid() | {norm(x) for x in LIPID_NAMES}
     overlap = {"push_and_lipid": sorted(push & lip), "reverse_and_lipid": sorted(rev & lip),
                "push_and_reverse": sorted(push & rev)}
     push, rev, lip = push - lip - rev, rev - lip - push, lip - push - rev
@@ -57,11 +61,15 @@ def classes():
 
 
 def combos():
-    p = D / "combos.tsv"
-    if not p.exists():
+    gz, plain = D / "combos.tsv.gz", D / "combos.tsv"
+    if gz.exists():
+        text = gzip.decompress(gz.read_bytes()).decode()
+    elif plain.exists():
+        text = plain.read_text()
+    else:
         return []
     rows = []
-    for line in p.read_text().splitlines()[1:]:
+    for line in text.splitlines()[1:]:
         x = line.split("\t")
         if len(x) < 7:
             continue
@@ -74,6 +82,17 @@ def combos():
         if vals:
             rows.append((norm(x[0]), norm(x[1]), x[2], vals))
     return rows
+
+
+def aliases():
+    """DrugCombDB name -> official name, so "compactin" also matches "mevastatin"."""
+    out, p = {}, D / "drug_names.tsv"
+    if p.exists():
+        for line in p.read_text().splitlines()[1:]:
+            x = line.split("\t")
+            if len(x) == 2 and x[1] and norm(x[0]) != norm(x[1]):
+                out[norm(x[0])] = norm(x[1])
+    return out
 
 
 def lines_scores():
@@ -114,7 +133,10 @@ def main():
             continue
         key = tuple(sorted((d1, d2)))
         by_pair.setdefault(key, []).append((line, vals[score_key]))
-    tag = lambda d: ("P" if d in push else "") + ("R" if d in rev else "") + ("L" if d in lip else "")
+    alias = aliases()
+    members = lambda d: {d, alias.get(d, d)}
+    tag = lambda d: ("P" if members(d) & push else "") + ("R" if members(d) & rev else "") + \
+                    ("L" if members(d) & lip else "")
     groups = {"P+L": [], "R+L": [], "rest": []}
     for (a, b), v in by_pair.items():
         ta, tb = tag(a), tag(b)
@@ -155,7 +177,11 @@ def main():
             else {"n": len(pl_rows), "skipped": "partial correlation needs more lines"}
     else:
         out["aux_synergy_vs_tilt"] = {"n": len(pl_rows), "skipped": "fewer than 100 matched rows"}
-    out["lipid_drugs_found"] = sorted(lip)[:40]
+    seen = {d for pair in by_pair for d in pair}
+    out["drugs_in_combination_data"] = len(seen)
+    out["lipid_drugs_in_combination_data"] = sorted(d for d in seen if "L" in tag(d))
+    out["push_drugs_in_combination_data"] = sorted(d for d in seen if "P" in tag(d))
+    out["reverse_drugs_in_combination_data"] = sorted(d for d in seen if "R" in tag(d))
     OUT.parent.mkdir(parents=True, exist_ok=True)
     OUT.write_text(json.dumps(out, ensure_ascii=False, indent=1))
     print(json.dumps(out, ensure_ascii=False, indent=1))

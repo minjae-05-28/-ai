@@ -57,3 +57,16 @@
   ALMANAC은 약물을 NSC 번호로만 적어 분류와 하나도 연결되지 않았습니다(P+L 0짝). 번호–이름 대응표를 함께 받아 이름으로 바꾸도록
   고쳤습니다(`scripts/combo_fetch.py`). 분류·지표·판정·예측은 그대로입니다. 본 것은 짝 수(P+L 0, R+L 0, 그 밖 5,242)뿐이고
   상승효과 값은 보지 않았습니다.
+- 2026-10-17 (상승효과 값을 보기 전): **자료 출처를 DrugCombDB로 바꿉니다.** ALMANAC에는 지질 합성 억제제가 하나도 없어
+  검사 자체가 불가능했으므로(사전 등록 27 결과 참조), 쓸 수 있는 조합 자료를 찾는 탐색을 따로 돌렸습니다
+  (`scripts/combo_probe.py`, 보고서 `data/combo_probe/report.json`; 약물 이름과 열 제목만 읽고 상승효과 값은 읽지 않음).
+  DrugComb(주소 10개)·SynergxDB·GDSC 조합·NCATS·Zenodo·figshare는 모두 실패했고, **DrugCombDB**
+  (http://drugcombdb.denglab.org, 약물 5,235개)는 받아졌으며 그 약물 목록에 지질 합성 억제제가 있었습니다
+  (MK-8245(SCD1), 세룰레닌·C75·올리스타트·GSK-2194069(FASN), PF-05175157(ACC), 스타틴 7종 등).
+  DrugCombDB는 Loewe·ZIP·Bliss·HSA를 모두 담으므로 주 지표(기본 Loewe)를 사전 등록대로 계산할 수 있습니다.
+  지표·판정·예측은 그대로입니다.
+- 2026-10-17 (같은 시점, 상승효과 값을 보기 전): **지질 억제제(L) 판정 방법을 보완합니다.** 사전 등록은 L을
+  "조합 자료의 약물 주석과 PRISM 주석"으로 찾기로 했는데, DrugCombDB에는 작용 기전·표적 열이 없습니다. 그래서 사전 등록이 지정한
+  것과 **같은 표적**(SCD, SREBF, MBTPS, SCAP, FASN, ACACA/ACC, HMGCR, SQLE)의 알려진 억제제 이름 목록을 PRISM 주석에
+  더해서 씁니다(목록은 `scripts/combo_probe.py`의 `LIPID_NAMES`에 적어 두었고, 이 이탈을 적은 시점의 내용 그대로 씁니다).
+  표적 정의는 바꾸지 않았고, 상승효과 값은 보지 않았습니다.

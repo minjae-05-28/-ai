@@ -1,9 +1,11 @@
 """Drug combination synergy for pre-registration 27, reduced on a GitHub runner.
 
-  data/combo/combos.tsv   drug1, drug2, cell line, synergy scores (loewe, zip, bliss, hsa)
+  data/combo/combos.tsv.gz  drug1, drug2, cell line, synergy scores (loewe, zip, bliss, hsa)
+  data/combo/drug_names.tsv name -> official name (DrugCombDB), for alias matching
   data/combo/source.json
 
-Tries DrugComb first (API summary table), then NCI-ALMANAC (ComboScore) as the fallback.
+Tries DrugCombDB first (the only reachable source that holds a lipid synthesis inhibitor — deviation of
+2026-10-17), then DrugComb, then NCI-ALMANAC (ComboScore).
 """
 
 import csv
@@ -31,6 +33,61 @@ ALMANAC = ["https://wiki.nci.nih.gov/download/attachments/338237347/ComboDrugGro
            "https://ctd2-data.nci.nih.gov/Public/JHU-FSU/NCI-ALMANAC/ComboDrugGrowth_Nov2017.zip"]
 ALMANAC_NAMES = ["https://wiki.nci.nih.gov/download/attachments/338237347/ComboCompoundNames_small.txt",
                  "https://wiki.nci.nih.gov/download/attachments/338237347/ComboCompoundNames_all.txt"]
+DRUGCOMBDB = ["http://drugcombdb.denglab.org/download/drugcombs_scored.csv"]
+DRUGCOMBDB_CHEM = "http://drugcombdb.denglab.org/download/drug_chemical_info.csv"
+
+
+def try_drugcombdb(source):
+    """DrugCombDB: Drug1, Drug2, Cell line, ZIP, Bliss, Loewe, HSA."""
+    for url in DRUGCOMBDB:
+        raw = get(url, tries=3)
+        if raw is None:
+            continue
+        rows = rows_from_csv(raw)
+        if not rows:
+            print(f"{url}: not a table", flush=True)
+            continue
+        head = list(rows[0])
+        print(f"{url}: {len(rows)} rows, columns {head[:12]}", flush=True)
+        low = {h.lower().strip(): h for h in head}
+        d1 = low.get("drug1") or low.get("drug_row")
+        d2 = low.get("drug2") or low.get("drug_col")
+        cl = next((low[k] for k in low if "cell" in k), None)
+        score = {k: next((low[h] for h in low if h.startswith(k)), None)
+                 for k in ("loewe", "zip", "bliss", "hsa")}
+        if not all((d1, d2, cl)) or not any(score.values()):
+            print(f"missing expected DrugCombDB columns: {head[:12]}", flush=True)
+            continue
+        n = 0
+        with gzip.open(OUT / "combos.tsv.gz", "wt") as f:
+            f.write("drug1\tdrug2\tline\tloewe\tzip\tbliss\thsa\n")
+            for r in rows:
+                if not r.get(d1) or not r.get(d2) or not r.get(cl):
+                    continue
+                vals = [(r.get(score[k]) or "").strip() if score[k] else "" for k in
+                        ("loewe", "zip", "bliss", "hsa")]
+                if not any(vals):
+                    continue
+                f.write(f"{r[d1]}\t{r[d2]}\t{r[cl]}\t" + "\t".join(vals) + "\n")
+                n += 1
+        drugs = {r[d1].strip() for r in rows if r.get(d1)} | {r[d2].strip() for r in rows if r.get(d2)}
+        chem = get(DRUGCOMBDB_CHEM, tries=2)                 # name -> official name, for alias matching
+        n_alias = 0
+        if chem:
+            crows = rows_from_csv(chem) or []
+            with open(OUT / "drug_names.tsv", "w") as f:
+                f.write("name\tofficial_name\n")
+                for r in crows:
+                    a = (r.get("drugName") or "").strip()
+                    b = (r.get("drugNameOfficial") or "").strip()
+                    if a:
+                        f.write(f"{a}\t{b}\n")
+                        n_alias += 1
+        source["combo"] = {"source": "DrugCombDB", "url": url, "rows": n, "columns": head[:12],
+                           "distinct_drugs": len(drugs), "alias_rows": n_alias,
+                           "scores": {k: v for k, v in score.items() if v}}
+        return True
+    return False
 
 
 def rows_from_csv(raw, sep=","):
@@ -60,7 +117,7 @@ def try_drugcomb(source):
             continue
         d1, d2, cl = need
         score = {k: low.get(f"synergy_{k}") for k in ("loewe", "zip", "bliss", "hsa")}
-        with open(OUT / "combos.tsv", "w") as f:
+        with gzip.open(OUT / "combos.tsv.gz", "wt") as f:
             f.write("drug1\tdrug2\tline\tloewe\tzip\tbliss\thsa\n")
             n = 0
             for r in rows:
@@ -144,7 +201,7 @@ def try_almanac(source):
                 agg.setdefault(k, []).append(float(r[sc]))
             except ValueError:
                 pass
-        with open(OUT / "combos.tsv", "w") as f:
+        with gzip.open(OUT / "combos.tsv.gz", "wt") as f:
             f.write("drug1\tdrug2\tline\tloewe\tzip\tbliss\thsa\n")
             for (a, b, c), v in agg.items():
                 f.write(f"{label(a)}\t{label(b)}\t{c}\t\t\t\t{sum(v) / len(v):.4f}\n")
@@ -156,8 +213,9 @@ def try_almanac(source):
 
 def main():
     OUT.mkdir(parents=True, exist_ok=True)
+    (OUT / "combos.tsv").unlink(missing_ok=True)      # superseded by the gzipped file
     source = {}
-    if not try_drugcomb(source) and not try_almanac(source):
+    if not try_drugcombdb(source) and not try_drugcomb(source) and not try_almanac(source):
         source["combo"] = None
     (OUT / "source.json").write_text(json.dumps(source, indent=1))
     print(json.dumps(source, indent=1), flush=True)
