@@ -1,10 +1,25 @@
 {
- "nsc_names": 105,
  "combo": {
-  "source": "NCI-ALMANAC",
-  "url": "https://wiki.nci.nih.gov/download/attachments/338237347/ComboDrugGrowth_Nov2017.zip",
-  "file": "ComboDrugGrowth_Nov2017.csv",
-  "pairs": 311466,
-  "note": "ComboScore stored in the hsa column; drugs are NSC numbers"
+  "source": "DrugCombDB",
+  "url": "http://drugcombdb.denglab.org/download/drugcombs_scored.csv",
+  "rows": 498865,
+  "columns": [
+   "ID",
+   "Drug1",
+   "Drug2",
+   "Cell line",
+   "ZIP",
+   "Bliss",
+   "Loewe",
+   "HSA"
+  ],
+  "distinct_drugs": 6245,
+  "alias_rows": 3059,
+  "scores": {
+   "loewe": "Loewe",
+   "zip": "ZIP",
+   "bliss": "Bliss",
+   "hsa": "HSA"
+  }
  }
 }
