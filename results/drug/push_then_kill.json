@@ -1,18 +1,33 @@
 {
  "source": {
-  "nsc_names": 105,
   "combo": {
-   "source": "NCI-ALMANAC",
-   "url": "https://wiki.nci.nih.gov/download/attachments/338237347/ComboDrugGrowth_Nov2017.zip",
-   "file": "ComboDrugGrowth_Nov2017.csv",
-   "pairs": 311466,
-   "note": "ComboScore stored in the hsa column; drugs are NSC numbers"
+   "source": "DrugCombDB",
+   "url": "http://drugcombdb.denglab.org/download/drugcombs_scored.csv",
+   "rows": 498865,
+   "columns": [
+    "ID",
+    "Drug1",
+    "Drug2",
+    "Cell line",
+    "ZIP",
+    "Bliss",
+    "Loewe",
+    "HSA"
+   ],
+   "distinct_drugs": 6245,
+   "alias_rows": 3059,
+   "scores": {
+    "loewe": "Loewe",
+    "zip": "ZIP",
+    "bliss": "Bliss",
+    "hsa": "HSA"
+   }
   }
  },
  "class_sizes": {
   "push": 13,
   "reverse": 20,
-  "lipid": 45
+  "lipid": 72
  },
  "class_overlap_removed": {
   "push_and_lipid": [
@@ -23,66 +38,88 @@
    "geldanamycin"
   ]
  },
- "combo_rows": 311466,
- "score_used": "hsa",
+ "combo_rows": 498865,
+ "score_used": "loewe",
  "pairs": {
-  "P+L": 0,
-  "R+L": 0,
-  "rest": 5233
+  "P+L": 8,
+  "R+L": 2,
+  "rest": 77967
  },
  "primary_push_plus_lipid": {
-  "n_group": 0,
-  "skipped": "fewer than 5 pairs"
+  "difference": 1.8748,
+  "lo": -5.0668,
+  "hi": 8.8931,
+  "n_group": 8,
+  "n_rest": 77967,
+  "verdict": "무승부"
  },
  "secondary_reverse_plus_lipid": {
-  "n_group": 0,
+  "n_group": 2,
   "skipped": "fewer than 5 pairs"
  },
- "overall": "판정 불가(짝 부족)",
+ "overall": "지지하지 않음",
  "aux_synergy_vs_tilt": {
   "n": 0,
   "skipped": "fewer than 100 matched rows"
  },
- "lipid_drugs_found": [
-  "4methylgenistein",
-  "a939572",
-  "alphaasarone",
-  "aramchol",
-  "atorvastatin",
-  "benfluorex",
-  "biotin",
-  "butenafine",
-  "cianidanol",
-  "cp640186",
+ "drugs_in_combination_data": 5002,
+ "lipid_drugs_in_combination_data": [
+  "alendronate",
+  "atorvastatincalcium",
+  "c75",
+  "cerivastatin",
   "ellagicacid",
-  "epicatechingallate",
   "epigallocatechingallate",
-  "firsocostat",
   "fisetin",
   "fluvastatin",
   "gsk2194069",
-  "kd023",
   "liranaftate",
   "lovastatin",
-  "meglutol",
   "mevastatin",
-  "mk4074",
   "mk8245",
-  "morin",
-  "nadide",
-  "naftifine",
-  "nicodicosapent",
-  "nsc4644",
-  "olumacostatglasaretil",
+  "nelfinavir",
   "orlistat",
+  "pa824",
   "pf05175157",
-  "pf429242",
-  "pitavastatin",
-  "plurisin1",
+  "pitavastatincalcium",
   "pravastatin",
-  "pretomanid",
-  "procaine",
+  "pravastatinsodium",
   "pyrazinamide",
-  "ro488071"
+  "simvastatin",
+  "terbinafine",
+  "tolnaftate",
+  "viracept",
+  "zoledronicacid"
+ ],
+ "push_drugs_in_combination_data": [
+  "belinostat",
+  "butein",
+  "imd0354",
+  "liothyronine",
+  "pelitinib",
+  "pifithrinmu",
+  "pik75",
+  "px12",
+  "trichostatina",
+  "vorinostatsaha",
+  "zolinza"
+ ],
+ "reverse_drugs_in_combination_data": [
+  "4epiadriamycin",
+  "at7519",
+  "bi2536",
+  "bms536924",
+  "cgp60474",
+  "dorsomorphin",
+  "enrofloxacin",
+  "gdc0980",
+  "gsk2126458",
+  "ly294002",
+  "nvpauy922",
+  "pd0325901",
+  "pd184352",
+  "pd325901",
+  "selumetinib",
+  "vemurafenib"
  ]
 }

@@ -211,10 +211,29 @@ def try_almanac(source):
     return False
 
 
+def line_names(source):
+    """DepMap model id <-> cell line name, so combination lines join the tilt scores (data/drug/lines.tsv)."""
+    from drug_fetch import figshare_find                     # noqa: PLC0415 (needs numpy, only here)
+    title, aid, urls = figshare_find(["DepMap 24Q4 Public", "DepMap Public"], ["Model.csv"])
+    rows = rows_from_csv(get(urls["Model.csv"]))
+    if not rows:
+        return
+    with open(OUT / "line_names.tsv", "w") as f:
+        f.write("model_id\tstripped_name\tname\n")
+        for r in rows:
+            f.write(f"{r.get('ModelID', '')}\t{r.get('StrippedCellLineName', '')}\t{r.get('CellLineName', '')}\n")
+    source["line_names"] = {"depmap": f"{title} (figshare {aid})", "rows": len(rows)}
+    print("line names:", len(rows), flush=True)
+
+
 def main():
     OUT.mkdir(parents=True, exist_ok=True)
     (OUT / "combos.tsv").unlink(missing_ok=True)      # superseded by the gzipped file
     source = {}
+    try:
+        line_names(source)
+    except Exception as e:
+        print("line names failed:", e, flush=True)
     if not try_drugcombdb(source) and not try_drugcomb(source) and not try_almanac(source):
         source["combo"] = None
     (OUT / "source.json").write_text(json.dumps(source, indent=1))

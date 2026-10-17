@@ -96,10 +96,33 @@ def aliases():
 
 
 def lines_scores():
+    """Tilt and proliferation per cell line, reachable by DepMap id and by cell line name."""
     rows = [x.split("\t") for x in Path("data/drug/lines.tsv").read_text().splitlines()[1:]]
     out = {}
     for r in rows:
         out[norm(r[0])] = (r[1], float(r[2]), float(r[3]))
+    p = D / "line_names.tsv"
+    if p.exists():
+        for line in p.read_text().splitlines()[1:]:
+            x = line.split("\t")
+            if len(x) >= 2 and norm(x[0]) in out:
+                for name in x[1:]:
+                    if name:
+                        out.setdefault(norm(name), out[norm(x[0])])
+    return out
+
+
+def single_agent():
+    """PRISM mean viability per compound (auxiliary 2)."""
+    out, p = {}, Path("data/drug/compounds.tsv")
+    if p.exists():
+        for line in p.read_text().splitlines()[1:]:
+            x = line.split("\t")
+            if len(x) >= 6 and x[1]:
+                try:
+                    out[norm(x[1])] = float(x[5])
+                except ValueError:
+                    pass
     return out
 
 
@@ -177,6 +200,33 @@ def main():
             else {"n": len(pl_rows), "skipped": "partial correlation needs more lines"}
     else:
         out["aux_synergy_vs_tilt"] = {"n": len(pl_rows), "skipped": "fewer than 100 matched rows"}
+    # auxiliary 2: single-agent toxicity of each class (PRISM mean viability)
+    via = single_agent()
+    out["aux_single_agent_viability"] = {
+        name: ({"n": len(v), "mean": round(float(np.mean(v)), 4)} if v else {"n": 0})
+        for name, cls in (("push", push), ("reverse", rev), ("lipid", lip))
+        for v in [[via[d] for d in cls if d in via]]}
+    # auxiliary 3: HDAC inhibitors alone as the push class
+    hdac = {d for d in push if any(k in d for k in ("vorinostat", "zolinza", "belinostat", "trichostatin",
+                                                    "panobinostat", "entinostat", "mocetinostat", "saha"))}
+    hd_pairs = [np.mean([x[1] for x in v]) for (a, b), v in by_pair.items()
+                if ("L" in tag(a) and b in hdac) or ("L" in tag(b) and a in hdac)]
+    out["aux_hdac_only_push"] = diff_ci(np.array(hd_pairs), rest) if len(hd_pairs) >= MIN_PAIRS else {
+        "n_group": len(hd_pairs), "skipped": f"fewer than {MIN_PAIRS} pairs", "hdac_drugs": sorted(hdac)}
+    # auxiliary 4: the primary metric under each synergy score
+    out["aux_by_score"] = {}
+    for k in SCORES:
+        pairs_k, rest_k, bp = [], [], {}
+        for d1, d2, line, vals in rows:
+            if k in vals:
+                bp.setdefault(tuple(sorted((d1, d2))), []).append(vals[k])
+        for (a, b), v in bp.items():
+            ta, tb = tag(a), tag(b)
+            m = float(np.mean(v))
+            (pairs_k if (("P" in ta and "L" in tb) or ("P" in tb and "L" in ta)) else rest_k).append(m)
+        out["aux_by_score"][k] = diff_ci(np.array(pairs_k), np.array(rest_k)) \
+            if len(pairs_k) >= MIN_PAIRS and len(rest_k) >= MIN_PAIRS else {"n_group": len(pairs_k),
+                                                                           "skipped": "too few pairs"}
     seen = {d for pair in by_pair for d in pair}
     out["drugs_in_combination_data"] = len(seen)
     out["lipid_drugs_in_combination_data"] = sorted(d for d in seen if "L" in tag(d))
