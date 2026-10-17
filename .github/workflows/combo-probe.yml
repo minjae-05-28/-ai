@@ -1,0 +1,45 @@
+name: Drug combination source probe
+
+# Which public combination screen is reachable and contains a lipid synthesis inhibitor
+# (pre-registration 27). Reads drug names only, never a synergy value. Commits data/combo_probe/.
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/combo-probe.yml"
+      - "scripts/combo_probe.py"
+
+permissions:
+  contents: write
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Probe
+        run: |
+          pip install numpy
+          python scripts/combo_probe.py
+      - name: Commit report
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -f data/combo_probe
+          if git diff --cached --quiet; then
+            echo "No change."
+          else
+            git commit -m "Probe public drug combination sources for a lipid synthesis inhibitor"
+            ok=0
+            for i in 1 2 3 4 5 6; do
+              git pull --rebase origin main && git push origin HEAD:main && { ok=1; break; }
+              echo "push attempt $i failed; retrying"; sleep $((i*10))
+            done
+            [ "$ok" = 1 ] || { echo "::error::could not push"; exit 1; }
+          fi
