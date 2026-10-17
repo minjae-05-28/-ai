@@ -1,0 +1,44 @@
+name: TCGA survival
+
+# Overall survival, age and stage per TCGA patient for pre-registration 28. Commits data/tcga_survival/.
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/tcga-survival.yml"
+      - "scripts/tcga_survival_fetch.py"
+
+permissions:
+  contents: write
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Download
+        run: |
+          pip install numpy
+          python scripts/tcga_survival_fetch.py
+      - name: Commit downloaded data
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -f data/tcga_survival
+          if git diff --cached --quiet; then
+            echo "No new data."
+          else
+            git commit -m "Add TCGA overall survival, age and stage per patient"
+            ok=0
+            for i in 1 2 3 4 5 6; do
+              git pull --rebase origin main && git push origin HEAD:main && { ok=1; break; }
+              echo "push attempt $i failed; retrying"; sleep $((i*10))
+            done
+            [ "$ok" = 1 ] || { echo "::error::could not push"; exit 1; }
+          fi
